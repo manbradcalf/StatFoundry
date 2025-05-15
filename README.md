@@ -1,0 +1,151 @@
+# StatFoundry
+
+The quickest and simplest way to find any stat you can think of.
+
+## Project Structure
+
+```
+StatFoundry/
+├── service/           # FastAPI backend
+│   ├── app/          # Application code
+│   ├── tests/        # Backend tests
+│   ├── requirements.txt
+│   └── .python-version
+├── ui/               # React frontend
+│   ├── src/         # Source code
+│   ├── tests/       # Frontend tests
+│   └── package.json
+└── .github/         # GitHub workflows
+```
+
+## Development Setup
+
+### Python Environment
+```bash
+# Install pyenv (if not already installed)
+brew install pyenv
+
+# Install Python version
+pyenv install 3.11.0
+
+# Create and activate virtual environment
+cd service
+pyenv local 3.11.0
+python -m venv .venv
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Frontend Setup
+```bash
+cd ui
+npm install
+```
+
+## CI/CD Workflows
+
+```mermaid
+graph TD
+    A[Push to main] --> B{Which files changed?}
+    N[Daily at 2 AM UTC] --> I[Run Integration Tests]
+    
+    B -->|ui/**| C[Deploy UI to Production]
+    B -->|service/**| D[Deploy Service to Production]
+    B -->|ui/**| E[Test and Lint UI]
+    B -->|service/**| F[Test and Lint Service]
+    
+    C --> C1[Build React App]
+    C1 --> C2[Deploy to Static Web Apps]
+    
+    D --> D1[Install Python Dependencies]
+    D1 --> D2[Deploy to App Service]
+    
+    E --> E1[Lint UI Code]
+    E --> E2[Run UI Tests]
+    
+    F --> F1[Lint Service Code]
+    F --> F2[Run Service Tests]
+    
+    I --> I1[Deploy to Test Environment]
+    I1 --> I2[Run Integration Tests]
+    I2 --> I3[Generate Test Report]
+
+    %% Secrets
+    S1[AZURE_STATIC_WEB_APPS_API_TOKEN] -.-> C2
+    S2[REACT_APP_API_URL] -.-> C1
+    S3[AZURE_APP_SERVICE_NAME] -.-> D2
+    S4[AZURE_WEBAPP_PUBLISH_PROFILE] -.-> D2
+    S5[TEST_ENV_CREDENTIALS] -.-> I1
+    
+    style A fill:#4a90e2,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#6c5ce7,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff
+    style N fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff
+    style I fill:#e67e22,stroke:#333,stroke-width:2px,color:#fff
+    style S1 fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style S2 fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style S3 fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style S4 fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style S5 fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+```
+
+### Workflow Legend
+- 🔵 Blue: Trigger events
+- 🟣 Purple: Decision points
+- 🟢 Green: Deployment steps
+- 🔴 Red: Testing steps
+- 🟠 Orange: Secrets
+- 🟡 Yellow: Scheduled events
+
+### Workflow Descriptions
+
+#### Test and Lint UI
+- Runs only when UI files change
+- Lints React/TypeScript code
+- Runs UI unit and integration tests
+- No secrets required
+
+#### Test and Lint Service
+- Runs only when service files change
+- Lints Python code
+- Runs service unit and integration tests
+- No secrets required
+
+#### Deploy UI to Production
+- Runs only when UI files change
+- Builds the React application
+- Deploys to Azure Static Web Apps
+- Required secrets:
+  - `AZURE_STATIC_WEB_APPS_API_TOKEN`: For Azure Static Web Apps deployment
+  - `REACT_APP_API_URL`: The URL of your FastAPI service
+
+#### Deploy Service to Production
+- Runs only when service files change
+- Installs Python dependencies
+- Deploys to Azure App Service
+- Required secrets:
+  - `AZURE_APP_SERVICE_NAME`: Name of your Azure App Service
+  - `AZURE_WEBAPP_PUBLISH_PROFILE`: Publish profile from Azure App Service
+
+#### Nightly Integration Tests
+- Runs automatically at 2 AM UTC daily
+- Deploys latest code to a test environment
+- Runs end-to-end integration tests between UI and service
+- Generates and stores test reports
+- Required secrets:
+  - `TEST_ENV_CREDENTIALS`: Credentials for the test environment deployment
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Submit a pull request
+
+## License
+
+MIT
