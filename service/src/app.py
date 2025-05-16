@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from config import driver, fetch_schema
+from src.config import URI, AUTH
+from src.neo4j_client import create_driver, fetch_schema
 
 app = FastAPI()
 
@@ -15,9 +16,9 @@ app.add_middleware(
 
 @app.get("/api/schema")
 async def get_schema():
+    driver = create_driver(URI, AUTH)
     schema = fetch_schema(driver)
     return schema
-
 
 if __name__ == '__main__':
     import uvicorn

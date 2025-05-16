@@ -15,7 +15,7 @@ def fetch_schema(driver):
     return {
         "nodes": [
             {
-                "label": node["label"],
+                "label": node["label"].strip('`:'),
                 "properties": node["properties"]
             }
             for node in node_properties
