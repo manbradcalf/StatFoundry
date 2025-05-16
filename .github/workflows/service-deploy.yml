@@ -6,11 +6,6 @@ on:
       - main
     paths:
       - 'service/**'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'service/**'
 
 jobs:
   build_and_deploy:
