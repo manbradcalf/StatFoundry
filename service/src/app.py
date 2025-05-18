@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from config import driver, fetch_schema
+from src.neo4j_client import driver, fetch_schema
+from src.config import PORT
 
 app = FastAPI()
 
@@ -13,12 +14,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/api/schema")
 async def get_schema():
     schema = fetch_schema(driver)
     return schema
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=5001) 
+
+    uvicorn.run(app, host="0.0.0.0", port=PORT)
