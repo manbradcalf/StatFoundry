@@ -18,3 +18,8 @@ app.add_middleware(
 async def get_schema():
     schema = fetch_schema(driver)
     return schema
+
+
+@app.get("/api/healthcheck")
+async def healthcheck():
+    return {"status": "ok"}
