@@ -1,12 +1,21 @@
 /**
  * Type definition for a single query chunk.
+ * @param English - The English description of the chunk.
+ * @param Cypher - The Cypher query for the chunk.
+ * @param Outputs - The outputs of the chunk.
+ * @param RequiredInputs - The inputs that are required for the chunk to build the cypher.
+ * @param Inputs - All Inputs, including all transient inputs passed down by any previous chunk.
+ * The idea being that even if the next chunk does not need the input, it can still be passed down the chain for later use.
+ * @param NextValidChunks - The function to get the next valid chunks.
+ * @param slotValues - The values to fill the slots with.
  */
 export interface Chunk {
   English: string;
   Cypher: string;
   Outputs: string[];
+  RequiredInputs: string[];
   Inputs: string[];
-  NextValidChunks: Chunk[];
+  NextValidChunks: Function;
   slotValues?: Record<string, string>;
 }
 
@@ -45,6 +54,7 @@ export class ChunkChain {
 
   /**
    * Remove the last chunk from the chain.
+   * todo: figure out how to remove the chunk when the user deletes the english description
    */
   pop(): ChunkNode | null {
     if (!this.tail) return null;
@@ -53,6 +63,19 @@ export class ChunkChain {
     if (this.tail) this.tail.next = null;
     if (removed === this.head) this.head = null;
     return removed;
+  }
+
+  /**
+   * Get all chunks as an array (for UI, debugging, etc).
+   */
+  toArray(): Chunk[] {
+    const arr: Chunk[] = [];
+    let node = this.head;
+    while (node) {
+      arr.push(node.chunk);
+      node = node.next;
+    }
+    return arr;
   }
 
   /**
@@ -73,7 +96,7 @@ export class ChunkChain {
       }
       englishParts.push(chunk.English);
       cypherParts.push(chunk.Cypher.trim());
-      outputs = [...new Set([...outputs, ...chunk.Outputs])];
+      outputs = Array.from(new Set([...outputs, ...chunk.Outputs]));
       node = node.next;
     }
 
@@ -99,63 +122,19 @@ export class ChunkChain {
       idx++;
     }
   }
-
-  /**
-   * Get all chunks as an array (for UI, debugging, etc).
-   */
-  toArray(): Chunk[] {
-    const arr: Chunk[] = [];
-    let node = this.head;
-    while (node) {
-      arr.push(node.chunk);
-      node = node.next;
-    }
-    return arr;
-  }
 }
 
 /**
  * Utility to replace {placeholders} in a template string.
  */
-function replacePlaceholders(template: string, values: Record<string, string>): string {
+function replacePlaceholders(
+  template: string,
+  values: Record<string, string>
+): string {
   return template.replace(/\{(.*?)\}/g, (match, key) => {
     const trimmedKey = key.trim();
     return values.hasOwnProperty(trimmedKey) ? values[trimmedKey] : match;
   });
-}
-
-/**
- * Factory to create a new chunk.
- */
-export function createChunk({ English, Cypher, Outputs, Inputs }: Omit<Chunk, 'NextValidChunks'>): Chunk {
-  return {
-    English,
-    Cypher,
-    Outputs,
-    Inputs,
-    NextValidChunks: [],
-  };
-}
-
-/**
- * Factory for a return clause chunk.
- */
-export interface ReturnClauseChunk {
-  English: string;
-  ReturnClause: string;
-  Inputs: string[];
-  ApplyReturnClause(cypherSoFar: string): string;
-}
-
-export function createReturnChunk({ English, ReturnClause, Inputs }: Omit<ReturnClauseChunk, 'ApplyReturnClause'>): ReturnClauseChunk {
-  return {
-    English,
-    ReturnClause,
-    Inputs,
-    ApplyReturnClause(cypherSoFar: string) {
-      return cypherSoFar + "\nRETURN " + this.ReturnClause;
-    },
-  };
 }
 
 /**
@@ -164,8 +143,40 @@ export function createReturnChunk({ English, ReturnClause, Inputs }: Omit<Return
  * @param allChunks Array of all possible chunks.
  * @returns Array of valid next chunks.
  */
-export function getNextValidChunks(currentChunk: Chunk, allChunks: Chunk[]): Chunk[] {
-  return allChunks.filter(nextChunk =>
-    nextChunk.Inputs.every(input => currentChunk.Outputs.includes(input))
+export function getNextValidChunks(
+  currentChunk: Chunk,
+  allChunks: Chunk[]
+): Chunk[] {
+  return allChunks.filter((nextChunk) =>
+    nextChunk.Inputs.every((input) => currentChunk.Outputs.includes(input))
   );
 }
+
+/**
+  Chunk ideas
+
+  get stats meeting condition
+    get (player | team) (game | season) where (condition) 
+    ex: get <player games> where passing touchdowns > 3
+
+  get stats where average meets condition 
+    get (player | team) (game | season) stat where avg(stat) was (condition)
+    ex: get <player games> where the average passing touchdowns was > 3
+  
+  get stretch of stats
+    get stretch of (duration) (player | team) (game | season) where (condition)
+    ex: get <5 game stretch> of <player games> where passing touchdowns > 3
+
+  aggregate over stretch of player games
+    with stretch, get (aggregation) (player | team) (game | season) stat over (duration)
+    ex: get 5 game stretch of <player games> where the sum of passing touchdowns was > 15
+    ex: get 5 game stretch of <player games> where the avg passing touchdowns was = 3
+
+  
+  
+  
+  
+  
+  
+  
+ */
