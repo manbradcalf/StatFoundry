@@ -1,14 +1,9 @@
 import React from 'react';
+import { useSearch } from '../contexts/SearchContext';
 
-interface QueryResultProps {
-  builtQuery: {
-    English: string;
-    Cypher: string;
-    Outputs: string[];
-  } | null;
-}
+export const QueryResult: React.FC = () => {
+  const { builtQuery } = useSearch();
 
-export const QueryResult: React.FC<QueryResultProps> = ({ builtQuery }) => {
   if (!builtQuery) {
     return null;
   }

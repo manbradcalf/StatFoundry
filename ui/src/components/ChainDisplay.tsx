@@ -1,15 +1,14 @@
 import React from 'react';
-import { ChunkChain } from '../chunks';
+import { useSearch } from '../contexts/SearchContext';
 
 interface ChainDisplayProps {
-  chain: ChunkChain;
   title?: string;
 }
 
 export const ChainDisplay: React.FC<ChainDisplayProps> = ({
-  chain,
   title = "Current Chain"
 }) => {
+  const { chain } = useSearch();
   const chainArray = chain.toArray();
 
   return (

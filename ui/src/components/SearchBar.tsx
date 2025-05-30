@@ -1,39 +1,29 @@
 import React, { useRef, useEffect } from 'react';
-import { Chunk } from '../chunks';
-
-interface Suggestion {
-  chunk: Chunk;
-  displayText: string;
-}
+import { useSearch } from '../contexts/SearchContext';
 
 interface SearchBarProps {
-  query: string;
-  onQueryChange: (value: string) => void;
-  suggestions: Suggestion[];
-  showSuggestions: boolean;
-  selectedSuggestionIndex: number;
-  onSuggestionClick: (suggestion: Suggestion) => void;
-  onKeyDown: (e: React.KeyboardEvent) => void;
-  onClearQuery: () => void;
   placeholder?: string;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
-  query,
-  onQueryChange,
-  suggestions,
-  showSuggestions,
-  selectedSuggestionIndex,
-  onSuggestionClick,
-  onKeyDown,
-  onClearQuery,
   placeholder = "Receivers who caught at least..."
 }) => {
+  const {
+    query,
+    setQuery,
+    suggestions,
+    showSuggestions,
+    selectedSuggestionIndex,
+    handleSuggestionClick,
+    handleKeyDown,
+    clearQuery
+  } = useSearch();
+
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onQueryChange(e.target.value);
+    setQuery(e.target.value);
     
     // Move cursor to end of input
     setTimeout(() => {
@@ -70,13 +60,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           type="text"
           value={query}
           onChange={handleInputChange}
-          onKeyDown={onKeyDown}
+          onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="search-input"
           autoComplete="off"
         />
         {query && (
-          <button onClick={onClearQuery} className="clear-button">
+          <button onClick={clearQuery} className="clear-button">
             ×
           </button>
         )}
@@ -88,7 +78,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <div
               key={index}
               className={`suggestion-item ${index === selectedSuggestionIndex ? 'selected' : ''}`}
-              onClick={() => onSuggestionClick(suggestion)}
+              onClick={() => handleSuggestionClick(suggestion)}
             >
               {suggestion.displayText}
             </div>

@@ -1,6 +1,9 @@
-import { Chunk } from "./chunks";
+import { Chunk } from "./feature/Search/Chunk";
+// TODO: Replace this hardcoded list of chunks
+// with a dynamically generated list
+// mapped from the result of GET /api/schema
 
-// Sample chunks that represent the Fantasy Football Oracle functionality
+// Sample chunks that represent the StatNug functionality
 export function getAvailableChunks(): Chunk[] {
   return [
     // Starting chunks (no required inputs)
