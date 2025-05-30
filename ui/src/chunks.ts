@@ -6,7 +6,6 @@
  * @param RequiredInputs - The inputs that are required for the chunk to build the cypher.
  * @param Inputs - All Inputs, including all transient inputs passed down by any previous chunk.
  * The idea being that even if the next chunk does not need the input, it can still be passed down the chain for later use.
- * @param NextValidChunks - The function to get the next valid chunks.
  * @param slotValues - The values to fill the slots with.
  */
 export interface Chunk {
@@ -15,7 +14,6 @@ export interface Chunk {
   Outputs: string[];
   RequiredInputs: string[];
   Inputs: string[];
-  NextValidChunks: Function;
   slotValues?: Record<string, string>;
 }
 

@@ -10,7 +10,6 @@ export function getAvailableChunks(): Chunk[] {
       Outputs: ["p"],
       RequiredInputs: [],
       Inputs: [],
-      NextValidChunks: () => [],
     },
     {
       English: "Players who",
@@ -18,7 +17,6 @@ export function getAvailableChunks(): Chunk[] {
       Outputs: ["p"],
       RequiredInputs: [],
       Inputs: [],
-      NextValidChunks: () => [],
     },
     {
       English: "Quarterbacks who",
@@ -26,58 +24,58 @@ export function getAvailableChunks(): Chunk[] {
       Outputs: ["p"],
       RequiredInputs: [],
       Inputs: [],
-      NextValidChunks: () => [],
     },
 
     // Game-related chunks (require player)
     {
-      English: "caught at least {receptions} receptions",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.receptions >= {receptions}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      English: "caught at least {receptions} receptions in a game",
+      Cypher: "WITH pg WHERE pg.receptions >= {receptions}",
+      Outputs: ["pg"],
+      RequiredInputs: ["pg"],
+      Inputs: [],
       slotValues: { receptions: "5" },
     },
     {
-      English: "had at least {yards} receiving yards",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.receiving_yards >= {yards}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      English: "had at least {yards} receiving yards in a game",
+      Cypher: "WITH pg, WHERE pg.receiving_yards >= {yards} as ryig",
+      Outputs: ["pg", "ryig"],
+      RequiredInputs: ["pg"],
+      Inputs: [],
       slotValues: { yards: "100" },
     },
     {
-      English: "threw at least {touchdowns} passing touchdowns",
+      English: "threw at least {touchdowns} passing touchdowns in a game",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.passing_tds >= {touchdowns}",
       Outputs: ["p", "pg"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { touchdowns: "2" },
     },
     {
-      English: "had at least {yards} passing yards",
+      English: "had at least {yards} passing yards in a game",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.passing_yards >= {yards}",
       Outputs: ["p", "pg"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { yards: "300" },
     },
     {
-      English: "haven't won a game",
+      English: "lost",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
       Outputs: ["p", "pg", "g"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
+    },
+    {
+      English: "won",
+      Cypher:
+        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
+      Outputs: ["p", "pg", "g"],
+      RequiredInputs: ["pg"],
+      Inputs: [],
     },
 
     // Time-based filters (require player games)
@@ -86,8 +84,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "RETURN p, pg",
       Outputs: ["p", "pg"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
     {
       English: "in that season",
@@ -95,16 +92,14 @@ export function getAvailableChunks(): Chunk[] {
         "MATCH (pg)-[:PART_OF_GAME]->(g:Game)-[:DURING_WEEK]->(w:Week)-[:OF_NFL_SEASON]->(s:Season)",
       Outputs: ["p", "pg", "s"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
     {
       English: "in their career",
       Cypher: "MATCH (p)-[:PLAYED_SEASON]->(ps:PlayerSeason)",
       Outputs: ["p", "ps"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
 
     // Additional filters that can be chained
@@ -113,8 +108,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE pg.receptions >= {receptions}",
       Outputs: ["p", "pg"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { receptions: "5" },
     },
     {
@@ -122,8 +116,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE pg.receiving_yards >= {yards}",
       Outputs: ["p", "pg"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { yards: "100" },
     },
     {
@@ -131,8 +124,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE pg.receiving_tds >= {touchdowns}",
       Outputs: ["p", "pg"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { touchdowns: "1" },
     },
 
@@ -143,8 +135,7 @@ export function getAvailableChunks(): Chunk[] {
         "MATCH (pg)-[:PART_OF_GAME]->(g:Game) WHERE g.broadcast_network = 'NBC'",
       Outputs: ["p", "pg", "g"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
     {
       English: "haven't won a game broadcast on NBC",
@@ -152,8 +143,7 @@ export function getAvailableChunks(): Chunk[] {
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE g.broadcast_network = 'NBC' AND NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
       Outputs: ["p", "pg", "g"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
 
     // Specific stat combinations
@@ -162,8 +152,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE pg.receiving_first_downs >= 2",
       Outputs: ["p", "pg"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
     {
       English: "on NBC and had at least 2 3rd down conversions",
@@ -171,8 +160,7 @@ export function getAvailableChunks(): Chunk[] {
         "MATCH (pg)-[:PART_OF_GAME]->(g:Game) WHERE g.broadcast_network = 'NBC' AND pg.receiving_first_downs >= 2",
       Outputs: ["p", "pg", "g"],
       RequiredInputs: ["pg"],
-      Inputs: ["p", "pg"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
 
     // Draft-related chunks
@@ -181,8 +169,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE p.draft_year < {year}",
       Outputs: ["p"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { year: "2020" },
     },
     {
@@ -192,8 +179,7 @@ export function getAvailableChunks(): Chunk[] {
         "WHERE p.draftround = {round} AND p.draft_year >= {startYear} AND p.draft_year <= {endYear}",
       Outputs: ["p"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { round: "1", startYear: "2020", endYear: "2023" },
     },
 
@@ -203,8 +189,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE p.recent_team = '{team}'",
       Outputs: ["p"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
       slotValues: { team: "BUF" },
     },
     {
@@ -212,8 +197,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "WHERE p.position != p.college_position",
       Outputs: ["p"],
       RequiredInputs: ["p"],
-      Inputs: ["p"],
-      NextValidChunks: () => [],
+      Inputs: [],
     },
   ];
 }

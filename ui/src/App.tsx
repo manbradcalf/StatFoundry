@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ChunkChain, Chunk } from './chunks';
 import { getAvailableChunks } from './chunks-data';
+import { SearchBar, ChainDisplay, QueryResult } from './components';
 
 interface Suggestion {
   chunk: Chunk;
@@ -15,9 +16,6 @@ function App() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
   const [builtQuery, setBuiltQuery] = useState<{ English: string; Cypher: string; Outputs: string[] } | null>(null);
-  
-  const inputRef = useRef<HTMLInputElement>(null);
-  const suggestionsRef = useRef<HTMLDivElement>(null);
 
   // Get current outputs from the chain to determine next valid chunks
   const getCurrentOutputs = (): string[] => {
@@ -32,6 +30,24 @@ function App() {
     return Array.from(new Set(allOutputs)); // Remove duplicates
   };
 
+  // Extract the partial input that the user is currently typing
+  const getPartialInput = (): string => {
+    const chainArray = chain.toArray();
+    if (chainArray.length === 0) return query.trim();
+    
+    // Get the built English from current chain
+    const builtEnglish = chain.buildQuery().English;
+    
+    // If the query is longer than the built English, extract the partial input
+    if (query.length > builtEnglish.length) {
+      const partial = query.substring(builtEnglish.length).trim();
+      // Remove leading "and " if present
+      return partial.startsWith('and ') ? partial.substring(4).trim() : partial;
+    }
+    
+    return '';
+  };
+
   // Update suggestions based on current query and chain state
   useEffect(() => {
     console.log('🔍 useEffect triggered:', { query, chainLength: chain.toArray().length });
@@ -44,10 +60,12 @@ function App() {
 
     const currentOutputs = getCurrentOutputs();
     const availableChunks = getAvailableChunks();
+    const partialInput = getPartialInput();
     
     console.log('📊 Debug info:', { 
       currentOutputs, 
-      availableChunksCount: availableChunks.length 
+      availableChunksCount: availableChunks.length,
+      partialInput: `"${partialInput}"`
     });
     
     // Filter chunks based on:
@@ -60,31 +78,23 @@ function App() {
       return chunk.RequiredInputs.every(input => currentOutputs.includes(input));
     });
 
-    // Filter by query text and create suggestions
+    // Filter by partial input text and create suggestions
     const filteredSuggestions = validChunks
-      // .filter(chunk => 
-      //   chunk.English.toLowerCase().includes(query.toLowerCase())
-      // )
+      .filter(chunk => {
+        if (!partialInput) return true; // Show all valid chunks if no partial input
+        
+        // Filter chunks that start with or contain the partial input
+        return chunk.English.toLowerCase().includes(partialInput.toLowerCase());
+      })
       .map(chunk => ({
         chunk,
-        displayText: chunk.English
+        displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
       }));
 
     setSuggestions(filteredSuggestions);
-    setShowSuggestions(validChunks.length > 0);
+    setShowSuggestions(filteredSuggestions.length > 0);
     setSelectedSuggestionIndex(-1);
-  }, [query, chain]); // Removed getCurrentOutputs from dependenciestA
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    
-    // Move cursor to end of input
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.setSelectionRange(e.target.value.length, e.target.value.length);
-      }
-    }, 0);
-  };
+  }, [query, chain]);
 
   const handleSuggestionClick = (suggestion: Suggestion) => {
     console.log('🎯 Suggestion clicked:', suggestion);
@@ -105,14 +115,6 @@ function App() {
     setQuery(result.English);
     setBuiltQuery(result);
     
-    // Move cursor to end after updating query
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.setSelectionRange(result.English.length, result.English.length);
-        inputRef.current.focus();
-      }
-    }, 0);
-    
     // Clear suggestions
     setSuggestions([]);
     setShowSuggestions(false);
@@ -126,15 +128,11 @@ function App() {
         e.preventDefault();
         const nextIndex = selectedSuggestionIndex < suggestions.length - 1 ? selectedSuggestionIndex + 1 : selectedSuggestionIndex;
         setSelectedSuggestionIndex(nextIndex);
-        scrollToSuggestion(nextIndex);
         break;
       case 'ArrowUp':
         e.preventDefault();
         const prevIndex = selectedSuggestionIndex > 0 ? selectedSuggestionIndex - 1 : -1;
         setSelectedSuggestionIndex(prevIndex);
-        if (prevIndex >= 0) {
-          scrollToSuggestion(prevIndex);
-        }
         break;
       case 'Enter':
         e.preventDefault();
@@ -146,18 +144,6 @@ function App() {
         setShowSuggestions(false);
         setSelectedSuggestionIndex(-1);
         break;
-    }
-  };
-
-  const scrollToSuggestion = (index: number) => {
-    if (suggestionsRef.current) {
-      const suggestionElement = suggestionsRef.current.children[index] as HTMLElement;
-      if (suggestionElement) {
-        suggestionElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
-        });
-      }
     }
   };
 
@@ -173,66 +159,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Fantasy Football Oracle</h1>
-        <div className="search-container">
-          <div className="search-box">
-            <input
-              ref={inputRef}
-              type="text"
-              value={query}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Receivers who caught at least..."
-              className="search-input"
-              autoComplete="off"
-            />
-            {query && (
-              <button onClick={clearQuery} className="clear-button">
-                ×
-              </button>
-            )}
-          </div>
-          
-          {showSuggestions && (
-            <div ref={suggestionsRef} className="suggestions-dropdown">
-              {suggestions.map((suggestion, index) => (
-                <div
-                  key={index}
-                  className={`suggestion-item ${index === selectedSuggestionIndex ? 'selected' : ''}`}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  {suggestion.displayText}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        
+        <SearchBar
+          query={query}
+          onQueryChange={setQuery}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          selectedSuggestionIndex={selectedSuggestionIndex}
+          onSuggestionClick={handleSuggestionClick}
+          onKeyDown={handleKeyDown}
+          onClearQuery={clearQuery}
+          placeholder="Receivers who caught at least..."
+        />
 
-        {builtQuery && (
-          <div className="query-result">
-            <h3>Built Query:</h3>
-            <div className="english-query">
-              <strong>English:</strong> {builtQuery.English}
-            </div>
-            <div className="cypher-query">
-              <strong>Cypher:</strong>
-              <pre>{builtQuery.Cypher}</pre>
-            </div>
-            <div className="outputs">
-              <strong>Outputs:</strong> {builtQuery.Outputs.join(', ')}
-            </div>
-          </div>
-        )}
+        <QueryResult builtQuery={builtQuery} />
 
-        <div className="chain-debug">
-          <h4>Current Chain ({chain.toArray().length} chunks):</h4>
-          {chain.toArray().map((chunk, index) => (
-            <div key={index} className="chunk-item">
-              <strong>Chunk {index + 1}:</strong> {chunk.English}
-              <br />
-              <small>Inputs: [{chunk.Inputs.join(', ')}] → Outputs: [{chunk.Outputs.join(', ')}]</small>
-            </div>
-          ))}
-        </div>
+        <ChainDisplay chain={chain} />
       </header>
     </div>
   );
