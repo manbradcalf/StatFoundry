@@ -1,4 +1,4 @@
-# Fantasy Football Oracle UI
+# StatNug UI
 
 React frontend application for testing the chunk-based query building system.
 
