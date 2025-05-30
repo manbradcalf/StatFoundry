@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { getAvailableChunks } from '../chunks-data';
-import { ChunkChain } from '../feature/Search/ChunkChain';
-import { Chunk } from '../feature/Search/Chunk';
+import { ChunkChain } from '../feature/Chunks/ChunkChain';
+import { Chunk } from '../feature/Chunks/Chunk';
 
 interface Suggestion {
   chunk: Chunk;
-  displayText: string;
 }
 
 interface SearchContextType {

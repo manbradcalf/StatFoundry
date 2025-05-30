@@ -1,4 +1,4 @@
-import { Chunk } from "./feature/Search/Chunk";
+import { Chunk } from "./feature/Chunks/Chunk";
 // TODO: Replace this hardcoded list of chunks
 // with a dynamically generated list
 // mapped from the result of GET /api/schema

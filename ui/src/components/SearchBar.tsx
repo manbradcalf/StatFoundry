@@ -80,7 +80,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               className={`suggestion-item ${index === selectedSuggestionIndex ? 'selected' : ''}`}
               onClick={() => handleSuggestionClick(suggestion)}
             >
-              {suggestion.displayText}
+              {suggestion.chunk.English}
             </div>
           ))}
         </div>

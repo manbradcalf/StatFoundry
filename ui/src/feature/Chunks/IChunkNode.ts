@@ -1,4 +1,4 @@
-import { Chunk } from "../Search/Chunk";
+import { Chunk } from "./Chunk";
 
 /**
  * Node in the linked-list chain of chunks.
