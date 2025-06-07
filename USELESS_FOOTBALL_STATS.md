@@ -722,8 +722,10 @@ ORDER BY curseImpact
 Correlates celebration duration with next play success.
 
 ```cypher
-MATCH (p:Player)-[:MADE]->(pp1:PlayerPlay)-[:OF]->(play1:NFLPlay)-[:NEXT]->(play2:NFLPlay)<-[:OF]-(pp2:PlayerPlay)<-[:MADE]-(p)
-WHERE play1.celebrationDuration IS NOT NULL
+MATCH (p:Player)-[:MADE]->(pp1:PlayerPlay)-[:OF]->(play1:NFLPlay)
+MATCH (p)-[:MADE]->(pp2:PlayerPlay)-[:OF]->(play2:NFLPlay)
+WHERE play2.previousPlayId = play1.id
+  AND play1.celebrationDuration IS NOT NULL
 WITH p,
      play1.celebrationDuration as celebTime,
      play2.result as nextPlayResult,

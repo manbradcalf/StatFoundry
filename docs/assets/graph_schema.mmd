@@ -1,0 +1,54 @@
+graph TD
+    %% Core Timeline centered
+    NFLPlay["NFL Play"] -->|"OF"| Drive["Drive"]
+    Drive -->|"OF"| NFLGame["NFL Game"]
+    NFLGame -->|"OF"| NFLWeek["NFL Week"]
+    NFLWeek -->|"OF"| Season["Season"]
+
+    %% Player Path on left
+    subgraph "Player Path"
+        Player["Player"] -->|"MADE"| PlayerPlay["Player Play"]
+        Player -->|"MADE"| PlayerGame["Player Game"]
+        Player -->|"MADE"| PlayerSeason["Player Season"]
+        Player -->|"MADE"| PlayerDrive["Player Drive"]
+    end
+
+    %% Team Path on right
+    subgraph "Team Path"
+        Team["Team"] -->|"MADE"| TeamPlay["Team Play"]
+        Team -->|"MADE"| TeamGame["Team Game"]
+        Team -->|"MADE"| TeamSeason["Team Season"]
+        Team -->|"MADE"| TeamDrive["Team Drive"]
+    end
+
+    %% Connections to core timeline
+    PlayerPlay -->|"OF"| NFLPlay
+    TeamPlay -->|"OF"| NFLPlay
+    PlayerGame -->|"OF"| NFLGame
+    TeamGame -->|"OF"| NFLGame
+    PlayerSeason -->|"OF"| Season
+    TeamSeason -->|"OF"| Season
+    PlayerDrive -->|"OF"| Drive
+    TeamDrive -->|"OF"| Drive
+
+    %% Styling
+    style Player fill:#2b6cb0,stroke:#000000,stroke-width:3px,color:#ffffff
+    style Team fill:#2b6cb0,stroke:#000000,stroke-width:3px,color:#ffffff
+    
+    style NFLPlay fill:#c53030,stroke:#000000,stroke-width:3px,color:#ffffff
+    style Drive fill:#c53030,stroke:#000000,stroke-width:3px,color:#ffffff
+    style NFLGame fill:#c53030,stroke:#000000,stroke-width:3px,color:#ffffff
+    style NFLWeek fill:#c53030,stroke:#000000,stroke-width:3px,color:#ffffff
+    style Season fill:#c53030,stroke:#000000,stroke-width:3px,color:#ffffff
+    
+    style PlayerPlay fill:#2f855a,stroke:#000000,stroke-width:3px,color:#ffffff
+    style PlayerGame fill:#2f855a,stroke:#000000,stroke-width:3px,color:#ffffff
+    style PlayerSeason fill:#2f855a,stroke:#000000,stroke-width:3px,color:#ffffff
+    style PlayerDrive fill:#2f855a,stroke:#000000,stroke-width:3px,color:#ffffff
+    
+    style TeamPlay fill:#975a16,stroke:#000000,stroke-width:3px,color:#ffffff
+    style TeamGame fill:#975a16,stroke:#000000,stroke-width:3px,color:#ffffff
+    style TeamSeason fill:#975a16,stroke:#000000,stroke-width:3px,color:#ffffff
+    style TeamDrive fill:#975a16,stroke:#000000,stroke-width:3px,color:#ffffff
+
+    linkStyle default stroke:#333333,stroke-width:2px 

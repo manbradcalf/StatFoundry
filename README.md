@@ -15,26 +15,27 @@ StatFoundry/
 │   ├── src/         # Source code
 │   ├── tests/       # Frontend tests
 │   └── package.json
+├── docs/            # Documentation
+│   └── assets/      # Documentation assets
 └── .github/         # GitHub workflows
 ```
 
 ## Graph Architecture
 
-The core of the graph database lies across two axes
+The core graph schema is visualized in [docs/assets/graph_schema.mmd](docs/assets/graph_schema.mmd). The architecture lies across two axes:
 
 ### Temporal Axis: Plays to Seasons
 
-`(Play)-[:OF]->(Game)-[:OF]->(Week)-[:OF]->(Season)`
+`(Play)-[:OF]->(Drive)-[:OF]->(Game)-[:OF]->(Week)-[:OF]->(Season)`
 
-### Organizational Axis: Players to Leagues
+### Organizational Axis: Players to Teams
 
-`(Player)-[:OF]->(Team)-[:OF]->(Division)-[:OF]->(Conference)-[:OF]->(League)`
+`(Player)-[:MADE]->(PlayerPlay)-[:OF]->(Play)`
+`(Team)-[:MADE]->(TeamPlay)-[:OF]->(Play)`
 
 In certain places, these axes converge, creating a compound node. These are essentially lenses to view events from different perspectives.
 
 `(Entity)-[:MADE]->(CompoundNode)-[:OF]->(TemporalNode)`
-
-`(Player)-[:MADE]->(PlayerPlay)-[:OF]->(Play)`
 
 `(Player)-[:MADE]->(PlayerGame)-[:OF]->(Game)`
 
@@ -210,3 +211,144 @@ graph TD
 ## License
 
 MIT
+
+# StatFoundry Data Pipeline
+
+## Overview
+
+StatFoundry processes NFL data through a hierarchical pipeline that maps player statistics from games down to individual plays. The pipeline follows this structure:
+
+```
+PlayerGame -> PlayerDrive -> PlayerPlay
+     ↓           ↓            ↓
+   Game   ->   Drive   ->   Play
+```
+
+## Implementation Plan
+
+### 1. Player-Game Mapping (✅ Completed)
+
+- File: `service/player_game_mapper.py`
+- Input: Raw NFL weekly data
+- Output: `data/player_game_data_{season}_{week}.parquet`
+- Key Features:
+  - Generates unique `player_game_id = player_id + game_id`
+  - Maps players to games they participated in
+  - Includes game-level statistics
+
+### 2. Player-Drive Mapping (🚧 In Progress)
+
+- File: `service/player_drive_mapper.py`
+- Input:
+  - Player-game parquet files
+  - NFL play-by-play data (for drive information)
+- Output: `data/player_drive_data_{season}_{week}.parquet`
+- Implementation Tasks:
+  - [ ] Create unique `player_drive_id = player_id + game_id + drive_id`
+  - [ ] Map drive statistics to players
+  - [ ] Calculate drive-level aggregations
+  - [ ] Track offensive/defensive participation
+
+### 3. Player-Play Mapping (📋 Planned)
+
+- File: `service/player_play_mapper.py`
+- Input:
+  - Player-game parquet files
+  - NFL play-by-play data
+- Output: `data/player_play_data_{season}_{week}.parquet`
+- Implementation Tasks:
+  - [ ] Create unique `player_play_id = player_id + game_id + play_id`
+  - [ ] Map individual plays to players
+  - [ ] Track play participation and roles
+  - [ ] Calculate play-level statistics
+
+## Data Flow
+
+1. **Game Level**
+
+   ```python
+   player_game_id = f"{player_id}_{game_id}"
+   ```
+
+   - Basic player statistics
+   - Game context (home/away, opponent)
+   - Game-level aggregations
+
+2. **Drive Level**
+
+   ```python
+   player_drive_id = f"{player_id}_{game_id}_{drive_id}"
+   ```
+
+   - Drive participation
+   - Offensive/defensive roles
+   - Drive success metrics
+   - Drive-specific statistics
+
+3. **Play Level**
+   ```python
+   player_play_id = f"{player_id}_{game_id}_{play_id}"
+   ```
+   - Individual play participation
+   - Play-specific roles
+   - Detailed play statistics
+   - Play outcome impact
+
+## Graph Database Schema
+
+The processed data maps to our graph database with the following node types:
+
+```mermaid
+graph TD
+    subgraph "Player Path"
+        Player["Player"] -->|"MADE"| PlayerPlay["Player Play"]
+        Player -->|"MADE"| PlayerGame["Player Game"]
+        Player -->|"MADE"| PlayerDrive["Player Drive"]
+    end
+
+    subgraph "Core Timeline"
+        PlayerPlay -->|"OF"| NFLPlay["NFL Play"]
+        NFLPlay -->|"OF"| Drive["Drive"]
+        Drive -->|"OF"| NFLGame["NFL Game"]
+        NFLGame -->|"OF"| NFLWeek["NFL Week"]
+        NFLWeek -->|"OF"| Season["Season"]
+    end
+```
+
+## Next Steps
+
+1. **Player-Drive Mapper Implementation**
+
+   - [ ] Set up basic drive mapping structure
+   - [ ] Implement drive statistics calculation
+   - [ ] Add offensive/defensive drive tracking
+   - [ ] Create tests for drive mapping
+
+2. **Player-Play Mapper Implementation**
+
+   - [ ] Design play mapping structure
+   - [ ] Implement play participation tracking
+   - [ ] Add play-specific statistics
+   - [ ] Create tests for play mapping
+
+3. **Pipeline Integration**
+   - [ ] Create pipeline orchestration
+   - [ ] Add data validation steps
+   - [ ] Implement error handling
+   - [ ] Add logging and monitoring
+
+## Usage
+
+```python
+# Generate player-game data
+from service.player_game_mapper import generate_player_game_parquets
+df = generate_player_game_parquets(range(2023, 2024), range(1, 19))
+
+# Future: Generate player-drive data
+from service.player_drive_mapper import generate_player_drive_parquets
+drive_df = generate_player_drive_parquets(season=2023, week=1)
+
+# Future: Generate player-play data
+from service.player_play_mapper import generate_player_play_parquets
+play_df = generate_player_play_parquets(season=2023, week=1)
+```
