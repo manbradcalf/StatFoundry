@@ -1,0 +1,4026 @@
+{
+  "version": "2.3.1-beta.0",
+  "visualisation": {
+    "nodes": [
+      {
+        "id": "n:1",
+        "position": {
+          "x": -250.4510501713791,
+          "y": -1280.6308314056046
+        }
+      },
+      {
+        "id": "n:4",
+        "position": {
+          "x": -247.92061479015587,
+          "y": -898.7042822893504
+        }
+      },
+      {
+        "id": "n:2",
+        "position": {
+          "x": -260.9604886377564,
+          "y": -612.4303338519695
+        }
+      },
+      {
+        "id": "n:5",
+        "position": {
+          "x": 515.1608578923575,
+          "y": -597.999725110473
+        }
+      },
+      {
+        "id": "n:6",
+        "position": {
+          "x": 189.6960282787974,
+          "y": -881.6663901459738
+        }
+      },
+      {
+        "id": "n:7",
+        "position": {
+          "x": -275.54929511688107,
+          "y": 47.363779533102445
+        }
+      },
+      {
+        "id": "n:8",
+        "position": {
+          "x": -262.103730018983,
+          "y": -352.9201830637844
+        }
+      },
+      {
+        "id": "n:9",
+        "position": {
+          "x": 191.49157152346308,
+          "y": -333.375283995999
+        }
+      },
+      {
+        "id": "n:3",
+        "position": {
+          "x": -991.0398161254074,
+          "y": -618.8699806060606
+        }
+      },
+      {
+        "id": "n:10",
+        "position": {
+          "x": -713.7810645873589,
+          "y": -367.3367916106963
+        }
+      },
+      {
+        "id": "n:11",
+        "position": {
+          "x": -689.1170976816682,
+          "y": -905.4515783274411
+        }
+      },
+      {
+        "id": "n:12",
+        "position": {
+          "x": 92.75002977060947,
+          "y": -601.283364345135
+        }
+      }
+    ]
+  },
+  "dataModel": {
+    "version": "2.3.1-beta.0",
+    "graphSchemaRepresentation": {
+      "version": "1.0.0",
+      "graphSchema": {
+        "nodeLabels": [
+          {
+            "$id": "nl:1",
+            "token": "Player",
+            "properties": [
+              {
+                "$id": "p:1",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:2",
+                "token": "display_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:3",
+                "token": "first_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:4",
+                "token": "last_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:5",
+                "token": "esb_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:6",
+                "token": "gsis_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:7",
+                "token": "birth_date",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:8",
+                "token": "college_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:9",
+                "token": "position_group",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:10",
+                "token": "position",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:11",
+                "token": "jersey_number",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:13",
+                "token": "height",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:14",
+                "token": "weight",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:15",
+                "token": "years_of_experience",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:16",
+                "token": "team_abbr",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:17",
+                "token": "team_seq",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:18",
+                "token": "current_team_id",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:19",
+                "token": "football_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:20",
+                "token": "entry_year",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:21",
+                "token": "rookie_year",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:22",
+                "token": "draft_club",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:23",
+                "token": "college_conference",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:24",
+                "token": "status_description_abbr",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:25",
+                "token": "status_short_description",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:26",
+                "token": "gsis_it_id",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:27",
+                "token": "short_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:28",
+                "token": "smart_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:29",
+                "token": "headshot",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:30",
+                "token": "draft_number",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:31",
+                "token": "draftround",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:32",
+                "token": "uniform_number",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:33",
+                "token": "suffix",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:4",
+            "token": "PlayerGame",
+            "properties": [
+              {
+                "$id": "p:12",
+                "token": "player_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:34",
+                "token": "player_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:35",
+                "token": "player_display_name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:36",
+                "token": "position",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:37",
+                "token": "position_group",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:38",
+                "token": "headshot_url",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:39",
+                "token": "recent_team",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:40",
+                "token": "season",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:41",
+                "token": "week",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:42",
+                "token": "season_type",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:43",
+                "token": "opponent_team",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:44",
+                "token": "completions",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:45",
+                "token": "attempts",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:46",
+                "token": "passing_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:47",
+                "token": "passing_tds",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:48",
+                "token": "interceptions",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:49",
+                "token": "sacks",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:50",
+                "token": "sack_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:51",
+                "token": "sack_fumbles",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:52",
+                "token": "sack_fumbles_lost",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:53",
+                "token": "passing_air_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:54",
+                "token": "passing_yards_after_catch",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:55",
+                "token": "passing_first_downs",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:56",
+                "token": "passing_epa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:57",
+                "token": "passing_2pt_conversions",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:58",
+                "token": "pacr",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:59",
+                "token": "dakota",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:60",
+                "token": "carries",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:61",
+                "token": "rushing_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:62",
+                "token": "rushing_tds",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:63",
+                "token": "rushing_fumbles",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:64",
+                "token": "rushing_fumbles_lost",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:65",
+                "token": "rushing_first_downs",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:66",
+                "token": "rushing_epa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:67",
+                "token": "rushing_2pt_conversions",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:68",
+                "token": "receptions",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:69",
+                "token": "targets",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:70",
+                "token": "receiving_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:71",
+                "token": "receiving_tds",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:72",
+                "token": "receiving_fumbles",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:73",
+                "token": "receiving_fumbles_lost",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:74",
+                "token": "receiving_air_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:75",
+                "token": "receiving_yards_after_catch",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:76",
+                "token": "receiving_first_downs",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:77",
+                "token": "receiving_epa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:78",
+                "token": "receiving_2pt_conversions",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:79",
+                "token": "racr",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:80",
+                "token": "target_share",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:81",
+                "token": "air_yards_share",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:82",
+                "token": "wopr",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:83",
+                "token": "special_teams_tds",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:84",
+                "token": "fantasy_points",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:85",
+                "token": "fantasy_points_ppr",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:86",
+                "token": "week_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:87",
+                "token": "season_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:88",
+                "token": "game_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:89",
+                "token": "playergame_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:2",
+            "token": "NFL Game",
+            "properties": [
+              {
+                "$id": "p:91",
+                "token": "game_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:5",
+            "token": "Season",
+            "properties": [
+              {
+                "$id": "p:93",
+                "token": "season_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:6",
+            "token": "PlayerSeason",
+            "properties": [
+              {
+                "$id": "p:94",
+                "token": "player_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:95",
+                "token": "season",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:96",
+                "token": "season_type",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:97",
+                "token": "completions",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:98",
+                "token": "attempts",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:99",
+                "token": "passing_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:100",
+                "token": "passing_tds",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:101",
+                "token": "interceptions",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:102",
+                "token": "sacks",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:103",
+                "token": "sack_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:104",
+                "token": "sack_fumbles",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:105",
+                "token": "sack_fumbles_lost",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:106",
+                "token": "passing_air_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:107",
+                "token": "passing_yards_after_catch",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:108",
+                "token": "passing_first_downs",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:109",
+                "token": "passing_epa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:110",
+                "token": "passing_2pt_conversions",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:111",
+                "token": "pacr",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:112",
+                "token": "dakota",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:113",
+                "token": "carries",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:114",
+                "token": "rushing_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:115",
+                "token": "rushing_tds",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:116",
+                "token": "rushing_fumbles",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:117",
+                "token": "rushing_fumbles_lost",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:118",
+                "token": "rushing_first_downs",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:119",
+                "token": "rushing_epa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:120",
+                "token": "rushing_2pt_conversions",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:121",
+                "token": "receptions",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:122",
+                "token": "targets",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:123",
+                "token": "receiving_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:124",
+                "token": "receiving_tds",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:125",
+                "token": "receiving_fumbles",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:126",
+                "token": "receiving_fumbles_lost",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:127",
+                "token": "receiving_air_yards",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:128",
+                "token": "receiving_yards_after_catch",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:129",
+                "token": "receiving_first_downs",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:130",
+                "token": "receiving_epa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:131",
+                "token": "receiving_2pt_conversions",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:132",
+                "token": "racr",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:133",
+                "token": "target_share",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:134",
+                "token": "air_yards_share",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:135",
+                "token": "wopr_x",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:136",
+                "token": "special_teams_tds",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:137",
+                "token": "fantasy_points",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:138",
+                "token": "fantasy_points_ppr",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:139",
+                "token": "games",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:140",
+                "token": "tgt_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:141",
+                "token": "ay_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:142",
+                "token": "yac_sh",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:143",
+                "token": "wopr_y",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:144",
+                "token": "ry_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:145",
+                "token": "rtd_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:146",
+                "token": "rfd_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:147",
+                "token": "rtdfd_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:148",
+                "token": "dom",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:149",
+                "token": "w8dom",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:150",
+                "token": "yptmpa",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:151",
+                "token": "ppr_sh",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:152",
+                "token": "player_season_id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:7",
+            "token": "Team",
+            "properties": []
+          },
+          {
+            "$id": "nl:8",
+            "token": "Team Game",
+            "properties": []
+          },
+          {
+            "$id": "nl:9",
+            "token": "Team Season",
+            "properties": []
+          },
+          {
+            "$id": "nl:3",
+            "token": "NFL Play",
+            "properties": []
+          },
+          {
+            "$id": "nl:10",
+            "token": "TeamPlay",
+            "properties": []
+          },
+          {
+            "$id": "nl:11",
+            "token": "PlayerPlay",
+            "properties": []
+          },
+          {
+            "$id": "nl:12",
+            "token": "NFL WEEK",
+            "properties": []
+          }
+        ],
+        "relationshipTypes": [
+          {
+            "$id": "rt:2",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:5",
+            "token": "MADE",
+            "properties": []
+          },
+          {
+            "$id": "rt:6",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:7",
+            "token": "PRODUCED",
+            "properties": []
+          },
+          {
+            "$id": "rt:8",
+            "token": "MADE",
+            "properties": []
+          },
+          {
+            "$id": "rt:9",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:10",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:1",
+            "token": "MADE",
+            "properties": []
+          },
+          {
+            "$id": "rt:11",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:4",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:13",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:14",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:3",
+            "token": "MADE",
+            "properties": []
+          },
+          {
+            "$id": "rt:15",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:16",
+            "token": "MADE",
+            "properties": []
+          },
+          {
+            "$id": "rt:17",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:18",
+            "token": "",
+            "properties": []
+          },
+          {
+            "$id": "rt:19",
+            "token": "OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:12",
+            "token": "OF",
+            "properties": []
+          }
+        ],
+        "nodeObjectTypes": [
+          {
+            "$id": "n:1",
+            "labels": [
+              {
+                "$ref": "#nl:1"
+              }
+            ]
+          },
+          {
+            "$id": "n:4",
+            "labels": [
+              {
+                "$ref": "#nl:4"
+              }
+            ]
+          },
+          {
+            "$id": "n:2",
+            "labels": [
+              {
+                "$ref": "#nl:2"
+              }
+            ]
+          },
+          {
+            "$id": "n:5",
+            "labels": [
+              {
+                "$ref": "#nl:5"
+              }
+            ]
+          },
+          {
+            "$id": "n:6",
+            "labels": [
+              {
+                "$ref": "#nl:6"
+              }
+            ]
+          },
+          {
+            "$id": "n:7",
+            "labels": [
+              {
+                "$ref": "#nl:7"
+              }
+            ]
+          },
+          {
+            "$id": "n:8",
+            "labels": [
+              {
+                "$ref": "#nl:8"
+              }
+            ]
+          },
+          {
+            "$id": "n:9",
+            "labels": [
+              {
+                "$ref": "#nl:9"
+              }
+            ]
+          },
+          {
+            "$id": "n:3",
+            "labels": [
+              {
+                "$ref": "#nl:3"
+              }
+            ]
+          },
+          {
+            "$id": "n:10",
+            "labels": [
+              {
+                "$ref": "#nl:10"
+              }
+            ]
+          },
+          {
+            "$id": "n:11",
+            "labels": [
+              {
+                "$ref": "#nl:11"
+              }
+            ]
+          },
+          {
+            "$id": "n:12",
+            "labels": [
+              {
+                "$ref": "#nl:12"
+              }
+            ]
+          }
+        ],
+        "relationshipObjectTypes": [
+          {
+            "$id": "r:2",
+            "type": {
+              "$ref": "#rt:2"
+            },
+            "from": {
+              "$ref": "#n:4"
+            },
+            "to": {
+              "$ref": "#n:2"
+            }
+          },
+          {
+            "$id": "r:5",
+            "type": {
+              "$ref": "#rt:5"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:6"
+            }
+          },
+          {
+            "$id": "r:6",
+            "type": {
+              "$ref": "#rt:6"
+            },
+            "from": {
+              "$ref": "#n:6"
+            },
+            "to": {
+              "$ref": "#n:5"
+            }
+          },
+          {
+            "$id": "r:7",
+            "type": {
+              "$ref": "#rt:7"
+            },
+            "from": {
+              "$ref": "#n:7"
+            },
+            "to": {
+              "$ref": "#n:8"
+            }
+          },
+          {
+            "$id": "r:8",
+            "type": {
+              "$ref": "#rt:8"
+            },
+            "from": {
+              "$ref": "#n:7"
+            },
+            "to": {
+              "$ref": "#n:9"
+            }
+          },
+          {
+            "$id": "r:9",
+            "type": {
+              "$ref": "#rt:9"
+            },
+            "from": {
+              "$ref": "#n:8"
+            },
+            "to": {
+              "$ref": "#n:2"
+            }
+          },
+          {
+            "$id": "r:10",
+            "type": {
+              "$ref": "#rt:10"
+            },
+            "from": {
+              "$ref": "#n:9"
+            },
+            "to": {
+              "$ref": "#n:5"
+            }
+          },
+          {
+            "$id": "r:1",
+            "type": {
+              "$ref": "#rt:1"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:4"
+            }
+          },
+          {
+            "$id": "r:11",
+            "type": {
+              "$ref": "#rt:11"
+            },
+            "from": {
+              "$ref": "#n:4"
+            },
+            "to": {
+              "$ref": "#n:6"
+            }
+          },
+          {
+            "$id": "r:4",
+            "type": {
+              "$ref": "#rt:4"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:2"
+            }
+          },
+          {
+            "$id": "r:13",
+            "type": {
+              "$ref": "#rt:13"
+            },
+            "from": {
+              "$ref": "#n:10"
+            },
+            "to": {
+              "$ref": "#n:8"
+            }
+          },
+          {
+            "$id": "r:14",
+            "type": {
+              "$ref": "#rt:14"
+            },
+            "from": {
+              "$ref": "#n:10"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:3",
+            "type": {
+              "$ref": "#rt:3"
+            },
+            "from": {
+              "$ref": "#n:7"
+            },
+            "to": {
+              "$ref": "#n:10"
+            }
+          },
+          {
+            "$id": "r:15",
+            "type": {
+              "$ref": "#rt:15"
+            },
+            "from": {
+              "$ref": "#n:8"
+            },
+            "to": {
+              "$ref": "#n:9"
+            }
+          },
+          {
+            "$id": "r:16",
+            "type": {
+              "$ref": "#rt:16"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:11"
+            }
+          },
+          {
+            "$id": "r:17",
+            "type": {
+              "$ref": "#rt:17"
+            },
+            "from": {
+              "$ref": "#n:11"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:18",
+            "type": {
+              "$ref": "#rt:18"
+            },
+            "from": {
+              "$ref": "#n:11"
+            },
+            "to": {
+              "$ref": "#n:4"
+            }
+          },
+          {
+            "$id": "r:19",
+            "type": {
+              "$ref": "#rt:19"
+            },
+            "from": {
+              "$ref": "#n:2"
+            },
+            "to": {
+              "$ref": "#n:12"
+            }
+          },
+          {
+            "$id": "r:12",
+            "type": {
+              "$ref": "#rt:12"
+            },
+            "from": {
+              "$ref": "#n:12"
+            },
+            "to": {
+              "$ref": "#n:5"
+            }
+          }
+        ],
+        "constraints": [
+          {
+            "$id": "c:4",
+            "name": "game_id_Game_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:2"
+            },
+            "properties": [
+              {
+                "$ref": "#p:91"
+              }
+            ]
+          },
+          {
+            "$id": "c:6",
+            "name": "season_id_Season_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:5"
+            },
+            "properties": [
+              {
+                "$ref": "#p:93"
+              }
+            ]
+          },
+          {
+            "$id": "c:3",
+            "name": "player_season_id_PlayerSeason_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:6"
+            },
+            "properties": [
+              {
+                "$ref": "#p:152"
+              }
+            ]
+          },
+          {
+            "$id": "c:1",
+            "name": "gsis_id_Player_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:1"
+            },
+            "properties": [
+              {
+                "$ref": "#p:6"
+              }
+            ]
+          },
+          {
+            "$id": "c:2",
+            "name": "playergame_id_PlayerGame_uniq",
+            "constraintType": "uniqueness",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:4"
+            },
+            "properties": [
+              {
+                "$ref": "#p:89"
+              }
+            ]
+          }
+        ],
+        "indexes": [
+          {
+            "$id": "i:3",
+            "name": "player_season_id_PlayerSeason_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:6"
+            },
+            "properties": [
+              {
+                "$ref": "#p:152"
+              }
+            ]
+          },
+          {
+            "$id": "i:4",
+            "name": "game_id_Game_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:2"
+            },
+            "properties": [
+              {
+                "$ref": "#p:91"
+              }
+            ]
+          },
+          {
+            "$id": "i:6",
+            "name": "season_id_Season_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:5"
+            },
+            "properties": [
+              {
+                "$ref": "#p:93"
+              }
+            ]
+          },
+          {
+            "$id": "i:1",
+            "name": "gsis_id_Player_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:1"
+            },
+            "properties": [
+              {
+                "$ref": "#p:6"
+              }
+            ]
+          },
+          {
+            "$id": "i:2",
+            "name": "playergame_id_PlayerGame_uniq",
+            "indexType": "default",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:4"
+            },
+            "properties": [
+              {
+                "$ref": "#p:89"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "graphSchemaExtensionsRepresentation": {
+      "nodeKeyProperties": [
+        {
+          "node": {
+            "$ref": "#n:6"
+          },
+          "keyProperty": {
+            "$ref": "#p:152"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:2"
+          },
+          "keyProperty": {
+            "$ref": "#p:91"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:5"
+          },
+          "keyProperty": {
+            "$ref": "#p:93"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:1"
+          },
+          "keyProperty": {
+            "$ref": "#p:6"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:4"
+          },
+          "keyProperty": {
+            "$ref": "#p:89"
+          }
+        }
+      ]
+    },
+    "graphMappingRepresentation": {
+      "dataSourceSchema": {
+        "type": "local",
+        "tableSchemas": [
+          {
+            "name": "playerseasonswithids.csv",
+            "expanded": false,
+            "fields": [
+              {
+                "name": "player_id",
+                "sample": "00-0000003",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "season",
+                "sample": "1999",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "season_type",
+                "sample": "REG",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "completions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "attempts",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "passing_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_tds",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "interceptions",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "sacks",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "sack_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "sack_fumbles",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "sack_fumbles_lost",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "passing_air_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_yards_after_catch",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_first_downs",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_epa",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_2pt_conversions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "pacr",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "dakota",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "carries",
+                "sample": "142",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "rushing_yards",
+                "sample": "443.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_tds",
+                "sample": "1",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "rushing_fumbles",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_fumbles_lost",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_first_downs",
+                "sample": "20.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_epa",
+                "sample": "-18.81880395582091",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_2pt_conversions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "receptions",
+                "sample": "17",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "targets",
+                "sample": "22",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "receiving_yards",
+                "sample": "84.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_tds",
+                "sample": "1",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "receiving_fumbles",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_fumbles_lost",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_air_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_yards_after_catch",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_first_downs",
+                "sample": "5.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_epa",
+                "sample": "1.0574771631509066",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_2pt_conversions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "racr",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "target_share",
+                "sample": "0.6720718883799379",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "air_yards_share",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "wopr_x",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "special_teams_tds",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "fantasy_points",
+                "sample": "64.7",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "fantasy_points_ppr",
+                "sample": "81.7",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "games",
+                "sample": "13",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "tgt_sh",
+                "sample": "0.05045871559633028",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "ay_sh",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "yac_sh",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "wopr_y",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "ry_sh",
+                "sample": "0.030107526881720432",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rtd_sh",
+                "sample": "0.05263157894736842",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rfd_sh",
+                "sample": "0.03816793893129771",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rtdfd_sh",
+                "sample": "0.04",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "dom",
+                "sample": "0.04136955291454442",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "w8dom",
+                "sample": "0.03461233729485003",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "yptmpa",
+                "sample": "0.1926605504587156",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "ppr_sh",
+                "sample": "0.08699818975614951",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "PlayerSeasonId",
+                "sample": "00-0000003-1999",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "playergames_with_playergame_week_game_ids.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "player_id",
+                "sample": "00-0000003",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "player_name",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "player_display_name",
+                "sample": "Abdul-Karim al-Jabbar",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "position",
+                "sample": "RB",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "position_group",
+                "sample": "RB",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "headshot_url",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "recent_team",
+                "sample": "IND",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "season",
+                "sample": "2000",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "week",
+                "sample": "1",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "season_type",
+                "sample": "REG",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "opponent_team",
+                "sample": "KC",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "completions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "attempts",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "passing_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_tds",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "interceptions",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "sacks",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "sack_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "sack_fumbles",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "sack_fumbles_lost",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "passing_air_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_yards_after_catch",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_first_downs",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_epa",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "passing_2pt_conversions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "pacr",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "dakota",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "carries",
+                "sample": "1",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "rushing_yards",
+                "sample": "-2.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_tds",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "rushing_fumbles",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_fumbles_lost",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_first_downs",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_epa",
+                "sample": "-0.5499439",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rushing_2pt_conversions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "receptions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "targets",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "receiving_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_tds",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "receiving_fumbles",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_fumbles_lost",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_air_yards",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_yards_after_catch",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_first_downs",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_epa",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "receiving_2pt_conversions",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "racr",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "target_share",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "air_yards_share",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "wopr",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "special_teams_tds",
+                "sample": "0.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "fantasy_points",
+                "sample": "-0.2",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "fantasy_points_ppr",
+                "sample": "-0.2",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "week_id",
+                "sample": "2000_1",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "season_id",
+                "sample": "2000_1_IND_KC",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "game_id",
+                "sample": "2000_1_IND_KC",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "playergame_id",
+                "sample": "00-0000003_2000_1_IND_KC",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "players.csv",
+            "expanded": false,
+            "fields": [
+              {
+                "name": "status",
+                "sample": "RET",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "display_name",
+                "sample": "'Omar Ellison",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "first_name",
+                "sample": "'Omar",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "last_name",
+                "sample": "Ellison",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "esb_id",
+                "sample": "ELL711319",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "gsis_id",
+                "sample": "00-0004866",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "birth_date",
+                "sample": "1971-10-08",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "college_name",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "position_group",
+                "sample": "WR",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "position",
+                "sample": "WR",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "jersey_number",
+                "sample": "84.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "height",
+                "sample": "73.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "weight",
+                "sample": "200.0",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "years_of_experience",
+                "sample": "2",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "team_abbr",
+                "sample": "LAC",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "team_seq",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "current_team_id",
+                "sample": "4400",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "football_name",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "entry_year",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "rookie_year",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "draft_club",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "college_conference",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status_description_abbr",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status_short_description",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "gsis_it_id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "short_name",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "smart_id",
+                "sample": "3200454c-4c71-1319-728e-d49d3d236f8f",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "headshot",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "draft_number",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "draftround",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "uniform_number",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "suffix",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "nodeMappings": [
+        {
+          "node": {
+            "$ref": "#n:6"
+          },
+          "tableName": "playerseasonswithids.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "player_id",
+              "property": {
+                "$ref": "#p:94"
+              }
+            },
+            {
+              "fieldName": "season",
+              "property": {
+                "$ref": "#p:95"
+              }
+            },
+            {
+              "fieldName": "season_type",
+              "property": {
+                "$ref": "#p:96"
+              }
+            },
+            {
+              "fieldName": "completions",
+              "property": {
+                "$ref": "#p:97"
+              }
+            },
+            {
+              "fieldName": "attempts",
+              "property": {
+                "$ref": "#p:98"
+              }
+            },
+            {
+              "fieldName": "passing_yards",
+              "property": {
+                "$ref": "#p:99"
+              }
+            },
+            {
+              "fieldName": "passing_tds",
+              "property": {
+                "$ref": "#p:100"
+              }
+            },
+            {
+              "fieldName": "interceptions",
+              "property": {
+                "$ref": "#p:101"
+              }
+            },
+            {
+              "fieldName": "sacks",
+              "property": {
+                "$ref": "#p:102"
+              }
+            },
+            {
+              "fieldName": "sack_yards",
+              "property": {
+                "$ref": "#p:103"
+              }
+            },
+            {
+              "fieldName": "sack_fumbles",
+              "property": {
+                "$ref": "#p:104"
+              }
+            },
+            {
+              "fieldName": "sack_fumbles_lost",
+              "property": {
+                "$ref": "#p:105"
+              }
+            },
+            {
+              "fieldName": "passing_air_yards",
+              "property": {
+                "$ref": "#p:106"
+              }
+            },
+            {
+              "fieldName": "passing_yards_after_catch",
+              "property": {
+                "$ref": "#p:107"
+              }
+            },
+            {
+              "fieldName": "passing_first_downs",
+              "property": {
+                "$ref": "#p:108"
+              }
+            },
+            {
+              "fieldName": "passing_epa",
+              "property": {
+                "$ref": "#p:109"
+              }
+            },
+            {
+              "fieldName": "passing_2pt_conversions",
+              "property": {
+                "$ref": "#p:110"
+              }
+            },
+            {
+              "fieldName": "pacr",
+              "property": {
+                "$ref": "#p:111"
+              }
+            },
+            {
+              "fieldName": "dakota",
+              "property": {
+                "$ref": "#p:112"
+              }
+            },
+            {
+              "fieldName": "carries",
+              "property": {
+                "$ref": "#p:113"
+              }
+            },
+            {
+              "fieldName": "rushing_yards",
+              "property": {
+                "$ref": "#p:114"
+              }
+            },
+            {
+              "fieldName": "rushing_tds",
+              "property": {
+                "$ref": "#p:115"
+              }
+            },
+            {
+              "fieldName": "rushing_fumbles",
+              "property": {
+                "$ref": "#p:116"
+              }
+            },
+            {
+              "fieldName": "rushing_fumbles_lost",
+              "property": {
+                "$ref": "#p:117"
+              }
+            },
+            {
+              "fieldName": "rushing_first_downs",
+              "property": {
+                "$ref": "#p:118"
+              }
+            },
+            {
+              "fieldName": "rushing_epa",
+              "property": {
+                "$ref": "#p:119"
+              }
+            },
+            {
+              "fieldName": "rushing_2pt_conversions",
+              "property": {
+                "$ref": "#p:120"
+              }
+            },
+            {
+              "fieldName": "receptions",
+              "property": {
+                "$ref": "#p:121"
+              }
+            },
+            {
+              "fieldName": "targets",
+              "property": {
+                "$ref": "#p:122"
+              }
+            },
+            {
+              "fieldName": "receiving_yards",
+              "property": {
+                "$ref": "#p:123"
+              }
+            },
+            {
+              "fieldName": "receiving_tds",
+              "property": {
+                "$ref": "#p:124"
+              }
+            },
+            {
+              "fieldName": "receiving_fumbles",
+              "property": {
+                "$ref": "#p:125"
+              }
+            },
+            {
+              "fieldName": "receiving_fumbles_lost",
+              "property": {
+                "$ref": "#p:126"
+              }
+            },
+            {
+              "fieldName": "receiving_air_yards",
+              "property": {
+                "$ref": "#p:127"
+              }
+            },
+            {
+              "fieldName": "receiving_yards_after_catch",
+              "property": {
+                "$ref": "#p:128"
+              }
+            },
+            {
+              "fieldName": "receiving_first_downs",
+              "property": {
+                "$ref": "#p:129"
+              }
+            },
+            {
+              "fieldName": "receiving_epa",
+              "property": {
+                "$ref": "#p:130"
+              }
+            },
+            {
+              "fieldName": "receiving_2pt_conversions",
+              "property": {
+                "$ref": "#p:131"
+              }
+            },
+            {
+              "fieldName": "racr",
+              "property": {
+                "$ref": "#p:132"
+              }
+            },
+            {
+              "fieldName": "target_share",
+              "property": {
+                "$ref": "#p:133"
+              }
+            },
+            {
+              "fieldName": "air_yards_share",
+              "property": {
+                "$ref": "#p:134"
+              }
+            },
+            {
+              "fieldName": "wopr_x",
+              "property": {
+                "$ref": "#p:135"
+              }
+            },
+            {
+              "fieldName": "special_teams_tds",
+              "property": {
+                "$ref": "#p:136"
+              }
+            },
+            {
+              "fieldName": "fantasy_points",
+              "property": {
+                "$ref": "#p:137"
+              }
+            },
+            {
+              "fieldName": "fantasy_points_ppr",
+              "property": {
+                "$ref": "#p:138"
+              }
+            },
+            {
+              "fieldName": "games",
+              "property": {
+                "$ref": "#p:139"
+              }
+            },
+            {
+              "fieldName": "tgt_sh",
+              "property": {
+                "$ref": "#p:140"
+              }
+            },
+            {
+              "fieldName": "ay_sh",
+              "property": {
+                "$ref": "#p:141"
+              }
+            },
+            {
+              "fieldName": "yac_sh",
+              "property": {
+                "$ref": "#p:142"
+              }
+            },
+            {
+              "fieldName": "wopr_y",
+              "property": {
+                "$ref": "#p:143"
+              }
+            },
+            {
+              "fieldName": "ry_sh",
+              "property": {
+                "$ref": "#p:144"
+              }
+            },
+            {
+              "fieldName": "rtd_sh",
+              "property": {
+                "$ref": "#p:145"
+              }
+            },
+            {
+              "fieldName": "rfd_sh",
+              "property": {
+                "$ref": "#p:146"
+              }
+            },
+            {
+              "fieldName": "rtdfd_sh",
+              "property": {
+                "$ref": "#p:147"
+              }
+            },
+            {
+              "fieldName": "dom",
+              "property": {
+                "$ref": "#p:148"
+              }
+            },
+            {
+              "fieldName": "w8dom",
+              "property": {
+                "$ref": "#p:149"
+              }
+            },
+            {
+              "fieldName": "yptmpa",
+              "property": {
+                "$ref": "#p:150"
+              }
+            },
+            {
+              "fieldName": "ppr_sh",
+              "property": {
+                "$ref": "#p:151"
+              }
+            },
+            {
+              "fieldName": "PlayerSeasonId",
+              "property": {
+                "$ref": "#p:152"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:5"
+          },
+          "tableName": "playerseasonswithids.csv",
+          "propertyMappings": [
+            {
+              "property": {
+                "$ref": "#p:93"
+              },
+              "fieldName": "season"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:2"
+          },
+          "tableName": "playergames_with_playergame_week_game_ids.csv",
+          "propertyMappings": [
+            {
+              "property": {
+                "$ref": "#p:91"
+              },
+              "fieldName": "game_id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:1"
+          },
+          "tableName": "players.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "status",
+              "property": {
+                "$ref": "#p:1"
+              }
+            },
+            {
+              "fieldName": "display_name",
+              "property": {
+                "$ref": "#p:2"
+              }
+            },
+            {
+              "fieldName": "first_name",
+              "property": {
+                "$ref": "#p:3"
+              }
+            },
+            {
+              "fieldName": "last_name",
+              "property": {
+                "$ref": "#p:4"
+              }
+            },
+            {
+              "fieldName": "esb_id",
+              "property": {
+                "$ref": "#p:5"
+              }
+            },
+            {
+              "fieldName": "gsis_id",
+              "property": {
+                "$ref": "#p:6"
+              }
+            },
+            {
+              "fieldName": "birth_date",
+              "property": {
+                "$ref": "#p:7"
+              }
+            },
+            {
+              "fieldName": "college_name",
+              "property": {
+                "$ref": "#p:8"
+              }
+            },
+            {
+              "fieldName": "position_group",
+              "property": {
+                "$ref": "#p:9"
+              }
+            },
+            {
+              "fieldName": "position",
+              "property": {
+                "$ref": "#p:10"
+              }
+            },
+            {
+              "fieldName": "jersey_number",
+              "property": {
+                "$ref": "#p:11"
+              }
+            },
+            {
+              "fieldName": "height",
+              "property": {
+                "$ref": "#p:13"
+              }
+            },
+            {
+              "fieldName": "weight",
+              "property": {
+                "$ref": "#p:14"
+              }
+            },
+            {
+              "fieldName": "years_of_experience",
+              "property": {
+                "$ref": "#p:15"
+              }
+            },
+            {
+              "fieldName": "team_abbr",
+              "property": {
+                "$ref": "#p:16"
+              }
+            },
+            {
+              "fieldName": "team_seq",
+              "property": {
+                "$ref": "#p:17"
+              }
+            },
+            {
+              "fieldName": "current_team_id",
+              "property": {
+                "$ref": "#p:18"
+              }
+            },
+            {
+              "fieldName": "football_name",
+              "property": {
+                "$ref": "#p:19"
+              }
+            },
+            {
+              "fieldName": "entry_year",
+              "property": {
+                "$ref": "#p:20"
+              }
+            },
+            {
+              "fieldName": "rookie_year",
+              "property": {
+                "$ref": "#p:21"
+              }
+            },
+            {
+              "fieldName": "draft_club",
+              "property": {
+                "$ref": "#p:22"
+              }
+            },
+            {
+              "fieldName": "college_conference",
+              "property": {
+                "$ref": "#p:23"
+              }
+            },
+            {
+              "fieldName": "status_description_abbr",
+              "property": {
+                "$ref": "#p:24"
+              }
+            },
+            {
+              "fieldName": "status_short_description",
+              "property": {
+                "$ref": "#p:25"
+              }
+            },
+            {
+              "fieldName": "gsis_it_id",
+              "property": {
+                "$ref": "#p:26"
+              }
+            },
+            {
+              "fieldName": "short_name",
+              "property": {
+                "$ref": "#p:27"
+              }
+            },
+            {
+              "fieldName": "smart_id",
+              "property": {
+                "$ref": "#p:28"
+              }
+            },
+            {
+              "fieldName": "headshot",
+              "property": {
+                "$ref": "#p:29"
+              }
+            },
+            {
+              "fieldName": "draft_number",
+              "property": {
+                "$ref": "#p:30"
+              }
+            },
+            {
+              "fieldName": "draftround",
+              "property": {
+                "$ref": "#p:31"
+              }
+            },
+            {
+              "fieldName": "uniform_number",
+              "property": {
+                "$ref": "#p:32"
+              }
+            },
+            {
+              "fieldName": "suffix",
+              "property": {
+                "$ref": "#p:33"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:4"
+          },
+          "tableName": "playergames_with_playergame_week_game_ids.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "player_id",
+              "property": {
+                "$ref": "#p:12"
+              }
+            },
+            {
+              "fieldName": "player_name",
+              "property": {
+                "$ref": "#p:34"
+              }
+            },
+            {
+              "fieldName": "player_display_name",
+              "property": {
+                "$ref": "#p:35"
+              }
+            },
+            {
+              "fieldName": "position",
+              "property": {
+                "$ref": "#p:36"
+              }
+            },
+            {
+              "fieldName": "position_group",
+              "property": {
+                "$ref": "#p:37"
+              }
+            },
+            {
+              "fieldName": "headshot_url",
+              "property": {
+                "$ref": "#p:38"
+              }
+            },
+            {
+              "fieldName": "recent_team",
+              "property": {
+                "$ref": "#p:39"
+              }
+            },
+            {
+              "fieldName": "season",
+              "property": {
+                "$ref": "#p:40"
+              }
+            },
+            {
+              "fieldName": "week",
+              "property": {
+                "$ref": "#p:41"
+              }
+            },
+            {
+              "fieldName": "season_type",
+              "property": {
+                "$ref": "#p:42"
+              }
+            },
+            {
+              "fieldName": "opponent_team",
+              "property": {
+                "$ref": "#p:43"
+              }
+            },
+            {
+              "fieldName": "completions",
+              "property": {
+                "$ref": "#p:44"
+              }
+            },
+            {
+              "fieldName": "attempts",
+              "property": {
+                "$ref": "#p:45"
+              }
+            },
+            {
+              "fieldName": "passing_yards",
+              "property": {
+                "$ref": "#p:46"
+              }
+            },
+            {
+              "fieldName": "passing_tds",
+              "property": {
+                "$ref": "#p:47"
+              }
+            },
+            {
+              "fieldName": "interceptions",
+              "property": {
+                "$ref": "#p:48"
+              }
+            },
+            {
+              "fieldName": "sacks",
+              "property": {
+                "$ref": "#p:49"
+              }
+            },
+            {
+              "fieldName": "sack_yards",
+              "property": {
+                "$ref": "#p:50"
+              }
+            },
+            {
+              "fieldName": "sack_fumbles",
+              "property": {
+                "$ref": "#p:51"
+              }
+            },
+            {
+              "fieldName": "sack_fumbles_lost",
+              "property": {
+                "$ref": "#p:52"
+              }
+            },
+            {
+              "fieldName": "passing_air_yards",
+              "property": {
+                "$ref": "#p:53"
+              }
+            },
+            {
+              "fieldName": "passing_yards_after_catch",
+              "property": {
+                "$ref": "#p:54"
+              }
+            },
+            {
+              "fieldName": "passing_first_downs",
+              "property": {
+                "$ref": "#p:55"
+              }
+            },
+            {
+              "fieldName": "passing_epa",
+              "property": {
+                "$ref": "#p:56"
+              }
+            },
+            {
+              "fieldName": "passing_2pt_conversions",
+              "property": {
+                "$ref": "#p:57"
+              }
+            },
+            {
+              "fieldName": "pacr",
+              "property": {
+                "$ref": "#p:58"
+              }
+            },
+            {
+              "fieldName": "dakota",
+              "property": {
+                "$ref": "#p:59"
+              }
+            },
+            {
+              "fieldName": "carries",
+              "property": {
+                "$ref": "#p:60"
+              }
+            },
+            {
+              "fieldName": "rushing_yards",
+              "property": {
+                "$ref": "#p:61"
+              }
+            },
+            {
+              "fieldName": "rushing_tds",
+              "property": {
+                "$ref": "#p:62"
+              }
+            },
+            {
+              "fieldName": "rushing_fumbles",
+              "property": {
+                "$ref": "#p:63"
+              }
+            },
+            {
+              "fieldName": "rushing_fumbles_lost",
+              "property": {
+                "$ref": "#p:64"
+              }
+            },
+            {
+              "fieldName": "rushing_first_downs",
+              "property": {
+                "$ref": "#p:65"
+              }
+            },
+            {
+              "fieldName": "rushing_epa",
+              "property": {
+                "$ref": "#p:66"
+              }
+            },
+            {
+              "fieldName": "rushing_2pt_conversions",
+              "property": {
+                "$ref": "#p:67"
+              }
+            },
+            {
+              "fieldName": "receptions",
+              "property": {
+                "$ref": "#p:68"
+              }
+            },
+            {
+              "fieldName": "targets",
+              "property": {
+                "$ref": "#p:69"
+              }
+            },
+            {
+              "fieldName": "receiving_yards",
+              "property": {
+                "$ref": "#p:70"
+              }
+            },
+            {
+              "fieldName": "receiving_tds",
+              "property": {
+                "$ref": "#p:71"
+              }
+            },
+            {
+              "fieldName": "receiving_fumbles",
+              "property": {
+                "$ref": "#p:72"
+              }
+            },
+            {
+              "fieldName": "receiving_fumbles_lost",
+              "property": {
+                "$ref": "#p:73"
+              }
+            },
+            {
+              "fieldName": "receiving_air_yards",
+              "property": {
+                "$ref": "#p:74"
+              }
+            },
+            {
+              "fieldName": "receiving_yards_after_catch",
+              "property": {
+                "$ref": "#p:75"
+              }
+            },
+            {
+              "fieldName": "receiving_first_downs",
+              "property": {
+                "$ref": "#p:76"
+              }
+            },
+            {
+              "fieldName": "receiving_epa",
+              "property": {
+                "$ref": "#p:77"
+              }
+            },
+            {
+              "fieldName": "receiving_2pt_conversions",
+              "property": {
+                "$ref": "#p:78"
+              }
+            },
+            {
+              "fieldName": "racr",
+              "property": {
+                "$ref": "#p:79"
+              }
+            },
+            {
+              "fieldName": "target_share",
+              "property": {
+                "$ref": "#p:80"
+              }
+            },
+            {
+              "fieldName": "air_yards_share",
+              "property": {
+                "$ref": "#p:81"
+              }
+            },
+            {
+              "fieldName": "wopr",
+              "property": {
+                "$ref": "#p:82"
+              }
+            },
+            {
+              "fieldName": "special_teams_tds",
+              "property": {
+                "$ref": "#p:83"
+              }
+            },
+            {
+              "fieldName": "fantasy_points",
+              "property": {
+                "$ref": "#p:84"
+              }
+            },
+            {
+              "fieldName": "fantasy_points_ppr",
+              "property": {
+                "$ref": "#p:85"
+              }
+            },
+            {
+              "fieldName": "week_id",
+              "property": {
+                "$ref": "#p:86"
+              }
+            },
+            {
+              "fieldName": "season_id",
+              "property": {
+                "$ref": "#p:87"
+              }
+            },
+            {
+              "fieldName": "game_id",
+              "property": {
+                "$ref": "#p:88"
+              }
+            },
+            {
+              "fieldName": "playergame_id",
+              "property": {
+                "$ref": "#p:89"
+              }
+            }
+          ]
+        }
+      ],
+      "relationshipMappings": [
+        {
+          "relationship": {
+            "$ref": "#r:2"
+          },
+          "tableName": "playergames_with_playergame_week_game_ids.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "playergame_id"
+          },
+          "toMapping": {
+            "fieldName": "game_id"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:5"
+          },
+          "tableName": "playerseasonswithids.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "player_id"
+          },
+          "toMapping": {
+            "fieldName": "PlayerSeasonId"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:6"
+          },
+          "tableName": "playerseasonswithids.csv",
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "PlayerSeasonId"
+          },
+          "toMapping": {
+            "fieldName": "season"
+          }
+        }
+      ]
+    },
+    "configurations": {
+      "idsToIgnore": []
+    }
+  }
+}
