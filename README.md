@@ -18,9 +18,63 @@ StatFoundry/
 └── .github/         # GitHub workflows
 ```
 
+## Graph Architecture
+
+The core of the graph database lies across two axes
+
+### Temporal Axis: Plays to Seasons
+
+`(Play)-[:OF]->(Game)-[:OF]->(Week)-[:OF]->(Season)`
+
+### Organizational Axis: Players to Leagues
+
+`(Player)-[:OF]->(Team)-[:OF]->(Division)-[:OF]->(Conference)-[:OF]->(League)`
+
+In certain places, these axes converge, creating a compound node. These are essentially lenses to view events from different perspectives.
+
+`(Entity)-[:MADE]->(CompoundNode)-[:OF]->(TemporalNode)`
+
+`(Player)-[:MADE]->(PlayerPlay)-[:OF]->(Play)`
+
+`(Player)-[:MADE]->(PlayerGame)-[:OF]->(Game)`
+
+`(Team)-[:MADE]->(TeamGame)-[:OF]->(Game)`
+
+etc...
+
+### Relationships: There are 2 relationship types in this design
+
+`MADE` is used when a Node creates a CompoundNode
+
+`OF` represents a continuation along one of the defined axes. Essentiall aggregating up to the whole.
+
+This pattern of scales nicely within the realm of American Football, as we can add college and USFL pretty easily with this pattern. We can also add things like coaches, coaching trees, officials, officiating crews, broadcasters. Think, maybe we can quantify the broadcaster's jinx, via analyzing `(BroadcastPlay)-[OF]->(NFLPlay)`
+
+The pattern also seems to scale well outside of most organized sports, where teams are divided into divisions which make up leagues consisting of a collection games
+
+## Design Considerations
+
+While a graph database might seem like overkill for the current data model which follows fairly rigid hierarchical relationships, the choice was made with future extensibility in mind. The real power of the graph model will emerge as we add:
+
+- Historical relationships (player transfers between teams, coaching changes)
+- Complex interconnections (player-to-player interactions, teammate history)
+- Multi-dimensional analysis (broadcast crews, weather conditions, stadium data)
+- Cross-league relationships (college to NFL transitions, USFL/XFL crossovers)
+- Social/influence networks (coaching trees, player mentorships)
+
+These additions will create a rich web of relationships that would be challenging to model and query efficiently in a traditional relational database. The graph structure will allow us to:
+
+1. Discover hidden patterns and relationships
+2. Perform complex path-finding queries
+3. Analyze network effects and influence
+4. Scale horizontally as new relationship types are added
+
+The initial investment in graph architecture positions us well for these future enhancements while maintaining a clean and intuitive data model for the current scope.
+
 ## Development Setup
 
 ### Python Environment
+
 ```bash
 # Install pyenv (if not already installed)
 brew install pyenv
@@ -39,6 +93,7 @@ pip install -r requirements.txt
 ```
 
 ### Frontend Setup
+
 ```bash
 cd ui
 npm install
@@ -50,24 +105,24 @@ npm install
 graph TD
     A[Push to main] --> B{Which files changed?}
     N[Daily at 2 AM UTC] --> I[Run Integration Tests]
-    
+
     B -->|ui/**| C[Deploy UI to Production]
     B -->|service/**| D[Deploy Service to Production]
     B -->|ui/**| E[Test and Lint UI]
     B -->|service/**| F[Test and Lint Service]
-    
+
     C --> C1[Build React App]
     C1 --> C2[Deploy to Static Web Apps]
-    
+
     D --> D1[Install Python Dependencies]
     D1 --> D2[Deploy to App Service]
-    
+
     E --> E1[Lint UI Code]
     E --> E2[Run UI Tests]
-    
+
     F --> F1[Lint Service Code]
     F --> F2[Run Service Tests]
-    
+
     I --> I1[Deploy to Test Environment]
     I1 --> I2[Run Integration Tests]
     I2 --> I3[Generate Test Report]
@@ -78,7 +133,7 @@ graph TD
     S3[AZURE_APP_SERVICE_NAME] -.-> D2
     S4[AZURE_WEBAPP_PUBLISH_PROFILE] -.-> D2
     S5[TEST_ENV_CREDENTIALS] -.-> I1
-    
+
     style A fill:#4a90e2,stroke:#333,stroke-width:2px,color:#fff
     style B fill:#6c5ce7,stroke:#333,stroke-width:2px,color:#fff
     style C fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff
@@ -95,6 +150,7 @@ graph TD
 ```
 
 ### Workflow Legend
+
 - 🔵 Blue: Trigger events
 - 🟣 Purple: Decision points
 - 🟢 Green: Deployment steps
@@ -105,18 +161,21 @@ graph TD
 ### Workflow Descriptions
 
 #### Test and Lint UI
+
 - Runs only when UI files change
 - Lints React/TypeScript code
 - Runs UI unit and integration tests
 - No secrets required
 
 #### Test and Lint Service
+
 - Runs only when service files change
 - Lints Python code
 - Runs service unit and integration tests
 - No secrets required
 
 #### Deploy UI to Production
+
 - Runs only when UI files change
 - Builds the React application
 - Deploys to Azure Static Web Apps
@@ -125,6 +184,7 @@ graph TD
   - `REACT_APP_API_URL`: The URL of your FastAPI service
 
 #### Deploy Service to Production
+
 - Runs only when service files change
 - Installs Python dependencies
 - Deploys to Azure App Service
@@ -133,6 +193,7 @@ graph TD
   - `AZURE_WEBAPP_PUBLISH_PROFILE`: Publish profile from Azure App Service
 
 #### Nightly Integration Tests
+
 - Runs automatically at 2 AM UTC daily
 - Deploys latest code to a test environment
 - Runs end-to-end integration tests between UI and service
