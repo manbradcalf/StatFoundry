@@ -1,9 +1,9 @@
 import nfl_data_py as nfl
 import os
 import pandas as pd
+import glob
 
-
-def generate_playergame_dataframe(season: int, week: int) -> pd.DataFrame:
+def generate_playergame_dataframe_for_specific_week(season: int, week: int) -> pd.DataFrame:
     """
     Create "merged" dataframe of player stats and game data for one week/season.
     In reality, we just create and append the playergame_id to the player-game dataframe.
@@ -16,7 +16,11 @@ def generate_playergame_dataframe(season: int, week: int) -> pd.DataFrame:
         DataFrame containing player-game stats with game context
     """
     weekly_playergames = nfl.import_weekly_data([season])
-    weekly_playergames = weekly_playergames[weekly_playergames["week"] == week]
+    try:
+        weekly_playergames = weekly_playergames[weekly_playergames["week"] == week]
+    except:
+        print(f"No data for week {week} in season {season}")
+        return pd.DataFrame()
 
     games = nfl.import_schedules([season])
     games = games[games["week"] == week]
@@ -39,6 +43,13 @@ def generate_playergame_dataframe(season: int, week: int) -> pd.DataFrame:
     )
     return weekly_playergames
 
+def generete_player_game_dataframes_for_season(season: int) -> list[pd.DataFrame]: # type: ignore
+    """
+    Generate player-game dataframes for all weeks in a season.
+    """
+    for week in range(1, 23):
+        df = generate_playergame_dataframe_for_specific_week(season, week)
+        yield df
 
 def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
     """
@@ -129,5 +140,54 @@ def process_and_generate_queries(season: int, week: int) -> list[str]:
     Returns:
         List of Cypher queries
     """
-    df = generate_playergame_dataframe(season, week)
+    df = generate_playergame_dataframe_for_specific_week(season, week)
     return dataframe_to_cypher_queries(df)
+
+def process_and_generate_weekly_playergame_csvs_by_seasons(seasons:list[int]) -> None:
+    """
+    Process player-game data and generate Cypher queries.
+    """ 
+    for season in seasons:
+        for week in range(1, 23):
+            df = generate_playergame_dataframe_for_specific_week(season, week)
+            df.to_csv(f"csvs/playergames/weeks/{season}_{week}_playergames.csv", index=False)
+
+def concat_csvs_of_playergame_weeks_into_season_csv(season:int) -> None:
+    """
+    Concatenate all playergame csvs for a season.
+    """
+    df = pd.DataFrame()
+    for week in range(1, 23):
+        df = pd.concat([df, pd.read_csv(f"csvs/playergames/weeks/{season}_{week}_playergames.csv")])
+    df.to_csv(f"csvs/playergames/seasons/{season}_playergames.csv", index=False)
+
+def concat_all_season_csvs_into_one():
+    """
+    Concatenate all season CSVs in the seasons directory into one large CSV file.
+    """
+    # Get all CSV files in the seasons directory
+    csv_files = glob.glob('csvs/playergames/seasons/*_playergames.csv')
+    
+    # Sort the files to ensure consistent ordering
+    csv_files.sort()
+    
+    # Read and concatenate all CSVs
+    print(f"Found {len(csv_files)} CSV files to concatenate")
+    dfs = []
+    for file in csv_files:
+        print(f"Reading {file}...")
+        df = pd.read_csv(file)
+        dfs.append(df)
+    
+    print("Concatenating all dataframes...")
+    merged_df = pd.concat(dfs, ignore_index=True)
+    
+    # Save the merged result
+    output_path = 'csvs/playergames/all_player_games.csv'
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    print(f"Saving to {output_path}...")
+    merged_df.to_csv(output_path, index=False)
+    print("Done!")
+    return merged_df
+
+
