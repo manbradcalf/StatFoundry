@@ -6,7 +6,7 @@
     "ui"
   ],
   "scripts": {
-    "start:service": "cd service && uvicorn src.service:app --reload",
+    "start:service": "cd service && uvicorn src.app:app --reload",
     "start:ui": "cd ui && npm start",
     "dev": "concurrently \"npm run start:service\" \"npm run start:ui\""
   },

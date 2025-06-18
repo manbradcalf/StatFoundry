@@ -33,6 +33,7 @@ def close_driver(driver):
 # Initialize Neo4j driver
 driver = create_driver(URI, AUTH)
 
+# TODO: Replace with MCP?
 def fetch_schema(driver):
     with driver.session() as session:
         node_properties = session.run(_fetch_nodes_schema).single()["node_schema"]
@@ -57,6 +58,11 @@ def fetch_schema(driver):
             for rel in rel_patterns
         ],
     }
+
+def execute_query(driver, query):
+    with driver.session() as session:
+        result = session.run(query)
+        return result.data()
 
 
 # Export the driver and fetch_schema for use in other modules
