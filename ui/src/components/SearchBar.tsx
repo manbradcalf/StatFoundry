@@ -9,21 +9,20 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = "Receivers who caught at least..."
 }) => {
   const {
-    query,
-    setQuery,
+    userInput,
+    setUserInput,
     suggestions,
-    showSuggestions,
-    selectedSuggestionIndex,
-    handleSuggestionClick,
+    selectSuggestion,
     handleKeyDown,
-    clearQuery
+    clearAll,
+    selectedIndex
   } = useSearch();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    setUserInput(e.target.value);
     
     // Move cursor to end of input
     setTimeout(() => {
@@ -45,12 +44,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     }
   };
 
-  // Scroll to suggestion when selectedSuggestionIndex changes
+  // Scroll to suggestion when selectedIndex changes
   useEffect(() => {
-    if (selectedSuggestionIndex >= 0) {
-      scrollToSuggestion(selectedSuggestionIndex);
+    if (selectedIndex >= 0) {
+      scrollToSuggestion(selectedIndex);
     }
-  }, [selectedSuggestionIndex]);
+  }, [selectedIndex]);
 
   return (
     <div className="search-container">
@@ -58,27 +57,27 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <input
           ref={inputRef}
           type="text"
-          value={query}
+          value={userInput}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="search-input"
           autoComplete="off"
         />
-        {query && (
-          <button onClick={clearQuery} className="clear-button">
+        {userInput && (
+          <button onClick={clearAll} className="clear-button">
             ×
           </button>
         )}
       </div>
       
-      {showSuggestions && (
+      {suggestions.length > 0 && (
         <div ref={suggestionsRef} className="suggestions-dropdown">
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              className={`suggestion-item ${index === selectedSuggestionIndex ? 'selected' : ''}`}
-              onClick={() => handleSuggestionClick(suggestion)}
+              className={`suggestion-item ${index === selectedIndex ? 'selected' : ''}`}
+              onClick={() => selectSuggestion(suggestion)}
             >
               {suggestion.chunk.English}
             </div>

@@ -14,11 +14,13 @@ export const ChainDisplay: React.FC<ChainDisplayProps> = ({
   return (
     <div className="chain-debug">
       <h4>{title} ({chainArray.length} chunks):</h4>
+      <small>Aliases: [{chain.aliases.map(alias => alias.name).join(', ')}]</small>
+      <br />
       {chainArray.map((chunk, index) => (
         <div key={index} className="chunk-item">
           <strong>Chunk {index + 1}:</strong> {chunk.English}
           <br />
-          <small>Inputs: [{chunk.Inputs.join(', ')}] → Outputs: [{chunk.Outputs.join(', ')}]</small>
+          <small>Inputs: [{chunk.RequiredInputs.join(', ')}]</small>
         </div>
       ))}
     </div>

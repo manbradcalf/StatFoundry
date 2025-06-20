@@ -1,27 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { getAvailableChunks } from '../chunks-data';
 import { ChunkChain } from '../feature/Chunks/ChunkChain';
-import { Chunk } from '../feature/Chunks/Chunk';
-
-interface Suggestion {
-  chunk: Chunk;
-}
-
-interface SearchContextType {
-  // State
-  query: string;
-  chain: ChunkChain;
-  suggestions: Suggestion[];
-  showSuggestions: boolean;
-  selectedSuggestionIndex: number;
-  builtQuery: { English: string; Cypher: string; Outputs: string[] } | null;
-
-  // Actions
-  setQuery: (query: string) => void;
-  handleSuggestionClick: (suggestion: Suggestion) => void;
-  handleKeyDown: (e: React.KeyboardEvent) => void;
-  clearQuery: () => void;
-}
+import { Suggestion } from './Suggestion';
+import { SearchContextType } from './SearchContextType';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
@@ -43,7 +24,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
-  const [builtQuery, setBuiltQuery] = useState<{ English: string; Cypher: string; Outputs: string[] } | null>(null);
 
   // Extract the partial input that the user is currently typing
   const getPartialInput = (): string => {
@@ -51,7 +31,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     if (chainArray.length === 0) return query.trim();
 
     // Get the built English from current chain
-    const builtEnglish = chain.buildQuery().English;
+    const builtEnglish = chain.update().english;
 
     // If the query is longer than the built English, extract the partial input
     if (query.length > builtEnglish.length) {
@@ -65,15 +45,13 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   // Update suggestions based on current query and chain state
   useEffect(() => {
-    console.log('🔍 useEffect triggered:', { query, chainLength: chain.toArray().length });
-
     if (query.trim() === '') {
       setSuggestions([]);
       setShowSuggestions(false);
       return;
     }
 
-    const currentOutputs = chain.aliasedOutputs;
+    const currentOutputs = chain.aliases;
     const availableChunks = getAvailableChunks();
     const partialInput = getPartialInput();
 
@@ -83,19 +61,10 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       partialInput: `"${partialInput}"`
     });
 
-    // Filter chunks based on:
-    // 1. If chain is empty, show chunks with no required inputs
-    // 2. If chain has chunks, show chunks whose required inputs are satisfied by current outputs
-    const validChunks = availableChunks.filter(chunk => {
-      if (chain.toArray().length === 0) {
-        return chunk.RequiredInputs.length === 0;
-      }
-      return chunk.RequiredInputs.every(input => currentOutputs.includes(input));
-    });
+    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
 
     // Filter by partial input text and create suggestions
-    const filteredSuggestions = validChunks
-      .filter(chunk => {
+    const filteredSuggestions = validNextChunks.filter(chunk => {
         if (!partialInput) return true; // Show all valid chunks if no partial input
 
         // Filter chunks that start with or contain the partial input
@@ -126,9 +95,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setChain(newChain);
 
     // Update query to show the built query so far
-    const result = newChain.buildQuery();
-    setQuery(result.English);
-    setBuiltQuery(result);
+    const updatedChain = newChain.update();
 
     // Clear suggestions
     setSuggestions([]);
@@ -165,25 +132,23 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const clearQuery = () => {
     setQuery('');
     setChain(new ChunkChain());
-    setBuiltQuery(null);
     setSuggestions([]);
     setShowSuggestions(false);
   };
 
   const value: SearchContextType = {
     // State
-    query,
+    userInput: query,
     chain,
     suggestions,
-    showSuggestions,
-    selectedSuggestionIndex,
-    builtQuery,
+    builtQuery: null,
+    selectedIndex: selectedSuggestionIndex,
 
     // Actions
-    setQuery,
-    handleSuggestionClick,
+    setUserInput: setQuery,
+    selectSuggestion: handleSuggestionClick,
     handleKeyDown,
-    clearQuery,
+    clearAll: clearQuery,
   };
 
   return (

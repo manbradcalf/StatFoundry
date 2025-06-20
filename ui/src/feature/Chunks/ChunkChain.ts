@@ -1,6 +1,20 @@
 import { Chunk } from "./Chunk";
+import { Entity } from "./EntityTypes/Entity";
 import { ChunkNode } from "./IChunkNode";
 import { QueryType } from "./QueryType";
+
+export type ChunkChainState = {
+  head: ChunkNode | null;
+  tail: ChunkNode | null;
+  aliases: Alias[];
+  english: string;
+  cypher: string;
+};
+
+type Alias = {
+  name: string;
+  entity: Entity;
+};
 
 /**
  * Linked-list chain manager for chunks.
@@ -8,14 +22,13 @@ import { QueryType } from "./QueryType";
 export class ChunkChain {
   head: ChunkNode | null = null;
   tail: ChunkNode | null = null;
-  // this is where the magic happens
-  aliases: Record<string, any> = {};
+  aliases: Alias[] = [];
 
   /**
    * Add a chunk to the end of the chain.
    * @param chunk The chunk to add.
    */
-  append(chunk: Chunk): ChunkNode {
+  append(chunk: Chunk<Entity>): ChunkNode {
     const node: ChunkNode = { chunk, prev: this.tail, next: null };
     if (!this.head) {
       this.head = node;
@@ -27,7 +40,13 @@ export class ChunkChain {
 
     // add aliases to be available for use in WITH cypher clauses
     // remove duplicates if they exits
-    this.aliases = { ...this.aliases, ...chunk.SlotValues };
+    this.aliases = [
+      ...this.aliases,
+      ...Object.entries(chunk.Slots).map(([key, value]) => ({
+        name: key, // what the user typed in the slot + default alias name like p, pg, etc
+        entity: value as Entity,
+      })),
+    ];
     console.log(this.aliases);
 
     return node;
@@ -49,8 +68,8 @@ export class ChunkChain {
   /**
    * Get all chunks as an array (for UI, debugging, etc).
    */
-  toArray(): Chunk[] {
-    const arr: Chunk[] = [];
+  toArray(): Chunk<Entity>[] {
+    const arr: Chunk<Entity>[] = [];
     let node = this.head;
     while (node) {
       arr.push(node.chunk);
@@ -62,9 +81,10 @@ export class ChunkChain {
   /**
    * Traverse the chain and build the full Cypher and English description.
    */
-  buildQuery(): { English: string; Cypher: string } {
+  update(): ChunkChainState {
     let englishParts: string[] = [];
     let cypherParts: string[] = [];
+
     let node = this.head;
 
     while (node) {
@@ -77,8 +97,11 @@ export class ChunkChain {
     }
 
     return {
-      English: englishParts.join(" "),
-      Cypher: cypherParts.filter(Boolean).join("\n"),
+      head: this.head,
+      tail: this.tail,
+      aliases: this.aliases,
+      english: englishParts.join(" and "),
+      cypher: cypherParts.join(" AND "),
     };
   }
 
@@ -86,11 +109,11 @@ export class ChunkChain {
    * Get the next valid chunks for the current chunk.
    * @returns The next valid chunks.
    */
-  getNextValidChunks(allChunks: Chunk[]): Chunk[] {
-    const nextValidChunks: Chunk[] = [];
+  getNextValidChunksFromChunks(chunks: Chunk<Entity>[]): Chunk<Entity>[] {
+    const nextValidChunks: Chunk<Entity>[] = [];
     const currentAliases = this.aliases;
 
-    for (const chunk of allChunks) {
+    for (const chunk of chunks) {
       if (isValidNextChunk(chunk, currentAliases)) {
         nextValidChunks.push(chunk);
       }
@@ -101,25 +124,22 @@ export class ChunkChain {
 }
 
 function isValidNextChunk(
-  chunk: Chunk,
-  currentAliases: Record<string, any>
+  chunk: Chunk<Entity>,
+  currentAliases: Alias[]
 ): boolean {
-  var inputsAreSatisfied = chunk.RequiredInputs.every(
-    // type check the values of the required inputs against the current aliases
-    // TODO: what if we have multiple aliases with the same type?
-    // TODO: How do we choose which one to use
-    (input) => {
-      const aliasValues = Object.values(currentAliases);
-      return aliasValues.some((alias) => typeof alias === typeof input);
-    }
+  var inputsAreSatisfied = chunk.RequiredInputs.every((input) =>
+    currentAliases.some((alias) => typeof alias.entity === typeof input)
   );
 
-  // TODO: Formalize this
-  // Examples where this is false:
-  // 1. chunk.QueryType === RETURN && this.aliases.length === 0
-  // 2. chunk.QueryType === FILTER && this.aliases.length === 0
   var queryTypeIsMatch = true;
-
+  if (
+    chunk.QueryType === QueryType.RETURN ||
+    chunk.QueryType === QueryType.FILTER
+  ) {
+    if (currentAliases.length === 0) {
+      queryTypeIsMatch = false;
+    }
+  }
   return inputsAreSatisfied && queryTypeIsMatch;
 }
 

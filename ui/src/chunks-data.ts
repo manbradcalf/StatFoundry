@@ -1,204 +1,42 @@
 import { Chunk } from "./feature/Chunks/Chunk";
-import { Player } from "./feature/Chunks/Entities";
+import { Entity } from "./feature/Chunks/EntityTypes/Entity";
+import { LabelNames } from "./feature/Chunks/EntityTypes/LabelsEnum";
+import { Player } from "./feature/Chunks/EntityTypes/Player";
 import { QueryType } from "./feature/Chunks/QueryType";
 // TODO: Replace this hardcoded list of chunks
 // with a dynamically generated list
 // mapped from the result of GET /api/schema
 
 // Sample chunks that represent the StatNug functionality
-export function getAvailableChunks(): Chunk[] {
+export function getAvailableChunks(): Chunk<Entity>[] {
   return [
-    // Starting chunks (no required inputs)
     {
-      English: "Receivers who",
-      Cypher: "MATCH (p:Player {position_group: '{Position}'})",
-      QueryType: QueryType.MATCH,
+      English: "Get all players",
+      Cypher: "MATCH (p:Player) RETURN p",
+      QueryType: QueryType.RETURN,
       RequiredInputs: [],
-      SlotValues: { Position: "WR" },
+      Slots: {},
     },
     {
-      English: "Players who",
-      Cypher: "MATCH (p:Player)",
-      QueryType: QueryType.MATCH,
-      RequiredInputs: [],
-      SlotValues: {},
-    },
-    {
-      English: "Quarterbacks who",
-      Cypher: "MATCH (p:Player {position: 'QB'})",
-      QueryType: QueryType.MATCH,
-      RequiredInputs: [],
-      SlotValues: {},
-    },
-
-    // Game-related chunks (require player)
-    {
-      English: "caught at least {receptions} receptions in a game",
-      Cypher: "WITH pg WHERE pg.receptions >= {receptions}",
+      English: "Get all players with a certain position",
+      Cypher: "MATCH (p:Player) WHERE p.position = $position RETURN p",
       QueryType: QueryType.FILTER,
-      RequiredInputs: [Player],
-      SlotValues: { receptions: "5" },
-    },
-    {
-      English: "had at least {yards} receiving yards in a game",
-      Cypher: "WITH pg, WHERE pg.receiving_yards >= {yards} as ryig",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [Player],
-      SlotValues: { yards: "100" },
-    },
-    {
-      English: "threw at least {touchdowns} passing touchdowns in a game",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.passing_tds >= {touchdowns}",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [Player],
-      SlotValues: { touchdowns: "2" },
-    },
-    {
-      English: "had at least {yards} passing yards in a game",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.passing_yards >= {yards}",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [Player],
-      SlotValues: { yards: "300" },
-    },
-    {
-      English: "lost",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [Player],
-      SlotValues: {},
-    },
-    {
-      English: "won",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [Player],
-      SlotValues: {},
-    },
-
-    // Time-based filters (require player games)
-    {
-      English: "in those games",
-      Cypher: "RETURN p, pg",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-    },
-    {
-      English: "in that season",
-      Cypher:
-        "MATCH (pg)-[:PART_OF_GAME]->(g:Game)-[:DURING_WEEK]->(w:Week)-[:OF_NFL_SEASON]->(s:Season)",
-      Outputs: ["p", "pg", "s"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-    },
-    {
-      English: "in their career",
-      Cypher: "MATCH (p)-[:PLAYED_SEASON]->(ps:PlayerSeason)",
-      Outputs: ["p", "ps"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-    },
-
-    // Additional filters that can be chained
-    {
-      English: "and had at least {receptions} receptions",
-      Cypher: "WHERE pg.receptions >= {receptions}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-      slotValues: { receptions: "5" },
-    },
-    {
-      English: "and had at least {yards} receiving yards",
-      Cypher: "WHERE pg.receiving_yards >= {yards}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-      slotValues: { yards: "100" },
-    },
-    {
-      English: "and caught at least {touchdowns} receiving touchdowns",
-      Cypher: "WHERE pg.receiving_tds >= {touchdowns}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-      slotValues: { touchdowns: "1" },
-    },
-
-    // Broadcast-related chunks (matching the UI examples)
-    {
-      English: "broadcast on NBC",
-      Cypher:
-        "MATCH (pg)-[:PART_OF_GAME]->(g:Game) WHERE g.broadcast_network = 'NBC'",
-      Outputs: ["p", "pg", "g"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-    },
-    {
-      English: "haven't won a game broadcast on NBC",
-      Cypher:
-        "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE g.broadcast_network = 'NBC' AND NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
-      Outputs: ["p", "pg", "g"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-    },
-
-    // Specific stat combinations
-    {
-      English: "and had at least 2 3rd down conversions",
-      Cypher: "WHERE pg.receiving_first_downs >= 2",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-    },
-    {
-      English: "on NBC and had at least 2 3rd down conversions",
-      Cypher:
-        "MATCH (pg)-[:PART_OF_GAME]->(g:Game) WHERE g.broadcast_network = 'NBC' AND pg.receiving_first_downs >= 2",
-      Outputs: ["p", "pg", "g"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-    },
-
-    // Draft-related chunks
-    {
-      English: "were drafted before year {year}",
-      Cypher: "WHERE p.draft_year < {year}",
-      Outputs: ["p"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-      slotValues: { year: "2020" },
+      RequiredInputs: [LabelNames.Player],
+      Slots: {
+        position: "RB",
+      },
     },
     {
       English:
-        "were drafted in the {round} round between years {startYear} and {endYear}",
+        "Get all players who played in a game between {season1} and {season2}",
       Cypher:
-        "WHERE p.draftround = {round} AND p.draft_year >= {startYear} AND p.draft_year <= {endYear}",
-      Outputs: ["p"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-      slotValues: { round: "1", startYear: "2020", endYear: "2023" },
-    },
-
-    // Team and position filters
-    {
-      English: "played with {team}",
-      Cypher: "WHERE p.recent_team = '{team}'",
-      Outputs: ["p"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-      slotValues: { team: "BUF" },
-    },
-    {
-      English: "who played a different position in college",
-      Cypher: "WHERE p.position != p.college_position",
-      Outputs: ["p"],
-      RequiredInputs: ["p"],
-      Inputs: [],
+        "MATCH (p:Player) WHERE p.season >= $season1 AND p.season <= $season2 RETURN p",
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [LabelNames.Player],
+      Slots: {
+        season1: 2024,
+        season2: 2025,
+      },
     },
   ];
 }

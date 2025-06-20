@@ -1,10 +1,11 @@
-import { Entity } from "./Entities";
+import { Entity } from "./EntityTypes/Entity";
+import { LabelNames } from "./EntityTypes/LabelsEnum";
 import { QueryType } from "./QueryType";
 
 /**
  * Class representing a single query chunk.
  */
-export type Chunk = {
+export type Chunk<T extends Entity> = {
   /**
    * The English translation of the query snippet represented by the Chunk.
    */
@@ -21,12 +22,13 @@ export type Chunk = {
   readonly QueryType: QueryType;
 
   /**
-   * The inputs that are required for the chunk to build the cypher.
+   * The labels of the entities that are required for the chunk to build the cypher.
    */
-  readonly RequiredInputs: Entity[];
+  readonly RequiredInputs: LabelNames[];
 
   /**
    * The values to fill the slots with.
+   * This contains example/default values for the entity's properties
    */
-  readonly SlotValues: Record<string, string>;
+  readonly Slots: Record<string, any>;
 };
