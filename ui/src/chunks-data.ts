@@ -1,4 +1,6 @@
 import { Chunk } from "./feature/Chunks/Chunk";
+import { Player } from "./feature/Chunks/Entities";
+import { QueryType } from "./feature/Chunks/QueryType";
 // TODO: Replace this hardcoded list of chunks
 // with a dynamically generated list
 // mapped from the result of GET /api/schema
@@ -9,76 +11,72 @@ export function getAvailableChunks(): Chunk[] {
     // Starting chunks (no required inputs)
     {
       English: "Receivers who",
-      Cypher: "MATCH (p:Player {position_group: 'WR'})",
-      Outputs: ["p"],
+      Cypher: "MATCH (p:Player {position_group: '{Position}'})",
+      QueryType: QueryType.MATCH,
       RequiredInputs: [],
-      Inputs: [],
+      SlotValues: { Position: "WR" },
     },
     {
       English: "Players who",
       Cypher: "MATCH (p:Player)",
-      Outputs: ["p"],
+      QueryType: QueryType.MATCH,
       RequiredInputs: [],
-      Inputs: [],
+      SlotValues: {},
     },
     {
       English: "Quarterbacks who",
       Cypher: "MATCH (p:Player {position: 'QB'})",
-      Outputs: ["p"],
+      QueryType: QueryType.MATCH,
       RequiredInputs: [],
-      Inputs: [],
+      SlotValues: {},
     },
 
     // Game-related chunks (require player)
     {
       English: "caught at least {receptions} receptions in a game",
       Cypher: "WITH pg WHERE pg.receptions >= {receptions}",
-      Outputs: ["pg"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-      slotValues: { receptions: "5" },
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [Player],
+      SlotValues: { receptions: "5" },
     },
     {
       English: "had at least {yards} receiving yards in a game",
       Cypher: "WITH pg, WHERE pg.receiving_yards >= {yards} as ryig",
-      Outputs: ["pg", "ryig"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
-      slotValues: { yards: "100" },
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [Player],
+      SlotValues: { yards: "100" },
     },
     {
       English: "threw at least {touchdowns} passing touchdowns in a game",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.passing_tds >= {touchdowns}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-      slotValues: { touchdowns: "2" },
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [Player],
+      SlotValues: { touchdowns: "2" },
     },
     {
       English: "had at least {yards} passing yards in a game",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame) WHERE pg.passing_yards >= {yards}",
-      Outputs: ["p", "pg"],
-      RequiredInputs: ["p"],
-      Inputs: [],
-      slotValues: { yards: "300" },
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [Player],
+      SlotValues: { yards: "300" },
     },
     {
       English: "lost",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
-      Outputs: ["p", "pg", "g"],
-      RequiredInputs: ["p"],
-      Inputs: [],
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [Player],
+      SlotValues: {},
     },
     {
       English: "won",
       Cypher:
         "MATCH (p)-[:PLAYED_GAME]->(pg:PlayerGame)-[:PART_OF_GAME]->(g:Game) WHERE NOT EXISTS { MATCH (g) WHERE g.winner = pg.recent_team }",
-      Outputs: ["p", "pg", "g"],
-      RequiredInputs: ["pg"],
-      Inputs: [],
+      QueryType: QueryType.FILTER,
+      RequiredInputs: [Player],
+      SlotValues: {},
     },
 
     // Time-based filters (require player games)
