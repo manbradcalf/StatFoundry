@@ -15,7 +15,7 @@ interface SearchContextType {
   showSuggestions: boolean;
   selectedSuggestionIndex: number;
   builtQuery: { English: string; Cypher: string; Outputs: string[] } | null;
-  
+
   // Actions
   setQuery: (query: string) => void;
   handleSuggestionClick: (suggestion: Suggestion) => void;
@@ -49,40 +49,40 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const getPartialInput = (): string => {
     const chainArray = chain.toArray();
     if (chainArray.length === 0) return query.trim();
-    
+
     // Get the built English from current chain
     const builtEnglish = chain.buildQuery().English;
-    
+
     // If the query is longer than the built English, extract the partial input
     if (query.length > builtEnglish.length) {
       const partial = query.substring(builtEnglish.length).trim();
       // Remove leading "and " if present
       return partial.startsWith('and ') ? partial.substring(4).trim() : partial;
     }
-    
+
     return '';
   };
 
   // Update suggestions based on current query and chain state
   useEffect(() => {
     console.log('🔍 useEffect triggered:', { query, chainLength: chain.toArray().length });
-    
+
     if (query.trim() === '') {
       setSuggestions([]);
       setShowSuggestions(false);
       return;
     }
 
-    const currentOutputs = chain.outputVars;
+    const currentOutputs = chain.aliasedOutputs;
     const availableChunks = getAvailableChunks();
     const partialInput = getPartialInput();
-    
-    console.log('📊 Debug info:', { 
-      currentOutputs, 
+
+    console.log('📊 Debug info:', {
+      currentOutputs,
       availableChunksCount: availableChunks.length,
       partialInput: `"${partialInput}"`
     });
-    
+
     // Filter chunks based on:
     // 1. If chain is empty, show chunks with no required inputs
     // 2. If chain has chunks, show chunks whose required inputs are satisfied by current outputs
@@ -97,7 +97,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     const filteredSuggestions = validChunks
       .filter(chunk => {
         if (!partialInput) return true; // Show all valid chunks if no partial input
-        
+
         // Filter chunks that start with or contain the partial input
         return chunk.English.toLowerCase().includes(partialInput.toLowerCase());
       })
@@ -113,23 +113,23 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   const handleSuggestionClick = (suggestion: Suggestion) => {
     console.log('🎯 Suggestion clicked:', suggestion);
-    
+
     // Add the selected chunk to the chain
     const newChain = new ChunkChain();
-    
+
     // Copy existing chunks
     chain.toArray().forEach(chunk => newChain.append(chunk));
-    
+
     // Add new chunk
     newChain.append(suggestion.chunk);
-    
+
     setChain(newChain);
-    
+
     // Update query to show the built query so far
     const result = newChain.buildQuery();
     setQuery(result.English);
     setBuiltQuery(result);
-    
+
     // Clear suggestions
     setSuggestions([]);
     setShowSuggestions(false);
@@ -178,7 +178,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     showSuggestions,
     selectedSuggestionIndex,
     builtQuery,
-    
+
     // Actions
     setQuery,
     handleSuggestionClick,
