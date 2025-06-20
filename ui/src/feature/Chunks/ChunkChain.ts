@@ -104,8 +104,11 @@ function isValidNextChunk(
   chunk: Chunk,
   currentAliases: Record<string, any>
 ): boolean {
-  var inputsAreSatisfied = chunk.RequiredInputs.every((input) =>
-    Object.keys(currentAliases).includes(input.toString())
+  var inputsAreSatisfied = chunk.RequiredInputs.every(
+    // type check the values of the required inputs against the current aliases
+    // TODO: what if we have multiple aliases with the same type?
+    // TODO: How do we choose which one to use?
+    (input) => typeof Object.values(currentAliases) === typeof input
   );
 
   // TODO: Formalize this
