@@ -1,0 +1,52 @@
+import { Entity } from "./Entity";
+
+export interface PlayerGame extends Entity {
+  label: string;
+  properties: {
+    opponent_team: string;
+    rushing_first_downs: number;
+    week: number;
+    passing_yards_after_catch: number;
+    rushing_yards: number;
+    fantasy_points: number;
+    receiving_2pt_conversions: boolean;
+    targets: number;
+    rushing_tds: number;
+    player_id: string;
+    season_type: string;
+    rushing_fumbles_lost: number;
+    receptions: number;
+    fantasy_points_ppr: number;
+    passing_air_yards: number;
+    receiving_tds: number;
+    season: number;
+    receiving_air_yards: number;
+    player_display_name: string;
+    rushing_2pt_conversions: boolean;
+    receiving_yards: number;
+    sack_yards: number;
+    receiving_fumbles_lost: number;
+    attempts: number;
+    rushing_fumbles: number;
+    game_id: string;
+    special_teams_tds: number;
+    passing_2pt_conversions: boolean;
+    receiving_fumbles: number;
+    receiving_first_downs: number;
+    completions: number;
+    passing_first_downs: number;
+    recent_team: string;
+    interceptions: number;
+    passing_yards: number;
+    position_group: string;
+    sack_fumbles_lost: boolean;
+    carries: number;
+    passing_tds: number;
+    rushing_epa: number;
+    player_game_id: string;
+    position: string;
+    sack_fumbles: boolean;
+    sacks: number;
+    receiving_yards_after_catch: number;
+  };
+}
