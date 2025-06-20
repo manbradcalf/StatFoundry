@@ -107,8 +107,11 @@ function isValidNextChunk(
   var inputsAreSatisfied = chunk.RequiredInputs.every(
     // type check the values of the required inputs against the current aliases
     // TODO: what if we have multiple aliases with the same type?
-    // TODO: How do we choose which one to use?
-    (input) => typeof Object.values(currentAliases) === typeof input
+    // TODO: How do we choose which one to use
+    (input) => {
+      const aliasValues = Object.values(currentAliases);
+      return aliasValues.some((alias) => typeof alias === typeof input);
+    }
   );
 
   // TODO: Formalize this
