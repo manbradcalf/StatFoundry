@@ -1,18 +1,32 @@
+import { Entity } from "./Entities";
+import { QueryType } from "./QueryType";
+
 /**
- * Type definition for a single query chunk.
- * @param English - The English description of the chunk.
- * @param Cypher - The Cypher query for the chunk.
- * @param Outputs - The outputs of the chunk.
- * @param RequiredInputs - The inputs that are required for the chunk to build the cypher.
- * @param Inputs - All Inputs, including all transient inputs passed down by any previous chunk.
- * The idea being that even if the next chunk does not need the input, it can still be passed down the chain for later use.
- * @param slotValues - The values to fill the slots with.
+ * Class representing a single query chunk.
  */
-export interface Chunk {
-  English: string;
-  Cypher: string;
-  Outputs: string[];
-  RequiredInputs: string[];
-  Inputs: string[];
-  slotValues?: Record<string, string>;
-}
+export type Chunk = {
+  /**
+   * The English translation of the query snippet represented by the Chunk.
+   */
+  readonly English: string;
+
+  /**
+   * The Cypher query for the query snippet represented by the Chunk.
+   */
+  readonly Cypher: string;
+
+  /**
+   * The type of query this chunk represents.
+   */
+  readonly QueryType: QueryType;
+
+  /**
+   * The inputs that are required for the chunk to build the cypher.
+   */
+  readonly RequiredInputs: Entity[];
+
+  /**
+   * The values to fill the slots with.
+   */
+  readonly SlotValues: Record<string, string>;
+};
