@@ -1,5 +1,6 @@
 import { Chunk } from "./Chunk";
 import { ChunkNode } from "./IChunkNode";
+import { QueryType } from "./QueryType";
 
 /**
  * Linked-list chain manager for chunks.
@@ -7,7 +8,8 @@ import { ChunkNode } from "./IChunkNode";
 export class ChunkChain {
   head: ChunkNode | null = null;
   tail: ChunkNode | null = null;
-  outputVars: string[] = [];
+  // this is where the magic happens
+  aliases: Record<string, any> = {};
 
   /**
    * Add a chunk to the end of the chain.
@@ -23,9 +25,10 @@ export class ChunkChain {
     }
     this.tail = node;
 
-    // add outputs to be available for use in WITH cypher clauses
+    // add aliases to be available for use in WITH cypher clauses
     // remove duplicates if they exits
-    this.outputVars = [...this.outputVars, ...chunk.Outputs];
+    this.aliases = { ...this.aliases, ...chunk.SlotValues };
+    console.log(this.aliases);
 
     return node;
   }
@@ -58,66 +61,60 @@ export class ChunkChain {
 
   /**
    * Traverse the chain and build the full Cypher and English description.
-   * Applies WITH clauses as needed.
    */
-  buildQuery(): { English: string; Cypher: string; Outputs: string[] } {
+  buildQuery(): { English: string; Cypher: string } {
     let englishParts: string[] = [];
     let cypherParts: string[] = [];
-    let outputs: string[] = [];
     let node = this.head;
 
     while (node) {
       const { chunk } = node;
-      // Add WITH clause if needed (not for the first chunk)
-      if (cypherParts.length && chunk.Inputs.length > 0) {
-        cypherParts.push(`WITH ${chunk.Inputs.join(", ")}`);
-      }
+      // add the chunk's english and cypher to the parts
       englishParts.push(chunk.English);
       cypherParts.push(chunk.Cypher.trim());
-      outputs = Array.from(new Set([...outputs, ...chunk.Outputs]));
+
       node = node.next;
     }
 
     return {
       English: englishParts.join(" "),
       Cypher: cypherParts.filter(Boolean).join("\n"),
-      Outputs: outputs,
     };
   }
 
   /**
    * Get the next valid chunks for the current chunk.
-   * @param allChunks - All chunks.
    * @returns The next valid chunks.
    */
   getNextValidChunks(allChunks: Chunk[]): Chunk[] {
-    return allChunks.filter((chunk) =>
-      chunk.RequiredInputs.every((input) =>
-        this.tail?.chunk.Outputs.includes(input)
-      )
-    );
-  }
+    const nextValidChunks: Chunk[] = [];
+    const currentAliases = this.aliases;
 
-  /**
-   * Replace slot placeholders in all chunks with provided values.
-   * @param slotValuesMap Map of chunk index to slot values.
-   */
-  fillSlots(slotValuesMap: Record<number, Record<string, string>>) {
-    let node = this.head;
-    let idx = 0;
-    while (node) {
-      const slotValues = slotValuesMap[idx] || {};
-      node.chunk.English = replacePlaceholders(node.chunk.English, slotValues);
-      node.chunk.Cypher = replacePlaceholders(node.chunk.Cypher, slotValues);
-      node = node.next;
-      idx++;
+    for (const chunk of allChunks) {
+      if (isValidNextChunk(chunk, currentAliases)) {
+        nextValidChunks.push(chunk);
+      }
     }
+
+    return nextValidChunks;
   }
 }
 
-function replacePlaceholders(
-  English: string,
-  slotValues: Record<string, string>
-): string {
-  throw new Error("Function not implemented.");
+function isValidNextChunk(
+  chunk: Chunk,
+  currentAliases: Record<string, any>
+): boolean {
+  var inputsAreSatisfied = chunk.RequiredInputs.every((input) =>
+    Object.keys(currentAliases).includes(input.toString())
+  );
+
+  // TODO: Formalize this
+  // Examples where this is false:
+  // 1. chunk.QueryType === RETURN && this.aliases.length === 0
+  // 2. chunk.QueryType === FILTER && this.aliases.length === 0
+  var queryTypeIsMatch = true;
+
+  return inputsAreSatisfied && queryTypeIsMatch;
 }
+
+// TODO: Replace Slot Values in Cypher and English
