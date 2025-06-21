@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect } from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, fireEvent, screen } from '@testing-library/react';
 import { SearchProvider, useSearch } from './SearchContext';
 import { getAvailableChunks } from '../chunks-data';
 
@@ -22,12 +22,12 @@ describe('SearchContext slot filling integration', () => {
     let chainEnglish = '';
 
     const CaptureComponent: React.FC = () => {
-      const { chain } = useSearch();
+      const { userInput } = useSearch();
       useEffect(() => {
-        chainEnglish = chain.English;
+        chainEnglish = userInput;
         // eslint-disable-next-line no-console
-        console.log('slots values', chain.Tail?.chunk.Slots);
-      }, [chain]);
+        // console.log('slots values', chain.Tail?.chunk.Slots);
+      }, [userInput]);
       return null;
     };
 
@@ -37,6 +37,10 @@ describe('SearchContext slot filling integration', () => {
         <CaptureComponent />
       </SearchProvider>
     );
+
+    // Click save on modal once it appears
+    await waitFor(() => screen.getByText('Save'));
+    fireEvent.click(screen.getByText('Save'));
 
     await waitFor(() => {
       console.log('chainEnglish', chainEnglish);
