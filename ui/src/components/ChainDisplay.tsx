@@ -14,13 +14,18 @@ export const ChainDisplay: React.FC<ChainDisplayProps> = ({
   return (
     <div className="chain-debug">
       <h4>{title} ({chainArray.length} chunks):</h4>
-      <small>Aliases: [{chain.aliases.map(alias => alias.name).join(', ')}]</small>
+      <small>Aliases: [{chain.Aliases.map((alias) => alias[0]).join(', ')}]</small>
       <br />
+      <small>cypher: {chain.Cypher}</small>
       {chainArray.map((chunk, index) => (
         <div key={index} className="chunk-item">
           <strong>Chunk {index + 1}:</strong> {chunk.English}
           <br />
-          <small>Inputs: [{chunk.RequiredInputs.join(', ')}]</small>
+          <small>Inputs: [{chunk.Inputs.map((input) => `${input[0]}<${input[1]}>`).join(', ')}]</small>
+          <br />
+          <small>Outputs: [{chunk.Outputs.map((output) => `${output[0]}<${output[1]}>`).join(', ')}]</small>
+          <br />
+          <small>Cypher: {chunk.Cypher}</small>
         </div>
       ))}
     </div>

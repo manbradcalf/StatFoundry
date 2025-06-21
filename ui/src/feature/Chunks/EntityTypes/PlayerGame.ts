@@ -1,7 +1,8 @@
 import { Entity } from "./Entity";
+import { DataType } from "./LabelsEnum";
 
 export interface PlayerGame extends Entity {
-  label: string;
+  label: DataType.PlayerGame;
   properties: {
     opponent_team: string;
     rushing_first_downs: number;

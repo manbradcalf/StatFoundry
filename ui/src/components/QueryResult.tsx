@@ -12,14 +12,14 @@ export const QueryResult: React.FC = () => {
     <div className="query-result">
       <h3>Built Query:</h3>
       <div className="english-query">
-        <strong>English:</strong> {builtQuery.english}
+        <strong>English:</strong> {builtQuery.English}
       </div>
       <div className="cypher-query">
         <strong>Cypher:</strong>
-        <pre>{builtQuery.cypher}</pre>
+        <pre>{builtQuery.Cypher}</pre>
       </div>
       <div className="outputs">
-        <strong>Outputs:</strong> {builtQuery.aliases.map(alias => alias.name).join(', ')}
+        <strong>Outputs:</strong> {builtQuery.Aliases.map((alias) => alias[0]).join(', ')}
       </div>
     </div>
   );

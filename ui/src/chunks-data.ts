@@ -1,42 +1,156 @@
 import { Chunk } from "./feature/Chunks/Chunk";
-import { Entity } from "./feature/Chunks/EntityTypes/Entity";
-import { LabelNames } from "./feature/Chunks/EntityTypes/LabelsEnum";
-import { Player } from "./feature/Chunks/EntityTypes/Player";
+import { DataType } from "./feature/Chunks/EntityTypes/LabelsEnum";
 import { QueryType } from "./feature/Chunks/QueryType";
-// TODO: Replace this hardcoded list of chunks
-// with a dynamically generated list
-// mapped from the result of GET /api/schema
 
-// Sample chunks that represent the StatNug functionality
-export function getAvailableChunks(): Chunk<Entity>[] {
+export function getAvailableChunks(): Chunk[] {
   return [
+    // MATCH
     {
-      English: "Get all players",
-      Cypher: "MATCH (p:Player) RETURN p",
+      English: "Players",
+      Cypher: "MATCH (p:Player)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [["p", DataType.Player]],
+      Slots: [],
+    },
+    {
+      English: "Teams",
+      Cypher: "MATCH (t:Team)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [["t", DataType.Team]],
+      Slots: [],
+    },
+    {
+      English: "Player Games",
+      Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [
+        ["p", DataType.Player],
+        ["pg", DataType.PlayerGame],
+      ],
+      Slots: [],
+    },
+    {
+      English: "Player Seasons",
+      Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [
+        ["p", DataType.Player],
+        ["pg", DataType.PlayerGame],
+      ],
+      Slots: [],
+    },
+    {
+      English: "Team Seasons",
+      Cypher: "MATCH (t:Team)-[:HAD]->(ts:TeamSeason)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [
+        ["t", DataType.Team],
+        ["ts", DataType.TeamSeason],
+      ],
+      Slots: [],
+    },
+    {
+      English: "Team Games",
+      Cypher: "MATCH (t:Team)-[:HAD]->(tg:TeamGame)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [
+        ["t", DataType.Team],
+        ["tg", DataType.TeamGame],
+      ],
+      Slots: [],
+    },
+    {
+      // FILTER
+      English: "who play {position}",
+      Cypher: "WHERE p.position = $position",
+      QueryType: QueryType.FILTER,
+      Inputs: [["p", DataType.Player]],
+      Outputs: [["p", DataType.Player]],
+      Slots: [
+        {
+          Name: "position",
+          Value: "RB",
+        },
+      ],
+    },
+    {
+      English: "between the {s1} and {s2} seasons",
+      Cypher: "WHERE pg.season >= $s1 AND pg.season <= $s2",
+      QueryType: QueryType.FILTER,
+      Inputs: [["pg", DataType.PlayerGame]],
+      Outputs: [["pg", DataType.PlayerGame]],
+      Slots: [
+        {
+          Name: "s1",
+          Value: 2024,
+        },
+        {
+          Name: "s2",
+          Value: 2025,
+        },
+      ],
+    },
+    {
+      English: "between the {s1} and {s2} seasons",
+      Cypher: "WHERE tg.season >= $s1 AND tg.season <= $s2",
+      QueryType: QueryType.FILTER,
+      Inputs: [["tg", DataType.TeamGame]],
+      Outputs: [["tg", DataType.TeamGame]],
+      Slots: [
+        {
+          Name: "s1",
+          Value: 2024,
+        },
+        {
+          Name: "s2",
+          Value: 2025,
+        },
+      ],
+    },
+    // RETURN
+    {
+      English: "return player names",
+      Cypher: "RETURN p.name",
       QueryType: QueryType.RETURN,
-      RequiredInputs: [],
-      Slots: {},
+      Inputs: [["p", DataType.Player]],
+      Outputs: [["p", DataType.Player]],
+      Slots: [],
     },
     {
-      English: "Get all players with a certain position",
-      Cypher: "MATCH (p:Player) WHERE p.position = $position RETURN p",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [LabelNames.Player],
-      Slots: {
-        position: "RB",
-      },
+      English: "return passing stats by game",
+      Cypher: "RETURN pg.passing_yards, pg.passing_touchdowns",
+      QueryType: QueryType.RETURN,
+      Inputs: [["pg", DataType.PlayerGame]],
+      Outputs: [["pg", DataType.PlayerGame]],
+      Slots: [],
     },
     {
-      English:
-        "Get all players who played in a game between {season1} and {season2}",
-      Cypher:
-        "MATCH (p:Player) WHERE p.season >= $season1 AND p.season <= $season2 RETURN p",
-      QueryType: QueryType.FILTER,
-      RequiredInputs: [LabelNames.Player],
-      Slots: {
-        season1: 2024,
-        season2: 2025,
-      },
+      English: "return team names",
+      Cypher: "RETURN t.name",
+      QueryType: QueryType.RETURN,
+      Inputs: [["t", DataType.Team]],
+      Outputs: [["t", DataType.Team]],
+      Slots: [],
+    },
+    {
+      English: "return player names and team names",
+      Cypher: "RETURN p.name, t.name",
+      QueryType: QueryType.RETURN,
+      Inputs: [
+        ["p", DataType.Player],
+        ["t", DataType.Team],
+      ],
+      Outputs: [
+        ["p", DataType.Player],
+        ["t", DataType.Team],
+      ],
+      Slots: [],
     },
   ];
 }

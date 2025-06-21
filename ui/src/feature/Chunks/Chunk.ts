@@ -1,11 +1,15 @@
-import { Entity } from "./EntityTypes/Entity";
-import { LabelNames } from "./EntityTypes/LabelsEnum";
+import { Alias } from "./ChunkChain";
 import { QueryType } from "./QueryType";
+
+export type Slot = {
+  Name: string;
+  Value: any;
+};
 
 /**
  * Class representing a single query chunk.
  */
-export type Chunk<T extends Entity> = {
+export type Chunk = {
   /**
    * The English translation of the query snippet represented by the Chunk.
    */
@@ -24,11 +28,17 @@ export type Chunk<T extends Entity> = {
   /**
    * The labels of the entities that are required for the chunk to build the cypher.
    */
-  readonly RequiredInputs: LabelNames[];
+  readonly Inputs: Alias[];
+
+  /**
+   * The types of the entities that are aliased by the chunk.
+   * The key is the alias name, and the value is the label of the entity.
+   */
+  readonly Outputs: Alias[];
 
   /**
    * The values to fill the slots with.
    * This contains example/default values for the entity's properties
    */
-  readonly Slots: Record<string, any>;
+  Slots: Slot[];
 };

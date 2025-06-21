@@ -1,4 +1,4 @@
-import { ChunkChain, ChunkChainState } from "../feature/Chunks/ChunkChain";
+import { ChunkChain } from "../feature/Chunks/ChunkChain";
 import { Suggestion } from "./Suggestion";
 
 export interface SearchContextType {
@@ -8,7 +8,7 @@ export interface SearchContextType {
 
   // Computed values
   suggestions: Suggestion[];
-  builtQuery: ChunkChainState | null;
+  builtQuery: ChunkChain | null;
   selectedIndex: number;
 
   // Actions

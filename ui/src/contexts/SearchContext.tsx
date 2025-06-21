@@ -27,16 +27,13 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   // Extract the partial input that the user is currently typing
   const getPartialInput = (): string => {
-    const chainArray = chain.toArray();
-    if (chainArray.length === 0) return query.trim();
+    if (chain.English.length === 0) return query.trim();
 
-    // Get the built English from current chain
-    const builtEnglish = chain.update().english;
-
-    // If the query is longer than the built English, extract the partial input
-    if (query.length > builtEnglish.length) {
-      const partial = query.substring(builtEnglish.length).trim();
+    // If the query is longer than the english, extract the partial input
+    if (query.length > chain.English.length) {
+      const partial = query.substring(chain.English.length).trim();
       // Remove leading "and " if present
+      console.log('partial', partial);
       return partial.startsWith('and ') ? partial.substring(4).trim() : partial;
     }
 
@@ -51,7 +48,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       return;
     }
 
-    const currentOutputs = chain.aliases;
+    const currentOutputs = chain.Aliases;
     const availableChunks = getAvailableChunks();
     const partialInput = getPartialInput();
 
@@ -84,22 +81,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     console.log('🎯 Suggestion clicked:', suggestion);
 
     // Add the selected chunk to the chain
-    const newChain = new ChunkChain();
+    chain.append(suggestion.chunk);
+    chain.update();
 
-    // Copy existing chunks
-    chain.toArray().forEach(chunk => newChain.append(chunk));
-
-    // Add new chunk
-    newChain.append(suggestion.chunk);
-
-    setChain(newChain);
-
-    // Update query to show the built query so far
-    const updatedChain = newChain.update();
-
-    // Clear suggestions
-    setSuggestions([]);
     setShowSuggestions(false);
+    setQuery(chain.English);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

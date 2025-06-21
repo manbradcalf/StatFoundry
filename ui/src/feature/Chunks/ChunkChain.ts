@@ -1,54 +1,44 @@
 import { Chunk } from "./Chunk";
-import { Entity } from "./EntityTypes/Entity";
+import { DataType } from "./EntityTypes/LabelsEnum";
 import { ChunkNode } from "./IChunkNode";
 import { QueryType } from "./QueryType";
 
-export type ChunkChainState = {
-  head: ChunkNode | null;
-  tail: ChunkNode | null;
-  aliases: Alias[];
-  english: string;
-  cypher: string;
-};
-
-type Alias = {
-  name: string;
-  entity: Entity;
-};
+// we need to store on the chain
+// - the alias names
+// - the data types that the alias names represent
+export type Alias = [string, DataType];
 
 /**
  * Linked-list chain manager for chunks.
  */
 export class ChunkChain {
-  head: ChunkNode | null = null;
-  tail: ChunkNode | null = null;
-  aliases: Alias[] = [];
+  Head: ChunkNode | null = null;
+  Tail: ChunkNode | null = null;
+  Aliases: Alias[] = [];
+  English: string = "";
+  Cypher: string = "";
 
   /**
    * Add a chunk to the end of the chain.
    * @param chunk The chunk to add.
    */
-  append(chunk: Chunk<Entity>): ChunkNode {
-    const node: ChunkNode = { chunk, prev: this.tail, next: null };
-    if (!this.head) {
-      this.head = node;
+  append(chunk: Chunk): ChunkNode {
+    const node: ChunkNode = { chunk, prev: this.Tail, next: null };
+    if (!this.Head) {
+      this.Head = node;
     }
-    if (this.tail) {
-      this.tail.next = node;
+    if (this.Tail) {
+      this.Tail.next = node;
     }
-    this.tail = node;
+    this.Tail = node;
 
-    // add aliases to be available for use in WITH cypher clauses
-    // remove duplicates if they exits
-    this.aliases = [
-      ...this.aliases,
-      ...Object.entries(chunk.Slots).map(([key, value]) => ({
-        name: key, // what the user typed in the slot + default alias name like p, pg, etc
-        entity: value as Entity,
-      })),
-    ];
-    console.log(this.aliases);
-
+    // add the outputs of the chunk to our chain's aliases
+    this.Aliases.push(...chunk.Outputs);
+    // dedup by alias name
+    this.Aliases = this.Aliases.filter(
+      (alias, index, self) => index === self.findIndex((t) => t[0] === alias[0])
+    );
+    console.log("aliases", this.Aliases);
     return node;
   }
 
@@ -57,20 +47,20 @@ export class ChunkChain {
    * todo: figure out how to remove the chunk when the user deletes the english description
    */
   pop(): ChunkNode | null {
-    if (!this.tail) return null;
-    const removed = this.tail;
-    this.tail = removed.prev;
-    if (this.tail) this.tail.next = null;
-    if (removed === this.head) this.head = null;
+    if (!this.Tail) return null;
+    const removed = this.Tail;
+    this.Tail = removed.prev;
+    if (this.Tail) this.Tail.next = null;
+    if (removed === this.Head) this.Head = null;
     return removed;
   }
 
   /**
    * Get all chunks as an array (for UI, debugging, etc).
    */
-  toArray(): Chunk<Entity>[] {
-    const arr: Chunk<Entity>[] = [];
-    let node = this.head;
+  toArray(): Chunk[] {
+    const arr: Chunk[] = [];
+    let node = this.Head;
     while (node) {
       arr.push(node.chunk);
       node = node.next;
@@ -81,11 +71,12 @@ export class ChunkChain {
   /**
    * Traverse the chain and build the full Cypher and English description.
    */
-  update(): ChunkChainState {
+  update(): ChunkChain {
     let englishParts: string[] = [];
     let cypherParts: string[] = [];
+    let aliases: Alias[] = [];
 
-    let node = this.head;
+    let node = this.Head;
 
     while (node) {
       const { chunk } = node;
@@ -93,25 +84,24 @@ export class ChunkChain {
       englishParts.push(chunk.English);
       cypherParts.push(chunk.Cypher.trim());
 
+      // add the chunk's aliases to the aliases
+      aliases.push(...chunk.Outputs);
+
       node = node.next;
     }
 
-    return {
-      head: this.head,
-      tail: this.tail,
-      aliases: this.aliases,
-      english: englishParts.join(" and "),
-      cypher: cypherParts.join(" AND "),
-    };
+    this.English = englishParts.join(" and ");
+    this.Cypher = cypherParts.join(" WITH * \n");
+    return this;
   }
 
   /**
    * Get the next valid chunks for the current chunk.
    * @returns The next valid chunks.
    */
-  getNextValidChunksFromChunks(chunks: Chunk<Entity>[]): Chunk<Entity>[] {
-    const nextValidChunks: Chunk<Entity>[] = [];
-    const currentAliases = this.aliases;
+  getNextValidChunksFromChunks(chunks: Chunk[]): Chunk[] {
+    const nextValidChunks: Chunk[] = [];
+    const currentAliases = this.Aliases;
 
     for (const chunk of chunks) {
       if (isValidNextChunk(chunk, currentAliases)) {
@@ -123,23 +113,21 @@ export class ChunkChain {
   }
 }
 
-function isValidNextChunk(
-  chunk: Chunk<Entity>,
-  currentAliases: Alias[]
-): boolean {
-  var inputsAreSatisfied = chunk.RequiredInputs.every((input) =>
-    currentAliases.some((alias) => typeof alias.entity === typeof input)
+function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
+  var inputsAreSatisfied = chunk.Inputs.every((input) =>
+    currentAliases.some((alias) => alias[0] === input[0])
   );
 
   var queryTypeIsMatch = true;
+  // we can't filter or match if we dont have anything
   if (
-    chunk.QueryType === QueryType.RETURN ||
-    chunk.QueryType === QueryType.FILTER
+    currentAliases.length === 0 &&
+    (chunk.QueryType === QueryType.RETURN ||
+      chunk.QueryType === QueryType.FILTER)
   ) {
-    if (currentAliases.length === 0) {
-      queryTypeIsMatch = false;
-    }
+    queryTypeIsMatch = false;
   }
+
   return inputsAreSatisfied && queryTypeIsMatch;
 }
 
