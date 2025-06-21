@@ -3,6 +3,7 @@ import { getAvailableChunks } from '../chunks-data';
 import { ChunkChain } from '../feature/Chunks/ChunkChain';
 import { Suggestion } from './Suggestion';
 import { SearchContextType } from './SearchContextType';
+import { buildFilledChunk } from '../utils/slotFiller';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
@@ -80,8 +81,39 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const handleSuggestionClick = (suggestion: Suggestion) => {
     console.log('🎯 Suggestion clicked:', suggestion);
 
-    // Add the selected chunk to the chain
-    chain.append(suggestion.chunk);
+    // Work on a copy so that we don't mutate the original immutable catalogue
+    const chunkCopy = { ...suggestion.chunk, Slots: suggestion.chunk.Slots.map((s) => ({ ...s })) };
+
+    // If the chunk contains slots, collect values from the user
+    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
+      chunkCopy.Slots = chunkCopy.Slots.map((slot) => {
+        const currentValue = slot.Value ?? '';
+        const userInput = window.prompt(`Enter value for ${slot.Name}:`, String(currentValue));
+
+        if (userInput === null || userInput === '') {
+          return slot; // keep existing value if user cancels or leaves blank
+        }
+
+        // Preserve number typing when the original value is a number
+        if (typeof currentValue === 'number') {
+          const numeric = Number(userInput);
+          return { ...slot, Value: isNaN(numeric) ? currentValue : numeric };
+        }
+
+        return { ...slot, Value: userInput };
+      });
+
+      // Replace placeholders in English & Cypher using the finalized slot values
+      const filledChunk = buildFilledChunk(chunkCopy);
+
+      // Add the filled chunk to the chain
+      chain.append(filledChunk);
+    } else {
+      // No slots – append chunk as-is
+      chain.append(chunkCopy);
+    }
+
+    // Update chain strings
     chain.update();
 
     setShowSuggestions(false);
