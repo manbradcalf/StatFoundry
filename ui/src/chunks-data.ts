@@ -69,7 +69,7 @@ export function getAvailableChunks(): Chunk[] {
     // Generic Filter Chunks
     {
       English: "where player {property} {operator} {value}",
-      Cypher: "WHERE p.{property} {operator} $value",
+      Cypher: "WHERE p.{property} {operator} {value}",
       QueryType: QueryType.FILTER,
       Inputs: [["p", DataType.Player]],
       Outputs: [["p", DataType.Player]],
@@ -90,7 +90,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "where player game {property} {operator} {value}",
-      Cypher: "WHERE pg.{property} {operator} $value",
+      Cypher: "WHERE pg.{property} {operator} {value}",
       QueryType: QueryType.FILTER,
       Inputs: [["pg", DataType.PlayerGame]],
       Outputs: [["pg", DataType.PlayerGame]],
@@ -111,7 +111,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "where team {property} {operator} {value}",
-      Cypher: "WHERE t.{property} {operator} $value",
+      Cypher: "WHERE t.{property} {operator} {value}",
       QueryType: QueryType.FILTER,
       Inputs: [["t", DataType.Team]],
       Outputs: [["t", DataType.Team]],
@@ -132,7 +132,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "where player {property} is between {min} and {max}",
-      Cypher: "WHERE p.{property} >= $min AND p.{property} <= $max",
+      Cypher: "WHERE p.{property} >= {min} AND p.{property} <= {max}",
       QueryType: QueryType.FILTER,
       Inputs: [["p", DataType.Player]],
       Outputs: [["p", DataType.Player]],
@@ -153,7 +153,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "where player game {property} is between {min} and {max}",
-      Cypher: "WHERE pg.{property} >= $min AND pg.{property} <= $max",
+      Cypher: "WHERE pg.{property} >= {min} AND pg.{property} <= {max}",
       QueryType: QueryType.FILTER,
       Inputs: [["pg", DataType.PlayerGame]],
       Outputs: [["pg", DataType.PlayerGame]],
@@ -174,7 +174,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "where player {property} contains {value}",
-      Cypher: "WHERE p.{property} CONTAINS $value",
+      Cypher: "WHERE p.{property} CONTAINS {value}",
       QueryType: QueryType.FILTER,
       Inputs: [["p", DataType.Player]],
       Outputs: [["p", DataType.Player]],
@@ -219,7 +219,7 @@ export function getAvailableChunks(): Chunk[] {
     // Legacy specific filters (keeping for backward compatibility)
     {
       English: "who play {position}",
-      Cypher: "WHERE p.position = $position",
+      Cypher: "WHERE p.position = {position}",
       QueryType: QueryType.FILTER,
       Inputs: [["p", DataType.Player]],
       Outputs: [["p", DataType.Player]],
@@ -232,7 +232,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "between the {s1} and {s2} seasons",
-      Cypher: "WHERE pg.season >= $s1 AND pg.season <= $s2",
+      Cypher: "WHERE pg.season >= {s1} AND pg.season <= {s2}",
       QueryType: QueryType.FILTER,
       Inputs: [["pg", DataType.PlayerGame]],
       Outputs: [["pg", DataType.PlayerGame]],
@@ -249,7 +249,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "between the {s1} and {s2} seasons",
-      Cypher: "WHERE tg.season >= $s1 AND tg.season <= $s2",
+      Cypher: "WHERE tg.season >= {s1} AND tg.season <= {s2}",
       QueryType: QueryType.FILTER,
       Inputs: [["tg", DataType.TeamGame]],
       Outputs: [["tg", DataType.TeamGame]],

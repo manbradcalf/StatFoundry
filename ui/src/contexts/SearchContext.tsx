@@ -3,6 +3,9 @@ import { getAvailableChunks } from '../chunks-data';
 import { ChunkChain } from '../feature/Chunks/ChunkChain';
 import { Suggestion } from './Suggestion';
 import { SearchContextType } from './SearchContextType';
+import { buildFilledChunk } from '../utils/slotFiller';
+import { SlotModal } from '../components/SlotModal';
+import { Chunk, Slot } from '../feature/Chunks/Chunk';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
@@ -24,6 +27,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+
+  // Modal state
+  const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
+  const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
+  const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
 
   // Extract the partial input that the user is currently typing
   const getPartialInput = (): string => {
@@ -80,15 +88,34 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const handleSuggestionClick = (suggestion: Suggestion) => {
     console.log('🎯 Suggestion clicked:', suggestion);
 
-    // Add the selected chunk to the chain
-    chain.append(suggestion.chunk);
-    chain.update();
+    // Work on a copy so that we don't mutate the original immutable catalogue
+    const chunkCopy = { ...suggestion.chunk, Slots: suggestion.chunk.Slots.map((s) => ({ ...s })) };
 
-    setShowSuggestions(false);
-    setQuery(chain.English);
+    // If the chunk contains slots, open modal for user input
+    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
+      setPendingChunk(chunkCopy);
+      setPendingSlots(chunkCopy.Slots);
+      setIsSlotModalOpen(true);
+    } else {
+      // No slots – append chunk as-is
+      chain.append(chunkCopy);
+
+      // Update chain strings right away
+      chain.update();
+
+      setShowSuggestions(false);
+      setQuery(chain.English);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setShowSuggestions(false);
+      setSelectedSuggestionIndex(-1);
+      setSuggestions([]);
+      return;
+    }
+
     if (!showSuggestions) return;
 
     switch (e.key) {
@@ -108,10 +135,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
           handleSuggestionClick(suggestions[selectedSuggestionIndex]);
         }
         break;
-      case 'Escape':
-        setShowSuggestions(false);
-        setSelectedSuggestionIndex(-1);
-        break;
     }
   };
 
@@ -120,6 +143,31 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setChain(new ChunkChain());
     setSuggestions([]);
     setShowSuggestions(false);
+  };
+
+  // Handlers for SlotModal
+  const handleSlotModalSave = (updatedSlots: Slot[]) => {
+    if (!pendingChunk) {
+      setIsSlotModalOpen(false);
+      return;
+    }
+
+    const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
+    const filled = buildFilledChunk(chunkWithSlots);
+    chain.append(filled);
+    chain.update();
+    setQuery(chain.English);
+
+    // reset modal state
+    setIsSlotModalOpen(false);
+    setPendingChunk(null);
+    setPendingSlots([]);
+  };
+
+  const handleSlotModalCancel = () => {
+    setIsSlotModalOpen(false);
+    setPendingChunk(null);
+    setPendingSlots([]);
   };
 
   const value: SearchContextType = {
@@ -140,6 +188,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   return (
     <SearchContext.Provider value={value}>
       {children}
+      {isSlotModalOpen && (
+        <SlotModal slots={pendingSlots} onSave={handleSlotModalSave} onCancel={handleSlotModalCancel} />
+      )}
     </SearchContext.Provider>
   );
 }; 
