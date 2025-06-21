@@ -90,8 +90,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         const currentValue = slot.Value ?? '';
         const userInput = window.prompt(`Enter value for ${slot.Name}:`, String(currentValue));
 
-        if (userInput === null || userInput === '') {
-          return slot; // keep existing value if user cancels or leaves blank
+        if (userInput === null || userInput === '' || userInput === undefined) {
+          return slot; // keep existing value if user cancels/leaves blank/returns undefined
         }
 
         // Preserve number typing when the original value is a number
