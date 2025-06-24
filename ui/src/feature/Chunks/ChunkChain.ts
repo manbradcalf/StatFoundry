@@ -85,7 +85,6 @@ export class ChunkChain {
       node = node.next;
     }
 
-    this.English = englishParts.join(" and ");
     this.Cypher = cypherParts.join(" WITH * \n");
     return this;
   }

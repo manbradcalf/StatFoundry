@@ -19,5 +19,5 @@ export interface SearchContextType {
   selectSuggestion: (suggestion: Suggestion) => void;
   handleKeyDown: (e: React.KeyboardEvent) => void;
   clearAll: () => void;
-  search: () => Promise<void>;
+  search: () => void;
 }

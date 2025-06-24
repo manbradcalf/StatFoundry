@@ -1,11 +1,11 @@
 // @ts-nocheck
 import React, { useEffect } from 'react';
 import { render, waitFor, fireEvent, screen } from '@testing-library/react';
-import { SearchProvider, useSearch } from './SearchContext';
+import { SearchProvider, useSearchContext } from './SearchContext';
 import { getAvailableChunks } from '../chunks-data';
 
 const TriggerComponent: React.FC = () => {
-  const search = useSearch();
+  const search = useSearchContext();
 
   // On mount, select a suggestion with slots
   useEffect(() => {
@@ -22,7 +22,7 @@ describe('SearchContext slot filling integration', () => {
     let chainEnglish = '';
 
     const CaptureComponent: React.FC = () => {
-      const { userInput } = useSearch();
+      const { userInput } = useSearchContext();
       useEffect(() => {
         chainEnglish = userInput;
         // eslint-disable-next-line no-console

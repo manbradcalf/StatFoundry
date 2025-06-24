@@ -252,6 +252,29 @@ export function getAvailableChunks(): Chunk[] {
       ],
     },
     {
+      English: "who played between {s1} and {s2}",
+      Cypher:
+        "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season >= {s1} AND ps.season <= {s2}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "p", Label: Label.Player }],
+      Outputs: [
+        { Name: "p", Label: Label.Player },
+        { Name: "ps", Label: Label.PlayerSeason },
+      ],
+      Slots: [
+        {
+          Name: "s1",
+          Value: 2024,
+          SlotType: SlotType.FilterValue,
+        },
+        {
+          Name: "s2",
+          Value: 2025,
+          SlotType: SlotType.FilterValue,
+        },
+      ],
+    },
+    {
       English: "between the {s1} and {s2} seasons",
       Cypher: "WHERE pg.season >= {s1} AND pg.season <= {s2}",
       QueryType: QueryType.FILTER,
@@ -293,7 +316,7 @@ export function getAvailableChunks(): Chunk[] {
     // RETURN
     {
       English: "return player names",
-      Cypher: "RETURN p.display_name LIMIT 10",
+      Cypher: "RETURN p.first_name + ' ' + p.last_name as name LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "p", Label: Label.Player }],
       Outputs: [{ Name: "p", Label: Label.Player }],
@@ -301,10 +324,25 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "return passing stats by game",
-      Cypher: "RETURN pg.passing_yards, pg.passing_touchdowns LIMIT 10",
+      Cypher: "RETURN pg.passing_yards, pg.passing_tds LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
       Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [],
+    },
+    {
+      English: "return passing stats by game with player name",
+      Cypher:
+        "RETURN pg.passing_yards, pg.passing_tds, p.first_name + ' ' + p.last_name as name LIMIT 10",
+      QueryType: QueryType.RETURN,
+      Inputs: [
+        { Name: "pg", Label: Label.PlayerGame },
+        { Name: "p", Label: Label.Player },
+      ],
+      Outputs: [
+        { Name: "pg", Label: Label.PlayerGame },
+        { Name: "p", Label: Label.Player },
+      ],
       Slots: [],
     },
     {

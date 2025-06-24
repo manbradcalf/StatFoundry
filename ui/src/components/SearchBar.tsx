@@ -1,9 +1,18 @@
 import React, { useRef, useEffect } from 'react';
-import { useSearch } from '../contexts/SearchContext';
+import { useSearchContext } from '../contexts/SearchContext';
 
 interface SearchBarProps {
   placeholder?: string;
 }
+
+export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
+  const keys = Object.keys(result);
+  return <div>
+    {keys.map((key) => (
+      <div key={key}><b>{key}</b>: {JSON.stringify(result[key])}</div>
+    ))}
+  </div>;
+};
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = "Receivers who caught at least..."
@@ -18,8 +27,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     selectedIndex,
     search,
     searchResults,
-    searchError
-  } = useSearch();
+    searchError,
+    chain
+  } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
@@ -90,13 +100,27 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           ))}
         </div>
       )}
+      <div className="search-results-container">
+      <h2>Current Query</h2>
+      <div>{chain.Cypher}</div>
+      </div>
       <div className="search-results">
         <div className="search-results-header">
           <h2>Search Results</h2>
         </div>
         <div className="search-results-body">
-          <p>{searchResults ? JSON.stringify(searchResults) : 'No results'}</p>
-          <p>{searchError ? searchError : 'No error'}</p>
+          {searchResults ? (
+            <ul>
+              {searchResults.map((result: any, index: number) => (
+                <SearchResultItem key={index} result={result}></SearchResultItem>
+              ))}
+            </ul>
+          ) : (
+            <div style={{ color: "#888" }}>No results</div>
+          )}
+          <p style={{ color: searchError ? "red" : "#888" }}>
+            {searchError ? searchError : "No error"}
+          </p>
         </div>
       </div>
     </div>

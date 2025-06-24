@@ -7,10 +7,11 @@ import { SlotModal } from '../components/SlotModal';
 import { buildFilledChunk } from '../utils/slotFiller';
 import { Suggestion } from './Suggestion';
 import { SearchContextType } from './SearchContextType';
+import { useSearchAPI } from '../hooks/useSearchAPI';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
-export const useSearch = () => {
+export const useSearchContext = () => {
   const context = useContext(SearchContext);
   if (!context) {
     throw new Error('useSearch must be used within a SearchProvider');
@@ -34,10 +35,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
 
-  // Add to SearchContext state
-  const [searchResults, setSearchResults] = useState<any[] | null>(null);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
-  const [searchError, setSearchError] = useState<string | null>(null);
+  const { searchResults, isSearching, searchError, executeSearch, clearSearch } = useSearchAPI();
 
   // Extract the partial input that the user is currently typing
   const getPartialInput = (): string => {
@@ -146,7 +144,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         if (selectedSuggestionIndex >= 0) {
           handleSuggestionClick(suggestions[selectedSuggestionIndex]);
         } else if (chain.Cypher.trim()) {
-          executeSearch(); // Execute search on Enter when no suggestion selected
+          executeSearch(chain.Cypher); // Execute search on Enter when no suggestion selected
         }
         break;
     }
@@ -157,6 +155,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setChain(new ChunkChain());
     setSuggestions([]);
     setShowSuggestions(false);
+    clearSearch();
   };
 
   // Handlers for SlotModal
@@ -184,39 +183,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setPendingSlots([]);
   };
 
-  // implement search function as  defined in SearchContextType
-  const executeSearch = async () => {
-    if (!chain.Cypher.trim()) return;
-    
-    setIsSearching(true);
-    setSearchError(null);
-    
-    try {
-      const response = await fetch('http://localhost:8000/api/query', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          cypher_query: chain.Cypher
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const results = await response.json();
-      setSearchResults(results);
-    } catch (error: any) {
-      setSearchError(error.message);
-      console.error('Search failed:', error);
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  const searchContext: SearchContextType = {
+  const value: SearchContextType = {
     // State
     userInput: query,
     chain,
@@ -232,11 +199,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     selectSuggestion: handleSuggestionClick,
     handleKeyDown,
     clearAll: clearQuery,
-    search: executeSearch,
+    search: () => executeSearch(chain.Cypher),
   };
 
   return (
-    <SearchContext.Provider value={searchContext}>
+    <SearchContext.Provider value={value}>
       {children}
       {isSlotModalOpen && (
         <SlotModal slots={pendingSlots} onSave={handleSlotModalSave} onCancel={handleSlotModalCancel} />

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSearch } from '../contexts/SearchContext';
+import { useSearchContext } from '../contexts/SearchContext';
 
 export const QueryResult: React.FC = () => {
-  const { builtQuery } = useSearch();
+  const { builtQuery } = useSearchContext();
 
   if (!builtQuery) {
     return null;
