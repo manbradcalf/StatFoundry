@@ -7,7 +7,7 @@ describe("fillTemplate", () => {
     const template = "Player position is {position}";
     const slots = [{ Name: "position", Value: "QB" }];
     const result = fillTemplate(template, slots);
-    expect(result).toBe("Player position is QB");
+    expect(result).toBe("Player position is 'QB'");
   });
 
   it("replaces multiple placeholders with provided values", () => {

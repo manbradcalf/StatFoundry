@@ -1,6 +1,10 @@
 import { Entity } from "./Entity";
-// TODO: Add team season type for real
+import { Label } from "../Enums/Label";
+
 export interface TeamSeason extends Entity {
-  team_id: string;
-  season: number;
+  label: Label.TeamSeason;
+  properties: {
+    team_id: string;
+    season: number;
+  };
 }

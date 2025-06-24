@@ -1,7 +1,8 @@
 import { Entity } from "./Entity";
+import { Label } from "../Enums/Label";
 
 export interface Player extends Entity {
-  name: "Player";
+  label: Label.Player;
   properties: {
     smart_id: string;
     birth_date: Date;

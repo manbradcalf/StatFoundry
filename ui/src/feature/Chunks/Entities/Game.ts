@@ -1,8 +1,8 @@
 import { Entity } from "./Entity";
-import { DataType } from "./LabelsEnum";
+import { Label } from "../Enums/Label";
 
 export interface Game extends Entity {
-  label: DataType.Game;
+  label: Label.Game;
   properties: {
     home_coach: string;
     week: number;

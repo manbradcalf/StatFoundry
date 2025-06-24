@@ -1,7 +1,10 @@
 import { Entity } from "./Entity";
+import { Label } from "../Enums/Label";
 
-// TODO: Add team type for real
 export interface Team extends Entity {
-  team_id: string;
-  team_name: string;
+  label: Label.Team;
+  properties: {
+    team_id: string;
+    team_name: string;
+  };
 }

@@ -1,4 +1,4 @@
-export enum DataType {
+export enum Label {
   Player = "Player",
   Team = "Team",
   Game = "Game",

@@ -1,10 +1,6 @@
-import { Alias } from "./ChunkChain";
-import { QueryType } from "./QueryType";
-
-export type Slot = {
-  Name: string;
-  Value: any;
-};
+import { Alias } from "./Alias";
+import { Slot } from "./Slot";
+import { QueryType } from "../Enums/QueryType";
 
 /**
  * Class representing a single query chunk.
@@ -26,7 +22,9 @@ export type Chunk = {
   readonly QueryType: QueryType;
 
   /**
-   * The labels of the entities that are required for the chunk to build the cypher.
+   * The aliases required for the chunk to build the cypher.
+   * Each alias is a pair of [aliasName, entityType] representing the required entity types
+   * that must be available in the chain before this chunk can be used.
    */
   readonly Inputs: Alias[];
 

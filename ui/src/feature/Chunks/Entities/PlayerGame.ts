@@ -1,8 +1,8 @@
 import { Entity } from "./Entity";
-import { DataType } from "./LabelsEnum";
+import { Label } from "../Enums/Label";
 
 export interface PlayerGame extends Entity {
-  label: DataType.PlayerGame;
+  label: Label.PlayerGame;
   properties: {
     opponent_team: string;
     rushing_first_downs: number;

@@ -1,4 +1,4 @@
-import { Chunk, Slot } from "../feature/Chunks/Chunk";
+import { Chunk, Slot } from "../feature/Chunks/Types/Chunk";
 /**
  * Replace all slot placeholders in the template string with their corresponding values.
  * A placeholder is denoted with curly braces e.g. {property}.

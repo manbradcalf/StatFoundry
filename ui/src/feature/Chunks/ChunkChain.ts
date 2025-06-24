@@ -1,10 +1,10 @@
-import { Chunk } from "./Chunk";
-import { DataType } from "./Entities/LabelsEnum";
-import { ChunkNode } from "./IChunkNode";
-import { QueryType } from "./QueryType";
+import { Chunk } from "./Types/Chunk";
+import { Entity } from "./Entities/Entity";
+import { ChunkNode } from "./Types/IChunkNode";
+import { QueryType } from "./Enums/QueryType";
 
-// A pair of an alias name and the data type that the alias represents
-export type Alias = [string, DataType];
+// A pair of an alias name and the entity type that the alias represents
+export type Alias = [string, Entity];
 
 /**
  * Linked-list chain manager for chunks.
@@ -112,25 +112,27 @@ export class ChunkChain {
 }
 
 function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
-  // check if the chunk's inputs are satisfied by the current aliases
-  // if the chunk's inputs are satisfied, we can add the chunk to the chain
-  var inputsAreSatisfied = chunk.Inputs.every((input) =>
-    currentAliases.some((alias) => alias[0] === input[0])
+  // Count how many of each entity type we need vs have
+  const needed = chunk.Inputs.reduce(
+    (acc, alias) => {
+      acc[alias.Label] = (acc[alias.Label] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>
   );
 
-  // TODO: What if the chunk has multiple inputs of a required input type
+  const available = currentAliases.reduce(
+    (acc, [_, entity]) => {
+      acc[entity.label] = (acc[entity.label] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>
+  );
 
-  var queryTypeIsMatch = true;
-  // we can't filter or match if we dont have anything
-  if (
-    currentAliases.length === 0 &&
-    (chunk.QueryType === QueryType.RETURN ||
-      chunk.QueryType === QueryType.FILTER)
-  ) {
-    queryTypeIsMatch = false;
-  }
-
-  return inputsAreSatisfied && queryTypeIsMatch;
+  // Check if we have enough of each type
+  return Object.entries(needed).every(
+    ([label, count]) => (available[label] || 0) >= count
+  );
 }
 
 // TODO: Replace Slot Values in Cypher and English

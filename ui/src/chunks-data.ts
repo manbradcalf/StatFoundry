@@ -1,6 +1,6 @@
-import { Chunk } from "./feature/Chunks/Chunk";
-import { QueryType } from "./feature/Chunks/QueryType";
-import { DataType } from "./feature/Chunks/Entities/LabelsEnum";
+import { Chunk } from "./feature/Chunks/Types/Chunk";
+import { QueryType } from "./feature/Chunks/Enums/QueryType";
+import { Label } from "./feature/Chunks/Enums/Label";
 
 export function getAvailableChunks(): Chunk[] {
   return [
@@ -10,7 +10,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "MATCH (p:Player)",
       QueryType: QueryType.MATCH,
       Inputs: [],
-      Outputs: [["p", DataType.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [],
     },
     {
@@ -18,7 +18,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "MATCH (t:Team)",
       QueryType: QueryType.MATCH,
       Inputs: [],
-      Outputs: [["t", DataType.Team]],
+      Outputs: [["t", Label.Team]],
       Slots: [],
     },
     {
@@ -27,8 +27,8 @@ export function getAvailableChunks(): Chunk[] {
       QueryType: QueryType.MATCH,
       Inputs: [],
       Outputs: [
-        ["p", DataType.Player],
-        ["pg", DataType.PlayerGame],
+        ["p", Label.Player],
+        ["pg", Label.PlayerGame],
       ],
       Slots: [],
     },
@@ -38,8 +38,8 @@ export function getAvailableChunks(): Chunk[] {
       QueryType: QueryType.MATCH,
       Inputs: [],
       Outputs: [
-        ["p", DataType.Player],
-        ["pg", DataType.PlayerGame],
+        ["p", Label.Player],
+        ["pg", Label.PlayerGame],
       ],
       Slots: [],
     },
@@ -49,8 +49,8 @@ export function getAvailableChunks(): Chunk[] {
       QueryType: QueryType.MATCH,
       Inputs: [],
       Outputs: [
-        ["t", DataType.Team],
-        ["ts", DataType.TeamSeason],
+        ["t", Label.Team],
+        ["ts", Label.TeamSeason],
       ],
       Slots: [],
     },
@@ -60,8 +60,8 @@ export function getAvailableChunks(): Chunk[] {
       QueryType: QueryType.MATCH,
       Inputs: [],
       Outputs: [
-        ["t", DataType.Team],
-        ["tg", DataType.TeamGame],
+        ["t", Label.Team],
+        ["tg", Label.TeamGame],
       ],
       Slots: [],
     },
@@ -71,8 +71,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player {property} {operator} {value}",
       Cypher: "WHERE p.{property} {operator} {value}",
       QueryType: QueryType.FILTER,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [
         {
           Name: "property",
@@ -92,8 +92,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player game {property} {operator} {value}",
       Cypher: "WHERE pg.{property} {operator} {value}",
       QueryType: QueryType.FILTER,
-      Inputs: [["pg", DataType.PlayerGame]],
-      Outputs: [["pg", DataType.PlayerGame]],
+      Inputs: [["pg", Label.PlayerGame]],
+      Outputs: [["pg", Label.PlayerGame]],
       Slots: [
         {
           Name: "property",
@@ -113,8 +113,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where team {property} {operator} {value}",
       Cypher: "WHERE t.{property} {operator} {value}",
       QueryType: QueryType.FILTER,
-      Inputs: [["t", DataType.Team]],
-      Outputs: [["t", DataType.Team]],
+      Inputs: [["t", Label.Team]],
+      Outputs: [["t", Label.Team]],
       Slots: [
         {
           Name: "property",
@@ -134,8 +134,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player {property} is between {min} and {max}",
       Cypher: "WHERE p.{property} >= {min} AND p.{property} <= {max}",
       QueryType: QueryType.FILTER,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [
         {
           Name: "property",
@@ -155,8 +155,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player game {property} is between {min} and {max}",
       Cypher: "WHERE pg.{property} >= {min} AND pg.{property} <= {max}",
       QueryType: QueryType.FILTER,
-      Inputs: [["pg", DataType.PlayerGame]],
-      Outputs: [["pg", DataType.PlayerGame]],
+      Inputs: [["pg", Label.PlayerGame]],
+      Outputs: [["pg", Label.PlayerGame]],
       Slots: [
         {
           Name: "property",
@@ -176,8 +176,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player {property} contains {value}",
       Cypher: "WHERE p.{property} CONTAINS {value}",
       QueryType: QueryType.FILTER,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [
         {
           Name: "property",
@@ -193,8 +193,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player {property} is null",
       Cypher: "WHERE p.{property} IS NULL",
       QueryType: QueryType.FILTER,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [
         {
           Name: "property",
@@ -206,8 +206,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "where player {property} is not null",
       Cypher: "WHERE p.{property} IS NOT NULL",
       QueryType: QueryType.FILTER,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [
         {
           Name: "property",
@@ -221,8 +221,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "who play {position}",
       Cypher: "WHERE p.position = {position}",
       QueryType: QueryType.FILTER,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [
         {
           Name: "position",
@@ -234,8 +234,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "between the {s1} and {s2} seasons",
       Cypher: "WHERE pg.season >= {s1} AND pg.season <= {s2}",
       QueryType: QueryType.FILTER,
-      Inputs: [["pg", DataType.PlayerGame]],
-      Outputs: [["pg", DataType.PlayerGame]],
+      Inputs: [["pg", Label.PlayerGame]],
+      Outputs: [["pg", Label.PlayerGame]],
       Slots: [
         {
           Name: "s1",
@@ -251,8 +251,8 @@ export function getAvailableChunks(): Chunk[] {
       English: "between the {s1} and {s2} seasons",
       Cypher: "WHERE tg.season >= {s1} AND tg.season <= {s2}",
       QueryType: QueryType.FILTER,
-      Inputs: [["tg", DataType.TeamGame]],
-      Outputs: [["tg", DataType.TeamGame]],
+      Inputs: [["tg", Label.TeamGame]],
+      Outputs: [["tg", Label.TeamGame]],
       Slots: [
         {
           Name: "s1",
@@ -270,24 +270,24 @@ export function getAvailableChunks(): Chunk[] {
       English: "return player names",
       Cypher: "RETURN p.name",
       QueryType: QueryType.RETURN,
-      Inputs: [["p", DataType.Player]],
-      Outputs: [["p", DataType.Player]],
+      Inputs: [["p", Label.Player]],
+      Outputs: [["p", Label.Player]],
       Slots: [],
     },
     {
       English: "return passing stats by game",
       Cypher: "RETURN pg.passing_yards, pg.passing_touchdowns",
       QueryType: QueryType.RETURN,
-      Inputs: [["pg", DataType.PlayerGame]],
-      Outputs: [["pg", DataType.PlayerGame]],
+      Inputs: [["pg", Label.PlayerGame]],
+      Outputs: [["pg", Label.PlayerGame]],
       Slots: [],
     },
     {
       English: "return team names",
       Cypher: "RETURN t.name",
       QueryType: QueryType.RETURN,
-      Inputs: [["t", DataType.Team]],
-      Outputs: [["t", DataType.Team]],
+      Inputs: [["t", Label.Team]],
+      Outputs: [["t", Label.Team]],
       Slots: [],
     },
     {
@@ -295,12 +295,12 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "RETURN p.name, t.name",
       QueryType: QueryType.RETURN,
       Inputs: [
-        ["p", DataType.Player],
-        ["t", DataType.Team],
+        ["p", Label.Player],
+        ["t", Label.Team],
       ],
       Outputs: [
-        ["p", DataType.Player],
-        ["t", DataType.Team],
+        ["p", Label.Player],
+        ["t", Label.Team],
       ],
       Slots: [],
     },

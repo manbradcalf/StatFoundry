@@ -1,4 +1,3 @@
-import { Entity } from "./Entities/Entity";
 /**
  * Types representing the different types of Cypher queries our Chunks use.
  * This is not a 1 to 1 of actual Cypher query types, but is instead specific to our use case

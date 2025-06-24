@@ -1,8 +1,11 @@
 import { Entity } from "./Entity";
+import { Label } from "../Enums/Label";
 
-// TODO: Add team game type for real
 export interface TeamGame extends Entity {
-  team_id: string;
-  season: number;
-  week: number;
+  label: Label.TeamGame;
+  properties: {
+    team_id: string;
+    season: number;
+    week: number;
+  };
 }

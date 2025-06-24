@@ -5,7 +5,7 @@ import { Suggestion } from './Suggestion';
 import { SearchContextType } from './SearchContextType';
 import { buildFilledChunk } from '../utils/slotFiller';
 import { SlotModal } from '../components/SlotModal';
-import { Chunk, Slot } from '../feature/Chunks/Chunk';
+import { Chunk, Slot } from '../feature/Chunks/Types/Chunk';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 

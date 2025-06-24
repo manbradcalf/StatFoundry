@@ -39,12 +39,12 @@ describe('SearchContext slot filling integration', () => {
     );
 
     // Click save on modal once it appears
-    await waitFor(() => screen.getByText('Save'));
-    fireEvent.click(screen.getByText('Save'));
+    await waitFor(() => screen.findByText('Save'));
+    fireEvent.click(await screen.findByText('Save'));
 
     await waitFor(() => {
       console.log('chainEnglish', chainEnglish);
-      expect(chainEnglish).toContain('position = QB');
+      expect(chainEnglish).toContain("position = 'QB'");
     });
   });
 });

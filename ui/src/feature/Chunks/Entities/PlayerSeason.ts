@@ -1,6 +1,8 @@
 import { Entity } from "./Entity";
+import { Label } from "../Enums/Label";
 
 export interface PlayerSeason extends Entity {
+  label: Label.PlayerSeason;
   rushing_first_downs: number;
   passing_yards_after_catch: number;
   receiving_epa: number;
