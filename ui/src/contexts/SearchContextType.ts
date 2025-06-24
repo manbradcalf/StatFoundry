@@ -10,10 +10,14 @@ export interface SearchContextType {
   suggestions: Suggestion[];
   builtQuery: ChunkChain | null;
   selectedIndex: number;
+  searchResults: any;
+  isSearching: boolean;
+  searchError: string | null;
 
   // Actions
   setUserInput: (input: string) => void;
   selectSuggestion: (suggestion: Suggestion) => void;
   handleKeyDown: (e: React.KeyboardEvent) => void;
   clearAll: () => void;
+  search: () => Promise<void>;
 }

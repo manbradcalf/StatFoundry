@@ -15,7 +15,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     selectSuggestion,
     handleKeyDown,
     clearAll,
-    selectedIndex
+    selectedIndex,
+    search,
+    searchResults,
+    searchError
   } = useSearch();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -70,7 +73,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           </button>
         )}
       </div>
-      
+      <div className="search-button">
+        <button onClick={search}>Search</button>
+      </div>
+
       {suggestions.length > 0 && (
         <div ref={suggestionsRef} className="suggestions-dropdown">
           {suggestions.map((suggestion, index) => (
@@ -84,6 +90,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           ))}
         </div>
       )}
+      <div className="search-results">
+        <div className="search-results-header">
+          <h2>Search Results</h2>
+        </div>
+        <div className="search-results-body">
+          <p>{searchResults ? JSON.stringify(searchResults) : 'No results'}</p>
+          <p>{searchError ? searchError : 'No error'}</p>
+        </div>
+      </div>
     </div>
   );
 }; 

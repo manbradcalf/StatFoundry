@@ -34,6 +34,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
 
+  // Add to SearchContext state
+  const [searchResults, setSearchResults] = useState<any[] | null>(null);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [searchError, setSearchError] = useState<string | null>(null);
+
   // Extract the partial input that the user is currently typing
   const getPartialInput = (): string => {
     if (chain.English.length === 0) return query.trim();
@@ -130,10 +135,18 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         const prevIndex = selectedSuggestionIndex > 0 ? selectedSuggestionIndex - 1 : -1;
         setSelectedSuggestionIndex(prevIndex);
         break;
+      case 'Tab':
+        e.preventDefault();
+        if (selectedSuggestionIndex >= 0) {
+          handleSuggestionClick(suggestions[selectedSuggestionIndex]);
+        }
+        break;
       case 'Enter':
         e.preventDefault();
         if (selectedSuggestionIndex >= 0) {
           handleSuggestionClick(suggestions[selectedSuggestionIndex]);
+        } else if (chain.Cypher.trim()) {
+          executeSearch(); // Execute search on Enter when no suggestion selected
         }
         break;
     }
@@ -171,23 +184,59 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setPendingSlots([]);
   };
 
-  const value: SearchContextType = {
+  // implement search function as  defined in SearchContextType
+  const executeSearch = async () => {
+    if (!chain.Cypher.trim()) return;
+    
+    setIsSearching(true);
+    setSearchError(null);
+    
+    try {
+      const response = await fetch('http://localhost:8000/api/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cypher_query: chain.Cypher
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const results = await response.json();
+      setSearchResults(results);
+    } catch (error: any) {
+      setSearchError(error.message);
+      console.error('Search failed:', error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const searchContext: SearchContextType = {
     // State
     userInput: query,
     chain,
     suggestions,
     builtQuery: null,
     selectedIndex: selectedSuggestionIndex,
+    searchResults,
+    isSearching,
+    searchError,
 
     // Actions
     setUserInput: setQuery,
     selectSuggestion: handleSuggestionClick,
     handleKeyDown,
     clearAll: clearQuery,
+    search: executeSearch,
   };
 
   return (
-    <SearchContext.Provider value={value}>
+    <SearchContext.Provider value={searchContext}>
       {children}
       {isSlotModalOpen && (
         <SlotModal slots={pendingSlots} onSave={handleSlotModalSave} onCancel={handleSlotModalCancel} />

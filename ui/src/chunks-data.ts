@@ -293,7 +293,7 @@ export function getAvailableChunks(): Chunk[] {
     // RETURN
     {
       English: "return player names",
-      Cypher: "RETURN p.name",
+      Cypher: "RETURN p.display_name LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "p", Label: Label.Player }],
       Outputs: [{ Name: "p", Label: Label.Player }],
@@ -301,7 +301,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "return passing stats by game",
-      Cypher: "RETURN pg.passing_yards, pg.passing_touchdowns",
+      Cypher: "RETURN pg.passing_yards, pg.passing_touchdowns LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
       Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -309,7 +309,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "return team names",
-      Cypher: "RETURN t.name",
+      Cypher: "RETURN t.name LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "t", Label: Label.Team }],
       Outputs: [{ Name: "t", Label: Label.Team }],
@@ -317,7 +317,7 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "return player names and team names",
-      Cypher: "RETURN p.name, t.name",
+      Cypher: "RETURN p.name, t.name LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [
         { Name: "p", Label: Label.Player },
