@@ -1,6 +1,6 @@
 import { Chunk } from "./feature/Chunks/Chunk";
-import { DataType } from "./feature/Chunks/EntityTypes/LabelsEnum";
 import { QueryType } from "./feature/Chunks/QueryType";
+import { DataType } from "./feature/Chunks/Entities/LabelsEnum";
 
 export function getAvailableChunks(): Chunk[] {
   return [

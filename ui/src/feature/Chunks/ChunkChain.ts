@@ -1,11 +1,9 @@
 import { Chunk } from "./Chunk";
-import { DataType } from "./EntityTypes/LabelsEnum";
+import { DataType } from "./Entities/LabelsEnum";
 import { ChunkNode } from "./IChunkNode";
 import { QueryType } from "./QueryType";
 
-// we need to store on the chain
-// - the alias names
-// - the data types that the alias names represent
+// A pair of an alias name and the data type that the alias represents
 export type Alias = [string, DataType];
 
 /**
@@ -114,9 +112,13 @@ export class ChunkChain {
 }
 
 function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
+  // check if the chunk's inputs are satisfied by the current aliases
+  // if the chunk's inputs are satisfied, we can add the chunk to the chain
   var inputsAreSatisfied = chunk.Inputs.every((input) =>
     currentAliases.some((alias) => alias[0] === input[0])
   );
+
+  // TODO: What if the chunk has multiple inputs of a required input type
 
   var queryTypeIsMatch = true;
   // we can't filter or match if we dont have anything
