@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { getAvailableChunks } from '../chunks-data';
 import { ChunkChain } from '../feature/Chunks/ChunkChain';
+import { Chunk } from '../feature/Chunks/Types/Chunk';
+import { Slot } from '../feature/Chunks/Types/Slot';
+import { SlotModal } from '../components/SlotModal';
+import { buildFilledChunk } from '../utils/slotFiller';
 import { Suggestion } from './Suggestion';
 import { SearchContextType } from './SearchContextType';
-import { buildFilledChunk } from '../utils/slotFiller';
-import { SlotModal } from '../components/SlotModal';
-import { Chunk, Slot } from '../feature/Chunks/Types/Chunk';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 

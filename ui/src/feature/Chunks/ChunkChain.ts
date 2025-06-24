@@ -1,10 +1,6 @@
 import { Chunk } from "./Types/Chunk";
-import { Entity } from "./Entities/Entity";
 import { ChunkNode } from "./Types/IChunkNode";
-import { QueryType } from "./Enums/QueryType";
-
-// A pair of an alias name and the entity type that the alias represents
-export type Alias = [string, Entity];
+import { Alias } from "./Types/Alias";
 
 /**
  * Linked-list chain manager for chunks.
@@ -34,7 +30,8 @@ export class ChunkChain {
     this.Aliases.push(...chunk.Outputs);
     // dedup by alias name
     this.Aliases = this.Aliases.filter(
-      (alias, index, self) => index === self.findIndex((t) => t[0] === alias[0])
+      (alias, index, self) =>
+        index === self.findIndex((t) => t.Name === alias.Name)
     );
     console.log("aliases", this.Aliases);
     return node;
@@ -122,8 +119,8 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
   );
 
   const available = currentAliases.reduce(
-    (acc, [_, entity]) => {
-      acc[entity.label] = (acc[entity.label] || 0) + 1;
+    (acc, alias) => {
+      acc[alias.Label] = (acc[alias.Label] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>
@@ -134,5 +131,3 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
     ([label, count]) => (available[label] || 0) >= count
   );
 }
-
-// TODO: Replace Slot Values in Cypher and English

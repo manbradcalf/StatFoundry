@@ -19,7 +19,7 @@ export const QueryResult: React.FC = () => {
         <pre>{builtQuery.Cypher}</pre>
       </div>
       <div className="outputs">
-        <strong>Outputs:</strong> {builtQuery.Aliases.map((alias) => alias[0]).join(', ')}
+        <strong>Outputs:</strong> {builtQuery.Aliases.map((alias) => alias.Name).join(', ')}
       </div>
     </div>
   );

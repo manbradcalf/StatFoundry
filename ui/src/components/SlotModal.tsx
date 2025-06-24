@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Slot } from "../feature/Chunks/Types/Chunk";
+import { Slot } from "../feature/Chunks/Types/Slot";
 
 interface SlotModalProps {
   slots: Slot[];
