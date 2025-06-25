@@ -3,6 +3,72 @@ import { QueryType } from "./feature/Chunks/Enums/QueryType";
 import { Label } from "./feature/Chunks/Enums/Label";
 import { SlotType } from "./feature/Chunks/Enums/SlotType";
 
+const PLAYER_PROPERTIES = [
+  "weight",
+  "years_of_experience",
+  "current_team_id",
+  "display_name",
+  "team_abbr",
+  "position_group",
+  "position",
+  "jersey_number",
+  "first_name",
+  "status",
+  "height",
+];
+
+const PLAYER_GAME_PROPERTIES = [
+  "opponent_team",
+  "game_id",
+  "week",
+  "season",
+  "opponent_team",
+  "recent_team",
+];
+
+const RECEIVING_STATS = [
+  "receiving_yards",
+  "receptions",
+  "receiving_tds",
+  "receiving_air_yards",
+  "receiving_first_downs",
+  "receiving_epa",
+  "receiving_2pt_conversions",
+  "receiving_fumbles",
+  "receiving_fumbles_lost",
+  "receiving_fumbles_recovered",
+  "receiving_fumbles_recovered_yards",
+  "receiving_fumbles_recovered_tds",
+];
+
+const PASSING_STATS = [
+  "passing_yards",
+  "passing_tds",
+  "passing_air_yards",
+  "passing_first_downs",
+  "passing_epa",
+  "passing_2pt_conversions",
+  "passing_fumbles",
+  "passing_fumbles_lost",
+  "passing_fumbles_recovered",
+  "passing_fumbles_recovered_yards",
+  "passing_fumbles_recovered_tds",
+];
+
+const RUSHING_STATS = [
+  "rushing_yards",
+  "rushing_tds",
+  "rushing_air_yards",
+  "rushing_first_downs",
+  "rushing_epa",
+  "rushing_2pt_conversions",
+  "rushing_fumbles",
+  "rushing_fumbles_lost",
+  "rushing_fumbles_recovered",
+  "rushing_fumbles_recovered_yards",
+  "rushing_fumbles_recovered_tds",
+];
+
 export function getAvailableChunks(): Chunk[] {
   return [
     // MATCH
@@ -78,7 +144,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "position",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
         {
           Name: "operator",
@@ -102,7 +168,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "season",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerGameProperty,
         },
         {
           Name: "operator",
@@ -126,7 +192,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "name",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
         {
           Name: "operator",
@@ -150,7 +216,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "weight",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
         {
           Name: "min",
@@ -174,7 +240,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "season",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
         {
           Name: "min",
@@ -198,7 +264,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "display_name",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
         {
           Name: "value",
@@ -217,7 +283,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "team_abbr",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
       ],
     },
@@ -231,7 +297,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "team_abbr",
-          SlotType: SlotType.EntityProperty,
+          SlotType: SlotType.SelectPlayerProperty,
         },
       ],
     },
@@ -247,7 +313,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "position",
           Value: "RB",
-          SlotType: SlotType.FilterValue,
+          SlotType: SlotType.SelectPlayerPosition,
         },
       ],
     },
@@ -324,10 +390,24 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "return passing stats by game",
-      Cypher: "RETURN pg.passing_yards, pg.passing_tds LIMIT 10",
+      Cypher: `RETURN pg.${[...PLAYER_GAME_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
       Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [],
+    },
+    {
+      English: "return receiving stats by game with name",
+      Cypher: `RETURN p.display_name, pg.${[...PLAYER_GAME_PROPERTIES].join(", pg.")}, ${[...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+      QueryType: QueryType.RETURN,
+      Inputs: [
+        { Name: "pg", Label: Label.PlayerGame },
+        { Name: "p", Label: Label.Player },
+      ],
+      Outputs: [
+        { Name: "pg", Label: Label.PlayerGame },
+        { Name: "p", Label: Label.Player },
+      ],
       Slots: [],
     },
     {
