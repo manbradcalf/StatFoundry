@@ -14,6 +14,9 @@ export enum SlotType {
   Filter = "Filter",
   FilterOperator = "FilterOperator",
   FilterValue = "FilterValue",
+  SelectRushingStats = "SelectRushingStats",
+  SelectReceivingStats = "SelectReceivingStats",
+  SelectPassingStats = "SelectPassingStats",
 
   // value properties
   // these are just string | number | boolean | null

@@ -2,72 +2,11 @@ import { Chunk } from "./feature/Chunks/Types/Chunk";
 import { QueryType } from "./feature/Chunks/Enums/QueryType";
 import { Label } from "./feature/Chunks/Enums/Label";
 import { SlotType } from "./feature/Chunks/Enums/SlotType";
-
-const PLAYER_PROPERTIES = [
-  "weight",
-  "years_of_experience",
-  "current_team_id",
-  "display_name",
-  "team_abbr",
-  "position_group",
-  "position",
-  "jersey_number",
-  "first_name",
-  "status",
-  "height",
-];
-
-const PLAYER_GAME_PROPERTIES = [
-  "opponent_team",
-  "game_id",
-  "week",
-  "season",
-  "opponent_team",
-  "recent_team",
-];
-
-const RECEIVING_STATS = [
-  "receiving_yards",
-  "receptions",
-  "receiving_tds",
-  "receiving_air_yards",
-  "receiving_first_downs",
-  "receiving_epa",
-  "receiving_2pt_conversions",
-  "receiving_fumbles",
-  "receiving_fumbles_lost",
-  "receiving_fumbles_recovered",
-  "receiving_fumbles_recovered_yards",
-  "receiving_fumbles_recovered_tds",
-];
-
-const PASSING_STATS = [
-  "passing_yards",
-  "passing_tds",
-  "passing_air_yards",
-  "passing_first_downs",
-  "passing_epa",
-  "passing_2pt_conversions",
-  "passing_fumbles",
-  "passing_fumbles_lost",
-  "passing_fumbles_recovered",
-  "passing_fumbles_recovered_yards",
-  "passing_fumbles_recovered_tds",
-];
-
-const RUSHING_STATS = [
-  "rushing_yards",
-  "rushing_tds",
-  "rushing_air_yards",
-  "rushing_first_downs",
-  "rushing_epa",
-  "rushing_2pt_conversions",
-  "rushing_fumbles",
-  "rushing_fumbles_lost",
-  "rushing_fumbles_recovered",
-  "rushing_fumbles_recovered_yards",
-  "rushing_fumbles_recovered_tds",
-];
+import { PLAYER_GAME_INFO_PROPERTIES } from "./feature/Chunks/Views/PlayerGameInfo";
+import { PASSING_STATS } from "./feature/Chunks/Views/PassingStats";
+import { RECEIVING_STATS } from "./feature/Chunks/Views/ReceivingStats";
+import { PLAYER_SEASON_INFO_PROPERTIES } from "./feature/Chunks/Views/PlayerSeasonInfo";
+import { RUSHING_STATS } from "./feature/Chunks/Views/RushingStats";
 
 export function getAvailableChunks(): Chunk[] {
   return [
@@ -101,12 +40,12 @@ export function getAvailableChunks(): Chunk[] {
     },
     {
       English: "Player Seasons",
-      Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame)",
+      Cypher: "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason)",
       QueryType: QueryType.MATCH,
       Inputs: [],
       Outputs: [
         { Name: "p", Label: Label.Player },
-        { Name: "pg", Label: Label.PlayerGame },
+        { Name: "ps", Label: Label.PlayerSeason },
       ],
       Slots: [],
     },
@@ -144,17 +83,17 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "position",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
         {
           Name: "operator",
           Value: "=",
-          SlotType: SlotType.FilterOperator,
+          SlotValueTypes: [SlotType.FilterOperator],
         },
         {
           Name: "value",
           Value: "QB",
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -168,17 +107,45 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "season",
-          SlotType: SlotType.SelectPlayerGameProperty,
+          SlotValueTypes: [SlotType.SelectPlayerGameProperty],
         },
         {
           Name: "operator",
           Value: "=",
-          SlotType: SlotType.FilterOperator,
+          SlotValueTypes: [SlotType.FilterOperator],
         },
         {
           Name: "value",
           Value: 2024,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+    },
+    {
+      English:
+        "where player had passing stats for season {property} {operator} {value}",
+      Cypher: "WHERE ps.{property} {operator} {value}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "ps", Label: Label.PlayerSeason }],
+      Outputs: [{ Name: "ps", Label: Label.PlayerSeason }],
+      Slots: [
+        {
+          Name: "property",
+          Value: "season",
+          SlotValueTypes: [
+            SlotType.SelectPlayerSeasonProperty,
+            SlotType.SelectPassingStats,
+          ],
+        },
+        {
+          Name: "operator",
+          Value: "=",
+          SlotValueTypes: [SlotType.FilterOperator],
+        },
+        {
+          Name: "value",
+          Value: 2024,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -192,17 +159,17 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "name",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
         {
           Name: "operator",
           Value: "=",
-          SlotType: SlotType.FilterOperator,
+          SlotValueTypes: [SlotType.FilterOperator],
         },
         {
           Name: "value",
           Value: "Bills",
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -216,17 +183,17 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "weight",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
         {
           Name: "min",
           Value: 200,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
         {
           Name: "max",
           Value: 250,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -240,17 +207,17 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "season",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
         {
           Name: "min",
           Value: 2023,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
         {
           Name: "max",
           Value: 2024,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -264,12 +231,12 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "display_name",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
         {
           Name: "value",
           Value: "Allen",
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -283,7 +250,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "team_abbr",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
       ],
     },
@@ -297,7 +264,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "team_abbr",
-          SlotType: SlotType.SelectPlayerProperty,
+          SlotValueTypes: [SlotType.SelectPlayerProperty],
         },
       ],
     },
@@ -313,7 +280,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "position",
           Value: "RB",
-          SlotType: SlotType.SelectPlayerPosition,
+          SlotValueTypes: [SlotType.SelectPlayerPosition],
         },
       ],
     },
@@ -331,12 +298,12 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "s1",
           Value: 2024,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
         {
           Name: "s2",
           Value: 2025,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -350,12 +317,12 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "s1",
           Value: 2024,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
         {
           Name: "s2",
           Value: 2025,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -369,12 +336,12 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "s1",
           Value: 2024,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
         {
           Name: "s2",
           Value: 2025,
-          SlotType: SlotType.FilterValue,
+          SlotValueTypes: [SlotType.FilterValue],
         },
       ],
     },
@@ -385,44 +352,67 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "RETURN p.first_name + ' ' + p.last_name as name LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "p", Label: Label.Player }],
-      Outputs: [{ Name: "p", Label: Label.Player }],
+      Outputs: [],
       Slots: [],
     },
     {
-      English: "return passing stats by game",
-      Cypher: `RETURN pg.${[...PLAYER_GAME_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
+      English: "return player passing stats by game",
+      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
-      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Outputs: [],
       Slots: [],
     },
     {
-      English: "return receiving stats by game with name",
-      Cypher: `RETURN p.display_name, pg.${[...PLAYER_GAME_PROPERTIES].join(", pg.")}, ${[...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+      English: "return player receiving stats by game",
+      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES].join(", pg.")}, ${[...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
       Inputs: [
         { Name: "pg", Label: Label.PlayerGame },
         { Name: "p", Label: Label.Player },
       ],
-      Outputs: [
-        { Name: "pg", Label: Label.PlayerGame },
-        { Name: "p", Label: Label.Player },
-      ],
+      Outputs: [],
       Slots: [],
     },
     {
-      English: "return passing stats by game with player name",
-      Cypher:
-        "RETURN pg.passing_yards, pg.passing_tds, p.first_name + ' ' + p.last_name as name LIMIT 10",
+      English: "return player rushing stats by game",
+      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")} LIMIT 10`,
+      QueryType: QueryType.RETURN,
+      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Outputs: [],
+      Slots: [],
+    },
+    {
+      English: "return player passing stats by game",
+      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
       Inputs: [
         { Name: "pg", Label: Label.PlayerGame },
         { Name: "p", Label: Label.Player },
       ],
-      Outputs: [
-        { Name: "pg", Label: Label.PlayerGame },
+      Outputs: [],
+      Slots: [],
+    },
+    {
+      English: "return player passing stats by season ",
+      Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")} LIMIT 10`,
+      QueryType: QueryType.RETURN,
+      Inputs: [
+        { Name: "ps", Label: Label.PlayerSeason },
         { Name: "p", Label: Label.Player },
       ],
+      Outputs: [],
+      Slots: [],
+    },
+    {
+      English: "return player receiving stats by season",
+      Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RECEIVING_STATS].join(", ps.")} LIMIT 10`,
+      QueryType: QueryType.RETURN,
+      Inputs: [
+        { Name: "ps", Label: Label.PlayerSeason },
+        { Name: "p", Label: Label.Player },
+      ],
+      Outputs: [],
       Slots: [],
     },
     {
@@ -430,7 +420,7 @@ export function getAvailableChunks(): Chunk[] {
       Cypher: "RETURN t.name LIMIT 10",
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "t", Label: Label.Team }],
-      Outputs: [{ Name: "t", Label: Label.Team }],
+      Outputs: [],
       Slots: [],
     },
     {
@@ -441,10 +431,7 @@ export function getAvailableChunks(): Chunk[] {
         { Name: "p", Label: Label.Player },
         { Name: "t", Label: Label.Team },
       ],
-      Outputs: [
-        { Name: "p", Label: Label.Player },
-        { Name: "t", Label: Label.Team },
-      ],
+      Outputs: [],
       Slots: [],
     },
   ];
