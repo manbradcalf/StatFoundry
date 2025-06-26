@@ -4,22 +4,31 @@ import { Label } from "../Enums/Label";
 export interface Player extends Entity {
   label: Label.Player;
   properties: {
+    // Player identification
     smart_id: string;
-    birth_date: Date;
-    birth_date_time: Date;
-    last_name: string;
-    weight: number;
-    years_of_experience: number;
-    current_team_id: number;
-    display_name: string;
-    team_abbr: string;
-    position_group: string;
     gsis_id: string;
     esb_id: string;
-    position: string;
-    jersey_number: number;
+
+    // Personal information
     first_name: string;
-    status: string;
+    last_name: string;
+    display_name: string;
+    birth_date: Date;
+    birth_date_time: Date;
+
+    // Physical attributes
     height: number;
+    weight: number;
+
+    // Position and team
+    position: string;
+    position_group: string;
+    jersey_number: number;
+    current_team_id: number;
+    team_abbr: string;
+
+    // Career information
+    years_of_experience: number;
+    status: string;
   };
 }
