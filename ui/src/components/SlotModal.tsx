@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Slot } from "../feature/Chunks/Types/Slot";
-import { SlotType } from "../feature/Chunks/Enums/SlotType";
+import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
 
 interface SlotModalProps {
   slots: Slot[];
@@ -9,149 +9,6 @@ interface SlotModalProps {
   title?: string;
 }
 
-// Modular property definitions for each entity type
-const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
-  [SlotType.SelectPlayerProperty]: [
-    'smart_id',
-    'birth_date',
-    'birth_date_time',
-    'last_name',
-    'weight',
-    'years_of_experience',
-    'current_team_id',
-    'display_name',
-    'team_abbr',
-    'position_group',
-    'gsis_id',
-    'esb_id',
-    'position',
-    'jersey_number',
-    'first_name',
-    'status',
-    'height'
-  ],
-  [SlotType.SelectPlayerGameProperty]: [
-    'opponent_team',
-    'rushing_first_downs',
-    'week',
-    'passing_yards_after_catch',
-    'rushing_yards',
-    'fantasy_points',
-    'receiving_2pt_conversions',
-    'targets',
-    'rushing_tds',
-    'player_id',
-    'season_type',
-    'rushing_fumbles_lost',
-    'receptions',
-    'fantasy_points_ppr',
-    'passing_air_yards',
-    'receiving_tds',
-    'season',
-    'receiving_air_yards',
-    'player_display_name',
-    'rushing_2pt_conversions',
-    'receiving_yards',
-    'sack_yards',
-    'receiving_fumbles_lost',
-    'attempts',
-    'rushing_fumbles',
-    'game_id',
-    'special_teams_tds',
-    'passing_2pt_conversions',
-    'receiving_fumbles',
-    'receiving_first_downs',
-    'completions',
-    'passing_first_downs',
-    'recent_team',
-    'interceptions',
-    'passing_yards',
-    'position_group',
-    'sack_fumbles_lost',
-    'carries',
-    'passing_tds',
-    'rushing_epa',
-    'player_game_id',
-    'position',
-    'sack_fumbles',
-    'sacks',
-    'receiving_yards_after_catch'
-  ],
-  [SlotType.SelectPlayerSeasonProperty]: [
-    'rushing_first_downs',
-    'passing_yards_after_catch',
-    'receiving_epa',
-    'rushing_yards',
-    'rfd_sh',
-    'fantasy_points_ppr',
-    'pacr',
-    'receiving_tds',
-    'games',
-    'season',
-    'yptmpa',
-    'rushing_2pt_conversions',
-    'sack_yards',
-    'attempts',
-    'target_share',
-    'tgt_sh',
-    'special_teams_tds',
-    'w8dom',
-    'receiving_fumbles',
-    'receiving_first_downs',
-    'passing_first_downs',
-    'passing_yards',
-    'sack_fumbles_lost',
-    'wopr_x',
-    'ry_sh',
-    'passing_tds',
-    'ppr_sh',
-    'dom',
-    'rtd_sh',
-    'fantasy_points',
-    'passing_epa',
-    'receiving_2pt_conversions',
-    'targets',
-    'rushing_tds',
-    'player_id',
-    'season_type',
-    'rushing_fumbles_lost',
-    'receptions',
-    'passing_air_yards',
-    'receiving_air_yards',
-    'receiving_yards',
-    'rtdfd_sh',
-    'receiving_fumbles_lost',
-    'rushing_fumbles',
-    'dakota',
-    'passing_2pt_conversions',
-    'completions',
-    'racr',
-    'air_yards_share',
-    'interceptions',
-    'carries',
-    'rushing_epa',
-    'sack_fumbles',
-    'sacks',
-    'receiving_yards_after_catch',
-    'player_season_id'
-  ],
-  [SlotType.SelectPlayerPosition]: [
-    'QB',
-    'RB',
-    'WR',
-    'TE',
-    'K',
-  ],
-  // Placeholder for future entity types - will be extended as needed
-  [SlotType.SelectTeamProperty]: [],
-  [SlotType.SelectGameProperty]: [],
-  [SlotType.SelectSeasonProperty]: [],
-  [SlotType.SelectTeamGameProperty]: [],
-  [SlotType.SelectTeamSeasonProperty]: [],
-  [SlotType.Filter]: [],
-  [SlotType.FilterOperator]: [],
-  [SlotType.FilterValue]: [],
-};
 
 /**
  * Renders a simple full-screen overlay modal that allows the user to edit
@@ -186,7 +43,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
 
   const renderSlotInput = (slot: Slot, idx: number) => {
     // Check if this slot type has property options available
-    const properties = ENTITY_PROPERTIES[slot.SlotType];
+    const properties = slot.SlotValueTypes.flatMap(type => ENTITY_PROPERTIES[type]);
     
     if (properties && properties.length > 0) {
       return (
@@ -245,7 +102,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
           {localSlots.map((slot, idx) => (
             <div key={slot.Name} style={{ marginBottom: "1rem" }}>
               <label style={{ display: "block", marginBottom: 4 }}>
-                {slot.SlotType}
+                {slot.SlotValueTypes}
               </label>
               {renderSlotInput(slot, idx)}
             </div>
