@@ -26,7 +26,6 @@ export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
   };
 
   const keys = Object.keys(result);
-  const playerNameKey = keys.find(key => key.includes('player_display_name'));
   const otherKeys = keys.filter(key => !key.includes('player_display_name'));
 
   return (

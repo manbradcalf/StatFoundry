@@ -10,10 +10,50 @@ import { RUSHING_STATS } from "./feature/Chunks/Views/RushingStats";
 
 export function getAvailableChunks(): Chunk[] {
   return [
-    // MATCH
+    // MATCH - Base entities and position shortcuts
     {
       English: "Players",
       Cypher: "MATCH (p:Player)",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [{ Name: "p", Label: Label.Player }],
+      Slots: [],
+    },
+    {
+      English: "Quarterbacks",
+      Cypher: "MATCH (p:Player) WHERE p.position = 'QB'",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [{ Name: "p", Label: Label.Player }],
+      Slots: [],
+    },
+    {
+      English: "Running backs",
+      Cypher: "MATCH (p:Player) WHERE p.position = 'RB'",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [{ Name: "p", Label: Label.Player }],
+      Slots: [],
+    },
+    {
+      English: "Wide receivers",
+      Cypher: "MATCH (p:Player) WHERE p.position = 'WR'",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [{ Name: "p", Label: Label.Player }],
+      Slots: [],
+    },
+    {
+      English: "Tight ends",
+      Cypher: "MATCH (p:Player) WHERE p.position = 'TE'",
+      QueryType: QueryType.MATCH,
+      Inputs: [],
+      Outputs: [{ Name: "p", Label: Label.Player }],
+      Slots: [],
+    },
+    {
+      English: "Receivers",
+      Cypher: "MATCH (p:Player) WHERE p.position IN ['WR', 'TE']",
       QueryType: QueryType.MATCH,
       Inputs: [],
       Outputs: [{ Name: "p", Label: Label.Player }],
@@ -70,6 +110,83 @@ export function getAvailableChunks(): Chunk[] {
         { Name: "tg", Label: Label.TeamGame },
       ],
       Slots: [],
+    },
+
+    // Natural Language Stat Filters
+    {
+      English: "who rushed for more than {yards} yards in a game",
+      Cypher:
+        "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_yards > {yards}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "p", Label: Label.Player }],
+      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [
+        {
+          Name: "yards",
+          Value: 100,
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+    },
+    {
+      English: "who threw for more than {yards} yards in a game",
+      Cypher:
+        "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_yards > {yards}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [
+        {
+          Name: "yards",
+          Value: 300,
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+    },
+    {
+      English: "who caught at least {catches} passes in a game",
+      Cypher:
+        "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.receiving_receptions >= {catches}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [
+        {
+          Name: "catches",
+          Value: 5,
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+    },
+    {
+      English: "who threw more than {tds} touchdown passes in a game",
+      Cypher:
+        "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_tds > {tds}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [
+        {
+          Name: "tds",
+          Value: 2,
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+    },
+    {
+      English: "in a game during the {season} season",
+      Cypher:
+        "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
+      QueryType: QueryType.FILTER,
+      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+      Slots: [
+        {
+          Name: "season",
+          Value: 2024,
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
     },
 
     // Generic Filter Chunks
@@ -388,17 +505,6 @@ export function getAvailableChunks(): Chunk[] {
       Slots: [],
     },
     {
-      English: "return player passing stats by game",
-      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
-      QueryType: QueryType.RETURN,
-      Inputs: [
-        { Name: "pg", Label: Label.PlayerGame },
-        { Name: "p", Label: Label.Player },
-      ],
-      Outputs: [],
-      Slots: [],
-    },
-    {
       English: "return player passing stats by season ",
       Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
@@ -417,6 +523,14 @@ export function getAvailableChunks(): Chunk[] {
         { Name: "ps", Label: Label.PlayerSeason },
         { Name: "p", Label: Label.Player },
       ],
+      Outputs: [],
+      Slots: [],
+    },
+    {
+      English: "return rushing stats by season",
+      Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RUSHING_STATS].join(", ps.")} LIMIT 10`,
+      QueryType: QueryType.RETURN,
+      Inputs: [{ Name: "ps", Label: Label.PlayerSeason }],
       Outputs: [],
       Slots: [],
     },
