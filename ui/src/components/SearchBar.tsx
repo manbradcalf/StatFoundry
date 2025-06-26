@@ -9,7 +9,7 @@ export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
   const keys = Object.keys(result);
   return <div style={{ border: "1px solid #ccc", display: "flex", flexDirection: "column", gap: "10px", padding: "10px" }}>
     {keys.map((key) => (
-      <div key={key}><b>{key.slice(3,)}</b>: {JSON.stringify(result[key])}</div>
+      <div key={key}><b>{key}</b>: {JSON.stringify(result[key])}</div>
     ))}
   </div>;
 };
