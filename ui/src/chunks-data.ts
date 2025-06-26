@@ -107,7 +107,12 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "property",
           Value: "season",
-          SlotValueTypes: [SlotType.SelectPlayerGameProperty],
+          SlotValueTypes: [
+            SlotType.SelectPlayerGameProperty,
+            SlotType.SelectRushingStats,
+            SlotType.SelectPassingStats,
+            SlotType.SelectReceivingStats,
+          ],
         },
         {
           Name: "operator",
