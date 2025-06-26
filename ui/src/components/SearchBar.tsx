@@ -6,12 +6,44 @@ interface SearchBarProps {
 }
 
 export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
+  const formatKey = (key: string) => {
+    return key
+      .replace(/^pg\./, '') // Remove pg. prefix
+      .replace(/_/g, ' ') // Replace underscores with spaces
+      .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize first letter of each word
+  };
+
+  const formatValue = (value: any) => {
+    if (value === null) return <span className="null-value">null</span>;
+    if (typeof value === 'boolean') return <span className={`boolean-value ${value ? 'true' : 'false'}`}>{value.toString()}</span>;
+    if (typeof value === 'number') return <span className="number-value">{value.toLocaleString()}</span>;
+    if (typeof value === 'string') return <span className="string-value">"{value}"</span>;
+    return <span className="other-value">{JSON.stringify(value)}</span>;
+  };
+
+  const getPlayerName = () => {
+    return result['pg.player_display_name'] || result['player_display_name'] || 'Unknown Player';
+  };
+
   const keys = Object.keys(result);
-  return <div style={{ border: "1px solid #ccc", display: "flex", flexDirection: "column", gap: "10px", padding: "10px" }}>
-    {keys.map((key) => (
-      <div key={key}><b>{key}</b>: {JSON.stringify(result[key])}</div>
-    ))}
-  </div>;
+  const playerNameKey = keys.find(key => key.includes('player_display_name'));
+  const otherKeys = keys.filter(key => !key.includes('player_display_name'));
+
+  return (
+    <div className="search-result-item">
+      <div className="player-header">
+        <h3 className="player-name">{getPlayerName()}</h3>
+      </div>
+      <div className="stats-grid">
+        {otherKeys.map((key) => (
+          <div key={key} className="stat-item">
+            <span className="stat-label">{formatKey(key)}</span>
+            <span className="stat-value">{formatValue(result[key])}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export const SearchBar: React.FC<SearchBarProps> = ({
