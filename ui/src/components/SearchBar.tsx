@@ -1,10 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useSearchContext } from '../contexts/SearchContext';
 
-interface SearchBarProps {
-  placeholder?: string;
-}
-
 export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
   const formatKey = (key: string) => {
     return key
@@ -45,9 +41,7 @@ export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
   );
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({
-  placeholder = "Receivers who caught at least..."
-}) => {
+export const SearchBar: React.FC = () => {
   const {
     userInput,
     setUserInput,
@@ -104,7 +98,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           value={userInput}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
+          placeholder= {chain.Tail?.chunk.English||"Receivers who caught at least..."}
           className="search-input"
           autoComplete="off"
         />
@@ -131,10 +125,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           ))}
         </div>
       )}
-      <div className="search-results-container">
-      <h2>Current Query</h2>
-      <div>{chain.Cypher}</div>
-      </div>
       <div className="search-results">
         <div className="search-results-header">
           <h2>Search Results</h2>

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { render, waitFor, fireEvent, screen } from '@testing-library/react';
 import { SearchProvider, useSearchContext } from './SearchContext';
-import { getAvailableChunks } from '../chunks-data';
+import { getAvailableChunks } from '../feature/Chunks/Data/chunks-data';
 
 const TriggerComponent: React.FC = () => {
   const search = useSearchContext();

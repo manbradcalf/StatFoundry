@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { getAvailableChunks } from '../chunks-data';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import { getAvailableChunks } from '../feature/Chunks/Data/chunks-data';
 import { ChunkChain } from '../feature/Chunks/ChunkChain';
 import { Chunk } from '../feature/Chunks/Types/Chunk';
 import { Slot } from '../feature/Chunks/Types/Slot';
@@ -38,7 +38,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const { searchResults, isSearching, searchError, executeSearch, clearSearch } = useSearchAPI();
 
   // Extract the partial input that the user is currently typing
-  const getPartialInput = (): string => {
+  // useCallback memoizes this function so it only changes when dependencies change
+  // This prevents the suggestions useEffect from running on every render
+  const getPartialInput = useCallback((): string => {
     if (chain.English.length === 0) return query.trim();
 
     // If the query is longer than the english, extract the partial input
@@ -50,11 +52,30 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     }
 
     return '';
-  };
+  }, [query, chain.English]);
 
   // Update suggestions based on current query and chain state
+  // This useEffect runs when query, chain, or getPartialInput changes
   useEffect(() => {
+    console.log('🔄 useEffect running with:', { 
+      query: `"${query}"`, 
+      chainEnglish: `"${chain.English}"`, 
+      matches: query === chain.English 
+    });
+
+    // RACE CONDITION FIX: Skip useEffect if query exactly matches chain.English 
+    // This happens right after selecting a suggestion. The sequence is:
+    // 1. User selects suggestion → handleSuggestionClick runs
+    // 2. We call setQuery(chain.English) and set auto-suggestions
+    // 3. React's state updates are async, so this useEffect might run before setQuery takes effect
+    // 4. This check prevents us from wiping out the auto-suggestions we just set
+    if (query === chain.English) {
+      console.log('✅ Query matches chain.English, preserving auto-suggestions');
+      return;
+    }
+
     if (query.trim() === '') {
+      console.log('❌ Query empty, clearing suggestions');
       setSuggestions([]);
       setShowSuggestions(false);
       return;
@@ -84,10 +105,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
       }));
 
+    console.log('🔄 useEffect setting suggestions:', filteredSuggestions.length, 'items');
     setSuggestions(filteredSuggestions);
     setShowSuggestions(filteredSuggestions.length > 0);
     setSelectedSuggestionIndex(-1);
-  }, [query, chain]);
+  }, [query, chain, getPartialInput]);
 
   const handleSuggestionClick = (suggestion: Suggestion) => {
     console.log('🎯 Suggestion clicked:', suggestion);
@@ -107,8 +129,26 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       // Update chain strings right away
       chain.update();
 
-      setShowSuggestions(false);
       setQuery(chain.English);
+      console.log('🎯 Setting query to:', `"${chain.English}"`);
+      
+      // Automatically show suggestions for the next valid chunks
+      const availableChunks = getAvailableChunks();
+      const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
+      
+      if (validNextChunks.length > 0) {
+        const autoSuggestions = validNextChunks.map(chunk => ({
+          chunk,
+          displayText: "and " + chunk.English
+        }));
+        
+        console.log('🔮 Setting auto-suggestions:', autoSuggestions.length, 'items');
+        setSuggestions(autoSuggestions);
+        setShowSuggestions(true);
+        setSelectedSuggestionIndex(-1);
+      } else {
+        console.log('⚠️ No valid next chunks found for auto-suggestions');
+      }
     }
   };
 
@@ -170,6 +210,25 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     chain.append(filled);
     chain.update();
     setQuery(chain.English);
+    console.log('🎯 Setting query to (after slot modal):', `"${chain.English}"`);
+
+    // Automatically show suggestions for the next valid chunks after slot modal
+    const availableChunks = getAvailableChunks();
+    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
+    
+    if (validNextChunks.length > 0) {
+      const autoSuggestions = validNextChunks.map(chunk => ({
+        chunk,
+        displayText: "and " + chunk.English
+      }));
+      
+      console.log('🔮 Setting auto-suggestions (after slot modal):', autoSuggestions.length, 'items');
+      setSuggestions(autoSuggestions);
+      setShowSuggestions(true);
+      setSelectedSuggestionIndex(-1);
+    } else {
+      console.log('⚠️ No valid next chunks found for auto-suggestions (after slot modal)');
+    }
 
     // reset modal state
     setIsSlotModalOpen(false);

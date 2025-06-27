@@ -8,8 +8,7 @@ function AppContent() {
     <div className="App">
       <header className="App-header">
         <h1>StatNug</h1>
-        
-        <SearchBar placeholder="Receivers who caught at least..." />
+        <SearchBar />
 
         <QueryResult />
 
