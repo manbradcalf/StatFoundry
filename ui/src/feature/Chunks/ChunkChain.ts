@@ -67,7 +67,7 @@ export class ChunkChain {
   /**
    * Traverse the chain and build the full Cypher and English description.
    */
-  update(): ChunkChain {
+  compile(): ChunkChain {
     let englishParts: string[] = [];
     let cypherParts: string[] = [];
     let aliases: Alias[] = [];

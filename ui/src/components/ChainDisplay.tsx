@@ -10,7 +10,7 @@ export const ChunkItem: React.FC<{chunk: Chunk}> = ({chunk}) => {
     <div className="chunk-item">
       <strong>{chunk.English}</strong>
       <br />
-      <button onClick={()=>{}}>Edit</button>
+      <button onClick={editChunkAtIndex(index)}>Edit</button>
     </div>
   );
 };

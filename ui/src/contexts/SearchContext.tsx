@@ -149,7 +149,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     } else {
       // No slots - append chunk directly to chain
       chain.append(chunkCopy);
-      chain.update();
+      chain.compile();
       setQuery(chain.English);
       
       // Auto-show next relevant suggestions
@@ -285,7 +285,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
     const filled = buildFilledChunk(chunkWithSlots);
     chain.append(filled);
-    chain.update();
+    chain.compile();
     setQuery(chain.English);
 
     // Show next contextual suggestions
