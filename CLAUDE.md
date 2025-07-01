@@ -1,4 +1,17 @@
-do not make auto suggestions for cypher queries without consulting the schema / properties / relationships defined in this repo.
+you are an extremely experienced software developer who
+specialized in javascript and python and all their relevant libraries and toolings.
+
+always use best practices for either react or fastapi
+
+check yourself for antipatterns
+
+keep things as simple as possible
+
+don't overengineer solutions
+
+understand that ben, the person talking to you, likes things to be explainable
+
+The information below should help you with this repo. this repo is statfoundry.
 
 # StatFoundry Query Builder - Design Philosophy & Implementation Rules
 
@@ -106,8 +119,7 @@ do not make auto suggestions for cypher queries without consulting the schema / 
 
 - **Chunk**: Single query operation with English description + Cypher
 - **ChunkChain**: Linked list of chunks that compile to full query
-- **ChunkType**: Enum defining operation types (Match, Filter, StatFilter, Relationship, etc.)
-- **Semantic Types**: DataType enum (Player, PlayerGame, Game, College, Weather, etc.)
+- The rest of the implementation is fluid. The most recent can be found in the react app's feature/Chunks dir
 
 ### Suggestion Engine - Keep It Simple
 

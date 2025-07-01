@@ -82,7 +82,6 @@ export const SearchBar: React.FC = () => {
       }
     }
   };
-
   // Scroll to suggestion when selectedIndex changes
   useEffect(() => {
     if (selectedIndex >= 0) {
@@ -117,7 +116,7 @@ export const SearchBar: React.FC = () => {
       </div>
       {/* Save search button - functionality to be implemented later */}
       <div className="save-button">
-        <button className="secondary-button" title="Save this search (coming soon)">
+        <button className="secondary-button" title="Save this search (coming soon)" onClick={() => alert("Save Search functionality coming soon!")}>
           💾
         </button>
       </div>

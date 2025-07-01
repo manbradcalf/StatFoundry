@@ -8,7 +8,7 @@ function AppContent() {
   return (
     <div className="App">
       {/* Login button positioned in top right corner */}
-      <button className="login-button" title="Sign in (coming soon)">
+      <button className="login-button" title="Sign in (coming soon)" onClick={() => alert("Login functionality coming soon!")}>
         Login
       </button>
       
