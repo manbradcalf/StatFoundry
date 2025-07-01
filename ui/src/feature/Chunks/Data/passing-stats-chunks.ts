@@ -5,9 +5,10 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PASSING_STATS_CHUNKS: Chunk[] = [
   {
-    English: "who threw more than {tds} touchdown passes in a game",
-    Cypher:
-      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_tds > {tds}",
+    English: "who threw more than 2 touchdown passes in a game",
+    Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_tds > 2",
+    EnglishTemplate: "who threw more than {tds} touchdown passes in a game",
+    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_tds > {tds}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [
@@ -23,8 +24,10 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "more than {tds} touchdown passes in a game",
-    Cypher: "WHERE pg.passing_tds > {tds}",
+    English: "more than 2 touchdown passes in a game",
+    Cypher: "WHERE pg.passing_tds > 2",
+    EnglishTemplate: "more than {tds} touchdown passes in a game",
+    CypherTemplate: "WHERE pg.passing_tds > {tds}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],

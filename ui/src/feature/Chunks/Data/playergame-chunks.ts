@@ -5,8 +5,11 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
   {
-    English: "who played for {team} in those games",
+    English: "who played for MIN in those games",
     Cypher:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = 'MIN'",
+    EnglishTemplate: "who played for {team} in those games",
+    CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -20,8 +23,11 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who played against {team} in those games",
+    English: "who played against GB in those games",
     Cypher:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = 'GB'",
+    EnglishTemplate: "who played against {team} in those games",
+    CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -35,8 +41,10 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "in games between the {2020} and {2024} seasons",
-    Cypher: "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
+    English: "in games between the 2020 and 2024 seasons",
+    Cypher: "WHERE pg.season >= 2020 AND pg.season <= 2024",
+    EnglishTemplate: "in games between the {seasonStart} and {seasonEnd} seasons",
+    CypherTemplate: "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -70,8 +78,11 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "in games during the {season} season",
+    English: "in games during the 2024 season",
     Cypher:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = 2024",
+    EnglishTemplate: "in games during the {season} season",
+    CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],

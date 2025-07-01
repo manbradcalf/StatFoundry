@@ -5,12 +5,16 @@ import { Chunk } from '../feature/Chunks/Types/Chunk';
 interface ChainDisplayProps {
   title?: string;
 }
-export const ChunkItem: React.FC<{chunk: Chunk}> = ({chunk}) => {
+export const ChunkItem: React.FC<{chunk: Chunk, index: number}> = ({chunk, index}) => {
+  const { editChunk } = useSearchContext();
+  
   return (
     <div className="chunk-item">
       <strong>{chunk.English}</strong>
       <br />
-      <button onClick={editChunkAtIndex(index)}>Edit</button>
+      {chunk.Slots.length > 0 && (
+        <button onClick={() => editChunk(index)}>Edit</button>
+      )}
     </div>
   );
 };
@@ -25,7 +29,7 @@ export const ChainDisplay: React.FC<ChainDisplayProps> = ({
     <div className="chain-debug">
       <h4>{title} ({chainArray.length} chunks):</h4>
       {chainArray.map((chunk, index) => (
-        <ChunkItem key={index} chunk={chunk}></ChunkItem>
+        <ChunkItem key={index} chunk={chunk} index={index}></ChunkItem>
       ))}
     </div>
   );

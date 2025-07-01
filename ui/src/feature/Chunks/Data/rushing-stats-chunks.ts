@@ -9,9 +9,10 @@ import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
 
 export const RUSHING_STATS_CHUNKS: Chunk[] = [
   {
-    English: "who rushed for more than {yards} yards in a game",
-    Cypher:
-      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_yards > {yards}",
+    English: "who rushed for more than 100 yards in a game",
+    Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_yards > 100",
+    EnglishTemplate: "who rushed for more than {yards} yards in a game",
+    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_yards > {yards}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -24,9 +25,10 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who rushed for more than {touchdowns} touchdowns in a game",
-    Cypher:
-      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_tds > {touchdowns}",
+    English: "who rushed for more than 2 touchdowns in a game",
+    Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_tds > 2",
+    EnglishTemplate: "who rushed for more than {touchdowns} touchdowns in a game",
+    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_tds > {touchdowns}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -39,9 +41,10 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who had a rushing EPA of {epa} or higher",
-    Cypher:
-      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_epa > {epa}",
+    English: "who had a rushing EPA of 5 or higher",
+    Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_epa > 5",
+    EnglishTemplate: "who had a rushing EPA of {epa} or higher",
+    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.rushing_epa > {epa}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],

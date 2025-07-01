@@ -231,6 +231,16 @@ h1 {
   font-weight: bold;
 }
 
+/* Highlight editable slot values in suggestions */
+.suggestion-slot-value {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 3px;
+  border: 1px solid #bbdefb;
+}
+
 /* Search Result Items */
 .search-result-item {
   background: white;

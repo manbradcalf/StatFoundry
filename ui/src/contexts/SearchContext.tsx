@@ -34,6 +34,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
+  const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(null);
 
   const { searchResults, isSearching, searchError, executeSearch, clearSearch } = useSearchAPI();
 
@@ -281,15 +282,25 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       return;
     }
 
-    // Build the chunk with filled slots and add to chain
+    // Build the chunk with filled slots
     const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
     const filled = buildFilledChunk(chunkWithSlots);
-    chain.append(filled);
-    chain.compile();
-    setQuery(chain.English);
 
-    // Show next contextual suggestions
-    showNextSuggestions();
+    if (editingChunkIndex !== null) {
+      // Editing existing chunk
+      chain.updateChunkAtIndex(editingChunkIndex, filled);
+      chain.compile();
+      setQuery(chain.English);
+      setEditingChunkIndex(null);
+    } else {
+      // Adding new chunk
+      chain.append(filled);
+      chain.compile();
+      setQuery(chain.English);
+      
+      // Show next contextual suggestions
+      showNextSuggestions();
+    }
 
     // Reset modal state
     setIsSlotModalOpen(false);
@@ -301,6 +312,45 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setIsSlotModalOpen(false);
     setPendingChunk(null);
     setPendingSlots([]);
+    setEditingChunkIndex(null);
+  };
+
+  /**
+   * Opens the slot modal to edit an existing chunk at the specified index.
+   * 
+   * The key insight: chunks in the chain have filled English/Cypher (like "over 300 yards")
+   * but we need to edit the template version (like "over {threshold} {property}").
+   * The SlotModal expects template strings with placeholders, not filled strings.
+   */
+  const editChunk = (index: number) => {
+    const chainArray = chain.toArray();
+    if (index < 0 || index >= chainArray.length) {
+      console.error('Invalid chunk index:', index);
+      return;
+    }
+
+    const chunkToEdit = chainArray[index];
+    
+    // Only editable chunks have slots, and only chunks with slots need template restoration
+    if (chunkToEdit.Slots.length === 0) {
+      console.error('Cannot edit chunk with no slots:', chunkToEdit.English);
+      return;
+    }
+    
+    // Create a copy with the original templates restored for editing
+    // This way the SlotModal can show placeholders like {threshold} instead of filled values like "300"
+    // But the Slots array still has the current values (300) to pre-fill the input fields
+    const chunkCopy = { 
+      ...chunkToEdit,
+      English: chunkToEdit.EnglishTemplate!,   // Restore template version
+      Cypher: chunkToEdit.CypherTemplate!,     // Restore template version  
+      Slots: chunkToEdit.Slots.map((s) => ({ ...s }))  // Keep current values for pre-filling
+    };
+
+    setPendingChunk(chunkCopy);
+    setPendingSlots(chunkCopy.Slots);
+    setEditingChunkIndex(index);
+    setIsSlotModalOpen(true);
   };
 
   const value: SearchContextType = {
@@ -320,13 +370,19 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     handleKeyDown,
     clearAll: clearQuery,
     search: () => executeSearch(chain.Cypher),
+    editChunk,
   };
 
   return (
     <SearchContext.Provider value={value}>
       {children}
       {isSlotModalOpen && (
-        <SlotModal slots={pendingSlots} onSave={handleSlotModalSave} onCancel={handleSlotModalCancel} />
+        <SlotModal 
+          slots={pendingSlots} 
+          onSave={handleSlotModalSave} 
+          onCancel={handleSlotModalCancel}
+          title={editingChunkIndex !== null ? "Edit chunk" : "Fill in values"}
+        />
       )}
     </SearchContext.Provider>
   );

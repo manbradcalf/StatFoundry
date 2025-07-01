@@ -39,12 +39,17 @@ export function fillTemplate(template: string, slots: Slot[]): string {
  */
 
 export function buildFilledChunk(original: Chunk): Chunk {
-  const filledEnglish = fillTemplate(original.English, original.Slots);
-  const filledCypher = fillTemplate(original.Cypher, original.Slots);
+  // Fill the templates with current slot values
+  const filledEnglish = fillTemplate(original.EnglishTemplate || original.English, original.Slots);
+  const filledCypher = fillTemplate(original.CypherTemplate || original.Cypher, original.Slots);
 
   return {
     ...original,
+    // These are the filled versions used for display and query execution
     English: filledEnglish,
     Cypher: filledCypher,
+    // Templates are already provided by the chunk data, just pass them through
+    EnglishTemplate: original.EnglishTemplate,
+    CypherTemplate: original.CypherTemplate,
   };
 }

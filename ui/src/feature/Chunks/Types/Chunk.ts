@@ -17,6 +17,22 @@ export type Chunk = {
   readonly Cypher: string;
 
   /**
+   * The original English template with placeholders like {threshold}, {property}.
+   * This is preserved so we can re-edit chunks after they've been filled.
+   * Example: "who had over {threshold} {property}" vs filled "who had over 300 rushing_yards"
+   * Required for chunks with slots, optional for chunks without slots.
+   */
+  readonly EnglishTemplate?: string;
+
+  /**
+   * The original Cypher template with placeholders like {threshold}, {property}.
+   * This is preserved so we can re-edit chunks after they've been filled.
+   * Example: "WHERE pg.{property} > {threshold}" vs filled "WHERE pg.rushing_yards > 300"
+   * Required for chunks with slots, optional for chunks without slots.
+   */
+  readonly CypherTemplate?: string;
+
+  /**
    * The type of query this chunk represents.
    */
   readonly QueryType: QueryType;

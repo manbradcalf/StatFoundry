@@ -20,4 +20,5 @@ export interface SearchContextType {
   handleKeyDown: (e: React.KeyboardEvent) => void;
   clearAll: () => void;
   search: () => void;
+  editChunk: (index: number) => void;
 }
