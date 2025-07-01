@@ -19,6 +19,7 @@ export interface PlayerGame extends Entity {
       season: number;
       recent_team: string;
       season_type: string;
+      won: boolean;
     };
 
     // Passing statistics

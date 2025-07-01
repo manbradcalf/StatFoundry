@@ -5,26 +5,72 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
   {
-    English: "between the {s1} and {s2} seasons",
-    Cypher: "WHERE pg.season >= {s1} AND pg.season <= {s2}",
+    English: "who played for {team} in those games",
+    Cypher:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
     Slots: [
       {
-        Name: "s1",
-        Value: 2024,
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-      {
-        Name: "s2",
-        Value: 2025,
+        Name: "team",
+        Value: "MIN",
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
   },
   {
-    English: "during the {season} season",
+    English: "who played against {team} in those games",
+    Cypher:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Slots: [
+      {
+        Name: "team",
+        Value: "GB",
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+  },
+  {
+    English: "in games between the {2020} and {2024} seasons",
+    Cypher: "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Slots: [
+      {
+        Name: "seasonStart",
+        Value: 2020,
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+      {
+        Name: "seasonEnd",
+        Value: 2024,
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+  },
+  {
+    English: "and won those games",
+    Cypher: `WHERE pg.won = true`,
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Slots: [],
+  },
+  {
+    English: "and lost those games",
+    Cypher: `WHERE pg.won = false`,
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Slots: [],
+  },
+  {
+    English: "in games during the {season} season",
     Cypher:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
     QueryType: QueryType.FILTER,

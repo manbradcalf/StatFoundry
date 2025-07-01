@@ -9,5 +9,4 @@ export const RUSHING_STATS = [
   "rushing_fumbles_lost",
   "rushing_fumbles_recovered",
   "rushing_fumbles_recovered_yards",
-  "rushing_fumbles_recovered_tds",
 ];

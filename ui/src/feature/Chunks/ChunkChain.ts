@@ -1,6 +1,7 @@
 import { Chunk } from "./Types/Chunk";
 import { ChunkNode } from "./Types/IChunkNode";
 import { Alias } from "./Types/Alias";
+import { QueryType } from "./Enums/QueryType";
 
 /**
  * Linked-list chain manager for chunks.
@@ -33,7 +34,7 @@ export class ChunkChain {
       (alias, index, self) =>
         index === self.findIndex((t) => t.Name === alias.Name)
     );
-    console.log("aliases", this.Aliases);
+    console.log("chunkchain", this.toArray());
     return node;
   }
 
@@ -108,6 +109,15 @@ export class ChunkChain {
 }
 
 function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
+  // filter out invalid query types before we check if we have enough of each type
+  if (
+    chunk.Inputs.length === 0 &&
+    (chunk.QueryType === QueryType.RETURN ||
+      chunk.QueryType === QueryType.FILTER)
+  ) {
+    return false;
+  }
+
   // Count how many of each entity type we need vs have
   const needed = chunk.Inputs.reduce(
     (acc, alias) => {

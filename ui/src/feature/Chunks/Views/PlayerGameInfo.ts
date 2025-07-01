@@ -5,4 +5,5 @@ export const PLAYER_GAME_INFO_PROPERTIES = [
   "season",
   "opponent_team",
   "recent_team",
+  "won",
 ];

@@ -1,24 +1,29 @@
 import React, { useRef, useEffect } from 'react';
 import { useSearchContext } from '../contexts/SearchContext';
+import { SearchResults } from './SearchResults';
+import { Suggestions } from './Suggestions';
 
 export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
   const formatKey = (key: string) => {
     return key
       .replace(/^pg\./, '') // Remove pg. prefix
       .replace(/_/g, ' ') // Replace underscores with spaces
-      .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize first letter of each word
+      .replace(/\b\w/g, l => l.toUpperCase()) // Capitalize first letter of each word
+      .replace(/^ps\./, '') // Remove ps. prefix
+      .replace(/^p\./, '') // Remove p. prefix
+      .replace(/^recent_team/, 'team') // Rename confusing property name
   };
 
   const formatValue = (value: any) => {
     if (value === null) return <span className="null-value">null</span>;
-    if (typeof value === 'boolean') return <span className={`boolean-value ${value ? 'true' : 'false'}`}>{value.toString()}</span>;
-    if (typeof value === 'number') return <span className="number-value">{value.toLocaleString()}</span>;
+    if (typeof value === 'boolean') return <span className={`boolean-value ${value}`}>{value.toString()}</span>;
+    if (typeof value === 'number') return <span className="number-value">{value}</span>;
     if (typeof value === 'string') return <span className="string-value">"{value}"</span>;
     return <span className="other-value">{JSON.stringify(value)}</span>;
   };
 
   const getPlayerName = () => {
-    return result['pg.player_display_name'] || result['player_display_name'] || 'Unknown Player';
+    return result['pg.player_display_name'] || result['player_display_name'] || result['display_name'] || 'Unknown Player';
   };
 
   const keys = Object.keys(result);
@@ -91,6 +96,7 @@ export const SearchBar: React.FC = () => {
 
   return (
     <div className="search-container">
+    <div className="search-input-row">
       <div className="search-box">
         <input
           ref={inputRef}
@@ -98,7 +104,7 @@ export const SearchBar: React.FC = () => {
           value={userInput}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          placeholder= {chain.Tail?.chunk.English||"Receivers who caught at least..."}
+          placeholder={chain.Tail?.chunk.English || "Receivers who caught at least..."}
           className="search-input"
           autoComplete="off"
         />
@@ -109,41 +115,26 @@ export const SearchBar: React.FC = () => {
         )}
       </div>
       <div className="search-button">
-        <button onClick={search}>Search</button>
+        <button onClick={search} className="primary-button">
+          Search
+        </button>
       </div>
-
-      {suggestions.length > 0 && (
-        <div ref={suggestionsRef} className="suggestions-dropdown">
-          {suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className={`suggestion-item ${index === selectedIndex ? 'selected' : ''}`}
-              onClick={() => selectSuggestion(suggestion)}
-            >
-              {suggestion.chunk.English}
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="search-results">
-        <div className="search-results-header">
-          <h2>Search Results</h2>
-        </div>
-        <div className="search-results-body">
-          {searchResults ? (
-            <ul>
-              {searchResults.map((result: any, index: number) => (
-                <SearchResultItem key={index} result={result}></SearchResultItem>
-              ))}
-            </ul>
-          ) : (
-            <div style={{ color: "#888" }}>No results</div>
-          )}
-          <p style={{ color: searchError ? "red" : "#888" }}>
-            {searchError ? searchError : "No error"}
-          </p>
-        </div>
+      {/* Save search button - functionality to be implemented later */}
+      <div className="save-button">
+        <button className="secondary-button" title="Save this search (coming soon)">
+          💾
+        </button>
       </div>
     </div>
+
+      {/* Suggestions dropdown - appears directly below search input */}
+      <Suggestions
+        suggestions={suggestions}
+        selectedIndex={selectedIndex}
+        onSelect={selectSuggestion}
+        ref={suggestionsRef}
+      />
+      <SearchResults searchResults={searchResults} searchError={searchError} />
+      </div>
   );
 }; 

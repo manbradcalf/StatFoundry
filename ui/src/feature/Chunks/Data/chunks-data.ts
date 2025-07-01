@@ -239,98 +239,79 @@ export function getAvailableChunks(): Chunk[] {
     //     },
     //   ],
     // },
-    {
-      English: "who played between {s1} and {s2}",
-      Cypher:
-        "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season >= {s1} AND ps.season <= {s2}",
-      QueryType: QueryType.FILTER,
-      Inputs: [{ Name: "p", Label: Label.Player }],
-      Outputs: [
-        { Name: "p", Label: Label.Player },
-        { Name: "ps", Label: Label.PlayerSeason },
-      ],
-      Slots: [
-        {
-          Name: "s1",
-          Value: 2024,
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-        {
-          Name: "s2",
-          Value: 2025,
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-      ],
-    },
-    {
-      English: "between the {s1} and {s2} seasons",
-      Cypher: "WHERE pg.season >= {s1} AND pg.season <= {s2}",
-      QueryType: QueryType.FILTER,
-      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
-      Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
-      Slots: [
-        {
-          Name: "s1",
-          Value: 2024,
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-        {
-          Name: "s2",
-          Value: 2025,
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-      ],
-    },
-    {
-      English: "between the {s1} and {s2} seasons",
-      Cypher: "WHERE tg.season >= {s1} AND tg.season <= {s2}",
-      QueryType: QueryType.FILTER,
-      Inputs: [{ Name: "tg", Label: Label.TeamGame }],
-      Outputs: [{ Name: "tg", Label: Label.TeamGame }],
-      Slots: [
-        {
-          Name: "s1",
-          Value: 2024,
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-        {
-          Name: "s2",
-          Value: 2025,
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-      ],
-    },
+    // {
+    //   English: "who played between {s1} and {s2}",
+    //   Cypher:
+    //     "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season >= {s1} AND ps.season <= {s2}",
+    //   QueryType: QueryType.FILTER,
+    //   Inputs: [{ Name: "p", Label: Label.Player }],
+    //   Outputs: [
+    //     { Name: "p", Label: Label.Player },
+    //     { Name: "ps", Label: Label.PlayerSeason },
+    //   ],
+    //   Slots: [
+    //     {
+    //       Name: "s1",
+    //       Value: 2024,
+    //       SlotValueTypes: [SlotType.FilterValue],
+    //     },
+    //     {
+    //       Name: "s2",
+    //       Value: 2025,
+    //       SlotValueTypes: [SlotType.FilterValue],
+    //     },
+    //   ],
+    // },
+    // {
+    //   English: "between the {s1} and {s2} seasons",
+    //   Cypher: "WHERE pg.season >= {s1} AND pg.season <= {s2}",
+    //   QueryType: QueryType.FILTER,
+    //   Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    //   Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    //   Slots: [
+    //     {
+    //       Name: "s1"
+    //       Value: 2024,
+    //       SlotValueTypes: [SlotType.FilterValue],
+    //     },
+    //     {
+    //       Name: "s2",
+    //       Value: 2025,
+    //       SlotValueTypes: [SlotType.FilterValue],
+    //     },
+    //   ],
+    // },
+    // {
+    //   English: "between the {s1} and {s2} seasons",
+    //   Cypher: "WHERE tg.season >= {s1} AND tg.season <= {s2}",
+    //   QueryType: QueryType.FILTER,
+    //   Inputs: [{ Name: "tg", Label: Label.TeamGame }],
+    //   Outputs: [{ Name: "tg", Label: Label.TeamGame }],
+    //   Slots: [
+    //     {
+    //       Name: "s1",
+    //       Value: 2024,
+    //       SlotValueTypes: [SlotType.FilterValue],
+    //     },
+    //     {
+    //       Name: "s2",
+    //       Value: 2025,
+    //       SlotValueTypes: [SlotType.FilterValue],
+    //     },
+    //   ],
+    // },
 
     // RETURN
+    // {
+    //   English: "return all",
+    //   Cypher: "RETURN ",
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
     {
-      English: "return player names",
-      Cypher: "RETURN p.first_name + ' ' + p.last_name as name LIMIT 10",
-      QueryType: QueryType.RETURN,
-      Inputs: [{ Name: "p", Label: Label.Player }],
-      Outputs: [],
-      Slots: [],
-    },
-    {
-      English: "return player passing stats by game",
-      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
-      QueryType: QueryType.RETURN,
-      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
-      Outputs: [],
-      Slots: [],
-    },
-    {
-      English: "return player receiving stats by game",
-      Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES].join(", pg.")}, ${[...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
-      QueryType: QueryType.RETURN,
-      Inputs: [
-        { Name: "pg", Label: Label.PlayerGame },
-        { Name: "p", Label: Label.Player },
-      ],
-      Outputs: [],
-      Slots: [],
-    },
-    {
-      English: "return player rushing stats by game",
+      English: "return player games",
       Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
       Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -338,53 +319,104 @@ export function getAvailableChunks(): Chunk[] {
       Slots: [],
     },
     {
-      English: "return player passing stats by season ",
-      Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")} LIMIT 10`,
+      English: "return players",
+      Cypher: `RETURN p.${[...PLAYER_GAME_INFO_PROPERTIES].join(", p.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
-      Inputs: [
-        { Name: "ps", Label: Label.PlayerSeason },
-        { Name: "p", Label: Label.Player },
-      ],
+      Inputs: [{ Name: "p", Label: Label.Player }],
       Outputs: [],
       Slots: [],
     },
     {
-      English: "return player receiving stats by season",
-      Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RECEIVING_STATS].join(", ps.")} LIMIT 10`,
+      English: "return players and their games",
+      Cypher: `RETURN p.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...PASSING_STATS, ...RECEIVING_STATS].join(", p.")} LIMIT 10`,
       QueryType: QueryType.RETURN,
-      Inputs: [
-        { Name: "ps", Label: Label.PlayerSeason },
-        { Name: "p", Label: Label.Player },
-      ],
+      Inputs: [{ Name: "p", Label: Label.Player }],
       Outputs: [],
       Slots: [],
     },
     {
-      English: "return rushing stats by season",
-      Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RUSHING_STATS].join(", ps.")} LIMIT 10`,
+      English: "return player seasons",
+      Cypher: "RETURN p.first_name + ' ' + p.last_name as name LIMIT 10",
       QueryType: QueryType.RETURN,
-      Inputs: [{ Name: "ps", Label: Label.PlayerSeason }],
+      Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
       Outputs: [],
       Slots: [],
     },
-    {
-      English: "return team names",
-      Cypher: "RETURN t.name LIMIT 10",
-      QueryType: QueryType.RETURN,
-      Inputs: [{ Name: "t", Label: Label.Team }],
-      Outputs: [],
-      Slots: [],
-    },
-    {
-      English: "return player names and team names",
-      Cypher: "RETURN p.name, t.name LIMIT 10",
-      QueryType: QueryType.RETURN,
-      Inputs: [
-        { Name: "p", Label: Label.Player },
-        { Name: "t", Label: Label.Team },
-      ],
-      Outputs: [],
-      Slots: [],
-    },
+    // {
+    //   English: "return player passing stats by game",
+    //   Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return player receiving stats by game",
+    //   Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES].join(", pg.")}, ${[...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [
+    //     { Name: "pg", Label: Label.PlayerGame },
+    //     { Name: "p", Label: Label.Player },
+    //   ],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return player rushing stats by game",
+    //   Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")} LIMIT 10`,
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return player passing stats by season ",
+    //   Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")} LIMIT 10`,
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [
+    //     { Name: "ps", Label: Label.PlayerSeason },
+    //     { Name: "p", Label: Label.Player },
+    //   ],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return player receiving stats by season",
+    //   Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RECEIVING_STATS].join(", ps.")} LIMIT 10`,
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [
+    //     { Name: "ps", Label: Label.PlayerSeason },
+    //     { Name: "p", Label: Label.Player },
+    //   ],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return rushing stats by season",
+    //   Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RUSHING_STATS].join(", ps.")} LIMIT 10`,
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [{ Name: "ps", Label: Label.PlayerSeason }],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return team names",
+    //   Cypher: "RETURN t.name LIMIT 10",
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [{ Name: "t", Label: Label.Team }],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
+    // {
+    //   English: "return player names and team names",
+    //   Cypher: "RETURN p.name, t.name LIMIT 10",
+    //   QueryType: QueryType.RETURN,
+    //   Inputs: [
+    //     { Name: "p", Label: Label.Player },
+    //     { Name: "t", Label: Label.Team },
+    //   ],
+    //   Outputs: [],
+    //   Slots: [],
+    // },
   ];
 }

@@ -54,105 +54,160 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     return '';
   }, [query, chain.English]);
 
-  // Update suggestions based on current query and chain state
-  // This useEffect runs when query, chain, or getPartialInput changes
+  /**
+   * Smart suggestion system that updates based on current query and chain state
+   * Features:
+   * - Filters suggestions based on partial user input
+   * - Prevents race conditions when selecting suggestions
+   * - Shows contextually relevant suggestions based on chain history
+   */
   useEffect(() => {
-    console.log('🔄 useEffect running with:', { 
-      query: `"${query}"`, 
-      chainEnglish: `"${chain.English}"`, 
-      matches: query === chain.English 
-    });
-
-    // RACE CONDITION FIX: Skip useEffect if query exactly matches chain.English 
-    // This happens right after selecting a suggestion. The sequence is:
-    // 1. User selects suggestion → handleSuggestionClick runs
-    // 2. We call setQuery(chain.English) and set auto-suggestions
-    // 3. React's state updates are async, so this useEffect might run before setQuery takes effect
-    // 4. This check prevents us from wiping out the auto-suggestions we just set
+    // RACE CONDITION FIX: Skip if query exactly matches chain.English 
+    // This happens right after selecting a suggestion to prevent wiping auto-suggestions
     if (query === chain.English) {
-      console.log('✅ Query matches chain.English, preserving auto-suggestions');
       return;
     }
 
+    // Clear suggestions if query is empty
     if (query.trim() === '') {
-      console.log('❌ Query empty, clearing suggestions');
       setSuggestions([]);
       setShowSuggestions(false);
       return;
     }
 
-    const currentOutputs = chain.Aliases;
     const availableChunks = getAvailableChunks();
     const partialInput = getPartialInput();
-
-    console.log('📊 Debug info:', {
-      currentOutputs,
-      availableChunksCount: availableChunks.length,
-      partialInput: `"${partialInput}"`
-    });
-
     const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
 
-    // Filter by partial input text and create suggestions
-    const filteredSuggestions = validNextChunks.filter(chunk => {
-        if (!partialInput) return true; // Show all valid chunks if no partial input
-
-        // Filter chunks that start with or contain the partial input
-        return chunk.English.toLowerCase().includes(partialInput.toLowerCase());
+    // INTELLIGENT FILTERING: Prioritize suggestions based on context
+    const prioritizedSuggestions = validNextChunks
+      .filter(chunk => {
+        if (!partialInput) return true;
+        // Match both start of words and full text for better UX
+        const input = partialInput.toLowerCase();
+        const text = chunk.English.toLowerCase();
+        return text.includes(input) || text.split(' ').some(word => word.startsWith(input));
       })
+      .sort((a, b) => {
+        // SMART PRIORITIZATION based on chain context
+        const aText = a.English.toLowerCase();
+        const bText = b.English.toLowerCase();
+        const input = partialInput.toLowerCase();
+        
+        // Exact matches first
+        if (aText.startsWith(input) && !bText.startsWith(input)) return -1;
+        if (bText.startsWith(input) && !aText.startsWith(input)) return 1;
+        
+        // Context-aware suggestions (you can expand this logic)
+        // For example, if last chunk was about running backs, prioritize rushing stats
+        const lastChunk = chain.toArray().slice(-1)[0];
+        if (lastChunk) {
+          const lastChunkText = lastChunk.English.toLowerCase();
+          
+          // Simple context matching - can be expanded based on your domain knowledge
+          if (lastChunkText.includes('running back') || lastChunkText.includes('rush')) {
+            if (aText.includes('rush') || aText.includes('yard')) return -1;
+            if (bText.includes('rush') || bText.includes('yard')) return 1;
+          }
+          
+          if (lastChunkText.includes('receiver') || lastChunkText.includes('catch')) {
+            if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
+            if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
+          }
+        }
+        
+        // Alphabetical fallback
+        return aText.localeCompare(bText);
+      })
+      .slice(0, 10) // Limit to top 10 suggestions for performance
       .map(chunk => ({
         chunk,
         displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
       }));
 
-    console.log('🔄 useEffect setting suggestions:', filteredSuggestions.length, 'items');
-    setSuggestions(filteredSuggestions);
-    setShowSuggestions(filteredSuggestions.length > 0);
+    setSuggestions(prioritizedSuggestions);
+    setShowSuggestions(prioritizedSuggestions.length > 0);
     setSelectedSuggestionIndex(-1);
   }, [query, chain, getPartialInput]);
 
+  /**
+   * Handles suggestion selection (both mouse clicks and keyboard selection)
+   * Manages the chunk chain, slot modals, and auto-suggestions
+   */
   const handleSuggestionClick = (suggestion: Suggestion) => {
-    console.log('🎯 Suggestion clicked:', suggestion);
+    // Work on a copy to avoid mutating the original chunk catalog
+    const chunkCopy = { 
+      ...suggestion.chunk, 
+      Slots: suggestion.chunk.Slots.map((s) => ({ ...s })) 
+    };
 
-    // Work on a copy so that we don't mutate the original immutable catalogue
-    const chunkCopy = { ...suggestion.chunk, Slots: suggestion.chunk.Slots.map((s) => ({ ...s })) };
-
-    // If the chunk contains slots, open modal for user input
+    // If chunk has slots (parameters), open modal for user input
     if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
       setPendingChunk(chunkCopy);
       setPendingSlots(chunkCopy.Slots);
       setIsSlotModalOpen(true);
     } else {
-      // No slots – append chunk as-is
+      // No slots - append chunk directly to chain
       chain.append(chunkCopy);
-
-      // Update chain strings right away
       chain.update();
-
       setQuery(chain.English);
-      console.log('🎯 Setting query to:', `"${chain.English}"`);
       
-      // Automatically show suggestions for the next valid chunks
-      const availableChunks = getAvailableChunks();
-      const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
-      
-      if (validNextChunks.length > 0) {
-        const autoSuggestions = validNextChunks.map(chunk => ({
-          chunk,
-          displayText: "and " + chunk.English
-        }));
-        
-        console.log('🔮 Setting auto-suggestions:', autoSuggestions.length, 'items');
-        setSuggestions(autoSuggestions);
-        setShowSuggestions(true);
-        setSelectedSuggestionIndex(-1);
-      } else {
-        console.log('⚠️ No valid next chunks found for auto-suggestions');
-      }
+      // Auto-show next relevant suggestions
+      showNextSuggestions();
     }
   };
 
+  /**
+   * Shows contextually relevant suggestions after a chunk is added to the chain
+   * This creates a smooth user experience by immediately showing what can come next
+   */
+  const showNextSuggestions = () => {
+    const availableChunks = getAvailableChunks();
+    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
+    
+    if (validNextChunks.length > 0) {
+      // Apply the same intelligent sorting as in the main useEffect
+      const intelligentSuggestions = validNextChunks
+        .sort((a, b) => {
+          // Context-aware auto-suggestions based on what was just added
+          const lastChunk = chain.toArray().slice(-1)[0];
+          if (lastChunk) {
+            const lastChunkText = lastChunk.English.toLowerCase();
+            const aText = a.English.toLowerCase();
+            const bText = b.English.toLowerCase();
+            
+            // Prioritize related suggestions
+            if (lastChunkText.includes('running back')) {
+              if (aText.includes('rush') || aText.includes('carry')) return -1;
+              if (bText.includes('rush') || bText.includes('carry')) return 1;
+            }
+            
+            if (lastChunkText.includes('receiver') || lastChunkText.includes('wide receiver')) {
+              if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
+              if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
+            }
+          }
+          
+          return a.English.localeCompare(b.English);
+        })
+        .slice(0, 8) // Fewer auto-suggestions to avoid overwhelming
+        .map(chunk => ({
+          chunk,
+          displayText: "and " + chunk.English
+        }));
+      
+      setSuggestions(intelligentSuggestions);
+      setShowSuggestions(true);
+      setSelectedSuggestionIndex(-1);
+    }
+  };
+
+  /**
+   * Handles keyboard navigation and selection in the suggestions dropdown
+   * Supports: Arrow keys for navigation, Tab/Enter for selection, Escape to close
+   */
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Escape key - close suggestions
     if (e.key === 'Escape') {
       setShowSuggestions(false);
       setSelectedSuggestionIndex(-1);
@@ -160,36 +215,54 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       return;
     }
 
+    // Only handle other keys if suggestions are visible
     if (!showSuggestions) return;
 
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        const nextIndex = selectedSuggestionIndex < suggestions.length - 1 ? selectedSuggestionIndex + 1 : selectedSuggestionIndex;
+        // Navigate down, don't wrap around at bottom
+        const nextIndex = selectedSuggestionIndex < suggestions.length - 1 
+          ? selectedSuggestionIndex + 1 
+          : selectedSuggestionIndex;
         setSelectedSuggestionIndex(nextIndex);
         break;
+        
       case 'ArrowUp':
         e.preventDefault();
-        const prevIndex = selectedSuggestionIndex > 0 ? selectedSuggestionIndex - 1 : -1;
+        // Navigate up, can go to -1 (no selection)
+        const prevIndex = selectedSuggestionIndex > 0 
+          ? selectedSuggestionIndex - 1 
+          : -1;
         setSelectedSuggestionIndex(prevIndex);
         break;
+        
       case 'Tab':
         e.preventDefault();
+        // Select current highlighted suggestion
         if (selectedSuggestionIndex >= 0) {
           handleSuggestionClick(suggestions[selectedSuggestionIndex]);
         }
         break;
+        
       case 'Enter':
         e.preventDefault();
         if (selectedSuggestionIndex >= 0) {
+          // Select highlighted suggestion
           handleSuggestionClick(suggestions[selectedSuggestionIndex]);
         } else if (chain.Cypher.trim()) {
-          executeSearch(chain.Cypher); // Execute search on Enter when no suggestion selected
+          // No suggestion selected - execute search with current chain
+          executeSearch(chain.Cypher);
+          setShowSuggestions(false);
         }
         break;
     }
   };
 
+  /**
+   * Clears the entire search state - query, chain, suggestions, and results
+   * Used by the clear button (×) in the search input
+   */
   const clearQuery = () => {
     setQuery('');
     setChain(new ChunkChain());
@@ -198,39 +271,27 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     clearSearch();
   };
 
-  // Handlers for SlotModal
+  /**
+   * Handles saving slot values from the modal and updating the chain
+   * Called when user fills in parameters for a chunk that requires input
+   */
   const handleSlotModalSave = (updatedSlots: Slot[]) => {
     if (!pendingChunk) {
       setIsSlotModalOpen(false);
       return;
     }
 
+    // Build the chunk with filled slots and add to chain
     const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
     const filled = buildFilledChunk(chunkWithSlots);
     chain.append(filled);
     chain.update();
     setQuery(chain.English);
-    console.log('🎯 Setting query to (after slot modal):', `"${chain.English}"`);
 
-    // Automatically show suggestions for the next valid chunks after slot modal
-    const availableChunks = getAvailableChunks();
-    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
-    
-    if (validNextChunks.length > 0) {
-      const autoSuggestions = validNextChunks.map(chunk => ({
-        chunk,
-        displayText: "and " + chunk.English
-      }));
-      
-      console.log('🔮 Setting auto-suggestions (after slot modal):', autoSuggestions.length, 'items');
-      setSuggestions(autoSuggestions);
-      setShowSuggestions(true);
-      setSelectedSuggestionIndex(-1);
-    } else {
-      console.log('⚠️ No valid next chunks found for auto-suggestions (after slot modal)');
-    }
+    // Show next contextual suggestions
+    showNextSuggestions();
 
-    // reset modal state
+    // Reset modal state
     setIsSlotModalOpen(false);
     setPendingChunk(null);
     setPendingSlots([]);

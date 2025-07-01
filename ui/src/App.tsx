@@ -6,13 +6,17 @@ import { SearchBar, ChainDisplay, QueryResult } from './components';
 function AppContent() {
   return (
     <div className="App">
+      {/* Login button positioned in top right corner */}
+      <button className="login-button" title="Sign in (coming soon)">
+        Login
+      </button>
+      
       <header className="App-header">
-        <h1>StatNug</h1>
+        <h1>StatFoundry</h1>
+        <i>Finally, a better way to find stats</i>
         <SearchBar />
-
-        <QueryResult />
-
         <ChainDisplay />
+        <QueryResult />
       </header>
     </div>
   );
