@@ -16,7 +16,7 @@ export const ChunkItem: React.FC<{chunk: Chunk}> = ({chunk}) => {
 };
 
 export const ChainDisplay: React.FC<ChainDisplayProps> = ({
-  title = "Current Chain"
+  title = "Current Search"
 }) => {
   const { chain } = useSearchContext();
   const chainArray = chain.toArray();

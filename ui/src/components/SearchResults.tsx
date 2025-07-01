@@ -1,12 +1,14 @@
 import React from 'react';
 import { SearchResultItem } from './SearchBar';
+import { useSearchContext } from '../contexts/SearchContext';
 
 interface SearchResultsProps {
   searchResults: any[] | null;
   searchError: string | null;
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({ searchResults, searchError }) => {
+export const SearchResults: React.FC<SearchResultsProps> = () => {
+  const { searchResults, searchError } = useSearchContext();
   return (
       <div className="search-results-body">
         {searchResults ? (

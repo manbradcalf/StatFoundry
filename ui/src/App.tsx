@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { SearchProvider } from './contexts/SearchContext';
-import { SearchBar, ChainDisplay, QueryResult } from './components';
+import { SearchBar, ChainDisplay } from './components';
+import { SearchResults } from './components/SearchResults';
 
 function AppContent() {
   return (
@@ -15,8 +16,8 @@ function AppContent() {
         <h1>StatFoundry</h1>
         <i>Finally, a better way to find stats</i>
         <SearchBar />
+        <SearchResults searchResults={[]} searchError={null} />
         <ChainDisplay />
-        <QueryResult />
       </header>
     </div>
   );

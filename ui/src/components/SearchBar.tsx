@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { useSearchContext } from '../contexts/SearchContext';
-import { SearchResults } from './SearchResults';
 import { Suggestions } from './Suggestions';
 
 export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
@@ -10,7 +9,6 @@ export const SearchResultItem: React.FC<{result: any}> = ({result}) => {
       .replace(/_/g, ' ') // Replace underscores with spaces
       .replace(/\b\w/g, l => l.toUpperCase()) // Capitalize first letter of each word
       .replace(/^ps\./, '') // Remove ps. prefix
-      .replace(/^p\./, '') // Remove p. prefix
       .replace(/^recent_team/, 'team') // Rename confusing property name
   };
 
@@ -56,8 +54,6 @@ export const SearchBar: React.FC = () => {
     clearAll,
     selectedIndex,
     search,
-    searchResults,
-    searchError,
     chain
   } = useSearchContext();
 
@@ -134,7 +130,6 @@ export const SearchBar: React.FC = () => {
         onSelect={selectSuggestion}
         ref={suggestionsRef}
       />
-      <SearchResults searchResults={searchResults} searchError={searchError} />
       </div>
   );
 }; 
