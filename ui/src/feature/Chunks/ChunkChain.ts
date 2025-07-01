@@ -90,6 +90,20 @@ export class ChunkChain {
     return this;
   }
 
+  updateChunkAtIndex(index: number, newChunk: Chunk): ChunkChain {
+    let node = this.Head;
+    let i = 0;
+    while (node && i < index) {
+      node = node.next;
+      i++;
+    }
+    if (node) {
+      node.chunk = newChunk;
+    } else {
+      alert(`No editable chunk at index ${index}`);
+    }
+    return this;
+  }
   /**
    * Get the next valid chunks for the current chunk.
    * @returns The next valid chunks.
