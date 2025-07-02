@@ -3,6 +3,7 @@ import './App.css';
 import { SearchProvider } from './contexts/SearchContext';
 import { SearchBar, ChainDisplay } from './components';
 import { SearchResults } from './components/SearchResults';
+import { DynamicChunkExample } from './examples/DynamicChunkExample';
 
 function AppContent() {
   return (
@@ -11,10 +12,11 @@ function AppContent() {
       <button className="login-button" title="Sign in (coming soon)" onClick={() => alert("Login functionality coming soon!")}>
         Login
       </button>
-      
+
       <header className="App-header">
         <h1>StatFoundry</h1>
         <i>Finally, a better way to find stats</i>
+        <DynamicChunkExample />
         <SearchBar />
         <SearchResults searchResults={[]} searchError={null} />
         <ChainDisplay />
