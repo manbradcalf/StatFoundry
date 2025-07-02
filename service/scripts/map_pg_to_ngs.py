@@ -1,0 +1,1 @@
+# todo: map player games to ngs games
