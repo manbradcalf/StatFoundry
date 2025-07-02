@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { getAvailableChunks } from '../feature/Chunks/Data/chunks-data';
+import { getAvailableDynamicallyGeneratedChunks } from '../feature/Chunks/Data/chunks-data';
 import { ChunkChain } from '../feature/Chunks/ChunkChain';
 import { Chunk } from '../feature/Chunks/Types/Chunk';
 import { Slot } from '../feature/Chunks/Types/Slot';
@@ -76,7 +76,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       return;
     }
 
-    const availableChunks = getAvailableChunks();
+    const availableChunks = getAvailableDynamicallyGeneratedChunks();
     const partialInput = getPartialInput();
     const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
 
@@ -94,29 +94,29 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         const aText = a.English.toLowerCase();
         const bText = b.English.toLowerCase();
         const input = partialInput.toLowerCase();
-        
+
         // Exact matches first
         if (aText.startsWith(input) && !bText.startsWith(input)) return -1;
         if (bText.startsWith(input) && !aText.startsWith(input)) return 1;
-        
+
         // Context-aware suggestions (you can expand this logic)
         // For example, if last chunk was about running backs, prioritize rushing stats
         const lastChunk = chain.toArray().slice(-1)[0];
         if (lastChunk) {
           const lastChunkText = lastChunk.English.toLowerCase();
-          
+
           // Simple context matching - can be expanded based on your domain knowledge
           if (lastChunkText.includes('running back') || lastChunkText.includes('rush')) {
             if (aText.includes('rush') || aText.includes('yard')) return -1;
             if (bText.includes('rush') || bText.includes('yard')) return 1;
           }
-          
+
           if (lastChunkText.includes('receiver') || lastChunkText.includes('catch')) {
             if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
             if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
           }
         }
-        
+
         // Alphabetical fallback
         return aText.localeCompare(bText);
       })
@@ -137,9 +137,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
    */
   const handleSuggestionClick = (suggestion: Suggestion) => {
     // Work on a copy to avoid mutating the original chunk catalog
-    const chunkCopy = { 
-      ...suggestion.chunk, 
-      Slots: suggestion.chunk.Slots.map((s) => ({ ...s })) 
+    const chunkCopy = {
+      ...suggestion.chunk,
+      Slots: suggestion.chunk.Slots.map((s) => ({ ...s }))
     };
 
     // If chunk has slots (parameters), open modal for user input
@@ -152,7 +152,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       chain.append(chunkCopy);
       chain.compile();
       setQuery(chain.English);
-      
+
       // Auto-show next relevant suggestions
       showNextSuggestions();
     }
@@ -163,9 +163,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
    * This creates a smooth user experience by immediately showing what can come next
    */
   const showNextSuggestions = () => {
-    const availableChunks = getAvailableChunks();
+    const availableChunks = getAvailableDynamicallyGeneratedChunks();
     const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
-    
+
     if (validNextChunks.length > 0) {
       // Apply the same intelligent sorting as in the main useEffect
       const intelligentSuggestions = validNextChunks
@@ -176,19 +176,19 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
             const lastChunkText = lastChunk.English.toLowerCase();
             const aText = a.English.toLowerCase();
             const bText = b.English.toLowerCase();
-            
+
             // Prioritize related suggestions
             if (lastChunkText.includes('running back')) {
               if (aText.includes('rush') || aText.includes('carry')) return -1;
               if (bText.includes('rush') || bText.includes('carry')) return 1;
             }
-            
+
             if (lastChunkText.includes('receiver') || lastChunkText.includes('wide receiver')) {
               if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
               if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
             }
           }
-          
+
           return a.English.localeCompare(b.English);
         })
         .slice(0, 8) // Fewer auto-suggestions to avoid overwhelming
@@ -196,7 +196,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
           chunk,
           displayText: "and " + chunk.English
         }));
-      
+
       setSuggestions(intelligentSuggestions);
       setShowSuggestions(true);
       setSelectedSuggestionIndex(-1);
@@ -223,21 +223,21 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       case 'ArrowDown':
         e.preventDefault();
         // Navigate down, don't wrap around at bottom
-        const nextIndex = selectedSuggestionIndex < suggestions.length - 1 
-          ? selectedSuggestionIndex + 1 
+        const nextIndex = selectedSuggestionIndex < suggestions.length - 1
+          ? selectedSuggestionIndex + 1
           : selectedSuggestionIndex;
         setSelectedSuggestionIndex(nextIndex);
         break;
-        
+
       case 'ArrowUp':
         e.preventDefault();
         // Navigate up, can go to -1 (no selection)
-        const prevIndex = selectedSuggestionIndex > 0 
-          ? selectedSuggestionIndex - 1 
+        const prevIndex = selectedSuggestionIndex > 0
+          ? selectedSuggestionIndex - 1
           : -1;
         setSelectedSuggestionIndex(prevIndex);
         break;
-        
+
       case 'Tab':
         e.preventDefault();
         // Select current highlighted suggestion
@@ -245,7 +245,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
           handleSuggestionClick(suggestions[selectedSuggestionIndex]);
         }
         break;
-        
+
       case 'Enter':
         e.preventDefault();
         if (selectedSuggestionIndex >= 0) {
@@ -297,7 +297,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       chain.append(filled);
       chain.compile();
       setQuery(chain.English);
-      
+
       // Show next contextual suggestions
       showNextSuggestions();
     }
@@ -330,17 +330,17 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     }
 
     const chunkToEdit = chainArray[index];
-    
+
     // Only editable chunks have slots, and only chunks with slots need template restoration
     if (chunkToEdit.Slots.length === 0) {
       console.error('Cannot edit chunk with no slots:', chunkToEdit.English);
       return;
     }
-    
+
     // Create a copy with the original templates restored for editing
     // This way the SlotModal can show placeholders like {threshold} instead of filled values like "300"
     // But the Slots array still has the current values (300) to pre-fill the input fields
-    const chunkCopy = { 
+    const chunkCopy = {
       ...chunkToEdit,
       English: chunkToEdit.EnglishTemplate!,   // Restore template version
       Cypher: chunkToEdit.CypherTemplate!,     // Restore template version  
@@ -377,9 +377,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     <SearchContext.Provider value={value}>
       {children}
       {isSlotModalOpen && (
-        <SlotModal 
-          slots={pendingSlots} 
-          onSave={handleSlotModalSave} 
+        <SlotModal
+          slots={pendingSlots}
+          onSave={handleSlotModalSave}
           onCancel={handleSlotModalCancel}
           title={editingChunkIndex !== null ? "Edit chunk" : "Fill in values"}
         />

@@ -86,7 +86,14 @@ export class ChunkChain {
       node = node.next;
     }
 
-    this.Cypher = cypherParts.join(" WITH * \n");
+
+    // Join all but the last element with " WITH * "
+    let joinedCypher = cypherParts.slice(0, -1).join(" WITH * ");
+
+    // Optionally, add the last element back if needed
+    joinedCypher += " " + cypherParts[cypherParts.length - 1];
+    this.Cypher = joinedCypher
+    console.log(joinedCypher);
     return this;
   }
 
