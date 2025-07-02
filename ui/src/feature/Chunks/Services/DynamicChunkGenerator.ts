@@ -57,7 +57,25 @@ export class DynamicChunkGenerator {
       ...this.generateReturnChunks()
     ];
 
+    // Write chunks to JSON file for inspection
+    this.writeChunksToFile();
+
     return this.generatedChunks;
+  }
+
+  private writeChunksToFile(): void {
+    try {
+      const chunksData = {
+        generated_at: new Date().toISOString(),
+        total_chunks: this.generatedChunks.length,
+        chunks: this.generatedChunks
+      };
+      
+      console.log('Generated Dynamic Chunks:', JSON.stringify(chunksData, null, 2));
+      console.log(`\n📝 Copy the above JSON to save ${this.generatedChunks.length} dynamic chunks to a file`);
+    } catch (error) {
+      console.error('Error writing chunks to console:', error);
+    }
   }
 
   private generateEntityMatchChunks(): Chunk[] {
@@ -84,19 +102,22 @@ export class DynamicChunkGenerator {
 
       // Generate numeric comparison chunks
       numericProperties.forEach(prop => {
+        const readableProp = this.makePropertyReadable(prop);
+        const defaultValue = this.getDefaultValue(prop);
+        
         ['>', '<', '>=', '<=', '='].forEach(operator => {
           const operatorWord = this.getOperatorWord(operator);
           chunks.push({
-            English: `with ${prop} ${operatorWord} 100`,
-            Cypher: `WHERE ${this.getVariableName(node.label)}.${prop} ${operator} 100`,
-            EnglishTemplate: `with ${prop} ${operatorWord} {value}`,
+            English: `with ${readableProp} ${operatorWord} ${defaultValue}`,
+            Cypher: `WHERE ${this.getVariableName(node.label)}.${prop} ${operator} ${defaultValue}`,
+            EnglishTemplate: `with ${readableProp} ${operatorWord} {value}`,
             CypherTemplate: `WHERE ${this.getVariableName(node.label)}.${prop} ${operator} {value}`,
             QueryType: QueryType.FILTER,
             Inputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
             Outputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
             Slots: [{
               Name: 'value',
-              Value: 100,
+              Value: defaultValue,
               SlotValueTypes: [SlotType.FilterValue]
             }]
           });
@@ -105,10 +126,11 @@ export class DynamicChunkGenerator {
 
       // Generate string equality chunks
       stringProperties.forEach(prop => {
+        const readableProp = this.makePropertyReadable(prop);
         chunks.push({
-          English: `with ${prop} equal to "example"`,
+          English: `with ${readableProp} equal to "example"`,
           Cypher: `WHERE ${this.getVariableName(node.label)}.${prop} = "example"`,
-          EnglishTemplate: `with ${prop} equal to "{value}"`,
+          EnglishTemplate: `with ${readableProp} equal to "{value}"`,
           CypherTemplate: `WHERE ${this.getVariableName(node.label)}.${prop} = "{value}"`,
           QueryType: QueryType.FILTER,
           Inputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
@@ -207,27 +229,80 @@ export class DynamicChunkGenerator {
   }
 
   private getNumericProperties(node: SchemaNode): string[] {
+    const SKIP_PROPERTIES = [
+      'player_id', 'player_season_id', 'gsis_id', 'esb_id', 'smart_id', 
+      'game_id', 'nfl_detail_id', 'old_game_id', 'current_team_id',
+      'player_game_id', 'gsis_it_id', 'stadium_id', 'team_seq'
+    ];
+
     const numericKeywords = [
       'yards', 'tds', 'attempts', 'completions', 'interceptions',
       'rating', 'epa', 'cpoe', 'carries', 'targets', 'receptions',
-      'fumbles', 'points', 'score', 'week', 'season', 'game_id',
+      'fumbles', 'points', 'score', 'week', 'season',
       'weight', 'height', 'jersey_number', 'age'
     ];
 
     return node.properties.filter(prop =>
+      !SKIP_PROPERTIES.includes(prop) &&
       numericKeywords.some(keyword => prop.toLowerCase().includes(keyword))
     );
   }
 
   private getStringProperties(node: SchemaNode): string[] {
+    const SKIP_PROPERTIES = [
+      'player_id', 'player_season_id', 'gsis_id', 'esb_id', 'smart_id', 
+      'game_id', 'nfl_detail_id', 'old_game_id', 'current_team_id',
+      'player_game_id', 'gsis_it_id', 'stadium_id', 'team_seq'
+    ];
+
     const stringKeywords = [
       'name', 'position', 'team', 'opponent', 'home_team', 'away_team',
       'result', 'location', 'surface', 'roof', 'div_game', 'playoff'
     ];
 
     return node.properties.filter(prop =>
+      !SKIP_PROPERTIES.includes(prop) &&
       stringKeywords.some(keyword => prop.toLowerCase().includes(keyword))
     );
+  }
+
+  private makePropertyReadable(property: string): string {
+    const READABLE_NAMES: Record<string, string> = {
+      'passing_yards': 'passing yards',
+      'passing_tds': 'passing touchdowns',
+      'rushing_yards': 'rushing yards', 
+      'rushing_tds': 'rushing touchdowns',
+      'receiving_yards': 'receiving yards',
+      'receiving_tds': 'receiving touchdowns',
+      'player_display_name': 'player name',
+      'display_name': 'name',
+      'jersey_number': 'jersey number',
+      'uniform_number': 'uniform number',
+      'position_group': 'position group',
+      'team_abbr': 'team',
+      'opponent_team': 'opponent team',
+      'recent_team': 'recent team',
+      'home_team': 'home team',
+      'away_team': 'away team',
+      'season_type': 'season type'
+    };
+
+    return READABLE_NAMES[property] || property.replace(/_/g, ' ');
+  }
+
+  private getDefaultValue(property: string): any {
+    // Smart defaults based on property type
+    if (property.includes('yards')) return 100;
+    if (property.includes('tds') || property.includes('touchdowns')) return 2;
+    if (property.includes('attempts') || property.includes('carries')) return 10;
+    if (property.includes('receptions') || property.includes('targets')) return 5;
+    if (property.includes('week')) return 5;
+    if (property.includes('season')) return 2023;
+    if (property.includes('weight')) return 200;
+    if (property.includes('height')) return 72;
+    if (property.includes('age')) return 25;
+    
+    return 100; // Default fallback
   }
 
   private getOperatorWord(operator: string): string {
