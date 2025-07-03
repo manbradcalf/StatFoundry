@@ -28,7 +28,9 @@ export const SearchBar: React.FC = () => {
     clearAll,
     selectedIndex,
     search,
-    chain
+    chain,
+    shouldFocusSearchBar,
+    resetFocusFlag
   } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -62,6 +64,14 @@ export const SearchBar: React.FC = () => {
       scrollToSuggestion(selectedIndex);
     }
   }, [selectedIndex]);
+
+  // Focus search bar when requested
+  useEffect(() => {
+    if (shouldFocusSearchBar && inputRef.current) {
+      inputRef.current.focus();
+      resetFocusFlag();
+    }
+  }, [shouldFocusSearchBar, resetFocusFlag]);
 
   return (
     <div className="search-container">

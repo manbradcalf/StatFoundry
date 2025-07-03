@@ -36,6 +36,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
   const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(null);
+  const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
+  const [shouldFocusSearchBar, setShouldFocusSearchBar] = useState(false);
 
   const { searchResults, isSearching, searchError, executeSearch, clearSearch } = useSearchAPI();
 
@@ -79,7 +81,19 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
     const availableChunks = getAvailableChunks();
     const partialInput = getPartialInput();
-    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
+    
+    // If inserting, create a partial chain up to the insertion point
+    let contextChain = chain;
+    if (insertingAtIndex !== null) {
+      contextChain = new ChunkChain();
+      const chainArray = chain.toArray();
+      for (let i = 0; i < insertingAtIndex; i++) {
+        contextChain.append(chainArray[i]);
+      }
+      contextChain.compile();
+    }
+    
+    const validNextChunks = contextChain.getNextValidChunksFromChunks(availableChunks);
 
     // INTELLIGENT FILTERING: Prioritize suggestions based on context
     const prioritizedSuggestions = (() => {
@@ -137,7 +151,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setSuggestions(sortedSuggestions);
     setShowSuggestions(sortedSuggestions.length > 0);
     setSelectedSuggestionIndex(-1);
-  }, [query, chain, getPartialInput]);
+  }, [query, chain, getPartialInput, insertingAtIndex]);
 
   /**
    * Handles suggestion selection (both mouse clicks and keyboard selection)
@@ -156,8 +170,13 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       setPendingSlots(chunkCopy.Slots);
       setIsSlotModalOpen(true);
     } else {
-      // No slots - append chunk directly to chain
-      chain.append(chunkCopy);
+      // No slots - handle insertion or append directly to chain
+      if (insertingAtIndex !== null) {
+        chain.insertAt(insertingAtIndex, chunkCopy);
+        setInsertingAtIndex(null);
+      } else {
+        chain.append(chunkCopy);
+      }
       chain.compile();
       setQuery(chain.English);
 
@@ -248,10 +267,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
       case 'Tab':
         e.preventDefault();
-        // Select current highlighted suggestion
-        if (selectedSuggestionIndex >= 0) {
-          handleSuggestionClick(suggestions[selectedSuggestionIndex]);
-        }
+        // Navigate down like ArrowDown, wrapping to first suggestion
+        const tabNextIndex = selectedSuggestionIndex < suggestions.length - 1
+          ? selectedSuggestionIndex + 1
+          : 0; // Wrap to first suggestion
+        setSelectedSuggestionIndex(tabNextIndex);
         break;
 
       case 'Enter':
@@ -262,6 +282,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         } else if (chain.Cypher.trim()) {
           // No suggestion selected - execute search with current chain
           executeSearch(chain.Cypher);
+          setSuggestions([]);
           setShowSuggestions(false);
         }
         break;
@@ -300,6 +321,12 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       chain.compile();
       setQuery(chain.English);
       setEditingChunkIndex(null);
+    } else if (insertingAtIndex !== null) {
+      // Inserting at specific index
+      chain.insertAt(insertingAtIndex, filled);
+      chain.compile();
+      setQuery(chain.English);
+      setInsertingAtIndex(null);
     } else {
       // Adding new chunk
       chain.append(filled);
@@ -361,10 +388,56 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setIsSlotModalOpen(true);
   };
 
+  /**
+   * Sets up insertion mode at the specified index
+   * @param index The index to insert at (chunks after this will be shifted)
+   */
+  const insertChunkAt = (index: number) => {
+    setInsertingAtIndex(index);
+    setQuery(''); // Clear query to show all suggestions
+    setShouldFocusSearchBar(true); // Trigger focus
+  };
+
+  /**
+   * Remove a chunk from the chain at the specified index
+   * @param index The index of the chunk to remove
+   */
+  const removeChunk = (index: number) => {
+    const chainArray = chain.toArray();
+    if (index < 0 || index >= chainArray.length) return;
+    
+    // Rebuild chain without the chunk at the specified index
+    const newChain = new ChunkChain();
+    chainArray.forEach((chunk, i) => {
+      if (i !== index) {
+        newChain.append(chunk);
+      }
+    });
+    
+    setChain(newChain);
+    newChain.compile();
+    setQuery(newChain.English);
+  };
+
+  /**
+   * Signal that the search bar should be focused
+   */
+  const focusSearchBar = () => {
+    setShouldFocusSearchBar(true);
+  };
+
+  /**
+   * Reset the focus flag after focusing is complete
+   */
+  const resetFocusFlag = () => {
+    setShouldFocusSearchBar(false);
+  };
+
   const value: SearchContextType = {
     // State
     userInput: query,
     chain,
+    shouldFocusSearchBar,
     suggestions,
     builtQuery: null,
     selectedIndex: selectedSuggestionIndex,
@@ -377,21 +450,28 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     selectSuggestion: handleSuggestionClick,
     handleKeyDown,
     clearAll: clearQuery,
-    search: () => executeSearch(chain.Cypher),
+    search: () => {
+      executeSearch(chain.Cypher);
+      setSuggestions([]);
+      setShowSuggestions(false);
+    },
     editChunk,
+    insertChunkAt,
+    removeChunk,
+    focusSearchBar,
+    resetFocusFlag,
   };
 
   return (
     <SearchContext.Provider value={value}>
       {children}
-      {isSlotModalOpen && (
-        <SlotModal
-          slots={pendingSlots}
-          onSave={handleSlotModalSave}
-          onCancel={handleSlotModalCancel}
-          title={editingChunkIndex !== null ? "Edit chunk" : "Fill in values"}
-        />
-      )}
+      <SlotModal
+        isOpen={isSlotModalOpen}
+        slots={pendingSlots}
+        onSave={handleSlotModalSave}
+        onCancel={handleSlotModalCancel}
+        title={editingChunkIndex !== null ? "Edit chunk" : "Fill in values"}
+      />
     </SearchContext.Provider>
   );
 }; 
