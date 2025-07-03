@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Modal from 'react-modal';
 import './App.css';
 import { SearchProvider } from './contexts/SearchContext';
 import { SearchBar, ChainDisplay } from './components';
@@ -26,6 +27,11 @@ function AppContent() {
 }
 
 function App() {
+  useEffect(() => {
+    // Set the app element for react-modal (for accessibility)
+    Modal.setAppElement('#root');
+  }, []);
+
   return (
     <SearchProvider>
       <AppContent />

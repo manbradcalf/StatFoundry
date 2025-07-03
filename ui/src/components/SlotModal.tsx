@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import Modal from 'react-modal';
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
 
 interface SlotModalProps {
+  isOpen: boolean;
   slots: Slot[];
   onSave: (updatedSlots: Slot[]) => void;
   onCancel: () => void;
@@ -16,15 +18,22 @@ interface SlotModalProps {
  * user can fill them in one go.
  */
 export const SlotModal: React.FC<SlotModalProps> = ({
+  isOpen,
   slots,
   onSave,
   onCancel,
   title = "Fill in values",
 }) => {
   // we keep local copy so that edits don't mutate the parent state until save
-  const [localSlots, setLocalSlots] = useState<Slot[]>(() =>
-    slots.map((s) => ({ ...s }))
-  );
+  const [localSlots, setLocalSlots] = useState<Slot[]>([]);
+  
+  const firstInputRef = useRef<HTMLInputElement>(null);
+  const firstSelectRef = useRef<HTMLSelectElement>(null);
+
+  // Update local slots when slots prop changes
+  useEffect(() => {
+    setLocalSlots(slots.map((s) => ({ ...s })));
+  }, [slots]);
 
   const handleChange = (index: number, newValue: string) => {
     setLocalSlots((prev) => {
@@ -42,12 +51,15 @@ export const SlotModal: React.FC<SlotModalProps> = ({
   };
 
   const renderSlotInput = (slot: Slot, idx: number) => {
+    const isFirstInput = idx === 0;
+    
     // Check if this slot type has property options available
     const properties = slot.SlotValueTypes.flatMap(type => ENTITY_PROPERTIES[type]);
 
     if (properties && properties.length > 0) {
       return (
         <select
+          ref={isFirstInput ? firstSelectRef : undefined}
           value={slot.Value || ''}
           onChange={(e) => handleChange(idx, e.target.value)}
           style={{ width: "100%", padding: "0.5rem" }}
@@ -65,6 +77,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     // Default to text/number input for other slot types
     return (
       <input
+        ref={isFirstInput ? firstInputRef : undefined}
         type={typeof slot.Value === "number" ? "number" : "text"}
         value={slot.Value}
         onChange={(e) => handleChange(idx, e.target.value)}
@@ -74,54 +87,47 @@ export const SlotModal: React.FC<SlotModalProps> = ({
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "rgba(0,0,0,0.5)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onCancel}
+      contentLabel={title}
+      className="slot-modal-content"
+      overlayClassName="slot-modal-overlay"
+      shouldCloseOnOverlayClick={true}
+      shouldCloseOnEsc={true}
+      onAfterOpen={() => {
+        // Focus first input after modal opens
+        if (firstInputRef.current) {
+          firstInputRef.current.focus();
+        } else if (firstSelectRef.current) {
+          firstSelectRef.current.focus();
+        }
       }}
     >
-      <div
-        style={{
-          backgroundColor: "#fff",
-          padding: "1.5rem",
-          borderRadius: 8,
-          minWidth: 300,
-          maxWidth: "90vw",
-        }}
-      >
-        <h3 style={{ marginTop: 0 }}>{title}</h3>
-        <form onSubmit={handleSubmit}>
-          {localSlots.map((slot, idx) => (
-            <div key={slot.Name} style={{ marginBottom: "1rem" }}>
-              <label style={{ display: "block", marginBottom: 4 }}>
-                {slot.SlotValueTypes}
-              </label>
-              {renderSlotInput(slot, idx)}
-            </div>
-          ))}
-
-          <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.5rem" }}>
-            <button type="button" onClick={onCancel} style={{ padding: "0.5rem 1rem" }}>
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={handleSubmit}
-              style={{ padding: "0.5rem 1rem" }}
-            >
-              Save
-            </button>
+      <h3 style={{ marginTop: 0 }}>{title}</h3>
+      <form onSubmit={handleSubmit}>
+        {localSlots.map((slot, idx) => (
+          <div key={slot.Name} style={{ marginBottom: "1rem" }}>
+            <label style={{ display: "block", marginBottom: 4 }}>
+              {slot.SlotValueTypes}
+            </label>
+            {renderSlotInput(slot, idx)}
           </div>
-        </form>
-      </div>
-    </div>
+        ))}
+
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.5rem" }}>
+          <button type="button" onClick={onCancel} style={{ padding: "0.5rem 1rem" }}>
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            style={{ padding: "0.5rem 1rem" }}
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal>
   );
 };
