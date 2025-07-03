@@ -5,9 +5,9 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PASSING_STATS_CHUNKS: Chunk[] = [
   {
-    English: "who threw more than 2 touchdown passes in a game",
+    English: "who had [passing stat] in a game",
     Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_tds > 2",
-    EnglishTemplate: "who threw more than {tds} touchdown passes in a game",
+    EnglishTemplate: "who had {condition} {property} {value} in a game",
     CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.passing_tds > {tds}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
@@ -17,26 +17,20 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     ],
     Slots: [
       {
-        Name: "tds",
-        Value: 2,
-        SlotValueTypes: [SlotType.FilterValue],
+        Name: "condition",
+        Value: ">",
+        SlotValueTypes: [SlotType.FilterCondition],
       },
-    ],
-  },
-  {
-    English: "more than 2 touchdown passes in a game",
-    Cypher: "WHERE pg.passing_tds > 2",
-    EnglishTemplate: "more than {tds} touchdown passes in a game",
-    CypherTemplate: "WHERE pg.passing_tds > {tds}",
-    QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
-    Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
-    Slots: [
       {
-        Name: "tds",
+        Name: "value",
         Value: 2,
         SlotValueTypes: [SlotType.FilterValue],
       },
+      {
+        Name: "passing stat",
+        Value: "passing touchdowns",
+        SlotValueTypes: [SlotType.SelectPassingStats],
+      }
     ],
-  },
+  }
 ];

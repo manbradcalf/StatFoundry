@@ -12,11 +12,11 @@ export enum SlotType {
   SelectTeamSeasonProperty = "SelectTeamSeasonProperty",
   // filter properties
   Filter = "Filter",
-  FilterOperator = "FilterOperator",
-  FilterValue = "FilterValue",
-  SelectRushingStats = "SelectRushingStats",
-  SelectReceivingStats = "SelectReceivingStats",
-  SelectPassingStats = "SelectPassingStats",
+  FilterCondition = "Condition",
+  FilterValue = "Value",
+  SelectRushingStats = "Select Rushing Stats",
+  SelectReceivingStats = "Select Receiving Stats",
+  SelectPassingStats = "Select Passing Stats",
 
   // value properties
   // these are just string | number | boolean | null

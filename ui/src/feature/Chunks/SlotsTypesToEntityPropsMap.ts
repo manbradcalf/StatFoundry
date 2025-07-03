@@ -22,6 +22,6 @@ export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.SelectTeamGameProperty]: [],
   [SlotType.SelectTeamSeasonProperty]: [],
   [SlotType.Filter]: [],
-  [SlotType.FilterOperator]: [],
+  [SlotType.FilterCondition]: [">", "=>", "=", "<", "<=", "<>"],
   [SlotType.FilterValue]: [],
 };

@@ -88,7 +88,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "operator",
           Value: "=",
-          SlotValueTypes: [SlotType.FilterOperator],
+          SlotValueTypes: [SlotType.FilterCondition],
         },
         {
           Name: "value",
@@ -117,7 +117,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "operator",
           Value: "=",
-          SlotValueTypes: [SlotType.FilterOperator],
+          SlotValueTypes: [SlotType.FilterCondition],
         },
         {
           Name: "value",
@@ -145,7 +145,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "operator",
           Value: "=",
-          SlotValueTypes: [SlotType.FilterOperator],
+          SlotValueTypes: [SlotType.FilterCondition],
         },
         {
           Name: "value",
@@ -169,7 +169,7 @@ export function getAvailableChunks(): Chunk[] {
         {
           Name: "operator",
           Value: "=",
-          SlotValueTypes: [SlotType.FilterOperator],
+          SlotValueTypes: [SlotType.FilterCondition],
         },
         {
           Name: "value",
