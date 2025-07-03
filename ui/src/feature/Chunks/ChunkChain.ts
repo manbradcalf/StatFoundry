@@ -34,7 +34,10 @@ export class ChunkChain {
       (alias, index, self) =>
         index === self.findIndex((t) => t.Name === alias.Name)
     );
-    console.log("chunkchain", this.toArray());
+    console.log("ChunkChain", this.toArray());
+    console.log("Aliases: ", this.Aliases);
+    console.log("English", this.English);
+    console.log("Cypher", this.Cypher);
     return node;
   }
 

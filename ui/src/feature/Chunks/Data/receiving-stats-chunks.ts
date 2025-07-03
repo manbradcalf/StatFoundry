@@ -11,86 +11,102 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
     English: "who had MORE than [...receivingStats] in a Game",
     Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     EnglishTemplate: "who had MORE THAN {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE p.{stat} > {value}",
+    CypherTemplate:
+      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [
+      { Name: "p", Label: Label.Player },
+      { Name: "pg", Label: Label.PlayerGame },
+    ],
     Slots: [
       {
         Name: "value",
         Value: 1000,
-        SlotValueTypes: [SlotType.FilterValue]
+        SlotValueTypes: [SlotType.FilterValue],
       },
       {
         Name: "stat",
         Value: "rushing_yards",
-        SlotValueTypes: [SlotType.SelectReceivingStats]
+        SlotValueTypes: [SlotType.SelectReceivingStats],
       },
-    ]
+    ],
   },
   {
     English: "who had LESS than [...receivingStats] in a Game",
     Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
     EnglishTemplate: "who had LESS THAN {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE p.{stat} < {value}",
+    CypherTemplate:
+      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [
+      { Name: "p", Label: Label.Player },
+      { Name: "pg", Label: Label.PlayerGame },
+    ],
     Slots: [
       {
         Name: "value",
         Value: 1000,
-        SlotValueTypes: [SlotType.FilterValue]
+        SlotValueTypes: [SlotType.FilterValue],
       },
       {
         Name: "stat",
         Value: "rushing_yards",
-        SlotValueTypes: [SlotType.SelectReceivingStats]
+        SlotValueTypes: [SlotType.SelectReceivingStats],
       },
-    ]
+    ],
   },
   //  Season
   {
     English: "who had MORE THAN [...receivingStats] in a Season",
-    Cypher: "MATCH (p)-[:HAD]-(pg:PlayerSeason) WHERE ps.{stat} > {value}",
+    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
     EnglishTemplate: "who had MORE THAN {value} {stat} in a Season",
-    CypherTemplate: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
+    CypherTemplate:
+      "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "ps", Label: Label.PlayerSeason }],
+    Outputs: [
+      { Name: "p", Label: Label.Player },
+      { Name: "ps", Label: Label.PlayerSeason },
+    ],
     Slots: [
       {
         Name: "value",
         Value: 1000,
-        SlotValueTypes: [SlotType.FilterValue]
+        SlotValueTypes: [SlotType.FilterValue],
       },
       {
         Name: "stat",
         Value: "ruhsing_yards",
-        SlotValueTypes: [SlotType.SelectReceivingStats]
+        SlotValueTypes: [SlotType.SelectReceivingStats],
       },
-    ]
+    ],
   },
   {
     English: "who had LESS THAN [...receivingStats] in a Season",
-    Cypher: "MATCH (p)-[:HAD]-(pg:PlayerSeason) WHERE ps.{stat} < {value}",
+    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} < {value}",
     EnglishTemplate: "who had LESS THAN {value} {stat} in a Season",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerSeason) WHERE ps.{stat} < {value}",
+    CypherTemplate:
+      "MATCH (p)-[:HAD]-(pg:PlayerSeason) WHERE ps.{stat} < {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "ps", Label: Label.PlayerSeason }],
+    Outputs: [
+      { Name: "p", Label: Label.Player },
+      { Name: "ps", Label: Label.PlayerSeason },
+    ],
     Slots: [
       {
         Name: "value",
         Value: 1000,
-        SlotValueTypes: [SlotType.FilterValue]
+        SlotValueTypes: [SlotType.FilterValue],
       },
       {
         Name: "stat",
         Value: "ruhsing_yards",
-        SlotValueTypes: [SlotType.SelectReceivingStats]
+        SlotValueTypes: [SlotType.SelectReceivingStats],
       },
-    ]
+    ],
   },
   {
     English: "return receiving stats by game",
@@ -109,4 +125,3 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
     Slots: [],
   },
 ];
-

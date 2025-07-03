@@ -8,6 +8,4 @@ export const PASSING_STATS = [
   "passing_fumbles",
   "passing_fumbles_lost",
   "passing_fumbles_recovered",
-  "passing_fumbles_recovered_yards",
-  "passing_fumbles_recovered_tds",
 ];

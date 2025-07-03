@@ -44,7 +44,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
   const renderSlotInput = (slot: Slot, idx: number) => {
     // Check if this slot type has property options available
     const properties = slot.SlotValueTypes.flatMap(type => ENTITY_PROPERTIES[type]);
-    
+
     if (properties && properties.length > 0) {
       return (
         <select

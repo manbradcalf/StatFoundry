@@ -60,15 +60,12 @@ export interface PlayerGame extends Entity {
     rushing: {
       rushing_yards: number;
       rushing_tds: number;
-      rushing_air_yards: number;
       rushing_first_downs: number;
       rushing_epa: number;
       rushing_2pt_conversions: boolean;
       rushing_fumbles: number;
       rushing_fumbles_lost: number;
       rushing_fumbles_recovered: number;
-      rushing_fumbles_recovered_yards: number;
-      rushing_fumbles_recovered_tds: number;
       carries: number;
     };
 

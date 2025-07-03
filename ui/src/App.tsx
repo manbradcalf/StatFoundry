@@ -16,9 +16,11 @@ function AppContent() {
         <h1>StatFoundry</h1>
         <i>Finally, a better way to find stats</i>
         <SearchBar />
-        <SearchResults searchResults={[]} searchError={null} />
-        <ChainDisplay />
       </header>
+      <div className="App-body">
+        <ChainDisplay />
+        <SearchResults searchResults={[]} searchError={null} />
+      </div>
     </div>
   );
 }

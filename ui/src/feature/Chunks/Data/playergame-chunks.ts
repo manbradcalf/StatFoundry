@@ -2,10 +2,54 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { Label } from "../Enums/Label";
 import { SlotType } from "../Enums/SlotType";
+import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
+import { RECEIVING_STATS } from "../Views/ReceivingStats";
+import { RUSHING_STATS } from "../Views/RushingStats";
+import { PASSING_STATS } from "../Views/PassingStats";
 
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
   {
-    English: "who played for MIN in those games",
+    English: "return all player game stats",
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...RECEIVING_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [],
+    Slots: [],
+  },
+  {
+    English: "return player game rushing stats",
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")} LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [],
+    Slots: [],
+  },
+  {
+    English: "return player game receiving stats",
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [],
+    Slots: [],
+  },
+  {
+    English: "return player game rushing and receiving stats",
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [],
+    Slots: [],
+  },
+  {
+    English: "return player game passing stats",
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [],
+    Slots: [],
+  },
+  {
+    English: "who played for [MIN] in those games",
     Cypher:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = 'MIN'",
     EnglishTemplate: "who played for {team} in those games",
@@ -23,7 +67,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who played against GB in those games",
+    English: "who played against [GB] in those games",
     Cypher:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = 'GB'",
     EnglishTemplate: "who played against {team} in those games",
@@ -41,10 +85,12 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "in games between the 2020 and 2024 seasons",
+    English: "in games between the [2020] and [2024] seasons",
     Cypher: "WHERE pg.season >= 2020 AND pg.season <= 2024",
-    EnglishTemplate: "in games between the {seasonStart} and {seasonEnd} seasons",
-    CypherTemplate: "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
+    EnglishTemplate:
+      "in games between the {seasonStart} and {seasonEnd} seasons",
+    CypherTemplate:
+      "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
     Outputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -62,7 +108,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "and won those games",
+    English: "and won",
     Cypher: `WHERE pg.won = true`,
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -70,7 +116,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "and lost those games",
+    English: "and lost",
     Cypher: `WHERE pg.won = false`,
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
@@ -78,9 +124,8 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "in games during the 2024 season",
-    Cypher:
-      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = 2024",
+    English: "in a game during the [2024] season",
+    Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = 2024",
     EnglishTemplate: "in games during the {season} season",
     CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",

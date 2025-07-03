@@ -1,36 +1,38 @@
-import React from 'react';
-import { useSearchContext } from '../contexts/SearchContext';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
+import React from "react";
+import { useSearchContext } from "../contexts/SearchContext";
+import { ChunkChainItem } from "./ChunkChainItem";
 
 interface ChainDisplayProps {
   title?: string;
 }
-export const ChunkItem: React.FC<{chunk: Chunk, index: number}> = ({chunk, index}) => {
-  const { editChunk } = useSearchContext();
-  
-  return (
-    <div className="chunk-item">
-      <strong>{chunk.English}</strong>
-      <br />
-      {chunk.Slots.length > 0 && (
-        <button onClick={() => editChunk(index)}>Edit</button>
-      )}
-    </div>
-  );
-};
 
 export const ChainDisplay: React.FC<ChainDisplayProps> = ({
-  title = "Current Search"
+  title = "Current Search",
 }) => {
-  const { chain } = useSearchContext();
+  const { chain, clearAll } = useSearchContext();
   const chainArray = chain.toArray();
 
   return (
-    <div className="chain-debug">
-      <h4>{title} ({chainArray.length} chunks):</h4>
+    <div className="chain-display">
+      <h4>
+        {title} ({chainArray.length} chunks):
+      </h4>
       {chainArray.map((chunk, index) => (
-        <ChunkItem key={index} chunk={chunk} index={index}></ChunkItem>
+        <ChunkChainItem
+          key={index}
+          chunk={chunk}
+          index={index}
+        ></ChunkChainItem>
       ))}
+      <div className="chain-display-reset-button-container">
+        <button
+          className="chain-display-reset-button"
+          onClick={clearAll}
+          title="Reset the chain"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
-}; 
+};
