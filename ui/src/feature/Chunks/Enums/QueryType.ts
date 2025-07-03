@@ -21,6 +21,5 @@ export enum QueryType {
   MATCH = "MATCH",
   MATCH_PATH = "MATCH_PATH",
   FILTER = "FILTER",
-  JUNCTION = "JUNCTION",
   RETURN = "RETURN",
 }

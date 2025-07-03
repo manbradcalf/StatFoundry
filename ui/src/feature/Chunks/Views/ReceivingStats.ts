@@ -9,6 +9,4 @@ export const RECEIVING_STATS = [
   "receiving_fumbles",
   "receiving_fumbles_lost",
   "receiving_fumbles_recovered",
-  "receiving_fumbles_recovered_yards",
-  "receiving_fumbles_recovered_tds",
 ];

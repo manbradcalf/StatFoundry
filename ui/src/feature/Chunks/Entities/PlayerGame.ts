@@ -32,9 +32,6 @@ export interface PlayerGame extends Entity {
       passing_2pt_conversions: boolean;
       passing_fumbles: number;
       passing_fumbles_lost: number;
-      passing_fumbles_recovered: number;
-      passing_fumbles_recovered_yards: number;
-      passing_fumbles_recovered_tds: number;
       completions: number;
       attempts: number;
       interceptions: number;
@@ -55,9 +52,6 @@ export interface PlayerGame extends Entity {
       receiving_2pt_conversions: boolean;
       receiving_fumbles: number;
       receiving_fumbles_lost: number;
-      receiving_fumbles_recovered: number;
-      receiving_fumbles_recovered_yards: number;
-      receiving_fumbles_recovered_tds: number;
       targets: number;
       receiving_yards_after_catch: number;
     };

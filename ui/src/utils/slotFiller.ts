@@ -13,7 +13,7 @@ export function fillTemplate(template: string, slots: Slot[]): string {
 
   // Slot names that should NOT be quoted in Cypher, as they represent
   // identifiers (like property names) or operators.
-  const nonLiteralNames = ["property", "operator"];
+  const nonLiteralNames = ["property", "condition",];
 
   slots.forEach(({ Name, Value }) => {
     const pattern = new RegExp(`\\{${Name}\\}`, "g");
