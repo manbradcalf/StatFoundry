@@ -68,6 +68,47 @@ export class ChunkChain {
   }
 
   /**
+   * Insert a chunk at a specific index in the chain.
+   * @param index The index to insert at (0 = before first chunk)
+   * @param chunk The chunk to insert
+   */
+  insertAt(index: number, chunk: Chunk): ChunkNode {
+    const newNode: ChunkNode = { chunk, prev: null, next: null };
+    
+    if (index === 0 || !this.Head) {
+      // Insert at beginning
+      newNode.next = this.Head;
+      if (this.Head) this.Head.prev = newNode;
+      this.Head = newNode;
+      if (!this.Tail) this.Tail = newNode;
+    } else {
+      // Find the node at the target index
+      let current: ChunkNode | null = this.Head;
+      let currentIndex = 0;
+      
+      while (current && currentIndex < index) {
+        current = current.next;
+        currentIndex++;
+      }
+      
+      if (current) {
+        // Insert before the current node
+        newNode.next = current;
+        newNode.prev = current.prev;
+        if (current.prev) current.prev.next = newNode;
+        current.prev = newNode;
+      } else {
+        // Insert at end
+        newNode.prev = this.Tail;
+        if (this.Tail) this.Tail.next = newNode;
+        this.Tail = newNode;
+      }
+    }
+    
+    return newNode;
+  }
+
+  /**
    * Traverse the chain and build the full Cypher and English description.
    */
   compile(): ChunkChain {

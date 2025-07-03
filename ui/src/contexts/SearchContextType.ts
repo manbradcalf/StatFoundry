@@ -5,6 +5,7 @@ export interface SearchContextType {
   // Core state
   userInput: string;
   chain: ChunkChain;
+  shouldFocusSearchBar: boolean;
 
   // Computed values
   suggestions: Suggestion[];
@@ -21,4 +22,8 @@ export interface SearchContextType {
   clearAll: () => void;
   search: () => void;
   editChunk: (index: number) => void;
+  insertChunkAt: (index: number) => void;
+  removeChunk: (index: number) => void;
+  focusSearchBar: () => void;
+  resetFocusFlag: () => void;
 }
