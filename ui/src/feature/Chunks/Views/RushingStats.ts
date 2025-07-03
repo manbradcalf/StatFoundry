@@ -6,4 +6,5 @@ export const RUSHING_STATS = [
   "rushing_2pt_conversions",
   "rushing_fumbles",
   "rushing_fumbles_lost",
+  "carries",
 ];

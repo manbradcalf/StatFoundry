@@ -19,7 +19,7 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 100,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
@@ -40,12 +40,12 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 2.0,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
         Name: "stat",
-        Value: "rushing_yards",
+        Value: "rushing_epa",
         SlotValueTypes: [SlotType.SelectRushingStats]
       },
     ]
@@ -54,19 +54,19 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     English: "who had [rushing stat] == [value] in a Game",
     Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} = {value}",
     EnglishTemplate: "who had EXACTLY {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
+    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} = {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 2,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
         Name: "stat",
-        Value: "rushing_yards",
+        Value: "rushing_fumbles",
         SlotValueTypes: [SlotType.SelectRushingStats]
       },
     ]
@@ -104,12 +104,12 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 50,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
         Name: "stat",
-        Value: "ruhsing_yards",
+        Value: "carries",
         SlotValueTypes: [SlotType.SelectRushingStats]
       },
     ]

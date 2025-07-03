@@ -1,4 +1,4 @@
-# StatNug UI
+# StatFoundry UI
 
 React frontend application for testing the chunk-based query building system.
 
@@ -12,6 +12,7 @@ React frontend application for testing the chunk-based query building system.
 ## Setup
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -24,7 +25,7 @@ Run the development server:
 npm start
 ```
 
-The application will be available at http://localhost:3000
+The application will be available at <http://localhost:3000>
 
 ## How to Use
 
