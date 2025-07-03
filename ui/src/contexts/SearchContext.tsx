@@ -8,6 +8,7 @@ import { buildFilledChunk } from '../utils/slotFiller';
 import { Suggestion } from './Suggestion';
 import { SearchContextType } from './SearchContextType';
 import { useSearchAPI } from '../hooks/useSearchAPI';
+import Fuse from 'fuse.js';
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
@@ -81,15 +82,22 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
 
     // INTELLIGENT FILTERING: Prioritize suggestions based on context
-    const prioritizedSuggestions = validNextChunks
-      .filter(chunk => {
-        if (!partialInput) return true;
-        // Match both start of words and full text for better UX
-        const input = partialInput.toLowerCase();
-        const text = chunk.English.toLowerCase();
-        return text.includes(input) || text.split(' ').some(word => word.startsWith(input));
-      })
-      .sort((a, b) => {
+    const prioritizedSuggestions = (() => {
+      if (!partialInput) return validNextChunks;
+      const fuse = new Fuse(validNextChunks, { keys: ['English'], threshold: 0.6 });
+      return fuse.search(partialInput).map(result => result.item);
+    })()
+
+    // AUTO-SELECT: If there's an exact match, select it automatically
+    const exactMatch = prioritizedSuggestions.find(chunk => 
+      chunk.English.toLowerCase() === partialInput.toLowerCase()
+    );
+    if (exactMatch) {
+      handleSuggestionClick({ chunk: exactMatch });
+      return;
+    }
+
+    const sortedSuggestions = prioritizedSuggestions.sort((a, b) => {
         // SMART PRIORITIZATION based on chain context
         const aText = a.English.toLowerCase();
         const bText = b.English.toLowerCase();
@@ -126,8 +134,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
       }));
 
-    setSuggestions(prioritizedSuggestions);
-    setShowSuggestions(prioritizedSuggestions.length > 0);
+    setSuggestions(sortedSuggestions);
+    setShowSuggestions(sortedSuggestions.length > 0);
     setSelectedSuggestionIndex(-1);
   }, [query, chain, getPartialInput]);
 
