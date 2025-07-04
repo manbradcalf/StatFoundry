@@ -59,6 +59,51 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   }, [query, chain.English]);
 
   /**
+   * Shows contextually relevant suggestions after a chunk is added to the chain
+   * This creates a smooth user experience by immediately showing what can come next
+   */
+  const showNextSuggestions = useCallback(() => {
+    const availableChunks = getAvailableChunks();
+    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
+
+    if (validNextChunks.length > 0) {
+      // Apply the same intelligent sorting as in the main useEffect
+      const intelligentSuggestions = validNextChunks
+        .sort((a, b) => {
+          // Context-aware auto-suggestions based on what was just added
+          const lastChunk = chain.toArray().slice(-1)[0];
+          if (lastChunk) {
+            const lastChunkText = lastChunk.English.toLowerCase();
+            const aText = a.English.toLowerCase();
+            const bText = b.English.toLowerCase();
+
+            // Prioritize related suggestions
+            if (lastChunkText.includes('running back')) {
+              if (aText.includes('rush') || aText.includes('carry')) return -1;
+              if (bText.includes('rush') || bText.includes('carry')) return 1;
+            }
+
+            if (lastChunkText.includes('receiver') || lastChunkText.includes('wide receiver')) {
+              if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
+              if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
+            }
+          }
+
+          return a.English.localeCompare(b.English);
+        })
+        .slice(0, 8) // Fewer auto-suggestions to avoid overwhelming
+        .map(chunk => ({
+          chunk,
+          displayText: "and " + chunk.English
+        }));
+
+      setSuggestions(intelligentSuggestions);
+      setShowSuggestions(true);
+      setSelectedSuggestionIndex(-1);
+    }
+  }, [chain]);
+
+  /**
    * Handles suggestion selection (both mouse clicks and keyboard selection)
    * Manages the chunk chain, slot modals, and auto-suggestions
    */
@@ -88,7 +133,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       // Auto-show next relevant suggestions
       showNextSuggestions();
     }
-  }, []);
+  }, [chain, insertingAtIndex, showNextSuggestions]);
 
   /**
    * Smart suggestion system that updates based on current query and chain state
@@ -186,50 +231,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   }, [handleSuggestionClick, query, chain, getPartialInput, insertingAtIndex]);
 
 
-  /**
-   * Shows contextually relevant suggestions after a chunk is added to the chain
-   * This creates a smooth user experience by immediately showing what can come next
-   */
-  const showNextSuggestions = () => {
-    const availableChunks = getAvailableChunks();
-    const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
-
-    if (validNextChunks.length > 0) {
-      // Apply the same intelligent sorting as in the main useEffect
-      const intelligentSuggestions = validNextChunks
-        .sort((a, b) => {
-          // Context-aware auto-suggestions based on what was just added
-          const lastChunk = chain.toArray().slice(-1)[0];
-          if (lastChunk) {
-            const lastChunkText = lastChunk.English.toLowerCase();
-            const aText = a.English.toLowerCase();
-            const bText = b.English.toLowerCase();
-
-            // Prioritize related suggestions
-            if (lastChunkText.includes('running back')) {
-              if (aText.includes('rush') || aText.includes('carry')) return -1;
-              if (bText.includes('rush') || bText.includes('carry')) return 1;
-            }
-
-            if (lastChunkText.includes('receiver') || lastChunkText.includes('wide receiver')) {
-              if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
-              if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
-            }
-          }
-
-          return a.English.localeCompare(b.English);
-        })
-        .slice(0, 8) // Fewer auto-suggestions to avoid overwhelming
-        .map(chunk => ({
-          chunk,
-          displayText: "and " + chunk.English
-        }));
-
-      setSuggestions(intelligentSuggestions);
-      setShowSuggestions(true);
-      setSelectedSuggestionIndex(-1);
-    }
-  };
 
   /**
    * Handles keyboard navigation and selection in the suggestions dropdown
