@@ -88,7 +88,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       // Auto-show next relevant suggestions
       showNextSuggestions();
     }
-  });
+  }, []);
 
   /**
    * Smart suggestion system that updates based on current query and chain state
