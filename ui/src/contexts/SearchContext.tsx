@@ -62,7 +62,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
    * Handles suggestion selection (both mouse clicks and keyboard selection)
    * Manages the chunk chain, slot modals, and auto-suggestions
    */
-  const handleSuggestionClick = (suggestion: Suggestion) => {
+  const handleSuggestionClick = useCallback((suggestion: Suggestion) => {
     // Work on a copy to avoid mutating the original chunk catalog
     const chunkCopy = {
       ...suggestion.chunk,
@@ -88,7 +88,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       // Auto-show next relevant suggestions
       showNextSuggestions();
     }
-  };
+  });
 
   /**
    * Smart suggestion system that updates based on current query and chain state
