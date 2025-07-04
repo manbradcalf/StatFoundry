@@ -1,7 +1,6 @@
 import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { Label } from "../Enums/Label";
-import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
 import { PASSING_STATS } from "../Views/PassingStats";
 import { RECEIVING_STATS } from "../Views/ReceivingStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
@@ -12,7 +11,6 @@ import { PASSING_STATS_CHUNKS } from "./passing-stats-chunks";
 import { RECEIVING_STATS_CHUNKS } from "./receiving-stats-chunks";
 import { RUSHING_STATS_CHUNKS } from "./rushing-stats-chunks";
 import { MATCH_ENTITY_CHUNKS } from "./match-entity-chunks";
-import { PLAYER_INFO_PROPERTIES } from "../Views/PlayerInfo";
 
 export function getAvailableChunks(): Chunk[] {
   return [

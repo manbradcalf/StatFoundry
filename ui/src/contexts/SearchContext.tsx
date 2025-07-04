@@ -59,101 +59,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   }, [query, chain.English]);
 
   /**
-   * Smart suggestion system that updates based on current query and chain state
-   * Features:
-   * - Filters suggestions based on partial user input
-   * - Prevents race conditions when selecting suggestions
-   * - Shows contextually relevant suggestions based on chain history
-   */
-  useEffect(() => {
-    // RACE CONDITION FIX: Skip if query exactly matches chain.English 
-    // This happens right after selecting a suggestion to prevent wiping auto-suggestions
-    if (query === chain.English) {
-      return;
-    }
-
-    // Clear suggestions if query is empty
-    if (query.trim() === '') {
-      setSuggestions([]);
-      setShowSuggestions(false);
-      return;
-    }
-
-    const availableChunks = getAvailableChunks();
-    const partialInput = getPartialInput();
-    
-    // If inserting, create a partial chain up to the insertion point
-    let contextChain = chain;
-    if (insertingAtIndex !== null) {
-      contextChain = new ChunkChain();
-      const chainArray = chain.toArray();
-      for (let i = 0; i < insertingAtIndex; i++) {
-        contextChain.append(chainArray[i]);
-      }
-      contextChain.compile();
-    }
-    
-    const validNextChunks = contextChain.getNextValidChunksFromChunks(availableChunks);
-
-    // INTELLIGENT FILTERING: Prioritize suggestions based on context
-    const prioritizedSuggestions = (() => {
-      if (!partialInput) return validNextChunks;
-      const fuse = new Fuse(validNextChunks, { keys: ['English'], threshold: 0.6 });
-      return fuse.search(partialInput).map(result => result.item);
-    })()
-
-    // AUTO-SELECT: If there's an exact match, select it automatically
-    const exactMatch = prioritizedSuggestions.find(chunk => 
-      chunk.English.toLowerCase() === partialInput.toLowerCase()
-    );
-    if (exactMatch) {
-      handleSuggestionClick({ chunk: exactMatch });
-      return;
-    }
-
-    const sortedSuggestions = prioritizedSuggestions.sort((a, b) => {
-        // SMART PRIORITIZATION based on chain context
-        const aText = a.English.toLowerCase();
-        const bText = b.English.toLowerCase();
-        const input = partialInput.toLowerCase();
-
-        // Exact matches first
-        if (aText.startsWith(input) && !bText.startsWith(input)) return -1;
-        if (bText.startsWith(input) && !aText.startsWith(input)) return 1;
-
-        // Context-aware suggestions (you can expand this logic)
-        // For example, if last chunk was about running backs, prioritize rushing stats
-        const lastChunk = chain.toArray().slice(-1)[0];
-        if (lastChunk) {
-          const lastChunkText = lastChunk.English.toLowerCase();
-
-          // Simple context matching - can be expanded based on your domain knowledge
-          if (lastChunkText.includes('running back') || lastChunkText.includes('rush')) {
-            if (aText.includes('rush') || aText.includes('yard')) return -1;
-            if (bText.includes('rush') || bText.includes('yard')) return 1;
-          }
-
-          if (lastChunkText.includes('receiver') || lastChunkText.includes('catch')) {
-            if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
-            if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
-          }
-        }
-
-        // Alphabetical fallback
-        return aText.localeCompare(bText);
-      })
-      .slice(0, 10) // Limit to top 10 suggestions for performance
-      .map(chunk => ({
-        chunk,
-        displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
-      }));
-
-    setSuggestions(sortedSuggestions);
-    setShowSuggestions(sortedSuggestions.length > 0);
-    setSelectedSuggestionIndex(-1);
-  }, [query, chain, getPartialInput, insertingAtIndex]);
-
-  /**
    * Handles suggestion selection (both mouse clicks and keyboard selection)
    * Manages the chunk chain, slot modals, and auto-suggestions
    */
@@ -184,6 +89,102 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       showNextSuggestions();
     }
   };
+
+  /**
+   * Smart suggestion system that updates based on current query and chain state
+   * Features:
+   * - Filters suggestions based on partial user input
+   * - Prevents race conditions when selecting suggestions
+   * - Shows contextually relevant suggestions based on chain history
+   */
+  useEffect(() => {
+    // RACE CONDITION FIX: Skip if query exactly matches chain.English 
+    // This happens right after selecting a suggestion to prevent wiping auto-suggestions
+    if (query === chain.English) {
+      return;
+    }
+
+    // Clear suggestions if query is empty
+    if (query.trim() === '') {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+
+    const availableChunks = getAvailableChunks();
+    const partialInput = getPartialInput();
+
+    // If inserting, create a partial chain up to the insertion point
+    let contextChain = chain;
+    if (insertingAtIndex !== null) {
+      contextChain = new ChunkChain();
+      const chainArray = chain.toArray();
+      for (let i = 0; i < insertingAtIndex; i++) {
+        contextChain.append(chainArray[i]);
+      }
+      contextChain.compile();
+    }
+
+    const validNextChunks = contextChain.getNextValidChunksFromChunks(availableChunks);
+
+    // INTELLIGENT FILTERING: Prioritize suggestions based on context
+    const prioritizedSuggestions = (() => {
+      if (!partialInput) return validNextChunks;
+      const fuse = new Fuse(validNextChunks, { keys: ['English'], threshold: 0.6 });
+      return fuse.search(partialInput).map(result => result.item);
+    })()
+
+    // AUTO-SELECT: If there's an exact match, select it automatically
+    const exactMatch = prioritizedSuggestions.find(chunk =>
+      chunk.English.toLowerCase() === partialInput.toLowerCase()
+    );
+    if (exactMatch) {
+      handleSuggestionClick({ chunk: exactMatch });
+      return;
+    }
+
+    const sortedSuggestions = prioritizedSuggestions.sort((a, b) => {
+      // SMART PRIORITIZATION based on chain context
+      const aText = a.English.toLowerCase();
+      const bText = b.English.toLowerCase();
+      const input = partialInput.toLowerCase();
+
+      // Exact matches first
+      if (aText.startsWith(input) && !bText.startsWith(input)) return -1;
+      if (bText.startsWith(input) && !aText.startsWith(input)) return 1;
+
+      // Context-aware suggestions (you can expand this logic)
+      // For example, if last chunk was about running backs, prioritize rushing stats
+      const lastChunk = chain.toArray().slice(-1)[0];
+      if (lastChunk) {
+        const lastChunkText = lastChunk.English.toLowerCase();
+
+        // Simple context matching - can be expanded based on your domain knowledge
+        if (lastChunkText.includes('running back') || lastChunkText.includes('rush')) {
+          if (aText.includes('rush') || aText.includes('yard')) return -1;
+          if (bText.includes('rush') || bText.includes('yard')) return 1;
+        }
+
+        if (lastChunkText.includes('receiver') || lastChunkText.includes('catch')) {
+          if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
+          if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
+        }
+      }
+
+      // Alphabetical fallback
+      return aText.localeCompare(bText);
+    })
+      .slice(0, 10) // Limit to top 10 suggestions for performance
+      .map(chunk => ({
+        chunk,
+        displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
+      }));
+
+    setSuggestions(sortedSuggestions);
+    setShowSuggestions(sortedSuggestions.length > 0);
+    setSelectedSuggestionIndex(-1);
+  }, [handleSuggestionClick, query, chain, getPartialInput, insertingAtIndex]);
+
 
   /**
    * Shows contextually relevant suggestions after a chunk is added to the chain
@@ -405,7 +406,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const removeChunk = (index: number) => {
     const chainArray = chain.toArray();
     if (index < 0 || index >= chainArray.length) return;
-    
+
     // Rebuild chain without the chunk at the specified index
     const newChain = new ChunkChain();
     chainArray.forEach((chunk, i) => {
@@ -413,7 +414,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         newChain.append(chunk);
       }
     });
-    
+
     setChain(newChain);
     newChain.compile();
     setQuery(newChain.English);
