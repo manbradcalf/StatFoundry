@@ -49,7 +49,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     English: "who have played at least [number] for [team]",
     Cypher: "",
     EnglishTemplate: "who have played {num} for {team}",
-    CypherTemplate: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, count(pg) as gameCount WHERE gameCount >= {num}",
+    CypherTemplate: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, collect(pg) as games WHERE size(games) >= {num} UNWIND games as pg",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
