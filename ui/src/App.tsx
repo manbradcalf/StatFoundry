@@ -13,10 +13,10 @@ function AppContent() {
       <button className="login-button" title="Sign in (coming soon)" onClick={() => alert("Login functionality coming soon!")}>
         Login
       </button>
-      
+
       <header className="App-header">
         <h1>StatFoundry</h1>
-        <i>Finally, a better way to find stats</i>
+        <i>Finally, a better way </i>
         <SearchBar />
       </header>
       <div className="App-body">

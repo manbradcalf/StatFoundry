@@ -83,7 +83,7 @@ export const SearchBar: React.FC = () => {
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder={chain.Tail?.chunk.English || "Running backs who rushed for..."}
+            placeholder={chain.Tail?.chunk.English || "Running backs who had..."}
             className="search-input"
             autoComplete="off"
           />

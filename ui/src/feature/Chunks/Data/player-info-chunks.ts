@@ -14,10 +14,10 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "named [Alvin Kamara]",
-    Cypher: "named 'Alvin Kamara'",
+    English: "with [name]",
+    Cypher: "",
     EnglishTemplate: "named {name}",
-    CypherTemplate: "WHERE p.display_name ={name}",
+    CypherTemplate: "WHERE p.display_name = {name}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }],
@@ -25,6 +25,43 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
       {
         Name: "name",
         Value: "John Doe",
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+  },
+  {
+    English: "currently on [team]",
+    Cypher: "",
+    EnglishTemplate: "currently on {team}",
+    CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "p", Label: Label.Player }],
+    Outputs: [{ Name: "p", Label: Label.Player }],
+    Slots: [
+      {
+        Name: "team",
+        Value: "SEA",
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+  },
+  {
+    English: "who have played at least [number] for [team]",
+    Cypher: "",
+    EnglishTemplate: "who have played {num} for {team}",
+    CypherTemplate: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, count(pg) as gameCount WHERE gameCount >= {num}",
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "p", Label: Label.Player }],
+    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Slots: [
+      {
+        Name: "num",
+        Value: 10,
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+      {
+        Name: "team",
+        Value: "SEA",
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],

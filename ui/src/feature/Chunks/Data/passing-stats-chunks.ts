@@ -8,17 +8,17 @@ import { PASSING_STATS } from "../Views/PassingStats";
 export const PASSING_STATS_CHUNKS: Chunk[] = [
   // Game
   {
-    English: "who passed for MORE than [...] in a Game",
+    English: "who had [passing stat] > [value] in a Game",
     Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
-    EnglishTemplate: "who passed for MORE THAN {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE p.{stat} > {value}",
+    EnglishTemplate: "who had MORE THAN {value} {stat} in a Game",
+    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 100,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
@@ -29,26 +29,27 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     ]
   },
   {
-    English: "who passed for LESS THAN [...] in a Game",
+    English: "who had [passing stat] < [value] in a Game",
     Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
-    EnglishTemplate: "who passed for LESS THAN {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE p.{stat} < {value}",
+    EnglishTemplate: "who had LESS THAN {value} {stat} in a Game",
+    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 2.0,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
         Name: "stat",
-        Value: "passing_yards",
+        Value: "passing_epa",
         SlotValueTypes: [SlotType.SelectPassingStats]
       },
     ]
   },
+
   //  Season
   {
     English: "who passed for MORE THAN [...] in a Season",
@@ -61,12 +62,12 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 4000,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
         Name: "stat",
-        Value: "ruhsing_yards",
+        Value: "passing_yards",
         SlotValueTypes: [SlotType.SelectPassingStats]
       },
     ]
@@ -82,7 +83,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     Slots: [
       {
         Name: "value",
-        Value: 1000,
+        Value: 4000,
         SlotValueTypes: [SlotType.FilterValue]
       },
       {
@@ -91,21 +92,5 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.SelectPassingStats]
       },
     ]
-  },
-  {
-    English: "return passing stats by game",
-    Cypher: `RETURN pg.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")}`,
-    QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
-    Outputs: [],
-    Slots: [],
-  },
-  {
-    English: "return passing stats by season",
-    Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")}`,
-    QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "ps", Label: Label.PlayerSeason }],
-    Outputs: [],
-    Slots: [],
   },
 ];
