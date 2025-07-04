@@ -4,6 +4,7 @@ import './App.css';
 import { SearchProvider } from './contexts/SearchContext';
 import { SearchBar, ChainDisplay } from './components';
 import { SearchResults } from './components/SearchResults';
+// App configured for environment-based deployment (development/production)
 
 function AppContent() {
   return (
