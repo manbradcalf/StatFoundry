@@ -74,6 +74,11 @@ The initial investment in graph architecture positions us well for these future 
 
 ## Development Setup
 
+### Prerequisites
+- Node.js 16+ (for frontend)
+- Python 3.11+ (for backend)
+- Neo4j AuraDB instance
+
 ### Python Environment
 
 ```bash
@@ -91,6 +96,14 @@ source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Set environment variables:
+# ENVIRONMENT=development (for local dev)
+# NEO4J_STATFOUNDRY_NFL_AURA_URI=your-neo4j-uri
+# NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD=your-password
+
+# Start the backend
+uvicorn src.app:app --reload
 ```
 
 ### Frontend Setup
@@ -98,7 +111,56 @@ pip install -r requirements.txt
 ```bash
 cd ui
 npm install
+cp .env.example .env
+# Configure environment variables in .env for local development
+npm start
 ```
+
+## Deployment
+
+### Environment Configuration
+
+#### Development
+- **Frontend**: `http://localhost:3000` → `http://localhost:8000`
+- **Backend**: CORS enabled for local development
+- **Database**: Neo4j AuraDB
+- **Environment Variables**: Uses `.env` files and local environment
+
+#### Production
+- **Frontend**: Azure Static Web Apps
+- **Backend**: Azure App Service  
+- **Database**: Neo4j AuraDB with production credentials
+- **Security**: CORS disabled, environment-based configuration
+
+### Automated Deployments
+
+#### Frontend (Azure Static Web Apps)
+- **Trigger**: Pushes to `main` branch with changes in `ui/` directory
+- **Process**: Build React app with production environment → Deploy to Azure Static Web Apps
+- **Configuration**: Uses `.env.production` for environment variables
+- **Requirements**: 
+  - `AZURE_STATIC_WEB_APPS_API_TOKEN` repository secret
+  - Environment variables set in workflow (production service URL)
+
+#### Backend (Azure App Service)
+- **Trigger**: Pushes to `main` branch with changes in `service/` directory  
+- **Process**: Build Python app → Deploy to Azure App Service
+- **Configuration**: Environment variables set in Azure App Service
+- **Requirements**:
+  - Azure service principal secrets for authentication
+  - Production environment variables in Azure App Service:
+    ```
+    ENVIRONMENT=production
+    NEO4J_STATFOUNDRY_NFL_AURA_URI=your-neo4j-uri
+    NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD=your-password
+    ```
+
+### Security Features
+
+- **Environment-based CORS**: Backend CORS middleware only enabled in development
+- **Environment variable validation**: Backend validates required environment variables on startup
+- **Separate configurations**: Different environment files for development vs production
+- **Secure deployment**: Production deployments use Azure service principals and deployment tokens
 
 ## CI/CD Workflows
 
