@@ -2,8 +2,6 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { Label } from "../Enums/Label";
 import { SlotType } from "../Enums/SlotType";
-import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
-import { PASSING_STATS } from "../Views/PassingStats";
 
 export const PASSING_STATS_CHUNKS: Chunk[] = [
   // Game
