@@ -17,6 +17,13 @@ React frontend application for testing the chunk-based query building system.
    npm install
    ```
 
+2. Configure environment variables:
+
+   Copy `.env.example` to `.env` and update the values:
+   ```bash
+   cp .env.example .env
+   ```
+
 ## Development
 
 Run the development server:
@@ -26,6 +33,17 @@ npm start
 ```
 
 The application will be available at <http://localhost:3000>
+
+## Environment Configuration
+
+The UI uses environment variables for configuration:
+
+- **Development**: Uses `.env` file (defaults to `http://localhost:8000`)
+- **Production**: Uses `.env.production` file (points to Azure App Service)
+
+Environment variables:
+- `REACT_APP_ENVIRONMENT`: Environment type (development/production)
+- `REACT_APP_SERVICE_URL`: URL of the StatFoundry API service
 
 ## How to Use
 

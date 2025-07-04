@@ -1,0 +1,14 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "statfoundry": {
+      "appLocation": "ui",
+      "outputLocation": "build",
+      "appBuildCommand": "npm run build",
+      "run": "npm start",
+      "appDevserverUrl": "http://localhost:3000",
+      "appName": "statfoundry-swa",
+      "resourceGroup": "statfoundry-swa-rg"
+    }
+  }
+}

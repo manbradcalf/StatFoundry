@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { config } from "../config";
 import { PLAYER_GAME_INFO_PROPERTIES } from "../feature/Chunks/Views/PlayerGameInfo";
 import { RUSHING_STATS } from "../feature/Chunks/Views/RushingStats";
 import { PASSING_STATS } from "../feature/Chunks/Views/PassingStats";
@@ -27,7 +28,7 @@ export const useSearchAPI = () => {
     setSearchError(null);
 
     try {
-      const response = await fetch("http://localhost:8000/api/query", {
+      const response = await fetch(`${config.serviceUrl}/api/query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
