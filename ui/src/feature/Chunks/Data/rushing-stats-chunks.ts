@@ -36,7 +36,7 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
     CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player, Description: "RBs" }, { Name: "pg", Label: Label.PlayerGame, Description: "games with less than X yards rushing" }],
+    Outputs: [{ Name: "p", Label: Label.Player, }, { Name: "pg", Label: Label.PlayerGame }],
     Slots: [
       {
         Name: "value",
