@@ -46,9 +46,9 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who have played at least [number] for [team]",
+    English: "who have played at least [number] games for [team]",
     Cypher: "",
-    EnglishTemplate: "who have played {num} for {team}",
+    EnglishTemplate: "who have played {num} games for {team}",
     CypherTemplate: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, collect(pg) as games WHERE size(games) >= {num} UNWIND games as pg",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
@@ -66,4 +66,20 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
       },
     ],
   },
+  {
+    English: "who went to [college]",
+    Cypher: "",
+    EnglishTemplate: "who went to {college}",
+    CypherTemplate: "MATCH (p) where p.college_name={college}",
+    QueryType: QueryType.FILTER,
+    Inputs: [{ Name: "p", Label: Label.Player }],
+    Outputs: [{ Name: "p", Label: Label.Player }],
+    Slots: [
+      {
+        Name: "college",
+        Value: "Virginia Tech",
+        SlotValueTypes: [SlotType.FilterValue],
+      }
+    ],
+  }
 ];

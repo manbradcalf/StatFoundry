@@ -6,6 +6,7 @@ export interface PlayerSeason extends Entity {
   properties: {
     // Basic season information
     player_id: string;
+    player_name: string;
     player_season_id: string;
     season: number;
     season_type: string;
