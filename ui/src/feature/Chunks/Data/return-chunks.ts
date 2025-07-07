@@ -8,6 +8,23 @@ import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
 import { RUSHING_STATS } from "../Views/RushingStats";
 
 export const RETURN_CHUNKS: Chunk[] = [
+  {
+    English: "return player and their games",
+    Cypher: "WITH p, collect(pg) as games RETURN p {.display_name, games: games } AS playerWithGames;",
+    QueryType: QueryType.RETURN,
+    Outputs: [],
+    Inputs: [],
+    Slots: []
+  },
+
+  {
+    English: "return player and their seasons",
+    Cypher: "WITH p, collect(ps) as seasons RETURN p {.display_name, seasons: seasons } AS playerWithSeasons;",
+    QueryType: QueryType.RETURN,
+    Outputs: [],
+    Inputs: [],
+    Slots: []
+  }
   // {
   //   English: "return player rushing stats by season",
   //   Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RUSHING_STATS].join(", ps.")} LIMIT 10`,
