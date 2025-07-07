@@ -9,151 +9,54 @@ import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
 export const RUSHING_STATS_CHUNKS: Chunk[] = [
   // Game
   {
-    English: "who had [rushing stat] > [value] in a Game",
+    English: "who had [rushing stats] in a Game",
     Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
-    EnglishTemplate: "who had MORE THAN {value} {stat} in a Game",
+    EnglishTemplate: "who had {condition} {value} {stat} in a Game",
     CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
     Slots: [
       {
+        Name: "stat",
+        Value: "rushing_yards",
+        SlotValueTypes: [SlotType.SelectRushingStats]
+      }, {
+        Name: "condition",
+        Value: ">",
+        SlotValueTypes: [SlotType.FilterCondition]
+      },
+      {
         Name: "value",
         Value: 100,
         SlotValueTypes: [SlotType.FilterValue]
       },
-      {
-        Name: "stat",
-        Value: "rushing_yards",
-        SlotValueTypes: [SlotType.SelectRushingStats]
-      },
     ]
   },
+  // Season
   {
-    English: "who had [rushing stat] < [value] in a Game",
-    Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
-    EnglishTemplate: "who had LESS THAN {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} < {value}",
-    QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player, }, { Name: "pg", Label: Label.PlayerGame }],
-    Slots: [
-      {
-        Name: "value",
-        Value: 2.0,
-        SlotValueTypes: [SlotType.FilterValue]
-      },
-      {
-        Name: "stat",
-        Value: "rushing_epa",
-        SlotValueTypes: [SlotType.SelectRushingStats]
-      },
-    ]
-  },
-  {
-    English: "who had [rushing stat] == [value] in a Game",
-    Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} = {value}",
-    EnglishTemplate: "who had EXACTLY {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} = {value}",
-    QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
-    Slots: [
-      {
-        Name: "value",
-        Value: 2,
-        SlotValueTypes: [SlotType.FilterValue]
-      },
-      {
-        Name: "stat",
-        Value: "rushing_fumbles",
-        SlotValueTypes: [SlotType.SelectRushingStats]
-      },
-    ]
-  },
-  //  Season
-  {
-    English: "who had [rushing stat] > [value] in a Season",
-    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value} WITH DISTINCT p",
-    EnglishTemplate: "who had MORE THAN {value} {stat} in a Season",
-    CypherTemplate: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value} WITH DISTINCT p",
-    QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }],
-    Slots: [
-      {
-        Name: "value",
-        Value: 1000,
-        SlotValueTypes: [SlotType.FilterValue]
-      },
-      {
-        Name: "stat",
-        Value: "rushing_yards",
-        SlotValueTypes: [SlotType.SelectRushingStats]
-      },
-    ]
-  },
-  {
-    English: "who had [rushing stat] < [value] in a Season",
-    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} < {value} WITH DISTINCT p",
-    EnglishTemplate: "who rushed for LESS THAN {value} {stat} in a Season",
-    CypherTemplate: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} < {value} WITH DISTINCT p",
-    QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }],
-    Slots: [
-      {
-        Name: "value",
-        Value: 50,
-        SlotValueTypes: [SlotType.FilterValue]
-      },
-      {
-        Name: "stat",
-        Value: "carries",
-        SlotValueTypes: [SlotType.SelectRushingStats]
-      },
-    ]
-  },
-  // Season-focused chunks (returns all qualifying seasons)
-  {
-    English: "seasons where players had [rushing stat] > [value]",
+    English: "who had [rushing stats] in a Season",
     Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
-    EnglishTemplate: "seasons where players had MORE THAN {value} {stat}",
+    EnglishTemplate: "who had {condition} {value} {stat} in a Season",
     CypherTemplate: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
     Outputs: [{ Name: "p", Label: Label.Player }, { Name: "ps", Label: Label.PlayerSeason }],
     Slots: [
       {
-        Name: "value",
-        Value: 1000,
-        SlotValueTypes: [SlotType.FilterValue]
-      },
-      {
         Name: "stat",
         Value: "rushing_yards",
         SlotValueTypes: [SlotType.SelectRushingStats]
       },
-    ]
-  },
-  {
-    English: "seasons where players had [rushing stat] < [value]",
-    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} < {value}",
-    EnglishTemplate: "seasons where players rushed for LESS THAN {value} {stat}",
-    CypherTemplate: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} < {value}",
-    QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "ps", Label: Label.PlayerSeason }],
-    Slots: [
       {
-        Name: "value",
-        Value: 50,
-        SlotValueTypes: [SlotType.FilterValue]
+        Name: "condition",
+        Value: ">",
+        SlotValueTypes: [SlotType.FilterCondition]
       },
       {
-        Name: "stat",
-        Value: "carries",
-        SlotValueTypes: [SlotType.SelectRushingStats]
+        Name: "value",
+        Value: 100,
+        SlotValueTypes: [SlotType.FilterValue]
       },
     ]
   },

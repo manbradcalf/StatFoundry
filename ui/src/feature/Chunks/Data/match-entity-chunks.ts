@@ -7,7 +7,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Players",
     Cypher: "MATCH (p:Player)",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [{ Name: "p", Label: Label.Player }],
     Slots: [],
@@ -15,7 +15,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Quarterbacks",
     Cypher: "MATCH (p:Player) WHERE p.position = 'QB'",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [{ Name: "p", Label: Label.Player }],
     Slots: [],
@@ -23,7 +23,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Running backs",
     Cypher: "MATCH (p:Player) WHERE p.position = 'RB'",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [{ Name: "p", Label: Label.Player }],
     Slots: [],
@@ -31,7 +31,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Wide receivers",
     Cypher: "MATCH (p:Player) WHERE p.position = 'WR'",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [{ Name: "p", Label: Label.Player }],
     Slots: [],
@@ -39,15 +39,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Tight ends",
     Cypher: "MATCH (p:Player) WHERE p.position = 'TE'",
-    QueryType: QueryType.MATCH,
-    Inputs: [],
-    Outputs: [{ Name: "p", Label: Label.Player }],
-    Slots: [],
-  },
-  {
-    English: "Receivers",
-    Cypher: "MATCH (p:Player) WHERE p.position IN ['WR', 'TE']",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [{ Name: "p", Label: Label.Player }],
     Slots: [],
@@ -55,7 +47,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Teams",
     Cypher: "MATCH (t:Team)",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [{ Name: "t", Label: Label.Team }],
     Slots: [],
@@ -63,7 +55,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Player Games",
     Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame)",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [
       { Name: "p", Label: Label.Player },
@@ -74,7 +66,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Player Seasons",
     Cypher: "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason)",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [
       { Name: "p", Label: Label.Player },
@@ -85,7 +77,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Team Seasons",
     Cypher: "MATCH (t:Team)-[:HAD]->(ts:TeamSeason)",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [
       { Name: "t", Label: Label.Team },
@@ -96,7 +88,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
   {
     English: "Team Games",
     Cypher: "MATCH (t:Team)-[:HAD]->(tg:TeamGame)",
-    QueryType: QueryType.MATCH,
+    QueryType: QueryType.MATCH_START,
     Inputs: [],
     Outputs: [
       { Name: "t", Label: Label.Team },

@@ -74,7 +74,7 @@ export class ChunkChain {
    */
   insertAt(index: number, chunk: Chunk): ChunkNode {
     const newNode: ChunkNode = { chunk, prev: null, next: null };
-    
+
     if (index === 0 || !this.Head) {
       // Insert at beginning
       newNode.next = this.Head;
@@ -85,12 +85,12 @@ export class ChunkChain {
       // Find the node at the target index
       let current: ChunkNode | null = this.Head;
       let currentIndex = 0;
-      
+
       while (current && currentIndex < index) {
         current = current.next;
         currentIndex++;
       }
-      
+
       if (current) {
         // Insert before the current node
         newNode.next = current;
@@ -104,7 +104,7 @@ export class ChunkChain {
         this.Tail = newNode;
       }
     }
-    
+
     return newNode;
   }
 
@@ -168,11 +168,13 @@ export class ChunkChain {
 
 function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
   // filter out invalid query types before we check if we have enough of each type
-  if (
-    chunk.Inputs.length === 0 &&
-    (chunk.QueryType === QueryType.RETURN ||
-      chunk.QueryType === QueryType.FILTER)
-  ) {
+  // if we have no aliases, we have nothing to return or filter, so return false
+  if (currentAliases.length === 0 && (chunk.QueryType === QueryType.RETURN || chunk.QueryType === QueryType.FILTER)) {
+    return false;
+  }
+
+  // if we have aliases, we've already started, so return false
+  if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
     return false;
   }
 

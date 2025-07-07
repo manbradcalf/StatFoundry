@@ -49,7 +49,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "who played for [MIN] in those games",
+    English: "who played for [MIN]",
     Cypher:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = 'MIN'",
     EnglishTemplate: "who played for {team} in those games",
@@ -67,7 +67,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who played against [GB] in those games",
+    English: "who played against [GB]",
     Cypher:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = 'GB'",
     EnglishTemplate: "who played against {team} in those games",
