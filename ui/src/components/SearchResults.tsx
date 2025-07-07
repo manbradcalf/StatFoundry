@@ -1,18 +1,15 @@
 import React from "react";
 import { useSearchContext } from "../contexts/SearchContext";
+import FilterResultsToggle from "./FilterResultsChips"
 
-interface SearchResultsProps {
-  searchResults: any[] | null;
-  searchError: string | null;
-}
-
-export const SearchResults: React.FC<SearchResultsProps> = () => {
+export const SearchResults: React.FC = () => {
   const { searchResults, searchError } = useSearchContext();
 
   return (
     <div className="search-results-body">
       <div>
         <h2>Results</h2>
+        <FilterResultsToggle />
         <pre
           style={{
             backgroundColor: "#f5f5f5",
