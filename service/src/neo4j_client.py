@@ -23,8 +23,16 @@ _fetch_rel_patterns = """
     ORDER BY rel_type
 """
 
+
 def create_driver(uri, auth):
-    return GraphDatabase.driver(uri, auth=auth)
+    return GraphDatabase.driver(
+        uri,
+        auth=auth,
+        # connection pool config to prevent stale connections returning errors
+        liveness_check_timeout=0,
+        max_connection_lifetime=3500,
+    )
+
 
 def close_driver(driver):
     driver.close()
@@ -32,6 +40,7 @@ def close_driver(driver):
 
 # Initialize Neo4j driver
 driver = create_driver(URI, AUTH)
+
 
 # TODO: Replace with MCP?
 def fetch_schema(driver):
@@ -58,6 +67,7 @@ def fetch_schema(driver):
             for rel in rel_patterns
         ],
     }
+
 
 def execute_query(driver, query):
     with driver.session() as session:
