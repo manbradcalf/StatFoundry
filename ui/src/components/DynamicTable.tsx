@@ -21,6 +21,16 @@ interface DynamicTableProps {
   maxHeight?: string;
 }
 
+/**
+ * Sort configuration interface
+ * - key: The column key to sort by
+ * - direction: Sort direction ('asc' for ascending, 'desc' for descending, null for no sort)
+ */
+interface SortConfig {
+  key: string | null;
+  direction: "asc" | "desc" | null;
+}
+
 // Default NFL stats grouping
 const defaultNFLGroups: TableGroup[] = [
   {
@@ -119,6 +129,47 @@ const identifyingFields = [
   "week",
 ];
 
+/**
+ * Utility function to determine if a value is numeric
+ * @param value - The value to check
+ * @returns true if the value can be treated as a number
+ */
+const isNumeric = (value: any): boolean => {
+  if (value === null || value === undefined || value === "") return false;
+  return !isNaN(Number(value)) && isFinite(Number(value));
+};
+
+/**
+ * Comparison function for sorting two values
+ * Prioritizes numeric comparison over string comparison
+ * @param a - First value to compare
+ * @param b - Second value to compare
+ * @param direction - Sort direction ('asc' or 'desc')
+ * @returns comparison result (-1, 0, 1)
+ */
+const compareValues = (a: any, b: any, direction: "asc" | "desc"): number => {
+  // Handle null/undefined values - always put them at the end
+  if (a == null && b == null) return 0;
+  if (a == null) return 1;
+  if (b == null) return -1;
+
+  // Convert to strings for comparison
+  const aStr = String(a).trim();
+  const bStr = String(b).trim();
+
+  // If both values are numeric, compare as numbers
+  if (isNumeric(aStr) && isNumeric(bStr)) {
+    const aNum = Number(aStr);
+    const bNum = Number(bStr);
+    const result = aNum - bNum;
+    return direction === "asc" ? result : -result;
+  }
+
+  // Fall back to string comparison (case-insensitive)
+  const result = aStr.toLowerCase().localeCompare(bStr.toLowerCase());
+  return direction === "asc" ? result : -result;
+};
+
 export const DynamicTable: React.FC<DynamicTableProps> = ({
   data,
   excludeColumns = defaultExcludeColumns,
@@ -127,8 +178,17 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   pageSize = 25,
   maxHeight = "600px",
 }) => {
+  // State for tracking expanded rows
   const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
+
+  // State for pagination
   const [currentPage, setCurrentPage] = useState(0);
+
+  // State for column sorting
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: null,
+    direction: null,
+  });
 
   // Flatten nested objects and separate array data
   const processedData = useMemo(() => {
@@ -160,69 +220,124 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     });
   }, [data]);
 
+  // Get all available keys from flattened data
+  const allFlatKeys = useMemo(() => {
+    return Array.from(
+      new Set(processedData.flatMap((item) => Object.keys(item.flattened)))
+    );
+  }, [processedData]);
+
+  // Get array keys
+  const arrayKeys = useMemo(() => {
+    return Array.from(
+      new Set(processedData.flatMap((item) => Object.keys(item.arrays)))
+    );
+  }, [processedData]);
+
+  // Filter out excluded columns
+  const availableKeys = useMemo(() => {
+    return allFlatKeys.filter((key) => !excludeColumns.includes(key));
+  }, [allFlatKeys, excludeColumns]);
+
+  // Prioritize key identifying fields for master rows
+  const { finalKeys } = useMemo(() => {
+    const identifyingKeysPresent = identifyingFields.filter((key) =>
+      availableKeys.includes(key)
+    );
+    const remainingKeys = availableKeys.filter(
+      (key) => !identifyingFields.includes(key)
+    );
+
+    // Group remaining columns by category
+    const groupedKeys: string[] = [];
+    const usedKeys = new Set<string>(identifyingKeysPresent);
+
+    // Sort groups by priority and add their keys
+    columnGroups
+      .sort((a, b) => a.priority - b.priority)
+      .forEach((group) => {
+        const groupKeys = group.keys.filter(
+          (key) => availableKeys.includes(key) && !usedKeys.has(key)
+        );
+        groupKeys.forEach((key) => usedKeys.add(key));
+        groupedKeys.push(...groupKeys);
+      });
+
+    // Add any remaining uncategorized keys
+    const uncategorizedKeys = remainingKeys.filter((key) => !usedKeys.has(key));
+
+    // Final column order: identifying fields first, then grouped fields, then uncategorized
+    const finalKeys = [
+      ...identifyingKeysPresent,
+      ...groupedKeys,
+      ...uncategorizedKeys,
+    ];
+
+    return { finalKeys };
+  }, [availableKeys, columnGroups]);
+
+  /**
+   * Sort the processed data based on current sort configuration
+   * This happens before pagination so we sort the entire dataset
+   */
+  const sortedData = useMemo(() => {
+    if (!sortConfig.key || !sortConfig.direction) {
+      return processedData;
+    }
+
+    return [...processedData].sort((a, b) => {
+      const aValue = a.flattened[sortConfig.key!];
+      const bValue = b.flattened[sortConfig.key!];
+      return compareValues(aValue, bValue, sortConfig.direction!);
+    });
+  }, [processedData, sortConfig]);
+
+  // Pagination logic - applied to sorted data
+  const totalPages = Math.ceil(sortedData.length / pageSize);
+  const startIndex = currentPage * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedData = sortedData.slice(startIndex, endIndex);
+
+  // Early return after all hooks are called
   if (processedData.length === 0) {
     return <div style={{ color: "#888", textAlign: "center" }}>No results</div>;
   }
 
-  // Get all available keys from flattened data
-  const allFlatKeys = Array.from(
-    new Set(processedData.flatMap((item) => Object.keys(item.flattened)))
-  );
-
-  // Get array keys
-  const arrayKeys = Array.from(
-    new Set(processedData.flatMap((item) => Object.keys(item.arrays)))
-  );
-
-  // Filter out excluded columns
-  const availableKeys = allFlatKeys.filter(
-    (key) => !excludeColumns.includes(key)
-  );
-
-  // Prioritize key identifying fields for master rows
-  const identifyingKeysPresent = identifyingFields.filter((key) =>
-    availableKeys.includes(key)
-  );
-  const remainingKeys = availableKeys.filter(
-    (key) => !identifyingFields.includes(key)
-  );
-
-  // Group remaining columns by category
-  const groupedKeys: string[] = [];
-  const usedKeys = new Set<string>(identifyingKeysPresent);
-
-  // Sort groups by priority and add their keys
-  columnGroups
-    .sort((a, b) => a.priority - b.priority)
-    .forEach((group) => {
-      const groupKeys = group.keys.filter(
-        (key) => availableKeys.includes(key) && !usedKeys.has(key)
-      );
-      groupKeys.forEach((key) => usedKeys.add(key));
-      groupedKeys.push(...groupKeys);
+  /**
+   * Handle column header clicks for sorting
+   * @param key - The column key to sort by
+   */
+  const handleSort = (key: string) => {
+    setSortConfig((prevConfig) => {
+      // If clicking the same column, cycle through: asc -> desc -> null
+      if (prevConfig.key === key) {
+        if (prevConfig.direction === "asc") {
+          return { key, direction: "desc" };
+        } else if (prevConfig.direction === "desc") {
+          return { key: null, direction: null };
+        }
+      }
+      // If clicking a new column or no sort, start with ascending
+      return { key, direction: "asc" };
     });
 
-  // Add any remaining uncategorized keys
-  const uncategorizedKeys = remainingKeys.filter((key) => !usedKeys.has(key));
+    // Reset to first page when sorting changes
+    setCurrentPage(0);
+  };
 
-  // Final column order: identifying fields first, then grouped fields, then uncategorized
-  const finalKeys = [
-    ...identifyingKeysPresent,
-    ...groupedKeys,
-    ...uncategorizedKeys,
-  ];
-
-  // Pagination logic
-  const totalPages = Math.ceil(processedData.length / pageSize);
-  const startIndex = currentPage * pageSize;
-  const endIndex = startIndex + pageSize;
-  const paginatedData = processedData.slice(startIndex, endIndex);
-
+  /**
+   * Navigate to a specific page
+   * @param page - The page number to navigate to
+   */
   const goToPage = (page: number) => {
     setCurrentPage(page);
     setExpandedRows(new Set()); // Clear expanded rows when changing pages
   };
 
+  /**
+   * Toggle expansion state of a table row
+   * @param index - The row index to toggle
+   */
   const toggleRow = (index: number) => {
     const newExpanded = new Set(expandedRows);
     if (newExpanded.has(index)) {
@@ -233,11 +348,26 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     setExpandedRows(newExpanded);
   };
 
+  /**
+   * Format column header text for display
+   * @param key - The column key
+   * @returns formatted header text
+   */
   const formatColumnHeader = (key: string): string => {
     return key
       .replace(/^[a-z]+\./, "")
       .replace(/_/g, " ")
       .replace(/\b\w/g, (l) => l.toUpperCase());
+  };
+
+  /**
+   * Get sort indicator for a column header
+   * @param key - The column key
+   * @returns sort indicator string (arrow or empty)
+   */
+  const getSortIndicator = (key: string): string => {
+    if (sortConfig.key !== key) return "";
+    return sortConfig.direction === "asc" ? " ↑" : " ↓";
   };
 
   return (
@@ -248,7 +378,15 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             <tr>
               {arrayKeys.length > 0 && <th className="expand-column"></th>}
               {finalKeys.map((key) => (
-                <th key={key}>{formatColumnHeader(key)}</th>
+                <th
+                  key={key}
+                  onClick={() => handleSort(key)}
+                  className={`sortable-header ${sortConfig.key === key ? "sorted" : ""}`}
+                  title={`Click to sort by ${formatColumnHeader(key)}`}
+                >
+                  {formatColumnHeader(key)}
+                  {getSortIndicator(key)}
+                </th>
               ))}
             </tr>
           </thead>
@@ -309,8 +447,14 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
       {totalPages > 1 && (
         <div className="pagination-container">
           <div className="pagination-info">
-            Showing {startIndex + 1}-{Math.min(endIndex, processedData.length)}{" "}
-            of {processedData.length} results
+            Showing {startIndex + 1}-{Math.min(endIndex, sortedData.length)} of{" "}
+            {sortedData.length} results
+            {sortConfig.key && (
+              <span className="sort-info">
+                {" • Sorted by " + formatColumnHeader(sortConfig.key)}
+                {sortConfig.direction === "asc" ? " ↑" : " ↓"}
+              </span>
+            )}
           </div>
           <div className="pagination-controls">
             <button

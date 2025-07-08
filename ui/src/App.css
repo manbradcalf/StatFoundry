@@ -955,159 +955,118 @@ input[type="number"] {
 
 /* Dynamic Table Styles */
 .dynamic-table-container {
+  margin: 20px 0;
   width: 100%;
   max-width: 100%;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   box-sizing: border-box;
 }
 
 .table-scroll-wrapper {
-  width: 100%;
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 600px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
 }
 
 .dynamic-table {
   width: max-content;
-  min-width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 0.9rem;
+  min-width: 100%;
+}
+
+.dynamic-table th,
+.dynamic-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  min-width: 120px;
+  word-break: break-word;
 }
 
 .dynamic-table th {
-  background: #f8fafc;
-  padding: 12px 16px;
-  text-align: left;
+  background-color: #f8f9fa;
   font-weight: 600;
-  color: #374151;
-  border-bottom: 2px solid #e2e8f0;
-  white-space: nowrap;
+  color: #495057;
   position: sticky;
   top: 0;
   z-index: 10;
-  min-width: 120px;
 }
 
-.dynamic-table td {
-  padding: 10px 16px;
-  border-bottom: 1px solid #f1f5f9;
-  color: #374151;
-  vertical-align: top;
-  white-space: nowrap;
-  min-width: 120px;
+/* Sortable header styles */
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  position: relative;
 }
 
-.dynamic-table tr:hover {
-  background: #f8fafc;
+.sortable-header:hover {
+  background-color: #e9ecef;
+}
+
+.sortable-header.sorted {
+  background-color: #007bff;
+  color: white;
+}
+
+.sortable-header.sorted:hover {
+  background-color: #0056b3;
 }
 
 .expand-column {
   width: 40px;
   min-width: 40px;
   max-width: 40px;
-  padding: 12px 8px !important;
+  padding: 8px 4px;
+  text-align: center;
 }
 
 .expand-cell {
   width: 40px;
   min-width: 40px;
   max-width: 40px;
-  padding: 10px 8px !important;
+  padding: 8px 4px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .expand-button {
   background: none;
   border: none;
-  color: #3b82f6;
   cursor: pointer;
-  font-size: 14px;
-  padding: 4px 6px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  font-size: 12px;
+  color: #007bff;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
 }
 
 .expand-button:hover {
-  background: #eff6ff;
-  transform: scale(1.1);
+  background-color: #f8f9fa;
 }
 
 .expanded-row {
-  background: #f8fafc !important;
+  background-color: #f8f9fa;
 }
 
 .nested-table-container {
   padding: 16px;
+  background-color: #fff;
+  border-radius: 4px;
   margin: 8px 0;
-  background: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
 }
 
 .nested-table-container h4 {
   margin: 0 0 12px 0;
-  color: #1e293b;
-  font-size: 14px;
+  color: #495057;
+  font-size: 1rem;
   font-weight: 600;
-  text-transform: capitalize;
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .dynamic-table {
-    font-size: 12px;
-  }
-  
-  .dynamic-table th,
-  .dynamic-table td {
-    padding: 8px 10px;
-    min-width: 100px;
-  }
-  
-  .expand-column {
-    width: 30px;
-    min-width: 30px;
-    max-width: 30px;
-    padding: 8px 4px !important;
-  }
-  
-  .expand-cell {
-    width: 30px;
-    min-width: 30px;
-    max-width: 30px;
-    padding: 8px 4px !important;
-  }
-  
-  .expand-button {
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    padding: 2px 4px;
-  }
-  
-  .nested-table-container {
-    padding: 12px;
-  }
-  
-  .dynamic-table-container {
-    max-width: calc(100vw - 32px);
-    margin: 0 auto;
-  }
-  
-  .table-scroll-wrapper {
-    max-width: 100%;
-  }
 }
 
 /* Pagination Styles */
@@ -1115,85 +1074,97 @@ input[type="number"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
-  border-radius: 0 0 8px 8px;
+  margin-top: 16px;
+  padding: 0 8px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .pagination-info {
-  color: #64748b;
-  font-size: 14px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.sort-info {
+  color: #007bff;
   font-weight: 500;
 }
 
 .pagination-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .pagination-button {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #374151;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #495057;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 4px;
+  font-size: 0.85rem;
   transition: all 0.2s ease;
-  min-width: 40px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 36px;
 }
 
 .pagination-button:hover:not(:disabled) {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background-color: #f8f9fa;
+  border-color: #007bff;
 }
 
 .pagination-button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
+  background-color: #f8f9fa;
 }
 
 .pagination-button.active {
-  background: #3b82f6;
-  border-color: #3b82f6;
-  color: #ffffff;
-}
-
-.pagination-button.active:hover {
-  background: #2563eb;
-  border-color: #2563eb;
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 
 .pagination-ellipsis {
-  color: #64748b;
-  padding: 0 4px;
-  font-weight: 500;
+  padding: 6px 8px;
+  color: #6c757d;
+  font-size: 0.85rem;
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
+  .dynamic-table-container {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+  }
+  
+  .dynamic-table th,
+  .dynamic-table td {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+  
   .pagination-container {
     flex-direction: column;
-    gap: 12px;
-    padding: 12px;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .pagination-info {
+    text-align: center;
+    font-size: 0.8rem;
   }
   
   .pagination-controls {
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
   }
   
   .pagination-button {
-    padding: 6px 8px;
-    font-size: 12px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
     min-width: 32px;
-    height: 32px;
   }
 }
 
