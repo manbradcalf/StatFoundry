@@ -5,16 +5,21 @@ import FilterResultsToggle from "./FilterResultsChips"
 export const SearchResults: React.FC = () => {
   const { searchResults, searchError } = useSearchContext();
 
+  // Only render if there are results or an error
+  if (!searchResults && !searchError) {
+    return null;
+  }
+
   return (
     <div className="search-results-body">
       <div>
-        <h2>Results</h2>
-        <FilterResultsToggle />
+        {/* <FilterResultsToggle /> */}
         <pre
           style={{
             backgroundColor: "#f5f5f5",
-            width: "50vw",
-            padding: "16px",
+            width: "100%",
+            maxWidth: "600px",
+            // padding: "16px",
             borderRadius: "4px",
             textAlign: "start",
             overflow: "auto",
