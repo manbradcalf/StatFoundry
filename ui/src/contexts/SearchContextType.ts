@@ -1,4 +1,5 @@
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
+import { Label } from "../feature/Chunks/Enums/Label";
 import { Suggestion } from "./Suggestion";
 
 export interface SearchContextType {
@@ -12,6 +13,7 @@ export interface SearchContextType {
   builtQuery: ChunkChain | null;
   selectedIndex: number;
   searchResults: any;
+  aliasesToReturn: string[]
   isSearching: boolean;
   searchError: string | null;
 

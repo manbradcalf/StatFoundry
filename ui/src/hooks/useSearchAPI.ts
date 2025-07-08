@@ -21,6 +21,7 @@ export const useSearchAPI = () => {
 
     cypherQuery = appendReturnClause(cypherQuery);
     setIsSearching(true);
+    console.log("searching " + cypherQuery)
     setSearchError(null);
 
     try {
@@ -33,6 +34,7 @@ export const useSearchAPI = () => {
       });
 
       if (!response.ok) {
+        console.log(response)
         throw new Error(`HTTP error! status: ${response.status} `);
       }
 

@@ -105,7 +105,7 @@ export const useSuggestionEngine = ({
     // Intelligent filtering: prioritize suggestions based on context
     const prioritizedSuggestions: Chunk[] = (() => {
       if (!partialInput) return validNextChunks;
-      const fuse = new Fuse(validNextChunks, { keys: ['English'], threshold: 0.7 });
+      const fuse = new Fuse(validNextChunks, { keys: ['English'], threshold: 0.3 });
       return fuse.search(partialInput).map(result => result.item);
     })();
 
