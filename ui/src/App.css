@@ -967,8 +967,8 @@ input[type="number"] {
 }
 
 .dynamic-table {
-  width: 100%;
-  min-width: 600px;
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 14px;
 }
@@ -984,6 +984,7 @@ input[type="number"] {
   position: sticky;
   top: 0;
   z-index: 10;
+  min-width: 120px;
 }
 
 .dynamic-table td {
@@ -992,9 +993,7 @@ input[type="number"] {
   color: #374151;
   vertical-align: top;
   white-space: nowrap;
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 120px;
 }
 
 .dynamic-table tr:hover {
@@ -1004,12 +1003,14 @@ input[type="number"] {
 .expand-column {
   width: 40px;
   min-width: 40px;
+  max-width: 40px;
   padding: 12px 8px !important;
 }
 
 .expand-cell {
   width: 40px;
   min-width: 40px;
+  max-width: 40px;
   padding: 10px 8px !important;
   text-align: center;
 }
@@ -1060,24 +1061,25 @@ input[type="number"] {
 @media (max-width: 768px) {
   .dynamic-table {
     font-size: 12px;
-    min-width: 400px;
   }
   
   .dynamic-table th,
   .dynamic-table td {
     padding: 8px 10px;
-    max-width: 150px;
+    min-width: 100px;
   }
   
   .expand-column {
     width: 30px;
     min-width: 30px;
+    max-width: 30px;
     padding: 8px 4px !important;
   }
   
   .expand-cell {
     width: 30px;
     min-width: 30px;
+    max-width: 30px;
     padding: 8px 4px !important;
   }
   
