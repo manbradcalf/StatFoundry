@@ -8,4 +8,6 @@ export const RECEIVING_STATS = [
   "receiving_2pt_conversions",
   "receiving_fumbles",
   "receiving_fumbles_lost",
+  "air_yards_share",
+  "target_share"
 ];
