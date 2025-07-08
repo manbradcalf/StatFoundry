@@ -215,101 +215,12 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     const hasNonEmptyValues = (key: string): boolean => {
       return processedData.some((item) => {
         const value = item.flattened[key];
-
-        // Handle null and undefined
-        if (value === null || value === undefined) {
-          return false;
-        }
-
-        // Convert to string for consistent checking
-        const stringValue = String(value).trim();
-
-        // Empty strings (including whitespace-only) are considered empty
-        if (stringValue === "") {
-          return false;
-        }
-
-        // Special cases that should be considered empty
-        if (
-          stringValue.toLowerCase() === "null" ||
-          stringValue.toLowerCase() === "undefined" ||
-          stringValue.toLowerCase() === "nulll" ||
-          stringValue.toLowerCase() === "nan"
-        ) {
-          return false;
-        }
-
-        // Everything else (including 0, false, etc.) is considered non-empty
-        return true;
+        // Only filter out null, undefined, and empty strings
+        return value !== null && value !== undefined && value !== "";
       });
     };
 
-    /**
-     * Check if a column has meaningful data (not just sparse values)
-     * @param key - The column key to check
-     * @returns true if the column has enough non-empty values to be useful
-     */
-    const hasMeaningfulData = (key: string): boolean => {
-      const nonEmptyCount = processedData.filter((item) => {
-        const value = item.flattened[key];
-
-        if (value === null || value === undefined) {
-          return false;
-        }
-
-        const stringValue = String(value).trim();
-
-        if (stringValue === "") {
-          return false;
-        }
-
-        if (
-          stringValue.toLowerCase() === "null" ||
-          stringValue.toLowerCase() === "undefined" ||
-          stringValue.toLowerCase() === "nulll" ||
-          stringValue.toLowerCase() === "nan"
-        ) {
-          return false;
-        }
-
-        return true;
-      }).length;
-
-      const totalCount = processedData.length;
-      const nonEmptyPercentage =
-        totalCount > 0 ? (nonEmptyCount / totalCount) * 100 : 0;
-
-      // For small datasets (< 10 rows), require at least 1 non-empty value
-      // For larger datasets, require at least 10% non-empty values
-      const threshold = totalCount < 10 ? 1 : Math.max(1, totalCount * 0.1);
-
-      return nonEmptyCount >= threshold;
-    };
-
-    const filteredKeys = availableKeys.filter(hasMeaningfulData);
-    const removedKeys = availableKeys.filter((key) => !hasMeaningfulData(key));
-
-    // Debug logging to understand column filtering
-    if (removedKeys.length > 0) {
-      console.log(
-        `DynamicTable: Removed ${removedKeys.length} empty/sparse columns:`,
-        removedKeys
-      );
-      console.log("Sample data for debugging:", processedData.slice(0, 2));
-      removedKeys.forEach((key) => {
-        const nonEmptyCount = processedData.filter((item) => {
-          const value = item.flattened[key];
-          return (
-            value !== null && value !== undefined && String(value).trim() !== ""
-          );
-        }).length;
-        console.log(
-          `  ${key}: ${nonEmptyCount}/${processedData.length} non-empty (${((nonEmptyCount / processedData.length) * 100).toFixed(1)}%)`
-        );
-      });
-    }
-
-    return filteredKeys;
+    return availableKeys.filter(hasNonEmptyValues);
   }, [availableKeys, processedData]);
 
   // Prioritize key identifying fields for master rows
