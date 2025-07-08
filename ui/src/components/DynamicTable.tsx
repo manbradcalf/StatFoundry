@@ -252,8 +252,17 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     }
 
     return [...processedData].sort((a, b) => {
-      const aValue = a.flattened[sortConfig.key!];
-      const bValue = b.flattened[sortConfig.key!];
+      let aValue, bValue;
+
+      // Handle special case for expandable count sorting
+      if (sortConfig.key === "__expandable_count__") {
+        aValue = getExpandableItemCount(a);
+        bValue = getExpandableItemCount(b);
+      } else {
+        aValue = a.flattened[sortConfig.key!];
+        bValue = b.flattened[sortConfig.key!];
+      }
+
       return compareValues(aValue, bValue, sortConfig.direction!);
     });
   }, [processedData, sortConfig]);
@@ -347,32 +356,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     }, 0);
   };
 
-  /**
-   * Format the expandable item count for display
-   * @param count - The number of expandable items
-   * @param arrayKeys - The array keys to determine what type of items
-   * @returns formatted count string
-   */
-  const formatExpandableCount = (
-    count: number,
-    arrayKeys: string[]
-  ): string => {
-    if (count === 0) return "0";
-    if (count === 1) return "1";
-
-    // Try to determine the most appropriate singular/plural form
-    const firstArrayKey = arrayKeys[0] || "";
-    if (firstArrayKey.includes("game")) {
-      return `${count} games`;
-    } else if (firstArrayKey.includes("season")) {
-      return `${count} seasons`;
-    } else if (firstArrayKey.includes("play")) {
-      return `${count} plays`;
-    } else {
-      return `${count} items`;
-    }
-  };
-
   return (
     <div className="dynamic-table-container">
       <div className="table-scroll-wrapper" style={{ maxHeight: maxHeight }}>
@@ -380,7 +363,15 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
           <thead>
             <tr>
               {arrayKeys.length > 0 && <th className="expand-column"></th>}
-              {arrayKeys.length > 0 && <th className="count-column">Count</th>}
+              {arrayKeys.length > 0 && (
+                <th
+                  className={`count-column sortable-header ${sortConfig.key === "__expandable_count__" ? "sorted" : ""}`}
+                  onClick={() => handleSort("__expandable_count__")}
+                  title="Click to sort by number of games"
+                >
+                  Games{getSortIndicator("__expandable_count__")}
+                </th>
+              )}
               {finalKeys.map((key) => (
                 <th
                   key={key}
@@ -415,10 +406,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
                   )}
                   {arrayKeys.length > 0 && (
                     <td className="count-cell">
-                      {formatExpandableCount(
-                        getExpandableItemCount(item),
-                        arrayKeys
-                      )}
+                      {getExpandableItemCount(item)}
                     </td>
                   )}
                   {finalKeys.map((key) => (

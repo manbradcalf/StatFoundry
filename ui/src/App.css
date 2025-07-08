@@ -1024,9 +1024,9 @@ input[type="number"] {
 }
 
 .count-column {
-  width: 80px;
-  min-width: 80px;
-  max-width: 80px;
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
   padding: 8px 8px;
   text-align: center;
   font-weight: 600;
@@ -1042,9 +1042,9 @@ input[type="number"] {
 }
 
 .count-cell {
-  width: 80px;
-  min-width: 80px;
-  max-width: 80px;
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
   padding: 8px 8px;
   text-align: center;
   vertical-align: middle;
@@ -1167,17 +1167,17 @@ input[type="number"] {
   }
   
   .count-column {
-    width: 60px;
-    min-width: 60px;
-    max-width: 60px;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
     padding: 6px 4px;
     font-size: 0.75rem;
   }
   
   .count-cell {
-    width: 60px;
-    min-width: 60px;
-    max-width: 60px;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
     padding: 6px 4px;
     font-size: 0.75rem;
   }
