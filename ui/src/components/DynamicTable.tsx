@@ -215,9 +215,31 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     const hasNonEmptyValues = (key: string): boolean => {
       return processedData.some((item) => {
         const value = item.flattened[key];
-        // Consider 0 as a valid value (important for stats like 0 rushing yards)
-        // Only filter out null, undefined, and empty strings
-        return value !== null && value !== undefined && value !== "";
+
+        // Handle null and undefined
+        if (value === null || value === undefined) {
+          return false;
+        }
+
+        // Convert to string for consistent checking
+        const stringValue = String(value).trim();
+
+        // Empty strings (including whitespace-only) are considered empty
+        if (stringValue === "") {
+          return false;
+        }
+
+        // Special cases that should be considered empty
+        if (
+          stringValue.toLowerCase() === "null" ||
+          stringValue.toLowerCase() === "undefined" ||
+          stringValue.toLowerCase() === "nan"
+        ) {
+          return false;
+        }
+
+        // Everything else (including 0, false, etc.) is considered non-empty
+        return true;
       });
     };
 
