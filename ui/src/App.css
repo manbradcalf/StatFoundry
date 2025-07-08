@@ -949,6 +949,149 @@ input[type="number"] {
   }
 }
 
+/* Dynamic Table Styles */
+.dynamic-table-container {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.dynamic-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dynamic-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dynamic-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+  vertical-align: top;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dynamic-table tr:hover {
+  background: #f8fafc;
+}
+
+.expand-column {
+  width: 40px;
+  min-width: 40px;
+  padding: 12px 8px !important;
+}
+
+.expand-cell {
+  width: 40px;
+  min-width: 40px;
+  padding: 10px 8px !important;
+  text-align: center;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.expand-button:hover {
+  background: #eff6ff;
+  transform: scale(1.1);
+}
+
+.expanded-row {
+  background: #f8fafc !important;
+}
+
+.nested-table-container {
+  padding: 16px;
+  margin: 8px 0;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.nested-table-container h4 {
+  margin: 0 0 12px 0;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .dynamic-table {
+    font-size: 12px;
+    min-width: 400px;
+  }
+  
+  .dynamic-table th,
+  .dynamic-table td {
+    padding: 8px 10px;
+    max-width: 150px;
+  }
+  
+  .expand-column {
+    width: 30px;
+    min-width: 30px;
+    padding: 8px 4px !important;
+  }
+  
+  .expand-cell {
+    width: 30px;
+    min-width: 30px;
+    padding: 8px 4px !important;
+  }
+  
+  .expand-button {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    padding: 2px 4px;
+  }
+  
+  .nested-table-container {
+    padding: 12px;
+  }
+}
+
 /* Error Display Styles */
 .error-display {
   background: #fef2f2;
