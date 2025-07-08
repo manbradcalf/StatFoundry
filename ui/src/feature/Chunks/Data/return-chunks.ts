@@ -24,7 +24,23 @@ export const RETURN_CHUNKS: Chunk[] = [
     Outputs: [],
     Inputs: [],
     Slots: []
-  }
+  },
+  {
+    English: "return player info",
+    Cypher: `RETURN DISTINCT p LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "p", Label: Label.Player }],
+    Outputs: [],
+    Slots: [],
+  },
+  {
+    English: "return players by games count",
+    Cypher: `RETURN DISTINCT p {.display_name, .position, .college_name, .draft_number, .rookie_year }, size(collect(pg)) as count ORDER BY count DESC LIMIT 10`,
+    QueryType: QueryType.RETURN,
+    Inputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [],
+    Slots: [],
+  },
   // {
   //   English: "return player rushing stats by season",
   //   Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RUSHING_STATS].join(", ps.")} LIMIT 10`,
