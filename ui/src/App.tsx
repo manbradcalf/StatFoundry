@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import './App.css';
 import { SearchProvider } from './contexts/SearchContext';
-import { SearchBar, ChainDisplay } from './components';
+import { SearchBar, BreadcrumbChain } from './components';
 import { SearchResults } from './components/SearchResults';
 import { LoginButton } from './components/LoginButton';
 // App configured for environment-based deployment (development/production)
@@ -17,9 +17,9 @@ function AppContent() {
         <h1>StatFoundry</h1>
         <i>Finally, a better way </i>
       </header>
-      <SearchBar />
       <div className="App-body">
-        <ChainDisplay />
+        <BreadcrumbChain />
+        <SearchBar />
         <SearchResults />
       </div>
     </div>
