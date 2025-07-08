@@ -13,7 +13,7 @@ export const SearchResults: React.FC = () => {
     <div className="search-results-body">
       {searchResults ? (
         <div>
-          <DynamicTable data={searchResults} />
+          <DynamicTable data={searchResults} maxHeight="600px" />
           {searchResults.length > 0 && (
             <div
               style={{
