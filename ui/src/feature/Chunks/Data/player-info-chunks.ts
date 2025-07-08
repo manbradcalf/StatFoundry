@@ -2,7 +2,6 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { Label } from "../Enums/Label";
 import { SlotType } from "../Enums/SlotType";
-import { PLAYER_INFO_PROPERTIES } from "../Views/PlayerInfo";
 
 export const PLAYER_INFO_CHUNKS: Chunk[] = [
   {
@@ -41,10 +40,14 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     English: "who have played at least [number] games for [team]",
     Cypher: "",
     EnglishTemplate: "who have played {num} games for {team}",
-    CypherTemplate: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, collect(pg) as games WHERE size(games) >= {num} UNWIND games as pg",
+    CypherTemplate:
+      "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, collect(pg) as games WHERE size(games) >= {num} UNWIND games as pg",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Outputs: [
+      { Name: "p", Label: Label.Player },
+      { Name: "pg", Label: Label.PlayerGame },
+    ],
     Slots: [
       {
         Name: "num",
@@ -71,7 +74,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         Name: "college",
         Value: "Virginia Tech",
         SlotValueTypes: [SlotType.FilterValue],
-      }
+      },
     ],
-  }
+  },
 ];

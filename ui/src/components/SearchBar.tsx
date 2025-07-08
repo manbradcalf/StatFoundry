@@ -1,22 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-import { useSearchContext } from '../contexts/SearchContext';
-import { Suggestions } from './Suggestions';
-
-export const SearchResultItem: React.FC<{ result: any }> = ({ result }) => {
-  const keys = Object.keys(result);
-  const otherKeys = keys.filter(key => !key.includes('player_display_name'));
-
-  return (
-    <div className="search-result-item">
-      {otherKeys.map((key) => (
-        <div key={key} className="stat-item">
-          <span className="stat-label">{key}</span>
-          <span className="stat-value">{result[key]}</span>
-        </div>
-      ))}
-    </div>
-  );
-};
+import React, { useRef, useEffect } from "react";
+import { useSearchContext } from "../contexts/SearchContext";
+import { Suggestions } from "./Suggestions";
 
 export const SearchBar: React.FC = () => {
   const {
@@ -30,7 +14,7 @@ export const SearchBar: React.FC = () => {
     search,
     chain,
     shouldFocusSearchBar,
-    resetFocusFlag
+    resetFocusFlag,
   } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,21 +23,24 @@ export const SearchBar: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
 
-    // Move cursor to end of input
+    // Move cursor to end of input after state update
     setTimeout(() => {
       if (inputRef.current) {
-        e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+        const length = inputRef.current.value.length;
+        inputRef.current.setSelectionRange(length, length);
       }
     }, 0);
   };
 
   const scrollToSuggestion = (index: number) => {
     if (suggestionsRef.current) {
-      const suggestionElement = suggestionsRef.current.children[index] as HTMLElement;
+      const suggestionElement = suggestionsRef.current.children[
+        index
+      ] as HTMLElement;
       if (suggestionElement) {
         suggestionElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
+          behavior: "smooth",
+          block: "nearest",
         });
       }
     }
@@ -83,7 +70,9 @@ export const SearchBar: React.FC = () => {
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder={chain.Tail?.chunk.English || "Running backs who had..."}
+            placeholder={
+              chain.Tail?.chunk.English || "Running backs who had..."
+            }
             className="search-input"
             autoComplete="off"
           />
@@ -100,7 +89,11 @@ export const SearchBar: React.FC = () => {
         </div>
         {/* Save search button - functionality to be implemented later */}
         <div className="save-button">
-          <button className="secondary-button" title="Save this search (coming soon)" onClick={() => alert("Save Search functionality coming soon!")}>
+          <button
+            className="secondary-button"
+            title="Save this search (coming soon)"
+            onClick={() => alert("Save Search functionality coming soon!")}
+          >
             Save
           </button>
         </div>
@@ -115,4 +108,4 @@ export const SearchBar: React.FC = () => {
       />
     </div>
   );
-}; 
+};

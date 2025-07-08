@@ -1,29 +1,26 @@
-
 import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { Label } from "../Enums/Label";
-import { PASSING_STATS } from "../Views/PassingStats";
-import { RECEIVING_STATS } from "../Views/ReceivingStats";
-import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
-import { RUSHING_STATS } from "../Views/RushingStats";
 
 export const RETURN_CHUNKS: Chunk[] = [
   {
     English: "return player and their games",
-    Cypher: "WITH p, collect(pg) as games RETURN p {.display_name, games: games } AS playerWithGames;",
+    Cypher:
+      "WITH p, collect(pg) as games RETURN p {.display_name, games: games } AS playerWithGames;",
     QueryType: QueryType.RETURN,
     Outputs: [],
     Inputs: [],
-    Slots: []
+    Slots: [],
   },
 
   {
     English: "return player and their seasons",
-    Cypher: "WITH p, collect(ps) as seasons RETURN p {.display_name, seasons: seasons } AS playerWithSeasons;",
+    Cypher:
+      "WITH p, collect(ps) as seasons RETURN p {.display_name, seasons: seasons } AS playerWithSeasons;",
     QueryType: QueryType.RETURN,
     Outputs: [],
     Inputs: [],
-    Slots: []
+    Slots: [],
   },
   {
     English: "return player info",
@@ -37,7 +34,10 @@ export const RETURN_CHUNKS: Chunk[] = [
     English: "return players by games count",
     Cypher: `RETURN DISTINCT p {.display_name, .position, .college_name, .draft_number, .rookie_year }, size(collect(pg)) as count ORDER BY count DESC LIMIT 10`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Inputs: [
+      { Name: "p", Label: Label.Player },
+      { Name: "pg", Label: Label.PlayerGame },
+    ],
     Outputs: [],
     Slots: [],
   },

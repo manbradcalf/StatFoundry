@@ -1,4 +1,6 @@
 export const PASSING_STATS = [
+  "attempts",
+  "completions",
   "passing_yards",
   "passing_tds",
   "passing_air_yards",
