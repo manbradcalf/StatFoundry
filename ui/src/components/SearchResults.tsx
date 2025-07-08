@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchContext } from "../contexts/SearchContext";
-import { DynamicTable } from "./DynamicTable";
+import { DynamicTable } from "./DynamicTable/";
 
 export const SearchResults: React.FC = () => {
   const { searchResults, searchError } = useSearchContext();
