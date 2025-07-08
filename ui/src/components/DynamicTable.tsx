@@ -243,6 +243,17 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   }, [availableKeys, columnGroups]);
 
   /**
+   * Get the total count of expandable items for a row
+   * @param item - The processed data item
+   * @returns total count of items across all arrays
+   */
+  const getExpandableItemCount = (item: any): number => {
+    return Object.values(item.arrays).reduce((total: number, arr: any) => {
+      return total + (Array.isArray(arr) ? arr.length : 0);
+    }, 0);
+  };
+
+  /**
    * Sort the processed data based on current sort configuration
    * This happens before pagination so we sort the entire dataset
    */
@@ -343,17 +354,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   const getSortIndicator = (key: string): string => {
     if (sortConfig.key !== key) return "";
     return sortConfig.direction === "asc" ? " ↑" : " ↓";
-  };
-
-  /**
-   * Get the total count of expandable items for a row
-   * @param item - The processed data item
-   * @returns total count of items across all arrays
-   */
-  const getExpandableItemCount = (item: any): number => {
-    return Object.values(item.arrays).reduce((total: number, arr: any) => {
-      return total + (Array.isArray(arr) ? arr.length : 0);
-    }, 0);
   };
 
   return (
