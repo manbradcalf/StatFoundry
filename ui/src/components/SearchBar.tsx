@@ -23,13 +23,11 @@ export const SearchBar: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
 
-    // Move cursor to end of input
+    // Move cursor to end of input after state update
     setTimeout(() => {
       if (inputRef.current) {
-        e.target.setSelectionRange(
-          e.target.value.length,
-          e.target.value.length
-        );
+        const length = inputRef.current.value.length;
+        inputRef.current.setSelectionRange(length, length);
       }
     }, 0);
   };
