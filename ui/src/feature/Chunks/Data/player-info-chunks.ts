@@ -6,14 +6,6 @@ import { PLAYER_INFO_PROPERTIES } from "../Views/PlayerInfo";
 
 export const PLAYER_INFO_CHUNKS: Chunk[] = [
   {
-    English: "return player info",
-    Cypher: `RETURN p.${[...PLAYER_INFO_PROPERTIES].join(", p.")} LIMIT 10`,
-    QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [],
-    Slots: [],
-  },
-  {
     English: "with [name]",
     Cypher: "",
     EnglishTemplate: "named {name}",
