@@ -205,12 +205,31 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     return allFlatKeys.filter((key) => !excludeColumns.includes(key));
   }, [allFlatKeys, excludeColumns]);
 
+  // Filter out columns that are completely empty
+  const nonEmptyKeys = useMemo(() => {
+    /**
+     * Check if a column has any non-empty values across all rows
+     * @param key - The column key to check
+     * @returns true if the column has at least one non-empty value
+     */
+    const hasNonEmptyValues = (key: string): boolean => {
+      return processedData.some((item) => {
+        const value = item.flattened[key];
+        // Consider 0 as a valid value (important for stats like 0 rushing yards)
+        // Only filter out null, undefined, and empty strings
+        return value !== null && value !== undefined && value !== "";
+      });
+    };
+
+    return availableKeys.filter(hasNonEmptyValues);
+  }, [availableKeys, processedData]);
+
   // Prioritize key identifying fields for master rows
   const { finalKeys } = useMemo(() => {
     const identifyingKeysPresent = identifyingFields.filter((key) =>
-      availableKeys.includes(key)
+      nonEmptyKeys.includes(key)
     );
-    const remainingKeys = availableKeys.filter(
+    const remainingKeys = nonEmptyKeys.filter(
       (key) => !identifyingFields.includes(key)
     );
 
@@ -223,7 +242,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
       .sort((a, b) => a.priority - b.priority)
       .forEach((group) => {
         const groupKeys = group.keys.filter(
-          (key) => availableKeys.includes(key) && !usedKeys.has(key)
+          (key) => nonEmptyKeys.includes(key) && !usedKeys.has(key)
         );
         groupKeys.forEach((key) => usedKeys.add(key));
         groupedKeys.push(...groupKeys);
@@ -240,7 +259,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     ];
 
     return { finalKeys };
-  }, [availableKeys, columnGroups]);
+  }, [nonEmptyKeys, columnGroups]);
 
   /**
    * Get the total count of expandable items for a row
