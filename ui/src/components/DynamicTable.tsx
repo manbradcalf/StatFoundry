@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from "react";
+import { PASSING_STATS } from "../feature/Chunks/Views/PassingStats";
+import { RUSHING_STATS } from "../feature/Chunks/Views/RushingStats";
+import { RECEIVING_STATS } from "../feature/Chunks/Views/ReceivingStats";
 
 interface TableColumn {
   key: string;
@@ -46,54 +49,17 @@ const defaultNFLGroups: TableGroup[] = [
   },
   {
     name: "rushing",
-    keys: [
-      "rushing_yards",
-      "rushing_tds",
-      "rushing_first_downs",
-      "carries",
-      "rushing_epa",
-      "rushing_fumbles",
-      "rushing_fumbles_lost",
-      "rushing_2pt_conversions",
-    ],
+    keys: [...RUSHING_STATS],
     priority: 2,
   },
   {
     name: "passing",
-    keys: [
-      "passing_yards",
-      "passing_tds",
-      "passing_first_downs",
-      "completions",
-      "attempts",
-      "interceptions",
-      "sacks",
-      "sack_yards",
-      "passing_air_yards",
-      "passing_yards_after_catch",
-      "passing_2pt_conversions",
-    ],
+    keys: [...PASSING_STATS],
     priority: 3,
   },
   {
     name: "receiving",
-    keys: [
-      "receiving_yards",
-      "receiving_tds",
-      "receiving_first_downs",
-      "targets",
-      "receptions",
-      "receiving_air_yards",
-      "receiving_yards_after_catch",
-      "receiving_epa",
-      "receiving_fumbles",
-      "receiving_fumbles_lost",
-      "receiving_2pt_conversions",
-      "air_yards_share",
-      "target_share",
-      "racr",
-      "wopr",
-    ],
+    keys: [...RECEIVING_STATS],
     priority: 4,
   },
   {
@@ -370,6 +336,43 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     return sortConfig.direction === "asc" ? " ↑" : " ↓";
   };
 
+  /**
+   * Get the total count of expandable items for a row
+   * @param item - The processed data item
+   * @returns total count of items across all arrays
+   */
+  const getExpandableItemCount = (item: any): number => {
+    return Object.values(item.arrays).reduce((total: number, arr: any) => {
+      return total + (Array.isArray(arr) ? arr.length : 0);
+    }, 0);
+  };
+
+  /**
+   * Format the expandable item count for display
+   * @param count - The number of expandable items
+   * @param arrayKeys - The array keys to determine what type of items
+   * @returns formatted count string
+   */
+  const formatExpandableCount = (
+    count: number,
+    arrayKeys: string[]
+  ): string => {
+    if (count === 0) return "0";
+    if (count === 1) return "1";
+
+    // Try to determine the most appropriate singular/plural form
+    const firstArrayKey = arrayKeys[0] || "";
+    if (firstArrayKey.includes("game")) {
+      return `${count} games`;
+    } else if (firstArrayKey.includes("season")) {
+      return `${count} seasons`;
+    } else if (firstArrayKey.includes("play")) {
+      return `${count} plays`;
+    } else {
+      return `${count} items`;
+    }
+  };
+
   return (
     <div className="dynamic-table-container">
       <div className="table-scroll-wrapper" style={{ maxHeight: maxHeight }}>
@@ -377,6 +380,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
           <thead>
             <tr>
               {arrayKeys.length > 0 && <th className="expand-column"></th>}
+              {arrayKeys.length > 0 && <th className="count-column">Count</th>}
               {finalKeys.map((key) => (
                 <th
                   key={key}
@@ -409,6 +413,14 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
                       </button>
                     </td>
                   )}
+                  {arrayKeys.length > 0 && (
+                    <td className="count-cell">
+                      {formatExpandableCount(
+                        getExpandableItemCount(item),
+                        arrayKeys
+                      )}
+                    </td>
+                  )}
                   {finalKeys.map((key) => (
                     <td key={key}>{String(item.flattened[key] || "")}</td>
                   ))}
@@ -421,7 +433,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
                     >
                       <td
                         colSpan={
-                          finalKeys.length + (arrayKeys.length > 0 ? 1 : 0)
+                          finalKeys.length + (arrayKeys.length > 0 ? 2 : 0)
                         }
                       >
                         <div className="nested-table-container">

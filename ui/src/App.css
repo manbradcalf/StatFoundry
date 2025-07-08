@@ -1023,6 +1023,15 @@ input[type="number"] {
   text-align: center;
 }
 
+.count-column {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  padding: 8px 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
 .expand-cell {
   width: 40px;
   min-width: 40px;
@@ -1030,6 +1039,18 @@ input[type="number"] {
   padding: 8px 4px;
   text-align: center;
   vertical-align: middle;
+}
+
+.count-cell {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  padding: 8px 8px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-weight: 500;
 }
 
 .expand-button {
@@ -1143,6 +1164,22 @@ input[type="number"] {
     padding: 6px 8px;
     font-size: 0.8rem;
     min-width: 100px;
+  }
+  
+  .count-column {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    padding: 6px 4px;
+    font-size: 0.75rem;
+  }
+  
+  .count-cell {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    padding: 6px 4px;
+    font-size: 0.75rem;
   }
   
   .pagination-container {
