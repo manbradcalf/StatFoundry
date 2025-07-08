@@ -8,6 +8,7 @@ import { useRowExpansion } from "./hooks/useRowExpansion";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { PaginationControls } from "./components/PaginationControls";
+import { commonStyles } from "../../utils/commonStyles";
 
 export const DynamicTable: React.FC<DynamicTableProps> = ({
   data,
@@ -59,7 +60,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
 
   // Early return if no data
   if (processedData.length === 0) {
-    return <div style={{ color: "#888", textAlign: "center" }}>No results</div>;
+    return <div style={commonStyles.emptyState}>No results</div>;
   }
 
   return (
