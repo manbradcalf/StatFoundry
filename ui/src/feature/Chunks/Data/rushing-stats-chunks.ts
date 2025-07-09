@@ -2,24 +2,23 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
-import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
-import { RUSHING_STATS } from "../Views/RushingStats";
-import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
 
 export const RUSHING_STATS_CHUNKS: Chunk[] = [
   // Game
   {
     English: "who had [rushing stats] in Games",
     Cypher:
-      "CALL (p) { MATCH (p)-[:HAD]-(pg) WHERE pg.{stat} {condition} {value} RETURN pg as rbGame }",
+      "CALL (p) { MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value} RETURN p as rb, pg as rbGame }",
     EnglishTemplate: "who had {condition} {value} {stat} in a Game",
-    CypherTemplate:
-      "CALL (p) { MATCH (p)-[:HAD]-(pg) WHERE pg.{stat} {condition} {value} RETURN pg as rbGame }",
+    CypherTemplate: `CALL (p) { 
+        MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value} 
+  } WITH
+      rb`,
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [
-      { Name: "p", Label: AliasType.Player },
-      { Name: "rbGame", Label: AliasType.RBGame },
+      { Name: "rbGame", AliasType: AliasType.AggregatedRBGame },
+      { Name: "rb", AliasType: AliasType.Player },
     ],
     Slots: [
       {
@@ -43,16 +42,13 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
   {
     English: "who had [rushing stats] in a Season",
     Cypher:
-      "CALL (p) { MATCH (p)-[:HAD]-(ps) WHERE ps.{stat} {condition} {value} RETURN ps as rbSeason }",
+      "CALL (p) { MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} {condition} {value} RETURN ps as rbSeason }",
     EnglishTemplate: "who had {condition} {value} {stat} in a Season",
     CypherTemplate:
-      "CALL (p) { MATCH (p)-[:HAD]-(ps) WHERE ps.{stat} {condition} {value} RETURN ps as rbSeason }",
+      "CALL (p) { MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} {condition} {value} RETURN ps as rbSeason }",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
-    Provides: [
-      { Name: "p", Label: AliasType.Player },
-      { Name: "rbSeason", Label: AliasType.RBSeason },
-    ],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "rbSeason", AliasType: AliasType.RBSeason }],
     Slots: [
       {
         Name: "stat",
@@ -70,21 +66,5 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-  },
-  {
-    English: "return rushing stats by game",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")}`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.RBGame }],
-    Provides: [],
-    Slots: [],
-  },
-  {
-    English: "return rushing stats by season",
-    Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RUSHING_STATS].join(", ps.")}`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "ps", Label: AliasType.RBSeason }],
-    Provides: [],
-    Slots: [],
   },
 ];

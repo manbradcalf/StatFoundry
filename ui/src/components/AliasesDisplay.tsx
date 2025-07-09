@@ -30,11 +30,11 @@ export const AliasesDisplay: React.FC = () => {
                 title={
                   isLast
                     ? `At least one entity must remain active`
-                    : `Click to ${isActive ? "hide" : "show"} columns for ${alias.Name} (${alias.Label})`
+                    : `Click to ${isActive ? "hide" : "show"} columns for ${alias.Name} (${alias.AliasType})`
                 }
               >
                 <span className="alias-name">{alias.Name}</span>
-                <span className="alias-type">{alias.Label}</span>
+                <span className="alias-type">{alias.AliasType}</span>
               </div>
             );
           })}

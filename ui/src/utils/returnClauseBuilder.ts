@@ -16,10 +16,10 @@ export const buildSmartReturnClause = (aliases: Alias[]): string => {
   // Group aliases by label to avoid duplicates
   const aliasesByLabel = aliases.reduce(
     (acc, alias) => {
-      if (!acc[alias.Label]) {
-        acc[alias.Label] = [];
+      if (!acc[alias.AliasType]) {
+        acc[alias.AliasType] = [];
       }
-      acc[alias.Label].push(alias.Name);
+      acc[alias.AliasType].push(alias.Name);
       return acc;
     },
     {} as Record<AliasType, string[]>

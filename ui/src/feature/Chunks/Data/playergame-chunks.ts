@@ -12,7 +12,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     English: "return all player game stats",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...RECEIVING_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
     Slots: [],
   },
@@ -20,7 +20,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     English: "return player game rushing stats",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
     Slots: [],
   },
@@ -28,7 +28,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     English: "return player game receiving stats",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
     Slots: [],
   },
@@ -36,7 +36,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     English: "return player game rushing and receiving stats",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
     Slots: [],
   },
@@ -44,7 +44,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     English: "return player game passing stats",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
     Slots: [],
   },
@@ -56,8 +56,8 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Provides: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
         Name: "team",
@@ -74,8 +74,8 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Provides: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
         Name: "team",
@@ -92,8 +92,8 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     CypherTemplate:
       "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Provides: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
         Name: "seasonStart",
@@ -111,16 +111,16 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     English: "and won",
     Cypher: `WHERE pg.won = true`,
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Provides: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [],
   },
   {
     English: "and lost",
     Cypher: `WHERE pg.won = false`,
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Provides: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [],
   },
   {
@@ -130,8 +130,8 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Provides: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
         Name: "season",

@@ -18,5 +18,13 @@ export enum AliasType {
   TeamGame = "TeamGame",
   TeamSeason = "TeamSeason",
   // Aggregated types
-  NumberLiteral = "AggregatedPlayerGames",
+  NumberLiteral = "NumberLiteral",
+  AggregatedRBGame = "AggregatedRBGame",
+  AggregatedWRGame = "AggregatedWRGame",
+  AggregatedTEGame = "AggregatedTEGame",
+  AggregatedQBGame = "AggregatedQBGame",
+  AggregatedRBSeason = "AggregatedRBSeason",
+  AggregatedWRSeason = "AggregatedWRSeason",
+  AggregatedTESeason = "AggregatedTESeason",
+  AggregatedQBSeason = "AggregatedQBSeason",
 }

@@ -185,7 +185,7 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
   // Count how many of each entity type we need vs have
   const needed = chunk.Requires.reduce(
     (acc, alias) => {
-      acc[alias.Label] = (acc[alias.Label] || 0) + 1;
+      acc[alias.AliasType] = (acc[alias.AliasType] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>
@@ -193,7 +193,7 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
 
   const available = currentAliases.reduce(
     (acc, alias) => {
-      acc[alias.Label] = (acc[alias.Label] || 0) + 1;
+      acc[alias.AliasType] = (acc[alias.AliasType] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>

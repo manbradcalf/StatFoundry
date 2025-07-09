@@ -18,10 +18,10 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [
-      { Name: "p", Label: AliasType.Player },
-      { Name: "pg", Label: AliasType.PlayerGame },
+      { Name: "p", AliasType: AliasType.Player },
+      { Name: "pg", AliasType: AliasType.PlayerGame },
     ],
     Slots: [
       {
@@ -49,10 +49,10 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [
-      { Name: "p", Label: AliasType.Player },
-      { Name: "ps", Label: AliasType.PlayerSeason },
+      { Name: "p", AliasType: AliasType.Player },
+      { Name: "ps", AliasType: AliasType.PlayerSeason },
     ],
     Slots: [
       {
@@ -76,7 +76,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     English: "return passing stats by game",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")}`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
     Slots: [],
   },
@@ -84,7 +84,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     English: "return passing stats by season",
     Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")}`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "ps", Label: AliasType.PlayerSeason }],
+    Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
     Provides: [],
     Slots: [],
   },

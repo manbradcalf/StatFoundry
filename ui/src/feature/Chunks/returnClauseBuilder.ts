@@ -8,8 +8,8 @@ import { RUSHING_STATS } from "./Views/RushingStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
 // Helper function to get properties for a given label
-const getPropertiesForLabel = (alias: AliasType): string[] => {
-  switch (alias) {
+const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
+  switch (aliasType) {
     case AliasType.Player:
       return PLAYER_INFO_PROPERTIES;
 
@@ -64,6 +64,31 @@ const getPropertiesForLabel = (alias: AliasType): string[] => {
     case AliasType.Season:
       return ["season"];
 
+    // Aggregated aliases
+    case AliasType.AggregatedRBGame:
+      return [...RUSHING_STATS];
+
+    case AliasType.AggregatedWRGame:
+      return [...RECEIVING_STATS];
+
+    case AliasType.AggregatedTEGame:
+      return [...RECEIVING_STATS];
+
+    case AliasType.AggregatedQBGame:
+      return [...RECEIVING_STATS];
+
+    case AliasType.AggregatedRBSeason:
+      return [...RUSHING_STATS];
+
+    case AliasType.AggregatedWRSeason:
+      return [...RECEIVING_STATS];
+
+    case AliasType.AggregatedTESeason:
+      return [...RECEIVING_STATS];
+
+    case AliasType.AggregatedQBSeason:
+      return [...RECEIVING_STATS];
+
     default:
       return ["*"]; // Fallback for unknown labels
   }
@@ -82,9 +107,12 @@ export const buildSmartReturnClause = (aliases: Alias[]): string => {
 
   // Process each alias individually to support multiples of same type
   aliases.forEach((alias) => {
-    const properties = getPropertiesForLabel(alias.Label);
+    const properties = getPropertiesByAliasType(alias.AliasType);
 
-    if (properties.length === 0 && alias.Label === AliasType.NumberLiteral) {
+    if (
+      properties.length === 0 &&
+      alias.AliasType === AliasType.NumberLiteral
+    ) {
       // For number literals, return the alias itself (no properties)
       returnParts.push(alias.Name);
     } else if (properties.includes("*")) {

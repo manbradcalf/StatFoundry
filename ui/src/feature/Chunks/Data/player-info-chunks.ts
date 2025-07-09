@@ -10,8 +10,8 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     EnglishTemplate: "named {name}",
     CypherTemplate: "WHERE p.display_name = {name}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
-    Provides: [{ Name: "p", Label: AliasType.Player }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
       {
         Name: "name",
@@ -26,8 +26,8 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     EnglishTemplate: "currently on {team}",
     CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
-    Provides: [{ Name: "p", Label: AliasType.Player }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
       {
         Name: "team",
@@ -40,14 +40,19 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     English: "who have played at least [number] games for [team]",
     Cypher: "",
     EnglishTemplate: "who have played {num} games for {team}",
-    CypherTemplate:
-      "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, collect(pg) as games WHERE size(games) >= {num} UNWIND games as pg",
+    CypherTemplate: `
+    CALL (p) { 
+      MATCH (p)-[:HAD]->(pg:PlayerGame) 
+      WHERE pg.recent_team = {team} 
+      WITH p, collect(pg) as games 
+      WHERE size(games) >= {num}
+      RETURN p as playerWhoPlayedAtLeastGamesForTeam
+      }
+      WITH *, playerWhoPlayedAtLeastGamesForTeam as p`,
+
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
-    Provides: [
-      { Name: "p", Label: AliasType.Player },
-      { Name: "pg", Label: AliasType.PlayerGame },
-    ],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
       {
         Name: "num",
@@ -67,8 +72,8 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     EnglishTemplate: "who went to {college}",
     CypherTemplate: "MATCH (p) where p.college_name={college}",
     QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", Label: AliasType.Player }],
-    Provides: [{ Name: "p", Label: AliasType.Player }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
       {
         Name: "college",
