@@ -84,7 +84,10 @@ export const buildSmartReturnClause = (aliases: Alias[]): string => {
   aliases.forEach((alias) => {
     const properties = getPropertiesForLabel(alias.Label);
 
-    if (properties.includes("*")) {
+    if (properties.length === 0 && alias.Label === AliasType.NumberLiteral) {
+      // For number literals, return the alias itself (no properties)
+      returnParts.push(alias.Name);
+    } else if (properties.includes("*")) {
       returnParts.push(`${alias.Name}.*`);
     } else {
       const aliasProps = properties.map((prop) => `${alias.Name}.${prop}`);

@@ -10,10 +10,11 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
   // Game
   {
     English: "who had [rushing stats] in a Game",
-    Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
+    Cypher:
+      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value}",
     EnglishTemplate: "who had {condition} {value} {stat} in a Game",
     CypherTemplate:
-      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
+      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value}",
     QueryType: QueryType.FILTER,
     Inputs: [{ Name: "p", Label: AliasType.Player }],
     Outputs: [
