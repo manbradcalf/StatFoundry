@@ -16,6 +16,7 @@ export interface SearchContextType {
   aliasesToReturn: string[];
   isSearching: boolean;
   searchError: string | null;
+  activeAliases: Set<string>;
 
   // Actions
   setUserInput: (input: string) => void;
@@ -28,4 +29,5 @@ export interface SearchContextType {
   removeChunk: (index: number) => void;
   focusSearchBar: () => void;
   resetFocusFlag: () => void;
+  toggleAlias: (aliasName: string) => void;
 }

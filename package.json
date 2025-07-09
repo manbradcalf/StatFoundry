@@ -13,5 +13,8 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "use-debounce": "^10.0.5"
   }
-} 
+}

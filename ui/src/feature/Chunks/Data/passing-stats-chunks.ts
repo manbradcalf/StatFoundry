@@ -18,8 +18,8 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: AliasType.Player }],
-    Outputs: [
+    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Provides: [
       { Name: "p", Label: AliasType.Player },
       { Name: "pg", Label: AliasType.PlayerGame },
     ],
@@ -49,8 +49,8 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: AliasType.Player }],
-    Outputs: [
+    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Provides: [
       { Name: "p", Label: AliasType.Player },
       { Name: "ps", Label: AliasType.PlayerSeason },
     ],
@@ -76,16 +76,16 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     English: "return passing stats by game",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")}`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Outputs: [],
+    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Provides: [],
     Slots: [],
   },
   {
     English: "return passing stats by season",
     Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")}`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "ps", Label: AliasType.PlayerSeason }],
-    Outputs: [],
+    Requires: [{ Name: "ps", Label: AliasType.PlayerSeason }],
+    Provides: [],
     Slots: [],
   },
 ];

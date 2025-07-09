@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import Modal from 'react-modal';
-import './App.css';
-import { SearchProvider } from './contexts/SearchContext';
-import { SearchBar, BreadcrumbChain } from './components';
-import { SearchResults } from './components/SearchResults';
-import { LoginButton } from './components/LoginButton';
+import React, { useEffect } from "react";
+import Modal from "react-modal";
+import "./App.css";
+import { SearchProvider } from "./contexts/SearchContext";
+import { SearchBar, BreadcrumbChain, AliasesDisplay } from "./components";
+import { SearchResults } from "./components/SearchResults";
+import { LoginButton } from "./components/LoginButton";
 // App configured for environment-based deployment (development/production)
 
 function AppContent() {
@@ -20,6 +20,7 @@ function AppContent() {
       <div className="App-body">
         <BreadcrumbChain />
         <SearchBar />
+        <AliasesDisplay />
         <SearchResults />
       </div>
     </div>
@@ -29,7 +30,7 @@ function AppContent() {
 function App() {
   useEffect(() => {
     // Set the app element for react-modal (for accessibility)
-    Modal.setAppElement('#root');
+    Modal.setAppElement("#root");
   }, []);
 
   return (
@@ -39,4 +40,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

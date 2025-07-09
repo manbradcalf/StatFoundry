@@ -20,8 +20,8 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: AliasType.Player }],
-    Outputs: [
+    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Provides: [
       { Name: "p", Label: AliasType.Player },
       { Name: "pg", Label: AliasType.PlayerGame },
     ],
@@ -55,8 +55,8 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
         RETURN p, ps
       }`,
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: AliasType.Player }],
-    Outputs: [
+    Requires: [{ Name: "p", Label: AliasType.Player }],
+    Provides: [
       { Name: "p", Label: AliasType.Player },
       { Name: "ps", Label: AliasType.PlayerSeason },
     ],
@@ -82,16 +82,16 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
     English: "return receiving stats by game",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RECEIVING_STATS].join(", pg.")}`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "pg", Label: AliasType.PlayerGame }],
-    Outputs: [],
+    Requires: [{ Name: "pg", Label: AliasType.PlayerGame }],
+    Provides: [],
     Slots: [],
   },
   {
     English: "return receiving stats by season",
     Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RECEIVING_STATS].join(", ps.")}`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "ps", Label: AliasType.PlayerSeason }],
-    Outputs: [],
+    Requires: [{ Name: "ps", Label: AliasType.PlayerSeason }],
+    Provides: [],
     Slots: [],
   },
 ];

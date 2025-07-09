@@ -6,6 +6,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import { useDebouncedCallback } from "use-debounce";
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Slot } from "../feature/Chunks/Types/Slot";
@@ -36,6 +37,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [query, setQuery] = useState("");
   const [chain, setChain] = useState(new ChunkChain());
 
+  // Alias toggle state
+  const [activeAliases, setActiveAliases] = useState<Set<string>>(new Set());
+
   // Modal state
   const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
@@ -54,6 +58,58 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   } = useSearchAPI();
   const { shouldFocusSearchBar, focusSearchBar, resetFocusFlag } =
     useFocusManagement();
+
+  // Debounced search execution for alias changes
+  const debouncedAliasSearch = useDebouncedCallback(
+    () => {
+      if (chain.Cypher) {
+        const activeAliasObjects = chain.Aliases.filter((alias) =>
+          activeAliases.has(alias.Name)
+        );
+        executeSearch(chain.Cypher, activeAliasObjects);
+      }
+    },
+    300 // 300ms debounce delay
+  );
+
+  // Initialize all aliases as active when chain changes
+  useEffect(() => {
+    const allAliases = chain.Aliases.map((alias) => alias.Name);
+    setActiveAliases(new Set(allAliases));
+  }, [chain.Aliases]);
+
+  // Execute debounced search when activeAliases change AFTER initial search has been performed
+  const [isInitialMount, setIsInitialMount] = useState(true);
+  useEffect(() => {
+    if (isInitialMount) {
+      setIsInitialMount(false);
+      return;
+    }
+    // Only trigger search if we have existing search results (meaning user has already searched)
+    if (searchResults && searchResults.length > 0) {
+      debouncedAliasSearch();
+    }
+  }, [activeAliases, debouncedAliasSearch]);
+
+  // Toggle alias active state
+  const toggleAlias = useCallback((aliasName: string) => {
+    setActiveAliases((prev) => {
+      const newSet = new Set(prev);
+
+      // Prevent turning off the last active alias
+      if (newSet.has(aliasName) && newSet.size === 1) {
+        return prev; // Don't allow turning off the last alias
+      }
+
+      if (newSet.has(aliasName)) {
+        newSet.delete(aliasName);
+      } else {
+        newSet.add(aliasName);
+      }
+
+      return newSet;
+    });
+  }, []);
 
   // Chain operations
   const editChunk = useCallback(
@@ -134,7 +190,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   } = useSuggestionSelection({
     suggestions,
     onExecuteSearch: () => {
-      executeSearch(chain.Cypher, chain.Aliases);
+      // Filter aliases by activeAliases before executing search
+      const activeAliasObjects = chain.Aliases.filter((alias) =>
+        activeAliases.has(alias.Name)
+      );
+      executeSearch(chain.Cypher, activeAliasObjects);
       clearSelection();
     },
   });
@@ -204,6 +264,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const clearQuery = () => {
     setQuery("");
     setChain(new ChunkChain());
+    setActiveAliases(new Set());
     clearSelection();
     clearSearch();
   };
@@ -268,6 +329,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     isSearching,
     searchError,
     aliasesToReturn: [],
+    activeAliases,
 
     // Actions
     setUserInput: setQuery,
@@ -275,7 +337,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     handleKeyDown,
     clearAll: clearQuery,
     search: () => {
-      executeSearch(chain.Cypher, chain.Aliases);
+      // Filter aliases by activeAliases before executing search
+      const activeAliasObjects = chain.Aliases.filter((alias) =>
+        activeAliases.has(alias.Name)
+      );
+      executeSearch(chain.Cypher, activeAliasObjects);
       clearSelection();
     },
     editChunk,
@@ -283,6 +349,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     removeChunk,
     focusSearchBar,
     resetFocusFlag,
+    toggleAlias,
   };
 
   return (

@@ -8,8 +8,8 @@ import { RUSHING_STATS } from "./Views/RushingStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
 // Helper function to get properties for a given label
-const getPropertiesForLabel = (label: AliasType): string[] => {
-  switch (label) {
+const getPropertiesForLabel = (alias: AliasType): string[] => {
+  switch (alias) {
     case AliasType.Player:
       return PLAYER_INFO_PROPERTIES;
 
