@@ -1,6 +1,6 @@
-import { Label } from "../Enums/Label";
+import { AliasType } from "../Enums/AliasType";
 
 export type Alias = {
   Name: string;
-  Label: Label;
+  Label: AliasType;
 };

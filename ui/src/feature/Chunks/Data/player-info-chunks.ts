@@ -1,6 +1,6 @@
 import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
-import { Label } from "../Enums/Label";
+import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
 
 export const PLAYER_INFO_CHUNKS: Chunk[] = [
@@ -10,8 +10,8 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     EnglishTemplate: "named {name}",
     CypherTemplate: "WHERE p.display_name = {name}",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }],
+    Inputs: [{ Name: "p", Label: AliasType.Player }],
+    Outputs: [{ Name: "p", Label: AliasType.Player }],
     Slots: [
       {
         Name: "name",
@@ -26,8 +26,8 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     EnglishTemplate: "currently on {team}",
     CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }],
+    Inputs: [{ Name: "p", Label: AliasType.Player }],
+    Outputs: [{ Name: "p", Label: AliasType.Player }],
     Slots: [
       {
         Name: "team",
@@ -43,10 +43,10 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team} WITH p, collect(pg) as games WHERE size(games) >= {num} UNWIND games as pg",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
+    Inputs: [{ Name: "p", Label: AliasType.Player }],
     Outputs: [
-      { Name: "p", Label: Label.Player },
-      { Name: "pg", Label: Label.PlayerGame },
+      { Name: "p", Label: AliasType.Player },
+      { Name: "pg", Label: AliasType.PlayerGame },
     ],
     Slots: [
       {
@@ -67,8 +67,8 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     EnglishTemplate: "who went to {college}",
     CypherTemplate: "MATCH (p) where p.college_name={college}",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }],
+    Inputs: [{ Name: "p", Label: AliasType.Player }],
+    Outputs: [{ Name: "p", Label: AliasType.Player }],
     Slots: [
       {
         Name: "college",

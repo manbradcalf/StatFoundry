@@ -1,6 +1,6 @@
 import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
-import { Label } from "../Enums/Label";
+import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
 import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
 import { RECEIVING_STATS } from "../Views/ReceivingStats";
@@ -10,61 +10,79 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
   // Game
   {
     English: "who had [receiving stats] in a Game",
-    Cypher: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
+    Cypher: `
+        CALL (p) { 
+          MATCH (p)-[:HAD]-(pg:PlayerGame) 
+          WHERE pg.{stat} > {value} 
+          RETURN p, pg
+      }`,
     EnglishTemplate: "who had {condition} {value} {stat} in a Game",
-    CypherTemplate: "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
+    CypherTemplate:
+      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "pg", Label: Label.PlayerGame }],
+    Inputs: [{ Name: "p", Label: AliasType.Player }],
+    Outputs: [
+      { Name: "p", Label: AliasType.Player },
+      { Name: "pg", Label: AliasType.PlayerGame },
+    ],
     Slots: [
       {
         Name: "stat",
         Value: "receiving_yards",
-        SlotValueTypes: [SlotType.SelectReceivingStats]
-      }, {
+        SlotValueTypes: [SlotType.SelectReceivingStats],
+      },
+      {
         Name: "condition",
         Value: ">",
-        SlotValueTypes: [SlotType.FilterCondition]
+        SlotValueTypes: [SlotType.FilterCondition],
       },
       {
         Name: "value",
         Value: 100,
-        SlotValueTypes: [SlotType.FilterValue]
+        SlotValueTypes: [SlotType.FilterValue],
       },
-    ]
+    ],
   },
   // Season
   {
     English: "who had [receiving stats] in a Season",
-    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
+    Cypher:
+      "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} {condition} {value}",
     EnglishTemplate: "who had {condition} {value} {stat} in a Season",
-    CypherTemplate: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
+    CypherTemplate: `
+        CALL (p) {
+        MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} {condition} {value}
+        RETURN p, ps
+      }`,
     QueryType: QueryType.FILTER,
-    Inputs: [{ Name: "p", Label: Label.Player }],
-    Outputs: [{ Name: "p", Label: Label.Player }, { Name: "ps", Label: Label.PlayerSeason }],
+    Inputs: [{ Name: "p", Label: AliasType.Player }],
+    Outputs: [
+      { Name: "p", Label: AliasType.Player },
+      { Name: "ps", Label: AliasType.PlayerSeason },
+    ],
     Slots: [
       {
         Name: "stat",
         Value: "receiving_yards",
-        SlotValueTypes: [SlotType.SelectReceivingStats]
+        SlotValueTypes: [SlotType.SelectReceivingStats],
       },
       {
         Name: "condition",
         Value: ">",
-        SlotValueTypes: [SlotType.FilterCondition]
+        SlotValueTypes: [SlotType.FilterCondition],
       },
       {
         Name: "value",
-        Value: 100,
-        SlotValueTypes: [SlotType.FilterValue]
+        Value: 4000,
+        SlotValueTypes: [SlotType.FilterValue],
       },
-    ]
+    ],
   },
   {
     English: "return receiving stats by game",
     Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RECEIVING_STATS].join(", pg.")}`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "pg", Label: Label.PlayerGame }],
+    Inputs: [{ Name: "pg", Label: AliasType.PlayerGame }],
     Outputs: [],
     Slots: [],
   },
@@ -72,7 +90,7 @@ export const RECEIVING_STATS_CHUNKS: Chunk[] = [
     English: "return receiving stats by season",
     Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...RECEIVING_STATS].join(", ps.")}`,
     QueryType: QueryType.RETURN,
-    Inputs: [{ Name: "ps", Label: Label.PlayerSeason }],
+    Inputs: [{ Name: "ps", Label: AliasType.PlayerSeason }],
     Outputs: [],
     Slots: [],
   },

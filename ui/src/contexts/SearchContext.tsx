@@ -1,22 +1,29 @@
-import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
-import { ChunkChain } from '../feature/Chunks/ChunkChain';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
-import { Slot } from '../feature/Chunks/Types/Slot';
-import { SlotModal } from '../components/SlotModal';
-import { buildFilledChunk } from '../utils/slotFiller';
-import { Suggestion } from './Suggestion';
-import { SearchContextType } from './SearchContextType';
-import { useSearchAPI } from '../hooks/useSearchAPI';
-import { useSuggestionEngine } from '../hooks/useSuggestionEngine';
-import { useSuggestionSelection } from '../hooks/useSuggestionSelection';
-import { useFocusManagement } from '../hooks/useFocusManagement';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  ReactNode,
+} from "react";
+import { ChunkChain } from "../feature/Chunks/ChunkChain";
+import { Chunk } from "../feature/Chunks/Types/Chunk";
+import { Slot } from "../feature/Chunks/Types/Slot";
+import { SlotModal } from "../components/SlotModal";
+import { buildFilledChunk } from "../utils/slotFiller";
+import { Suggestion } from "./Suggestion";
+import { SearchContextType } from "./SearchContextType";
+import { useSearchAPI } from "../hooks/useSearchAPI";
+import { useSuggestionEngine } from "../hooks/useSuggestionEngine";
+import { useSuggestionSelection } from "../hooks/useSuggestionSelection";
+import { useFocusManagement } from "../hooks/useFocusManagement";
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
 export const useSearchContext = () => {
   const context = useContext(SearchContext);
   if (!context) {
-    throw new Error('useSearch must be used within a SearchProvider');
+    throw new Error("useSearch must be used within a SearchProvider");
   }
   return context;
 };
@@ -26,77 +33,95 @@ interface SearchProviderProps {
 }
 
 export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [chain, setChain] = useState(new ChunkChain());
 
   // Modal state
   const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
-  const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(null);
+  const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(
+    null
+  );
   const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
 
-  const { searchResults, isSearching, searchError, executeSearch, clearSearch } = useSearchAPI();
-  const { shouldFocusSearchBar, focusSearchBar, resetFocusFlag } = useFocusManagement();
+  const {
+    searchResults,
+    isSearching,
+    searchError,
+    executeSearch,
+    clearSearch,
+  } = useSearchAPI();
+  const { shouldFocusSearchBar, focusSearchBar, resetFocusFlag } =
+    useFocusManagement();
 
   // Chain operations
-  const editChunk = useCallback((index: number) => {
-    const chainArray = chain.toArray();
-    if (index < 0 || index >= chainArray.length) {
-      console.error('Invalid chunk index:', index);
-      return;
-    }
-
-    const chunkToEdit = chainArray[index];
-
-    // Only editable chunks have slots
-    if (chunkToEdit.Slots.length === 0) {
-      console.error('Cannot edit chunk with no slots:', chunkToEdit.English);
-      return;
-    }
-
-    // Create a copy with the original templates restored for editing
-    const chunkCopy = {
-      ...chunkToEdit,
-      English: chunkToEdit.EnglishTemplate!,   // Restore template version
-      Cypher: chunkToEdit.CypherTemplate!,     // Restore template version  
-      Slots: chunkToEdit.Slots.map((s) => ({ ...s }))  // Keep current values for pre-filling
-    };
-
-    setPendingChunk(chunkCopy);
-    setPendingSlots(chunkCopy.Slots);
-    setEditingChunkIndex(index);
-    setIsSlotModalOpen(true);
-  }, [chain]);
-
-  const insertChunkAt = useCallback((index: number) => {
-    setInsertingAtIndex(index);
-    setQuery(''); // Clear query to show all suggestions
-    focusSearchBar();
-  }, [setQuery, focusSearchBar]);
-
-  const removeChunk = useCallback((index: number) => {
-    const chainArray = chain.toArray();
-    if (index < 0 || index >= chainArray.length) return;
-
-    // Rebuild chain without the chunk at the specified index
-    const newChain = new ChunkChain();
-    chainArray.forEach((chunk, i) => {
-      if (i !== index) {
-        newChain.append(chunk);
+  const editChunk = useCallback(
+    (index: number) => {
+      const chainArray = chain.toArray();
+      if (index < 0 || index >= chainArray.length) {
+        console.error("Invalid chunk index:", index);
+        return;
       }
-    });
 
-    setChain(newChain);
-    newChain.compile();
-    setQuery(newChain.English);
-  }, [chain, setChain, setQuery]);
+      const chunkToEdit = chainArray[index];
+
+      // Only editable chunks have slots
+      if (chunkToEdit.Slots.length === 0) {
+        console.error("Cannot edit chunk with no slots:", chunkToEdit.English);
+        return;
+      }
+
+      // Create a copy with the original templates restored for editing
+      const chunkCopy = {
+        ...chunkToEdit,
+        English: chunkToEdit.EnglishTemplate!, // Restore template version
+        Cypher: chunkToEdit.CypherTemplate!, // Restore template version
+        Slots: chunkToEdit.Slots.map((s) => ({ ...s })), // Keep current values for pre-filling
+      };
+
+      setPendingChunk(chunkCopy);
+      setPendingSlots(chunkCopy.Slots);
+      setEditingChunkIndex(index);
+      setIsSlotModalOpen(true);
+    },
+    [chain]
+  );
+
+  const insertChunkAt = useCallback(
+    (index: number) => {
+      setInsertingAtIndex(index);
+      setQuery(""); // Clear query to show all suggestions
+      focusSearchBar();
+    },
+    [setQuery, focusSearchBar]
+  );
+
+  const removeChunk = useCallback(
+    (index: number) => {
+      const chainArray = chain.toArray();
+      if (index < 0 || index >= chainArray.length) return;
+
+      // Rebuild chain without the chunk at the specified index
+      const newChain = new ChunkChain();
+      chainArray.forEach((chunk, i) => {
+        if (i !== index) {
+          newChain.append(chunk);
+        }
+      });
+
+      setChain(newChain);
+      newChain.compile();
+      setQuery(newChain.English);
+    },
+    [chain, setChain, setQuery]
+  );
 
   // Use the new suggestion hooks
   const { suggestions, showNextSuggestions } = useSuggestionEngine({
     query,
     chain,
-    insertingAtIndex
+    insertingAtIndex,
   });
 
   // Initialize suggestion selection hook
@@ -105,46 +130,55 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     selectedSuggestion,
     setKeyboardNavigationEnabled,
     handleKeyDown,
-    clearSelection
+    clearSelection,
   } = useSuggestionSelection({
     suggestions,
     onExecuteSearch: () => {
-      executeSearch(chain.Cypher);
+      executeSearch(chain.Cypher, chain.Aliases);
       clearSelection();
-    }
+    },
   });
 
   // Handles suggestion selection (both mouse clicks and keyboard selection)
-  const handleSuggestionClick = useCallback((suggestion: Suggestion) => {
-    // Work on a copy to avoid mutating the original chunk catalog
-    const chunkCopy = {
-      ...suggestion.chunk,
-      Slots: suggestion.chunk.Slots.map((s) => ({ ...s }))
-    };
+  const handleSuggestionClick = useCallback(
+    (suggestion: Suggestion) => {
+      // Work on a copy to avoid mutating the original chunk catalog
+      const chunkCopy = {
+        ...suggestion.chunk,
+        Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
+      };
 
-    // If chunk has slots (parameters), open modal for user input
-    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
-      setPendingChunk(chunkCopy);
-      setPendingSlots(chunkCopy.Slots);
-      setIsSlotModalOpen(true);
-    } else {
-      // No slots - handle insertion or append directly to chain
-      if (insertingAtIndex !== null) {
-        chain.insertAt(insertingAtIndex, chunkCopy);
-        setInsertingAtIndex(null);
+      // If chunk has slots (parameters), open modal for user input
+      if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
+        setPendingChunk(chunkCopy);
+        setPendingSlots(chunkCopy.Slots);
+        setIsSlotModalOpen(true);
       } else {
-        chain.append(chunkCopy);
-      }
-      chain.compile();
-      setQuery(chain.English);
+        // No slots - handle insertion or append directly to chain
+        if (insertingAtIndex !== null) {
+          chain.insertAt(insertingAtIndex, chunkCopy);
+          setInsertingAtIndex(null);
+        } else {
+          chain.append(chunkCopy);
+        }
+        chain.compile();
+        setQuery(chain.English);
 
-      // Auto-show next relevant suggestions
-      const nextSuggestions = showNextSuggestions();
-      if (nextSuggestions.length > 0) {
-        setKeyboardNavigationEnabled(true);
+        // Auto-show next relevant suggestions
+        const nextSuggestions = showNextSuggestions();
+        if (nextSuggestions.length > 0) {
+          setKeyboardNavigationEnabled(true);
+        }
       }
-    }
-  }, [chain, insertingAtIndex, showNextSuggestions, setKeyboardNavigationEnabled, setQuery]);
+    },
+    [
+      chain,
+      insertingAtIndex,
+      showNextSuggestions,
+      setKeyboardNavigationEnabled,
+      setQuery,
+    ]
+  );
 
   // Watch for keyboard selection events
   useEffect(() => {
@@ -155,16 +189,20 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   // Auto-enable keyboard navigation when suggestions become available
   useEffect(() => {
-    if (suggestions.length > 0 && query.trim() !== '' && query !== chain.English) {
+    if (
+      suggestions.length > 0 &&
+      query.trim() !== "" &&
+      query !== chain.English
+    ) {
       setKeyboardNavigationEnabled(true);
-    } else if (suggestions.length === 0 || query.trim() === '') {
+    } else if (suggestions.length === 0 || query.trim() === "") {
       setKeyboardNavigationEnabled(false);
     }
   }, [suggestions, query, chain.English, setKeyboardNavigationEnabled]);
 
   // Clears the entire search state - query, chain, suggestions, and results
   const clearQuery = () => {
-    setQuery('');
+    setQuery("");
     setChain(new ChunkChain());
     clearSelection();
     clearSearch();
@@ -218,8 +256,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setEditingChunkIndex(null);
   };
 
-
-
   const value: SearchContextType = {
     // State
     userInput: query,
@@ -239,7 +275,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     handleKeyDown,
     clearAll: clearQuery,
     search: () => {
-      executeSearch(chain.Cypher);
+      executeSearch(chain.Cypher, chain.Aliases);
       clearSelection();
     },
     editChunk,
@@ -261,4 +297,4 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       />
     </SearchContext.Provider>
   );
-}; 
+};

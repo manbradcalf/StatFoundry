@@ -1,8 +1,8 @@
 import { Entity } from "./Entity";
-import { Label } from "../Enums/Label";
+import { AliasType } from "../Enums/AliasType";
 
 export interface PlayerGame extends Entity {
-  label: Label.PlayerGame;
+  label: AliasType.PlayerGame;
   properties: {
     player: {
       player_id: string;

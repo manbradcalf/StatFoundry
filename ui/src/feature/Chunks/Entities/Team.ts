@@ -1,8 +1,8 @@
 import { Entity } from "./Entity";
-import { Label } from "../Enums/Label";
+import { AliasType } from "../Enums/AliasType";
 
 export interface Team extends Entity {
-  label: Label.Team;
+  label: AliasType.Team;
   properties: {
     // Team identification
     team_id: string;
