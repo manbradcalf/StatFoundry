@@ -8,16 +8,14 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
   {
     English: "who had [rushing stats] in Games",
     Cypher:
-      "CALL (p) { MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value} RETURN p as rb, pg as rbGame }",
+      "CALL (p) { MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value} RETURN p as rb, pg as rbGames }",
     EnglishTemplate: "who had {condition} {value} {stat} in a Game",
-    CypherTemplate: `CALL (p) { 
-        MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value} 
-  } WITH
-      rb`,
+    CypherTemplate:
+      "CALL (p) { MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value} RETURN p as rb, pg as rbGames }",
     QueryType: QueryType.FILTER,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [
-      { Name: "rbGame", AliasType: AliasType.AggregatedRBGame },
+      { Name: "rbGames", AliasType: AliasType.RBGame },
       { Name: "rb", AliasType: AliasType.Player },
     ],
     Slots: [
@@ -34,6 +32,25 @@ export const RUSHING_STATS_CHUNKS: Chunk[] = [
       {
         Name: "value",
         Value: 100,
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+  },
+  {
+    English: "during the [season]",
+    Cypher: "",
+    EnglishTemplate: "during the {season} season",
+    CypherTemplate: `CALL (rbGames) { 
+      WITH rbGames WHERE rbGames.season = {season} 
+      RETURN rbGames as rbGamesDuringSeason 
+    }`,
+    QueryType: QueryType.FILTER,
+    Requires: [{ Name: "rbGames", AliasType: AliasType.RBGame }],
+    Provides: [{ Name: "rbGamesDuringSeason", AliasType: AliasType.RBGame }],
+    Slots: [
+      {
+        Name: "season",
+        Value: 2024,
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
