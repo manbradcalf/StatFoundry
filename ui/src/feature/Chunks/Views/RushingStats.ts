@@ -1,4 +1,5 @@
 export const RUSHING_STATS = [
+  { key: "rushing_yards", type: "number" },
   { key: "rushing_tds", type: "number" },
   { key: "rushing_first_downs", type: "number" },
   { key: "rushing_epa", type: "number" },

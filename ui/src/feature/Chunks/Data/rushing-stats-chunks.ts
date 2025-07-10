@@ -37,7 +37,7 @@ export const RUSHING_STATS_CHUNKS = RUSHING_STATS.map(stat => ({
 export const RUSHING_STATS_AND: Chunk = {
   English: `and ...`,
   Cypher: "",
-  EnglishTemplate: "and who had {condition} {value} {stat.key} in a Season",
+  EnglishTemplate: "and who had {condition} {value} {stat.key} in that Season",
   CypherTemplate:
     "MATCH (rbSeason) WHERE rbSeason.{stat.key} {condition} {value}",
   QueryType: QueryType.FILTER,
