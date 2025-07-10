@@ -1,8 +1,8 @@
 import { Entity } from "./Entity";
-import { Label } from "../Enums/Label";
+import { AliasType } from "../Enums/AliasType";
 
 export interface Player extends Entity {
-  label: Label.Player;
+  label: AliasType.Player;
   properties: {
     // Player identification
     smart_id: string;

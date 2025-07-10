@@ -1,27 +1,19 @@
 import { useState } from "react";
 import { config } from "../config";
+import { buildSmartReturnClause } from "../feature/Chunks/returnClauseBuilder";
+import { Alias } from "../feature/Chunks/Types/Alias";
 
 export const useSearchAPI = () => {
   const [searchResults, setSearchResults] = useState<any[] | null>(null);
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [searchError, setSearchError] = useState<string | null>(null);
 
-  const appendReturnClause = (cypherQuery: string) => {
-    if (cypherQuery.includes("RETURN")) {
-      return cypherQuery;
-    } else {
-      // TODO: Give the user options for what to return (e.g. all, player game info, rushing stats, passing stats, receiving stats)
-      // This is temporary for the UX demo, I want to show the UX before solving for return clause
-      // They won't always search players
-      return `${cypherQuery} RETURN *`
-    }
-  };
-  const executeSearch = async (cypherQuery: string) => {
+  const executeSearch = async (cypherQuery: string, aliases: Alias[] = []) => {
     if (!cypherQuery.trim()) return;
 
-    cypherQuery = appendReturnClause(cypherQuery);
+    cypherQuery = `${cypherQuery} ${buildSmartReturnClause(aliases)}`;
     setIsSearching(true);
-    console.log("searching " + cypherQuery)
+    console.log("searching " + cypherQuery);
     setSearchError(null);
 
     try {
@@ -34,7 +26,7 @@ export const useSearchAPI = () => {
       });
 
       if (!response.ok) {
-        console.log(response)
+        console.log(response);
         throw new Error(`HTTP error! status: ${response.status} `);
       }
 

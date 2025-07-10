@@ -30,17 +30,17 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ chunk, index, isLast })
       <span className="breadcrumb-text">{chunk.English}</span>
       <div className="breadcrumb-actions">
         {chunk.Slots.length > 0 && (
-          <button 
-            className="breadcrumb-edit-button" 
-            onClick={handleEdit} 
+          <button
+            className="breadcrumb-edit-button"
+            onClick={handleEdit}
             title="Edit chunk"
           >
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
         )}
-        <button 
-          className="breadcrumb-remove-button" 
-          onClick={handleRemove} 
+        <button
+          className="breadcrumb-remove-button"
+          onClick={handleRemove}
           title="Remove chunk"
         >
           ×
@@ -64,43 +64,47 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
   }
 
   return (
-    <div className={`breadcrumb-chain ${className}`}>
-      <div className="breadcrumb-items">
-        {chainArray.map((chunk, index) => (
-          <React.Fragment key={index}>
-            {index > 0 && (
-              <button
-                className="breadcrumb-insert-button"
-                onClick={() => insertChunkAt(index)}
-                title={`Insert chunk before "${chunk.English}"`}
-              >
-                +
-              </button>
-            )}
-            <BreadcrumbItem
-              chunk={chunk}
-              index={index}
-              isLast={index === chainArray.length - 1}
-            />
-          </React.Fragment>
-        ))}
+    <div className="breadcrumb-wrapper">
+      <div className={`breadcrumb-chain ${className}`}>
+        <div className="breadcrumb-items">
+          {chainArray.map((chunk, index) => (
+            <React.Fragment key={index}>
+              {index > 0 && (
+                <button
+                  className="breadcrumb-insert-button"
+                  onClick={() => insertChunkAt(index)}
+                  title={`Insert chunk before "${chunk.English}"`}
+                >
+                  +
+                </button>
+              )}
+              <BreadcrumbItem
+                chunk={chunk}
+                index={index}
+                isLast={index === chainArray.length - 1}
+              />
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="breadcrumb-controls">
+          <button
+            className="breadcrumb-add-button"
+            onClick={() => insertChunkAt(chainArray.length)}
+            title="Add chunk"
+          >
+            +
+          </button>
+          <button
+            className="breadcrumb-clear-button"
+            onClick={clearAll}
+            title="Clear all"
+          >
+            Clear
+          </button>
+        </div>
       </div>
-      <div className="breadcrumb-controls">
-        <button
-          className="breadcrumb-add-button"
-          onClick={() => insertChunkAt(chainArray.length)}
-          title="Add chunk"
-        >
-          +
-        </button>
-        <button
-          className="breadcrumb-clear-button"
-          onClick={clearAll}
-          title="Clear all"
-        >
-          Clear
-        </button>
-      </div>
+      <p>{chain.toArray().map(x => x.English + " ")}</p>
     </div>
   );
+
 };

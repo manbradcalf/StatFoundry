@@ -28,7 +28,7 @@ export class ChunkChain {
     this.Tail = node;
 
     // add the outputs of the chunk to our chain's aliases
-    this.Aliases.push(...chunk.Outputs);
+    this.Aliases.push(...chunk.Provides);
     // dedup by alias name
     this.Aliases = this.Aliases.filter(
       (alias, index, self) =>
@@ -125,7 +125,7 @@ export class ChunkChain {
       cypherParts.push(chunk.Cypher.trim());
 
       // add the chunk's aliases to the aliases
-      aliases.push(...chunk.Outputs);
+      aliases.push(...chunk.Provides);
 
       node = node.next;
     }
@@ -169,7 +169,11 @@ export class ChunkChain {
 function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
   // filter out invalid query types before we check if we have enough of each type
   // if we have no aliases, we have nothing to return or filter, so return false
-  if (currentAliases.length === 0 && (chunk.QueryType === QueryType.RETURN || chunk.QueryType === QueryType.FILTER)) {
+  if (
+    currentAliases.length === 0 &&
+    (chunk.QueryType === QueryType.RETURN ||
+      chunk.QueryType === QueryType.FILTER)
+  ) {
     return false;
   }
 
@@ -179,9 +183,9 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
   }
 
   // Count how many of each entity type we need vs have
-  const needed = chunk.Inputs.reduce(
+  const needed = chunk.Requires.reduce(
     (acc, alias) => {
-      acc[alias.Label] = (acc[alias.Label] || 0) + 1;
+      acc[alias.AliasType] = (acc[alias.AliasType] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>
@@ -189,7 +193,7 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
 
   const available = currentAliases.reduce(
     (acc, alias) => {
-      acc[alias.Label] = (acc[alias.Label] || 0) + 1;
+      acc[alias.AliasType] = (acc[alias.AliasType] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>

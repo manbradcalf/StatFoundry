@@ -42,13 +42,13 @@ export type Chunk = {
    * Each alias is a pair of [aliasName, entityType] representing the required entity types
    * that must be available in the chain before this chunk can be used.
    */
-  readonly Inputs: Alias[];
+  readonly Requires: Alias[];
 
   /**
    * The types of the entities that are aliased by the chunk.
    * The key is the alias name, and the value is the label of the entity.
    */
-  readonly Outputs: Alias[];
+  readonly Provides: Alias[];
 
   /**
    * The values to fill the slots with.

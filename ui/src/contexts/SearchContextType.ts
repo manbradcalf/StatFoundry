@@ -1,5 +1,5 @@
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
-import { Label } from "../feature/Chunks/Enums/Label";
+import { AliasType } from "../feature/Chunks/Enums/AliasType";
 import { Suggestion } from "./Suggestion";
 
 export interface SearchContextType {
@@ -13,9 +13,10 @@ export interface SearchContextType {
   builtQuery: ChunkChain | null;
   selectedIndex: number;
   searchResults: any;
-  aliasesToReturn: string[]
+  aliasesToReturn: string[];
   isSearching: boolean;
   searchError: string | null;
+  activeAliases: Set<string>;
 
   // Actions
   setUserInput: (input: string) => void;
@@ -28,4 +29,5 @@ export interface SearchContextType {
   removeChunk: (index: number) => void;
   focusSearchBar: () => void;
   resetFocusFlag: () => void;
+  toggleAlias: (aliasName: string) => void;
 }
