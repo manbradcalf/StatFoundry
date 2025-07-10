@@ -18,7 +18,7 @@ export const defaultNFLGroups: TableGroup[] = [
   },
   {
     name: "rushing",
-    keys: [...RUSHING_STATS],
+    keys: [...RUSHING_STATS].map(x => x.key),
     priority: 2,
   },
   {

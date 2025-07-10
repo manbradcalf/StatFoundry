@@ -16,7 +16,8 @@ export function fillTemplate(template: string, slots: Slot[]): string {
   const nonLiteralNames = ["property", "condition", "stat"];
 
   slots.forEach(({ Name, Value }) => {
-    const pattern = new RegExp(`\\{${Name}\\}`, "g");
+    const pattern = new RegExp(`\\{${Name}(?:\\.[a-zA-Z0-9_]+)?\\}`, "g");
+
 
     // Only quote the value if it's a string AND its name indicates
     // it's a literal value, not an identifier or operator.

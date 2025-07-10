@@ -10,7 +10,7 @@ import { PASSING_STATS } from "../Views/PassingStats";
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
   {
     English: "return all player game stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...RECEIVING_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS.map(x => x.key), ...RECEIVING_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
@@ -18,7 +18,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
   },
   {
     English: "return player game rushing stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS].join(", pg.")} LIMIT 10`,
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS.map(x => x.key)].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
@@ -34,7 +34,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
   },
   {
     English: "return player game rushing and receiving stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS, ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS.map(x => x.key), ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],

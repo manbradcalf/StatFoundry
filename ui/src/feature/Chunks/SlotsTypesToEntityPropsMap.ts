@@ -11,7 +11,7 @@ export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.SelectPlayerProperty]: [...PLAYER_INFO_PROPERTIES],
   [SlotType.SelectPlayerGameProperty]: [...PLAYER_GAME_INFO_PROPERTIES],
   [SlotType.SelectPlayerSeasonProperty]: [...PLAYER_SEASON_INFO_PROPERTIES],
-  [SlotType.SelectRushingStats]: [...RUSHING_STATS],
+  [SlotType.SelectRushingStats]: [...RUSHING_STATS.map(x => x.key)],
   [SlotType.SelectReceivingStats]: [...RECEIVING_STATS],
   [SlotType.SelectPassingStats]: [...PASSING_STATS],
   [SlotType.SelectPlayerPosition]: ["QB", "RB", "WR", "TE", "K"],
@@ -22,6 +22,7 @@ export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.SelectTeamGameProperty]: [],
   [SlotType.SelectTeamSeasonProperty]: [],
   [SlotType.Filter]: [],
-  [SlotType.FilterCondition]: [">", "=>", "=", "<", "<=", "<>"],
+  [SlotType.FilterCondition]: [">", "=>", "=", "<", "<=", "<>", "in"],
   [SlotType.FilterValue]: [],
+  [SlotType.MultiStatFilter]: []
 };

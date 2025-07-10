@@ -24,7 +24,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
     case AliasType.RBGame:
       return [
         ...PLAYER_GAME_INFO_PROPERTIES,
-        ...RUSHING_STATS,
+        ...RUSHING_STATS.map(x => x.key),
         ...RECEIVING_STATS,
       ];
 
@@ -32,7 +32,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return [
         ...PLAYER_GAME_INFO_PROPERTIES,
         ...RECEIVING_STATS,
-        ...RUSHING_STATS,
+        ...RUSHING_STATS.map(x => x.key),
       ];
 
     case AliasType.TEGame:
@@ -44,7 +44,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
     case AliasType.RBSeason:
       return [
         ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...RUSHING_STATS,
+        ...RUSHING_STATS.map(x => x.key),
         ...RECEIVING_STATS,
       ];
 
@@ -52,7 +52,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return [
         ...PLAYER_SEASON_INFO_PROPERTIES,
         ...RECEIVING_STATS,
-        ...RUSHING_STATS,
+        ...RUSHING_STATS.map(x => x.key),
       ];
 
     case AliasType.TESeason:
@@ -66,7 +66,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
 
     // Aggregated aliases
     case AliasType.AggregatedRBGame:
-      return [...RUSHING_STATS];
+      return [...RUSHING_STATS.map(x => x.key)];
 
     case AliasType.AggregatedWRGame:
       return [...RECEIVING_STATS];
@@ -78,7 +78,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return [...RECEIVING_STATS];
 
     case AliasType.AggregatedRBSeason:
-      return [...RUSHING_STATS];
+      return [...RUSHING_STATS.map(x => x.key)];
 
     case AliasType.AggregatedWRSeason:
       return [...RECEIVING_STATS];
