@@ -2,84 +2,53 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
+import { PLAYER_INFO_PROPERTIES } from "../Views/PlayerInfo";
 
-export const PLAYER_INFO_CHUNKS: Chunk[] = [
+// Helper to build slots for a given property
+const buildSlots = (property: string): any[] => [
   {
-    English: "with [name]",
-    Cypher: "",
-    EnglishTemplate: "named {name}",
-    CypherTemplate: "WHERE p.display_name = {name}",
-    QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "p", AliasType: AliasType.Player }],
-    Slots: [
-      {
-        Name: "name",
-        Value: "John Doe",
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
+    Name: "property",
+    Value: property,
+    SlotValueTypes: [SlotType.SelectPlayerProperty],
   },
   {
-    English: "currently on [team]",
-    Cypher: "",
-    EnglishTemplate: "currently on {team}",
-    CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
-    QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "p", AliasType: AliasType.Player }],
-    Slots: [
-      {
-        Name: "team",
-        Value: "SEA",
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
+    Name: "condition",
+    Value: "=",
+    SlotValueTypes: [SlotType.FilterCondition],
   },
   {
-    English: "who have played at least [number] games for [team]",
-    Cypher: "",
-    EnglishTemplate: "who have played {num} games for {team}",
-    CypherTemplate: `
-    CALL (p) { 
-      MATCH (p)-[:HAD]->(pg:PlayerGame) 
-      WHERE pg.recent_team = {team} 
-      WITH p, collect(pg) as games 
-      WHERE size(games) >= {num}
-      RETURN p as playerWhoPlayedAtLeastGamesForTeam
-      }
-      WITH *, playerWhoPlayedAtLeastGamesForTeam as p`,
-
-    QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "p", AliasType: AliasType.Player }],
-    Slots: [
-      {
-        Name: "num",
-        Value: 10,
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-      {
-        Name: "team",
-        Value: "SEA",
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
-  },
-  {
-    English: "who went to [college]",
-    Cypher: "",
-    EnglishTemplate: "who went to {college}",
-    CypherTemplate: "MATCH (p) where p.college_name={college}",
-    QueryType: QueryType.FILTER,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "p", AliasType: AliasType.Player }],
-    Slots: [
-      {
-        Name: "college",
-        Value: "Virginia Tech",
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
+    Name: "value",
+    Value: "value",
+    SlotValueTypes: [SlotType.FilterValue],
   },
 ];
+
+const FILTER_AND_AND_CHUNKS: Chunk[] = PLAYER_INFO_PROPERTIES.flatMap((prop) => {
+  const slots = buildSlots(prop);
+
+  const filterChunk: Chunk = {
+    English: `with [${prop}]`,
+    Cypher: "",
+    EnglishTemplate: `{property} {condition} {value}`,
+    CypherTemplate: `WHERE p.{property} {condition} {value}`,
+    QueryType: QueryType.FILTER,
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "p", AliasType: AliasType.Player }],
+    Slots: slots,
+  };
+
+  const andChunk: Chunk = {
+    English: "and ...",
+    Cypher: "",
+    EnglishTemplate: `and p.{property} {condition} {value}`,
+    CypherTemplate: `AND p.{property} {condition} {value}`,
+    QueryType: QueryType.FILTER,
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "p", AliasType: AliasType.Player }],
+    Slots: slots,
+  };
+
+  return [filterChunk, andChunk];
+});
+
+export const PLAYER_INFO_CHUNKS: Chunk[] = [...FILTER_AND_AND_CHUNKS];

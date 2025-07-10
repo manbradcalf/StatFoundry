@@ -6,86 +6,95 @@ import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
 import { PASSING_STATS } from "../Views/PassingStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "../Views/PlayerSeasonInfo";
 
-export const PASSING_STATS_CHUNKS: Chunk[] = [
-  // Game
-  {
-    English: "who had [passing stats] in a Game",
-    Cypher: `CALL (p) {
-        MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}
-        RETURN p, pg
-      }`,
-    EnglishTemplate: "who had {condition} {value} {stat} in a Game",
+// Dynamically generate filter & AND chunks for each passing stat (Season & Game levels)
+const FILTER_AND_AND_CHUNKS: Chunk[] = PASSING_STATS.flatMap((statKey) => {
+  const baseSlots = [
+    {
+      Name: "stat",
+      Value: statKey,
+      SlotValueTypes: [SlotType.SelectPassingStats],
+    },
+    {
+      Name: "condition",
+      Value: ">",
+      SlotValueTypes: [SlotType.FilterCondition],
+    },
+    {
+      Name: "value",
+      Value: 100,
+      SlotValueTypes: [SlotType.FilterValue],
+    },
+  ];
+
+  const seasonFilter: Chunk = {
+    English: `who had [${statKey}] in a Season`,
+    Cypher: "",
+    EnglishTemplate: `who had {condition} {value} {stat} in a Season`,
     CypherTemplate:
-      "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
+      `CALL (p) { MATCH (p)-[:HAD]->(ps:PlayerSeason) WHERE ps.{stat} {condition} {value} RETURN ps as passingSeasonStats }`,
     QueryType: QueryType.FILTER,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [
-      { Name: "p", AliasType: AliasType.Player },
-      { Name: "pg", AliasType: AliasType.PlayerGame },
-    ],
-    Slots: [
-      {
-        Name: "stat",
-        Value: "passing_yards",
-        SlotValueTypes: [SlotType.SelectPassingStats],
-      },
-      {
-        Name: "condition",
-        Value: ">",
-        SlotValueTypes: [SlotType.FilterCondition],
-      },
-      {
-        Name: "value",
-        Value: 100,
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
-  },
-  // Season
-  {
-    English: "who had [passing stats] in a Season",
-    Cypher: "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
-    EnglishTemplate: "who had {condition} {value} {stat} in a Season",
+    Provides: [{ Name: "passingSeasonStats", AliasType: AliasType.QBSeason }],
+    Slots: baseSlots,
+  };
+
+  const seasonAnd: Chunk = {
+    English: "and ...",
+    Cypher: "",
+    EnglishTemplate: `and who had {condition} {value} {stat} in that Season`,
     CypherTemplate:
-      "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
+      `MATCH (passingSeasonStats) WHERE passingSeasonStats.{stat} {condition} {value}`,
+    QueryType: QueryType.FILTER,
+    Requires: [{ Name: "passingSeasonStats", AliasType: AliasType.QBSeason }],
+    Provides: [{ Name: "passingSeasonStats", AliasType: AliasType.QBSeason }],
+    Slots: baseSlots,
+  };
+
+  const gameFilter: Chunk = {
+    English: `who had [${statKey}] in a Game`,
+    Cypher: "",
+    EnglishTemplate: `who had {condition} {value} {stat} in a Game`,
+    CypherTemplate:
+      `CALL (p) { MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.{stat} {condition} {value} RETURN pg as passingGameStats }`,
     QueryType: QueryType.FILTER,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [
-      { Name: "p", AliasType: AliasType.Player },
-      { Name: "ps", AliasType: AliasType.PlayerSeason },
-    ],
-    Slots: [
-      {
-        Name: "stat",
-        Value: "passing_yards",
-        SlotValueTypes: [SlotType.SelectPassingStats],
-      },
-      {
-        Name: "condition",
-        Value: ">",
-        SlotValueTypes: [SlotType.FilterCondition],
-      },
-      {
-        Name: "value",
-        Value: 4000,
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
-  },
+    Provides: [{ Name: "passingGameStats", AliasType: AliasType.QBGame }],
+    Slots: baseSlots,
+  };
+
+  const gameAnd: Chunk = {
+    English: "and ...",
+    Cypher: "",
+    EnglishTemplate: `and who had {condition} {value} {stat} in that Game`,
+    CypherTemplate:
+      `MATCH (passingGameStats) WHERE passingGameStats.{stat} {condition} {value}`,
+    QueryType: QueryType.FILTER,
+    Requires: [{ Name: "passingGameStats", AliasType: AliasType.QBGame }],
+    Provides: [{ Name: "passingGameStats", AliasType: AliasType.QBGame }],
+    Slots: baseSlots,
+  };
+
+  return [seasonFilter, seasonAnd, gameFilter, gameAnd];
+});
+
+// Return chunks for convenience (game & season)
+const RETURN_CHUNKS: Chunk[] = [
   {
     English: "return passing stats by game",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")}`,
+    Cypher: `RETURN passingGameStats.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", passingGameStats.")}`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Requires: [{ Name: "passingGameStats", AliasType: AliasType.QBGame }],
     Provides: [],
     Slots: [],
   },
   {
     English: "return passing stats by season",
-    Cypher: `RETURN ps.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", ps.")}`,
+    Cypher: `RETURN passingSeasonStats.${[...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS].join(", passingSeasonStats.")}`,
     QueryType: QueryType.RETURN,
-    Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
+    Requires: [{ Name: "passingSeasonStats", AliasType: AliasType.QBSeason }],
     Provides: [],
     Slots: [],
   },
 ];
+
+export const PASSING_STATS_CHUNKS: Chunk[] = [...FILTER_AND_AND_CHUNKS, ...RETURN_CHUNKS];
