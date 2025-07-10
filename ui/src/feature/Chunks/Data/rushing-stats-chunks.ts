@@ -6,7 +6,7 @@ import { RUSHING_STATS } from '../Views/RushingStats'; // adjust path as needed
 import { Chunk } from "../Types/Chunk";
 
 export const RUSHING_STATS_CHUNKS = RUSHING_STATS.map(stat => ({
-  English: `who had [${stat.key}] in a Season`,
+  English: stat.type === "number" ? `who had [${stat.key}] in a Season` : `who played for [${stat.key}]`,
   Cypher: "",
   EnglishTemplate: "who had {condition} {value} {stat.key} in a Season",
   CypherTemplate: stat.type === "number" ?
@@ -23,7 +23,7 @@ export const RUSHING_STATS_CHUNKS = RUSHING_STATS.map(stat => ({
     },
     {
       Name: "condition",
-      Value: ">",
+      Value: stat.type === "number" ? ">" : "in",
       SlotValueTypes: [SlotType.FilterCondition],
     },
     {
@@ -39,7 +39,7 @@ export const RUSHING_STATS_AND: Chunk = {
   Cypher: "",
   EnglishTemplate: "and who had {condition} {value} {stat.key} in a Season",
   CypherTemplate:
-    "MATCH (rbSeason) WHERE rbSeason.{stat} {condition} {value}",
+    "MATCH (rbSeason) WHERE rbSeason.{stat.key} {condition} {value}",
   QueryType: QueryType.FILTER,
   Requires: [{ Name: "rbSeason", AliasType: AliasType.RBSeason }],
   Provides: [{ Name: `rbSeason`, AliasType: AliasType.RBSeason }],
