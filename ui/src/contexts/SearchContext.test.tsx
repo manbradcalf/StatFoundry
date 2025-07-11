@@ -2,14 +2,14 @@
 import React, { useEffect } from 'react';
 import { render, waitFor, fireEvent, screen } from '@testing-library/react';
 import { SearchProvider, useSearchContext } from './SearchContext';
-import { getAvailableChunks } from '../feature/Chunks/Data/chunks-data';
+import { getAllChunks } from '../feature/Chunks/Data/chunks-data';
 
 const TriggerComponent: React.FC = () => {
   const search = useSearchContext();
 
   // On mount, select a suggestion with slots
   useEffect(() => {
-    const chunkWithSlots = getAvailableChunks().find((c) => c.Slots.length > 0)!;
+    const chunkWithSlots = getAllChunks().find((c) => c.Slots.length > 0)!;
     search.selectSuggestion({ chunk: chunkWithSlots });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

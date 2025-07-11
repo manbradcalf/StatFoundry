@@ -18,9 +18,8 @@
  * ex: RETURN p.player_display_name as name, p.position as position, p.
  */
 export enum QueryType {
-  MATCH = "MATCH",
   MATCH_START = "MATCH_START",
-  MATCH_PATH = "MATCH_PATH",
-  FILTER = "FILTER",
+  FILTER_START = "FILTER",
+  FILTER_EXTEND = "FILTER_EXTEND",
   RETURN = "RETURN",
 }

@@ -79,7 +79,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setActiveAliases(new Set(allAliases));
   }, [chain.Aliases]);
 
-  // Execute debounced search when activeAliases change AFTER initial search has been performed
+  // Execute debounced search when activeAliases change 
   const [isInitialMount, setIsInitialMount] = useState(true);
   useEffect(() => {
     if (isInitialMount) {
@@ -87,10 +87,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       return;
     }
     // Only trigger search if we have existing search results (meaning user has already searched)
-    if (searchResults && searchResults.length > 0) {
-      debouncedAliasSearch();
-    }
-  }, [activeAliases, debouncedAliasSearch, isInitialMount, searchResults]);
+    debouncedAliasSearch();
+  }, [activeAliases, debouncedAliasSearch, isInitialMount]);
 
   // Toggle alias active state
   const toggleAlias = useCallback((aliasName: string) => {

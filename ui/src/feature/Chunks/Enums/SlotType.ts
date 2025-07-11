@@ -15,8 +15,7 @@ export enum SlotType {
   Filter = "Filter",
   FilterCondition = "FilterCondition",
   FilterValue = "FilterValue",
-  SelectRushingStats = "SelectRushingStats",
-  SelectReceivingStats = "SelectReceivingStats",
+  SelectFlexStats = "SelectFlexStats",
   SelectPassingStats = "SelectPassingStats",
 
   // value properties

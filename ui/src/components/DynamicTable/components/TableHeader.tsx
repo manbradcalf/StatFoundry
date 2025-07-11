@@ -17,28 +17,29 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   onSort,
   getSortIndicator,
 }) => {
+  console.log(JSON.stringify(arrayKeys))
+  console.log(finalKeys)
+  console.log(sortConfig)
   return (
-    <thead>
+    < thead >
       <tr>
         {arrayKeys.length > 0 && <th className="expand-column"></th>}
         {arrayKeys.length > 0 && (
           <th
-            className={`count-column sortable-header ${
-              sortConfig.key === "__expandable_count__" ? "sorted" : ""
-            }`}
+            className={`count-column sortable-header ${sortConfig.key === "__expandable_count__" ? "sorted" : ""
+              }`}
             onClick={() => onSort("__expandable_count__")}
             title="Click to sort by number of games"
           >
-            Games{getSortIndicator("__expandable_count__")}
+            {arrayKeys}{getSortIndicator("__expandable_count__")}
           </th>
         )}
         {finalKeys.map((key) => (
           <th
             key={key}
             onClick={() => onSort(key)}
-            className={`sortable-header ${
-              sortConfig.key === key ? "sorted" : ""
-            }`}
+            className={`sortable-header ${sortConfig.key === key ? "sorted" : ""
+              }`}
             title={`Click to sort by ${formatColumnHeader(key)}`}
           >
             {formatColumnHeader(key)}
@@ -46,6 +47,6 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
           </th>
         ))}
       </tr>
-    </thead>
+    </thead >
   );
 };

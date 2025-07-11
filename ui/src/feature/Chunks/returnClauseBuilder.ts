@@ -3,8 +3,7 @@ import { AliasType } from "./Enums/AliasType";
 import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
 import { PLAYER_GAME_INFO_PROPERTIES } from "./Views/PlayerGameInfo";
 import { PASSING_STATS } from "./Views/PassingStats";
-import { RECEIVING_STATS } from "./Views/ReceivingStats";
-import { FLEX_STATS } from "./Views/RushingStats";
+import { FLEX_STATS } from "./Views/FlexStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
 // Helper function to get properties for a given label
@@ -27,9 +26,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return [
         ...PLAYER_GAME_INFO_PROPERTIES,
         ...FLEX_STATS.map(x => x.key),
-        ...RECEIVING_STATS,
       ];
-
 
     case AliasType.QBSeason:
       return [...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS];
@@ -38,7 +35,6 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return [
         ...PLAYER_SEASON_INFO_PROPERTIES,
         ...FLEX_STATS.map(x => x.key),
-        ...RECEIVING_STATS,
       ];
 
 
@@ -52,26 +48,8 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
     case AliasType.AggregatedRBGame:
       return [...FLEX_STATS.map(x => x.key)];
 
-    case AliasType.AggregatedWRGame:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedTEGame:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedQBGame:
-      return [...RECEIVING_STATS];
-
     case AliasType.AggregatedRBSeason:
       return [...FLEX_STATS.map(x => x.key)];
-
-    case AliasType.AggregatedWRSeason:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedTESeason:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedQBSeason:
-      return [...RECEIVING_STATS];
 
     default:
       return ["*"]; // Fallback for unknown labels

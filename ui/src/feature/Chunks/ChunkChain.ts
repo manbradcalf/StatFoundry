@@ -130,7 +130,7 @@ export class ChunkChain {
       node = node.next;
     }
 
-    this.Cypher = cypherParts.join(" WITH * \n");
+    this.Cypher = cypherParts.join("\n");
     return this;
   }
 
@@ -152,12 +152,13 @@ export class ChunkChain {
    * Get the next valid chunks for the current chunk.
    * @returns The next valid chunks.
    */
-  getNextValidChunksFromChunks(chunks: Chunk[]): Chunk[] {
+  getNextValidChunksFromChunks(chunksToCheck: Chunk[]): Chunk[] {
     const nextValidChunks: Chunk[] = [];
     const currentAliases = this.Aliases;
+    const tail = this.Tail?.chunk;
 
-    for (const chunk of chunks) {
-      if (isValidNextChunk(chunk, currentAliases)) {
+    for (const chunk of chunksToCheck) {
+      if (isValidNextChunk(chunk, currentAliases, tail)) {
         nextValidChunks.push(chunk);
       }
     }
@@ -166,20 +167,24 @@ export class ChunkChain {
   }
 }
 
-function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
-  // filter out invalid query types before we check if we have enough of each type
-  // if we have no aliases, we have nothing to return or filter, so return false
-  if (
-    currentAliases.length === 0 &&
-    (chunk.QueryType === QueryType.RETURN ||
-      chunk.QueryType === QueryType.FILTER)
-  ) {
+function isValidNextChunk(chunk: Chunk, currentAliases: Alias[], tail?: Chunk): boolean {
+  // can't start if we've already started
+  if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
     return false;
   }
 
-  // if we have aliases, we've already started, so return false
-  if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
+  // can't filter what we don't have
+  if (currentAliases.length === 0 && chunk.QueryType !== QueryType.MATCH_START) {
     return false;
+  }
+
+  // if we are currently extending a filter for the same REQUIRES or PROVIDES type, then dont suggest filter start
+
+  if (tail) {
+    if (tail?.QueryType === QueryType.FILTER_START && chunk.QueryType === QueryType.FILTER_START) {
+      return false
+    }
+
   }
 
   // Count how many of each entity type we need vs have
