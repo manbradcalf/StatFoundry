@@ -38,7 +38,19 @@ export const useTableData = ({
           const newKey = prefix ? `${prefix}.${key}` : key;
 
           if (Array.isArray(value)) {
-            arrays[newKey] = value;
+            // Convert arrays of primitives to objects with meaningful keys
+            const processedArray = value.map((item, index) => {
+              if (
+                typeof item === "string" ||
+                typeof item === "number" ||
+                typeof item === "boolean" ||
+                item === null
+              ) {
+                return { value: item, index: index };
+              }
+              return item;
+            });
+            arrays[newKey] = processedArray;
           } else if (value && typeof value === "object") {
             flattenObject(value, newKey);
           } else {

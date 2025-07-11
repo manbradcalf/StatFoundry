@@ -18,6 +18,7 @@ import { useSearchAPI } from "../hooks/useSearchAPI";
 import { useSuggestionEngine } from "../hooks/useSuggestionEngine";
 import { useSuggestionSelection } from "../hooks/useSuggestionSelection";
 import { useFocusManagement } from "../hooks/useFocusManagement";
+import { useChainOperations } from "../hooks/useChainOperations";
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
@@ -78,7 +79,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setActiveAliases(new Set(allAliases));
   }, [chain.Aliases]);
 
-  // Execute debounced search when activeAliases change AFTER initial search has been performed
+  // Execute debounced search when activeAliases change 
   const [isInitialMount, setIsInitialMount] = useState(true);
   useEffect(() => {
     if (isInitialMount) {
@@ -86,10 +87,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       return;
     }
     // Only trigger search if we have existing search results (meaning user has already searched)
-    if (searchResults && searchResults.length > 0) {
-      debouncedAliasSearch();
-    }
-  }, [activeAliases, debouncedAliasSearch]);
+    debouncedAliasSearch();
+  }, [activeAliases, debouncedAliasSearch, isInitialMount]);
 
   // Toggle alias active state
   const toggleAlias = useCallback((aliasName: string) => {
@@ -111,67 +110,29 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     });
   }, []);
 
-  // Chain operations
-  const editChunk = useCallback(
-    (index: number) => {
-      const chainArray = chain.toArray();
-      if (index < 0 || index >= chainArray.length) {
-        console.error("Invalid chunk index:", index);
-        return;
-      }
-
-      const chunkToEdit = chainArray[index];
-
-      // Only editable chunks have slots
-      if (chunkToEdit.Slots.length === 0) {
-        console.error("Cannot edit chunk with no slots:", chunkToEdit.English);
-        return;
-      }
-
-      // Create a copy with the original templates restored for editing
-      const chunkCopy = {
-        ...chunkToEdit,
-        English: chunkToEdit.EnglishTemplate!, // Restore template version
-        Cypher: chunkToEdit.CypherTemplate!, // Restore template version
-        Slots: chunkToEdit.Slots.map((s) => ({ ...s })), // Keep current values for pre-filling
-      };
-
+  // Chain operations using useChainOperations hook
+  const {
+    editChunk,
+    insertChunkAt,
+    removeChunk,
+    appendChunk,
+    insertChunk,
+    updateChunkAtIndex,
+  } = useChainOperations({
+    chain,
+    setChain,
+    setQuery,
+    onEditChunk: (index: number, chunkCopy: Chunk) => {
       setPendingChunk(chunkCopy);
       setPendingSlots(chunkCopy.Slots);
       setEditingChunkIndex(index);
       setIsSlotModalOpen(true);
     },
-    [chain]
-  );
-
-  const insertChunkAt = useCallback(
-    (index: number) => {
+    onInsertMode: (index: number) => {
       setInsertingAtIndex(index);
-      setQuery(""); // Clear query to show all suggestions
-      focusSearchBar();
     },
-    [setQuery, focusSearchBar]
-  );
-
-  const removeChunk = useCallback(
-    (index: number) => {
-      const chainArray = chain.toArray();
-      if (index < 0 || index >= chainArray.length) return;
-
-      // Rebuild chain without the chunk at the specified index
-      const newChain = new ChunkChain();
-      chainArray.forEach((chunk, i) => {
-        if (i !== index) {
-          newChain.append(chunk);
-        }
-      });
-
-      setChain(newChain);
-      newChain.compile();
-      setQuery(newChain.English);
-    },
-    [chain, setChain, setQuery]
-  );
+    onFocusSearchBar: focusSearchBar,
+  });
 
   // Use the new suggestion hooks
   const { suggestions, showNextSuggestions } = useSuggestionEngine({
@@ -216,13 +177,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       } else {
         // No slots - handle insertion or append directly to chain
         if (insertingAtIndex !== null) {
-          chain.insertAt(insertingAtIndex, chunkCopy);
+          insertChunk(insertingAtIndex, chunkCopy);
           setInsertingAtIndex(null);
         } else {
-          chain.append(chunkCopy);
+          appendChunk(chunkCopy);
         }
-        chain.compile();
-        setQuery(chain.English);
 
         // Auto-show next relevant suggestions
         const nextSuggestions = showNextSuggestions();
@@ -232,11 +191,11 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       }
     },
     [
-      chain,
       insertingAtIndex,
       showNextSuggestions,
       setKeyboardNavigationEnabled,
-      setQuery,
+      appendChunk,
+      insertChunk,
     ]
   );
 
@@ -244,8 +203,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   useEffect(() => {
     if (selectedSuggestion) {
       handleSuggestionClick(selectedSuggestion);
+      clearSelection(); // Clear the selectedSuggestion to prevent infinite loop
     }
-  }, [selectedSuggestion, handleSuggestionClick]);
+  }, [selectedSuggestion, handleSuggestionClick, clearSelection]);
 
   // Auto-enable keyboard navigation when suggestions become available
   useEffect(() => {
@@ -285,15 +245,15 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
     if (editingChunkIndex !== null) {
       // Editing existing chunk
-      chain.updateChunkAtIndex(editingChunkIndex, filled);
+      updateChunkAtIndex(editingChunkIndex, filled);
       setEditingChunkIndex(null);
     } else if (insertingAtIndex !== null) {
       // Inserting at specific index
-      chain.insertAt(insertingAtIndex, filled);
+      insertChunk(insertingAtIndex, filled);
       setInsertingAtIndex(null);
     } else {
       // Adding new chunk
-      chain.append(filled);
+      appendChunk(filled);
 
       // Show next contextual suggestions
       const nextSuggestions = showNextSuggestions();
@@ -301,8 +261,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         setKeyboardNavigationEnabled(true);
       }
     }
-    chain.compile();
-    setQuery(chain.English);
 
     // Reset modal state
     setIsSlotModalOpen(false);

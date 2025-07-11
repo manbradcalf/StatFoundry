@@ -3,60 +3,40 @@ import { AliasType } from "./Enums/AliasType";
 import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
 import { PLAYER_GAME_INFO_PROPERTIES } from "./Views/PlayerGameInfo";
 import { PASSING_STATS } from "./Views/PassingStats";
-import { RECEIVING_STATS } from "./Views/ReceivingStats";
-import { RUSHING_STATS } from "./Views/RushingStats";
+import { FLEX_STATS } from "./Views/FlexStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
 // Helper function to get properties for a given label
 const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
   switch (aliasType) {
+
     case AliasType.Player:
       return PLAYER_INFO_PROPERTIES;
 
     case AliasType.PlayerGame:
       return [...PLAYER_GAME_INFO_PROPERTIES];
+
     case AliasType.PlayerSeason:
       return [...PLAYER_SEASON_INFO_PROPERTIES];
 
     case AliasType.QBGame:
       return [...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS];
 
-    case AliasType.RBGame:
+    case AliasType.FlexGame:
       return [
         ...PLAYER_GAME_INFO_PROPERTIES,
-        ...RUSHING_STATS.map(x => x.key),
-        ...RECEIVING_STATS,
+        ...FLEX_STATS.map(x => x.key),
       ];
-
-    case AliasType.WRGame:
-      return [
-        ...PLAYER_GAME_INFO_PROPERTIES,
-        ...RECEIVING_STATS,
-        ...RUSHING_STATS.map(x => x.key),
-      ];
-
-    case AliasType.TEGame:
-      return [...PLAYER_GAME_INFO_PROPERTIES, ...RECEIVING_STATS];
 
     case AliasType.QBSeason:
       return [...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS];
 
-    case AliasType.RBSeason:
+    case AliasType.FlexSeason:
       return [
         ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...RUSHING_STATS.map(x => x.key),
-        ...RECEIVING_STATS,
+        ...FLEX_STATS.map(x => x.key),
       ];
 
-    case AliasType.WRSeason:
-      return [
-        ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...RECEIVING_STATS,
-        ...RUSHING_STATS.map(x => x.key),
-      ];
-
-    case AliasType.TESeason:
-      return [...PLAYER_SEASON_INFO_PROPERTIES, ...RECEIVING_STATS];
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];
@@ -66,28 +46,10 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
 
     // Aggregated aliases
     case AliasType.AggregatedRBGame:
-      return [...RUSHING_STATS.map(x => x.key)];
-
-    case AliasType.AggregatedWRGame:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedTEGame:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedQBGame:
-      return [...RECEIVING_STATS];
+      return [...FLEX_STATS.map(x => x.key)];
 
     case AliasType.AggregatedRBSeason:
-      return [...RUSHING_STATS.map(x => x.key)];
-
-    case AliasType.AggregatedWRSeason:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedTESeason:
-      return [...RECEIVING_STATS];
-
-    case AliasType.AggregatedQBSeason:
-      return [...RECEIVING_STATS];
+      return [...FLEX_STATS.map(x => x.key)];
 
     default:
       return ["*"]; // Fallback for unknown labels

@@ -1,6 +1,5 @@
 import { PASSING_STATS } from "../../feature/Chunks/Views/PassingStats";
-import { RUSHING_STATS } from "../../feature/Chunks/Views/RushingStats";
-import { RECEIVING_STATS } from "../../feature/Chunks/Views/ReceivingStats";
+import { FLEX_STATS } from "../../feature/Chunks/Views/FlexStats";
 import { TableGroup } from "./types";
 
 // Default NFL stats grouping
@@ -17,19 +16,14 @@ export const defaultNFLGroups: TableGroup[] = [
     priority: 1,
   },
   {
-    name: "rushing",
-    keys: [...RUSHING_STATS].map(x => x.key),
+    name: "flex",
+    keys: [...FLEX_STATS].map(x => x.key),
     priority: 2,
   },
   {
     name: "passing",
     keys: [...PASSING_STATS],
     priority: 3,
-  },
-  {
-    name: "receiving",
-    keys: [...RECEIVING_STATS],
-    priority: 4,
   },
   {
     name: "fantasy",

@@ -9,7 +9,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     Cypher: "",
     EnglishTemplate: "named {name}",
     CypherTemplate: "WHERE p.display_name = {name}",
-    QueryType: QueryType.FILTER,
+    QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
@@ -25,7 +25,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     Cypher: "",
     EnglishTemplate: "currently on {team}",
     CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
-    QueryType: QueryType.FILTER,
+    QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
@@ -50,7 +50,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
       }
       WITH *, playerWhoPlayedAtLeastGamesForTeam as p`,
 
-    QueryType: QueryType.FILTER,
+    QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
@@ -71,7 +71,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     Cypher: "",
     EnglishTemplate: "who went to {college}",
     CypherTemplate: "MATCH (p) where p.college_name={college}",
-    QueryType: QueryType.FILTER,
+    QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [

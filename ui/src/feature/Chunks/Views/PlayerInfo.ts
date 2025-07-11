@@ -1,7 +1,7 @@
 export const PLAYER_INFO_PROPERTIES = [
   "display_name",
   "position",
-  "team_abbr",
+  // "team_abbr",
   // "weight",
   // "years_of_experience",
   // "current_team_id",

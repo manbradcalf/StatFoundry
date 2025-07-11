@@ -1,9 +1,9 @@
-import { useMemo, useCallback } from 'react';
-import { ChunkChain } from '../feature/Chunks/ChunkChain';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
-import { getAvailableChunks } from '../feature/Chunks/Data/chunks-data';
-import { Suggestion } from '../contexts/Suggestion';
-import Fuse from 'fuse.js';
+import { useMemo, useCallback } from "react";
+import { ChunkChain } from "../feature/Chunks/ChunkChain";
+import { Chunk } from "../feature/Chunks/Types/Chunk";
+import { getAllChunks } from "../feature/Chunks/Data/chunks-data";
+import { Suggestion } from "../contexts/Suggestion";
+import Fuse from "fuse.js";
 
 interface UseSuggestionEngineParams {
   query: string;
@@ -19,9 +19,8 @@ interface UseSuggestionEngineReturn {
 export const useSuggestionEngine = ({
   query,
   chain,
-  insertingAtIndex
+  insertingAtIndex,
 }: UseSuggestionEngineParams): UseSuggestionEngineReturn => {
-
   // Extract the partial input that the user is currently typing
   const getPartialInput = useCallback((): string => {
     if (chain.English.length === 0) return query.trim();
@@ -30,15 +29,15 @@ export const useSuggestionEngine = ({
     if (query.length > chain.English.length) {
       const partial = query.substring(chain.English.length).trim();
       // Remove leading "and " if present
-      return partial.startsWith('and ') ? partial.substring(4).trim() : partial;
+      return partial.startsWith("and ") ? partial.substring(4).trim() : partial;
     }
 
-    return '';
+    return "";
   }, [query, chain.English]);
 
   // Generate contextually relevant suggestions after a chunk is added to the chain
   const showNextSuggestions = useCallback((): Suggestion[] => {
-    const availableChunks = getAvailableChunks();
+    const availableChunks = getAllChunks();
     const validNextChunks = chain.getNextValidChunksFromChunks(availableChunks);
 
     if (validNextChunks.length === 0) return [];
@@ -54,23 +53,36 @@ export const useSuggestionEngine = ({
           const bText = b.English.toLowerCase();
 
           // Prioritize related suggestions
-          if (lastChunkText.includes('running back')) {
-            if (aText.includes('rush') || aText.includes('carry')) return -1;
-            if (bText.includes('rush') || bText.includes('carry')) return 1;
+          if (lastChunkText.includes("running back")) {
+            if (aText.includes("rush") || aText.includes("carry")) return -1;
+            if (bText.includes("rush") || bText.includes("carry")) return 1;
           }
 
-          if (lastChunkText.includes('receiver') || lastChunkText.includes('wide receiver')) {
-            if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
-            if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
+          if (
+            lastChunkText.includes("receiver") ||
+            lastChunkText.includes("wide receiver")
+          ) {
+            if (
+              aText.includes("catch") ||
+              aText.includes("receiv") ||
+              aText.includes("target")
+            )
+              return -1;
+            if (
+              bText.includes("catch") ||
+              bText.includes("receiv") ||
+              bText.includes("target")
+            )
+              return 1;
           }
         }
 
         return a.English.localeCompare(b.English);
       })
       .slice(0, 8) // Fewer auto-suggestions to avoid overwhelming
-      .map(chunk => ({
+      .map((chunk) => ({
         chunk,
-        displayText: "and " + chunk.English
+        displayText: "and " + chunk.English,
       }));
   }, [chain]);
 
@@ -82,11 +94,11 @@ export const useSuggestionEngine = ({
     }
 
     // Clear suggestions if query is empty
-    if (query.trim() === '') {
+    if (query.trim() === "") {
       return [];
     }
 
-    const availableChunks = getAvailableChunks();
+    const availableChunks = getAllChunks();
     const partialInput = getPartialInput();
 
     // If inserting, create a partial chain up to the insertion point
@@ -100,54 +112,76 @@ export const useSuggestionEngine = ({
       contextChain.compile();
     }
 
-    const validNextChunks = contextChain.getNextValidChunksFromChunks(availableChunks);
+    const validNextChunks =
+      contextChain.getNextValidChunksFromChunks(availableChunks);
 
     // Intelligent filtering: prioritize suggestions based on context
     const prioritizedSuggestions: Chunk[] = (() => {
       if (!partialInput) return validNextChunks;
-      const fuse = new Fuse(validNextChunks, { keys: ['English'], threshold: 0.3 });
-      return fuse.search(partialInput).map(result => result.item);
+      const fuse = new Fuse(validNextChunks, {
+        keys: ["English"],
+        threshold: 0.3,
+      });
+      return fuse.search(partialInput).map((result) => result.item);
     })();
 
-    return prioritizedSuggestions.sort((a, b) => {
-      // Smart prioritization based on chain context
-      const aText = a.English.toLowerCase();
-      const bText = b.English.toLowerCase();
-      const input = partialInput.toLowerCase();
+    return prioritizedSuggestions
+      .sort((a, b) => {
+        // Smart prioritization based on chain context
+        const aText = a.English.toLowerCase();
+        const bText = b.English.toLowerCase();
+        const input = partialInput.toLowerCase();
 
-      // Exact matches first
-      if (aText.startsWith(input) && !bText.startsWith(input)) return -1;
-      if (bText.startsWith(input) && !aText.startsWith(input)) return 1;
+        // Exact matches first
+        if (aText.startsWith(input) && !bText.startsWith(input)) return -1;
+        if (bText.startsWith(input) && !aText.startsWith(input)) return 1;
 
-      // Context-aware suggestions
-      const lastChunk = chain.toArray().slice(-1)[0];
-      if (lastChunk) {
-        const lastChunkText = lastChunk.English.toLowerCase();
+        // Context-aware suggestions
+        const lastChunk = chain.toArray().slice(-1)[0];
+        if (lastChunk) {
+          const lastChunkText = lastChunk.English.toLowerCase();
 
-        // Simple context matching - can be expanded based on domain knowledge
-        if (lastChunkText.includes('running back') || lastChunkText.includes('rush')) {
-          if (aText.includes('rush') || aText.includes('yard')) return -1;
-          if (bText.includes('rush') || bText.includes('yard')) return 1;
+          // Simple context matching - can be expanded based on domain knowledge
+          if (
+            lastChunkText.includes("running back") ||
+            lastChunkText.includes("rush")
+          ) {
+            if (aText.includes("rush") || aText.includes("yard")) return -1;
+            if (bText.includes("rush") || bText.includes("yard")) return 1;
+          }
+
+          if (
+            lastChunkText.includes("receiver") ||
+            lastChunkText.includes("catch")
+          ) {
+            if (
+              aText.includes("catch") ||
+              aText.includes("receiv") ||
+              aText.includes("target")
+            )
+              return -1;
+            if (
+              bText.includes("catch") ||
+              bText.includes("receiv") ||
+              bText.includes("target")
+            )
+              return 1;
+          }
         }
 
-        if (lastChunkText.includes('receiver') || lastChunkText.includes('catch')) {
-          if (aText.includes('catch') || aText.includes('receiv') || aText.includes('target')) return -1;
-          if (bText.includes('catch') || bText.includes('receiv') || bText.includes('target')) return 1;
-        }
-      }
-
-      // Alphabetical fallback
-      return aText.localeCompare(bText);
-    })
+        // Alphabetical fallback
+        return aText.localeCompare(bText);
+      })
       .slice(0, 10) // Limit to top 10 suggestions for performance
-      .map(chunk => ({
+      .map((chunk) => ({
         chunk,
-        displayText: chain.toArray().length > 0 ? "and " + chunk.English : chunk.English
+        displayText:
+          chain.toArray().length > 0 ? "and " + chunk.English : chunk.English,
       }));
   }, [query, chain, getPartialInput, insertingAtIndex]);
 
   return {
     suggestions,
-    showNextSuggestions
+    showNextSuggestions,
   };
 };

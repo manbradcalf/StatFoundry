@@ -17,7 +17,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     EnglishTemplate: "who had {condition} {value} {stat} in a Game",
     CypherTemplate:
       "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} > {value}",
-    QueryType: QueryType.FILTER,
+    QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [
       { Name: "p", AliasType: AliasType.Player },
@@ -48,7 +48,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = [
     EnglishTemplate: "who had {condition} {value} {stat} in a Season",
     CypherTemplate:
       "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} > {value}",
-    QueryType: QueryType.FILTER,
+    QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [
       { Name: "p", AliasType: AliasType.Player },
