@@ -7,14 +7,10 @@ export enum AliasType {
   PlayerSeason = "PlayerSeason",
   // Sub-types (not real labels in graphs. Used for return clause building)
   QBGame = "QBGame",
-  RBGame = "RBGame",
-  WRGame = "WRGame",
-  TEGame = "TEGame",
+  FlexGame = "FlexGame",
   // Sub-types (not real labels in graphs. Used for return clause building)
   QBSeason = "QBSeason",
-  RBSeason = "RBSeason",
-  WRSeason = "WRSeason",
-  TESeason = "TESeason",
+  FlexSeason = "FlexSeason",
   TeamGame = "TeamGame",
   TeamSeason = "TeamSeason",
   // Aggregated types

@@ -1,5 +1,5 @@
 import { PASSING_STATS } from "../../feature/Chunks/Views/PassingStats";
-import { RUSHING_STATS } from "../../feature/Chunks/Views/RushingStats";
+import { FLEX_STATS } from "../../feature/Chunks/Views/RushingStats";
 import { RECEIVING_STATS } from "../../feature/Chunks/Views/ReceivingStats";
 import { TableGroup } from "./types";
 
@@ -18,7 +18,7 @@ export const defaultNFLGroups: TableGroup[] = [
   },
   {
     name: "rushing",
-    keys: [...RUSHING_STATS].map(x => x.key),
+    keys: [...FLEX_STATS].map(x => x.key),
     priority: 2,
   },
   {

@@ -4,13 +4,13 @@ import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
 import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
 import { RECEIVING_STATS } from "../Views/ReceivingStats";
-import { RUSHING_STATS } from "../Views/RushingStats";
+import { FLEX_STATS } from "../Views/RushingStats";
 import { PASSING_STATS } from "../Views/PassingStats";
 
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
   {
     English: "return all player game stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS.map(x => x.key), ...RECEIVING_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...RECEIVING_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
@@ -18,7 +18,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
   },
   {
     English: "return player game rushing stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS.map(x => x.key)].join(", pg.")} LIMIT 10`,
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key)].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
@@ -34,7 +34,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
   },
   {
     English: "return player game rushing and receiving stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...RUSHING_STATS.map(x => x.key), ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
+    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...RECEIVING_STATS].join(", pg.")} LIMIT 10`,
     QueryType: QueryType.RETURN,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [],
