@@ -6,10 +6,10 @@ import { PASSING_STATS } from "./Views/PassingStats";
 import { FLEX_STATS } from "./Views/FlexStats";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
+// For RESULTS building...
 // Helper function to get properties for a given label
 const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
   switch (aliasType) {
-
     case AliasType.Player:
       return PLAYER_INFO_PROPERTIES;
 
@@ -19,24 +19,26 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
     case AliasType.PlayerSeason:
       return [...PLAYER_SEASON_INFO_PROPERTIES];
 
-    case AliasType.QBGame:
-      return [...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS];
-
-    case AliasType.FlexGame:
+    case AliasType.PassingGame:
       return [
         ...PLAYER_GAME_INFO_PROPERTIES,
-        ...FLEX_STATS.map(x => x.key),
+        ...PASSING_STATS.map((x) => x.key),
       ];
 
-    case AliasType.QBSeason:
-      return [...PLAYER_SEASON_INFO_PROPERTIES, ...PASSING_STATS];
+    case AliasType.FlexGame:
+      return [...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map((x) => x.key)];
+
+    case AliasType.PassingSeason:
+      return [
+        ...PLAYER_SEASON_INFO_PROPERTIES,
+        ...PASSING_STATS.map((x) => x.key),
+      ];
 
     case AliasType.FlexSeason:
       return [
         ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...FLEX_STATS.map(x => x.key),
+        ...FLEX_STATS.map((x) => x.key),
       ];
-
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];
@@ -46,10 +48,10 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
 
     // Aggregated aliases
     case AliasType.AggregatedRBGame:
-      return [...FLEX_STATS.map(x => x.key)];
+      return [...FLEX_STATS.map((x) => x.key)];
 
     case AliasType.AggregatedRBSeason:
-      return [...FLEX_STATS.map(x => x.key)];
+      return [...FLEX_STATS.map((x) => x.key)];
 
     default:
       return ["*"]; // Fallback for unknown labels
