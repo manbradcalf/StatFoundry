@@ -2,51 +2,8 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
-import { PLAYER_GAME_INFO_PROPERTIES } from "../Views/PlayerGameInfo";
-import { FLEX_STATS } from "../Views/FlexStats";
-import { PASSING_STATS } from "../Views/PassingStats";
 
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
-  {
-    English: "return all player game stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...FLEX_STATS, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-    Provides: [],
-    Slots: [],
-  },
-  {
-    English: "return player game rushing stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key)].join(", pg.")} LIMIT 10`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-    Provides: [],
-    Slots: [],
-  },
-  {
-    English: "return player game receiving stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS].join(", pg.")} LIMIT 10`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-    Provides: [],
-    Slots: [],
-  },
-  {
-    English: "return player game rushing and receiving stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...FLEX_STATS].join(", pg.")} LIMIT 10`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-    Provides: [],
-    Slots: [],
-  },
-  {
-    English: "return player game passing stats",
-    Cypher: `RETURN pg.${[...PLAYER_GAME_INFO_PROPERTIES, ...PASSING_STATS].join(", pg.")} LIMIT 10`,
-    QueryType: QueryType.RETURN,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-    Provides: [],
-    Slots: [],
-  },
   {
     English: "who played for [MIN]",
     Cypher:
@@ -55,7 +12,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team}",
     QueryType: QueryType.FILTER_START,
-    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
@@ -67,8 +24,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
   },
   {
     English: "who played against [GB]",
-    Cypher:
-      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = 'GB'",
+    Cypher: "MATCH (p:Player)-[:HAD]->() WHERE pg.opponent_team = 'GB'",
     EnglishTemplate: "who played against {team} in those games",
     CypherTemplate:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
