@@ -7,7 +7,6 @@ export const FLEX_STATS = [
   { key: "rushing_fumbles", type: "number" },
   { key: "rushing_fumbles_lost", type: "number" },
   { key: "carries", type: "number" },
-  { key: "teams", type: "string" },
   { key: "receiving_yards", type: "number" },
   { key: "receptions", type: "number" },
   { key: "receiving_tds", type: "number" },
@@ -20,3 +19,13 @@ export const FLEX_STATS = [
   { key: "air_yards_share", type: "number" },
   { key: "target_share", type: "number" }
 ];
+
+export const FLEX_STATS_SEASON = [
+  ...FLEX_STATS,
+  { key: "teams", type: "string" }, // many teams per player per season
+]
+
+export const FLEX_STATS_GAME = [
+  ...FLEX_STATS,
+  { key: "recent_team", type: "string" }, // one team per player per game
+]
