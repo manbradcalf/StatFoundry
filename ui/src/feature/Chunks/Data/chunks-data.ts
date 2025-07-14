@@ -11,6 +11,6 @@ export function getAllChunks(): Chunk[] {
     ...PLAYER_INFO_CHUNKS,
     ...PLAYER_GAME_CHUNKS,
     ...PASSING_STATS_CHUNKS,
-    ...FLEX_STATS_CHUNKS
+    ...FLEX_STATS_CHUNKS,
   ];
 }

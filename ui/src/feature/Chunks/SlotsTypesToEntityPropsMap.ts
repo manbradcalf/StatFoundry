@@ -13,6 +13,7 @@ import {
 import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
+// For QUERY building...
 // Modular property definitions for each entity type
 export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.SelectPlayerProperty]: [...PLAYER_INFO_PROPERTIES],

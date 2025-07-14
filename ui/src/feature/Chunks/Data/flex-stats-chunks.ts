@@ -52,10 +52,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         ? " AND ps.{stat.key} {condition} {value}"
         : " AND {value} {condition} ps.{stat.key} ",
     QueryType: QueryType.FILTER_EXTEND,
-    RequiresAny: [
-      { Name: "ps", AliasType: AliasType.FlexSeason },
-      { Name: "ps", AliasType: AliasType.PassingSeason },
-    ],
+    Requires: [{ Name: "ps", AliasType: AliasType.FlexSeason }],
     Provides: [{ Name: "ps", AliasType: AliasType.FlexSeason }],
     Slots: [
       {
@@ -133,16 +130,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         : "and who played for {value} that game",
     CypherTemplate: " AND pg.{stat.key} {condition} {value}",
     QueryType: QueryType.FILTER_EXTEND,
-    RequiresAny: [
-      {
-        Name: "pg",
-        AliasType: AliasType.FlexGame,
-      },
-      {
-        Name: "pg",
-        AliasType: AliasType.PassingGame,
-      },
-    ],
+    Requires: [{ Name: "pg", AliasType: AliasType.FlexGame }],
     Provides: [
       {
         Name: "pg",
