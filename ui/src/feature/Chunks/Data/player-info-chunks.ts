@@ -70,7 +70,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     English: "who went to [college]",
     Cypher: "",
     EnglishTemplate: "who went to {college}",
-    CypherTemplate: "MATCH (p) where p.college_name={college}",
+    CypherTemplate: "MATCH (p) where p.college_name={college} WITH p",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
