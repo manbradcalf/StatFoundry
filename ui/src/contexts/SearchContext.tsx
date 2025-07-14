@@ -209,13 +209,14 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   // Auto-enable keyboard navigation when suggestions become available
   useEffect(() => {
-    if (
-      suggestions.length > 0 &&
-      query.trim() !== "" &&
-      query !== chain.English
-    ) {
-      setKeyboardNavigationEnabled(true);
-    } else if (suggestions.length === 0 || query.trim() === "") {
+    if (suggestions.length > 0) {
+      // Enable keyboard navigation if there are suggestions and:
+      // 1. User is actively typing (query not empty and different from chain)
+      // 2. OR suggestions are auto-populated after chain update (query is empty)
+      if ((query.trim() !== "" && query !== chain.English) || query.trim() === "") {
+        setKeyboardNavigationEnabled(true);
+      }
+    } else {
       setKeyboardNavigationEnabled(false);
     }
   }, [suggestions, query, chain.English, setKeyboardNavigationEnabled]);
