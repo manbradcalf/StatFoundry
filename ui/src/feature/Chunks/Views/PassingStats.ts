@@ -11,3 +11,13 @@ export const PASSING_STATS = [
   { key: "passing_fumbles_lost", type: "number" },
   { key: "passing_fumbles_recovered", type: "number" },
 ];
+
+export const PASSING_STATS_SEASON = [
+  ...PASSING_STATS,
+  { key: "teams", type: "string" }, // many teams per player per season
+];
+
+export const PASSING_STATS_GAME = [
+  ...PASSING_STATS,
+  { key: "recent_team", type: "string" }, // one team per player per game
+];
