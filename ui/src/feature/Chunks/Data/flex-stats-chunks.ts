@@ -57,7 +57,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
     Slots: [
       {
         Name: "stat",
-        Value: stat.type === "number" ? "rushing_yards" : "teams",
+        Value: stat.type === "number" ? stat.key : "teams",
         SlotValueTypes:
           stat.type === "number"
             ? [SlotType.SelectFlexStatsSeason]
