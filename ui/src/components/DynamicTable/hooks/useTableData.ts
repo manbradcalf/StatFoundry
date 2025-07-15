@@ -23,10 +23,11 @@ export const useTableData = ({
   columnGroups,
 }: UseTableDataProps): UseTableDataReturn => {
   // Flatten nested objects and separate array data
-  const processedData = useMemo(() => {
+  const flattenedData = useMemo(() => {
     if (!data || !Array.isArray(data) || data.length === 0) {
       return [];
     }
+
 
     return data.map((item) => {
       const flattened: any = {};
@@ -67,16 +68,16 @@ export const useTableData = ({
   // Get all available keys from flattened data
   const allFlatKeys = useMemo(() => {
     return Array.from(
-      new Set(processedData.flatMap((item) => Object.keys(item.flattened)))
+      new Set(flattenedData.flatMap((item) => Object.keys(item.flattened)))
     );
-  }, [processedData]);
+  }, [flattenedData]);
 
   // Get array keys
   const arrayKeys = useMemo(() => {
     return Array.from(
-      new Set(processedData.flatMap((item) => Object.keys(item.arrays)))
+      new Set(flattenedData.flatMap((item) => Object.keys(item.arrays)))
     );
-  }, [processedData]);
+  }, [flattenedData]);
 
   // Filter out excluded columns
   const availableKeys = useMemo(() => {
@@ -91,7 +92,7 @@ export const useTableData = ({
      * @returns true if the column has at least one non-empty value
      */
     const hasNonEmptyValues = (key: string): boolean => {
-      return processedData.some((item) => {
+      return flattenedData.some((item) => {
         const value = item.flattened[key];
         // Only filter out null, undefined, and empty strings
         return value !== null && value !== undefined && value !== "";
@@ -99,7 +100,7 @@ export const useTableData = ({
     };
 
     return availableKeys.filter(hasNonEmptyValues);
-  }, [availableKeys, processedData]);
+  }, [availableKeys, flattenedData]);
 
   // Prioritize key identifying fields for master rows
   const finalKeys = useMemo(() => {
@@ -133,7 +134,7 @@ export const useTableData = ({
   }, [nonEmptyKeys, columnGroups]);
 
   return {
-    processedData,
+    processedData: flattenedData,
     allFlatKeys,
     arrayKeys,
     availableKeys,
