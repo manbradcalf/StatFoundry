@@ -1,4 +1,5 @@
-export const FLEX_STATS = [
+
+export const RUSHING_STATS = [
   { key: "rushing_yards", type: "number" },
   { key: "rushing_tds", type: "number" },
   { key: "rushing_first_downs", type: "number" },
@@ -7,6 +8,9 @@ export const FLEX_STATS = [
   { key: "rushing_fumbles", type: "number" },
   { key: "rushing_fumbles_lost", type: "number" },
   { key: "carries", type: "number" },
+]
+
+export const RECEIVING_STATS = [
   { key: "receiving_yards", type: "number" },
   { key: "receptions", type: "number" },
   { key: "receiving_tds", type: "number" },
@@ -18,6 +22,10 @@ export const FLEX_STATS = [
   { key: "receiving_fumbles_lost", type: "number" },
   { key: "air_yards_share", type: "number" },
   { key: "target_share", type: "number" }
+]
+export const FLEX_STATS = [
+  ...RUSHING_STATS,
+  ...RECEIVING_STATS
 ];
 
 export const FLEX_STATS_SEASON = [

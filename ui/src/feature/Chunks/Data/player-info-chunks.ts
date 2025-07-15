@@ -5,12 +5,12 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PLAYER_INFO_CHUNKS: Chunk[] = [
   {
-    English: "with [name]",
+    English: "Player named [name]",
     Cypher: "",
-    EnglishTemplate: "named {name}",
-    CypherTemplate: "WHERE p.display_name = {name}",
-    QueryType: QueryType.FILTER_START,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    EnglishTemplate: "Player named {name}",
+    CypherTemplate: "MATCH (p:Player {display_name: {name} })",
+    QueryType: QueryType.MATCH_START,
+    Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
       {

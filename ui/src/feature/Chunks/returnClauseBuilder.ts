@@ -17,7 +17,7 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return [...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...PASSING_STATS.map(x => x.key)];
 
     case AliasType.PlayerSeason:
-      return [...PLAYER_SEASON_INFO_PROPERTIES];
+      return [...PLAYER_SEASON_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...PASSING_STATS.map(x => x.key)];
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];
