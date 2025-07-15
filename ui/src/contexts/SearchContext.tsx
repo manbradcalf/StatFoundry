@@ -67,7 +67,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         const activeAliasObjects = chain.Aliases.filter((alias) =>
           activeAliases.has(alias.Name)
         );
-        executeSearch(chain.Cypher, activeAliasObjects);
+        console.log(chain)
+        const position = chain.Head?.chunk.English || "";
+        executeSearch(chain.Cypher, activeAliasObjects, position);
       }
     },
     300 // 300ms debounce delay
@@ -155,7 +157,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       const activeAliasObjects = chain.Aliases.filter((alias) =>
         activeAliases.has(alias.Name)
       );
-      executeSearch(chain.Cypher, activeAliasObjects);
+      const position = chain.English;
+      executeSearch(chain.Cypher, activeAliasObjects, position);
       clearSelection();
     },
   });
@@ -300,7 +303,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       const activeAliasObjects = chain.Aliases.filter((alias) =>
         activeAliases.has(alias.Name)
       );
-      executeSearch(chain.Cypher, activeAliasObjects);
+      executeSearch(chain.Cypher, activeAliasObjects, "");
       clearSelection();
     },
     editChunk,

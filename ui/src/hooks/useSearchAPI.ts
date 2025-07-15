@@ -8,10 +8,11 @@ export const useSearchAPI = () => {
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [searchError, setSearchError] = useState<string | null>(null);
 
-  const executeSearch = async (cypherQuery: string, aliases: Alias[] = []) => {
+  const executeSearch = async (cypherQuery: string, aliases: Alias[] = [], position: string) => {
+    console.log(position)
     if (!cypherQuery.trim()) return;
 
-    cypherQuery = `${cypherQuery} ${buildSmartReturnClause(aliases)}`;
+    cypherQuery = `${cypherQuery} ${buildSmartReturnClause(aliases, position)}`;
     setIsSearching(true);
     console.log("searching " + cypherQuery);
     setSearchError(null);

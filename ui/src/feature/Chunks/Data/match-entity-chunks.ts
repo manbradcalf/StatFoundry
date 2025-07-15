@@ -13,7 +13,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "Quarterbacks",
+    English: "QB",
     Cypher: "MATCH (p:Player) WHERE p.position = 'QB'",
     QueryType: QueryType.MATCH_START,
     Requires: [],
@@ -21,7 +21,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "Running backs",
+    English: "RB",
     Cypher: "MATCH (p:Player) WHERE p.position = 'RB'",
     QueryType: QueryType.MATCH_START,
     Requires: [],
@@ -29,7 +29,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "Wide receivers",
+    English: "WR",
     Cypher: "MATCH (p:Player) WHERE p.position = 'WR'",
     QueryType: QueryType.MATCH_START,
     Requires: [],
@@ -37,7 +37,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Slots: [],
   },
   {
-    English: "Tight ends",
+    English: "TE",
     Cypher: "MATCH (p:Player) WHERE p.position = 'TE'",
     QueryType: QueryType.MATCH_START,
     Requires: [],
