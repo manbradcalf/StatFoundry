@@ -11,17 +11,17 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
   {
     English:
       stat.type === "number"
-        ? `who had [${stat.key}] in a Season`
-        : `who played for [${stat.key}]`,
+        ? `Seasons with [${stat.key}]`
+        : `had Season for [${stat.key}]`,
     Cypher: "",
-    EnglishTemplate: "who had {condition} {value} {stat.key} in a Season",
+    EnglishTemplate: "Seasons with {condition} {value} {stat.key}",
     CypherTemplate:
       stat.type === "number"
         ? "MATCH (p)-[:HAD]->(ps:PlayerSeason) WHERE ps.{stat.key} {condition} {value}"
         : "MATCH (p)-[:HAD]->(ps:PlayerSeason) WHERE {value} {condition} ps.{stat.key}}",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "ps", AliasType: AliasType.FlexSeason }],
+    Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
     Slots: [
       {
         Name: "stat",
@@ -43,8 +43,8 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
   {
     English:
       stat.type === "number"
-        ? `...and had [${stat.key}] that season`
-        : `...and who played for [${stat.key}] that season`,
+        ? `...and [${stat.key}] that season`
+        : `...and had season for [${stat.key}]`,
     Cypher: "",
     EnglishTemplate: "and who had {condition} {value} {stat.key} that Season",
     CypherTemplate:
@@ -52,8 +52,8 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         ? " AND ps.{stat.key} {condition} {value}"
         : " AND {value} {condition} ps.{stat.key} ",
     QueryType: QueryType.FILTER_EXTEND,
-    Requires: [{ Name: "ps", AliasType: AliasType.FlexSeason }],
-    Provides: [{ Name: "ps", AliasType: AliasType.FlexSeason }],
+    Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
+    Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
     Slots: [
       {
         Name: "stat",
@@ -79,10 +79,10 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
   {
     English:
       stat.type === "number"
-        ? `who had [${stat.key}] in a Game`
-        : `who played for [${stat.key}]`,
+        ? `Games with [${stat.key}]`
+        : `had game for [${stat.key}]`,
     Cypher: "",
-    EnglishTemplate: "who had {condition} {value} {stat.key} in a Game",
+    EnglishTemplate: "games with {condition} {value} {stat.key}",
     CypherTemplate:
       stat.type === "number"
         ? "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.{stat.key} {condition} {value}"
@@ -97,7 +97,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
     Provides: [
       {
         Name: "pg",
-        AliasType: AliasType.FlexGame,
+        AliasType: AliasType.PlayerGame,
       },
     ],
     Slots: [
@@ -122,19 +122,19 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
     English:
       stat.type === "number"
         ? `...and had [${stat.key}] that game`
-        : `...and who played for [${stat.key}] that game`,
+        : `...and had game for [${stat.key}]`,
     Cypher: "",
     EnglishTemplate:
       stat.type === "number"
-        ? "and who had {condition} {value} {stat.key} that Game"
+        ? "and with {condition} {value} {stat.key} that Game"
         : "and who played for {value} that game",
     CypherTemplate: " AND pg.{stat.key} {condition} {value}",
     QueryType: QueryType.FILTER_EXTEND,
-    Requires: [{ Name: "pg", AliasType: AliasType.FlexGame }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [
       {
         Name: "pg",
-        AliasType: AliasType.FlexGame,
+        AliasType: AliasType.PlayerGame,
       },
     ],
     Slots: [

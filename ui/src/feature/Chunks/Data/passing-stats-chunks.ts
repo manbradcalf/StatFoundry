@@ -7,14 +7,14 @@ import { Chunk } from "../Types/Chunk";
 export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   // Season
   {
-    English: `who had [${stat.key}] in a Season`,
+    English: `with [${stat.key}] in a Season`,
     Cypher: "",
-    EnglishTemplate: "who had {stat} {condition} {value} in a Season",
+    EnglishTemplate: "with {stat} {condition} {value} in a Season",
     CypherTemplate:
       "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} {condition} {value}",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "ps", AliasType: AliasType.PassingSeason }],
+    Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
     Slots: [
       {
         Name: "stat",
@@ -32,12 +32,12 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   {
     English: `...and had [${stat.key}] in those Seasons`,
     Cypher: "",
-    EnglishTemplate: "and who had {stat} {condition} {value} in those Seasons",
+    EnglishTemplate: "and with {stat} {condition} {value} in those Seasons",
     CypherTemplate:
       "MATCH (p)-[:HAD]-(ps:PlayerSeason) WHERE ps.{stat} {condition} {value}",
     QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "ps", AliasType: AliasType.PassingSeason }],
+    Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
     Slots: [
       {
         Name: "stat",
@@ -54,14 +54,14 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   },
   // Game
   {
-    English: "who had [passing stats] in a Game",
+    English: "with [passing stats] in a Game",
     Cypher: "",
-    EnglishTemplate: "who had {condition} {value} {stat} in a Game",
+    EnglishTemplate: "with {condition} {value} {stat} in a Game",
     CypherTemplate:
       "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value}",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "pg", AliasType: AliasType.PassingGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
         Name: "stat",
@@ -79,12 +79,12 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   {
     English: `...and had [${stat.key}] in those Games`,
     Cypher: "",
-    EnglishTemplate: "and who had {stat} {condition} {value} in those Games",
+    EnglishTemplate: "and with {stat} {condition} {value} in those Games",
     CypherTemplate:
       "MATCH (p)-[:HAD]-(pg:PlayerGame) WHERE pg.{stat} {condition} {value}",
     QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "pg", AliasType: AliasType.PassingGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {
         Name: "stat",

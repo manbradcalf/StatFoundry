@@ -5,7 +5,7 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PLAYER_GAME_CHUNKS: Chunk[] = [
   {
-    English: "who played for [MIN]",
+    English: "games for [team]",
     Cypher:
       "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = 'MIN'",
     EnglishTemplate: "who played for {team} in those games",
@@ -23,7 +23,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
-    English: "who played against [GB]",
+    English: "games versus [GB]",
     Cypher: "MATCH (p:Player)-[:HAD]->() WHERE pg.opponent_team = 'GB'",
     EnglishTemplate: "who played against {team} in those games",
     CypherTemplate:
