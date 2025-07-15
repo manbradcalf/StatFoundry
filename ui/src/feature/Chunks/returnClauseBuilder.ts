@@ -2,9 +2,9 @@ import { Alias } from "./Types/Alias";
 import { AliasType } from "./Enums/AliasType";
 import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
 import { PLAYER_GAME_INFO_PROPERTIES } from "./Views/PlayerGameInfo";
+import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 import { PASSING_STATS } from "./Views/PassingStats";
 import { FLEX_STATS } from "./Views/FlexStats";
-import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 
 // For RESULTS building...
 // Helper function to get properties for a given label
@@ -14,31 +14,10 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
       return PLAYER_INFO_PROPERTIES;
 
     case AliasType.PlayerGame:
-      return [...PLAYER_GAME_INFO_PROPERTIES];
+      return [...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map(x => x.key), ...PASSING_STATS.map(x => x.key)];
 
     case AliasType.PlayerSeason:
       return [...PLAYER_SEASON_INFO_PROPERTIES];
-
-    case AliasType.PassingGame:
-      return [
-        ...PLAYER_GAME_INFO_PROPERTIES,
-        ...PASSING_STATS.map((x) => x.key),
-      ];
-
-    case AliasType.FlexGame:
-      return [...PLAYER_GAME_INFO_PROPERTIES, ...FLEX_STATS.map((x) => x.key)];
-
-    case AliasType.PassingSeason:
-      return [
-        ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...PASSING_STATS.map((x) => x.key),
-      ];
-
-    case AliasType.FlexSeason:
-      return [
-        ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...FLEX_STATS.map((x) => x.key),
-      ];
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];
@@ -46,12 +25,6 @@ const getPropertiesByAliasType = (aliasType: AliasType): string[] => {
     case AliasType.Season:
       return ["season"];
 
-    // Aggregated aliases
-    case AliasType.AggregatedRBGame:
-      return [...FLEX_STATS.map((x) => x.key)];
-
-    case AliasType.AggregatedRBSeason:
-      return [...FLEX_STATS.map((x) => x.key)];
 
     default:
       return ["*"]; // Fallback for unknown labels
@@ -87,5 +60,9 @@ export const buildSmartReturnClause = (aliases: Alias[]): string => {
     }
   });
 
+  if (aliases.length === 1) {
+
+    return `RETURN DISTINCT ${returnParts.join(", ")}`;
+  }
   return `RETURN ${returnParts.join(", ")}`;
 };
