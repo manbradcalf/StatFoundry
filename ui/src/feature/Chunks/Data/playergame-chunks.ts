@@ -23,6 +23,24 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     ],
   },
   {
+    English: "...and played for [team] in those games",
+    Cypher:
+      "MATCH (p:Player)-[:HAD]->(pg) WHERE pg.recent_team = {team}",
+    EnglishTemplate: "who played for {team} in those games",
+    CypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(pg) WHERE pg.recent_team = {team}",
+    QueryType: QueryType.FILTER_EXTEND,
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Slots: [
+      {
+        Name: "team",
+        Value: "MIN",
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+  },
+  {
     English: "games versus [GB]",
     Cypher: "MATCH (p:Player)-[:HAD]->() WHERE pg.opponent_team = 'GB'",
     EnglishTemplate: "who played against {team} in those games",
