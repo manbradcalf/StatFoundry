@@ -90,7 +90,7 @@ export const useSuggestionEngine = ({
     const results = fuse.search(partialInput).map((result) => result.item);
 
     return chunksToSuggestions(results, chain.toArray().length > 0);
-  }, [query, contextChain, chainSuggestions]);
+  }, [query, contextChain, chainSuggestions, chain]);
 
   // Auto-generate suggestions when chain changes
   useEffect(() => {
