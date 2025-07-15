@@ -7,7 +7,7 @@ import { Chunk } from "../Types/Chunk";
 export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   // Season
   {
-    English: `with [${stat.key}] in a Season`,
+    English: `Seasons with [${stat.key}]`,
     Cypher: "",
     EnglishTemplate: "with {stat} {condition} {value} in a Season",
     CypherTemplate:
@@ -30,7 +30,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
     ],
   },
   {
-    English: `...and had [${stat.key}] in those Seasons`,
+    English: `...and [${stat.key}] in those Seasons`,
     Cypher: "",
     EnglishTemplate: "and with {stat} {condition} {value} in those Seasons",
     CypherTemplate:
@@ -54,7 +54,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   },
   // Game
   {
-    English: "with [passing stats] in a Game",
+    English: "Games with [passing stats]",
     Cypher: "",
     EnglishTemplate: "with {condition} {value} {stat} in a Game",
     CypherTemplate:
@@ -77,7 +77,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
     ],
   },
   {
-    English: `...and had [${stat.key}] in those Games`,
+    English: `...and [${stat.key}] in those Games`,
     Cypher: "",
     EnglishTemplate: "and with {stat} {condition} {value} in those Games",
     CypherTemplate:
