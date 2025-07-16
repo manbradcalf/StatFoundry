@@ -11,6 +11,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "QB",
@@ -19,6 +20,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "RB",
@@ -27,6 +29,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "WR",
@@ -35,6 +38,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "TE",
@@ -43,6 +47,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "Teams",
@@ -51,6 +56,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "t", AliasType: AliasType.Team }],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "Player Games",
@@ -62,6 +68,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "pg", AliasType: AliasType.PlayerGame },
     ],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "Player Seasons",
@@ -73,6 +80,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "ps", AliasType: AliasType.PlayerSeason },
     ],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "Team Seasons",
@@ -84,6 +92,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "ts", AliasType: AliasType.TeamSeason },
     ],
     Slots: [],
+    SuggestionKeywords: ""
   },
   {
     English: "Team Games",
@@ -95,5 +104,6 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "tg", AliasType: AliasType.TeamGame },
     ],
     Slots: [],
+    SuggestionKeywords: ""
   },
 ];

@@ -6,6 +6,7 @@ import { QueryType } from "../Enums/QueryType";
  * Class representing a single query chunk.
  */
 export type Chunk = {
+  SuggestionKeywords: string;
   /**
    * The English translation of the query snippet represented by the Chunk.
    */

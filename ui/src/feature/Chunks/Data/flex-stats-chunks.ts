@@ -39,6 +39,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "rush rushed received caught ran"
   },
   {
     English:
@@ -74,6 +75,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "rush rushed received caught ran"
   },
   // game
   {
@@ -117,6 +119,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "rush rushed received caught ran"
   },
   {
     English:
@@ -154,5 +157,6 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "rush rushed received caught ran"
   },
 ]).flat();

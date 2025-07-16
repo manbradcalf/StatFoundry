@@ -28,6 +28,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
       },
       { Name: "value", Value: 4000, SlotValueTypes: [SlotType.FilterValue] },
     ],
+    SuggestionKeywords: "passing pass threw"
   },
   {
     English: `...and [${stat.key}] in those Seasons`,
@@ -51,6 +52,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
       },
       { Name: "value", Value: 100, SlotValueTypes: [SlotType.FilterValue] },
     ],
+    SuggestionKeywords: "passing pass threw"
   },
   // Game
   {
@@ -75,6 +77,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
       },
       { Name: "value", Value: 100, SlotValueTypes: [SlotType.FilterValue] },
     ],
+    SuggestionKeywords: "passing pass threw"
   },
   {
     English: `...and [${stat.key}] in those Games`,
@@ -98,5 +101,6 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
       },
       { Name: "value", Value: 100, SlotValueTypes: [SlotType.FilterValue] },
     ],
+    SuggestionKeywords: "passing pass threw"
   },
 ]).flat();

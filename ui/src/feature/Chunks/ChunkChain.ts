@@ -34,10 +34,6 @@ export class ChunkChain {
       (alias, index, self) =>
         index === self.findIndex((t) => t.Name === alias.Name)
     );
-    console.log("ChunkChain", this.toArray());
-    console.log("Aliases: ", this.Aliases);
-    console.log("English", this.English);
-    console.log("Cypher", this.Cypher);
     return node;
   }
 
@@ -130,6 +126,7 @@ export class ChunkChain {
       node = node.next;
     }
 
+    this.English = englishParts.join(" ");
     this.Cypher = cypherParts.join("\n");
     return this;
   }

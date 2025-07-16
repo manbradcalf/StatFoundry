@@ -19,6 +19,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "name"
   },
   {
     English: "currently on [team]",
@@ -35,6 +36,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "team"
   },
   {
     English: "who have played at least [number] games for [team]",
@@ -65,6 +67,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "team"
   },
   {
     English: "who went to [college]",
@@ -81,5 +84,6 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: "college school"
   },
 ];
