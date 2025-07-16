@@ -76,7 +76,7 @@ export const SearchBar: React.FC = () => {
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             placeholder={
-              chain.Tail?.chunk.English || "Running backs who had..."
+              chain.Tail?.chunk.English || "RB Games..."
             }
             className="search-input"
             autoComplete="off"
