@@ -21,6 +21,8 @@ export interface SearchContextType {
 
   // Actions
   setUserInput: (input: string) => void;
+  handleInputFocus: () => void;
+  handleInputBlur: () => void;
   selectSuggestion: (suggestion: Suggestion) => void;
   handleKeyDown: (e: React.KeyboardEvent) => void;
   clearAll: () => void;

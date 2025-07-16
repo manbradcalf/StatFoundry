@@ -25,8 +25,6 @@ const createHighlightedSuggestionText = (chunk: Chunk): React.ReactNode => {
  */
 export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
   ({ suggestions, selectedIndex, onSelect, showSuggestions }, ref) => {
-    console.log("suggestions "+ showSuggestions)
-    // Change this line:
     if (suggestions.length === 0 || !showSuggestions) {
       return null;
     }

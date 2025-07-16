@@ -45,8 +45,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   );
   const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
 
-  // Suggestions visibility state
-  const [showSuggestions,setShowSuggestions]=useState(true);
+  // Suggestions visibility state - start hidden, show when user types
+  const [showSuggestions,setShowSuggestions]=useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   // Use new combined hooks
   const {
     chain,
@@ -140,6 +141,31 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     setShowSuggestions(prev => !prev);
   },[])
 
+  // Control suggestion visibility based on input state
+  const handleInputFocus = useCallback(() => {
+    setIsInputFocused(true);
+    if (query.length > 0) {
+      setShowSuggestions(true);
+    }
+  }, [query]);
+
+  const handleInputBlur = useCallback(() => {
+    setIsInputFocused(false);
+    // Small delay to allow suggestion clicks to register
+    setTimeout(() => {
+      setShowSuggestions(false);
+    }, 150);
+  }, []);
+
+  // Show suggestions when user types (if input is focused)
+  useEffect(() => {
+    if (isInputFocused && query.length > 0) {
+      setShowSuggestions(true);
+    } else if (query.length === 0) {
+      setShowSuggestions(false);
+    }
+  }, [query, isInputFocused]);
+
   // Use simplified suggestion hook
   const suggestions = useSuggestions({
     query,
@@ -155,6 +181,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         ...suggestion.chunk,
         Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
       };
+
+      // Hide suggestions when user selects one
+      setShowSuggestions(false);
 
       // If chunk has slots (parameters), open modal for user input
       if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
@@ -284,6 +313,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
     // Actions
     setUserInput: setQuery,
+    handleInputFocus,
+    handleInputBlur,
     selectSuggestion: handleSuggestionClick,
     handleKeyDown,
     clearAll: clearQuery,

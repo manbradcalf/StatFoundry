@@ -16,6 +16,8 @@ export const SearchBar: React.FC = () => {
     shouldFocusSearchBar,
     resetFocusFlag,
     showSuggestions,
+    handleInputFocus,
+    handleInputBlur,
   } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -71,6 +73,8 @@ export const SearchBar: React.FC = () => {
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
             placeholder={
               chain.Tail?.chunk.English || "Running backs who had..."
             }
