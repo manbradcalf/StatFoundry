@@ -42,7 +42,8 @@ h1 {
 
 .search-container {
   position: relative;
-  max-width: 600px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
