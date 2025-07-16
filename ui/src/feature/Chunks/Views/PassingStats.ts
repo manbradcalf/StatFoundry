@@ -1,13 +1,23 @@
 export const PASSING_STATS = [
-  "attempts",
-  "completions",
-  "passing_yards",
-  "passing_tds",
-  "passing_air_yards",
-  "passing_first_downs",
-  "passing_epa",
-  "passing_2pt_conversions",
-  "passing_fumbles",
-  "passing_fumbles_lost",
-  "passing_fumbles_recovered",
+  { key: "attempts", type: "number" },
+  { key: "completions", type: "number" },
+  { key: "passing_yards", type: "number" },
+  { key: "passing_tds", type: "number" },
+  { key: "passing_air_yards", type: "number" },
+  { key: "passing_first_downs", type: "number" },
+  { key: "passing_epa", type: "number" },
+  { key: "passing_2pt_conversions", type: "number" },
+  { key: "passing_fumbles", type: "number" },
+  { key: "passing_fumbles_lost", type: "number" },
+  { key: "passing_fumbles_recovered", type: "number" },
+];
+
+export const PASSING_STATS_SEASON = [
+  ...PASSING_STATS,
+  { key: "teams", type: "string" }, // many teams per player per season
+];
+
+export const PASSING_STATS_GAME = [
+  ...PASSING_STATS,
+  { key: "recent_team", type: "string" }, // one team per player per game
 ];

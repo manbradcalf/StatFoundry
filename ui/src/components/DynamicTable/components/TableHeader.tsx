@@ -17,9 +17,6 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   onSort,
   getSortIndicator,
 }) => {
-  console.log(JSON.stringify(arrayKeys))
-  console.log(finalKeys)
-  console.log(sortConfig)
   return (
     < thead >
       <tr>

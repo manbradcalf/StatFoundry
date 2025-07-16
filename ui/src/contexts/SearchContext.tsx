@@ -7,18 +7,16 @@ import React, {
   ReactNode,
 } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { ChunkChain } from "../feature/Chunks/ChunkChain";
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { SlotModal } from "../components/SlotModal";
 import { buildFilledChunk } from "../utils/slotFiller";
 import { Suggestion } from "./Suggestion";
 import { SearchContextType } from "./SearchContextType";
-import { useSearchAPI } from "../hooks/useSearchAPI";
-import { useSuggestionEngine } from "../hooks/useSuggestionEngine";
-import { useSuggestionSelection } from "../hooks/useSuggestionSelection";
-import { useFocusManagement } from "../hooks/useFocusManagement";
-import { useChainOperations } from "../hooks/useChainOperations";
+import { useSearchAPIEnhanced } from "../hooks/useSearchAPIEnhanced";
+import { useSuggestions } from "../hooks/useSuggestions";
+import { useKeyboardNavigation } from "../hooks/useKeyboardNavigation";
+import { useChainState } from "../hooks/useChainState";
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
@@ -35,9 +33,6 @@ interface SearchProviderProps {
 }
 
 export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
-  const [query, setQuery] = useState("");
-  const [chain, setChain] = useState(new ChunkChain());
-
   // Alias toggle state
   const [activeAliases, setActiveAliases] = useState<Set<string>>(new Set());
 
@@ -50,15 +45,42 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   );
   const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
 
+  // Suggestions visibility state
+  const [showSuggestions,setShowSuggestions]=useState(true);
+  // Use new combined hooks
+  const {
+    chain,
+    query,
+    shouldFocusSearchBar,
+    setQuery,
+    clearAll,
+    focusSearchBar,
+    resetFocusFlag,
+    editChunk,
+    insertChunkAt,
+    removeChunk,
+    appendChunk,
+    insertChunk,
+    updateChunkAtIndex,
+  } = useChainState({
+    onEditChunk: (index: number, chunkCopy: Chunk) => {
+      setPendingChunk(chunkCopy);
+      setPendingSlots(chunkCopy.Slots);
+      setEditingChunkIndex(index);
+      setIsSlotModalOpen(true);
+    },
+    onInsertMode: (index: number) => {
+      setInsertingAtIndex(index);
+    },
+  });
+
   const {
     searchResults,
     isSearching,
     searchError,
     executeSearch,
     clearSearch,
-  } = useSearchAPI();
-  const { shouldFocusSearchBar, focusSearchBar, resetFocusFlag } =
-    useFocusManagement();
+  } = useSearchAPIEnhanced();
 
   // Debounced search execution for alias changes
   const debouncedAliasSearch = useDebouncedCallback(
@@ -67,7 +89,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         const activeAliasObjects = chain.Aliases.filter((alias) =>
           activeAliases.has(alias.Name)
         );
-        executeSearch(chain.Cypher, activeAliasObjects);
+        console.log(chain)
+        const position = chain.Head?.chunk.English || "";
+        executeSearch(chain.Cypher, activeAliasObjects, position);
       }
     },
     300 // 300ms debounce delay
@@ -110,54 +134,16 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     });
   }, []);
 
-  // Chain operations using useChainOperations hook
-  const {
-    editChunk,
-    insertChunkAt,
-    removeChunk,
-    appendChunk,
-    insertChunk,
-    updateChunkAtIndex,
-  } = useChainOperations({
-    chain,
-    setChain,
-    setQuery,
-    onEditChunk: (index: number, chunkCopy: Chunk) => {
-      setPendingChunk(chunkCopy);
-      setPendingSlots(chunkCopy.Slots);
-      setEditingChunkIndex(index);
-      setIsSlotModalOpen(true);
-    },
-    onInsertMode: (index: number) => {
-      setInsertingAtIndex(index);
-    },
-    onFocusSearchBar: focusSearchBar,
-  });
+  // Toggle suggestions active state
+  const toggleSuggestions = useCallback( () => {
+    setShowSuggestions(prev => !prev);
+  },[])
 
-  // Use the new suggestion hooks
-  const { suggestions, showNextSuggestions } = useSuggestionEngine({
+  // Use simplified suggestion hook
+  const suggestions = useSuggestions({
     query,
     chain,
     insertingAtIndex,
-  });
-
-  // Initialize suggestion selection hook
-  const {
-    selectedIndex,
-    selectedSuggestion,
-    setKeyboardNavigationEnabled,
-    handleKeyDown,
-    clearSelection,
-  } = useSuggestionSelection({
-    suggestions,
-    onExecuteSearch: () => {
-      // Filter aliases by activeAliases before executing search
-      const activeAliasObjects = chain.Aliases.filter((alias) =>
-        activeAliases.has(alias.Name)
-      );
-      executeSearch(chain.Cypher, activeAliasObjects);
-      clearSelection();
-    },
   });
 
   // Handles suggestion selection (both mouse clicks and keyboard selection)
@@ -183,21 +169,35 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
           appendChunk(chunkCopy);
         }
 
-        // Auto-show next relevant suggestions
-        const nextSuggestions = showNextSuggestions();
-        if (nextSuggestions.length > 0) {
-          setKeyboardNavigationEnabled(true);
-        }
       }
     },
     [
       insertingAtIndex,
-      showNextSuggestions,
-      setKeyboardNavigationEnabled,
       appendChunk,
       insertChunk,
     ]
   );
+
+  // Use keyboard navigation hook
+  const {
+    selectedIndex,
+    selectedSuggestion,
+    setKeyboardNavigationEnabled,
+    handleKeyDown,
+    clearSelection,
+  } = useKeyboardNavigation({
+    suggestions,
+    onExecuteSearch: () => {
+      // Filter aliases by activeAliases before executing search
+      const activeAliasObjects = chain.Aliases.filter((alias) =>
+        activeAliases.has(alias.Name)
+      );
+      const position = chain.English;
+      executeSearch(chain.Cypher, activeAliasObjects, position);
+      clearSelection();
+    },
+   toggleSuggestions:toggleSuggestions 
+  });
 
   // Watch for keyboard selection events
   useEffect(() => {
@@ -209,25 +209,22 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   // Auto-enable keyboard navigation when suggestions become available
   useEffect(() => {
-    if (
-      suggestions.length > 0 &&
-      query.trim() !== "" &&
-      query !== chain.English
-    ) {
+    if (suggestions.length > 0) {
+      // Enable keyboard navigation when suggestions are available
+      // (either from user typing or auto-populated after chain changes)
       setKeyboardNavigationEnabled(true);
-    } else if (suggestions.length === 0 || query.trim() === "") {
+    } else {
       setKeyboardNavigationEnabled(false);
     }
-  }, [suggestions, query, chain.English, setKeyboardNavigationEnabled]);
+  }, [suggestions, setKeyboardNavigationEnabled]);
 
   // Clears the entire search state - query, chain, suggestions, and results
-  const clearQuery = () => {
-    setQuery("");
-    setChain(new ChunkChain());
+  const clearQuery = useCallback(() => {
+    clearAll();
     setActiveAliases(new Set());
     clearSelection();
     clearSearch();
-  };
+  }, [clearAll, clearSelection, clearSearch]);
 
   /**
    * Handles saving slot values from the modal and updating the chain
@@ -254,12 +251,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     } else {
       // Adding new chunk
       appendChunk(filled);
-
-      // Show next contextual suggestions
-      const nextSuggestions = showNextSuggestions();
-      if (nextSuggestions.length > 0) {
-        setKeyboardNavigationEnabled(true);
-      }
     }
 
     // Reset modal state
@@ -288,6 +279,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     searchError,
     aliasesToReturn: [],
     activeAliases,
+    showSuggestions,
 
     // Actions
     setUserInput: setQuery,
@@ -299,7 +291,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       const activeAliasObjects = chain.Aliases.filter((alias) =>
         activeAliases.has(alias.Name)
       );
-      executeSearch(chain.Cypher, activeAliasObjects);
+      executeSearch(chain.Cypher, activeAliasObjects, "");
       clearSelection();
     },
     editChunk,
@@ -308,6 +300,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     focusSearchBar,
     resetFocusFlag,
     toggleAlias,
+    toggleSuggestions,
   };
 
   return (

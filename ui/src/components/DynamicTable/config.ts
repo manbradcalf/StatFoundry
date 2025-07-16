@@ -17,12 +17,12 @@ export const defaultNFLGroups: TableGroup[] = [
   },
   {
     name: "flex",
-    keys: [...FLEX_STATS].map(x => x.key),
+    keys: [...FLEX_STATS.map((x) => x.key)],
     priority: 2,
   },
   {
     name: "passing",
-    keys: [...PASSING_STATS],
+    keys: [...PASSING_STATS.map((x) => x.key)],
     priority: 3,
   },
   {

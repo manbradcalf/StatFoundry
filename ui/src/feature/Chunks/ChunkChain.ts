@@ -34,10 +34,6 @@ export class ChunkChain {
       (alias, index, self) =>
         index === self.findIndex((t) => t.Name === alias.Name)
     );
-    console.log("ChunkChain", this.toArray());
-    console.log("Aliases: ", this.Aliases);
-    console.log("English", this.English);
-    console.log("Cypher", this.Cypher);
     return node;
   }
 
@@ -130,7 +126,15 @@ export class ChunkChain {
       node = node.next;
     }
 
-    this.Cypher = cypherParts.join("\n");
+    this.English = englishParts.join(" ");
+    cypherParts.forEach((cypherPart, index) => {
+      if (index === 0 || cypherPart.startsWith("WHERE") || cypherPart.startsWith("AND")) {
+        // do not append WITH * if we're in a WHERE or AND clause
+        this.Cypher +=  ` ${cypherPart} `;
+      } else {
+        this.Cypher += ` WITH * ${cypherPart}`;
+      }
+    });
     return this;
   }
 
@@ -167,24 +171,34 @@ export class ChunkChain {
   }
 }
 
-function isValidNextChunk(chunk: Chunk, currentAliases: Alias[], tail?: Chunk): boolean {
+function isValidNextChunk(
+  chunk: Chunk,
+  currentAliases: Alias[],
+  tail?: Chunk
+): boolean {
   // can't start if we've already started
   if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
     return false;
   }
 
   // can't filter what we don't have
-  if (currentAliases.length === 0 && chunk.QueryType !== QueryType.MATCH_START) {
+  if (
+    currentAliases.length === 0 &&
+    chunk.QueryType !== QueryType.MATCH_START
+  ) {
     return false;
   }
 
   // if we are currently extending a filter for the same REQUIRES or PROVIDES type, then dont suggest filter start
 
   if (tail) {
-    if (tail?.QueryType === QueryType.FILTER_START && chunk.QueryType === QueryType.FILTER_START) {
-      return false
+    if (
+      tail?.QueryType === QueryType.FILTER_START &&
+      chunk.QueryType === QueryType.FILTER_START &&
+      tail.Provides[0].AliasType === chunk.Provides[0].AliasType
+    ) {
+      return false;
     }
-
   }
 
   // Count how many of each entity type we need vs have

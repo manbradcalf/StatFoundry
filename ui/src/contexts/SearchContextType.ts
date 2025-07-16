@@ -17,6 +17,7 @@ export interface SearchContextType {
   isSearching: boolean;
   searchError: string | null;
   activeAliases: Set<string>;
+  showSuggestions: boolean;
 
   // Actions
   setUserInput: (input: string) => void;
@@ -30,4 +31,5 @@ export interface SearchContextType {
   focusSearchBar: () => void;
   resetFocusFlag: () => void;
   toggleAlias: (aliasName: string) => void;
+  toggleSuggestions: ()=>void;
 }

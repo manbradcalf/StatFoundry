@@ -10,4 +10,5 @@ export const PLAYER_INFO_PROPERTIES = [
   // "first_name",
   // "status",
   // "height",
+
 ];

@@ -5,12 +5,12 @@ import { SlotType } from "../Enums/SlotType";
 
 export const PLAYER_INFO_CHUNKS: Chunk[] = [
   {
-    English: "with [name]",
+    English: "Player named [name]",
     Cypher: "",
-    EnglishTemplate: "named {name}",
-    CypherTemplate: "WHERE p.display_name = {name}",
-    QueryType: QueryType.FILTER_START,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    EnglishTemplate: "Player named {name}",
+    CypherTemplate: "MATCH (p:Player {display_name: {name} })",
+    QueryType: QueryType.MATCH_START,
+    Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [
       {
@@ -19,12 +19,13 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: ["name"]
   },
   {
     English: "currently on [team]",
     Cypher: "",
     EnglishTemplate: "currently on {team}",
-    CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
+    CypherTemplate: "WITH p MATCH (p) WHERE p.team_abbr = {team} AND p.status='ACT'",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
@@ -35,6 +36,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: ["team"]
   },
   {
     English: "who have played at least [number] games for [team]",
@@ -65,12 +67,13 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: ["team"]
   },
   {
     English: "who went to [college]",
     Cypher: "",
     EnglishTemplate: "who went to {college}",
-    CypherTemplate: "MATCH (p) where p.college_name={college}",
+    CypherTemplate: "MATCH (p) where p.college_name={college} WITH p",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
@@ -81,5 +84,6 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
+    SuggestionKeywords: ["college", "school"]
   },
 ];

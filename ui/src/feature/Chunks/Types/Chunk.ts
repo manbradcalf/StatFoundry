@@ -55,4 +55,9 @@ export type Chunk = {
    * This contains example/default values for the entity's properties
    */
   Slots: Slot[];
+
+  /**
+   * The keywords to use for suggestions.
+   */
+  readonly SuggestionKeywords?: string[];
 };
