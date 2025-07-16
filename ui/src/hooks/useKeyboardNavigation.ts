@@ -4,6 +4,7 @@ import { Suggestion } from '../contexts/Suggestion';
 interface UseKeyboardNavigationParams {
   suggestions: Suggestion[];
   onExecuteSearch?: () => void;
+  toggleSuggestions: () => void;
 }
 
 interface UseKeyboardNavigationReturn {
@@ -17,7 +18,8 @@ interface UseKeyboardNavigationReturn {
 
 export const useKeyboardNavigation = ({
   suggestions,
-  onExecuteSearch
+  onExecuteSearch,
+  toggleSuggestions
 }: UseKeyboardNavigationParams): UseKeyboardNavigationReturn => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [keyboardNavigationEnabled, setKeyboardNavigationEnabled] = useState(false);
@@ -27,9 +29,13 @@ export const useKeyboardNavigation = ({
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     // Escape key - disable keyboard navigation
     if (e.key === 'Escape') {
+      if (keyboardNavigationEnabled) {
       setKeyboardNavigationEnabled(false);
       setSelectedIndex(-1);
       return;
+      }
+      console.log("esc pressed twice...toggling")
+      toggleSuggestions();
     }
 
     // Only handle other keys if keyboard navigation is enabled

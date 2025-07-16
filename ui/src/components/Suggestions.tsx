@@ -7,6 +7,7 @@ interface SuggestionsProps {
   suggestions: Suggestion[];
   selectedIndex: number;
   onSelect: (suggestion: Suggestion) => void;
+  showSuggestions: boolean; // Add this prop
 }
 
 /**
@@ -23,9 +24,10 @@ const createHighlightedSuggestionText = (chunk: Chunk): React.ReactNode => {
  * Positioned absolutely below the search input
  */
 export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
-  ({ suggestions, selectedIndex, onSelect }, ref) => {
-    // Don't render if no suggestions
-    if (suggestions.length === 0) {
+  ({ suggestions, selectedIndex, onSelect, showSuggestions }, ref) => {
+    console.log("suggestions "+ showSuggestions)
+    // Change this line:
+    if (suggestions.length === 0 || !showSuggestions) {
       return null;
     }
 

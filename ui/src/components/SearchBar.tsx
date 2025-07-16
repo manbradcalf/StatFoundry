@@ -15,6 +15,7 @@ export const SearchBar: React.FC = () => {
     chain,
     shouldFocusSearchBar,
     resetFocusFlag,
+    showSuggestions,
   } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -104,6 +105,7 @@ export const SearchBar: React.FC = () => {
         suggestions={suggestions}
         selectedIndex={selectedIndex}
         onSelect={selectSuggestion}
+        showSuggestions={showSuggestions}
         ref={suggestionsRef}
       />
     </div>

@@ -45,6 +45,8 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   );
   const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
 
+  // Suggestions visibility state
+  const [showSuggestions,setShowSuggestions]=useState(true);
   // Use new combined hooks
   const {
     chain,
@@ -132,6 +134,12 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     });
   }, []);
 
+  // Toggle suggestions active state
+  const toggleSuggestions = useCallback( () => {
+    console.log("toggling suggestions?")
+    setShowSuggestions(prev => !prev);
+  },[])
+
   // Use simplified suggestion hook
   const suggestions = useSuggestions({
     query,
@@ -189,6 +197,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       executeSearch(chain.Cypher, activeAliasObjects, position);
       clearSelection();
     },
+   toggleSuggestions:toggleSuggestions 
   });
 
   // Watch for keyboard selection events
@@ -271,6 +280,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     searchError,
     aliasesToReturn: [],
     activeAliases,
+    showSuggestions,
 
     // Actions
     setUserInput: setQuery,
@@ -291,6 +301,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     focusSearchBar,
     resetFocusFlag,
     toggleAlias,
+    toggleSuggestions,
   };
 
   return (
