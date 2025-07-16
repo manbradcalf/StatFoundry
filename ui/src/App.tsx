@@ -23,6 +23,9 @@ function AppContent() {
         <AliasesDisplay />
         <SearchResults />
       </div>
+      <div className="stats-sourced-from">
+        <i>stats sourced from <a href="https://github.com/nflverse" target="_blank" rel="noopener noreferrer">NFLVerse</a></i>
+      </div>
     </div>
   );
 }

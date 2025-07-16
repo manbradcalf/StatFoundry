@@ -4,7 +4,7 @@ import { DynamicTable } from "./DynamicTable/";
 import { commonStyles } from "../utils/commonStyles";
 
 export const SearchResults: React.FC = () => {
-  const { searchResults, searchError } = useSearchContext();
+  const { searchResults, searchError, chain } = useSearchContext();
 
   if (!searchResults && !searchError) {
     return null;
@@ -12,6 +12,15 @@ export const SearchResults: React.FC = () => {
 
   return (
     <div className="search-results-body">
+      {searchError ? (
+        <p className="aliases-label">
+          {searchError}: {chain.toArray().map((x) => x.English + " ")}
+        </p>
+      ) : (
+        <p className="aliases-label">
+          {chain.toArray().map((x) => x.English + " ")}
+        </p>
+      )}
       {searchResults ? (
         <div>
           <DynamicTable data={searchResults} />
@@ -23,7 +32,6 @@ export const SearchResults: React.FC = () => {
           )}
         </div>
       ) : null}
-      {searchError && <p style={commonStyles.errorMessage}>{searchError}</p>}
     </div>
   );
 };

@@ -16,7 +16,7 @@ export const AliasesDisplay: React.FC = () => {
   return (
     <div className="aliases-display">
       <div className="aliases-container">
-        <span className="aliases-label">Available entities:</span>
+        <span className="aliases-label">Filter Columns by Data Type: </span>
         <div className="aliases-list">
           {chain.Aliases.map((alias, index) => {
             const isActive = activeAliases.has(alias.Name);
@@ -33,7 +33,6 @@ export const AliasesDisplay: React.FC = () => {
                     : `Click to ${isActive ? "hide" : "show"} columns for ${alias.Name} (${alias.AliasType})`
                 }
               >
-                <span className="alias-name">{alias.Name}</span>
                 <span className="alias-type">{alias.AliasType}</span>
               </div>
             );

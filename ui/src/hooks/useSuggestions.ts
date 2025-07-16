@@ -94,5 +94,5 @@ export const useSuggestions = ({
     } else {
       return searchChunks(validChunks, query);
     }
-  }, [query, chain, contextChain]);
+  }, [query, contextChain]);
 };

@@ -12,6 +12,7 @@ export const commonStyles = {
   // Error message styling
   errorMessage: {
     color: "red",
+    fontSize: "14px",
   },
 
   // Info text styling
