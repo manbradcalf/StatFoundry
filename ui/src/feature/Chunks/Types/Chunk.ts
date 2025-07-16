@@ -6,7 +6,6 @@ import { QueryType } from "../Enums/QueryType";
  * Class representing a single query chunk.
  */
 export type Chunk = {
-  SuggestionKeywords: string;
   /**
    * The English translation of the query snippet represented by the Chunk.
    */
@@ -56,4 +55,9 @@ export type Chunk = {
    * This contains example/default values for the entity's properties
    */
   Slots: Slot[];
+
+  /**
+   * The keywords to use for suggestions.
+   */
+  readonly SuggestionKeywords?: string[];
 };

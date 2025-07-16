@@ -19,13 +19,13 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "name"
+    SuggestionKeywords: ["name"]
   },
   {
     English: "currently on [team]",
     Cypher: "",
     EnglishTemplate: "currently on {team}",
-    CypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
+    CypherTemplate: "WITH p MATCH (p) WHERE p.team_abbr = {team} AND p.status='ACT'",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
@@ -36,7 +36,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "team"
+    SuggestionKeywords: ["team"]
   },
   {
     English: "who have played at least [number] games for [team]",
@@ -67,7 +67,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "team"
+    SuggestionKeywords: ["team"]
   },
   {
     English: "who went to [college]",
@@ -84,6 +84,6 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "college school"
+    SuggestionKeywords: ["college", "school"]
   },
 ];

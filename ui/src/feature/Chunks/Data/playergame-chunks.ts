@@ -19,13 +19,13 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["games", "game"]
   },
   {
     English: "...and played for [team] in those games",
-    Cypher: "MATCH (p:Player)-[:HAD]->(pg) WHERE pg.recent_team = {team}",
+    Cypher: "AND pg.recent_team = {team}",
     EnglishTemplate: "who played for {team} in those games",
-    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg) WHERE pg.recent_team = {team}",
+    CypherTemplate: "AND pg.recent_team = {team}",
     QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
@@ -36,14 +36,14 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["games", "game"]
   },
   {
-    English: "games versus [GB]",
-    Cypher: "MATCH (p:Player)-[:HAD]->() WHERE pg.opponent_team = 'GB'",
+    English: "versus [team]",
+    Cypher: "AND pg.opponent_team = {team}",
     EnglishTemplate: "who played against {team} in those games",
-    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
-    QueryType: QueryType.FILTER_START,
+    CypherTemplate: "AND pg.opponent_team = {team}",
+    QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
@@ -53,14 +53,14 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["games", "game", "versus", "vs"]
   },
   {
     English: "in games between the [2020] and [2024] seasons",
-    Cypher: "WHERE pg.season >= 2020 AND pg.season <= 2024",
+    Cypher: "AND pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
     EnglishTemplate: "in games between the {seasonStart} and {seasonEnd} seasons",
-    CypherTemplate: "WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
-    QueryType: QueryType.FILTER_START,
+    CypherTemplate: "AND pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
+    QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
@@ -75,7 +75,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["games", "game", "between", "between"]
   },
   {
     English: "and won",
@@ -84,7 +84,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["won", "lost"]
   },
   {
     English: "and lost",
@@ -93,7 +93,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["won", "lost"]
   },
   {
     English: "in a game during the [2024] season",
@@ -108,8 +108,8 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
         Name: "season",
         Value: 2024,
         SlotValueTypes: [SlotType.FilterValue],
-      },
+      }
     ],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["games", "game", "during", "during"]
   },
 ];

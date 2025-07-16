@@ -22,8 +22,8 @@ const getValidChunks = (contextChain: ChunkChain) => {
 // Create Fuse.js searcher
 const createFuseSearcher = (chunks: Chunk[]) => {
   return new Fuse(chunks, {
-    keys: ["English"],
-    threshold: 0.4,
+    keys: ["English", "EnglishTemplate","SuggestionKeywords"],
+    threshold: 0.7,
     includeScore: true,
   });
 };

@@ -127,7 +127,14 @@ export class ChunkChain {
     }
 
     this.English = englishParts.join(" ");
-    this.Cypher = cypherParts.join("\n");
+    cypherParts.forEach((cypherPart, index) => {
+      if (index === 0 || cypherPart.startsWith("WHERE") || cypherPart.startsWith("AND")) {
+        // do not append WITH * if we're in a WHERE or AND clause
+        this.Cypher +=  ` ${cypherPart} `;
+      } else {
+        this.Cypher += ` WITH * ${cypherPart}`;
+      }
+    });
     return this;
   }
 

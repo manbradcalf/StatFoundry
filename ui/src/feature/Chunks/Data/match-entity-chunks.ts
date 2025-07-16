@@ -11,7 +11,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["QB", "quarterback"]
   },
   {
     English: "QB",
@@ -20,7 +20,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["QB", "quarterback"]
   },
   {
     English: "RB",
@@ -29,7 +29,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["RB", "running back", "running backs"]
   },
   {
     English: "WR",
@@ -38,7 +38,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["WR", "wide receiver", "wide receivers"]
   },
   {
     English: "TE",
@@ -47,7 +47,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["TE", "tight end", "tight ends"]
   },
   {
     English: "Teams",
@@ -56,7 +56,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
     Requires: [],
     Provides: [{ Name: "t", AliasType: AliasType.Team }],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["teams", "team"]
   },
   {
     English: "Player Games",
@@ -68,7 +68,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "pg", AliasType: AliasType.PlayerGame },
     ],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["player games", "player game"]
   },
   {
     English: "Player Seasons",
@@ -80,7 +80,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "ps", AliasType: AliasType.PlayerSeason },
     ],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["player seasons", "player season"]
   },
   {
     English: "Team Seasons",
@@ -92,7 +92,7 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "ts", AliasType: AliasType.TeamSeason },
     ],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["team seasons", "team season"]
   },
   {
     English: "Team Games",
@@ -104,6 +104,6 @@ export const MATCH_ENTITY_CHUNKS: Chunk[] = [
       { Name: "tg", AliasType: AliasType.TeamGame },
     ],
     Slots: [],
-    SuggestionKeywords: ""
+    SuggestionKeywords: ["team games", "team game"]
   },
 ];

@@ -39,15 +39,15 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "rush rushed received caught ran"
+    SuggestionKeywords: ["rush", "rushed", "received", "caught", "ran"]
   },
   {
     English:
       stat.type === "number"
-        ? `...and [${stat.key}] that season`
-        : `...and had season for [${stat.key}]`,
+        ? `...and with [${stat.key}] {condition} {value} in that season`
+        : `...and played for [{value}] in those seasons`,
     Cypher: "",
-    EnglishTemplate: "and who had {condition} {value} {stat.key} that Season",
+    EnglishTemplate: "and who had {condition} {value} {stat.key} in that season",
     CypherTemplate:
       stat.type === "number"
         ? " AND ps.{stat.key} {condition} {value}"
@@ -75,7 +75,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "rush rushed received caught ran"
+    SuggestionKeywords: ["rush", "rushed", "received", "caught", "ran"]
   },
   // game
   {
@@ -119,18 +119,18 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "rush rushed received caught ran"
+    SuggestionKeywords: ["rush", "rushed", "received", "caught", "ran"]
   },
   {
     English:
       stat.type === "number"
-        ? `...and had [${stat.key}] that game`
-        : `...and had game for [${stat.key}]`,
+        ? `...and with [${stat.key}] those games`
+        : `...and with game for [${stat.key}]`,
     Cypher: "",
     EnglishTemplate:
       stat.type === "number"
-        ? "and with {condition} {value} {stat.key} that Game"
-        : "and who played for {value} that game",
+        ? "and with {condition} {value} {stat.key} in those games"
+        : "and who played for {value} in those games",
     CypherTemplate: " AND pg.{stat.key} {condition} {value}",
     QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
@@ -157,6 +157,6 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: "rush rushed received caught ran"
+    SuggestionKeywords: ["rush", "rushed", "received", "caught", "ran"]
   },
 ]).flat();

@@ -42,8 +42,7 @@ const SearchSuggestionsTestComponent = () => {
             Requires: [],
             Provides: [],
             Slots: [],
-            SuggestionKeywords: "player"
-
+            SuggestionKeywords: ["players", "player"]
           },
           displayText: "Players"
         })}
