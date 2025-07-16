@@ -86,7 +86,7 @@ export const useKeyboardNavigation = ({
         }
         break;
     }
-  }, [suggestions, selectedIndex, keyboardNavigationEnabled, onExecuteSearch]);
+  }, [keyboardNavigationEnabled, suggestions, selectedIndex, toggleSuggestions, onExecuteSearch]);
 
   // Clear selection state
   const clearSelection = useCallback(() => {

@@ -103,8 +103,6 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
           </button>
         </div>
       </div>
-      <p>{chain.toArray().map(x => x.English + " ")}</p>
     </div>
   );
-
 };

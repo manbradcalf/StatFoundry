@@ -5,6 +5,12 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
+.stats-sourced-from {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+}
+
 .App-header {
   background: #ffffff;
   padding: 32px 24px;
@@ -20,8 +26,8 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  max-width: 1400px;
-  padding: 0 24px;
+  max-width: 1200px;
+  padding: 0 12px;
 }
 
 h1 {
@@ -42,7 +48,8 @@ h1 {
 
 .search-container {
   position: relative;
-  max-width: 600px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -52,7 +59,7 @@ h1 {
   align-items: center;
 }
 
-.search-input {
+.search-input {   
   width: 100%;
   padding: 14px 50px 14px 16px;
   font-size: 16px;
@@ -738,12 +745,16 @@ input[type="number"] {
 }
 
 /* Breadcrumb Chain Styles */
+.breadcrumb-wrapper {
+  width: 100%;
+  max-width: 1200px;
+}
+
 .breadcrumb-chain {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1200px;
   padding: 12px 16px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -753,6 +764,7 @@ input[type="number"] {
 }
 
 .breadcrumb-chain.empty {
+  width:100%;
   justify-content: center;
   background: #f8fafc;
   border-style: dashed;

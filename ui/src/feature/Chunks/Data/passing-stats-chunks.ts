@@ -56,7 +56,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
   },
   // Game
   {
-    English: "Games with [passing stats]",
+    English: `Games with [${stat.key}]`,
     Cypher: "",
     EnglishTemplate: "with {condition} {value} {stat} in a Game",
     CypherTemplate:

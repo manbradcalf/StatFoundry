@@ -44,7 +44,7 @@ export const FLEX_STATS_CHUNKS = FLEX_STATS.map((stat) => [
   {
     English:
       stat.type === "number"
-        ? `...and with [${stat.key}] {condition} {value} in that season`
+        ? `...and with [${stat.key}] in that season`
         : `...and played for [{value}] in those seasons`,
     Cypher: "",
     EnglishTemplate: "and who had {condition} {value} {stat.key} in that season",
