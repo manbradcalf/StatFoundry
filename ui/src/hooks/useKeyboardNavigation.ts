@@ -29,17 +29,18 @@ export const useKeyboardNavigation = ({
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     // Escape key - disable keyboard navigation
     if (e.key === 'Escape') {
-      if (keyboardNavigationEnabled) {
-      setKeyboardNavigationEnabled(false);
-      setSelectedIndex(-1);
-      return;
+      setKeyboardNavigationEnabled(prev=>!prev);
+      if (selectedIndex > 0) {
+        setSelectedIndex(-1);
       }
-      console.log("esc pressed twice...toggling")
-      toggleSuggestions();
+      toggleSuggestions()
+      return;
     }
 
     // Only handle other keys if keyboard navigation is enabled
-    if (!keyboardNavigationEnabled || suggestions.length === 0) return;
+    if (!keyboardNavigationEnabled || suggestions.length === 0) {
+      return;
+    }
 
     switch (e.key) {
       case 'ArrowDown':

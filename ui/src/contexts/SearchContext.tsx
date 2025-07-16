@@ -136,7 +136,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   // Toggle suggestions active state
   const toggleSuggestions = useCallback( () => {
-    console.log("toggling suggestions?")
     setShowSuggestions(prev => !prev);
   },[])
 
