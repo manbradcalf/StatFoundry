@@ -56,7 +56,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     SuggestionKeywords: ["games", "game"]
   },
   {
-    English: "...and played against [team]",
+    English: "...and played against [team] in those games",
     Cypher: "AND pg.opponent_team = {team}",
     EnglishTemplate: "who played against {team} in those games",
     CypherTemplate: "AND pg.opponent_team = {team}",
