@@ -22,6 +22,23 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     SuggestionKeywords: ["games", "game"]
   },
   {
+    English: "games against [team]",
+    Cypher: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = 'MIN'",
+    EnglishTemplate: "who played against {team} in those games",
+    CypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
+    QueryType: QueryType.FILTER_START,
+    Requires: [{ Name: "p", AliasType: AliasType.Player }],
+    Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    Slots: [
+      {
+        Name: "team",
+        Value: "GB",
+        SlotValueTypes: [SlotType.FilterValue],
+      },
+    ],
+    SuggestionKeywords: ["games", "game"]
+  },
+  {
     English: "...and played for [team] in those games",
     Cypher: "AND pg.recent_team = {team}",
     EnglishTemplate: "who played for {team} in those games",
@@ -39,7 +56,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     SuggestionKeywords: ["games", "game"]
   },
   {
-    English: "versus [team]",
+    English: "...and played against [team]",
     Cypher: "AND pg.opponent_team = {team}",
     EnglishTemplate: "who played against {team} in those games",
     CypherTemplate: "AND pg.opponent_team = {team}",
@@ -53,7 +70,7 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
         SlotValueTypes: [SlotType.FilterValue],
       },
     ],
-    SuggestionKeywords: ["games", "game", "versus", "vs"]
+    SuggestionKeywords: ["games", "game", "versus", "vs","against"]
   },
   {
     English: "in games between the [2020] and [2024] seasons",
