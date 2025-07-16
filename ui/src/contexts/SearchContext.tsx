@@ -92,6 +92,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         console.log(chain)
         const position = chain.Head?.chunk.English || "";
         executeSearch(chain.Cypher, activeAliasObjects, position);
+        toggleSuggestions();
       }
     },
     300 // 300ms debounce delay
