@@ -3,7 +3,6 @@ import { Suggestion } from '../contexts/Suggestion';
 
 interface UseKeyboardNavigationParams {
   suggestions: Suggestion[];
-  onSelectSuggestion: (suggestion: Suggestion) => void;
   onExecuteSearch?: () => void;
 }
 
@@ -18,7 +17,6 @@ interface UseKeyboardNavigationReturn {
 
 export const useKeyboardNavigation = ({
   suggestions,
-  onSelectSuggestion,
   onExecuteSearch
 }: UseKeyboardNavigationParams): UseKeyboardNavigationReturn => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -71,7 +69,7 @@ export const useKeyboardNavigation = ({
           // Select highlighted suggestion
           const suggestion = suggestions[selectedIndex];
           setSelectedSuggestion(suggestion);
-          onSelectSuggestion(suggestion);
+          // onSelectSuggestion(suggestion); // This line is removed
           setSelectedIndex(-1);
           setKeyboardNavigationEnabled(false);
         } else if (onExecuteSearch) {
@@ -81,7 +79,7 @@ export const useKeyboardNavigation = ({
         }
         break;
     }
-  }, [suggestions, selectedIndex, keyboardNavigationEnabled, onSelectSuggestion, onExecuteSearch]);
+  }, [suggestions, selectedIndex, keyboardNavigationEnabled, onExecuteSearch]);
 
   // Clear selection state
   const clearSelection = useCallback(() => {

@@ -180,7 +180,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
     clearSelection,
   } = useKeyboardNavigation({
     suggestions,
-    onSelectSuggestion: handleSuggestionClick,
     onExecuteSearch: () => {
       // Filter aliases by activeAliases before executing search
       const activeAliasObjects = chain.Aliases.filter((alias) =>
