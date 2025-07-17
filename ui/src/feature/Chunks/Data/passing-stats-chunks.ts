@@ -86,7 +86,7 @@ export const PASSING_STATS_CHUNKS: Chunk[] = PASSING_STATS.map((stat) => [
     CypherTemplate:
       " AND ps.{stat} {condition} {value} ",
     QueryType: QueryType.FILTER_EXTEND,
-    Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
+    Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [
       {

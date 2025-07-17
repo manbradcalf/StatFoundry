@@ -21,7 +21,10 @@ export const RECEIVING_STATS = [
   { key: "receiving_fumbles", type: "number" },
   { key: "receiving_fumbles_lost", type: "number" },
   { key: "air_yards_share", type: "number" },
+  { key: "targets", type: "number" },
+  { key: "adot", type: "number" },
   { key: "target_share", type: "number" }
+
 ]
 export const FLEX_STATS = [
   ...RUSHING_STATS,
