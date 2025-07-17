@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from src.neo4j_client import driver, execute_query, fetch_schema
 from src.requests import QueryAuraDBRequest
@@ -25,8 +25,11 @@ async def get_schema():
 
 @app.post("/api/query")
 async def query(request: QueryAuraDBRequest):
-    result = execute_query(driver, request.cypher_query)
-    return result
+    try:
+        result = execute_query(driver, request.cypher_query)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 @app.get("/api/healthcheck")

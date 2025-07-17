@@ -23,7 +23,7 @@ export function fillTemplate(template: string, slots: Slot[]): string {
     // it's a literal value, not an identifier or operator.
     const shouldQuote =
       typeof Value === "string" && !nonLiteralNames.includes(Name);
-    const replacement = shouldQuote ? `'${Value}'` : String(Value);
+    const replacement = shouldQuote ? `"${Value}"` : String(Value);
 
     output = output.replace(pattern, replacement);
   });

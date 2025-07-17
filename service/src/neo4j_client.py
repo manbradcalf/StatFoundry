@@ -1,5 +1,6 @@
 from neo4j import GraphDatabase
 from src.config import URI, AUTH
+import re
 
 # Private query constants (denoted by underscore prefix)
 _fetch_relationships_schema = """
@@ -69,7 +70,62 @@ def fetch_schema(driver):
     }
 
 
+def is_read_only_query(query):
+    """
+    Validates that a Cypher query is read-only (no mutations allowed).
+    
+    Args:
+        query (str): The Cypher query to validate
+        
+    Returns:
+        bool: True if query is read-only, False otherwise
+        
+    Raises:
+        ValueError: If query contains write operations
+    """
+    # Remove comments and normalize whitespace
+    clean_query = re.sub(r'//.*?$', '', query, flags=re.MULTILINE)
+    clean_query = re.sub(r'/\*.*?\*/', '', clean_query, flags=re.DOTALL)
+    clean_query = re.sub(r'\s+', ' ', clean_query).strip().upper()
+    
+    # List of strictly write operations that should be blocked
+    write_operations = [
+        'CREATE',
+        'MERGE',
+        'DELETE',
+        'DETACH DELETE',
+        'REMOVE',
+        'SET',
+        'DROP',
+        'ALTER',
+        'LOAD CSV'
+    ]
+    
+    # Check for write operations
+    for operation in write_operations:
+        if operation in clean_query:
+            raise ValueError(f"Write operation '{operation}' is not allowed. Only READ queries are permitted.")
+    
+    return True
+
+
 def execute_query(driver, query):
+    """
+    Executes a Cypher query after validating it's read-only.
+    
+    Args:
+        driver: Neo4j driver instance
+        query (str): The Cypher query to execute
+        
+    Returns:
+        list: Query results as list of dictionaries
+        
+    Raises:
+        ValueError: If query contains write operations
+    """
+    # Validate query is read-only
+    is_read_only_query(query)
+    
     with driver.session() as session:
         result = session.run(query)
         return result.data()
