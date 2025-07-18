@@ -189,16 +189,13 @@ function isValidNextChunk(
     return false;
   }
 
-  // if we are currently extending a filter for the same REQUIRES or PROVIDES type, then dont suggest filter start
-
-  if (tail) {
-    if (
-      tail?.QueryType === QueryType.FILTER_START &&
-      chunk.QueryType === QueryType.FILTER_START &&
-      tail.Provides[0].AliasType === chunk.Provides[0].AliasType
-    ) {
-      return false;
-    }
+  // once you extend a filter, only keep extending (for now) 
+  if (
+    tail?.QueryType === QueryType.FILTER_EXTEND &&
+    chunk.QueryType !== QueryType.FILTER_EXTEND &&
+    tail?.Provides.some(provided => chunk.Requires.some(required => required.AliasType === provided.AliasType))
+  ) {
+    return false;
   }
 
   // Count how many of each entity type we need vs have
