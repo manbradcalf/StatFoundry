@@ -191,9 +191,8 @@ function isValidNextChunk(
 
   // once you extend a filter, only keep extending (for now) 
   if (
-    tail?.QueryType === QueryType.FILTER_EXTEND &&
-    chunk.QueryType !== QueryType.FILTER_EXTEND &&
-    tail?.Provides.some(provided => chunk.Requires.some(required => required.AliasType === provided.AliasType))
+    (tail?.QueryType === QueryType.FILTER_EXTEND || tail?.QueryType === QueryType.FILTER_START) &&
+    chunk.QueryType !== QueryType.FILTER_EXTEND
   ) {
     return false;
   }

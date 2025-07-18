@@ -95,18 +95,18 @@ export const PLAYER_GAME_CHUNKS: Chunk[] = [
     SuggestionKeywords: ["games", "game", "between", "between"]
   },
   {
-    English: "and won",
-    Cypher: `WHERE pg.won = true`,
-    QueryType: QueryType.FILTER_START,
+    English: "...and won",
+    Cypher: `AND pg.won = true`,
+    QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [],
     SuggestionKeywords: ["won", "lost"]
   },
   {
-    English: "and lost",
-    Cypher: `WHERE pg.won = false`,
-    QueryType: QueryType.FILTER_START,
+    English: "...and lost",
+    Cypher: `AND pg.won <> true`,
+    QueryType: QueryType.FILTER_EXTEND,
     Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
     Slots: [],
