@@ -25,7 +25,7 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     English: "currently on [team]",
     Cypher: "",
     EnglishTemplate: "currently on {team}",
-    CypherTemplate: "WITH p MATCH (p) WHERE p.team_abbr = {team} AND p.status='ACT'",
+    CypherTemplate: "MATCH (p) WHERE p.team_abbr = {team} AND p.status='ACT'",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
@@ -38,42 +38,42 @@ export const PLAYER_INFO_CHUNKS: Chunk[] = [
     ],
     SuggestionKeywords: ["team"]
   },
-  {
-    English: "who have played at least [number] games for [team]",
-    Cypher: "",
-    EnglishTemplate: "who have played {num} games for {team}",
-    CypherTemplate: `
-    CALL (p) { 
-      MATCH (p)-[:HAD]->(pg:PlayerGame) 
-      WHERE pg.recent_team = {team} 
-      WITH p, collect(pg) as games 
-      WHERE size(games) >= {num}
-      RETURN p as playerWhoPlayedAtLeastGamesForTeam
-      }
-      WITH *, playerWhoPlayedAtLeastGamesForTeam as p`,
-
-    QueryType: QueryType.FILTER_START,
-    Requires: [{ Name: "p", AliasType: AliasType.Player }],
-    Provides: [{ Name: "p", AliasType: AliasType.Player }],
-    Slots: [
-      {
-        Name: "num",
-        Value: 10,
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-      {
-        Name: "team",
-        Value: "SEA",
-        SlotValueTypes: [SlotType.FilterValue],
-      },
-    ],
-    SuggestionKeywords: ["team"]
-  },
+  // {
+  //   English: "who have played at least [number] games for [team]",
+  //   Cypher: "",
+  //   EnglishTemplate: "who have played {num} games for {team}",
+  //   CypherTemplate: `
+  //   CALL (p) { 
+  //     MATCH (p)-[:HAD]->(pg:PlayerGame) 
+  //     WHERE pg.recent_team = {team} 
+  //     WITH p, collect(pg) as games 
+  //     WHERE size(games) >= {num}
+  //     RETURN p as playerWhoPlayedAtLeastGamesForTeam
+  //     }
+  //     WITH *, playerWhoPlayedAtLeastGamesForTeam as p`,
+  //
+  //   QueryType: QueryType.FILTER_START,
+  //   Requires: [{ Name: "p", AliasType: AliasType.Player }],
+  //   Provides: [{ Name: "p", AliasType: AliasType.Player }],
+  //   Slots: [
+  //     {
+  //       Name: "num",
+  //       Value: 10,
+  //       SlotValueTypes: [SlotType.FilterValue],
+  //     },
+  //     {
+  //       Name: "team",
+  //       Value: "SEA",
+  //       SlotValueTypes: [SlotType.FilterValue],
+  //     },
+  //   ],
+  //   SuggestionKeywords: ["team"]
+  // },
   {
     English: "who went to [college]",
     Cypher: "",
     EnglishTemplate: "who went to {college}",
-    CypherTemplate: "MATCH (p) where p.college_name={college} WITH p",
+    CypherTemplate: "MATCH (p) where p.college_name={college}",
     QueryType: QueryType.FILTER_START,
     Requires: [{ Name: "p", AliasType: AliasType.Player }],
     Provides: [{ Name: "p", AliasType: AliasType.Player }],
