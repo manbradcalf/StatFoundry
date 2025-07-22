@@ -46,8 +46,9 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
 
   // Suggestions visibility state - start hidden, show when user types
-  const [showSuggestions,setShowSuggestions]=useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
+
   // Use new combined hooks
   const {
     chain,
@@ -93,7 +94,6 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
         console.log(chain)
         const position = chain.Head?.chunk.English || "";
         executeSearch(chain.Cypher, activeAliasObjects, position);
-        toggleSuggestions();
       }
     },
     300 // 300ms debounce delay
@@ -137,17 +137,19 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   }, []);
 
   // Toggle suggestions active state
-  const toggleSuggestions = useCallback( () => {
+  const toggleSuggestions = useCallback(() => {
     setShowSuggestions(prev => !prev);
-  },[])
+  }, [])
 
   // Control suggestion visibility based on input state
   const handleInputFocus = useCallback(() => {
     setIsInputFocused(true);
-    if (query.length > 0) {
+    if (query.length > 0 && !isSearching) {
       setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
     }
-  }, [query]);
+  }, [query, isSearching]);
 
   const handleInputBlur = useCallback(() => {
     setIsInputFocused(false);
@@ -226,7 +228,7 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
       executeSearch(chain.Cypher, activeAliasObjects, position);
       clearSelection();
     },
-   toggleSuggestions:toggleSuggestions 
+    toggleSuggestions: toggleSuggestions
   });
 
   // Watch for keyboard selection events

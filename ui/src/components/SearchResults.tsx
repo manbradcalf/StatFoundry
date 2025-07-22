@@ -2,9 +2,18 @@ import React from "react";
 import { useSearchContext } from "../contexts/SearchContext";
 import { DynamicTable } from "./DynamicTable/";
 import { commonStyles } from "../utils/commonStyles";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const SearchResults: React.FC = () => {
-  const { searchResults, searchError, chain } = useSearchContext();
+  const { searchResults, searchError, isSearching, chain } = useSearchContext();
+  if (isSearching) {
+    return (
+      <div>
+        <FontAwesomeIcon icon={faSpinner} spin size="3x" />
+      </div>
+    );
+  }
 
   if (!searchResults && !searchError) {
     return null;
@@ -21,7 +30,7 @@ export const SearchResults: React.FC = () => {
           {chain.toArray().map((x) => x.English + " ")}
         </p>
       )}
-      {searchResults ? (
+      {searchResults && !isSearching ? (
         <div>
           <DynamicTable data={searchResults} />
           {searchResults.length > 0 && (
