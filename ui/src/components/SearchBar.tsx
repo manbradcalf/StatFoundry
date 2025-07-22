@@ -12,7 +12,6 @@ export const SearchBar: React.FC = () => {
     clearAll,
     selectedIndex,
     search,
-    chain,
     shouldFocusSearchBar,
     resetFocusFlag,
     showSuggestions,
