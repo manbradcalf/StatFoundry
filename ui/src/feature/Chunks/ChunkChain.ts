@@ -189,6 +189,12 @@ function isValidNextChunk(
     return false;
   }
 
+  // if the chunk has a slot with Name:'stat' and the same Value, return false
+  // todo: this doesnt take into account other chunks in the chain before tail...
+  if (chunk.Slots.some(slot => slot.Name === 'stat' && tail?.Slots.some(s => s.Name === 'stat' && s.Value === slot.Value))) {
+    return false;
+  }
+
   // once you extend a filter, only keep extending (for now) 
   if (
     (tail?.QueryType === QueryType.FILTER_EXTEND || tail?.QueryType === QueryType.FILTER_START) &&

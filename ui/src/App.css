@@ -9,6 +9,13 @@
   text-align: center;
   margin-top: 24px;
   font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.stats-sourced-from p {
+  margin: 0;
+  font-style: normal;
 }
 
 .App-header {
@@ -28,6 +35,125 @@
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 12px;
+}
+
+/* CTA Section Styling */
+.cta-section {
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 32px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-content h3 {
+  color: #1e293b;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -0.025em;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.feedback-section,
+.donation-section {
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedback-section p,
+.donation-section p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.cta-divider {
+  width: 1px;
+  height: 60px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+
+.feedback-link {
+  display: inline-block;
+  background: #3b82f6;
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.feedback-link:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.donate-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.donate-button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.donate-button.venmo {
+  background: #3d95ce;
+  color: white;
+  border-color: #3d95ce;
+}
+
+.donate-button.venmo:hover {
+  background: #2d7bb5;
+  border-color: #2d7bb5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(61, 149, 206, 0.3);
+}
+
+.donate-button.paypal {
+  background: #0070ba;
+  color: white;
+  border-color: #0070ba;
+}
+
+.donate-button.paypal:hover {
+  background: #005ea6;
+  border-color: #005ea6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3);
 }
 
 h1 {
@@ -59,7 +185,7 @@ h1 {
   align-items: center;
 }
 
-.search-input {   
+.search-input {
   width: 100%;
   padding: 14px 50px 14px 16px;
   font-size: 16px;
@@ -323,6 +449,43 @@ h1 {
   .chain-display {
     margin: 0;
     padding: 20px;
+  }
+
+  .cta-section {
+    margin-top: 24px;
+    padding: 16px 12px;
+  }
+
+  .cta-content h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cta-divider {
+    width: 100%;
+    height: 1px;
+    background: #e2e8f0;
+  }
+
+  .feedback-section p,
+  .donation-section p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .feedback-link {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .donate-button {
+    padding: 7px 12px;
+    font-size: 12px;
   }
 }
 
@@ -764,7 +927,7 @@ input[type="number"] {
 }
 
 .breadcrumb-chain.empty {
-  width:100%;
+  width: 100%;
   justify-content: center;
   background: #f8fafc;
   border-style: dashed;
@@ -1170,14 +1333,14 @@ input[type="number"] {
     width: calc(100vw - 32px);
     max-width: calc(100vw - 32px);
   }
-  
+
   .dynamic-table th,
   .dynamic-table td {
     padding: 6px 8px;
     font-size: 0.8rem;
     min-width: 100px;
   }
-  
+
   .count-column {
     width: 50px;
     min-width: 50px;
@@ -1185,7 +1348,7 @@ input[type="number"] {
     padding: 6px 4px;
     font-size: 0.75rem;
   }
-  
+
   .count-cell {
     width: 50px;
     min-width: 50px;
@@ -1193,23 +1356,23 @@ input[type="number"] {
     padding: 6px 4px;
     font-size: 0.75rem;
   }
-  
+
   .pagination-container {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
   }
-  
+
   .pagination-info {
     text-align: center;
     font-size: 0.8rem;
   }
-  
+
   .pagination-controls {
     justify-content: center;
     flex-wrap: wrap;
   }
-  
+
   .pagination-button {
     padding: 8px 10px;
     font-size: 0.8rem;
@@ -1434,15 +1597,15 @@ input[type="number"] {
   .aliases-display {
     max-width: 100%;
   }
-  
+
   .aliases-container {
     padding: 8px 12px;
   }
-  
+
   .aliases-list {
     gap: 6px;
   }
-  
+
   .alias-item {
     padding: 3px 6px;
     font-size: 12px;
