@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { render, mockFetch, simulateUserFlow, waitForAsyncOperations } from '../setup/test-utils';
-import { useSearchContext } from '../../contexts/SearchContext';
+import { useSearchContext } from '../../contexts/IntegratedSearchContext';
 
 // Test component to interact with SearchContext
 const SearchWorkflowTestComponent = ({ onStateChange }: { onStateChange?: (state: any) => void }) => {

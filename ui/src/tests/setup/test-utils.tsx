@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import { SearchProvider } from '../../contexts/SearchContext';
+import { AppContextProvider } from '../../contexts/AppContextProvider';
 import Modal from 'react-modal';
 
 // Mock Modal setup to prevent warnings
@@ -36,12 +36,12 @@ export const clearFetchMocks = () => {
   (global.fetch as jest.Mock).mockClear();
 };
 
-// Custom render with SearchProvider
+// Custom render with AppContextProvider
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SearchProvider>
+    <AppContextProvider>
       {children}
-    </SearchProvider>
+    </AppContextProvider>
   );
 };
 
