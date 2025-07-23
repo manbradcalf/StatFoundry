@@ -100,6 +100,7 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   const handleSuggestionClick = useCallback(
     (suggestion: Suggestion) => {
       setShowSuggestions(false);
+      setQuery(""); // Clear the search input
       onSuggestionSelect(suggestion);
     },
     [onSuggestionSelect]

@@ -19,7 +19,7 @@ function AppContent() {
         <h1>StatFoundry</h1>
       </header>
       <div className="App-body">
-        <BreadcrumbChain />
+        {/* <BreadcrumbChain /> TODO: Re-enable breadcrumbs - not reliable enough yet, but close */}
         <SearchBar />
         <AliasesDisplay />
         <SearchResults />

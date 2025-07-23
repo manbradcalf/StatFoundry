@@ -95,7 +95,9 @@ const SearchBarInner: React.FC = () => {
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             placeholder={
-              suggestions[0]?.chunk.English || "RB Games..."
+              chainContext.chain.toArray().length > 0 
+                ? "Add another filter..." 
+                : "Start building your query..."
             }
             className="search-input"
             autoComplete="off"
