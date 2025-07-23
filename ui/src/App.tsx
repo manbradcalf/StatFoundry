@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Modal from "react-modal";
 import "./App.css";
-import { SearchProvider } from "./contexts/SearchContext";
+import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SearchBar, BreadcrumbChain, AliasesDisplay } from "./components";
 import { SearchResults } from "./components/SearchResults";
@@ -41,9 +41,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <SearchProvider>
+      <AppContextProvider>
         <AppContent />
-      </SearchProvider>
+      </AppContextProvider>
     </AuthProvider>
   );
 }

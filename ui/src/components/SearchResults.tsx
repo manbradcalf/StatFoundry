@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/IntegratedSearchContext";
 import { DynamicTable } from "./DynamicTable/";
 import { commonStyles } from "../utils/commonStyles";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";

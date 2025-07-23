@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/IntegratedSearchContext";
 import { ChunkChainItem } from "./ChunkChainItem";
 
 interface ChainDisplayProps {

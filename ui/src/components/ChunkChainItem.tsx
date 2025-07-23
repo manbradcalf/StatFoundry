@@ -1,4 +1,4 @@
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/IntegratedSearchContext";
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 
 export const ChunkChainItem: React.FC<{ chunk: Chunk; index: number }> = ({

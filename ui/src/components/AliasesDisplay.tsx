@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/IntegratedSearchContext";
 
 export const AliasesDisplay: React.FC = () => {
   const { chain, activeAliases, toggleAlias } = useSearchContext();

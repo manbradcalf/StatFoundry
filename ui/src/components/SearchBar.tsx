@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/IntegratedSearchContext";
 import { Suggestions } from "./Suggestions";
 
 export const SearchBar: React.FC = () => {
