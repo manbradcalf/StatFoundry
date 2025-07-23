@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
-import { SearchBar, BreadcrumbChain, AliasesDisplay } from "./components";
+import { SearchBar, AliasesDisplay } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
