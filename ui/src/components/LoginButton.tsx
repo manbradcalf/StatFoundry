@@ -1,7 +1,19 @@
+import { useAuth } from "../contexts/AuthContext"
 
 export const LoginButton: React.FC = () => {
+  const { user, signInWithGoogle, signOut } = useAuth()
+  
+  const handleClick = () => {
+    if (user) {
+      signOut()
+    } else {
+      signInWithGoogle()
+    }
+  }
+  
   return (
-    <button className="login-button" title="Sign in (coming soon)" onClick={() => alert("Login functionality coming soon!")}>
-      Login
-    </button>)
+    <button className="login-button" onClick={handleClick}>
+      {user ? 'Logout' : 'Login'}
+    </button>
+  )
 }

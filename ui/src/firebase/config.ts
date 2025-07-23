@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_STATFOUNDRY_APIKEY,
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: "statfoundry.firebaseapp.com",
   projectId: "statfoundry",
   storageBucket: "statfoundry.firebasestorage.app",
