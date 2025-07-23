@@ -209,6 +209,56 @@ getNextValidChunks(allChunks: Chunk[]): Chunk[] {
 - **Phase 2**: Schema-driven chunk generation from graph structure
 - **Phase 3**: AI-assisted query building with deterministic fallback
 
+## Code Quality Guidelines
+
+### The "Get Shit Done vs Over-Engineering" Continuum
+
+**The Spectrum:**
+```
+Get Shit Done ←————————————|————————————→ Over-Engineering
+(hack it together)    (the sweet spot)    (anticipate everything)
+```
+
+**Example: Firebase Auth useEffect Structure**
+
+```typescript
+// ❌ TOO FAR LEFT - Lazy/expedient (cramming unrelated concerns together)
+useEffect(() => {
+  // Handle redirect result  
+  getRedirectResult(auth).then(...)
+  
+  // ALSO set up auth listener (different concern!)
+  const unsubscribe = onAuthStateChanged(auth, ...)
+  return unsubscribe
+}, [])
+
+// ✅ THE SWEET SPOT - Proper separation of concerns
+// Handle OAuth redirect result
+useEffect(() => {
+  getRedirectResult(auth)
+    .then((result) => { ... })
+    .catch((error) => { ... })
+}, [])
+
+// Listen to auth state changes  
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => { ... })
+  return unsubscribe
+}, [])
+
+// ❌ TOO FAR RIGHT - Over-engineering would be:
+// - Custom hook for redirect handling
+// - Separate hook for auth state
+// - Error boundary wrapper
+// - Retry logic with exponential backoff
+// - etc.
+```
+
+**Key Points:**
+- **The sweet spot changes** based on context, timeline, and phase of development
+- **When unsure**: Ask Ben where to be on the continuum for the current task
+- **Guiding principle**: Separate distinct concerns, but don't create abstractions for abstractions' sake
+
 ## Implementation Priorities
 
 1. **Fix type compatibility** - Get semantic types working with existing chunks
