@@ -165,13 +165,23 @@ const SearchBarInner: React.FC = () => {
 export const SearchBar: React.FC = () => {
   const chainContext = useChainContext();
   const modalContext = useModalContext();
+  const apiContext = useSearchAPIContext();
+
+  // Create the real search function for Enter key
+  const handleExecuteSearch = useCallback(() => {
+    apiContext.executeSearch(
+      chainContext.chain.Cypher,
+      chainContext.chain.Aliases,
+      chainContext.chain.English
+    );
+  }, [apiContext, chainContext]);
 
   return (
     <SearchInputProvider
       chain={chainContext.chain}
       insertingAtIndex={modalContext.insertingAtIndex}
       onSuggestionSelect={() => {}} // Handled by inner component
-      onExecuteSearch={() => {}} // Handled by inner component
+      onExecuteSearch={handleExecuteSearch} // ✅ Real function for Enter key!
     >
       <SearchBarInner />
     </SearchInputProvider>
