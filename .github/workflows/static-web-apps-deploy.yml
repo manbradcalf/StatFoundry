@@ -26,4 +26,5 @@ jobs:
           output_location: "build"
         env:
           REACT_APP_ENVIRONMENT: "production"
-          REACT_APP_SERVICE_URL: "https://statfoundry-service-a7crg2fjazb4c8c5.eastus-01.azurewebsites.net" 
+          REACT_APP_SERVICE_URL: "https://statfoundry-service-a7crg2fjazb4c8c5.eastus-01.azurewebsites.net"
+          REACT_APP_FIREBASE_APIKEY: ${{ secrets.REACT_APP_FIREBASE_APIKEY }} 
