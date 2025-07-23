@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Modal from "react-modal";
 import "./App.css";
 import { SearchProvider } from "./contexts/SearchContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import { SearchBar, BreadcrumbChain, AliasesDisplay } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
@@ -39,9 +40,11 @@ function App() {
   }, []);
 
   return (
-    <SearchProvider>
-      <AppContent />
-    </SearchProvider>
+    <AuthProvider>
+      <SearchProvider>
+        <AppContent />
+      </SearchProvider>
+    </AuthProvider>
   );
 }
 
