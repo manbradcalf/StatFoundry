@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 // Firebase configuration
+console.log('Firebase API Key in production:', process.env.REACT_APP_FIREBASE_APIKEY ? 'Found' : 'Missing');
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: "statfoundry.firebaseapp.com",
