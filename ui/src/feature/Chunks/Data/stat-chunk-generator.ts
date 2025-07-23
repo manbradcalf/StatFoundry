@@ -55,9 +55,9 @@ export function generateStatChunks(
 
     // Filter extend chunk
     chunks.push({
-      English: `...and [${stat.key}] in those ${entityType}s`,
+      English: `...and [${stat.key}]`,
       Cypher: "",
-      EnglishTemplate: `and with {condition} {value} {stat} in those ${entityType}s`,
+      EnglishTemplate: `and with {condition} {value} {stat}`,
       CypherTemplate: ` AND ${entityAlias}.{stat} {condition} {value}`,
       QueryType: QueryType.FILTER_EXTEND,
       Requires: [{ Name: entityAlias, AliasType: aliasType }],

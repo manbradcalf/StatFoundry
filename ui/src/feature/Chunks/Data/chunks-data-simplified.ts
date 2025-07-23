@@ -67,7 +67,7 @@ export function getAllChunksSimplified(): Chunk[] {
     ...generatePlayerInfoChunks(),
     ...generatePlayerGameConstraints(),
     ...generatePlayerSeasonConstraints(),
-    
+
     // Generated stat chunks
     ...PASSING_SEASON_CHUNKS,
     ...PASSING_GAME_CHUNKS,
