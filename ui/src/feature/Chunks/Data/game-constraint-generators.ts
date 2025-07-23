@@ -92,7 +92,7 @@ export const PLAYER_GAME_BOOLEAN_CONSTRAINTS = [
     keywords: ["won", "lost"]
   },
   {
-    english: "...and lost", 
+    english: "...and lost",
     cypher: "AND pg.won <> true",
     keywords: ["won", "lost"]
   }
@@ -103,7 +103,7 @@ export const PLAYER_GAME_BOOLEAN_CONSTRAINTS = [
  */
 export function generatePlayerGameConstraints(): Chunk[] {
   const chunks: Chunk[] = [];
-  
+
   // Generate FILTER_START chunks
   for (const constraint of PLAYER_GAME_CONSTRAINTS) {
     chunks.push({
@@ -122,7 +122,7 @@ export function generatePlayerGameConstraints(): Chunk[] {
       SuggestionKeywords: constraint.keywords
     });
   }
-  
+
   // Generate FILTER_EXTEND chunks
   for (const extension of PLAYER_GAME_CONSTRAINT_EXTENSIONS) {
     chunks.push({
@@ -141,7 +141,7 @@ export function generatePlayerGameConstraints(): Chunk[] {
       SuggestionKeywords: extension.keywords
     });
   }
-  
+
   // Generate boolean constraint chunks
   for (const constraint of PLAYER_GAME_BOOLEAN_CONSTRAINTS) {
     chunks.push({
@@ -154,7 +154,7 @@ export function generatePlayerGameConstraints(): Chunk[] {
       SuggestionKeywords: constraint.keywords
     });
   }
-  
+
   return chunks;
 }
 
@@ -163,7 +163,7 @@ export const PLAYER_SEASON_CONSTRAINTS: GameConstraintDefinition[] = [
   {
     english: "seasons for [team]",
     englishTemplate: "who played for {team} in those seasons",
-    cypherTemplate: "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.teams CONTAINS {team}",
+    cypherTemplate: "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE {team} IN ps.teams",
     queryType: QueryType.FILTER_START,
     slots: [
       { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue }
@@ -186,7 +186,7 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
   {
     english: "...and played for [team] in those seasons",
     englishTemplate: "who played for {team} in those seasons",
-    cypherTemplate: "AND ps.teams CONTAINS {team}",
+    cypherTemplate: "AND {team} IN ps.teams",
     queryType: QueryType.FILTER_EXTEND,
     slots: [
       { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue }
@@ -211,7 +211,7 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
  */
 export function generatePlayerSeasonConstraints(): Chunk[] {
   const chunks: Chunk[] = [];
-  
+
   // Generate FILTER_START chunks
   for (const constraint of PLAYER_SEASON_CONSTRAINTS) {
     chunks.push({
@@ -230,7 +230,7 @@ export function generatePlayerSeasonConstraints(): Chunk[] {
       SuggestionKeywords: constraint.keywords
     });
   }
-  
+
   // Generate FILTER_EXTEND chunks
   for (const extension of PLAYER_SEASON_CONSTRAINT_EXTENSIONS) {
     chunks.push({
@@ -249,6 +249,6 @@ export function generatePlayerSeasonConstraints(): Chunk[] {
       SuggestionKeywords: extension.keywords
     });
   }
-  
+
   return chunks;
 }
