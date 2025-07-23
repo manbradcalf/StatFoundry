@@ -3,6 +3,7 @@ import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { SlotModal } from "../components/SlotModal";
 import { buildFilledChunk } from "../utils/slotFiller";
+import { useChainContext } from "./ChainContext";
 
 interface ModalContextType {
   // State
@@ -15,7 +16,7 @@ interface ModalContextType {
   // Actions
   openSlotModal: (chunk: Chunk, slots: Slot[], editingIndex?: number, insertAtIndex?: number) => void;
   closeSlotModal: () => void;
-  handleSlotModalSave: (updatedSlots: Slot[], onSave?: (chunk: Chunk, editingIndex?: number, insertAtIndex?: number) => void) => void;
+  handleSlotModalSave: (updatedSlots: Slot[]) => void;
   handleSlotModalCancel: () => void;
   setInsertingAtIndex: (index: number | null) => void;
 }
@@ -35,6 +36,7 @@ interface ModalProviderProps {
 }
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
+  const chainContext = useChainContext();
   const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
@@ -62,7 +64,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     setInsertingAtIndex(null);
   }, []);
 
-  const handleSlotModalSave = useCallback((updatedSlots: Slot[], onSave?: (chunk: Chunk, editingIndex?: number, insertAtIndex?: number) => void) => {
+  const handleSlotModalSave = useCallback((updatedSlots: Slot[]) => {
     if (!pendingChunk) {
       closeSlotModal();
       return;
@@ -72,13 +74,21 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
     const filled = buildFilledChunk(chunkWithSlots);
 
-    // Call the callback with the filled chunk and indices
-    if (onSave) {
-      onSave(filled, editingChunkIndex ?? undefined, insertingAtIndex ?? undefined);
+    // Directly handle the three cases using chainContext
+    if (editingChunkIndex !== null) {
+      // Editing existing chunk
+      chainContext.updateChunkAtIndex(editingChunkIndex, filled);
+    } else if (insertingAtIndex !== null) {
+      // Inserting at specific index
+      chainContext.insertChunk(insertingAtIndex, filled);
+      setInsertingAtIndex(null);
+    } else {
+      // Adding new chunk
+      chainContext.appendChunk(filled);
     }
 
     closeSlotModal();
-  }, [pendingChunk, editingChunkIndex, insertingAtIndex, closeSlotModal]);
+  }, [pendingChunk, editingChunkIndex, insertingAtIndex, chainContext, closeSlotModal]);
 
   const handleSlotModalCancel = useCallback(() => {
     closeSlotModal();

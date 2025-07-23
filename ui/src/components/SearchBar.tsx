@@ -8,7 +8,6 @@ import { Suggestion } from "../contexts/Suggestion";
 
 const SearchBarInner: React.FC = () => {
   const chainContext = useChainContext();
-  const modalContext = useModalContext();
   const apiContext = useSearchAPIContext();
   
   const {
@@ -21,33 +20,8 @@ const SearchBarInner: React.FC = () => {
     handleInputBlur,
     handleKeyDown,
     clearQuery,
+    selectSuggestion: handleSuggestionSelect,
   } = useSearchInputContext();
-
-  // Handle suggestion selection
-  const handleSuggestionSelect = useCallback((suggestion: Suggestion) => {
-    const chunkCopy = {
-      ...suggestion.chunk,
-      Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
-    };
-
-    // If chunk has slots, open modal
-    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
-      modalContext.openSlotModal(
-        chunkCopy, 
-        chunkCopy.Slots, 
-        undefined, 
-        modalContext.insertingAtIndex ?? undefined
-      );
-    } else {
-      // No slots - handle insertion or append directly
-      if (modalContext.insertingAtIndex !== null) {
-        chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
-        modalContext.setInsertingAtIndex(null);
-      } else {
-        chainContext.appendChunk(chunkCopy);
-      }
-    }
-  }, [chainContext, modalContext]);
 
   // Execute search
   const handleSearch = useCallback(() => {
@@ -176,11 +150,37 @@ export const SearchBar: React.FC = () => {
     );
   }, [apiContext, chainContext]);
 
+  // Create the real suggestion selection function
+  const handleSuggestionSelection = useCallback((suggestion: Suggestion) => {
+    const chunkCopy = {
+      ...suggestion.chunk,
+      Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
+    };
+
+    // If chunk has slots, open modal
+    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
+      modalContext.openSlotModal(
+        chunkCopy, 
+        chunkCopy.Slots, 
+        undefined, 
+        modalContext.insertingAtIndex ?? undefined
+      );
+    } else {
+      // No slots - handle insertion or append directly
+      if (modalContext.insertingAtIndex !== null) {
+        chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
+        modalContext.setInsertingAtIndex(null);
+      } else {
+        chainContext.appendChunk(chunkCopy);
+      }
+    }
+  }, [chainContext, modalContext]);
+
   return (
     <SearchInputProvider
       chain={chainContext.chain}
       insertingAtIndex={modalContext.insertingAtIndex}
-      onSuggestionSelect={() => {}} // Handled by inner component
+      onSuggestionSelect={handleSuggestionSelection} // ✅ Real function!
       onExecuteSearch={handleExecuteSearch} // ✅ Real function for Enter key!
     >
       <SearchBarInner />
