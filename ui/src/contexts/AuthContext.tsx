@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   User,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   GoogleAuthProvider,
   signOut as firebaseSignOut,
   onAuthStateChanged
@@ -30,42 +29,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Handle OAuth redirect result
-  useEffect(() => {
-    console.log('Checking for redirect result...');
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          console.log('✅ Redirect result found:', result.user.email);
-        } else {
-          console.log('ℹ️ No redirect result (normal page load)');
-        }
-      })
-      .catch((error) => {
-        console.error('❌ Redirect error:', error);
-      });
-  }, []);
-
-  // Listen to auth state changes
+  // Set up Firebase auth state listener on component mount
+  // This automatically handles user state changes (login/logout/refresh)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log('Auth state changed:', user ? `Signed in as ${user.email}` : 'Signed out');
       setUser(user);
       setLoading(false);
     });
 
-    return unsubscribe;
+    return unsubscribe; // Cleanup listener on unmount
   }, []);
 
+  // Google OAuth sign-in using popup flow
+  // Popup is used instead of redirect to avoid third-party cookie issues
+  // between localhost development and Firebase auth domain
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
+    provider.addScope('email');
+    provider.addScope('profile');
+    
     try {
-      await signInWithRedirect(auth, provider);
+      // The auth listener we set up above will automatically fire when this completes
+      await signInWithPopup(auth, provider);
     } catch (error) {
       console.error('Error signing in with Google:', error);
+      throw error;
     }
   };
 
+  // Sign out the current user
+  // The auth listener we set up above will automatically fire and set user to null
   const signOut = async () => {
     try {
       await firebaseSignOut(auth);

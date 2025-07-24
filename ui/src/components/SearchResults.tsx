@@ -1,12 +1,14 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useChainContext } from "../contexts/ChainContext";
+import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 import { DynamicTable } from "./DynamicTable/";
 import { commonStyles } from "../utils/commonStyles";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const SearchResults: React.FC = () => {
-  const { searchResults, searchError, isSearching, chain } = useSearchContext();
+  const { chain } = useChainContext();
+  const { searchResults, searchError, isSearching } = useSearchAPIContext();
   if (isSearching) {
     return (
       <div>

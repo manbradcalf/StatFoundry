@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Modal from "react-modal";
 import "./App.css";
-import { SearchProvider } from "./contexts/SearchContext";
+import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
-import { SearchBar, BreadcrumbChain, AliasesDisplay } from "./components";
+import { SearchBar, AliasesDisplay } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
@@ -19,7 +19,7 @@ function AppContent() {
         <h1>StatFoundry</h1>
       </header>
       <div className="App-body">
-        <BreadcrumbChain />
+        {/* <BreadcrumbChain /> TODO: Re-enable breadcrumbs - not reliable enough yet, but close */}
         <SearchBar />
         <AliasesDisplay />
         <SearchResults />
@@ -41,9 +41,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <SearchProvider>
+      <AppContextProvider>
         <AppContent />
-      </SearchProvider>
+      </AppContextProvider>
     </AuthProvider>
   );
 }

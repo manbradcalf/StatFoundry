@@ -1,11 +1,11 @@
-import { useSearchContext } from "../contexts/SearchContext";
+import { useChainContext } from "../contexts/ChainContext";
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 
 export const ChunkChainItem: React.FC<{ chunk: Chunk; index: number }> = ({
   chunk,
   index,
 }) => {
-  const { editChunk, removeChunk } = useSearchContext();
+  const { editChunk, removeChunk } = useChainContext();
   const handleEdit = () => {
     editChunk(index);
   };

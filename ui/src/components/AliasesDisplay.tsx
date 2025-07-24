@@ -1,8 +1,10 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useChainContext } from "../contexts/ChainContext";
+import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 
 export const AliasesDisplay: React.FC = () => {
-  const { chain, activeAliases, toggleAlias } = useSearchContext();
+  const { chain } = useChainContext();
+  const { activeAliases, toggleAlias } = useSearchAPIContext();
 
   // Don't render if no aliases exist
   if (chain.Aliases.length === 0) {

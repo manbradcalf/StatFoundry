@@ -1,8 +1,9 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useChainContext } from "../contexts/ChainContext";
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { useModalContext } from "../contexts/ModalContext";
 
 interface BreadcrumbChainProps {
   className?: string;
@@ -15,14 +16,15 @@ interface BreadcrumbItemProps {
 }
 
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ chunk, index, isLast }) => {
-  const { editChunk, removeChunk } = useSearchContext();
+  const chainContext = useChainContext();
+  const modalContext = useModalContext();
 
   const handleEdit = () => {
-    editChunk(index);
+    modalContext.openSlotModal(chunk, chunk.Slots, index)
   };
 
   const handleRemove = () => {
-    removeChunk(index);
+    chainContext.removeChunk(index);
   };
 
   return (
@@ -52,8 +54,8 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ chunk, index, isLast })
 };
 
 export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = "" }) => {
-  const { chain, clearAll, insertChunkAt } = useSearchContext();
-  const chainArray = chain.toArray();
+  const chainContext = useChainContext();
+  const chainArray = chainContext.chain.toArray();
 
   if (chainArray.length === 0) {
     return (
@@ -72,7 +74,7 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
               {index > 0 && (
                 <button
                   className="breadcrumb-insert-button"
-                  onClick={() => insertChunkAt(index)}
+                  onClick={() => chainContext.insertChunkAt(index)}
                   title={`Insert chunk before "${chunk.English}"`}
                 >
                   +
@@ -89,14 +91,14 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
         <div className="breadcrumb-controls">
           <button
             className="breadcrumb-add-button"
-            onClick={() => insertChunkAt(chainArray.length)}
+            onClick={() => chainContext.insertChunkAt(chainArray.length)}
             title="Add chunk"
           >
             +
           </button>
           <button
             className="breadcrumb-clear-button"
-            onClick={clearAll}
+            onClick={chainContext.clearChain}
             title="Clear all"
           >
             Clear

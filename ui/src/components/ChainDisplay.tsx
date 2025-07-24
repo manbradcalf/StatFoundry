@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useChainContext } from "../contexts/ChainContext";
 import { ChunkChainItem } from "./ChunkChainItem";
 
 interface ChainDisplayProps {
@@ -9,7 +9,7 @@ interface ChainDisplayProps {
 export const ChainDisplay: React.FC<ChainDisplayProps> = ({
   title = "Current Search",
 }) => {
-  const { chain, clearAll, insertChunkAt } = useSearchContext();
+  const { chain, clearChain, insertChunkAt } = useChainContext();
   const chainArray = chain.toArray();
 
   return (
@@ -46,7 +46,7 @@ export const ChainDisplay: React.FC<ChainDisplayProps> = ({
       <div className="chain-display-reset-button-container">
         <button
           className="chain-display-reset-button"
-          onClick={clearAll}
+          onClick={clearChain}
           title="Reset the chain"
         >
           Reset
