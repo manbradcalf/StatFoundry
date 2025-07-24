@@ -41,20 +41,20 @@ export const ENTITY_RELATIONSHIPS: EntityRelationship[] = [
     english: "Player Seasons",
     keywords: ["player seasons", "player season"]
   },
-  {
-    entityLabel: "TeamSeason",
-    aliasName: "ts",
-    aliasType: AliasType.TeamSeason,
-    english: "Team Seasons", 
-    keywords: ["team seasons", "team season"]
-  },
-  {
-    entityLabel: "TeamGame",
-    aliasName: "tg",
-    aliasType: AliasType.TeamGame,
-    english: "Team Games",
-    keywords: ["team games", "team game"]
-  },
+  // {
+  //   entityLabel: "TeamSeason",
+  //   aliasName: "ts",
+  //   aliasType: AliasType.TeamSeason,
+  //   english: "Team Seasons", 
+  //   keywords: ["team seasons", "team season"]
+  // },
+  // {
+  //   entityLabel: "TeamGame",
+  //   aliasName: "tg",
+  //   aliasType: AliasType.TeamGame,
+  //   english: "Team Games",
+  //   keywords: ["team games", "team game"]
+  // },
 ];
 
 // Player attribute filter definitions
@@ -62,6 +62,7 @@ export interface PlayerFilterDefinition {
   english: string;
   englishTemplate: string;
   cypherTemplate: string;
+  queryType: QueryType;
   slotName: string;
   defaultValue: string;
   keywords: string[];
@@ -71,27 +72,30 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
   {
     english: "Player named [name]",
     englishTemplate: "Player named {name}",
-    cypherTemplate: "MATCH (p:Player {display_name: {name} })",
+    cypherTemplate: "WHERE p.display_name = {name}",
+    queryType: QueryType.MATCH_START,
     slotName: "name",
-    defaultValue: "John Doe",
-    keywords: ["name"]
+    defaultValue: "Josh Allen",
+    keywords: ["name", "player name", "player"]
   },
   {
     english: "who are currently on [team]",
     englishTemplate: "who are currently on {team}",
-    cypherTemplate: "MATCH (p) WHERE p.team_abbr = {team} AND p.status='ACT'",
+    cypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
+    queryType: QueryType.MATCH_START,
     slotName: "team",
     defaultValue: "SEA",
     keywords: ["team"]
   },
-  {
-    english: "who went to [college]",
-    englishTemplate: "who went to {college}",
-    cypherTemplate: "MATCH (p) where p.college_name={college}",
-    slotName: "college",
-    defaultValue: "Virginia Tech",
-    keywords: ["college", "school"]
-  },
+  // {
+  //   english: "who went to [college]",
+  //   englishTemplate: "who went to {college}",
+  //   cypherTemplate: "WHERE p.college_name={college}",
+  //   queryType: QueryType.MATCH_START,
+  //   slotName: "college",
+  //   defaultValue: "Ohio State",
+  //   keywords: ["college", "school"]
+  // },
 ];
 
 /**
@@ -100,21 +104,21 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
 export function generatePositionChunks(): Chunk[] {
   const chunks: Chunk[] = [
     // Generic "Players" chunk
-    {
-      English: "Players",
-      Cypher: "MATCH (p:Player)",
-      QueryType: QueryType.MATCH_START,
-      Requires: [],
-      Provides: [{ Name: "p", AliasType: AliasType.Player }],
-      Slots: [],
-      SuggestionKeywords: ["players", "player"]
-    }
+    // {
+    //   English: "Players",
+    //   Cypher: "MATCH (p:Player)",
+    //   QueryType: QueryType.MATCH_START,
+    //   Requires: [],
+    //   Provides: [{ Name: "p", AliasType: AliasType.Player }],
+    //   Slots: [],
+    //   SuggestionKeywords: ["players", "player"]
+    // }
   ];
 
   // Position-specific chunks
   for (const position of POSITIONS) {
     chunks.push({
-      English: position.code,
+      English: `${position.code}s`,
       Cypher: `MATCH (p:Player) WHERE p.position = '${position.code}'`,
       QueryType: QueryType.MATCH_START,
       Requires: [],
@@ -131,18 +135,18 @@ export function generatePositionChunks(): Chunk[] {
  * Generates match chunks for entity relationships
  */
 export function generateEntityRelationshipChunks(): Chunk[] {
-  const chunks: Chunk[] = [
-    // Generic "Teams" chunk
-    {
-      English: "Teams",
-      Cypher: "MATCH (t:Team)",
-      QueryType: QueryType.MATCH_START,
-      Requires: [],
-      Provides: [{ Name: "t", AliasType: AliasType.Team }],
-      Slots: [],
-      SuggestionKeywords: ["teams", "team"]
-    }
-  ];
+  const chunks: Chunk[] = []
+  //   // Generic "Teams" chunk
+  //   {
+  //     English: "Teams",
+  //     Cypher: "MATCH (t:Team)",
+  //     QueryType: QueryType.MATCH_START,
+  //     Requires: [],
+  //     Provides: [{ Name: "t", AliasType: AliasType.Team }],
+  //     Slots: [],
+  //     SuggestionKeywords: ["teams", "team"]
+  //   }
+  // ];
 
   // Entity relationship chunks
   for (const entity of ENTITY_RELATIONSHIPS) {
