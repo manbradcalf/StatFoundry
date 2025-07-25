@@ -16,7 +16,6 @@ interface BreadcrumbItemProps {
 }
 
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ chunk, index, isLast }) => {
-  const chainContext = useChainContext();
   const modalContext = useModalContext();
 
   const handleEdit = () => {
