@@ -189,6 +189,22 @@ function isValidNextChunk(
     return false;
   }
 
+  // After MATCH_START, only allow JUNCTION chunks
+  if (
+    tail?.QueryType === QueryType.MATCH_START &&
+    chunk.QueryType !== QueryType.JUNCTION
+  ) {
+    return false;
+  }
+
+  // After JUNCTION, only allow FILTER_START (not FILTER_EXTEND until a filter is started)
+  if (
+    tail?.QueryType === QueryType.JUNCTION &&
+    chunk.QueryType !== QueryType.FILTER_START
+  ) {
+    return false;
+  }
+
   // if the chunk has a slot with Name:'stat' and the same Value, return false
   // todo: this doesnt take into account other chunks in the chain before tail...
   if (chunk.Slots.some(slot => slot.Name === 'stat' && tail?.Slots.some(s => s.Name === 'stat' && s.Value === slot.Value))) {

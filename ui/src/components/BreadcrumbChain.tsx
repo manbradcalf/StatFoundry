@@ -23,9 +23,9 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ chunk, index, isLast })
     modalContext.openSlotModal(chunk, chunk.Slots, index)
   };
 
-  const handleRemove = () => {
-    chainContext.removeChunk(index);
-  };
+  // const handleRemove = () => {
+  //   chainContext.removeChunk(index);
+  // };
 
   return (
     <div className="breadcrumb-item">
@@ -40,13 +40,13 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ chunk, index, isLast })
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
         )}
-        <button
+        {/* <button
           className="breadcrumb-remove-button"
           onClick={handleRemove}
           title="Remove chunk"
         >
           ×
-        </button>
+        </button> */}
       </div>
       {!isLast && <span className="breadcrumb-separator">→</span>}
     </div>
@@ -71,7 +71,7 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
         <div className="breadcrumb-items">
           {chainArray.map((chunk, index) => (
             <React.Fragment key={index}>
-              {index > 0 && (
+              {/* {index > 0 && (
                 <button
                   className="breadcrumb-insert-button"
                   onClick={() => chainContext.insertChunkAt(index)}
@@ -79,7 +79,7 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
                 >
                   +
                 </button>
-              )}
+              )} */}
               <BreadcrumbItem
                 chunk={chunk}
                 index={index}
@@ -88,7 +88,7 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
             </React.Fragment>
           ))}
         </div>
-        <div className="breadcrumb-controls">
+        {/* <div className="breadcrumb-controls">
           <button
             className="breadcrumb-add-button"
             onClick={() => chainContext.insertChunkAt(chainArray.length)}
@@ -103,7 +103,7 @@ export const BreadcrumbChain: React.FC<BreadcrumbChainProps> = ({ className = ""
           >
             Clear
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

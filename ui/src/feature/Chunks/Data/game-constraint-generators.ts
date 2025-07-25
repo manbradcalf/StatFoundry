@@ -112,7 +112,10 @@ export function generatePlayerGameConstraints(): Chunk[] {
       EnglishTemplate: constraint.englishTemplate,
       CypherTemplate: constraint.cypherTemplate,
       QueryType: constraint.queryType,
-      Requires: [{ Name: "p", AliasType: AliasType.Player }],
+      Requires: [
+        { Name: "p", AliasType: AliasType.Player },
+        { Name: "pg", AliasType: AliasType.PlayerGame }
+      ],
       Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
       Slots: constraint.slots.map(slot => ({
         Name: slot.name,
@@ -220,7 +223,10 @@ export function generatePlayerSeasonConstraints(): Chunk[] {
       EnglishTemplate: constraint.englishTemplate,
       CypherTemplate: constraint.cypherTemplate,
       QueryType: constraint.queryType,
-      Requires: [{ Name: "p", AliasType: AliasType.Player }],
+      Requires: [
+        { Name: "p", AliasType: AliasType.Player },
+        { Name: "ps", AliasType: AliasType.PlayerSeason }
+      ],
       Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
       Slots: constraint.slots.map(slot => ({
         Name: slot.name,

@@ -31,7 +31,10 @@ export function generateStatChunks(
       EnglishTemplate: `with {condition} {value} {stat} in a ${entityType}`,
       CypherTemplate: `MATCH (p)-[:HAD]->(${entityAlias}:${entityLabel}) WHERE ${entityAlias}.{stat} {condition} {value}`,
       QueryType: QueryType.FILTER_START,
-      Requires: [{ Name: "p", AliasType: AliasType.Player }],
+      Requires: [
+        { Name: "p", AliasType: AliasType.Player },
+        { Name: entityAlias, AliasType: aliasType }
+      ],
       Provides: [{ Name: entityAlias, AliasType: aliasType }],
       Slots: [
         {

@@ -82,7 +82,7 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
     english: "who are currently on [team]",
     englishTemplate: "who are currently on {team}",
     cypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
-    queryType: QueryType.MATCH_START,
+    queryType: QueryType.FILTER_START,
     slotName: "team",
     defaultValue: "SEA",
     keywords: ["team"]
@@ -155,9 +155,9 @@ export function generateEntityRelationshipChunks(): Chunk[] {
     
     chunks.push({
       English: entity.english,
-      Cypher: `MATCH (${parentAlias}:${entity.entityLabel.startsWith("Player") ? "Player" : "Team"})-[:HAD]->(${entity.aliasName}:${entity.entityLabel}) LIMIT 1000`,
-      QueryType: QueryType.MATCH_START,
-      Requires: [],
+      Cypher: `MATCH (${parentAlias}:${entity.entityLabel.startsWith("Player") ? "Player" : "Team"})-[:HAD]->(${entity.aliasName}:${entity.entityLabel})`,
+      QueryType: QueryType.JUNCTION,
+      Requires: [{ Name: parentAlias, AliasType: parentType }],
       Provides: [
         { Name: parentAlias, AliasType: parentType },
         { Name: entity.aliasName, AliasType: entity.aliasType },
@@ -177,9 +177,9 @@ export function generatePlayerInfoChunks(): Chunk[] {
   const chunks: Chunk[] = [];
   
   for (const filter of PLAYER_FILTERS) {
-    const queryType = filter.cypherTemplate.startsWith("MATCH (p:Player") 
-      ? QueryType.MATCH_START 
-      : QueryType.FILTER_START;
+    // Determine query type based on whether this filter needs existing data
+    // MATCH_START chunks should only be used when no existing aliases are required
+    const queryType = filter.queryType;
     
     chunks.push({
       English: filter.english,

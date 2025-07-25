@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
-import { SearchBar, AliasesDisplay } from "./components";
+import { SearchBar, AliasesDisplay, BreadcrumbChain } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
@@ -19,7 +19,7 @@ function AppContent() {
         <h1>StatFoundry</h1>
       </header>
       <div className="App-body">
-        {/* <BreadcrumbChain /> TODO: Re-enable breadcrumbs - not reliable enough yet, but close */}
+        <BreadcrumbChain />
         <SearchBar />
         <AliasesDisplay />
         <SearchResults />

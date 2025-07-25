@@ -23,7 +23,7 @@ const getValidChunks = (contextChain: ChunkChain) => {
 const createFuseSearcher = (chunks: Chunk[]) => {
   return new Fuse(chunks, {
     keys: ["English", "EnglishTemplate","SuggestionKeywords"],
-    threshold: 0.7,
+    threshold: 0.6,
     includeScore: true,
   });
 };
@@ -88,6 +88,16 @@ export const useSuggestions = ({
 
   return useMemo(() => {
     const validChunks = getValidChunks(contextChain);
+    const chainArray = contextChain.toArray();
+    const lastChunk = chainArray[chainArray.length - 1];
+
+    // Special case: After MATCH_START, always show JUNCTION chunks regardless of query
+    if (lastChunk?.QueryType === "MATCH_START") {
+      const junctionChunks = validChunks.filter(chunk => chunk.QueryType === "JUNCTION");
+      if (junctionChunks.length > 0) {
+        return chunksToSuggestions(junctionChunks, true);
+      }
+    }
 
     if (query.trim() === "") {
       return getContextualSuggestions(validChunks, contextChain);
