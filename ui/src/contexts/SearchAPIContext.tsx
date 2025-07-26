@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
-import { useDebouncedCallback } from "use-debounce";
 import { useSearchAPIEnhanced } from "../hooks/useSearchAPIEnhanced";
 import { Alias } from "../feature/Chunks/Types/Alias";
 import { useChainContext } from "./ChainContext";
@@ -42,20 +41,6 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
     executeSearch: executeSearchAPI,
     clearSearch,
   } = useSearchAPIEnhanced();
-
-  // // Debounced search execution for alias changes
-  // const debouncedAliasSearch = useDebouncedCallback(
-  //   () => {
-  //     if (chain.Cypher) {
-  //       const activeAliasObjects = chain.Aliases.filter((alias) =>
-  //         activeAliases.has(alias.Name)
-  //       );
-  //       const position = chain.Head?.chunk.English || "";
-  //       executeSearchAPI(chain.Cypher, activeAliasObjects, position);
-  //     }
-  //   },
-  //   300 // 300ms debounce delay
-  // );
 
   // Initialize all aliases as active when chain changes
   useEffect(() => {

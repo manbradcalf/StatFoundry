@@ -143,15 +143,6 @@ export const SearchBar: React.FC = () => {
   const modalContext = useModalContext();
   const apiContext = useSearchAPIContext();
 
-  // Create the real search function for Enter key
-  const handleExecuteSearch = useCallback(() => {
-    apiContext.executeSearch(
-      chainContext.chain.Cypher,
-      chainContext.chain.Aliases,
-      chainContext.chain.English
-    );
-  }, [apiContext, chainContext]);
-
   // Create the real suggestion selection function
   const handleSuggestionSelection = useCallback((suggestion: Suggestion) => {
     const chunkCopy = {
