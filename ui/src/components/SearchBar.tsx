@@ -141,7 +141,6 @@ const SearchBarInner: React.FC = () => {
 export const SearchBar: React.FC = () => {
   const chainContext = useChainContext();
   const modalContext = useModalContext();
-  const apiContext = useSearchAPIContext();
 
   // Create the real suggestion selection function
   const handleSuggestionSelection = useCallback((suggestion: Suggestion) => {
