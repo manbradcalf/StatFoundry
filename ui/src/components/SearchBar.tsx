@@ -1,12 +1,19 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import { useChainContext } from "../contexts/ChainContext";
 import { useModalContext } from "../contexts/ModalContext";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 import { SearchInputProvider, useSearchInputContext } from "../contexts/SearchInputContext";
 import { Suggestions } from "./Suggestions";
+import { SaveSearchModal } from "./SaveSearchModal";
 import { Suggestion } from "../contexts/Suggestion";
+import { useSavedSearches } from "../hooks/useSavedSearches";
+import { useAuth } from "../contexts/AuthContext";
 
-const SearchBarInner: React.FC = () => {
+interface SearchBarInnerProps {
+  onSaveSearch: () => void;
+}
+
+const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
   
@@ -113,12 +120,11 @@ const SearchBarInner: React.FC = () => {
             Search
           </button>
         </div>
-        {/* Save search button - functionality to be implemented later */}
         <div className="save-button">
           <button
             className="secondary-button"
-            title="Save this search (coming soon)"
-            onClick={() => alert("Save Search functionality coming soon!")}
+            title="Save this search"
+            onClick={onSaveSearch}
           >
             Save
           </button>
@@ -141,6 +147,9 @@ const SearchBarInner: React.FC = () => {
 export const SearchBar: React.FC = () => {
   const chainContext = useChainContext();
   const modalContext = useModalContext();
+  const { user } = useAuth();
+  const { saveSavedSearch, loading, error, clearError } = useSavedSearches();
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
 
   // Create the real suggestion selection function
   const handleSuggestionSelection = useCallback((suggestion: Suggestion) => {
@@ -168,13 +177,46 @@ export const SearchBar: React.FC = () => {
     }
   }, [chainContext, modalContext]);
 
+  const handleSaveSearch = useCallback(() => {
+    if (!user) {
+      alert('Please sign in to save searches');
+      return;
+    }
+
+    if (chainContext.chain.toArray().length === 0) {
+      alert('Build a search first before saving');
+      return;
+    }
+
+    setIsSaveModalOpen(true);
+  }, [user, chainContext.chain]);
+
+  const handleSaveModalSave = useCallback(async (name: string, description?: string) => {
+    await saveSavedSearch(chainContext.chain, name, description);
+  }, [saveSavedSearch, chainContext.chain]);
+
+  const handleSaveModalClose = useCallback(() => {
+    setIsSaveModalOpen(false);
+    clearError();
+  }, [clearError]);
+
   return (
-    <SearchInputProvider
-      chain={chainContext.chain}
-      insertingAtIndex={modalContext.insertingAtIndex}
-      onSuggestionSelect={handleSuggestionSelection} // ✅ Real function
-    >
-      <SearchBarInner />
-    </SearchInputProvider>
+    <>
+      <SearchInputProvider
+        chain={chainContext.chain}
+        insertingAtIndex={modalContext.insertingAtIndex}
+        onSuggestionSelect={handleSuggestionSelection}
+      >
+        <SearchBarInner onSaveSearch={handleSaveSearch} />
+      </SearchInputProvider>
+      
+      <SaveSearchModal
+        isOpen={isSaveModalOpen}
+        onClose={handleSaveModalClose}
+        onSave={handleSaveModalSave}
+        loading={loading}
+        error={error}
+      />
+    </>
   );
 };
