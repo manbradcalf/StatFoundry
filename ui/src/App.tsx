@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
-import { SearchBar, AliasesDisplay, BreadcrumbChain } from "./components";
+import { SearchBar, BreadcrumbChain } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
@@ -21,7 +21,6 @@ function AppContent() {
       <div className="App-body">
         <BreadcrumbChain />
         <SearchBar />
-        <AliasesDisplay />
         <SearchResults />
       </div>
       <CTA />
