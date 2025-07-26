@@ -182,8 +182,7 @@ export const SearchBar: React.FC = () => {
     <SearchInputProvider
       chain={chainContext.chain}
       insertingAtIndex={modalContext.insertingAtIndex}
-      onSuggestionSelect={handleSuggestionSelection} // ✅ Real function!
-      onExecuteSearch={handleExecuteSearch} // ✅ Real function for Enter key!
+      onSuggestionSelect={handleSuggestionSelection} // ✅ Real function
     >
       <SearchBarInner />
     </SearchInputProvider>

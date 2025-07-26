@@ -51,7 +51,6 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   chain,
   insertingAtIndex,
   onSuggestionSelect,
-  onExecuteSearch
 }) => {
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -115,7 +114,6 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
     clearSelection,
   } = useKeyboardNavigation({
     suggestions,
-    onExecuteSearch,
     toggleSuggestions,
   });
 

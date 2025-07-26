@@ -18,7 +18,6 @@ interface UseKeyboardNavigationReturn {
 
 export const useKeyboardNavigation = ({
   suggestions,
-  onExecuteSearch,
   toggleSuggestions
 }: UseKeyboardNavigationParams): UseKeyboardNavigationReturn => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -79,14 +78,10 @@ export const useKeyboardNavigation = ({
           // onSelectSuggestion(suggestion); // This line is removed
           setSelectedIndex(-1);
           setKeyboardNavigationEnabled(false);
-        } else if (onExecuteSearch) {
-          // No suggestion selected - execute search
-          onExecuteSearch();
-          setKeyboardNavigationEnabled(false);
         }
         break;
     }
-  }, [keyboardNavigationEnabled, suggestions, selectedIndex, toggleSuggestions, onExecuteSearch]);
+  }, [keyboardNavigationEnabled, suggestions, selectedIndex, toggleSuggestions]);
 
   // Clear selection state
   const clearSelection = useCallback(() => {

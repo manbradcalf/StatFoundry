@@ -43,19 +43,19 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
     clearSearch,
   } = useSearchAPIEnhanced();
 
-  // Debounced search execution for alias changes
-  const debouncedAliasSearch = useDebouncedCallback(
-    () => {
-      if (chain.Cypher) {
-        const activeAliasObjects = chain.Aliases.filter((alias) =>
-          activeAliases.has(alias.Name)
-        );
-        const position = chain.Head?.chunk.English || "";
-        executeSearchAPI(chain.Cypher, activeAliasObjects, position);
-      }
-    },
-    300 // 300ms debounce delay
-  );
+  // // Debounced search execution for alias changes
+  // const debouncedAliasSearch = useDebouncedCallback(
+  //   () => {
+  //     if (chain.Cypher) {
+  //       const activeAliasObjects = chain.Aliases.filter((alias) =>
+  //         activeAliases.has(alias.Name)
+  //       );
+  //       const position = chain.Head?.chunk.English || "";
+  //       executeSearchAPI(chain.Cypher, activeAliasObjects, position);
+  //     }
+  //   },
+  //   300 // 300ms debounce delay
+  // );
 
   // Initialize all aliases as active when chain changes
   useEffect(() => {
@@ -71,8 +71,8 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
       return;
     }
     // Only trigger search if we have existing search results (meaning user has already searched)
-    debouncedAliasSearch();
-  }, [activeAliases, debouncedAliasSearch, isInitialMount]);
+    // debouncedAliasSearch();
+  }, [activeAliases, isInitialMount]);
 
   // Toggle alias active state
   const toggleAlias = useCallback((aliasName: string) => {

@@ -42,7 +42,6 @@ const RECEIVING_STATS: StatDefinition[] = [
   { key: "receiving_fumbles_lost", type: "number", defaultValue: 1 },
   { key: "air_yards_share", type: "number", defaultValue: 0.2 },
   { key: "targets", type: "number", defaultValue: 8 },
-  { key: "adot", type: "number", defaultValue: 10 },
   { key: "target_share", type: "number", defaultValue: 0.15 },
 ];
 
