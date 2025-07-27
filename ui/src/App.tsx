@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import Modal from "react-modal";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -7,6 +9,7 @@ import { SearchBar, BreadcrumbChain } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
+import { PlayerDetail } from "./pages/PlayerDetail";
 // App configured for environment-based deployment (development/production)
 
 function AppContent() {
@@ -39,11 +42,19 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <AppContextProvider>
-        <AppContent />
-      </AppContextProvider>
-    </AuthProvider>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <AppContextProvider>
+            <Routes>
+              <Route path="/" element={<AppContent />} />
+              <Route path="/players/:slug" element={<PlayerDetail />} />
+              <Route path="*" element={<div>Page Not Found</div>} />
+            </Routes>
+          </AppContextProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

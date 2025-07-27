@@ -2,6 +2,7 @@ import React from "react";
 import { ProcessedDataItem, TableGroup } from "../types";
 import { ExpandButton } from "./ExpandButton";
 import { formatColumnHeader } from "../../../utils/tableUtils";
+import { Link } from "react-router-dom";
 
 interface TableBodyProps {
   paginatedData: ProcessedDataItem[];
@@ -29,6 +30,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
   columnGroups,
   DynamicTableComponent,
 }) => {
+
   return (
     <tbody>
       {paginatedData.map((item, index) => (
@@ -52,7 +54,11 @@ export const TableBody: React.FC<TableBodyProps> = ({
               <td className="count-cell">{getExpandableItemCount(item)}</td>
             )}
             {finalKeys.map((key) => (
-              <td key={key}>{String(item.flattened[key] || "")}</td>
+              <td key={key}>
+                <Link to={`/players/${String(item.flattened[key])}`} style={{ color: '#007bff', textDecoration: 'none' }}>
+                  {String(item.flattened[key] || "")}
+                </Link>
+              </td>
             ))}
           </tr>
 

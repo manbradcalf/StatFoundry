@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useCallback, useEffect, Rea
 import { useSearchAPIEnhanced } from "../hooks/useSearchAPIEnhanced";
 import { Alias } from "../feature/Chunks/Types/Alias";
 import { useChainContext } from "./ChainContext";
+import { AliasType } from "../feature/Chunks/Enums/AliasType";
 
 interface SearchAPIContextType {
   // State
@@ -14,6 +15,7 @@ interface SearchAPIContextType {
   executeSearch: (cypher: string, aliases: Alias[], position: string) => void;
   clearSearch: () => void;
   toggleAlias: (aliasName: string) => void;
+  fetchPlayerByName: (displayName: string) => void;
 }
 
 const SearchAPIContext = createContext<SearchAPIContextType | undefined>(undefined);
@@ -25,6 +27,7 @@ export const useSearchAPIContext = () => {
   }
   return context;
 };
+
 
 interface SearchAPIProviderProps {
   children: ReactNode;
@@ -81,11 +84,14 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
 
   // Execute search with active alias filtering
   const executeSearch = useCallback((cypher: string, aliases: Alias[], position: string) => {
-    const activeAliasObjects = aliases.filter((alias) =>
-      activeAliases.has(alias.Name)
-    );
-    executeSearchAPI(cypher, activeAliasObjects, position);
+    executeSearchAPI(cypher, aliases, position);
   }, [activeAliases, executeSearchAPI]);
+
+  // Simple player fetch method
+  const fetchPlayerByName = useCallback((displayName: string) => {
+    console.log("displayName", displayName)
+    executeSearchAPI(`MATCH (p:Player {display_name: "${displayName}"})`, [{ Name: "p", AliasType: AliasType.Player }], "");
+  }, [executeSearchAPI]);
 
   const value: SearchAPIContextType = {
     // State
@@ -98,6 +104,7 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
     executeSearch,
     clearSearch,
     toggleAlias,
+    fetchPlayerByName,
   };
 
   return (
