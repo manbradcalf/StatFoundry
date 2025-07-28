@@ -37,9 +37,33 @@ async def get_player(gsis_id: str):
     try:
         cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}}) RETURN p'
         result = execute_query(driver, cypher_query)
-        if not result:
+        if not result[0]:
             raise HTTPException(status_code=404, detail="Player not found")
         return result[0] if result else None
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/api/player/{gsis_id}/games")
+async def get_playergames(gsis_id: str):
+    try:
+        cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}})-[:HAD]-(pg:PlayerGame) RETURN p,pg'
+        result = execute_query(driver, cypher_query)
+        if not result:
+            raise HTTPException(status_code=404, detail="Player Game not found")
+        return result if result else None
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/api/player/{gsis_id}/seasons")
+async def get_playerseasons(gsis_id: str):
+    try:
+        cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}})-[:HAD]-(ps:PlayerSeason) RETURN DISTINCT p,ps'
+        result = execute_query(driver, cypher_query)
+        if not result:
+            raise HTTPException(status_code=404, detail="Player Game not found")
+        return result if result else None
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 

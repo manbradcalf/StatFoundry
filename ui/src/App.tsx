@@ -9,7 +9,7 @@ import { SearchBar, BreadcrumbChain } from "./components";
 import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
-import { PlayerDetail } from "./pages/PlayerDetail";
+import { PlayerDetail } from "./components/Player/PlayerDetail";
 
 function AppContent() {
   return (
