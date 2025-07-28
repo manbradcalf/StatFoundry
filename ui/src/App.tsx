@@ -10,8 +10,6 @@ import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
 import { PlayerDetail } from "./pages/PlayerDetail";
-import { SearchHelper } from "./components/SearchHelper";
-// App configured for environment-based deployment (development/production)
 
 function AppContent() {
   return (
@@ -26,7 +24,6 @@ function AppContent() {
       <div className="App-body">
         <BreadcrumbChain />
         <SearchBar />
-        <SearchHelper />
         <SearchResults />
       </div>
       <CTA />
