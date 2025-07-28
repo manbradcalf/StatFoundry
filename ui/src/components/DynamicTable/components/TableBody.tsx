@@ -1,7 +1,8 @@
 import React from "react";
 import { ProcessedDataItem, TableGroup } from "../types";
 import { ExpandButton } from "./ExpandButton";
-import { formatColumnHeader } from "../../../utils/tableUtils";
+import { formatColumnHeader, isClickable } from "../../../utils/tableUtils";
+import { generateClickableUrl } from "../../../utils/linkHandlers";
 import { Link } from "react-router-dom";
 
 interface TableBodyProps {
@@ -55,9 +56,25 @@ export const TableBody: React.FC<TableBodyProps> = ({
             )}
             {finalKeys.map((key) => (
               <td key={key}>
-                <Link to={`/players/${String(item.flattened[key])}`} style={{ color: '#007bff', textDecoration: 'none' }}>
-                  {String(item.flattened[key] || "")}
-                </Link>
+                {isClickable(key) ? (() => {
+                  const linkUrl = generateClickableUrl(key, item.flattened);
+                  
+                  return linkUrl ? (
+                    linkUrl.startsWith('http') ? (
+                      <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#007bff', textDecoration: 'none' }}>
+                        {String(item.flattened[key] || "")}
+                      </a>
+                    ) : (
+                      <Link to={linkUrl} style={{ color: '#007bff', textDecoration: 'none' }}>
+                        {String(item.flattened[key] || "")}
+                      </Link>
+                    )
+                  ) : (
+                    String(item.flattened[key] || "")
+                  );
+                })() : (
+                  String(item.flattened[key] || "")
+                )}
               </td>
             ))}
           </tr>

@@ -1,5 +1,5 @@
 export const PLAYER_GAME_INFO_PROPERTIES = [
-  "player_display_name",
+  "player_display_name", 
   "game_id",
   // "week",
   "season",

@@ -1,29 +1,23 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSearchAPIContext } from '../contexts/SearchAPIContext';
+import { usePlayerDetailContext } from '../contexts/PlayerDetailContext';
 import { slugToDisplayName } from '../utils/playerUtils';
 
 export const PlayerDetail: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const { fetchPlayerByName, searchResults, isSearching, searchError } = useSearchAPIContext();
+  const { gsisId, slug } = useParams<{ gsisId: string; slug: string }>();
+  const { fetchPlayerByGsisId, player, isLoading, error } = usePlayerDetailContext();
 
   useEffect(() => {
-    if (slug) {
-      // Convert slug back to display name for database query
-      const displayName = slugToDisplayName(slug);
-      console.log('PlayerDetail - slug:', slug, 'displayName:', displayName);
+    if (gsisId) {
+      console.log('PlayerDetail - gsisId:', gsisId, 'slug:', slug);
 
-      // Use simple player fetch method
-      fetchPlayerByName(displayName);
+      // Fetch player data using gsis_id (slug is just for SEO)
+      fetchPlayerByGsisId(gsisId);
     }
-  }, [slug, fetchPlayerByName]);
+  }, [gsisId, fetchPlayerByGsisId]);
 
-  // Extract player from search results
-  const player = searchResults?.[0];
-
-  console.log(searchResults?.[0])
   // Loading state
-  if (isSearching) {
+  if (isLoading) {
     return (
       <div className="player-detail">
         <div className="App">
@@ -40,9 +34,7 @@ export const PlayerDetail: React.FC = () => {
   }
 
   // Error or not found state
-  if (searchError || !player) {
-    console.log("player is", player)
-    console.log("we got something bqad...", searchError)
+  if (error || !player) {
     return (
       <div className="player-detail">
         <div className="App">
@@ -50,7 +42,7 @@ export const PlayerDetail: React.FC = () => {
             <h1>Player Not Found</h1>
           </header>
           <div className="App-body">
-            <p>{searchError || `Player "${slug}" not found`}</p>
+            <p>{error || `Player "${slug}" not found`}</p>
             <a href="/">← Back to Search</a>
           </div>
         </div>

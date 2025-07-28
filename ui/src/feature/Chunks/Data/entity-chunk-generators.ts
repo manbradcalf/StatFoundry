@@ -29,7 +29,7 @@ export interface EntityRelationship {
 export const ENTITY_RELATIONSHIPS: EntityRelationship[] = [
   {
     entityLabel: "PlayerGame",
-    aliasName: "pg", 
+    aliasName: "pg",
     aliasType: AliasType.PlayerGame,
     english: "Player Games",
     keywords: ["player games", "player game"]
@@ -37,7 +37,7 @@ export const ENTITY_RELATIONSHIPS: EntityRelationship[] = [
   {
     entityLabel: "PlayerSeason",
     aliasName: "ps",
-    aliasType: AliasType.PlayerSeason, 
+    aliasType: AliasType.PlayerSeason,
     english: "Player Seasons",
     keywords: ["player seasons", "player season"]
   },
@@ -72,7 +72,7 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
   {
     english: "Player named [name]",
     englishTemplate: "Player named {name}",
-    cypherTemplate: "WHERE p.display_name = {name}",
+    cypherTemplate: "MATCH (p:Player) WHERE p.display_name = {name}",
     queryType: QueryType.MATCH_START,
     slotName: "name",
     defaultValue: "Josh Allen",
@@ -152,7 +152,7 @@ export function generateEntityRelationshipChunks(): Chunk[] {
   for (const entity of ENTITY_RELATIONSHIPS) {
     const parentAlias = entity.entityLabel.startsWith("Player") ? "p" : "t";
     const parentType = entity.entityLabel.startsWith("Player") ? AliasType.Player : AliasType.Team;
-    
+
     chunks.push({
       English: entity.english,
       Cypher: `MATCH (${parentAlias}:${entity.entityLabel.startsWith("Player") ? "Player" : "Team"})-[:HAD]->(${entity.aliasName}:${entity.entityLabel})`,
@@ -175,12 +175,12 @@ export function generateEntityRelationshipChunks(): Chunk[] {
  */
 export function generatePlayerInfoChunks(): Chunk[] {
   const chunks: Chunk[] = [];
-  
+
   for (const filter of PLAYER_FILTERS) {
     // Determine query type based on whether this filter needs existing data
     // MATCH_START chunks should only be used when no existing aliases are required
     const queryType = filter.queryType;
-    
+
     chunks.push({
       English: filter.english,
       Cypher: "",
@@ -199,6 +199,6 @@ export function generatePlayerInfoChunks(): Chunk[] {
       SuggestionKeywords: filter.keywords
     });
   }
-  
+
   return chunks;
 }

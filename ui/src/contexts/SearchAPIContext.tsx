@@ -15,7 +15,6 @@ interface SearchAPIContextType {
   executeSearch: (cypher: string, aliases: Alias[], position: string) => void;
   clearSearch: () => void;
   toggleAlias: (aliasName: string) => void;
-  fetchPlayerByName: (displayName: string) => void;
 }
 
 const SearchAPIContext = createContext<SearchAPIContextType | undefined>(undefined);
@@ -87,11 +86,6 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
     executeSearchAPI(cypher, aliases, position);
   }, [activeAliases, executeSearchAPI]);
 
-  // Simple player fetch method
-  const fetchPlayerByName = useCallback((displayName: string) => {
-    console.log("displayName", displayName)
-    executeSearchAPI(`MATCH (p:Player {display_name: "${displayName}"})`, [{ Name: "p", AliasType: AliasType.Player }], "");
-  }, [executeSearchAPI]);
 
   const value: SearchAPIContextType = {
     // State
@@ -104,7 +98,6 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({ children }
     executeSearch,
     clearSearch,
     toggleAlias,
-    fetchPlayerByName,
   };
 
   return (

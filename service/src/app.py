@@ -32,6 +32,18 @@ async def query(request: QueryAuraDBRequest):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+@app.get("/api/player/{gsis_id}")
+async def get_player(gsis_id: str):
+    try:
+        cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}}) RETURN p'
+        result = execute_query(driver, cypher_query)
+        if not result:
+            raise HTTPException(status_code=404, detail="Player not found")
+        return result[0] if result else None
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
 @app.get("/api/healthcheck")
 async def healthcheck():
     return {"status": "ok"}

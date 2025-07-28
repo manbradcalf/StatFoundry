@@ -243,7 +243,7 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 1100;
   scroll-behavior: smooth;
 }
 
@@ -895,16 +895,6 @@ input[type="number"] {
 .login-button:hover {
   background: #eff6ff;
   border-color: #dbeafe;
-}
-
-.suggestions-dropdown {
-  position: absolute;
-  z-index: 1000;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  max-height: 200px;
-  overflow-y: auto;
 }
 
 /* Breadcrumb Chain Styles */

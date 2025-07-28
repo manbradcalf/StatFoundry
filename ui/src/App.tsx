@@ -10,6 +10,7 @@ import { SearchResults } from "./components/SearchResults";
 import { LoginButton } from "./components/LoginButton";
 import { CTA } from "./components/CTA";
 import { PlayerDetail } from "./pages/PlayerDetail";
+import { SearchHelper } from "./components/SearchHelper";
 // App configured for environment-based deployment (development/production)
 
 function AppContent() {
@@ -20,15 +21,18 @@ function AppContent() {
       <LoginButton />
       <header className="App-header">
         <h1>StatFoundry</h1>
+        <i>The easiest way to search for NFL stats this millenium</i>
       </header>
       <div className="App-body">
         <BreadcrumbChain />
         <SearchBar />
+        <SearchHelper />
         <SearchResults />
       </div>
       <CTA />
       <div className="stats-sourced-from">
         <p>stats sourced from <a href="https://github.com/nflverse" target="_blank" rel="noopener noreferrer">NFLVerse</a></p>
+        <p>PlayerStats : 2000 - 2024</p>
         <p>developed by <a href="https://www.benmedcalf.com" target="_blank" rel="noopener noreferrer">Ben Medcalf</a> at <a href="https://www.medcalfsoftwaresolutions.com" target="_blank" rel="noopener noreferrer">Medcalf Software Solutions</a></p>
       </div>
     </div>
@@ -48,7 +52,7 @@ function App() {
           <AppContextProvider>
             <Routes>
               <Route path="/" element={<AppContent />} />
-              <Route path="/players/:slug" element={<PlayerDetail />} />
+              <Route path="/players/:gsisId/:slug" element={<PlayerDetail />} />
               <Route path="*" element={<div>Page Not Found</div>} />
             </Routes>
           </AppContextProvider>

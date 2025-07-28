@@ -46,7 +46,14 @@ export const defaultNFLGroups: TableGroup[] = [
   },
 ];
 
-export const defaultExcludeColumns = ["headshot_url", "player_name"];
+export const defaultExcludeColumns = [
+  "headshot_url", 
+  "player_name",
+  "gsis_id",
+  "p.gsis_id",
+  "pg.player_display_name",
+  "ps.player_display_name"
+];
 
 // Key identifying fields that should always be shown in master rows
 export const identifyingFields = [

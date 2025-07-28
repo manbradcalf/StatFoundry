@@ -54,3 +54,26 @@ export const formatColumnHeader = (key: string): string => {
     .replace(/_/g, " ")
     .replace(/\b\w/g, (l) => l.toUpperCase());
 };
+
+/**
+ * Determines if a column should be clickable (rendered as a link)
+ * @param key - The column key to check
+ * @returns true if the column should be clickable
+ */
+export const isClickable = (key: string): boolean => {
+  // Normalize the key by removing prefixes and converting to lowercase
+  const normalizedKey = key.replace(/^[a-z]+\./, "").toLowerCase();
+  
+  // Clickable column patterns
+  const clickablePatterns = [
+    // Player patterns
+    'display_name',
+    'player_name', 
+    'name',
+    // Game patterns
+    'game_id'
+  ];
+  
+  // Check if this column matches any clickable patterns
+  return clickablePatterns.includes(normalizedKey);
+};
