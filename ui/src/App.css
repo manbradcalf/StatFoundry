@@ -2,7 +2,9 @@
   text-align: center;
   min-height: 100vh;
   background-color: #f8fafc;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
 }
 
 .stats-sourced-from {
@@ -295,7 +297,8 @@ h1 {
   min-height: 400px;
   max-height: 600px;
   padding: 20px !important;
-  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace !important;
+  font-family:
+    "SF Mono", "Monaco", "Consolas", "Courier New", monospace !important;
   font-size: 13px !important;
   line-height: 1.5 !important;
   color: #374151;
@@ -334,7 +337,7 @@ h1 {
   padding: 15px;
   border-radius: 4px;
   overflow-x: auto;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 14px;
   line-height: 1.4;
 }
@@ -505,7 +508,6 @@ h1 {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 1;
@@ -704,13 +706,17 @@ input[type="number"] {
 }
 
 .search-result-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.05) 0%,
+    rgba(118, 75, 162, 0.05) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1143,9 +1149,10 @@ input[type="number"] {
 
 .dynamic-table th,
 .dynamic-table td {
-  padding: 8px 12px;
-  text-align: left;
+  padding: 4px 8px;
+  text-align: center;
   border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
   min-width: 120px;
   word-break: break-word;
 }
@@ -1153,6 +1160,7 @@ input[type="number"] {
 .dynamic-table th {
   background-color: #f8f9fa;
   font-weight: 600;
+  text-align: center;
   color: #495057;
   position: sticky;
   top: 0;
@@ -1420,7 +1428,7 @@ input[type="number"] {
   font-size: 14px;
   line-height: 1.5;
   margin: 0 0 12px 0;
-  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-family: "SF Mono", "Monaco", "Consolas", "Courier New", monospace;
   background: #fee2e2;
   padding: 8px 12px;
   border-radius: 4px;
@@ -1558,7 +1566,7 @@ input[type="number"] {
 .alias-name {
   font-weight: 600;
   color: #3b82f6;
-  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-family: "SF Mono", "Monaco", "Consolas", "Courier New", monospace;
 }
 
 .alias-item.inactive .alias-name {
