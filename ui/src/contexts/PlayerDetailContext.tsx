@@ -1,25 +1,40 @@
-import React, { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  ReactNode,
+} from "react";
 import { config } from "../config";
 
 interface PlayerDetailContextType {
-  player: any | null;
-  playerGames: [] | null
-  playerSeasons: [] | null
+  // state
+  playerInfo: any | null;
+  playerGames: [];
+  playerSeasons: [];
   isLoadingPlayerInfo: boolean;
   isLoadingPlayerGames: boolean;
   isLoadingPlayerSeasons: boolean;
-  error: string | null;
+  playerInfoError: string | null;
+  playerGamesError: string | null;
+  playerSeasonsError: string | null;
+
+  // actions
   fetchPlayerInfo: (gsisId: string) => Promise<void>;
   fetchPlayerGames: (gsisId: string) => Promise<void>;
   fetchPlayerSeasons: (gsisId: string) => Promise<void>;
 }
 
-const PlayerDetailContext = createContext<PlayerDetailContextType | undefined>(undefined);
+const PlayerDetailContext = createContext<PlayerDetailContextType | undefined>(
+  undefined,
+);
 
 export const usePlayerDetailContext = () => {
   const context = useContext(PlayerDetailContext);
   if (!context) {
-    throw new Error("usePlayerDetailContext must be used within a PlayerDetailProvider");
+    throw new Error(
+      "usePlayerDetailContext must be used within a PlayerDetailProvider",
+    );
   }
   return context;
 };
@@ -28,17 +43,26 @@ interface PlayerDetailProviderProps {
   children: ReactNode;
 }
 
-export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({ children }) => {
-  const [player, setPlayer] = useState<any | null>(null);
-  const [playerGames, setPlayerGames] = useState<any | null>(null)
-  const [playerSeasons, setPlayerSeasons] = useState<any | null>(null)
-  const [isPlayerInfoLoading, setIsLoading] = useState<boolean>(false);
-  const [isPlayerGamesLoading, setIsPlayerGamesLoading] = useState<boolean>(false);
-  const [isPlayerSeasonsLoading, setIsPlayerSeasonsLoading] = useState<boolean>(false);
+export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
+  children,
+}) => {
+  const [playerInfo, setPlayerInfo] = useState<any | null>(null);
+  const [playerGames, setPlayerGames] = useState<any | null>([]);
+  const [playerSeasons, setPlayerSeasons] = useState<any | null>([]);
+  const [isPlayerInfoLoading, setIsPlayerInfoLoading] =
+    useState<boolean>(false);
+  const [isPlayerGamesLoading, setIsPlayerGamesLoading] =
+    useState<boolean>(false);
+  const [isPlayerSeasonsLoading, setIsPlayerSeasonsLoading] =
+    useState<boolean>(false);
   const [playerInfoError, setPlayerInfoError] = useState<string | null>(null);
+  const [playerGamesError, setPlayerGamesError] = useState<string | null>(null);
+  const [playerSeasonsError, setPlayerSeasonsError] = useState<string | null>(
+    null,
+  );
 
-  const fetchPlayerByGsisId = useCallback(async (gsisId: string) => {
-    setIsLoading(true);
+  const fetchPlayerInfoByGsisId = useCallback(async (gsisId: string) => {
+    setIsPlayerInfoLoading(true);
     setPlayerInfoError(null);
 
     try {
@@ -52,76 +76,85 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({ chil
       }
 
       const data = await response.json();
-      setPlayer(data);
+      setPlayerInfo(data);
     } catch (err: any) {
-      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occurred";
       setPlayerInfoError(errorMessage);
       console.error("Failed to fetch player:", err);
     } finally {
-      setIsLoading(false);
+      setIsPlayerInfoLoading(false);
     }
   }, []);
 
-
   const fetchPlayerGamesByGsisId = useCallback(async (gsisId: string) => {
     setIsPlayerGamesLoading(true);
-    setPlayerInfoError(null)
+    setPlayerGamesError(null);
 
     try {
-      const response = await fetch(`${config.serviceUrl}/api/player/${gsisId}/games`)
+      const response = await fetch(
+        `${config.serviceUrl}/api/player/${gsisId}/games`,
+      );
 
       if (!response.ok) {
         if (response.status === 404) {
-          throw new Error("PlayerGames not found!")
+          throw new Error("PlayerGames not found!");
         }
-        throw new Error(`Failed to fetch player: ${response.statusText}`)
+        throw new Error(`Failed to fetch player: ${response.statusText}`);
       }
 
       const data = await response.json();
+      console.log("playergames", data);
       setPlayerGames(data);
     } catch (err: any) {
-      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
-      console.error("Failed to fetch playerGames:", err)
-      setPlayerInfoError(errorMessage)
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occurred";
+      console.error("Failed to fetch playerGames:", err);
+      setPlayerInfoError(errorMessage);
     } finally {
-      setIsLoading(false)
+      setIsPlayerGamesLoading(false);
     }
-  }, [])
+  }, []);
 
   const fetchPlayerSeasonsByGsisId = useCallback(async (gsisId: string) => {
     setIsPlayerSeasonsLoading(true);
-    setPlayerInfoError(null)
+    setPlayerSeasonsError(null);
 
     try {
-      const response = await fetch(`${config.serviceUrl}/api/player/${gsisId}/seasons`)
+      const response = await fetch(
+        `${config.serviceUrl}/api/player/${gsisId}/seasons`,
+      );
 
       if (!response.ok) {
         if (response.status === 404) {
-          throw new Error("PlayerGames not found!")
+          throw new Error("PlayerGames not found!");
         }
-        throw new Error(`Failed to fetch player: ${response.statusText}`)
+        throw new Error(`Failed to fetch player: ${response.statusText}`);
       }
 
       const data = await response.json();
       setPlayerSeasons(data);
     } catch (err: any) {
-      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
-      console.error("Failed to fetch playerSeasons:", err)
-      setPlayerInfoError(errorMessage)
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occurred";
+      console.error("Failed to fetch playerSeasons:", err);
+      setPlayerSeasonsError(errorMessage);
     } finally {
-      setIsLoading(false)
+      setIsPlayerSeasonsLoading(false);
     }
-  }, [])
+  }, []);
 
   const value: PlayerDetailContextType = {
-    player,
-    playerGames,
-    playerSeasons,
+    playerInfo: playerInfo,
+    playerGames: playerGames,
+    playerSeasons: playerSeasons,
     isLoadingPlayerInfo: isPlayerInfoLoading,
     isLoadingPlayerGames: isPlayerGamesLoading,
     isLoadingPlayerSeasons: isPlayerSeasonsLoading,
-    error: playerInfoError,
-    fetchPlayerInfo: fetchPlayerByGsisId,
+    playerInfoError: playerInfoError,
+    playerGamesError: playerGamesError,
+    playerSeasonsError: playerSeasonsError,
+    fetchPlayerInfo: fetchPlayerInfoByGsisId,
     fetchPlayerGames: fetchPlayerGamesByGsisId,
     fetchPlayerSeasons: fetchPlayerSeasonsByGsisId,
   };

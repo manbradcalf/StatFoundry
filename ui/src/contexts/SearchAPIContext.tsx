@@ -1,9 +1,7 @@
 import React, {
   createContext,
   useContext,
-  useState,
   useCallback,
-  useEffect,
   ReactNode,
 } from "react";
 import { useSearchAPIEnhanced } from "../hooks/useSearchAPIEnhanced";

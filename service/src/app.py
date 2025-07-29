@@ -37,9 +37,9 @@ async def get_player(gsis_id: str):
     try:
         cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}}) RETURN p'
         result = execute_query(driver, cypher_query)
-        if not result[0]:
+        if not result:
             raise HTTPException(status_code=404, detail="Player not found")
-        return result[0] if result else None
+        return result if result else None
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -47,10 +47,12 @@ async def get_player(gsis_id: str):
 @app.get("/api/player/{gsis_id}/games")
 async def get_playergames(gsis_id: str):
     try:
-        cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}})-[:HAD]-(pg:PlayerGame) RETURN p,pg'
+        cypher_query = f'MATCH (p:Player) WHERE p.gsis_id="{gsis_id}" WITH p MATCH (p)-[:HAD]-(pg:PlayerGame) RETURN pg'
         result = execute_query(driver, cypher_query)
         if not result:
-            raise HTTPException(status_code=404, detail="Player Game not found")
+            print(cypher_query)
+            print(result)
+            raise HTTPException(status_code=404, detail="Player Games not found")
         return result if result else None
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -59,10 +61,10 @@ async def get_playergames(gsis_id: str):
 @app.get("/api/player/{gsis_id}/seasons")
 async def get_playerseasons(gsis_id: str):
     try:
-        cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}})-[:HAD]-(ps:PlayerSeason) RETURN DISTINCT p,ps'
+        cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}})-[:HAD]-(ps:PlayerSeason) RETURN ps'
         result = execute_query(driver, cypher_query)
         if not result:
-            raise HTTPException(status_code=404, detail="Player Game not found")
+            raise HTTPException(status_code=404, detail="Player Seasons not found")
         return result if result else None
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

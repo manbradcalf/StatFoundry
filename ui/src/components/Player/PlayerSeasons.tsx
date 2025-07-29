@@ -1,1 +1,3 @@
-export const PlayerSeasons: React.FC<{ gsisId: string }> = ({ gsisId }) => { return <p>PlayerSeasons{`${gsisId}`}</p> }
+export const PlayerSeasons: React.FC = () => {
+  return <p>PlayerSeasons</p>;
+};
