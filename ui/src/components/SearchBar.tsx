@@ -2,7 +2,10 @@ import React, { useRef, useEffect, useCallback, useState } from "react";
 import { useChainContext } from "../contexts/ChainContext";
 import { useModalContext } from "../contexts/ModalContext";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
-import { SearchInputProvider, useSearchInputContext } from "../contexts/SearchInputContext";
+import {
+  SearchInputProvider,
+  useSearchInputContext,
+} from "../contexts/SearchInputContext";
 import { Suggestions } from "./Suggestions";
 import { SaveSearchModal } from "./SaveSearchModal";
 import { Suggestion } from "../contexts/Suggestion";
@@ -16,7 +19,7 @@ interface SearchBarInnerProps {
 const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
-  
+
   const {
     query,
     setQuery,
@@ -35,7 +38,7 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
     apiContext.executeSearch(
       chainContext.chain.Cypher,
       chainContext.chain.Aliases,
-      chainContext.chain.English
+      chainContext.chain.English,
     );
   }, [apiContext, chainContext]);
 
@@ -102,8 +105,8 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             placeholder={
-              chainContext.chain.toArray().length > 0 
-                ? "Add another filter..." 
+              chainContext.chain.toArray().length > 0
+                ? "Add another filter..."
                 : "Start building your query..."
             }
             className="search-input"
@@ -129,6 +132,11 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
             Save
           </button>
         </div>
+        <div className="search-input-row"></div>
+      </div>
+
+      <div className="search-box">
+        <input className="search-input" type={"text"} placeholder="Filter..." />
       </div>
 
       {/* Suggestions dropdown - appears directly below search input */}
@@ -152,48 +160,54 @@ export const SearchBar: React.FC = () => {
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
 
   // Create the real suggestion selection function
-  const handleSuggestionSelection = useCallback((suggestion: Suggestion) => {
-    const chunkCopy = {
-      ...suggestion.chunk,
-      Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
-    };
+  const handleSuggestionSelection = useCallback(
+    (suggestion: Suggestion) => {
+      const chunkCopy = {
+        ...suggestion.chunk,
+        Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
+      };
 
-    // If chunk has slots, open modal
-    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
-      modalContext.openSlotModal(
-        chunkCopy, 
-        chunkCopy.Slots, 
-        undefined, 
-        modalContext.insertingAtIndex ?? undefined
-      );
-    } else {
-      // No slots - handle insertion or append directly
-      if (modalContext.insertingAtIndex !== null) {
-        chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
-        modalContext.setInsertingAtIndex(null);
+      // If chunk has slots, open modal
+      if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
+        modalContext.openSlotModal(
+          chunkCopy,
+          chunkCopy.Slots,
+          undefined,
+          modalContext.insertingAtIndex ?? undefined,
+        );
       } else {
-        chainContext.appendChunk(chunkCopy);
+        // No slots - handle insertion or append directly
+        if (modalContext.insertingAtIndex !== null) {
+          chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
+          modalContext.setInsertingAtIndex(null);
+        } else {
+          chainContext.appendChunk(chunkCopy);
+        }
       }
-    }
-  }, [chainContext, modalContext]);
+    },
+    [chainContext, modalContext],
+  );
 
   const handleSaveSearch = useCallback(() => {
     if (!user) {
-      alert('Please sign in to save searches');
+      alert("Please sign in to save searches");
       return;
     }
 
     if (chainContext.chain.toArray().length === 0) {
-      alert('Build a search first before saving');
+      alert("Build a search first before saving");
       return;
     }
 
     setIsSaveModalOpen(true);
   }, [user, chainContext.chain]);
 
-  const handleSaveModalSave = useCallback(async (name: string, description?: string) => {
-    await saveSavedSearch(chainContext.chain, name, description);
-  }, [saveSavedSearch, chainContext.chain]);
+  const handleSaveModalSave = useCallback(
+    async (name: string, description?: string) => {
+      await saveSavedSearch(chainContext.chain, name, description);
+    },
+    [saveSavedSearch, chainContext.chain],
+  );
 
   const handleSaveModalClose = useCallback(() => {
     setIsSaveModalOpen(false);
@@ -209,7 +223,7 @@ export const SearchBar: React.FC = () => {
       >
         <SearchBarInner onSaveSearch={handleSaveSearch} />
       </SearchInputProvider>
-      
+
       <SaveSearchModal
         isOpen={isSaveModalOpen}
         onClose={handleSaveModalClose}

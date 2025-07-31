@@ -1,19 +1,21 @@
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../contexts/AuthContext";
 
 export const LoginButton: React.FC = () => {
-  const { user, signInWithGoogle, signOut } = useAuth()
-  
+  const { user, signInWithGoogle, signOut } = useAuth();
+
   const handleClick = () => {
     if (user) {
-      signOut()
+      signOut();
     } else {
-      signInWithGoogle()
+      signInWithGoogle();
     }
-  }
-  
+  };
+
   return (
-    <button className="login-button" onClick={handleClick}>
-      {user ? 'Logout' : 'Login'}
-    </button>
-  )
-}
+    <div>
+      <button className="login-button" onClick={handleClick}>
+        {user ? "Logout" : "Login"}
+      </button>
+    </div>
+  );
+};
