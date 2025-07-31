@@ -135,9 +135,10 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
         <div className="search-input-row"></div>
       </div>
 
-      <div className="search-box">
-        <input className="search-input" type={"text"} placeholder="Filter..." />
-      </div>
+      {/* TODO: add a way to filter the results here using aliases used in querry */}
+      {/* <div className="search-box"> */}
+      {/*   <input className="search-input" type={"text"} placeholder="Filter..." /> */}
+      {/* </div> */}
 
       {/* Suggestions dropdown - appears directly below search input */}
       <Suggestions
