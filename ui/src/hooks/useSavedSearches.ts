@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { savedSearchService } from "../services/savedSearchService";
-import { SavedSearch, CreateSavedSearchData } from "../types/SavedSearch";
+import { SavedSearch } from "../types/SavedSearch";
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
 
 export const useSavedSearches = () => {

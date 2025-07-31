@@ -24,7 +24,7 @@ export const SavedSearchesComponent: React.FC = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [getUserSavedSearches, setSavedSearches, savedSearches]);
 
   const handleSearchFromSavedSearch = (savedSearch: SavedSearch) => {
     console.log("searching...", savedSearch);
