@@ -6,12 +6,15 @@ import React, {
   ReactNode,
 } from "react";
 import { config } from "../config";
+import { PlayerProperties } from "../feature/Chunks/Entities/Player";
+import { PlayerGameProperties } from "../feature/Chunks/Entities/PlayerGame";
+import { PlayerSeasonProperties } from "../feature/Chunks/Entities/PlayerSeason";
 
 interface PlayerDetailContextType {
   // state
-  playerInfo: any | null;
-  playerGames: [];
-  playerSeasons: [];
+  playerInfo: PlayerProperties | null;
+  playerGames: PlayerGameProperties[];
+  playerSeasons: PlayerSeasonProperties[];
   isLoadingPlayerInfo: boolean;
   isLoadingPlayerGames: boolean;
   isLoadingPlayerSeasons: boolean;
@@ -46,9 +49,11 @@ interface PlayerDetailProviderProps {
 export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
   children,
 }) => {
-  const [playerInfo, setPlayerInfo] = useState<any | null>(null);
-  const [playerGames, setPlayerGames] = useState<any | null>([]);
-  const [playerSeasons, setPlayerSeasons] = useState<any | null>([]);
+  const [playerInfo, setPlayerInfo] = useState<PlayerProperties | null>(null);
+  const [playerGames, setPlayerGames] = useState<PlayerGameProperties[]>([]);
+  const [playerSeasons, setPlayerSeasons] = useState<PlayerSeasonProperties[]>(
+    [],
+  );
   const [isPlayerInfoLoading, setIsPlayerInfoLoading] =
     useState<boolean>(false);
   const [isPlayerGamesLoading, setIsPlayerGamesLoading] =
@@ -76,7 +81,11 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
       }
 
       const data = await response.json();
-      setPlayerInfo(data);
+
+      // since we are fetching by gsisId, we shouldnt every have duplicate players returned
+      // so we should update the api to return a single player object
+      // data returned as [{p: {display_name: "..." ,...},...}]
+      setPlayerInfo(data[0].p);
     } catch (err: any) {
       const errorMessage =
         err instanceof Error ? err.message : "An unknown error occurred";
@@ -104,7 +113,6 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
       }
 
       const data = await response.json();
-      console.log("playergames", data);
       setPlayerGames(data);
     } catch (err: any) {
       const errorMessage =
