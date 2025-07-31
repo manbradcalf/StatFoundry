@@ -3,7 +3,10 @@ import { AliasType } from "../Enums/AliasType";
 
 export interface PlayerSeason extends Entity {
   label: AliasType.PlayerSeason;
-  properties: {
+  properties: PlayerSeasonProperties;
+}
+
+export type PlayerSeasonProperties = {
     // Basic season information
     player_id: string;
     player_name: string;
@@ -50,7 +53,9 @@ export interface PlayerSeason extends Entity {
       air_yards_share: number;
       pacr: number; // Passer rating when targeted
       racr: number; // Receiver air conversion ratio
+      wopr: number; // Weighted opportunity rating
       wopr_x: number; // Weighted opportunity rating
+      wopr_y: number; // Weighted opportunity rating
       rtd_sh: number; // Red zone target share
       rtdfd_sh: number; // Red zone target first down share
     };
@@ -85,4 +90,3 @@ export interface PlayerSeason extends Entity {
     // Special teams
     special_teams_tds: number;
   };
-}

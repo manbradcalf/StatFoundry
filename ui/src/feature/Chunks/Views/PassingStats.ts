@@ -3,6 +3,7 @@ export const PASSING_STATS = [
   { key: "completions", type: "number" },
   { key: "passing_yards", type: "number" },
   { key: "passing_tds", type: "number" },
+  { key: "interceptions", type: "number" },
   { key: "passing_air_yards", type: "number" },
   { key: "passing_first_downs", type: "number" },
   { key: "passing_epa", type: "number" },
