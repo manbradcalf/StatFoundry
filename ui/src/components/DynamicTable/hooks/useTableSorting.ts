@@ -12,7 +12,6 @@ interface UseTableSortingReturn {
   sortedData: ProcessedDataItem[];
   handleSort: (key: string) => void;
   getSortIndicator: (key: string) => string;
-  getExpandableItemCount: (item: ProcessedDataItem) => number;
 }
 
 export const useTableSorting = ({
@@ -23,17 +22,6 @@ export const useTableSorting = ({
     key: null,
     direction: null,
   });
-
-  /**
-   * Get the total count of expandable items for a row
-   * @param item - The processed data item
-   * @returns total count of items across all arrays
-   */
-  const getExpandableItemCount = (item: ProcessedDataItem): number => {
-    return Object.values(item.arrays).reduce((total: number, arr: any) => {
-      return total + (Array.isArray(arr) ? arr.length : 0);
-    }, 0);
-  };
 
   /**
    * Sort the processed data based on current sort configuration
@@ -47,14 +35,8 @@ export const useTableSorting = ({
     return [...processedData].sort((a, b) => {
       let aValue, bValue;
 
-      // Handle special case for expandable count sorting
-      if (sortConfig.key === "__expandable_count__") {
-        aValue = getExpandableItemCount(a);
-        bValue = getExpandableItemCount(b);
-      } else {
-        aValue = a.flattened[sortConfig.key!];
-        bValue = b.flattened[sortConfig.key!];
-      }
+      aValue = a.flattened[sortConfig.key!];
+      bValue = b.flattened[sortConfig.key!];
 
       return compareValues(aValue, bValue, sortConfig.direction!);
     });
@@ -99,6 +81,5 @@ export const useTableSorting = ({
     sortedData,
     handleSort,
     getSortIndicator,
-    getExpandableItemCount,
   };
 };

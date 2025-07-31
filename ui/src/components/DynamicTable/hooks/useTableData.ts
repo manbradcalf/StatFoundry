@@ -1,26 +1,22 @@
 import { useMemo } from "react";
-import { TableGroup, ProcessedDataItem } from "../types";
-import { identifyingFields } from "../config";
+import { ProcessedDataItem } from "../types";
 
 interface UseTableDataProps {
   data: any[];
+  columns?: string[];
   excludeColumns: string[];
-  columnGroups: TableGroup[];
 }
 
 interface UseTableDataReturn {
   processedData: ProcessedDataItem[];
-  allFlatKeys: string[];
   arrayKeys: string[];
-  availableKeys: string[];
-  nonEmptyKeys: string[];
   finalKeys: string[];
 }
 
 export const useTableData = ({
   data,
+  columns,
   excludeColumns,
-  columnGroups,
 }: UseTableDataProps): UseTableDataReturn => {
   // Flatten nested objects and separate array data
   const flattenedData = useMemo(() => {
@@ -65,13 +61,6 @@ export const useTableData = ({
     });
   }, [data]);
 
-  // Get all available keys from flattened data
-  const allFlatKeys = useMemo(() => {
-    return Array.from(
-      new Set(flattenedData.flatMap((item) => Object.keys(item.flattened)))
-    );
-  }, [flattenedData]);
-
   // Get array keys
   const arrayKeys = useMemo(() => {
     return Array.from(
@@ -79,66 +68,34 @@ export const useTableData = ({
     );
   }, [flattenedData]);
 
-  // Filter out excluded columns
-  const availableKeys = useMemo(() => {
-    return allFlatKeys.filter((key) => !excludeColumns.includes(key));
-  }, [allFlatKeys, excludeColumns]);
+  // Determine final columns to display
+  const finalKeys = useMemo(() => {
+    if (columns) {
+      // Use explicit columns if provided, filter out excluded ones
+      return columns.filter((key) => !excludeColumns.includes(key));
+    }
 
-  // Filter out columns that are completely empty
-  const nonEmptyKeys = useMemo(() => {
-    /**
-     * Check if a column has any non-empty values across all rows
-     * @param key - The column key to check
-     * @returns true if the column has at least one non-empty value
-     */
+    // Otherwise, auto-detect all available columns
+    const allFlatKeys = Array.from(
+      new Set(flattenedData.flatMap((item) => Object.keys(item.flattened)))
+    );
+    
+    // Filter out excluded columns and completely empty columns
+    const availableKeys = allFlatKeys.filter((key) => !excludeColumns.includes(key));
+    
     const hasNonEmptyValues = (key: string): boolean => {
       return flattenedData.some((item) => {
         const value = item.flattened[key];
-        // Only filter out null, undefined, and empty strings
         return value !== null && value !== undefined && value !== "";
       });
     };
 
     return availableKeys.filter(hasNonEmptyValues);
-  }, [availableKeys, flattenedData]);
-
-  // Prioritize key identifying fields for master rows
-  const finalKeys = useMemo(() => {
-    const identifyingKeysPresent = identifyingFields.filter((key) =>
-      nonEmptyKeys.includes(key)
-    );
-    const remainingKeys = nonEmptyKeys.filter(
-      (key) => !identifyingFields.includes(key)
-    );
-
-    // Group remaining columns by category
-    const groupedKeys: string[] = [];
-    const usedKeys = new Set<string>(identifyingKeysPresent);
-
-    // Sort groups by priority and add their keys
-    columnGroups
-      .sort((a, b) => a.priority - b.priority)
-      .forEach((group) => {
-        const groupKeys = group.keys.filter(
-          (key) => nonEmptyKeys.includes(key) && !usedKeys.has(key)
-        );
-        groupKeys.forEach((key) => usedKeys.add(key));
-        groupedKeys.push(...groupKeys);
-      });
-
-    // Add any remaining uncategorized keys
-    const uncategorizedKeys = remainingKeys.filter((key) => !usedKeys.has(key));
-
-    // Final column order: identifying fields first, then grouped fields, then uncategorized
-    return [...identifyingKeysPresent, ...groupedKeys, ...uncategorizedKeys];
-  }, [nonEmptyKeys, columnGroups]);
+  }, [columns, excludeColumns, flattenedData]);
 
   return {
     processedData: flattenedData,
-    allFlatKeys,
     arrayKeys,
-    availableKeys,
-    nonEmptyKeys,
     finalKeys,
   };
 };

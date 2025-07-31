@@ -284,4 +284,41 @@ useEffect(() => {
 
 ---
 
+## SEO-Friendly Player Detail Routing Implementation
+
+**Implemented:** July 28, 2025  
+**Commit:** ec59308 - "Implement SEO-friendly player detail routing with clickable table links"
+
+### Core Architecture
+
+**URL Pattern**: `/players/{gsis_id}/{slug}` (e.g., `/players/00-0034857/josh-allen`)
+- gsis_id ensures uniqueness (handles multiple Josh Allens)
+- slug provides SEO value and user-readable URLs  
+- Backend only uses gsis_id for lookup (slug is pure SEO decoration)
+
+**API Design**: `GET /api/player/{gsis_id}` - Clean, minimal endpoint using only unique ID
+
+**Smart Table Links System**:
+- `generateClickableUrl()` in `src/utils/linkHandlers.ts` - centralized, extensible
+- Player names → internal StatFoundry routes  
+- Game IDs → external rbsdm.com links
+- `isClickable(key)` determines link eligibility
+- Easy to extend for teams, coaches, etc.
+
+**Data Flow**:
+1. Views include gsis_id (added to `PLAYER_INFO_PROPERTIES`)
+2. Data available in row for link generation
+3. Hidden from display via `defaultExcludeColumns` 
+4. `generatePlayerUrl()` uses both gsis_id and display_name
+
+**Key Files**:
+- **PlayerDetailContext**: `src/contexts/PlayerDetailContext.tsx` - dedicated player fetching
+- **LinkHandlers**: `src/utils/linkHandlers.ts` - centralized URL generation  
+- **API**: `service/src/app.py` - new player endpoint
+- **Routing**: `src/App.tsx` - updated route pattern
+
+This ESPN-style pattern provides SEO-friendly URLs while maintaining unique identification, ready to scale to other NFL entities.
+
+---
+
 _Remember: We're building a relationship traversal language for sports data discovery, not just a stats tool that happens to use a graph database._
