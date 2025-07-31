@@ -1,5 +1,5 @@
-import { Timestamp } from 'firebase/firestore';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
+import { Timestamp } from "firebase/firestore";
+import { Chunk } from "../feature/Chunks/Types/Chunk";
 
 export interface SavedSearch {
   id: string;
@@ -15,4 +15,7 @@ export interface CreateSavedSearchData {
   name: string;
   description?: string;
   chunks: Chunk[];
+  cypher: string;
+  english: string;
 }
+

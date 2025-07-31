@@ -10,21 +10,21 @@ import {
   where,
   orderBy,
   serverTimestamp,
-} from 'firebase/firestore';
-import { db } from '../firebase/config';
-import { SavedSearch, CreateSavedSearchData } from '../types/SavedSearch';
-import { ChunkChain } from '../feature/Chunks/ChunkChain';
+} from "firebase/firestore";
+import { db } from "../firebase/config";
+import { SavedSearch, CreateSavedSearchData } from "../types/SavedSearch";
+import { ChunkChain } from "../feature/Chunks/ChunkChain";
 
-const COLLECTION_NAME = 'ChunkChains';
+const COLLECTION_NAME = "ChunkChains";
 
 export const savedSearchService = {
   /**
    * Save a new search for the current user
    */
-  async saveSavedSearch(userId: string, savedSearchData: CreateSavedSearchData): Promise<string> {
-
-    console.log('savedSearchData:', savedSearchData);
-    console.log('chunks:', JSON.stringify(savedSearchData.chunks, null, 2));
+  async saveSavedSearch(
+    userId: string,
+    savedSearchData: CreateSavedSearchData,
+  ): Promise<string> {
     const docRef = await addDoc(collection(db, COLLECTION_NAME), {
       ...savedSearchData,
       userId,
@@ -40,12 +40,12 @@ export const savedSearchService = {
   async getUserSavedSearches(userId: string): Promise<SavedSearch[]> {
     const q = query(
       collection(db, COLLECTION_NAME),
-      where('userId', '==', userId),
-      orderBy('updatedAt', 'desc')
+      where("userId", "==", userId),
+      orderBy("updatedAt", "desc"),
     );
 
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map(doc => ({
+    return querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     })) as SavedSearch[];
@@ -70,7 +70,10 @@ export const savedSearchService = {
   /**
    * Update an existing saved search
    */
-  async updateSavedSearch(savedSearchId: string, updates: Partial<CreateSavedSearchData>): Promise<void> {
+  async updateSavedSearch(
+    savedSearchId: string,
+    updates: Partial<CreateSavedSearchData>,
+  ): Promise<void> {
     const docRef = doc(db, COLLECTION_NAME, savedSearchId);
     await updateDoc(docRef, {
       ...updates,
@@ -89,11 +92,18 @@ export const savedSearchService = {
   /**
    * Convert a ChunkChain to saveable format
    */
-  chainToSaveData(chain: ChunkChain, name: string, description?: string): CreateSavedSearchData {
+  chainToSaveData(
+    chain: ChunkChain,
+    name: string,
+    description?: string,
+  ): CreateSavedSearchData {
+    const compiledChain = chain.compile();
     return {
       name,
       description,
       chunks: chain.toArray(),
+      cypher: compiledChain.Cypher,
+      english: compiledChain.English,
     };
   },
 
@@ -102,7 +112,7 @@ export const savedSearchService = {
    */
   saveDataToChain(savedSearch: SavedSearch): ChunkChain {
     const chain = new ChunkChain();
-    savedSearch.chunks.forEach(chunk => chain.append(chunk));
+    savedSearch.chunks.forEach((chunk) => chain.append(chunk));
     chain.compile();
     return chain;
   },
