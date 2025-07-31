@@ -114,15 +114,27 @@ export const useChainState = ({
 
   // Append a chunk to the end of the chain
   const appendChunk = useCallback((chunk: Chunk) => {
+    console.log('🔗 Chunk appended to chain:', {
+      addedChunk: chunk.English,
+      previousChain: chain.toArray().map(c => c.English),
+      newChainLength: chain.toArray().length + 1
+    });
     updateChain((newChain) => {
       chain.toArray().forEach(existingChunk => newChain.append(existingChunk));
       newChain.append(chunk);
+      console.log(chain.toArray())
       return newChain;
     });
   }, [chain, updateChain]);
 
   // Insert a chunk at a specific index
   const insertChunk = useCallback((index: number, chunk: Chunk) => {
+    console.log('🔗 Chunk inserted into chain:', {
+      insertIndex: index,
+      addedChunk: chunk.English,
+      previousChain: chain.toArray().map(c => c.English),
+      newChainLength: chain.toArray().length + 1
+    });
     updateChain((newChain) => {
       const chainArray = [...chain.toArray()];
       chainArray.splice(index, 0, chunk);
@@ -133,6 +145,12 @@ export const useChainState = ({
 
   // Update an existing chunk at a specific index
   const updateChunkAtIndex = useCallback((index: number, chunk: Chunk) => {
+    console.log('🔗 Chunk updated in chain:', {
+      updateIndex: index,
+      newChunk: chunk.English,
+      previousChunk: chain.toArray()[index]?.English,
+    });
+    console.log("chain", chain)
     updateChain((newChain) => {
       const chainArray = [...chain.toArray()];
       chainArray[index] = chunk;

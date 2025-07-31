@@ -1,43 +1,41 @@
 import React from "react";
 import { DynamicTableProps } from "./types";
-import { defaultNFLGroups, defaultExcludeColumns } from "./config";
+import { defaultExcludeColumns } from "./config";
 import { useTableData } from "./hooks/useTableData";
 import { useTableSorting } from "./hooks/useTableSorting";
 import { useTablePagination } from "./hooks/useTablePagination";
-import { useRowExpansion } from "./hooks/useRowExpansion";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { PaginationControls } from "./components/PaginationControls";
+import { ExportButton } from "./components/ExportButton";
 import { commonStyles } from "../../utils/commonStyles";
 
 export const DynamicTable: React.FC<DynamicTableProps> = ({
   data,
+  columns,
   excludeColumns = defaultExcludeColumns,
-  columnGroups = defaultNFLGroups,
-  customColumns = [],
   pageSize = 25,
   maxHeight = "600px",
+  // Export options
+  enableExport = false,
+  exportFilename,
+  onExport,
 }) => {
   // Data processing hook
   const { processedData, arrayKeys, finalKeys } = useTableData({
     data,
+    columns,
     excludeColumns,
-    columnGroups,
   });
 
   // Sorting hook
-  const {
-    sortConfig,
-    sortedData,
-    handleSort,
-    getSortIndicator,
-    getExpandableItemCount,
-  } = useTableSorting({
-    processedData,
-    onSortChange: () => {
-      // This will be handled by the pagination hook's auto-reset
-    },
-  });
+  const { sortConfig, sortedData, handleSort, getSortIndicator } =
+    useTableSorting({
+      processedData,
+      onSortChange: () => {
+        // This will be handled by the pagination hook's auto-reset
+      },
+    });
 
   // Pagination hook
   const {
@@ -53,11 +51,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     pageSize,
   });
 
-  // Row expansion hook
-  const { expandedRows, toggleRow } = useRowExpansion({
-    currentPage,
-  });
-
   // Early return if no data
   if (processedData.length === 0) {
     return <div style={commonStyles.emptyState}>No results</div>;
@@ -65,10 +58,27 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
 
   return (
     <div className="dynamic-table-container">
+      {/* Conditionally render export button */}
+      {enableExport && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "12px",
+          }}
+        >
+          <ExportButton
+            data={sortedData}
+            columns={finalKeys}
+            filename={exportFilename}
+            onExport={onExport}
+          />
+        </div>
+      )}
+
       <div className="table-scroll-wrapper" style={{ maxHeight: maxHeight }}>
         <table className="dynamic-table">
           <TableHeader
-            arrayKeys={arrayKeys}
             finalKeys={finalKeys}
             sortConfig={sortConfig}
             onSort={handleSort}
@@ -78,13 +88,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             paginatedData={paginatedData}
             arrayKeys={arrayKeys}
             finalKeys={finalKeys}
-            expandedRows={expandedRows}
             startIndex={startIndex}
-            onToggleRow={toggleRow}
-            getExpandableItemCount={getExpandableItemCount}
             excludeColumns={excludeColumns}
-            columnGroups={columnGroups}
-            DynamicTableComponent={DynamicTable}
           />
         </table>
       </div>

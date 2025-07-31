@@ -12,11 +12,14 @@ export interface TableGroup {
 
 export interface DynamicTableProps {
   data: any[];
+  columns?: string[]; // Explicit column order - if not provided, show all available columns
   excludeColumns?: string[];
-  columnGroups?: TableGroup[];
-  customColumns?: TableColumn[];
   pageSize?: number;
   maxHeight?: string;
+  // Export options
+  enableExport?: boolean;
+  exportFilename?: string;
+  onExport?: () => void;
 }
 
 /**

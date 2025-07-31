@@ -3,7 +3,10 @@ import { AliasType } from "../Enums/AliasType";
 
 export interface PlayerGame extends Entity {
   label: AliasType.PlayerGame;
-  properties: {
+  properties: PlayerGameProperties;
+}
+
+export type PlayerGameProperties = {
     player: {
       player_id: string;
       player_display_name: string;
@@ -79,4 +82,3 @@ export interface PlayerGame extends Entity {
       special_teams_tds: number;
     };
   };
-}

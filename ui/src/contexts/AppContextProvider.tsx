@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { ChainProvider } from "./ChainContext";
 import { ModalProvider } from "./ModalContext";
 import { SearchAPIProvider } from "./SearchAPIContext";
+import { PlayerDetailProvider } from "./PlayerDetailContext";
 
 interface AppContextProviderProps {
   children: ReactNode;
@@ -16,7 +17,9 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     <ChainProvider>
       <ModalProvider>
         <SearchAPIProvider>
-          {children}
+          <PlayerDetailProvider>
+            {children}
+          </PlayerDetailProvider>
         </SearchAPIProvider>
       </ModalProvider>
     </ChainProvider>

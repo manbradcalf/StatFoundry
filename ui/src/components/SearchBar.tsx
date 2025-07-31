@@ -1,15 +1,25 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import { useChainContext } from "../contexts/ChainContext";
 import { useModalContext } from "../contexts/ModalContext";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
-import { SearchInputProvider, useSearchInputContext } from "../contexts/SearchInputContext";
+import {
+  SearchInputProvider,
+  useSearchInputContext,
+} from "../contexts/SearchInputContext";
 import { Suggestions } from "./Suggestions";
+import { SaveSearchModal } from "./SaveSearchModal";
 import { Suggestion } from "../contexts/Suggestion";
+import { useSavedSearches } from "../hooks/useSavedSearches";
+import { useAuth } from "../contexts/AuthContext";
 
-const SearchBarInner: React.FC = () => {
+interface SearchBarInnerProps {
+  onSaveSearch: () => void;
+}
+
+const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
-  
+
   const {
     query,
     setQuery,
@@ -28,7 +38,7 @@ const SearchBarInner: React.FC = () => {
     apiContext.executeSearch(
       chainContext.chain.Cypher,
       chainContext.chain.Aliases,
-      chainContext.chain.English
+      chainContext.chain.English,
     );
   }, [apiContext, chainContext]);
 
@@ -95,8 +105,8 @@ const SearchBarInner: React.FC = () => {
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             placeholder={
-              chainContext.chain.toArray().length > 0 
-                ? "Add another filter..." 
+              chainContext.chain.toArray().length > 0
+                ? "Add another filter..."
                 : "Start building your query..."
             }
             className="search-input"
@@ -113,17 +123,22 @@ const SearchBarInner: React.FC = () => {
             Search
           </button>
         </div>
-        {/* Save search button - functionality to be implemented later */}
         <div className="save-button">
           <button
             className="secondary-button"
-            title="Save this search (coming soon)"
-            onClick={() => alert("Save Search functionality coming soon!")}
+            title="Save this search"
+            onClick={onSaveSearch}
           >
             Save
           </button>
         </div>
+        <div className="search-input-row"></div>
       </div>
+
+      {/* TODO: add a way to filter the results here using aliases used in querry */}
+      {/* <div className="search-box"> */}
+      {/*   <input className="search-input" type={"text"} placeholder="Filter..." /> */}
+      {/* </div> */}
 
       {/* Suggestions dropdown - appears directly below search input */}
       <Suggestions
@@ -141,40 +156,82 @@ const SearchBarInner: React.FC = () => {
 export const SearchBar: React.FC = () => {
   const chainContext = useChainContext();
   const modalContext = useModalContext();
+  const { user } = useAuth();
+  const { saveSavedSearch, loading, error, clearError } = useSavedSearches();
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
 
   // Create the real suggestion selection function
-  const handleSuggestionSelection = useCallback((suggestion: Suggestion) => {
-    const chunkCopy = {
-      ...suggestion.chunk,
-      Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
-    };
+  const handleSuggestionSelection = useCallback(
+    (suggestion: Suggestion) => {
+      const chunkCopy = {
+        ...suggestion.chunk,
+        Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
+      };
 
-    // If chunk has slots, open modal
-    if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
-      modalContext.openSlotModal(
-        chunkCopy, 
-        chunkCopy.Slots, 
-        undefined, 
-        modalContext.insertingAtIndex ?? undefined
-      );
-    } else {
-      // No slots - handle insertion or append directly
-      if (modalContext.insertingAtIndex !== null) {
-        chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
-        modalContext.setInsertingAtIndex(null);
+      // If chunk has slots, open modal
+      if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
+        modalContext.openSlotModal(
+          chunkCopy,
+          chunkCopy.Slots,
+          undefined,
+          modalContext.insertingAtIndex ?? undefined,
+        );
       } else {
-        chainContext.appendChunk(chunkCopy);
+        // No slots - handle insertion or append directly
+        if (modalContext.insertingAtIndex !== null) {
+          chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
+          modalContext.setInsertingAtIndex(null);
+        } else {
+          chainContext.appendChunk(chunkCopy);
+        }
       }
+    },
+    [chainContext, modalContext],
+  );
+
+  const handleSaveSearch = useCallback(() => {
+    if (!user) {
+      alert("Please sign in to save searches");
+      return;
     }
-  }, [chainContext, modalContext]);
+
+    if (chainContext.chain.toArray().length === 0) {
+      alert("Build a search first before saving");
+      return;
+    }
+
+    setIsSaveModalOpen(true);
+  }, [user, chainContext.chain]);
+
+  const handleSaveModalSave = useCallback(
+    async (name: string, description?: string) => {
+      await saveSavedSearch(chainContext.chain, name, description);
+    },
+    [saveSavedSearch, chainContext.chain],
+  );
+
+  const handleSaveModalClose = useCallback(() => {
+    setIsSaveModalOpen(false);
+    clearError();
+  }, [clearError]);
 
   return (
-    <SearchInputProvider
-      chain={chainContext.chain}
-      insertingAtIndex={modalContext.insertingAtIndex}
-      onSuggestionSelect={handleSuggestionSelection} // ✅ Real function
-    >
-      <SearchBarInner />
-    </SearchInputProvider>
+    <>
+      <SearchInputProvider
+        chain={chainContext.chain}
+        insertingAtIndex={modalContext.insertingAtIndex}
+        onSuggestionSelect={handleSuggestionSelection}
+      >
+        <SearchBarInner onSaveSearch={handleSaveSearch} />
+      </SearchInputProvider>
+
+      <SaveSearchModal
+        isOpen={isSaveModalOpen}
+        onClose={handleSaveModalClose}
+        onSave={handleSaveModalSave}
+        loading={loading}
+        error={error}
+      />
+    </>
   );
 };
