@@ -47,7 +47,9 @@ export const PlayerInfo: React.FC = () => {
       <div className="player-info-body">
         <div className="info-item">
           <span className="info-label">Height</span>
-          <span className="info-value">{height ? `${Math.floor(height / 12)}'${height % 12}"` : "N/A"}</span>
+          <span className="info-value">
+            {height ? `${Math.floor(height / 12)}'${height % 12}"` : "N/A"}
+          </span>
         </div>
         <div className="info-item">
           <span className="info-label">Weight</span>
@@ -76,6 +78,14 @@ export const PlayerInfo: React.FC = () => {
         <div className="info-item">
           <span className="info-label">Status</span>
           <span className="info-value">{status || "N/A"}</span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">Drafted By</span>
+          <span className="info-value">{draftClub || "N/A"}</span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">Rookie Year</span>
+          <span className="info-value">{rookieYear || "N/A"}</span>
         </div>
       </div>
     </div>
