@@ -34,7 +34,11 @@ export const SearchResults: React.FC = () => {
       )}
       {searchResults && !isSearching ? (
         <div>
-          <DynamicTable data={searchResults} />
+          <DynamicTable 
+            data={searchResults} 
+            enableExport={true}
+            exportFilename="search-results"
+          />
           {searchResults.length > 0 && (
             <div style={commonStyles.infoText}>
               {searchResults.length} result
