@@ -118,21 +118,22 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
             </button>
           )}
         </div>
-        <div className="search-button">
-          <button onClick={handleSearch} className="primary-button">
-            Search
-          </button>
+        <div className="button-row">
+          <div className="search-button">
+            <button onClick={handleSearch} className="primary-button">
+              Search
+            </button>
+          </div>
+          <div className="save-button">
+            <button
+              className="secondary-button"
+              title="Save this search"
+              onClick={onSaveSearch}
+            >
+              Save
+            </button>
+          </div>
         </div>
-        <div className="save-button">
-          <button
-            className="secondary-button"
-            title="Save this search"
-            onClick={onSaveSearch}
-          >
-            Save
-          </button>
-        </div>
-        <div className="search-input-row"></div>
       </div>
 
       {/* TODO: add a way to filter the results here using aliases used in querry */}

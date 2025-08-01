@@ -24,10 +24,10 @@ function App() {
           <AppContextProvider>
             <div className="App">
               {/* Login button positioned in top right corner */}
-              <LoginButton />
               <header className="App-header">
                 <h1>StatFoundry</h1>
                 <i>The easiest way to search for NFL stats this millenium</i>
+                <LoginButton />
               </header>
               <div className="App-body">
                 <Routes>

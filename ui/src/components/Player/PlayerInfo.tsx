@@ -31,113 +31,53 @@ export const PlayerInfo: React.FC = () => {
   const draftNumber = playerInfo.draft_number;
   const rookieYear = playerInfo.rookie_year;
 
-
   return (
     <div className="player-info-card">
-        {/* Player Name */}
-        <h1 className="player-name-title">
-          {displayName || 'Unknown Player'}
-        </h1>
-
-        {/* Basic Info Grid */}
-        <div className="player-basic-info">
-          {/* Position & Jersey */}
-          <div>
-            <div className="player-position-jersey">
-              <span className="player-position">
-                {position || 'N/A'}
-              </span>
-              {jerseyNumber && (
-                <span className="player-jersey">
-                  #{jerseyNumber}
-                </span>
-              )}
-            </div>
-            {teamAbbr && (
-              <div className="player-team">
-                {teamAbbr}
-              </div>
-            )}
-          </div>
-
-          {/* Physical Stats */}
-          <div>
-            {(height || weight) && (
-              <div className="player-info-section">
-                <div className="player-info-label">
-                  Physical
-                </div>
-                <div className="player-info-value">
-                  {height && (
-                    <span>{Math.floor(height / 12)}'{height % 12}"</span>
-                  )}
-                  {height && weight && " • "}
-                  {weight && <span>{weight} lbs</span>}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Experience */}
-          {yearsOfExperience !== undefined && yearsOfExperience !== null && (
-            <div className="player-info-section">
-              <div className="player-info-label">
-                Experience
-              </div>
-              <div className="player-info-value">
-                {yearsOfExperience} {yearsOfExperience === 1 ? 'year' : 'years'}
-              </div>
-            </div>
-          )}
-
-          {/* Status */}
-          {status && (
-            <div className="player-info-section">
-              <div className="player-info-label">
-                Status
-              </div>
-              <div className="player-info-value">
-                {status}
-              </div>
-            </div>
-          )}
+      <div className="player-info-header">
+        <h1 className="player-name">{displayName || "Unknown Player"}</h1>
+        <div className="player-subtitle">
+          <span>{position || "N/A"}</span>
+          <span>&bull;</span>
+          <span>#{jerseyNumber || "N/A"}</span>
+          <span>&bull;</span>
+          <span>{teamAbbr || "N/A"}</span>
         </div>
+      </div>
 
-        {/* Additional Details */}
-        {/* College */}
-        {college && (
-          <div className="player-additional-info">
-            College: {college}
-          </div>
-        )}
-
-        {/* Draft */}
-        {draftClub && (
-          <div className="player-additional-info">
-            Draft: {draftClub}
-          </div>
-        )}
-
-        {/* Rookie Year */}
-        {rookieYear && (
-          <div className="player-additional-info">
-            Rookie Year: {rookieYear}
-          </div>
-        )}
-
-        {/* Draft Round */}
-        {draftRound && (
-          <div className="player-additional-info">
-            Draft Round: {draftRound}
-          </div>
-        )}
-
-        {/* Draft Number */}
-        {draftNumber && (
-          <div className="player-additional-info">
-            Draft Number: {draftNumber}
-          </div>
-        )}
+      <div className="player-info-body">
+        <div className="info-item">
+          <span className="info-label">Height</span>
+          <span className="info-value">{height ? `${Math.floor(height / 12)}'${height % 12}"` : "N/A"}</span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">Weight</span>
+          <span className="info-value">{weight ? `${weight} lbs` : "N/A"}</span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">College</span>
+          <span className="info-value">{college || "N/A"}</span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">Experience</span>
+          <span className="info-value">
+            {yearsOfExperience !== undefined && yearsOfExperience !== null
+              ? `${yearsOfExperience} ${yearsOfExperience === 1 ? "year" : "years"}`
+              : "N/A"}
+          </span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">Draft</span>
+          <span className="info-value">
+            {draftRound && draftNumber
+              ? `Round ${draftRound}, Pick ${draftNumber}`
+              : "N/A"}
+          </span>
+        </div>
+        <div className="info-item">
+          <span className="info-label">Status</span>
+          <span className="info-value">{status || "N/A"}</span>
+        </div>
+      </div>
     </div>
   );
 };

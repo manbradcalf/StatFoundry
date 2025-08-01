@@ -411,22 +411,65 @@ h1 {
 /* Responsive design */
 @media (max-width: 768px) {
   .App-header {
-    padding: 20px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
   }
 
   h1 {
-    font-size: 2.2rem;
-    margin-bottom: 12px;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+
+  .App-header i {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
   }
 
   .search-input {
-    padding: 14px 40px 14px 16px;
+    padding: 12px 40px 12px 14px;
+    font-size: 16px;
+  }
+
+  .search-input-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  /* Button row container */
+  .button-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Make buttons equal width */
+  .search-button,
+  .save-button {
+    flex: 1;
     font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .search-button,
+    save-button {
+      display: inline-flex;
+      width: 10vw;
+    }
+  }
+  .primary-button,
+  .secondary-button {
+    padding: 10px 16px;
+    width: 100%;
   }
 
   .App-body {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     padding: 0 16px;
     max-width: 100vw;
     overflow-x: hidden;
@@ -450,40 +493,140 @@ h1 {
   }
 
   .cta-section {
-    margin-top: 24px;
-    padding: 16px 12px;
+    margin-top: 16px;
+    padding: 12px;
   }
 
   .cta-content h3 {
-    font-size: 1rem;
-    margin-bottom: 12px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
   }
 
   .cta-actions {
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    align-items: center;
   }
 
   .cta-divider {
-    width: 100%;
-    height: 1px;
-    background: #e2e8f0;
+    display: none;
   }
 
   .feedback-section p,
   .donation-section p {
-    font-size: 0.85rem;
-    margin-bottom: 10px;
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+    text-align: center;
   }
 
   .feedback-link {
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 
   .donate-button {
-    padding: 7px 12px;
-    font-size: 12px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .feedback-section,
+  .donation-section {
+    text-align: center;
+    align-items: center;
+  }
+
+  /* Optimize suggestions dropdown for mobile */
+  .suggestions-dropdown {
+    font-size: 14px;
+    max-height: 40vh;
+    position: relative;
+    z-index: 1200;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+  }
+
+  .suggestion-item {
+    padding: 10px 12px;
+    line-height: 1.3;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .search-container {
+    position: relative;
+  }
+
+  /* Mobile player info card - keep original headers, improve spacing */
+  @media (max-width: 768px) {
+    .player-info-card {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .player-main-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .player-main-row .player-name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .player-main-row .player-position {
+      font-size: 13px;
+      font-weight: 600;
+      color: #3b82f6;
+    }
+
+    .player-main-row .player-jersey {
+      font-size: 11px;
+      padding: 1px 4px;
+      background-color: #f1f5f9;
+      border-radius: 3px;
+    }
+
+    .player-main-row .player-team {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .player-stats-grid {
+      display: inline-block;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background-color: #f8fafc;
+    }
+
+    .stat-header {
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .stat-value {
+      font-size: 11px;
+      font-weight: 500;
+      color: #1e293b;
+      line-height: 1.2;
+    }
   }
 }
 
@@ -833,6 +976,12 @@ input[type="number"] {
   flex: 1;
 }
 
+/* Desktop: button-row should be horizontal */
+.button-row {
+  display: flex;
+  gap: 12px;
+}
+
 /* Button styling */
 .primary-button {
   background: #3b82f6;
@@ -898,6 +1047,22 @@ input[type="number"] {
   border-color: #dbeafe;
 }
 
+@media (max-width: 768px) {
+  .login-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ffffff;
+    color: #3b82f6;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+}
 /* Breadcrumb Chain Styles */
 .breadcrumb-wrapper {
   width: 100%;
@@ -1122,6 +1287,7 @@ input[type="number"] {
 /* Dynamic Table Styles */
 .dynamic-table-container {
   margin: 20px 0;
+  margin-top: 0px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -1177,7 +1343,7 @@ input[type="number"] {
 .dynamic-table td.first-column {
   position: sticky;
   left: 0;
-  background-color: #fff;
+  background-color: aliceblue;
   z-index: 5;
   border-right: 2px solid #ddd;
 }
@@ -1636,7 +1802,6 @@ input[type="number"] {
 }
 
 .player-detail {
-  margin-top: 40px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -1646,7 +1811,7 @@ input[type="number"] {
 .player-detail-header {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 1rem;
 }
 
 .back-button {
@@ -1672,72 +1837,60 @@ input[type="number"] {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
-.player-name-title {
-  margin: 0 0 16px 0;
-  font-size: 28px;
-  font-weight: bold;
+.player-info-header {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.player-name {
+  font-size: 24px;
+  font-weight: 700;
   color: #1a202c;
+  margin: 0;
 }
 
-.player-basic-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.player-position-jersey {
+.player-subtitle {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.player-position {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.player-jersey {
-  background-color: #edf2f7;
-  padding: 4px 8px;
-  border-radius: 4px;
   font-size: 14px;
-  font-weight: 500;
-  color: #4a5568;
-}
-
-.player-team {
   color: #64748b;
-  font-size: 14px;
   margin-top: 4px;
 }
 
-.player-info-section {
-  margin-bottom: 12px;
+.player-info-body {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr;
+  gap: 8px 16px;
+  padding: 16px;
 }
 
-.player-info-label {
-  font-size: 12px;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
+.info-item {
+  display: contents;
 }
 
-.player-info-value {
-  color: #2d3748;
-}
-
-.player-additional-info {
+.info-label {
   font-size: 14px;
-  color: #64748b;
-  margin-bottom: 4px;
+  font-weight: 500;
+  color: #4a5568;
+  white-space: nowrap;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .player-info-body {
+    grid-template-columns: auto 1fr;
+  }
 }
 
 .section-header {
