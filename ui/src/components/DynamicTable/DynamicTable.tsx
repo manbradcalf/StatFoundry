@@ -58,6 +58,11 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
 
   return (
     <div className="dynamic-table-container">
+      {/* Mobile-only text */}
+      <div className="mobile-only-text">
+        Scroll horizontally to see more columns
+      </div>
+
       {/* Conditionally render export button */}
       {enableExport && (
         <div

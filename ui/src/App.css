@@ -1294,6 +1294,25 @@ input[type="number"] {
   overflow: hidden; /* Prevent container from expanding beyond parent */
 }
 
+/* Mobile-only text */
+.mobile-only-text {
+  display: none;
+  background: #eff6ff;
+  color: #3b82f6;
+  padding: 8px 12px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .mobile-only-text {
+    display: block;
+  }
+}
+
 /* Export button container - ensure it doesn't break layout */
 .dynamic-table-container > div:first-child {
   width: 100%;
