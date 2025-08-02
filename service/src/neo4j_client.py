@@ -1,6 +1,8 @@
-from neo4j import GraphDatabase
-from src.config import URI, AUTH
 import re
+
+from neo4j import GraphDatabase, READ_ACCESS
+
+from src.config import AUTH, URI
 
 # Private query constants (denoted by underscore prefix)
 _fetch_relationships_schema = """
@@ -139,8 +141,9 @@ def execute_query(driver, query):
     # Validate query is read-only
     is_read_only_query(query)
 
-    with driver.session() as session:
+    with driver.session(default_access_mode=READ_ACCESS) as session:  # noqa: F821
         result = session.run(query)
+        # TODO: return [record.data() for record in result] instead
         return result.data()
 
 
