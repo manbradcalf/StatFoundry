@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
+import { User } from "firebase/auth";
 import { useChainContext } from "../contexts/ChainContext";
 import { useModalContext } from "../contexts/ModalContext";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
@@ -14,9 +15,10 @@ import { useAuth } from "../contexts/AuthContext";
 
 interface SearchBarInnerProps {
   onSaveSearch: () => void;
+  user: User | null;
 }
 
-const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
+const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch, user }) => {
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
 
@@ -127,8 +129,9 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch }) => {
           <div className="save-button">
             <button
               className="secondary-button"
-              title="Save this search"
+              title={!user ? "Sign in to save searches" : "Save this search"}
               onClick={onSaveSearch}
+              disabled={!user}
             >
               Save
             </button>
@@ -191,18 +194,13 @@ export const SearchBar: React.FC = () => {
   );
 
   const handleSaveSearch = useCallback(() => {
-    if (!user) {
-      alert("Please sign in to save searches");
-      return;
-    }
-
     if (chainContext.chain.toArray().length === 0) {
       alert("Build a search first before saving");
       return;
     }
 
     setIsSaveModalOpen(true);
-  }, [user, chainContext.chain]);
+  }, [chainContext.chain]);
 
   const handleSaveModalSave = useCallback(
     async (name: string, description?: string) => {
@@ -223,7 +221,7 @@ export const SearchBar: React.FC = () => {
         insertingAtIndex={modalContext.insertingAtIndex}
         onSuggestionSelect={handleSuggestionSelection}
       >
-        <SearchBarInner onSaveSearch={handleSaveSearch} />
+        <SearchBarInner onSaveSearch={handleSaveSearch} user={user} />
       </SearchInputProvider>
 
       <SaveSearchModal

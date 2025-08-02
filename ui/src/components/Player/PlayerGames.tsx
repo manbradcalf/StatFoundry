@@ -15,7 +15,13 @@ export const PlayerGames: React.FC = () => {
   // Determine player type (position_group) from first row
   const playerPosition = tableData[0]?.position;
 
-  const playerGameColumns = ["season", "week", "recent_team", "opponent_team"];
+  const playerGameColumns = [
+    "season",
+    "week",
+    "recent_team",
+    "opponent_team",
+    "game_id",
+  ];
 
   const statColumns = usePositionToStatColumnsMapper(playerPosition);
   if (playerGamesError) {
