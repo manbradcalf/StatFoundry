@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Modal from "react-modal";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -24,6 +24,40 @@ function App() {
           <AppContextProvider>
             <div className="App">
               {/* Login button positioned in top right corner */}
+              <Helmet>
+                <title>Advanced NFL Player Stats Search | StatFoundry</title>
+                <meta
+                  name="description"
+                  content="Search and analyze NFL player stats quickly with StatFoundry. Explore game, season, and career data with powerful tools designed for fantasy football fans."
+                />
+                <link rel="canonical" href="https://www.statfoundry.com/" />
+
+                {/* Optional Open Graph for social previews */}
+                <meta
+                  property="og:title"
+                  content="StatFoundry - Advanced NFL Player Stats"
+                />
+                <meta
+                  property="og:description"
+                  content="Search NFL stats faster than ever. Perfect for fantasy football players."
+                />
+                <meta
+                  property="og:url"
+                  content="https://www.statfoundry.com/"
+                />
+                <meta property="og:type" content="website" />
+
+                {/* Optional Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta
+                  name="twitter:title"
+                  content="StatFoundry - Advanced NFL Player Stats"
+                />
+                <meta
+                  name="twitter:description"
+                  content="Search NFL stats quickly. Analyze players, games, and seasons with ease."
+                />
+              </Helmet>
               <header className="App-header">
                 <h1>StatFoundry</h1>
                 <i>The easiest way to search for NFL stats this millenium</i>
@@ -52,7 +86,7 @@ function App() {
                     NFLVerse
                   </a>
                 </p>
-                <p>PlayerStats : 2000 - 2024</p>
+                <p>PlayerStats from 2000 to 2024</p>
                 <p>
                   developed by{" "}
                   <a
