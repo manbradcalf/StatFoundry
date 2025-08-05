@@ -21,33 +21,59 @@ export const PLAYER_GAME_CONSTRAINTS: GameConstraintDefinition[] = [
   {
     english: "games for [team]",
     englishTemplate: "games for {team}",
-    cypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team}",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.recent_team = {team}",
     queryType: QueryType.FILTER_START,
     slots: [
-      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue }
+      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue },
     ],
-    keywords: ["games", "game"]
+    keywords: ["games", "game"],
   },
   {
     english: "games against [team]",
     englishTemplate: "games against {team}",
-    cypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.opponent_team = {team}",
     queryType: QueryType.FILTER_START,
     slots: [
-      { name: "team", defaultValue: "GB", slotType: SlotType.FilterValue }
+      { name: "team", defaultValue: "GB", slotType: SlotType.FilterValue },
     ],
-    keywords: ["games", "game"]
+    keywords: ["games", "game"],
   },
   {
     english: "during the [2024] season",
     englishTemplate: "during the {season} season",
-    cypherTemplate: "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
     queryType: QueryType.FILTER_START,
     slots: [
-      { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue }
+      { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue },
     ],
-    keywords: ["games", "game", "during"]
-  }
+    keywords: ["games", "game", "during"],
+  },
+  {
+    english: "between the [2020] and [2024] season",
+    englishTemplate: "between the {seasonStart} and {seasonEnd} seasons",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
+    queryType: QueryType.FILTER_START,
+    slots: [
+      {
+        name: "seasonStart",
+        defaultValue: 2020,
+        slotType: SlotType.FilterValue,
+      },
+      { name: "seasonEnd", defaultValue: 2024, slotType: SlotType.FilterValue },
+    ],
+    keywords: [
+      "games",
+      "game",
+      "during",
+      "seasons",
+      "between",
+      "between seasons",
+    ],
+  },
 ];
 
 export const PLAYER_GAME_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
@@ -57,9 +83,9 @@ export const PLAYER_GAME_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
     cypherTemplate: "AND pg.recent_team = {team}",
     queryType: QueryType.FILTER_EXTEND,
     slots: [
-      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue }
+      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue },
     ],
-    keywords: ["games", "game"]
+    keywords: ["games", "game"],
   },
   {
     english: "...and played against [team]",
@@ -67,21 +93,38 @@ export const PLAYER_GAME_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
     cypherTemplate: "AND pg.opponent_team = {team}",
     queryType: QueryType.FILTER_EXTEND,
     slots: [
-      { name: "team", defaultValue: "GB", slotType: SlotType.FilterValue }
+      { name: "team", defaultValue: "GB", slotType: SlotType.FilterValue },
     ],
-    keywords: ["games", "game", "versus", "vs", "against"]
+    keywords: ["games", "game", "versus", "vs", "against"],
+  },
+  {
+    english: "during the [2024] season",
+    englishTemplate: "during the {season} season",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(pg:PlayerGame) WHERE pg.season = {season}",
+    queryType: QueryType.FILTER_EXTEND,
+    slots: [
+      { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue },
+    ],
+    keywords: ["games", "game", "during"],
   },
   {
     english: "in games between the [2020] and [2024] seasons",
-    englishTemplate: "in games between the {seasonStart} and {seasonEnd} seasons",
-    cypherTemplate: "AND pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
+    englishTemplate:
+      "in games between the {seasonStart} and {seasonEnd} seasons",
+    cypherTemplate:
+      "AND pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
     queryType: QueryType.FILTER_EXTEND,
     slots: [
-      { name: "seasonStart", defaultValue: 2020, slotType: SlotType.FilterValue },
-      { name: "seasonEnd", defaultValue: 2024, slotType: SlotType.FilterValue }
+      {
+        name: "seasonStart",
+        defaultValue: 2020,
+        slotType: SlotType.FilterValue,
+      },
+      { name: "seasonEnd", defaultValue: 2024, slotType: SlotType.FilterValue },
     ],
-    keywords: ["games", "game", "between"]
-  }
+    keywords: ["games", "game", "between"],
+  },
 ];
 
 // Simple boolean constraints
@@ -89,13 +132,13 @@ export const PLAYER_GAME_BOOLEAN_CONSTRAINTS = [
   {
     english: "...and won",
     cypher: "AND pg.won = true",
-    keywords: ["won", "lost"]
+    keywords: ["won", "lost"],
   },
   {
     english: "...and lost",
     cypher: "AND pg.won <> true",
-    keywords: ["won", "lost"]
-  }
+    keywords: ["won", "lost"],
+  },
 ];
 
 /**
@@ -114,15 +157,15 @@ export function generatePlayerGameConstraints(): Chunk[] {
       QueryType: constraint.queryType,
       Requires: [
         { Name: "p", AliasType: AliasType.Player },
-        { Name: "pg", AliasType: AliasType.PlayerGame }
+        { Name: "pg", AliasType: AliasType.PlayerGame },
       ],
       Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-      Slots: constraint.slots.map(slot => ({
+      Slots: constraint.slots.map((slot) => ({
         Name: slot.name,
         Value: slot.defaultValue,
         SlotValueTypes: [slot.slotType],
       })),
-      SuggestionKeywords: constraint.keywords
+      SuggestionKeywords: constraint.keywords,
     });
   }
 
@@ -136,12 +179,12 @@ export function generatePlayerGameConstraints(): Chunk[] {
       QueryType: extension.queryType,
       Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
       Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
-      Slots: extension.slots.map(slot => ({
+      Slots: extension.slots.map((slot) => ({
         Name: slot.name,
         Value: slot.defaultValue,
         SlotValueTypes: [slot.slotType],
       })),
-      SuggestionKeywords: extension.keywords
+      SuggestionKeywords: extension.keywords,
     });
   }
 
@@ -154,7 +197,7 @@ export function generatePlayerGameConstraints(): Chunk[] {
       Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
       Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
       Slots: [],
-      SuggestionKeywords: constraint.keywords
+      SuggestionKeywords: constraint.keywords,
     });
   }
 
@@ -166,23 +209,25 @@ export const PLAYER_SEASON_CONSTRAINTS: GameConstraintDefinition[] = [
   {
     english: "seasons for [team]",
     englishTemplate: "who played for {team} in those seasons",
-    cypherTemplate: "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE {team} IN ps.teams",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE {team} IN ps.teams",
     queryType: QueryType.FILTER_START,
     slots: [
-      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue }
+      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue },
     ],
-    keywords: ["seasons", "season"]
+    keywords: ["seasons", "season"],
   },
   {
     english: "during the [2024] season",
     englishTemplate: "during the {season} season",
-    cypherTemplate: "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season = {season}",
+    cypherTemplate:
+      "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season = {season}",
     queryType: QueryType.FILTER_START,
     slots: [
-      { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue }
+      { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue },
     ],
-    keywords: ["seasons", "season", "during"]
-  }
+    keywords: ["seasons", "season", "during"],
+  },
 ];
 
 export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
@@ -192,21 +237,26 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
     cypherTemplate: "AND {team} IN ps.teams",
     queryType: QueryType.FILTER_EXTEND,
     slots: [
-      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue }
+      { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue },
     ],
-    keywords: ["seasons", "season"]
+    keywords: ["seasons", "season"],
   },
   {
     english: "between the [2020] and [2024] seasons",
     englishTemplate: "between the {seasonStart} and {seasonEnd} seasons",
-    cypherTemplate: "AND ps.season >= {seasonStart} AND ps.season <= {seasonEnd}",
+    cypherTemplate:
+      "AND ps.season >= {seasonStart} AND ps.season <= {seasonEnd}",
     queryType: QueryType.FILTER_EXTEND,
     slots: [
-      { name: "seasonStart", defaultValue: 2020, slotType: SlotType.FilterValue },
-      { name: "seasonEnd", defaultValue: 2024, slotType: SlotType.FilterValue }
+      {
+        name: "seasonStart",
+        defaultValue: 2020,
+        slotType: SlotType.FilterValue,
+      },
+      { name: "seasonEnd", defaultValue: 2024, slotType: SlotType.FilterValue },
     ],
-    keywords: ["seasons", "season", "between"]
-  }
+    keywords: ["seasons", "season", "between"],
+  },
 ];
 
 /**
@@ -225,15 +275,15 @@ export function generatePlayerSeasonConstraints(): Chunk[] {
       QueryType: constraint.queryType,
       Requires: [
         { Name: "p", AliasType: AliasType.Player },
-        { Name: "ps", AliasType: AliasType.PlayerSeason }
+        { Name: "ps", AliasType: AliasType.PlayerSeason },
       ],
       Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
-      Slots: constraint.slots.map(slot => ({
+      Slots: constraint.slots.map((slot) => ({
         Name: slot.name,
         Value: slot.defaultValue,
         SlotValueTypes: [slot.slotType],
       })),
-      SuggestionKeywords: constraint.keywords
+      SuggestionKeywords: constraint.keywords,
     });
   }
 
@@ -247,12 +297,12 @@ export function generatePlayerSeasonConstraints(): Chunk[] {
       QueryType: extension.queryType,
       Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
       Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
-      Slots: extension.slots.map(slot => ({
+      Slots: extension.slots.map((slot) => ({
         Name: slot.name,
         Value: slot.defaultValue,
         SlotValueTypes: [slot.slotType],
       })),
-      SuggestionKeywords: extension.keywords
+      SuggestionKeywords: extension.keywords,
     });
   }
 

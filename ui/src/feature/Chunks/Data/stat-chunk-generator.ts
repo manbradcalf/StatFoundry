@@ -15,14 +15,15 @@ export interface StatDefinition {
 export function generateStatChunks(
   stats: StatDefinition[],
   entityType: "season" | "game",
-  slotType: SlotType
+  slotType: SlotType,
 ): Chunk[] {
   const chunks: Chunk[] = [];
-  
+
   const entityAlias = entityType === "season" ? "ps" : "pg";
   const entityLabel = entityType === "season" ? "PlayerSeason" : "PlayerGame";
-  const aliasType = entityType === "season" ? AliasType.PlayerSeason : AliasType.PlayerGame;
-  
+  const aliasType =
+    entityType === "season" ? AliasType.PlayerSeason : AliasType.PlayerGame;
+
   for (const stat of stats) {
     // Filter start chunk
     chunks.push({
@@ -33,7 +34,7 @@ export function generateStatChunks(
       QueryType: QueryType.FILTER_START,
       Requires: [
         { Name: "p", AliasType: AliasType.Player },
-        { Name: entityAlias, AliasType: aliasType }
+        { Name: entityAlias, AliasType: aliasType },
       ],
       Provides: [{ Name: entityAlias, AliasType: aliasType }],
       Slots: [
@@ -49,11 +50,12 @@ export function generateStatChunks(
         },
         {
           Name: "value",
-          Value: stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+          Value:
+            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
-      SuggestionKeywords: [stat.key, entityType]
+      SuggestionKeywords: [stat.key, entityType],
     });
 
     // Filter extend chunk
@@ -78,13 +80,15 @@ export function generateStatChunks(
         },
         {
           Name: "value",
-          Value: stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+          Value:
+            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
-      SuggestionKeywords: [stat.key, entityType]
+      SuggestionKeywords: [stat.key, entityType],
     });
   }
-  
+
   return chunks;
 }
+
