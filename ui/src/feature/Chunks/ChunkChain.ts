@@ -32,7 +32,7 @@ export class ChunkChain {
     // dedup by alias name
     this.Aliases = this.Aliases.filter(
       (alias, index, self) =>
-        index === self.findIndex((t) => t.Name === alias.Name)
+        index === self.findIndex((t) => t.Name === alias.Name),
     );
     return node;
   }
@@ -128,9 +128,13 @@ export class ChunkChain {
 
     this.English = englishParts.join(" ");
     cypherParts.forEach((cypherPart, index) => {
-      if (index === 0 || cypherPart.startsWith("WHERE") || cypherPart.startsWith("AND")) {
+      if (
+        index === 0 ||
+        cypherPart.startsWith("WHERE") ||
+        cypherPart.startsWith("AND")
+      ) {
         // do not append WITH * if we're in a WHERE or AND clause
-        this.Cypher +=  ` ${cypherPart} `;
+        this.Cypher += ` ${cypherPart} `;
       } else {
         this.Cypher += ` WITH * ${cypherPart}`;
       }
@@ -174,7 +178,7 @@ export class ChunkChain {
 function isValidNextChunk(
   chunk: Chunk,
   currentAliases: Alias[],
-  tail?: Chunk
+  tail?: Chunk,
 ): boolean {
   // can't start if we've already started
   if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
@@ -205,15 +209,10 @@ function isValidNextChunk(
     return false;
   }
 
-  // if the chunk has a slot with Name:'stat' and the same Value, return false
-  // todo: this doesnt take into account other chunks in the chain before tail...
-  if (chunk.Slots.some(slot => slot.Name === 'stat' && tail?.Slots.some(s => s.Name === 'stat' && s.Value === slot.Value))) {
-    return false;
-  }
-
-  // once you extend a filter, only keep extending (for now) 
+  // once you extend a filter, only keep extending (for now)
   if (
-    (tail?.QueryType === QueryType.FILTER_EXTEND || tail?.QueryType === QueryType.FILTER_START) &&
+    (tail?.QueryType === QueryType.FILTER_EXTEND ||
+      tail?.QueryType === QueryType.FILTER_START) &&
     chunk.QueryType !== QueryType.FILTER_EXTEND
   ) {
     return false;
@@ -225,7 +224,7 @@ function isValidNextChunk(
       acc[alias.AliasType] = (acc[alias.AliasType] || 0) + 1;
       return acc;
     },
-    {} as Record<string, number>
+    {} as Record<string, number>,
   );
 
   const available = currentAliases.reduce(
@@ -233,11 +232,11 @@ function isValidNextChunk(
       acc[alias.AliasType] = (acc[alias.AliasType] || 0) + 1;
       return acc;
     },
-    {} as Record<string, number>
+    {} as Record<string, number>,
   );
 
   // Check if we have enough of each type
   return Object.entries(needed).every(
-    ([label, count]) => (available[label] || 0) >= count
+    ([label, count]) => (available[label] || 0) >= count,
   );
 }
