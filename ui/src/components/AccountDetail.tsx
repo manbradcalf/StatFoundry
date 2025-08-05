@@ -18,13 +18,12 @@ export const SavedSearchesComponent: React.FC = () => {
   useEffect(() => {
     getUserSavedSearches()
       .then((x) => {
-        console.log(savedSearches);
         setSavedSearches(x);
       })
       .catch((e) => {
         console.log(e);
       });
-  }, [getUserSavedSearches, setSavedSearches, savedSearches]);
+  }, [getUserSavedSearches, setSavedSearches]);
 
   const handleSearchFromSavedSearch = (savedSearch: SavedSearch) => {
     console.log("searching...", savedSearch);
@@ -35,6 +34,7 @@ export const SavedSearchesComponent: React.FC = () => {
       {savedSearches?.map((x) => {
         return (
           <div
+            key={x.id}
             style={{
               outline: "solid 1px",
               padding: "8px",
