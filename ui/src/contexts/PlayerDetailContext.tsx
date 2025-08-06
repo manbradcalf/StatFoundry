@@ -21,6 +21,7 @@ interface PlayerDetailContextType {
   playerInfoError: string | null;
   playerGamesError: string | null;
   playerSeasonsError: string | null;
+  showSeason2000Warning: boolean;
 
   // actions
   fetchPlayerInfo: (gsisId: string) => Promise<void>;
@@ -65,6 +66,8 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
   const [playerSeasonsError, setPlayerSeasonsError] = useState<string | null>(
     null,
   );
+  const [showSeason2000Warning, setShowSeason2000Warning] =
+    useState<boolean>(false);
 
   const fetchPlayerInfoByGsisId = useCallback(async (gsisId: string) => {
     setIsPlayerInfoLoading(true);
@@ -141,6 +144,13 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
       }
 
       const data = await response.json();
+      if (
+        // if they have a season from 2000, tell the user we dont go further back
+        data.filter((x: { ps: PlayerSeasonProperties }) => x.ps.season === 2000)
+          .length !== 0
+      ) {
+        setShowSeason2000Warning(true);
+      }
       setPlayerSeasons(data);
     } catch (err: any) {
       const errorMessage =
@@ -162,6 +172,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     playerInfoError: playerInfoError,
     playerGamesError: playerGamesError,
     playerSeasonsError: playerSeasonsError,
+    showSeason2000Warning: showSeason2000Warning,
     fetchPlayerInfo: fetchPlayerInfoByGsisId,
     fetchPlayerGames: fetchPlayerGamesByGsisId,
     fetchPlayerSeasons: fetchPlayerSeasonsByGsisId,
