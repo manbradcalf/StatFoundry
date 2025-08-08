@@ -18,12 +18,17 @@ export function fillTemplate(template: string, slots: Slot[]): string {
   slots.forEach(({ Name, Value }) => {
     const pattern = new RegExp(`\\{${Name}(?:\\.[a-zA-Z0-9_]+)?\\}`, "g");
 
+    // Convert string back to number for numeric filter values
+    let finalValue = Value;
+    if (Name === "value" && typeof Value === "string" && !isNaN(Number(Value)) && Value.trim() !== "") {
+      finalValue = Number(Value);
+    }
 
     // Only quote the value if it's a string AND its name indicates
     // it's a literal value, not an identifier or operator.
     const shouldQuote =
-      typeof Value === "string" && !nonLiteralNames.includes(Name);
-    const replacement = shouldQuote ? `"${Value}"` : String(Value);
+      typeof finalValue === "string" && !nonLiteralNames.includes(Name);
+    const replacement = shouldQuote ? `"${finalValue}"` : String(finalValue);
 
     output = output.replace(pattern, replacement);
   });

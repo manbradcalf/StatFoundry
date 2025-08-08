@@ -39,8 +39,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     setLocalSlots((prev) => {
       const updated = [...prev];
       const original = prev[index];
-      const parsedValue = typeof original.Value === "number" ? Number(newValue) : newValue;
-      updated[index] = { ...original, Value: parsedValue };
+      updated[index] = { ...original, Value: newValue };
       return updated;
     });
   };
@@ -78,7 +77,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     return (
       <input
         ref={isFirstInput ? firstInputRef : undefined}
-        type={typeof slot.Value === "number" ? "number" : "text"}
+        type="text"
         value={slot.Value}
         onChange={(e) => handleChange(idx, e.target.value)}
         style={{ width: "100%", padding: "0.5rem" }}

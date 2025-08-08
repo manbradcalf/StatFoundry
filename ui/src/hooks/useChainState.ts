@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
-import { ChunkChain } from '../feature/Chunks/ChunkChain';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
+import { useState, useCallback } from "react";
+import { ChunkChain } from "../feature/Chunks/ChunkChain";
+import { Chunk } from "../feature/Chunks/Types/Chunk";
 
 interface UseChainStateParams {
   onEditChunk?: (index: number, chunk: Chunk) => void;
@@ -32,7 +32,7 @@ interface UseChainStateReturn {
 
 export const useChainState = ({
   onEditChunk,
-  onInsertMode
+  onInsertMode,
 }: UseChainStateParams = {}): UseChainStateReturn => {
   const [chain, setChain] = useState(new ChunkChain());
   const [query, setQuery] = useState("");
@@ -55,109 +55,113 @@ export const useChainState = ({
   }, []);
 
   // Shared chain rebuilding logic
-  const updateChain = useCallback((modifyFn: (chain: ChunkChain) => ChunkChain) => {
-    const newChain = modifyFn(new ChunkChain());
-    newChain.compile();
-    setChain(newChain);
-    setQuery(""); // Always clear search bar
-    // todo: suggest
-  }, []);
+  const updateChain = useCallback(
+    (modifyFn: (chain: ChunkChain) => ChunkChain) => {
+      const newChain = modifyFn(new ChunkChain());
+      newChain.compile();
+      setChain(newChain);
+      setQuery(""); // Always clear search bar
+    },
+    [],
+  );
 
   // Opens the slot modal to edit an existing chunk at the specified index
-  const editChunk = useCallback((index: number) => {
-    const chainArray = chain.toArray();
-    if (index < 0 || index >= chainArray.length) {
-      console.error('Invalid chunk index:', index);
-      return;
-    }
+  const editChunk = useCallback(
+    (index: number) => {
+      const chainArray = chain.toArray();
+      if (index < 0 || index >= chainArray.length) {
+        console.error("Invalid chunk index:", index);
+        return;
+      }
 
-    const chunkToEdit = chainArray[index];
+      const chunkToEdit = chainArray[index];
 
-    // Only editable chunks have slots
-    if (chunkToEdit.Slots.length === 0) {
-      console.error('Cannot edit chunk with no slots:', chunkToEdit.English);
-      return;
-    }
+      // Only editable chunks have slots
+      if (chunkToEdit.Slots.length === 0) {
+        console.error("Cannot edit chunk with no slots:", chunkToEdit.English);
+        return;
+      }
 
-    // Create a copy with the original templates restored for editing
-    const chunkCopy = {
-      ...chunkToEdit,
-      English: chunkToEdit.EnglishTemplate!,   // Restore template version
-      Cypher: chunkToEdit.CypherTemplate!,     // Restore template version  
-      Slots: chunkToEdit.Slots.map((s) => ({ ...s }))  // Keep current values for pre-filling
-    };
+      // Create a copy with the original templates restored for editing
+      const chunkCopy = {
+        ...chunkToEdit,
+        English: chunkToEdit.EnglishTemplate!, // Restore template version
+        Cypher: chunkToEdit.CypherTemplate!, // Restore template version
+        Slots: chunkToEdit.Slots.map((s) => ({ ...s })), // Keep current values for pre-filling
+      };
 
-    onEditChunk?.(index, chunkCopy);
-  }, [chain, onEditChunk]);
+      onEditChunk?.(index, chunkCopy);
+    },
+    [chain, onEditChunk],
+  );
 
   // Sets up insertion mode at the specified index
-  const insertChunkAt = useCallback((index: number) => {
-    onInsertMode?.(index);
-    setQuery(''); // Clear query to show all suggestions
-    focusSearchBar(); // Trigger focus
-  }, [onInsertMode, focusSearchBar]);
+  const insertChunkAt = useCallback(
+    (index: number) => {
+      onInsertMode?.(index);
+      setQuery(""); // Clear query to show all suggestions
+      focusSearchBar(); // Trigger focus
+    },
+    [onInsertMode, focusSearchBar],
+  );
 
   // Remove a chunk from the chain at the specified index
-  const removeChunk = useCallback((index: number) => {
-    const chainArray = chain.toArray();
-    if (index < 0 || index >= chainArray.length) return;
+  const removeChunk = useCallback(
+    (index: number) => {
+      const chainArray = chain.toArray();
+      if (index < 0 || index >= chainArray.length) return;
 
-    updateChain((newChain) => {
-      chainArray.forEach((chunk, i) => {
-        if (i !== index) {
-          newChain.append(chunk);
-        }
+      updateChain((newChain) => {
+        chainArray.forEach((chunk, i) => {
+          if (i !== index) {
+            newChain.append(chunk);
+          }
+        });
+        return newChain;
       });
-      return newChain;
-    });
-  }, [chain, updateChain]);
+    },
+    [chain, updateChain],
+  );
 
   // Append a chunk to the end of the chain
-  const appendChunk = useCallback((chunk: Chunk) => {
-    console.log('🔗 Chunk appended to chain:', {
-      addedChunk: chunk.English,
-      previousChain: chain.toArray().map(c => c.English),
-      newChainLength: chain.toArray().length + 1
-    });
-    updateChain((newChain) => {
-      chain.toArray().forEach(existingChunk => newChain.append(existingChunk));
-      newChain.append(chunk);
-      console.log(chain.toArray())
-      return newChain;
-    });
-  }, [chain, updateChain]);
+  const appendChunk = useCallback(
+    (chunk: Chunk) => {
+      updateChain((newChain) => {
+        chain
+          .toArray()
+          .forEach((existingChunk) => newChain.append(existingChunk));
+        newChain.append(chunk);
+        return newChain;
+      });
+    },
+    [chain, updateChain],
+  );
 
   // Insert a chunk at a specific index
-  const insertChunk = useCallback((index: number, chunk: Chunk) => {
-    console.log('🔗 Chunk inserted into chain:', {
-      insertIndex: index,
-      addedChunk: chunk.English,
-      previousChain: chain.toArray().map(c => c.English),
-      newChainLength: chain.toArray().length + 1
-    });
-    updateChain((newChain) => {
-      const chainArray = [...chain.toArray()];
-      chainArray.splice(index, 0, chunk);
-      chainArray.forEach(existingChunk => newChain.append(existingChunk));
-      return newChain;
-    });
-  }, [chain, updateChain]);
+  const insertChunk = useCallback(
+    (index: number, chunk: Chunk) => {
+      updateChain((newChain) => {
+        const chainArray = [...chain.toArray()];
+        chainArray.splice(index, 0, chunk);
+        chainArray.forEach((existingChunk) => newChain.append(existingChunk));
+        return newChain;
+      });
+    },
+    [chain, updateChain],
+  );
 
   // Update an existing chunk at a specific index
-  const updateChunkAtIndex = useCallback((index: number, chunk: Chunk) => {
-    console.log('🔗 Chunk updated in chain:', {
-      updateIndex: index,
-      newChunk: chunk.English,
-      previousChunk: chain.toArray()[index]?.English,
-    });
-    console.log("chain", chain)
-    updateChain((newChain) => {
-      const chainArray = [...chain.toArray()];
-      chainArray[index] = chunk;
-      chainArray.forEach(existingChunk => newChain.append(existingChunk));
-      return newChain;
-    });
-  }, [chain, updateChain]);
+  const updateChunkAtIndex = useCallback(
+    (index: number, chunk: Chunk) => {
+      updateChain((newChain) => {
+        const chainArray = [...chain.toArray()];
+        chainArray[index] = chunk;
+        chainArray.forEach((existingChunk) => newChain.append(existingChunk));
+        return newChain;
+      });
+    },
+    [chain, updateChain],
+  );
 
   return {
     // State
@@ -179,6 +183,6 @@ export const useChainState = ({
     removeChunk,
     appendChunk,
     insertChunk,
-    updateChunkAtIndex
+    updateChunkAtIndex,
   };
 };
