@@ -183,6 +183,7 @@
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #e2e8f0;
+  margin-bottom: 8px;
 }
 
 .faqpage-question {
@@ -245,7 +246,7 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 6px;
   }
-  
+
   .stat-item-display {
     padding: 6px 8px;
     font-size: 0.8rem;
