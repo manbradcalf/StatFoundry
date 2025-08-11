@@ -19,8 +19,11 @@ export function fillTemplate(template: string, slots: Slot[]): string {
     const pattern = new RegExp(`\\{${Name}(?:\\.[a-zA-Z0-9_]+)?\\}`, "g");
 
     // Convert string back to number for numeric filter values
+    // "value" represents stat values (rushing yards, completions, etc.)
+    // but we also need to handle other numeric slots like seasons that users type
     let finalValue = Value;
-    if (Name === "value" && typeof Value === "string" && !isNaN(Number(Value)) && Value.trim() !== "") {
+    const numericSlots = ["value", "season", "seasonStart", "seasonEnd"];
+    if (numericSlots.includes(Name) && typeof Value === "string" && !isNaN(Number(Value)) && Value.trim() !== "") {
       finalValue = Number(Value);
     }
 

@@ -1,17 +1,17 @@
-import React, { ReactElement } from 'react';
-import { render, RenderOptions } from '@testing-library/react';
-import { AppContextProvider } from '../../contexts/AppContextProvider';
-import Modal from 'react-modal';
+import React, { ReactElement } from "react";
+import { render, RenderOptions } from "@testing-library/react";
+import { AppContextProvider } from "../../contexts/AppContextProvider";
+import Modal from "react-modal";
 
 // Mock Modal setup to prevent warnings
 beforeAll(() => {
   // Create a div to use as modal root if it doesn't exist
-  if (!document.getElementById('modal-root')) {
-    const modalRoot = document.createElement('div');
-    modalRoot.setAttribute('id', 'modal-root');
+  if (!document.getElementById("modal-root")) {
+    const modalRoot = document.createElement("div");
+    modalRoot.setAttribute("id", "modal-root");
     document.body.appendChild(modalRoot);
   }
-  Modal.setAppElement('#modal-root');
+  Modal.setAppElement("#modal-root");
 });
 
 // Mock fetch for useSearchAPI
@@ -27,7 +27,7 @@ export const mockFetch = (response: any, ok: boolean = true) => {
 };
 
 // Mock fetch to reject (network error)
-export const mockFetchError = (error: string = 'Network request failed') => {
+export const mockFetchError = (error: string = "Network request failed") => {
   (global.fetch as jest.Mock).mockRejectedValueOnce(new Error(error));
 };
 
@@ -38,19 +38,15 @@ export const clearFetchMocks = () => {
 
 // Custom render with AppContextProvider
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <AppContextProvider>
-      {children}
-    </AppContextProvider>
-  );
+  return <AppContextProvider>{children}</AppContextProvider>;
 };
 
 const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
+  options?: Omit<RenderOptions, "wrapper">,
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
-export * from '@testing-library/react';
+export * from "@testing-library/react";
 export { customRender as render };
 
 // Helper to get chunks for testing
@@ -73,19 +69,21 @@ export const getTestChunks = () => {
       Slots: [],
     },
     {
-      English: "games with {operator} {value} {statName}",
-      EnglishTemplate: "games with {operator} {value} {statName}",
-      Cypher: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.{statName} {operator} {value}",
-      CypherTemplate: "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.{statName} {operator} {value}",
+      English: "with {operator} {value} {statName}",
+      EnglishTemplate: "with {operator} {value} {statName}",
+      Cypher:
+        "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.{statName} {operator} {value}",
+      CypherTemplate:
+        "MATCH (p)-[:HAD]->(pg:PlayerGame) WHERE pg.{statName} {operator} {value}",
       QueryType: "FILTER_WITH_STATS",
       Requires: [{ Name: "p", AliasType: "Player" }],
       Provides: [{ Name: "pg", AliasType: "PlayerGame" }],
       Slots: [
         { Name: "operator", Value: "", Type: "operator" },
         { Name: "value", Value: "", Type: "number" },
-        { Name: "statName", Value: "", Type: "stat" }
+        { Name: "statName", Value: "", Type: "stat" },
       ],
-    }
+    },
   ];
 };
 
@@ -93,19 +91,23 @@ export const getTestChunks = () => {
 export const simulateUserFlow = {
   selectSuggestion: (chunk: any) => ({
     chunk,
-    displayText: chunk.English
+    displayText: chunk.English,
   }),
-  
-  fillSlots: (slots: any[]) => 
-    slots.map(slot => ({ ...slot, Value: getDefaultSlotValue(slot) })),
+
+  fillSlots: (slots: any[]) =>
+    slots.map((slot) => ({ ...slot, Value: getDefaultSlotValue(slot) })),
 };
 
 const getDefaultSlotValue = (slot: any) => {
   switch (slot.Type) {
-    case 'operator': return '>=';
-    case 'number': return '1000';
-    case 'stat': return 'rushing_yards';
-    default: return 'test_value';
+    case "operator":
+      return ">=";
+    case "number":
+      return "1000";
+    case "stat":
+      return "rushing_yards";
+    default:
+      return "test_value";
   }
 };
 
@@ -113,4 +115,6 @@ const getDefaultSlotValue = (slot: any) => {
 export const mockGetAllChunks = jest.fn(() => getTestChunks());
 
 // Wait for async operations to complete
-export const waitForAsyncOperations = () => new Promise(resolve => setTimeout(resolve, 0));
+export const waitForAsyncOperations = () =>
+  new Promise((resolve) => setTimeout(resolve, 0));
+

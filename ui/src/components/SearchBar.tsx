@@ -18,9 +18,32 @@ interface SearchBarInnerProps {
   user: User | null;
 }
 
-const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch, user }) => {
+const SearchBarInner: React.FC<SearchBarInnerProps> = ({
+  onSaveSearch,
+  user,
+}) => {
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
+
+  // Rotating placeholder examples using supported chunks
+  const placeholderExamples = [
+    "Try: 'RB Games with > 100 rushing yards'",
+    "Try: 'QB Games during the 2024 season'",
+    "Try: 'WR Games with > 5 receptions'",
+    "Try: 'QB Games with > 20 completions'",
+    "Try: 'RB Seasons with > 1000 rushing yards'",
+    "Try: 'WR Seasons with > 80 receptions'",
+  ];
+
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  // Rotate placeholder every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholderExamples.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [placeholderExamples.length]);
 
   const {
     query,
@@ -109,7 +132,7 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({ onSaveSearch, user }) =
             placeholder={
               chainContext.chain.toArray().length > 0
                 ? "Add another filter..."
-                : "Start building your query..."
+                : placeholderExamples[placeholderIndex]
             }
             className="search-input"
             autoComplete="off"

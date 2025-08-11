@@ -60,7 +60,7 @@ export function generateStatChunks(
 
     // Filter extend chunk
     chunks.push({
-      English: `...and [${stat.key}]`,
+      English: `[${stat.key}]`,
       Cypher: "",
       EnglishTemplate: `and with {condition} {value} {stat}`,
       CypherTemplate: ` AND ${entityAlias}.{stat} {condition} {value}`,
@@ -91,4 +91,3 @@ export function generateStatChunks(
 
   return chunks;
 }
-

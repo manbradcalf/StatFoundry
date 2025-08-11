@@ -12,9 +12,21 @@ export interface PositionDefinition {
 
 export const POSITIONS: PositionDefinition[] = [
   { code: "QB", fullName: "quarterback", keywords: ["QB", "quarterback"] },
-  { code: "RB", fullName: "running back", keywords: ["RB", "running back", "running backs"] },
-  { code: "WR", fullName: "wide receiver", keywords: ["WR", "wide receiver", "wide receivers"] },
-  { code: "TE", fullName: "tight end", keywords: ["TE", "tight end", "tight ends"] },
+  {
+    code: "RB",
+    fullName: "running back",
+    keywords: ["RB", "running back", "running backs"],
+  },
+  {
+    code: "WR",
+    fullName: "wide receiver",
+    keywords: ["WR", "wide receiver", "wide receivers"],
+  },
+  {
+    code: "TE",
+    fullName: "tight end",
+    keywords: ["TE", "tight end", "tight ends"],
+  },
 ];
 
 // Entity relationship definitions
@@ -31,21 +43,21 @@ export const ENTITY_RELATIONSHIPS: EntityRelationship[] = [
     entityLabel: "PlayerGame",
     aliasName: "pg",
     aliasType: AliasType.PlayerGame,
-    english: "Player Games",
-    keywords: ["player games", "player game"]
+    english: "Games",
+    keywords: ["player games", "player game"],
   },
   {
     entityLabel: "PlayerSeason",
     aliasName: "ps",
     aliasType: AliasType.PlayerSeason,
-    english: "Player Seasons",
-    keywords: ["player seasons", "player season"]
+    english: "Seasons",
+    keywords: ["player seasons", "player season"],
   },
   // {
   //   entityLabel: "TeamSeason",
   //   aliasName: "ts",
   //   aliasType: AliasType.TeamSeason,
-  //   english: "Team Seasons", 
+  //   english: "Team Seasons",
   //   keywords: ["team seasons", "team season"]
   // },
   // {
@@ -76,7 +88,7 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
     queryType: QueryType.MATCH_START,
     slotName: "name",
     defaultValue: "Josh Allen",
-    keywords: ["name", "player name", "player"]
+    keywords: ["name", "player name", "player"],
   },
   {
     english: "who are currently on [team]",
@@ -85,7 +97,7 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
     queryType: QueryType.FILTER_START,
     slotName: "team",
     defaultValue: "SEA",
-    keywords: ["team"]
+    keywords: ["team"],
   },
   // {
   //   english: "who went to [college]",
@@ -104,27 +116,27 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
 export function generatePositionChunks(): Chunk[] {
   const chunks: Chunk[] = [
     // Generic "Players" chunk
-    // {
-    //   English: "Players",
-    //   Cypher: "MATCH (p:Player)",
-    //   QueryType: QueryType.MATCH_START,
-    //   Requires: [],
-    //   Provides: [{ Name: "p", AliasType: AliasType.Player }],
-    //   Slots: [],
-    //   SuggestionKeywords: ["players", "player"]
-    // }
+    {
+      English: "Player",
+      Cypher: "MATCH (p:Player)",
+      QueryType: QueryType.MATCH_START,
+      Requires: [],
+      Provides: [{ Name: "p", AliasType: AliasType.Player }],
+      Slots: [],
+      SuggestionKeywords: ["players", "player"],
+    },
   ];
 
   // Position-specific chunks
   for (const position of POSITIONS) {
     chunks.push({
-      English: `${position.code}s`,
+      English: `${position.code}`,
       Cypher: `MATCH (p:Player) WHERE p.position = '${position.code}'`,
       QueryType: QueryType.MATCH_START,
       Requires: [],
       Provides: [{ Name: "p", AliasType: AliasType.Player }],
       Slots: [],
-      SuggestionKeywords: position.keywords
+      SuggestionKeywords: position.keywords,
     });
   }
 
@@ -135,7 +147,7 @@ export function generatePositionChunks(): Chunk[] {
  * Generates match chunks for entity relationships
  */
 export function generateEntityRelationshipChunks(): Chunk[] {
-  const chunks: Chunk[] = []
+  const chunks: Chunk[] = [];
   //   // Generic "Teams" chunk
   //   {
   //     English: "Teams",
@@ -151,7 +163,9 @@ export function generateEntityRelationshipChunks(): Chunk[] {
   // Entity relationship chunks
   for (const entity of ENTITY_RELATIONSHIPS) {
     const parentAlias = entity.entityLabel.startsWith("Player") ? "p" : "t";
-    const parentType = entity.entityLabel.startsWith("Player") ? AliasType.Player : AliasType.Team;
+    const parentType = entity.entityLabel.startsWith("Player")
+      ? AliasType.Player
+      : AliasType.Team;
 
     chunks.push({
       English: entity.english,
@@ -163,7 +177,7 @@ export function generateEntityRelationshipChunks(): Chunk[] {
         { Name: entity.aliasName, AliasType: entity.aliasType },
       ],
       Slots: [],
-      SuggestionKeywords: entity.keywords
+      SuggestionKeywords: entity.keywords,
     });
   }
 
@@ -187,7 +201,10 @@ export function generatePlayerInfoChunks(): Chunk[] {
       EnglishTemplate: filter.englishTemplate,
       CypherTemplate: filter.cypherTemplate,
       QueryType: queryType,
-      Requires: queryType === QueryType.MATCH_START ? [] : [{ Name: "p", AliasType: AliasType.Player }],
+      Requires:
+        queryType === QueryType.MATCH_START
+          ? []
+          : [{ Name: "p", AliasType: AliasType.Player }],
       Provides: [{ Name: "p", AliasType: AliasType.Player }],
       Slots: [
         {
@@ -196,7 +213,7 @@ export function generatePlayerInfoChunks(): Chunk[] {
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
-      SuggestionKeywords: filter.keywords
+      SuggestionKeywords: filter.keywords,
     });
   }
 

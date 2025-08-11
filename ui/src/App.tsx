@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Modal from "react-modal";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -10,6 +10,11 @@ import { CTA } from "./components/CTA";
 import { SearchContent } from "./components/SearchContent";
 import { PlayerDetail } from "./components/Player/PlayerDetail";
 import { AccountDetail } from "./components/AccountDetail";
+import { FAQPage } from "./components/FAQPage";
+import { HelpBar } from "./components/HelpBar";
+import { VideoTutorials } from "./components/VideoTutorials";
+import { StatsPage } from "./components/StatsComponent";
+import { AboutPage } from "./components/AboutPage";
 
 function App() {
   useEffect(() => {
@@ -60,13 +65,18 @@ function App() {
               </Helmet>
               <header className="App-header">
                 <h1>StatFoundry</h1>
-                <i>The easiest way to search for NFL stats this millenium</i>
+                <i>Do your own research. Be your own expert.</i>
                 <LoginButton />
+                <HelpBar />
               </header>
               <div className="App-body">
                 <Routes>
                   <Route path="/" element={<SearchContent />} />
                   <Route path="/account" element={<AccountDetail />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/faqs" element={<FAQPage />} />
+                  <Route path="/video-tutorials" element={<VideoTutorials />} />
+                  <Route path="/stats" element={<StatsPage />} />
                   <Route
                     path="/players/:gsisId/:slug"
                     element={<PlayerDetail />}
