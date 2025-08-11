@@ -29,6 +29,7 @@ const PASSING_STATS: StatDefinition[] = [
 
 const RUSHING_STATS: StatDefinition[] = [
   { key: "rushing_yards", type: "number", defaultValue: 100 },
+  { key: "rushing_yards", type: "number", defaultValue: 100 },
   { key: "rushing_tds", type: "number", defaultValue: 1 },
   { key: "rushing_first_downs", type: "number", defaultValue: 5 },
   { key: "rushing_epa", type: "number", defaultValue: 3 },
@@ -36,6 +37,7 @@ const RUSHING_STATS: StatDefinition[] = [
   { key: "rushing_fumbles", type: "number", defaultValue: 1 },
   { key: "rushing_fumbles_lost", type: "number", defaultValue: 1 },
   { key: "carries", type: "number", defaultValue: 15 },
+  { key: "yards_per_carry", type: "number", defaultValue: 3 },
 ];
 
 const RECEIVING_STATS: StatDefinition[] = [

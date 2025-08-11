@@ -17,6 +17,15 @@ export const VideoTutorials: React.FC = () => {
       </div>
       <div className="faqpage-wrapper">
         <div className="faqpage-question">Edit your query</div>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/z_V_FYpnNcA?si=7BLMz1-oeJPBwZFG"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
       </div>
       <div className="faqpage-wrapper">
         <div className="faqpage-question">
