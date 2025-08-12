@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSavedSearches } from "../hooks/useSavedSearches";
 import { SavedSearch } from "../types/SavedSearch";
+import { RouterProvider } from "react-router-dom";
+import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 
 export const AccountDetail: React.FC = () => {
   return (
@@ -13,11 +15,13 @@ export const AccountDetail: React.FC = () => {
 export const SavedSearchesComponent: React.FC = () => {
   const [savedSearches, setSavedSearches] = useState<SavedSearch[] | null>([]);
   const { getUserSavedSearches } = useSavedSearches();
+  const { executeSearch } = useSearchAPIContext();
 
   // todo: i dont love this mixing of async and promises throughout the project
   useEffect(() => {
     getUserSavedSearches()
-      .then((x) => {
+      .then((x: SavedSearch[]) => {
+        console.log(x);
         setSavedSearches(x);
       })
       .catch((e) => {
@@ -26,33 +30,28 @@ export const SavedSearchesComponent: React.FC = () => {
   }, [getUserSavedSearches, setSavedSearches]);
 
   const handleSearchFromSavedSearch = (savedSearch: SavedSearch) => {
+    executeSearch(savedSearch.cypher, [], "");
     console.log("searching...", savedSearch);
   };
 
   return (
     <div style={{ display: "inline-block" }}>
-      {savedSearches?.map((x) => {
-        return (
-          <div
-            key={x.id}
-            style={{
-              outline: "solid 1px",
-              padding: "8px",
-              width: "auto",
-              alignSelf: "center",
-            }}
-          >
-            <p>Name: {x.name}</p>
-            <p>Description: {x.description}</p>
-            <p>Id: {x.id}</p>
-            <p>Created: {x.createdAt.seconds}</p>
-            <p>updatedAt: {x.updatedAt.seconds}</p>
-            <button onClick={() => handleSearchFromSavedSearch(x)}>
-              Search
-            </button>
-          </div>
-        );
-      })}
+      <div className="faqpage-wrapper">
+        <div className="faqpage-question">
+          <p>Saved Searches</p>
+        </div>
+        {savedSearches?.map((x) => {
+          return (
+            <div className="faqpage-wrapper">
+              <h3>{x.name}</h3>
+              <p>{x.description}</p>
+              <button onClick={() => handleSearchFromSavedSearch(x)}>
+                Search
+              </button>
+            </div>
+          );
+        })}
+      </div>{" "}
     </div>
   );
 };

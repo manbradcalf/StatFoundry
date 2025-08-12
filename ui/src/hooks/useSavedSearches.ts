@@ -68,7 +68,7 @@ export const useSavedSearches = () => {
           return null;
         }
 
-        return savedSearchService.saveDataToChain(savedSearch);
+        return savedSearchService.mapSaveDataToChain(savedSearch);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load search");
         return null;

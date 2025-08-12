@@ -9,6 +9,8 @@ export interface SavedSearch {
   chunks: Chunk[];
   createdAt: Timestamp;
   updatedAt: Timestamp;
+  cypher: string;
+  english: string;
 }
 
 export interface CreateSavedSearchData {
@@ -18,4 +20,3 @@ export interface CreateSavedSearchData {
   cypher: string;
   english: string;
 }
-

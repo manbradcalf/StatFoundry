@@ -110,7 +110,7 @@ export const savedSearchService = {
   /**
    * Convert saved search data back to ChunkChain
    */
-  saveDataToChain(savedSearch: SavedSearch): ChunkChain {
+  mapSaveDataToChain(savedSearch: SavedSearch): ChunkChain {
     const chain = new ChunkChain();
     savedSearch.chunks.forEach((chunk) => chain.append(chunk));
     chain.compile();
