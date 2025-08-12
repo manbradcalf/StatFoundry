@@ -21,10 +21,11 @@ const PASSING_STATS: StatDefinition[] = [
   { key: "passing_air_yards", type: "number", defaultValue: 200 },
   { key: "passing_first_downs", type: "number", defaultValue: 10 },
   { key: "passing_epa", type: "number", defaultValue: 5 },
-  { key: "passing_2pt_conversions", type: "number", defaultValue: 1 },
   { key: "passing_fumbles", type: "number", defaultValue: 1 },
   { key: "passing_fumbles_lost", type: "number", defaultValue: 1 },
   { key: "passing_fumbles_recovered", type: "number", defaultValue: 1 },
+  // todo: 2pt_conversions are a bool in the db. Why?
+  // { key: "passing_2pt_conversions", type: "number", defaultValue: 1 },
 ];
 
 const RUSHING_STATS: StatDefinition[] = [
@@ -33,11 +34,12 @@ const RUSHING_STATS: StatDefinition[] = [
   { key: "rushing_tds", type: "number", defaultValue: 1 },
   { key: "rushing_first_downs", type: "number", defaultValue: 5 },
   { key: "rushing_epa", type: "number", defaultValue: 3 },
-  { key: "rushing_2pt_conversions", type: "number", defaultValue: 1 },
   { key: "rushing_fumbles", type: "number", defaultValue: 1 },
   { key: "rushing_fumbles_lost", type: "number", defaultValue: 1 },
   { key: "carries", type: "number", defaultValue: 15 },
   { key: "yards_per_carry", type: "number", defaultValue: 3 },
+  // todo: 2pt_conversions are a bool in the db. Why?
+  // { key: "rushing_2pt_conversions", type: "number", defaultValue: 1 },
 ];
 
 const RECEIVING_STATS: StatDefinition[] = [
@@ -47,12 +49,13 @@ const RECEIVING_STATS: StatDefinition[] = [
   { key: "receiving_air_yards", type: "number", defaultValue: 80 },
   { key: "receiving_first_downs", type: "number", defaultValue: 5 },
   { key: "receiving_epa", type: "number", defaultValue: 3 },
-  { key: "receiving_2pt_conversions", type: "number", defaultValue: 1 },
   { key: "receiving_fumbles", type: "number", defaultValue: 1 },
   { key: "receiving_fumbles_lost", type: "number", defaultValue: 1 },
   { key: "air_yards_share", type: "number", defaultValue: 0.2 },
   { key: "targets", type: "number", defaultValue: 8 },
   { key: "target_share", type: "number", defaultValue: 0.15 },
+  // todo: 2pt_conversions are a bool in the db. Why?
+  // { key: "receiving_2pt_conversions", type: "number", defaultValue: 1 },
 ];
 
 // Generate all stat chunks
