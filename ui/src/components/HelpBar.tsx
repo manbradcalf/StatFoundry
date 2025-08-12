@@ -23,6 +23,10 @@ export const HelpBar: React.FC = () => {
       <Link className="helpbar-text" to="/about">
         About
       </Link>
+      <div className="helpbar-divider" />
+      <Link className="helpbar-text" to="/account">
+        Account
+      </Link>
     </div>
   );
 };
