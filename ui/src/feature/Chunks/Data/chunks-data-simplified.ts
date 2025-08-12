@@ -11,6 +11,7 @@ import {
 } from "./game-constraint-generators";
 import { SlotType } from "../Enums/SlotType";
 
+// TODO: This is the part that should be automatically built on startup based on our /schema endpoint response
 // Consolidated stat definitions
 const PASSING_STATS: StatDefinition[] = [
   { key: "attempts", type: "number", defaultValue: 20 },
@@ -57,6 +58,10 @@ const RECEIVING_STATS: StatDefinition[] = [
   // todo: 2pt_conversions are a bool in the db. Why?
   // { key: "receiving_2pt_conversions", type: "number", defaultValue: 1 },
 ];
+const FANTASY_STATS: StatDefinition[] = [
+  { key: "fantasy_points", type: "number", defaultValue: 10 },
+  { key: "fantasy_points_ppr", type: "number", defaultValue: 10 },
+];
 
 // Generate all stat chunks
 const PASSING_SEASON_CHUNKS = generateStatChunks(
@@ -92,6 +97,18 @@ const RECEIVING_GAME_CHUNKS = generateStatChunks(
   SlotType.SelectFlexStatsGame,
 );
 
+const FANTASY_GAME_CHUNKS = generateStatChunks(
+  FANTASY_STATS,
+  "game",
+  SlotType.FilterValue,
+);
+
+const FANTASY_SEASON_CHUNKS = generateStatChunks(
+  FANTASY_STATS,
+  "season",
+  SlotType.FilterValue,
+);
+
 /**
  * Simplified chunk data structure that consolidates all chunks using generators
  */
@@ -111,5 +128,7 @@ export function getAllChunksSimplified(): Chunk[] {
     ...RUSHING_GAME_CHUNKS,
     ...RECEIVING_SEASON_CHUNKS,
     ...RECEIVING_GAME_CHUNKS,
+    ...FANTASY_GAME_CHUNKS,
+    ...FANTASY_SEASON_CHUNKS,
   ];
 }

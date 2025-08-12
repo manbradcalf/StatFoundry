@@ -53,6 +53,7 @@ export const ENTITY_RELATIONSHIPS: EntityRelationship[] = [
     english: "Seasons",
     keywords: ["player seasons", "player season"],
   },
+  // TODO: Team Games and Seasons support
   // {
   //   entityLabel: "TeamSeason",
   //   aliasName: "ts",
@@ -82,8 +83,8 @@ export interface PlayerFilterDefinition {
 
 export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
   {
-    english: "Player named [name]",
-    englishTemplate: "Player named {name}",
+    english: "Players named [name]",
+    englishTemplate: "Players named {name}",
     cypherTemplate: "MATCH (p:Player) WHERE p.display_name = {name}",
     queryType: QueryType.MATCH_START,
     slotName: "name",
@@ -91,10 +92,11 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
     keywords: ["name", "player name", "player"],
   },
   {
-    english: "who are currently on [team]",
-    englishTemplate: "who are currently on {team}",
-    cypherTemplate: "WHERE p.team_abbr = {team} AND p.status='ACT'",
-    queryType: QueryType.FILTER_START,
+    english: "Players currently on [team]",
+    englishTemplate: "Players currently on {team}",
+    cypherTemplate:
+      "MATCH (p:Player) WHERE p.team_abbr = {team} AND p.status='ACT'",
+    queryType: QueryType.MATCH_START,
     slotName: "team",
     defaultValue: "SEA",
     keywords: ["team"],
