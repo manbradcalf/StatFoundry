@@ -78,7 +78,7 @@ function App() {
                   <Route path="/video-tutorials" element={<VideoTutorials />} />
                   <Route path="/stats" element={<StatsPage />} />
                   <Route
-                    path="/players/:gsisId/:slug"
+                    path="/players/:slug/:gsisId"
                     element={<PlayerDetail />}
                   />
                   <Route path="*" element={<div>Page Not Found</div>} />
