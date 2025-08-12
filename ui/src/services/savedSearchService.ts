@@ -1,3 +1,4 @@
+// TODO: we should have a firebaseDatabaseService, not specifically savedSearchService
 import {
   collection,
   doc,
@@ -104,6 +105,7 @@ export const savedSearchService = {
       chunks: chain.toArray(),
       cypher: compiledChain.Cypher,
       english: compiledChain.English,
+      aliases: compiledChain.Aliases,
     };
   },
 

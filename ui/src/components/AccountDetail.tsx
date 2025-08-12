@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSavedSearches } from "../hooks/useSavedSearches";
 import { SavedSearch } from "../types/SavedSearch";
-import { RouterProvider } from "react-router-dom";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
+import { useNavigate } from "react-router-dom";
+import { useChainState } from "../hooks/useChainState";
 
 export const AccountDetail: React.FC = () => {
   return (
@@ -14,8 +15,12 @@ export const AccountDetail: React.FC = () => {
 
 export const SavedSearchesComponent: React.FC = () => {
   const [savedSearches, setSavedSearches] = useState<SavedSearch[] | null>([]);
-  const { getUserSavedSearches } = useSavedSearches();
+  const { getUserSavedSearches, loadSavedSearch } = useSavedSearches();
   const { executeSearch } = useSearchAPIContext();
+
+  // const {replaceChain} = useChainState();
+
+  const navigate = useNavigate();
 
   // todo: i dont love this mixing of async and promises throughout the project
   useEffect(() => {
@@ -30,8 +35,9 @@ export const SavedSearchesComponent: React.FC = () => {
   }, [getUserSavedSearches, setSavedSearches]);
 
   const handleSearchFromSavedSearch = (savedSearch: SavedSearch) => {
-    executeSearch(savedSearch.cypher, [], "");
-    console.log("searching...", savedSearch);
+    // replaceChain(savedSearch)
+    executeSearch(savedSearch.cypher, savedSearch.aliases, "");
+    navigate("/", { state: { message: "hello" } });
   };
 
   return (
@@ -42,7 +48,7 @@ export const SavedSearchesComponent: React.FC = () => {
         </div>
         {savedSearches?.map((x) => {
           return (
-            <div className="faqpage-wrapper">
+            <div key={x.id} className="faqpage-wrapper">
               <h3>{x.name}</h3>
               <p>{x.description}</p>
               <button onClick={() => handleSearchFromSavedSearch(x)}>
