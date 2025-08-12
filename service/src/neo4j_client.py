@@ -1,8 +1,10 @@
 import re
-
+import logging
 from neo4j import GraphDatabase, READ_ACCESS
-
 from src.config import AUTH, URI
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 # Private query constants (denoted by underscore prefix)
 _fetch_relationships_schema = """
@@ -26,16 +28,6 @@ _fetch_rel_patterns = """
     ORDER BY rel_type
 """
 
-# todo: remove if the other one works
-# def create_driver(uri, auth):
-#     return GraphDatabase.driver(
-#         uri,
-#         auth=auth,
-#         # connection pool config to prevent stale connections returning errors
-#         liveness_check_timeout=0,
-#         max_connection_lifetime=3500,
-#     )
-
 
 def create_driver(uri, auth):
     return GraphDatabase.driver(
@@ -56,7 +48,6 @@ def close_driver(driver):
 driver = create_driver(URI, AUTH)
 
 
-# TODO: Replace with MCP?
 def fetch_schema(driver):
     with driver.session() as session:
         node_properties = session.run(_fetch_nodes_schema).single()["node_schema"]
@@ -138,13 +129,16 @@ def execute_query(driver, query):
     Raises:
         ValueError: If query contains write operations
     """
+
     # Validate query is read-only
     is_read_only_query(query)
 
     with driver.session(default_access_mode=READ_ACCESS) as session:  # noqa: F821
         result = session.run(query)
-        # TODO: return [record.data() for record in result] instead
-        return result.data()
+        result_formatted = [record.data() for record in result]
+        logger.info(
+            "execute_query", extra={"query": query, "first_result": result_formatted[0]}
+        )
 
 
 # Export the driver and fetch_schema for use in other modules
