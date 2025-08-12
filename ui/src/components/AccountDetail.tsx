@@ -3,7 +3,6 @@ import { useSavedSearches } from "../hooks/useSavedSearches";
 import { SavedSearch } from "../types/SavedSearch";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 import { useNavigate } from "react-router-dom";
-import { useChainState } from "../hooks/useChainState";
 
 export const AccountDetail: React.FC = () => {
   return (
@@ -15,7 +14,7 @@ export const AccountDetail: React.FC = () => {
 
 export const SavedSearchesComponent: React.FC = () => {
   const [savedSearches, setSavedSearches] = useState<SavedSearch[] | null>([]);
-  const { getUserSavedSearches, loadSavedSearch } = useSavedSearches();
+  const { getUserSavedSearches } = useSavedSearches();
   const { executeSearch } = useSearchAPIContext();
 
   // const {replaceChain} = useChainState();
