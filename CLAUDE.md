@@ -214,6 +214,7 @@ getNextValidChunks(allChunks: Chunk[]): Chunk[] {
 ### The "Get Shit Done vs Over-Engineering" Continuum
 
 **The Spectrum:**
+
 ```
 Get Shit Done ←————————————|————————————→ Over-Engineering
 (hack it together)    (the sweet spot)    (anticipate everything)
@@ -224,9 +225,9 @@ Get Shit Done ←————————————|————————�
 ```typescript
 // ❌ TOO FAR LEFT - Lazy/expedient (cramming unrelated concerns together)
 useEffect(() => {
-  // Handle redirect result  
+  // Handle redirect result
   getRedirectResult(auth).then(...)
-  
+
   // ALSO set up auth listener (different concern!)
   const unsubscribe = onAuthStateChanged(auth, ...)
   return unsubscribe
@@ -240,7 +241,7 @@ useEffect(() => {
     .catch((error) => { ... })
 }, [])
 
-// Listen to auth state changes  
+// Listen to auth state changes
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (user) => { ... })
   return unsubscribe
@@ -255,6 +256,7 @@ useEffect(() => {
 ```
 
 **Key Points:**
+
 - **The sweet spot changes** based on context, timeline, and phase of development
 - **When unsure**: Ask Ben where to be on the continuum for the current task
 - **Guiding principle**: Separate distinct concerns, but don't create abstractions for abstractions' sake
@@ -291,29 +293,33 @@ useEffect(() => {
 
 ### Core Architecture
 
-**URL Pattern**: `/players/{gsis_id}/{slug}` (e.g., `/players/00-0034857/josh-allen`)
+**URL Pattern**: `/players/{slug}/{gsis_id}` (e.g., `/players/josh-allen/00-0034857`)
+
 - gsis_id ensures uniqueness (handles multiple Josh Allens)
-- slug provides SEO value and user-readable URLs  
+- slug provides SEO value and user-readable URLs
 - Backend only uses gsis_id for lookup (slug is pure SEO decoration)
 
 **API Design**: `GET /api/player/{gsis_id}` - Clean, minimal endpoint using only unique ID
 
 **Smart Table Links System**:
+
 - `generateClickableUrl()` in `src/utils/linkHandlers.ts` - centralized, extensible
-- Player names → internal StatFoundry routes  
+- Player names → internal StatFoundry routes
 - Game IDs → external rbsdm.com links
 - `isClickable(key)` determines link eligibility
 - Easy to extend for teams, coaches, etc.
 
 **Data Flow**:
+
 1. Views include gsis_id (added to `PLAYER_INFO_PROPERTIES`)
 2. Data available in row for link generation
-3. Hidden from display via `defaultExcludeColumns` 
+3. Hidden from display via `defaultExcludeColumns`
 4. `generatePlayerUrl()` uses both gsis_id and display_name
 
 **Key Files**:
+
 - **PlayerDetailContext**: `src/contexts/PlayerDetailContext.tsx` - dedicated player fetching
-- **LinkHandlers**: `src/utils/linkHandlers.ts` - centralized URL generation  
+- **LinkHandlers**: `src/utils/linkHandlers.ts` - centralized URL generation
 - **API**: `service/src/app.py` - new player endpoint
 - **Routing**: `src/App.tsx` - updated route pattern
 
