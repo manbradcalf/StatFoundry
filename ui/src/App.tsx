@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { usePageTracking } from "./hooks/usePageTracking";
 import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -18,8 +17,6 @@ import { StatsPage } from "./components/StatsComponent";
 import { AboutPage } from "./components/AboutPage";
 
 function App() {
-  usePageTracking();
-  
   useEffect(() => {
     // Set the app element for react-modal (for accessibility)
     Modal.setAppElement("#root");
