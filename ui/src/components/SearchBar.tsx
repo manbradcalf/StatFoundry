@@ -119,7 +119,7 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
 
   return (
     <div className="search-container">
-      <div className="search-input-row">
+      <div className={`search-input-row ${showSuggestions && suggestions.length > 0 ? 'suggestions-active' : ''}`}>
         <div className="search-box">
           <input
             ref={inputRef}
@@ -162,12 +162,7 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
         </div>
       </div>
 
-      {/* TODO: add a way to filter the results here using aliases used in querry */}
-      {/* <div className="search-box"> */}
-      {/*   <input className="search-input" type={"text"} placeholder="Filter..." /> */}
-      {/* </div> */}
-
-      {/* Suggestions dropdown - appears directly below search input */}
+      {/* Suggestions dropdown - positioned to overlay entire search area */}
       <Suggestions
         suggestions={suggestions}
         selectedIndex={selectedIndex}

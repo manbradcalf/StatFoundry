@@ -339,8 +339,14 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
-  z-index: 1100;
+  z-index: 2000;
   scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .suggestions-dropdown {
+    max-height: 250px;
+  }
 }
 
 .suggestion-item {
@@ -1079,6 +1085,11 @@ input[type="number"] {
 .button-row {
   display: flex;
   gap: 12px;
+}
+
+/* Hide buttons when suggestions are active */
+.search-input-row.suggestions-active .button-row {
+  display: none;
 }
 
 /* Button styling */
