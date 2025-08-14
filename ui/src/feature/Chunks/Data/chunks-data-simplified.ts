@@ -10,11 +10,10 @@ import {
   generatePlayerInfoChunks,
   generatePlayChunks,
 } from "./entity-chunk-generators";
-import {
-  generatePlayerGameConstraints,
-  generatePlayerSeasonConstraints,
-} from "./player-game-constraint-generators";
+import { generatePlayerGameConstraintChunks } from "./player-game-constraint-generators";
+import { generatePlayerSeasonConstraintChunks } from "./player-season-constraint-generator";
 import { SlotType } from "../Enums/SlotType";
+import { generatePlayConstraintChunks } from "./play-constraint-generators";
 
 // TODO: This is the part that should be automatically built on startup based on our /schema endpoint response
 // Consolidated stat definitions
@@ -143,8 +142,9 @@ export function getAllChunksSimplified(): Chunk[] {
     ...generatePlayChunks(),
     ...generateEntityRelationshipChunks(),
     ...generatePlayerInfoChunks(),
-    ...generatePlayerGameConstraints(),
-    ...generatePlayerSeasonConstraints(),
+    ...generatePlayerGameConstraintChunks(),
+    ...generatePlayerSeasonConstraintChunks(),
+    ...generatePlayConstraintChunks(),
 
     // Generated stat chunks
     ...PASSING_SEASON_CHUNKS,

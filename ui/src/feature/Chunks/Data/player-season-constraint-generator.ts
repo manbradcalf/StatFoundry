@@ -33,7 +33,7 @@ export const PLAYER_SEASON_CONSTRAINTS: ConstraintDefinition[] = [
 /**
  * Generates player season constraint chunks
  */
-export function generatePlayerSeasonConstraints(): Chunk[] {
+export function generatePlayerSeasonConstraintChunks(): Chunk[] {
   const chunks: Chunk[] = [];
 
   // Generate FILTER_START chunks

@@ -101,15 +101,15 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
     defaultValue: "SEA",
     keywords: ["team"],
   },
-  // {
-  //   english: "who went to [college]",
-  //   englishTemplate: "who went to {college}",
-  //   cypherTemplate: "WHERE p.college_name={college}",
-  //   queryType: QueryType.MATCH_START,
-  //   slotName: "college",
-  //   defaultValue: "Ohio State",
-  //   keywords: ["college", "school"]
-  // },
+  {
+    english: "who went to [college]",
+    englishTemplate: "who went to {college}",
+    cypherTemplate: "WHERE p.college_name={college}",
+    queryType: QueryType.MATCH_START,
+    slotName: "college",
+    defaultValue: "Ohio State",
+    keywords: ["college", "school"],
+  },
 ];
 
 /**
