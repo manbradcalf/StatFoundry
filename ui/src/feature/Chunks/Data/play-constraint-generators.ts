@@ -1,8 +1,4 @@
-import { AliasType } from "../Enums/AliasType";
-import { QueryType } from "../Enums/QueryType";
-import { SlotType } from "../Enums/SlotType";
 import { Chunk } from "../Types/Chunk";
-import { ConstraintDefinition } from "./constraints/constraint";
 
 // Hand-rolled constraints removed - now using auto-generated chunks from PLAY_STATS
 

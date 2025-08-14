@@ -114,7 +114,6 @@ export class ChunkChain {
 
     let node = this.Head;
     let firstFilterAfterMatch = true;
-    let firstFilterAfterJunction = true;
 
     while (node) {
       const { chunk } = node;

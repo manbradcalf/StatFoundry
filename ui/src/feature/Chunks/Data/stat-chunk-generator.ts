@@ -20,7 +20,6 @@ export function generateStatChunks(
   const chunks: Chunk[] = [];
 
   const entityAlias = entityType === "season" ? "ps" : "pg";
-  const entityLabel = entityType === "season" ? "PlayerSeason" : "PlayerGame";
   const aliasType =
     entityType === "season" ? AliasType.PlayerSeason : AliasType.PlayerGame;
 
