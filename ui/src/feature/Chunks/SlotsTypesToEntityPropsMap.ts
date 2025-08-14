@@ -1,4 +1,5 @@
 import { SlotType } from "./Enums/SlotType";
+// TODO: i am pretty sure we are duplicating logic between these Views and chunks_data_simplified.ts
 import { PLAYER_GAME_INFO_PROPERTIES } from "./Views/PlayerGameInfo";
 import {
   PASSING_STATS,
@@ -12,6 +13,7 @@ import {
 } from "./Views/FlexStats";
 import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
+import { PLAY_STATS } from "./Views/PlayStats";
 
 // For QUERY building...
 // Modular property definitions for each entity type
@@ -38,4 +40,5 @@ export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.FilterCondition]: [">", "=>", "=", "<", "<=", "<>", "in"],
   [SlotType.FilterValue]: [],
   [SlotType.MultiStatFilter]: [],
+  [SlotType.SelectPlayStats]: [...PLAY_STATS.map((x) => x.key)],
 };

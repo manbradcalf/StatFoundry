@@ -51,7 +51,12 @@ export function generateStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
+            stat.defaultValue ??
+            (stat.type === "number"
+              ? 100
+              : stat.type === "boolean"
+                ? true
+                : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
@@ -81,7 +86,12 @@ export function generateStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
+            stat.defaultValue ??
+            (stat.type === "number"
+              ? 100
+              : stat.type === "boolean"
+                ? true
+                : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
@@ -126,7 +136,12 @@ export function generatePlayStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
+            stat.defaultValue ??
+            (stat.type === "number"
+              ? 100
+              : stat.type === "boolean"
+                ? true
+                : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
@@ -156,7 +171,12 @@ export function generatePlayStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
+            stat.defaultValue ??
+            (stat.type === "number"
+              ? 100
+              : stat.type === "boolean"
+                ? true
+                : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],

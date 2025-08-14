@@ -67,12 +67,14 @@ const FANTASY_STATS: StatDefinition[] = [
   { key: "fantasy_points_ppr", type: "number", defaultValue: 10 },
 ];
 
+// TODO: boolean vals here may need to be updated in db to true/false, as they are now 0.0 and 1.0
 const PLAY_STATS: StatDefinition[] = [
   { key: "epa", type: "number", defaultValue: 0.5 },
   { key: "wpa", type: "number", defaultValue: 0.05 },
   { key: "yards_gained", type: "number", defaultValue: 10 },
   { key: "down", type: "number", defaultValue: 3 },
   { key: "yards_to_go", type: "number", defaultValue: 7 },
+  { key: "yrdln", type: "number", defaultValue: "WAS 36" },
   { key: "quarter", type: "number", defaultValue: 4 },
   { key: "score_differential", type: "number", defaultValue: 7 },
   { key: "success", type: "boolean", defaultValue: true },
@@ -82,6 +84,20 @@ const PLAY_STATS: StatDefinition[] = [
   { key: "goal_to_go", type: "boolean", defaultValue: true },
   { key: "touchdown", type: "boolean", defaultValue: true },
   { key: "first_down", type: "boolean", defaultValue: true },
+  { key: "complete_pass", type: "boolean", defaultValue: true },
+  { key: "receiver", type: "string", defaultValue: "J. Jefferson" },
+  { key: "wp", type: "number", defaultValue: 0.5 },
+  { key: "tdprob", type: "number", defaultValue: 0.2 },
+  { key: "defense_coverage_type", type: "string", defaultValue: "COVER_4" },
+  { key: "vegas_wp", type: "number", defaultValue: 0.75 },
+  {
+    key: "defense_man_zone_type",
+    type: "string",
+    defaultValue: "ZONE_COVERAGE",
+  },
+  { key: "stadium", type: "string", defaultValue: "Commander's Field" },
+  { key: "spread_line", type: "number", defaultValue: 7.0 },
+  { key: "drive_play_count", type: "number", defaultValue: 3.0 },
 ];
 
 // Generate all stat chunks

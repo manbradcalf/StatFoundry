@@ -9,20 +9,48 @@ import { FANTASY_STATS } from "./Views/FantasyStats";
 
 // For RESULTS building...
 // Helper function to get properties for a given label
-const getPropertiesByAliasType = (aliasType: AliasType, position: string): string[] => {
+const getPropertiesByAliasType = (
+  aliasType: AliasType,
+  position: string,
+): string[] => {
   const stats = getStatsByPosition(position);
   switch (aliasType) {
     case AliasType.Player:
       return PLAYER_INFO_PROPERTIES;
 
     case AliasType.PlayerGame:
-      return [...PLAYER_GAME_INFO_PROPERTIES, ...stats, ...FANTASY_STATS.map(x => x.key)];
+      return [
+        ...PLAYER_GAME_INFO_PROPERTIES,
+        ...stats,
+        ...FANTASY_STATS.map((x) => x.key),
+      ];
 
     case AliasType.PlayerSeason:
-      return [...PLAYER_SEASON_INFO_PROPERTIES, ...stats, ...FANTASY_STATS.map(x => x.key)]
+      return [
+        ...PLAYER_SEASON_INFO_PROPERTIES,
+        ...stats,
+        ...FANTASY_STATS.map((x) => x.key),
+      ];
 
     case AliasType.Play:
-      return ["posteam", "defteam", "down", "ydstogo", "yrdln", "qtr", "time", "desc"]; // possession team as sticky column
+      return [
+        "posteam",
+        "defteam",
+        "down",
+        "ydstogo",
+        "yrdln",
+        "yards_gained",
+        "qtr",
+        "time",
+        "desc",
+        "formation",
+        "wp",
+        "td_prob",
+        "defense_man_zone_type",
+        "defenders_in_box",
+        "defense_players",
+        "offense_players",
+      ]; // possession team as sticky column
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];
@@ -38,24 +66,26 @@ const getPropertiesByAliasType = (aliasType: AliasType, position: string): strin
 const getStatsByPosition = (position: string): string[] => {
   switch (position) {
     case "RB":
-      return [...RUSHING_STATS, ...RECEIVING_STATS].map(x => x.key)
+      return [...RUSHING_STATS, ...RECEIVING_STATS].map((x) => x.key);
     case "WR":
-      return [...RECEIVING_STATS, ...RUSHING_STATS].map(x => x.key)
+      return [...RECEIVING_STATS, ...RUSHING_STATS].map((x) => x.key);
     case "TE":
-      return [...RECEIVING_STATS, ...RUSHING_STATS].map(x => x.key)
+      return [...RECEIVING_STATS, ...RUSHING_STATS].map((x) => x.key);
     case "QB":
-      return [...PASSING_STATS, ...RUSHING_STATS].map(x => x.key)
+      return [...PASSING_STATS, ...RUSHING_STATS].map((x) => x.key);
     default:
-      return [...FLEX_STATS, ...PASSING_STATS].map(x => x.key)
+      return [...FLEX_STATS, ...PASSING_STATS].map((x) => x.key);
   }
-
-}
+};
 
 // TODO: When multiple aliases of same type exist (e.g., p1, p2 for player comparisons),
 // column headers will show duplicate names like "Display Name", "Position" because
 // formatColumnHeader() strips the alias prefix. Need to enhance header logic to
 // preserve alias context for better UX (e.g., "Player 1: Display Name" vs "Player 2: Display Name")
-export const buildSmartReturnClause = (aliases: Alias[], position: string): string => {
+export const buildSmartReturnClause = (
+  aliases: Alias[],
+  position: string,
+): string => {
   if (aliases.length === 0) {
     return "RETURN *";
   }
@@ -81,7 +111,6 @@ export const buildSmartReturnClause = (aliases: Alias[], position: string): stri
   });
 
   if (aliases.length === 1) {
-
     return `RETURN DISTINCT ${returnParts.join(", ")}`;
   }
   return `RETURN ${returnParts.join(", ")}`;

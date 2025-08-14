@@ -1,0 +1,16 @@
+export const PLAY_STATS = [
+  { key: "epa", type: "number", defaultValue: 0.5 },
+  { key: "wpa", type: "number", defaultValue: 0.05 },
+  { key: "yards_gained", type: "number", defaultValue: 10 },
+  { key: "down", type: "number", defaultValue: 3 },
+  { key: "yards_to_go", type: "number", defaultValue: 7 },
+  { key: "quarter", type: "number", defaultValue: 4 },
+  { key: "score_differential", type: "number", defaultValue: 7 },
+  { key: "success", type: "boolean", defaultValue: true },
+  { key: "shotgun", type: "boolean", defaultValue: true },
+  { key: "no_huddle", type: "boolean", defaultValue: true },
+  { key: "red_zone", type: "boolean", defaultValue: true },
+  { key: "goal_to_go", type: "boolean", defaultValue: true },
+  { key: "touchdown", type: "boolean", defaultValue: true },
+  { key: "first_down", type: "boolean", defaultValue: true },
+];
