@@ -12,8 +12,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [],
     SuggestionKeywords: ["games", "all games"],
@@ -26,8 +26,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [
       { Name: "season", Value: "2024", SlotValueTypes: [SlotType.FilterValue] },
@@ -44,8 +44,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [
       {
@@ -71,8 +71,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [
       { Name: "season", Value: "2024", SlotValueTypes: [SlotType.FilterValue] },
@@ -89,8 +89,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [
       { Name: "season", Value: "2024", SlotValueTypes: [SlotType.FilterValue] },
@@ -105,8 +105,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [
       { Name: "season", Value: "2024", SlotValueTypes: [SlotType.FilterValue] },
@@ -121,8 +121,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [{ Name: "week", Value: 2, SlotValueTypes: [SlotType.FilterValue] }],
     SuggestionKeywords: ["week", "during week"],
@@ -136,8 +136,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
     QueryType: QueryType.JUNCTION,
     Requires: [{ Name: "play", AliasType: AliasType.Play }],
     Provides: [
-      { Name: "play", AliasType: AliasType.Play },
       { Name: "g", AliasType: AliasType.Game },
+      { Name: "play", AliasType: AliasType.Play },
     ],
     Slots: [
       { Name: "startWeek", Value: 2, SlotValueTypes: [SlotType.FilterValue] },
@@ -149,8 +149,8 @@ export const PLAY_JUNCTION_CHUNKS: Chunk[] = [
 
 export const PLAY_CONSTRAINTS: ConstraintDefinition[] = [
   {
-    english: "on down [1]",
-    englishTemplate: "",
+    english: "on [1] down",
+    englishTemplate: "on down {down} ",
     cypherTemplate: "MATCH (play:Play) WHERE play.down = {down}",
     queryType: QueryType.FILTER_START,
     slots: [{ name: "down", defaultValue: 1, slotType: SlotType.FilterValue }],

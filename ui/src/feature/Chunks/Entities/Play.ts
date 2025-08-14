@@ -9,6 +9,7 @@ export interface Play extends Entity {
 export type PlayProperties = {
   // Basic identifiers
   play_id: string;
+  play_game_id: string; // unique identifier: game_id + play_id
   player_id: string;
   player_display_name: string;
   game_id: string;

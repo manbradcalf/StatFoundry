@@ -5,8 +5,8 @@ import { SlotType } from "../Enums/SlotType";
 
 export interface StatDefinition {
   key: string;
-  type: "number" | "string";
-  defaultValue?: number | string;
+  type: "number" | "string" | "boolean";
+  defaultValue?: number | string | boolean;
 }
 
 /**
@@ -51,7 +51,7 @@ export function generateStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
@@ -81,7 +81,7 @@ export function generateStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
@@ -126,7 +126,7 @@ export function generatePlayStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
@@ -156,7 +156,7 @@ export function generatePlayStatChunks(
         {
           Name: "value",
           Value:
-            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+            stat.defaultValue ?? (stat.type === "number" ? 100 : stat.type === "boolean" ? true : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],

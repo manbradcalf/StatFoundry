@@ -3,7 +3,6 @@ import { AliasType } from "./Enums/AliasType";
 import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
 import { PLAYER_GAME_INFO_PROPERTIES } from "./Views/PlayerGameInfo";
 import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
-import { PLAY_INFO_PROPERTIES } from "./Views/PlayInfo";
 import { PASSING_STATS } from "./Views/PassingStats";
 import { FLEX_STATS, RECEIVING_STATS, RUSHING_STATS } from "./Views/FlexStats";
 import { FANTASY_STATS } from "./Views/FantasyStats";
@@ -23,7 +22,7 @@ const getPropertiesByAliasType = (aliasType: AliasType, position: string): strin
       return [...PLAYER_SEASON_INFO_PROPERTIES, ...stats, ...FANTASY_STATS.map(x => x.key)]
 
     case AliasType.Play:
-      return ["desc"]; // Just return play description for now
+      return ["posteam", "defteam", "down", "ydstogo", "yrdln", "qtr", "time", "desc"]; // possession team as sticky column
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];

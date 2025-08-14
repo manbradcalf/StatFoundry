@@ -75,13 +75,13 @@ const PLAY_STATS: StatDefinition[] = [
   { key: "yards_to_go", type: "number", defaultValue: 7 },
   { key: "quarter", type: "number", defaultValue: 4 },
   { key: "score_differential", type: "number", defaultValue: 7 },
-  { key: "success", type: "string", defaultValue: "true" },
-  { key: "shotgun", type: "string", defaultValue: "true" },
-  { key: "no_huddle", type: "string", defaultValue: "true" },
-  { key: "red_zone", type: "string", defaultValue: "true" },
-  { key: "goal_to_go", type: "string", defaultValue: "true" },
-  { key: "touchdown", type: "string", defaultValue: "true" },
-  { key: "first_down", type: "string", defaultValue: "true" },
+  { key: "success", type: "boolean", defaultValue: true },
+  { key: "shotgun", type: "boolean", defaultValue: true },
+  { key: "no_huddle", type: "boolean", defaultValue: true },
+  { key: "red_zone", type: "boolean", defaultValue: true },
+  { key: "goal_to_go", type: "boolean", defaultValue: true },
+  { key: "touchdown", type: "boolean", defaultValue: true },
+  { key: "first_down", type: "boolean", defaultValue: true },
 ];
 
 // Generate all stat chunks
