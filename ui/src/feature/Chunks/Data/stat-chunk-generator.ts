@@ -25,51 +25,13 @@ export function generateStatChunks(
     entityType === "season" ? AliasType.PlayerSeason : AliasType.PlayerGame;
 
   for (const stat of stats) {
-    // Filter start chunk
-    chunks.push({
-      English: `${entityType}s with [${stat.key}]`,
-      Cypher: "",
-      EnglishTemplate: `with {condition} {value} {stat} in a ${entityType}`,
-      CypherTemplate: `MATCH (p)-[:HAD]->(${entityAlias}:${entityLabel}) WHERE ${entityAlias}.{stat} {condition} {value}`,
-      QueryType: QueryType.FILTER_START,
-      Requires: [
-        { Name: "p", AliasType: AliasType.Player },
-        { Name: entityAlias, AliasType: aliasType },
-      ],
-      Provides: [{ Name: entityAlias, AliasType: aliasType }],
-      Slots: [
-        {
-          Name: "stat",
-          Value: stat.key,
-          SlotValueTypes: [slotType],
-        },
-        {
-          Name: "condition",
-          Value: stat.type === "number" ? ">" : "=",
-          SlotValueTypes: [SlotType.FilterCondition],
-        },
-        {
-          Name: "value",
-          Value:
-            stat.defaultValue ??
-            (stat.type === "number"
-              ? 100
-              : stat.type === "boolean"
-                ? true
-                : "example"),
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-      ],
-      SuggestionKeywords: [stat.key, entityType],
-    });
-
-    // Filter extend chunk
+    // Single filter chunk for each stat
     chunks.push({
       English: `[${stat.key}]`,
       Cypher: "",
-      EnglishTemplate: `and with {condition} {value} {stat}`,
-      CypherTemplate: ` AND ${entityAlias}.{stat} {condition} {value}`,
-      QueryType: QueryType.FILTER_EXTEND,
+      EnglishTemplate: `with {condition} {value} {stat}`,
+      CypherTemplate: `${entityAlias}.{stat} {condition} {value}`,
+      QueryType: QueryType.FILTER,
       Requires: [{ Name: entityAlias, AliasType: aliasType }],
       Provides: [{ Name: entityAlias, AliasType: aliasType }],
       Slots: [
@@ -113,50 +75,15 @@ export function generatePlayStatChunks(
   const chunks: Chunk[] = [];
 
   for (const stat of stats) {
-    // Filter start chunk - starts fresh from Play entities
-    chunks.push({
-      English: `plays with [${stat.key}]`,
-      Cypher: "",
-      EnglishTemplate: `plays with {condition} {value} {stat}`,
-      CypherTemplate: `MATCH (play:Play) WHERE play.{stat} {condition} {value}`,
-      QueryType: QueryType.FILTER_START,
-      Requires: [{ Name: "play", AliasType: AliasType.Play }],
-      Provides: [{ Name: "play", AliasType: AliasType.Play }],
-      Slots: [
-        {
-          Name: "stat",
-          Value: stat.key,
-          SlotValueTypes: [slotType],
-        },
-        {
-          Name: "condition",
-          Value: stat.type === "number" ? ">" : "=",
-          SlotValueTypes: [SlotType.FilterCondition],
-        },
-        {
-          Name: "value",
-          Value:
-            stat.defaultValue ??
-            (stat.type === "number"
-              ? 100
-              : stat.type === "boolean"
-                ? true
-                : "example"),
-          SlotValueTypes: [SlotType.FilterValue],
-        },
-      ],
-      SuggestionKeywords: [stat.key, "play", "plays"],
-    });
-
-    // Filter extend chunk - add additional play conditions
+    // Single filter chunk for each play property
     chunks.push({
       English: `[${stat.key}]`,
       Cypher: "",
-      EnglishTemplate: `and {condition} {value} {stat}`,
-      CypherTemplate: ` AND play.{stat} {condition} {value}`,
-      QueryType: QueryType.FILTER_EXTEND,
+      EnglishTemplate: `with {condition} {value} {stat}`,
+      CypherTemplate: `play.{stat} {condition} {value}`,
+      QueryType: QueryType.FILTER,
       Requires: [{ Name: "play", AliasType: AliasType.Play }],
-      Provides: [],
+      Provides: [{ Name: "play", AliasType: AliasType.Play }],
       Slots: [
         {
           Name: "stat",

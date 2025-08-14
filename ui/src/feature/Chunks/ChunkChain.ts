@@ -113,12 +113,35 @@ export class ChunkChain {
     let aliases: Alias[] = [];
 
     let node = this.Head;
+    let firstFilterAfterMatch = true;
+    let firstFilterAfterJunction = true;
 
     while (node) {
       const { chunk } = node;
+      // Use CypherTemplate if Cypher is empty, then trim
+      let cypherPart = (chunk.Cypher || chunk.CypherTemplate || "").trim();
+      
+      // Handle automatic WHERE vs AND for FILTER chunks
+      if (chunk.QueryType === QueryType.FILTER && cypherPart) {
+        // Determine if this is the first filter after MATCH_START or JUNCTION
+        const prevNode = node.prev;
+        const isFirstFilter = !prevNode || 
+          prevNode.chunk.QueryType === QueryType.MATCH_START ||
+          prevNode.chunk.QueryType === QueryType.JUNCTION;
+
+        if (isFirstFilter && firstFilterAfterMatch) {
+          // First filter: ensure it starts with WHERE
+          cypherPart = `WHERE ${cypherPart}`;
+          firstFilterAfterMatch = false;
+        } else {
+          // Subsequent filters: ensure they start with AND
+          cypherPart = `AND ${cypherPart}`;
+        }
+      }
+
       // add the chunk's english and cypher to the parts
       englishParts.push(chunk.English);
-      cypherParts.push(chunk.Cypher.trim());
+      cypherParts.push(cypherPart);
 
       // add the chunk's aliases to the aliases
       aliases.push(...chunk.Provides);
@@ -193,27 +216,27 @@ function isValidNextChunk(
     return false;
   }
 
-  // After MATCH_START, only allow JUNCTION chunks
+  // After MATCH_START, allow JUNCTION or direct FILTER (for simple entities like Plays)
   if (
     tail?.QueryType === QueryType.MATCH_START &&
-    chunk.QueryType !== QueryType.JUNCTION
+    chunk.QueryType !== QueryType.JUNCTION &&
+    chunk.QueryType !== QueryType.FILTER
   ) {
     return false;
   }
 
-  // After JUNCTION, only allow FILTER_START (not FILTER_EXTEND until a filter is started)
+  // After JUNCTION, only allow FILTER
   if (
     tail?.QueryType === QueryType.JUNCTION &&
-    chunk.QueryType !== QueryType.FILTER_START
+    chunk.QueryType !== QueryType.FILTER
   ) {
     return false;
   }
 
-  // once you extend a filter, only keep extending (for now)
+  // After FILTER, only allow more FILTERs
   if (
-    (tail?.QueryType === QueryType.FILTER_EXTEND ||
-      tail?.QueryType === QueryType.FILTER_START) &&
-    chunk.QueryType !== QueryType.FILTER_EXTEND
+    tail?.QueryType === QueryType.FILTER &&
+    chunk.QueryType !== QueryType.FILTER
   ) {
     return false;
   }

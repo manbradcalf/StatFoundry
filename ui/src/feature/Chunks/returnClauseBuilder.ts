@@ -48,8 +48,8 @@ const getPropertiesByAliasType = (
         "td_prob",
         "defense_man_zone_type",
         "defenders_in_box",
-        "defense_players",
-        "offense_players",
+        // "defense_players",
+        // "offense_players",
       ]; // possession team as sticky column
 
     case AliasType.Game:

@@ -68,36 +68,58 @@ const FANTASY_STATS: StatDefinition[] = [
 ];
 
 // TODO: boolean vals here may need to be updated in db to true/false, as they are now 0.0 and 1.0
-const PLAY_STATS: StatDefinition[] = [
+const PLAY_PROPERTIES: StatDefinition[] = [
+  // Core identifiers  
+  { key: "season", type: "number", defaultValue: 2024 },
+  { key: "posteam", type: "string", defaultValue: "MIN" },
+  { key: "defteam", type: "string", defaultValue: "GB" },
+  { key: "home_team", type: "string", defaultValue: "WAS" },
+  { key: "away_team", type: "string", defaultValue: "ARI" },
+  
+  // Play context
+  { key: "down", type: "number", defaultValue: 3 },
+  { key: "ydstogo", type: "number", defaultValue: 7 },
+  { key: "qtr", type: "number", defaultValue: 4 },
+  { key: "yards_gained", type: "number", defaultValue: 10 },
+  { key: "yrdln", type: "string", defaultValue: "WAS 28" },
+  { key: "play_type", type: "string", defaultValue: "pass" },
+  
+  // Passing specific
+  { key: "air_yards", type: "number", defaultValue: 6 },
+  { key: "receiving_yards", type: "number", defaultValue: 6 },
+  { key: "pass_location", type: "string", defaultValue: "right" },
+  { key: "pass_length", type: "string", defaultValue: "short" },
+  { key: "route", type: "string", defaultValue: "HITCH" },
+  
+  // Advanced metrics
   { key: "epa", type: "number", defaultValue: 0.5 },
   { key: "wpa", type: "number", defaultValue: 0.05 },
-  { key: "yards_gained", type: "number", defaultValue: 10 },
-  { key: "down", type: "number", defaultValue: 3 },
-  { key: "yards_to_go", type: "number", defaultValue: 7 },
-  { key: "yrdln", type: "number", defaultValue: "WAS 36" },
-  { key: "quarter", type: "number", defaultValue: 4 },
-  { key: "score_differential", type: "number", defaultValue: 7 },
+  { key: "wp", type: "number", defaultValue: 0.5 },
+  { key: "td_prob", type: "number", defaultValue: 0.38 },
+  { key: "cp", type: "number", defaultValue: 0.75 },
+  
+  // Situational booleans
   { key: "success", type: "boolean", defaultValue: true },
   { key: "shotgun", type: "boolean", defaultValue: true },
-  { key: "no_huddle", type: "boolean", defaultValue: true },
-  { key: "red_zone", type: "boolean", defaultValue: true },
-  { key: "goal_to_go", type: "boolean", defaultValue: true },
-  { key: "touchdown", type: "boolean", defaultValue: true },
-  { key: "first_down", type: "boolean", defaultValue: true },
+  { key: "no_huddle", type: "boolean", defaultValue: false },
+  { key: "goal_to_go", type: "boolean", defaultValue: false },
+  { key: "touchdown", type: "boolean", defaultValue: false },
   { key: "complete_pass", type: "boolean", defaultValue: true },
-  { key: "receiver", type: "string", defaultValue: "J. Jefferson" },
-  { key: "wp", type: "number", defaultValue: 0.5 },
-  { key: "tdprob", type: "number", defaultValue: 0.2 },
-  { key: "defense_coverage_type", type: "string", defaultValue: "COVER_4" },
-  { key: "vegas_wp", type: "number", defaultValue: 0.75 },
-  {
-    key: "defense_man_zone_type",
-    type: "string",
-    defaultValue: "ZONE_COVERAGE",
-  },
-  { key: "stadium", type: "string", defaultValue: "Commander's Field" },
-  { key: "spread_line", type: "number", defaultValue: 7.0 },
-  { key: "drive_play_count", type: "number", defaultValue: 3.0 },
+  { key: "sack", type: "boolean", defaultValue: false },
+  { key: "interception", type: "boolean", defaultValue: false },
+  { key: "fumble", type: "boolean", defaultValue: false },
+  
+  // Personnel & Formation
+  { key: "offense_formation", type: "string", defaultValue: "SHOTGUN" },
+  { key: "offense_personnel", type: "string", defaultValue: "1 RB, 1 TE, 3 WR" },
+  { key: "defense_personnel", type: "string", defaultValue: "2 DL, 4 LB, 5 DB" },
+  { key: "defense_coverage_type", type: "string", defaultValue: "COVER_3" },
+  { key: "defense_man_zone_type", type: "string", defaultValue: "ZONE_COVERAGE" },
+  
+  // Game context
+  { key: "weather", type: "string", defaultValue: "Cloudy" },
+  { key: "roof", type: "string", defaultValue: "outdoors" },
+  { key: "div_game", type: "boolean", defaultValue: false },
 ];
 
 // Generate all stat chunks
@@ -146,7 +168,7 @@ const FANTASY_SEASON_CHUNKS = generateStatChunks(
   SlotType.FilterValue,
 );
 
-const PLAY_CHUNKS = generatePlayStatChunks(PLAY_STATS, SlotType.FilterValue);
+const PLAY_CHUNKS = generatePlayStatChunks(PLAY_PROPERTIES, SlotType.FilterValue);
 
 /**
  * Simplified chunk data structure that consolidates all chunks using generators

@@ -69,6 +69,18 @@ function App() {
                 <LoginButton />
                 <HelpBar />
               </header>
+              
+              {/* Database Status Banner */}
+              <div style={{
+                backgroundColor: '#ffa500',
+                color: '#000',
+                padding: '12px 20px',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                borderBottom: '2px solid #ff8c00'
+              }}>
+                📊 Good news: We've added Play by Play data to the database! 💀 Bad news: We've knocked the database offline.
+              </div>
               <div className="App-body">
                 <Routes>
                   <Route path="/" element={<SearchContent />} />
