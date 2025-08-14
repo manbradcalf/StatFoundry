@@ -145,6 +145,23 @@ export function generatePositionChunks(): Chunk[] {
   return chunks;
 }
 
+export function generatePlayChunks(): Chunk[] {
+  const chunks: Chunk[] = [
+    {
+      // Generic Play chunk
+      English: "Plays",
+      Cypher: "MATCH (play:Play)",
+      QueryType: QueryType.MATCH_START,
+      Requires: [],
+      Provides: [{ Name: "play", AliasType: AliasType.Play }],
+      Slots: [],
+      SuggestionKeywords: ["plays", "play", "snap"],
+    },
+  ];
+
+  return chunks;
+}
+
 /**
  * Generates match chunks for entity relationships
  */

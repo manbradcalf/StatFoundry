@@ -91,3 +91,78 @@ export function generateStatChunks(
 
   return chunks;
 }
+
+/**
+ * Generates standardized play stat chunks for filtering by play properties
+ * Different from game/season stats - these are event-level, not player aggregates
+ */
+export function generatePlayStatChunks(
+  stats: StatDefinition[],
+  slotType: SlotType,
+): Chunk[] {
+  const chunks: Chunk[] = [];
+
+  for (const stat of stats) {
+    // Filter start chunk - starts fresh from Play entities
+    chunks.push({
+      English: `plays with [${stat.key}]`,
+      Cypher: "",
+      EnglishTemplate: `plays with {condition} {value} {stat}`,
+      CypherTemplate: `MATCH (play:Play) WHERE play.{stat} {condition} {value}`,
+      QueryType: QueryType.FILTER_START,
+      Requires: [{ Name: "play", AliasType: AliasType.Play }],
+      Provides: [{ Name: "play", AliasType: AliasType.Play }],
+      Slots: [
+        {
+          Name: "stat",
+          Value: stat.key,
+          SlotValueTypes: [slotType],
+        },
+        {
+          Name: "condition",
+          Value: stat.type === "number" ? ">" : "=",
+          SlotValueTypes: [SlotType.FilterCondition],
+        },
+        {
+          Name: "value",
+          Value:
+            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+      SuggestionKeywords: [stat.key, "play", "plays"],
+    });
+
+    // Filter extend chunk - add additional play conditions
+    chunks.push({
+      English: `[${stat.key}]`,
+      Cypher: "",
+      EnglishTemplate: `and {condition} {value} {stat}`,
+      CypherTemplate: ` AND play.{stat} {condition} {value}`,
+      QueryType: QueryType.FILTER_EXTEND,
+      Requires: [{ Name: "play", AliasType: AliasType.Play }],
+      Provides: [],
+      Slots: [
+        {
+          Name: "stat",
+          Value: stat.key,
+          SlotValueTypes: [slotType],
+        },
+        {
+          Name: "condition",
+          Value: stat.type === "number" ? ">" : "=",
+          SlotValueTypes: [SlotType.FilterCondition],
+        },
+        {
+          Name: "value",
+          Value:
+            stat.defaultValue ?? (stat.type === "number" ? 100 : "example"),
+          SlotValueTypes: [SlotType.FilterValue],
+        },
+      ],
+      SuggestionKeywords: [stat.key, "play"],
+    });
+  }
+
+  return chunks;
+}

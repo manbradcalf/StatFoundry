@@ -2,22 +2,9 @@ import { Chunk } from "../Types/Chunk";
 import { QueryType } from "../Enums/QueryType";
 import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
+import { ConstraintDefinition } from "./constraints/constraint";
 
-// Game constraint definitions
-export interface GameConstraintDefinition {
-  english: string;
-  englishTemplate: string;
-  cypherTemplate: string;
-  queryType: QueryType;
-  slots: Array<{
-    name: string;
-    defaultValue: string | number;
-    slotType: SlotType;
-  }>;
-  keywords: string[];
-}
-
-export const PLAYER_GAME_CONSTRAINTS: GameConstraintDefinition[] = [
+export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
   {
     english: "games for [team]",
     englishTemplate: "games for {team}",
@@ -76,7 +63,7 @@ export const PLAYER_GAME_CONSTRAINTS: GameConstraintDefinition[] = [
   },
 ];
 
-export const PLAYER_GAME_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
+export const PLAYER_GAME_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
   {
     english: "for [team]",
     englishTemplate: "and played for {team}",
@@ -216,7 +203,7 @@ export function generatePlayerGameConstraints(): Chunk[] {
 }
 
 // Player season constraint definitions
-export const PLAYER_SEASON_CONSTRAINTS: GameConstraintDefinition[] = [
+export const PLAYER_SEASON_CONSTRAINTS: ConstraintDefinition[] = [
   {
     english: "for [team]",
     englishTemplate: "who played for {team} in those seasons",
@@ -241,7 +228,7 @@ export const PLAYER_SEASON_CONSTRAINTS: GameConstraintDefinition[] = [
   },
 ];
 
-export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: GameConstraintDefinition[] = [
+export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
   {
     english: "for [team]",
     englishTemplate: "who played for {team} in those seasons",

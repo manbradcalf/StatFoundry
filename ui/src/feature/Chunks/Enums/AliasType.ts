@@ -5,6 +5,7 @@ export enum AliasType {
   Season = "Season",
   PlayerGame = "PlayerGame",
   PlayerSeason = "PlayerSeason",
+  Play = "Play",
   // Sub-types (not real labels in graphs. Used for return clause building)
   PassingGame = "PassingGame",
   FlexGame = "FlexGame",

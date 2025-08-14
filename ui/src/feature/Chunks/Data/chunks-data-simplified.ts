@@ -1,14 +1,19 @@
 import { Chunk } from "../Types/Chunk";
-import { generateStatChunks, StatDefinition } from "./stat-chunk-generator";
+import {
+  generateStatChunks,
+  generatePlayStatChunks,
+  StatDefinition,
+} from "./stat-chunk-generator";
 import {
   generatePositionChunks,
   generateEntityRelationshipChunks,
   generatePlayerInfoChunks,
+  generatePlayChunks,
 } from "./entity-chunk-generators";
 import {
   generatePlayerGameConstraints,
   generatePlayerSeasonConstraints,
-} from "./game-constraint-generators";
+} from "./player-game-constraint-generators";
 import { SlotType } from "../Enums/SlotType";
 
 // TODO: This is the part that should be automatically built on startup based on our /schema endpoint response
@@ -63,6 +68,23 @@ const FANTASY_STATS: StatDefinition[] = [
   { key: "fantasy_points_ppr", type: "number", defaultValue: 10 },
 ];
 
+const PLAY_STATS: StatDefinition[] = [
+  { key: "epa", type: "number", defaultValue: 0.5 },
+  { key: "wpa", type: "number", defaultValue: 0.05 },
+  { key: "yards_gained", type: "number", defaultValue: 10 },
+  { key: "down", type: "number", defaultValue: 3 },
+  { key: "yards_to_go", type: "number", defaultValue: 7 },
+  { key: "quarter", type: "number", defaultValue: 4 },
+  { key: "score_differential", type: "number", defaultValue: 7 },
+  { key: "success", type: "string", defaultValue: "true" },
+  { key: "shotgun", type: "string", defaultValue: "true" },
+  { key: "no_huddle", type: "string", defaultValue: "true" },
+  { key: "red_zone", type: "string", defaultValue: "true" },
+  { key: "goal_to_go", type: "string", defaultValue: "true" },
+  { key: "touchdown", type: "string", defaultValue: "true" },
+  { key: "first_down", type: "string", defaultValue: "true" },
+];
+
 // Generate all stat chunks
 const PASSING_SEASON_CHUNKS = generateStatChunks(
   PASSING_STATS,
@@ -109,6 +131,8 @@ const FANTASY_SEASON_CHUNKS = generateStatChunks(
   SlotType.FilterValue,
 );
 
+const PLAY_CHUNKS = generatePlayStatChunks(PLAY_STATS, SlotType.FilterValue);
+
 /**
  * Simplified chunk data structure that consolidates all chunks using generators
  */
@@ -116,6 +140,7 @@ export function getAllChunksSimplified(): Chunk[] {
   return [
     // Generated entity and relationship chunks
     ...generatePositionChunks(),
+    ...generatePlayChunks(),
     ...generateEntityRelationshipChunks(),
     ...generatePlayerInfoChunks(),
     ...generatePlayerGameConstraints(),
@@ -130,5 +155,8 @@ export function getAllChunksSimplified(): Chunk[] {
     ...RECEIVING_GAME_CHUNKS,
     ...FANTASY_GAME_CHUNKS,
     ...FANTASY_SEASON_CHUNKS,
+
+    // Generated play chunks
+    ...PLAY_CHUNKS,
   ];
 }
