@@ -8,8 +8,8 @@ ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 STATFOUNDRY_SERVICE_URL = os.getenv("STATFOUNDRY_SERVICE_URL", "localhost:3000")
 
 # Database credentials
-URI = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI")
-PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD")
+URI = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE")
+PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE")
 
 # Validate required environment variables
 if not URI:
