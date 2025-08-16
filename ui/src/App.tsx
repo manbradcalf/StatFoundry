@@ -15,6 +15,7 @@ import { HelpBar } from "./components/HelpBar";
 import { VideoTutorials } from "./components/VideoTutorials";
 import { StatsPage } from "./components/StatsComponent";
 import { AboutPage } from "./components/AboutPage";
+import { VerticalAd } from "./components/VerticalAd";
 
 function App() {
   useEffect(() => {
@@ -69,20 +70,28 @@ function App() {
                 <LoginButton />
                 <HelpBar />
               </header>
-              <div className="App-body">
-                <Routes>
-                  <Route path="/" element={<SearchContent />} />
-                  <Route path="/account" element={<AccountDetail />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/faqs" element={<FAQPage />} />
-                  <Route path="/video-tutorials" element={<VideoTutorials />} />
-                  <Route path="/stats" element={<StatsPage />} />
-                  <Route
-                    path="/players/:slug/:gsisId"
-                    element={<PlayerDetail />}
-                  />
-                  <Route path="*" element={<div>Page Not Found</div>} />
-                </Routes>
+              <div className="App-layout">
+                <div className="App-sidebar-left">
+                  <VerticalAd />
+                </div>
+                <div className="App-body">
+                  <Routes>
+                    <Route path="/" element={<SearchContent />} />
+                    <Route path="/account" element={<AccountDetail />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/faqs" element={<FAQPage />} />
+                    <Route path="/video-tutorials" element={<VideoTutorials />} />
+                    <Route path="/stats" element={<StatsPage />} />
+                    <Route
+                      path="/players/:slug/:gsisId"
+                      element={<PlayerDetail />}
+                    />
+                    <Route path="*" element={<div>Page Not Found</div>} />
+                  </Routes>
+                </div>
+                <div className="App-sidebar-right">
+                  <VerticalAd />
+                </div>
               </div>
               <CTA />
               <div className="stats-sourced-from">

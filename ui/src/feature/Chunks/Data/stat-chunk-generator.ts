@@ -3,17 +3,17 @@ import { QueryType } from "../Enums/QueryType";
 import { AliasType } from "../Enums/AliasType";
 import { SlotType } from "../Enums/SlotType";
 
-export interface StatDefinition {
+export interface FilterableProperty {
   key: string;
   type: "number" | "string" | "boolean";
   defaultValue?: number | string | boolean;
 }
 
 /**
- * Generates standardized stat chunks for filtering by player stats
+ * Generates chunks for filtering on properties of Season and Game type entities
  */
-export function generateStatChunks(
-  stats: StatDefinition[],
+export function generateFilterChunks(
+  stats: FilterableProperty[],
   entityType: "season" | "game",
   slotType: SlotType,
 ): Chunk[] {
@@ -64,49 +64,49 @@ export function generateStatChunks(
 }
 
 /**
- * Generates standardized play stat chunks for filtering by play properties
+ * Generates chunks for filtering on Play properties
  * Different from game/season stats - these are event-level, not player aggregates
  */
-export function generatePlayStatChunks(
-  stats: StatDefinition[],
+export function generatePlayFilterChunks(
+  properties: FilterableProperty[],
   slotType: SlotType,
 ): Chunk[] {
   const chunks: Chunk[] = [];
 
-  for (const stat of stats) {
+  for (const prop of properties) {
     // Single filter chunk for each play property
     chunks.push({
-      English: `[${stat.key}]`,
+      English: `[${prop.key}]`,
       Cypher: "",
-      EnglishTemplate: `with {condition} {value} {stat}`,
-      CypherTemplate: `play.{stat} {condition} {value}`,
+      EnglishTemplate: `with {condition} {value} {property}`,
+      CypherTemplate: `play.{property} {condition} {value}`,
       QueryType: QueryType.FILTER,
       Requires: [{ Name: "play", AliasType: AliasType.Play }],
       Provides: [{ Name: "play", AliasType: AliasType.Play }],
       Slots: [
         {
-          Name: "stat",
-          Value: stat.key,
+          Name: "property",
+          Value: prop.key,
           SlotValueTypes: [slotType],
         },
         {
           Name: "condition",
-          Value: stat.type === "number" ? ">" : "=",
+          Value: prop.type === "number" ? ">" : "=",
           SlotValueTypes: [SlotType.FilterCondition],
         },
         {
           Name: "value",
           Value:
-            stat.defaultValue ??
-            (stat.type === "number"
+            prop.defaultValue ??
+            (prop.type === "number"
               ? 100
-              : stat.type === "boolean"
+              : prop.type === "boolean"
                 ? true
                 : "example"),
           SlotValueTypes: [SlotType.FilterValue],
         },
       ],
-      SuggestionKeywords: [stat.key, "play"],
+      SuggestionKeywords: [prop.key, "play"],
     });
   }
 

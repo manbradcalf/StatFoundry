@@ -5,6 +5,7 @@ import { PlayerSeasons } from "./PlayerSeasons";
 import { useParams, useNavigate } from "react-router-dom";
 import { usePlayerDetailContext } from "../../contexts/PlayerDetailContext";
 import { Helmet } from "react-helmet-async";
+import { GoogleAd } from "../GoogleAd";
 
 export const PlayerDetail: React.FC = () => {
   const { gsisId, slug } = useParams();
@@ -90,6 +91,7 @@ export const PlayerDetail: React.FC = () => {
         </button>
       </div>
       <PlayerInfo />
+      <GoogleAd />
       {showSeason2000Warning && (
         <h4>
           <span style={{ color: "red" }}>Note:</span> Our data only goes back to

@@ -5,6 +5,7 @@ import { DynamicTable } from "./DynamicTable/";
 import { commonStyles } from "../utils/commonStyles";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { GoogleAd } from "./GoogleAd";
 
 export const SearchResults: React.FC = () => {
   const { chain } = useChainContext();
@@ -23,6 +24,7 @@ export const SearchResults: React.FC = () => {
 
   return (
     <div className="search-results-body">
+      <GoogleAd />
       {searchError ? (
         <p className="aliases-label">
           {searchError}: {chain.toArray().map((x) => x.English + " ")}
@@ -34,8 +36,8 @@ export const SearchResults: React.FC = () => {
       )}
       {searchResults && !isSearching ? (
         <div>
-          <DynamicTable 
-            data={searchResults} 
+          <DynamicTable
+            data={searchResults}
             enableExport={true}
             exportFilename="search-results"
           />
