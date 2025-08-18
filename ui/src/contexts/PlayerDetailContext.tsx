@@ -27,6 +27,7 @@ interface PlayerDetailContextType {
   fetchPlayerInfo: (gsisId: string) => Promise<void>;
   fetchPlayerGames: (gsisId: string) => Promise<void>;
   fetchPlayerSeasons: (gsisId: string) => Promise<void>;
+  clearPlayerData: () => void;
 }
 
 const PlayerDetailContext = createContext<PlayerDetailContextType | undefined>(
@@ -162,6 +163,11 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     }
   }, []);
 
+  const clearPlayerData = useCallback(() => {
+    setPlayerGames([]);
+    setPlayerSeasons([]);
+  }, []);
+
   const value: PlayerDetailContextType = {
     playerInfo: playerInfo,
     playerGames: playerGames,
@@ -176,6 +182,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     fetchPlayerInfo: fetchPlayerInfoByGsisId,
     fetchPlayerGames: fetchPlayerGamesByGsisId,
     fetchPlayerSeasons: fetchPlayerSeasonsByGsisId,
+    clearPlayerData: clearPlayerData,
   };
 
   return (

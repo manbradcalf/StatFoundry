@@ -17,6 +17,7 @@ export const PlayerDetail: React.FC = () => {
     fetchPlayerGames,
     fetchPlayerSeasons,
     showSeason2000Warning,
+    clearPlayerData,
   } = usePlayerDetailContext();
 
   useEffect(() => {
@@ -25,7 +26,12 @@ export const PlayerDetail: React.FC = () => {
       fetchPlayerGames(gsisId);
       fetchPlayerSeasons(gsisId);
     }
-  }, [gsisId, fetchPlayerInfo, fetchPlayerGames, fetchPlayerSeasons]);
+
+    // Clear data when navigating away (component unmounts)
+    return () => {
+      clearPlayerData();
+    };
+  }, [gsisId, fetchPlayerInfo, fetchPlayerGames, fetchPlayerSeasons, clearPlayerData]);
 
   if (!gsisId) {
     return <div>No player ID provided</div>;
