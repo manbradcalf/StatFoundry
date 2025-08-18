@@ -8,7 +8,7 @@ export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
   {
     english: "for [team]",
     englishTemplate: "for {team}",
-    cypherTemplate: "pg.recent_team = {team}",
+    cypherTemplate: "toLower(pg.recent_team) = toLower({team})",
     queryType: QueryType.FILTER,
     slots: [
       { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue },
@@ -18,7 +18,7 @@ export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
   {
     english: "against [team]",
     englishTemplate: "against {team}",
-    cypherTemplate: "pg.opponent_team = {team}",
+    cypherTemplate: "toLower(pg.opponent_team) = toLower({team})",
     queryType: QueryType.FILTER,
     slots: [
       { name: "team", defaultValue: "GB", slotType: SlotType.FilterValue },

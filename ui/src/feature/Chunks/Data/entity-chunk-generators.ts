@@ -85,7 +85,8 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
   {
     english: "Players named [name]",
     englishTemplate: "Players named {name}",
-    cypherTemplate: "MATCH (p:Player) WHERE p.display_name = {name}",
+    cypherTemplate:
+      "MATCH (p:Player) WHERE toLower(p.display_name) = toLower({name})",
     queryType: QueryType.MATCH_START,
     slotName: "name",
     defaultValue: "Josh Allen",
@@ -95,7 +96,7 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
     english: "Players currently on [team]",
     englishTemplate: "Players currently on {team}",
     cypherTemplate:
-      "MATCH (p:Player) WHERE p.team_abbr = {team} AND p.status='ACT'",
+      "MATCH (p:Player) WHERE toLower(p.team_abbr) = toLower({team}) AND p.status='ACT'",
     queryType: QueryType.MATCH_START,
     slotName: "team",
     defaultValue: "SEA",
@@ -104,7 +105,7 @@ export const PLAYER_FILTERS: PlayerFilterDefinition[] = [
   {
     english: "who went to [college]",
     englishTemplate: "who went to {college}",
-    cypherTemplate: "WHERE p.college_name={college}",
+    cypherTemplate: "WHERE toLower(p.college_name) = toLower({college})",
     queryType: QueryType.MATCH_START,
     slotName: "college",
     defaultValue: "Ohio State",
