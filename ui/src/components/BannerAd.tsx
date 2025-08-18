@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { config } from "../config";
 
 interface BannerAdProps {
   placement?: "search-results" | "player-detail" | "sidebar";
@@ -12,6 +13,11 @@ export const BannerAd: React.FC<BannerAdProps> = ({ placement = "player-detail" 
       console.error("AdSense error:", error);
     }
   }, []);
+
+  // Don't render ads if disabled in config
+  if (!config.showAds) {
+    return null;
+  }
 
   return (
     <div style={{ margin: "20px 0", textAlign: "center" }}>

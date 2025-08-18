@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { config } from "../config";
 
 export const GoogleAd: React.FC = () => {
   const adRef = useRef<HTMLModElement>(null);
@@ -21,6 +22,11 @@ export const GoogleAd: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Don't render ads if disabled in config
+  if (!config.showAds) {
+    return null;
+  }
 
   return (
     <div style={{ margin: "20px 0" }}>
