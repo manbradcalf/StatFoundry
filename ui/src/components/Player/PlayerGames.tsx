@@ -24,9 +24,6 @@ export const PlayerGames: React.FC = () => {
   ];
 
   const statColumns = usePositionToStatColumnsMapper(playerPosition);
-  if (playerGamesError) {
-    return <div>{playerGamesError}</div>;
-  }
 
   if (isLoadingPlayerGames) {
     return <div className="loading-state">Loading player games...</div>;
