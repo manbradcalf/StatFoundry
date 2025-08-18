@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Adsense } from "@ctrl/react-adsense";
 import { config } from "../config";
 
 interface BannerAdProps {
@@ -6,14 +7,6 @@ interface BannerAdProps {
 }
 
 export const BannerAd: React.FC<BannerAdProps> = ({ placement = "player-detail" }) => {
-  useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (error) {
-      console.error("AdSense error:", error);
-    }
-  }, []);
-
   // Don't render ads if disabled in config
   if (!config.showAds) {
     return null;
@@ -21,21 +14,13 @@ export const BannerAd: React.FC<BannerAdProps> = ({ placement = "player-detail" 
 
   return (
     <div style={{ margin: "20px 0", textAlign: "center" }}>
-      <ins
-        className="adsbygoogle"
+      <Adsense
+        client="ca-pub-9761689709275841"
+        slot="7455192803"
         style={{ display: "block" }}
-        data-ad-client="ca-pub-9761689709275841"
-        data-ad-slot="7455192803"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
+        format="auto"
+        responsive
       />
     </div>
   );
 };
-
-// Declare global adsbygoogle for TypeScript
-declare global {
-  interface Window {
-    adsbygoogle: any[];
-  }
-}

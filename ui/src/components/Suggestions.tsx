@@ -6,7 +6,7 @@ import { createHighlightedText } from '../utils/englishHighlighter';
 interface SuggestionsProps {
   suggestions: Suggestion[];
   selectedIndex: number;
-  onSelect: (suggestion: Suggestion) => void;
+  onSelect: (suggestion: Suggestion, index: number) => void;
   showSuggestions: boolean; // Add this prop
 }
 
@@ -36,7 +36,7 @@ export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
             key={index}
             className={`suggestion-item ${index === selectedIndex ? 'selected' : ''
               }`}
-            onClick={() => onSelect(suggestion)}
+            onClick={() => onSelect(suggestion, index)}
             onMouseEnter={() => {
               // Visual feedback when hovering - could add hover state management here
             }}

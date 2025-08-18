@@ -12,6 +12,7 @@ import { SaveSearchModal } from "./SaveSearchModal";
 import { Suggestion } from "../contexts/Suggestion";
 import { useSavedSearches } from "../hooks/useSavedSearches";
 import { useAuth } from "../contexts/AuthContext";
+import { analyticsService } from "../utils/analytics";
 
 interface SearchBarInnerProps {
   onSaveSearch: () => void;
@@ -60,12 +61,20 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
 
   // Execute search
   const handleSearch = useCallback(() => {
+    // Track search analytics
+    analyticsService.trackSearch({
+      search_term: query,
+      chain_length: chainContext.chain.toArray().length,
+      cypher_query: chainContext.chain.Cypher,
+    });
+
+    // Execute the search
     apiContext.executeSearch(
       chainContext.chain.Cypher,
       chainContext.chain.Aliases,
       chainContext.chain.English,
     );
-  }, [apiContext, chainContext]);
+  }, [apiContext, chainContext, query]);
 
   // Clear all state
   const handleClearAll = useCallback(() => {
@@ -184,7 +193,15 @@ export const SearchBar: React.FC = () => {
 
   // Create the real suggestion selection function
   const handleSuggestionSelection = useCallback(
-    (suggestion: Suggestion) => {
+    (suggestion: Suggestion, suggestionIndex?: number) => {
+      // Track suggestion selection analytics
+      analyticsService.trackSuggestionSelect({
+        suggestion_text: suggestion.chunk.English,
+        suggestion_index: suggestionIndex || -1,
+        chain_state: chainContext.chain.English,
+        query_string: JSON.stringify(suggestion.chunk.Slots || {}),
+      });
+
       const chunkCopy = {
         ...suggestion.chunk,
         Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),

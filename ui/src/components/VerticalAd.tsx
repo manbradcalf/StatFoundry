@@ -1,28 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { Adsense } from "@ctrl/react-adsense";
 import { config } from "../config";
 
 export const VerticalAd: React.FC = () => {
-  const adRef = useRef<HTMLModElement>(null);
-  const isLoaded = useRef(false);
-
-  useEffect(() => {
-    if (isLoaded.current) return;
-
-    const timer = setTimeout(() => {
-      try {
-        console.log("Trying to load vertical ad...");
-        console.log("adsbygoogle available:", !!window.adsbygoogle);
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-        isLoaded.current = true;
-        console.log("loaded vertical ad");
-      } catch (error) {
-        console.error("AdSense error:", error);
-      }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   // Don't render ads if disabled in config
   if (!config.showAds) {
     return null;
@@ -30,26 +10,16 @@ export const VerticalAd: React.FC = () => {
 
   return (
     <div style={{ margin: "20px 0" }}>
-      <ins
-        ref={adRef}
-        className="adsbygoogle"
-        style={{ 
-          display: "inline-block", 
-          width: "160px", 
-          height: "600px",
-          backgroundColor: "#4a4a4a",
-          border: "1px solid #666",
-          borderRadius: "4px"
+      <Adsense
+        client="ca-pub-9761689709275841"
+        slot="3178156007"
+        style={{
+          display: "inline-block",
+          width: "160px",
+          height: "600px"
         }}
-        data-ad-client="ca-pub-9761689709275841"
-        data-ad-slot="3178156007"
+        format=""
       />
     </div>
   );
 };
-
-declare global {
-  interface Window {
-    adsbygoogle: any[];
-  }
-}

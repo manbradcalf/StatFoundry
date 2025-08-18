@@ -14,7 +14,7 @@ interface SearchInputContextType {
 
   // Actions
   setQuery: (query: string) => void;
-  selectSuggestion: (suggestion: Suggestion) => void;
+  selectSuggestion: (suggestion: Suggestion, index?: number) => void;
   clearQuery: () => void;
   
   // Input focus handling
@@ -42,7 +42,7 @@ interface SearchInputProviderProps {
   children: ReactNode;
   chain: ChunkChain;
   insertingAtIndex?: number | null;
-  onSuggestionSelect: (suggestion: Suggestion) => void;
+  onSuggestionSelect: (suggestion: Suggestion, index?: number) => void;
   onExecuteSearch?: () => void;
 }
 
@@ -97,10 +97,10 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
 
   // Handle suggestion selection
   const handleSuggestionClick = useCallback(
-    (suggestion: Suggestion) => {
+    (suggestion: Suggestion, index?: number) => {
       setShowSuggestions(false);
       setQuery(""); // Clear the search input
-      onSuggestionSelect(suggestion);
+      onSuggestionSelect(suggestion, index);
     },
     [onSuggestionSelect]
   );
@@ -120,10 +120,11 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   // Watch for keyboard selection events
   useEffect(() => {
     if (selectedSuggestion) {
-      handleSuggestionClick(selectedSuggestion);
+      const suggestionIndex = suggestions.findIndex(s => s === selectedSuggestion);
+      handleSuggestionClick(selectedSuggestion, suggestionIndex);
       clearSelection();
     }
-  }, [selectedSuggestion, handleSuggestionClick, clearSelection]);
+  }, [selectedSuggestion, handleSuggestionClick, clearSelection, suggestions]);
 
   // Auto-enable keyboard navigation when suggestions become available
   useEffect(() => {
