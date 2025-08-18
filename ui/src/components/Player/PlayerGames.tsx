@@ -5,8 +5,7 @@ import { DynamicTable } from "../DynamicTable";
 
 export const PlayerGames: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { playerGames, playerGamesError, isLoadingPlayerGames } =
-    usePlayerDetailContext();
+  const { playerGames, isLoadingPlayerGames } = usePlayerDetailContext();
 
   const gamesArray: any[] = Array.isArray(playerGames) ? playerGames : [];
 
