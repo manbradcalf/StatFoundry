@@ -6,7 +6,9 @@ interface BannerAdProps {
   placement?: "search-results" | "player-detail" | "sidebar";
 }
 
-export const BannerAd: React.FC<BannerAdProps> = ({ placement = "player-detail" }) => {
+export const BannerAd: React.FC<BannerAdProps> = ({
+  placement = "player-detail",
+}) => {
   // Don't render ads if disabled in config
   if (!config.showAds) {
     return null;
@@ -19,7 +21,7 @@ export const BannerAd: React.FC<BannerAdProps> = ({ placement = "player-detail" 
         slot="7455192803"
         style={{ display: "block" }}
         format="auto"
-        responsive
+        responsive="true"
       />
     </div>
   );
