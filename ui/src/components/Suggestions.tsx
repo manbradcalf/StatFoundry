@@ -1,10 +1,17 @@
-import React, { forwardRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faCodeBranch, faPlay, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { Suggestion } from '../contexts/Suggestion';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
-import { QueryType } from '../feature/Chunks/Enums/QueryType';
-import { createHighlightedText } from '../utils/englishHighlighter';
+import React, { forwardRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFilter,
+  faCodeBranch,
+  faPlay,
+  faArrowLeft,
+  faCircleNodes,
+  faCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { Suggestion } from "../contexts/Suggestion";
+import { Chunk } from "../feature/Chunks/Types/Chunk";
+import { QueryType } from "../feature/Chunks/Enums/QueryType";
+import { createHighlightedText } from "../utils/englishHighlighter";
 
 interface SuggestionsProps {
   suggestions: Suggestion[];
@@ -28,33 +35,33 @@ const getChunkTypeInfo = (queryType: QueryType) => {
   switch (queryType) {
     case QueryType.MATCH_START:
       return {
-        icon: faPlay,
-        modifier: 'match-start',
-        title: 'Match Start - Finds initial nodes'
+        icon: faCircle,
+        modifier: "match-start",
+        title: "Match Start - Finds initial nodes",
       };
     case QueryType.JUNCTION:
       return {
-        icon: faCodeBranch,
-        modifier: 'junction', 
-        title: 'Junction - Connects to related entities'
+        icon: faCircleNodes,
+        modifier: "junction",
+        title: "Junction - Connects to related entities",
       };
     case QueryType.FILTER:
       return {
         icon: faFilter,
-        modifier: 'filter',
-        title: 'Filter - Adds conditions to narrow results'
+        modifier: "filter",
+        title: "Filter - Adds conditions to narrow results",
       };
     case QueryType.RETURN:
       return {
         icon: faArrowLeft,
-        modifier: 'return',
-        title: 'Return - Selects output columns'
+        modifier: "return",
+        title: "Return - Selects output columns",
       };
     default:
       return {
         icon: faPlay,
-        modifier: 'default',
-        title: 'Query chunk'
+        modifier: "default",
+        title: "Query chunk",
       };
   }
 };
@@ -78,7 +85,7 @@ export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
             <div
               key={index}
               className={`suggestion-item suggestion-item--${chunkTypeInfo.modifier} ${
-                index === selectedIndex ? 'selected' : ''
+                index === selectedIndex ? "selected" : ""
               }`}
               onClick={() => onSelect(suggestion, index)}
               onMouseEnter={() => {
@@ -88,7 +95,7 @@ export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
             >
               <div className="suggestion-content">
                 <FontAwesomeIcon
-                  icon={chunkTypeInfo.icon} 
+                  icon={chunkTypeInfo.icon}
                   className="suggestion-icon"
                   size="sm"
                 />
@@ -101,7 +108,7 @@ export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
         })}
       </div>
     );
-  }
+  },
 );
 
-Suggestions.displayName = 'Suggestions';
+Suggestions.displayName = "Suggestions";
