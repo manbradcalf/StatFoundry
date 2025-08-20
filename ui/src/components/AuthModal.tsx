@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Modal from 'react-modal';
 import { useAuth } from '../contexts/AuthContext';
+import { GoogleLogo } from './GoogleLogo';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -123,7 +124,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         disabled={loading}
         className="auth-google-button"
       >
-        {loading ? 'Signing in...' : 'Continue with Google'}
+        <GoogleLogo size={18} />
+        <span>{loading ? 'Signing in...' : 'Continue with Google'}</span>
       </button>
 
       <div className="auth-divider">
@@ -184,7 +186,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         disabled={loading}
         className="auth-google-button"
       >
-        {loading ? 'Signing up...' : 'Continue with Google'}
+        <GoogleLogo size={18} />
+        <span>{loading ? 'Signing up...' : 'Continue with Google'}</span>
       </button>
 
       <div className="auth-divider">

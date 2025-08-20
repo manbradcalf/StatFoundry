@@ -28,7 +28,7 @@ export function generateFilterChunks(
     chunks.push({
       English: `[${stat.key}]`,
       Cypher: "",
-      EnglishTemplate: `with {condition} {value} {stat}`,
+      EnglishTemplate: `{condition} {value} {stat}`,
       CypherTemplate: `${entityAlias}.{stat} {condition} {value}`,
       QueryType: QueryType.FILTER,
       Requires: [{ Name: entityAlias, AliasType: aliasType }],

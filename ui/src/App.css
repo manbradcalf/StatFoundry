@@ -2558,24 +2558,40 @@ input[type="number"] {
 .auth-google-button {
   width: 100%;
   padding: 12px 16px;
-  background: #4285f4;
-  color: white;
-  border: none;
+  background: white;
+  color: #3c4043;
+  border: 1px solid #dadce0;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
+  font-family: 'Google Sans', Roboto, arial, sans-serif;
   cursor: pointer;
   transition: all 0.2s;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.30), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .auth-google-button:hover {
-  background: #3367d6;
+  background: #f8f9fa;
+  border-color: #dadce0;
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.30), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
 }
 
 .auth-google-button:disabled {
-  background: #94a3b8;
+  background: #f8f9fa;
+  color: #5f6368;
+  border-color: #f8f9fa;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+.auth-google-button span {
+  flex: 1;
+  text-align: center;
 }
 
 .auth-divider {
@@ -2599,6 +2615,8 @@ input[type="number"] {
   padding: 0 12px;
   color: #64748b;
   font-size: 14px;
+  position: relative;
+  z-index: 1;
 }
 
 .auth-form-group {
