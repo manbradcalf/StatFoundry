@@ -22,6 +22,8 @@ export interface DynamicTableProps {
   onExport?: () => void;
   // Access control options
   requireAuthForExport?: boolean;
+  // Column grouping options
+  columnGroups?: ColumnGroup[];
 }
 
 /**

@@ -24,6 +24,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   onExport,
   // Access control options
   requireAuthForExport = false,
+  // Column grouping options
+  columnGroups,
 }) => {
   // Data processing hook - first get available columns
   const { availableColumns } = useTableData({
@@ -35,7 +37,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   // Column visibility hook
   const columnVisibility = useColumnVisibility({
     availableColumns,
-    storageKey: `dynamicTable-columnVisibility-${exportFilename || 'default'}`,
   });
 
   // Data processing with visibility filtering
@@ -94,6 +95,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             hideAllNonEssential={columnVisibility.hideAllNonEssential}
             resetToDefaults={columnVisibility.resetToDefaults}
             canHideColumn={columnVisibility.canHideColumn}
+            columnGroups={columnGroups}
           />
           {enableExport && (
             <ExportButton

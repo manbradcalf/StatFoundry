@@ -1493,7 +1493,7 @@ input[type="number"] {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden; /* Prevent container from expanding beyond parent */
+  overflow: visible; /* Allow dropdowns to expand beyond container */
 }
 
 /* Table Controls Row */
@@ -1569,7 +1569,7 @@ input[type="number"] {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: 9999;
   min-width: 280px;
   max-width: 400px;
   background: white;

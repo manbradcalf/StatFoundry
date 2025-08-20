@@ -6,6 +6,7 @@ import { commonStyles } from "../utils/commonStyles";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GoogleAd } from "./GoogleAd";
+import { columnGroups } from "./DynamicTable/config";
 
 export const SearchResults: React.FC = () => {
   const { chain } = useChainContext();
@@ -41,6 +42,7 @@ export const SearchResults: React.FC = () => {
             enableExport={true}
             exportFilename="search-results"
             requireAuthForExport={true}
+            columnGroups={columnGroups}
           />
           {searchResults.length > 0 && (
             <div style={commonStyles.infoText}>
