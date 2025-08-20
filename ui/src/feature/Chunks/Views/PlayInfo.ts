@@ -1,5 +1,5 @@
 export const PLAY_INFO_PROPERTIES = [
-  "play_id", 
+  "play_id",
   "game_id",
   "down",
   "yards_to_go",
@@ -13,5 +13,6 @@ export const PLAY_INFO_PROPERTIES = [
   "desc",
   "posteam",
   "success",
-  "offense_formation"
+  "offense_formation",
 ];
+

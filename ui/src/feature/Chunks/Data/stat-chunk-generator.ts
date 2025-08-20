@@ -28,7 +28,7 @@ export function generateFilterChunks(
     chunks.push({
       English: `[${stat.key}]`,
       Cypher: "",
-      EnglishTemplate: `{condition} {value} {stat}`,
+      EnglishTemplate: `{stat} {condition} {value}`,
       CypherTemplate: `${entityAlias}.{stat} {condition} {value}`,
       QueryType: QueryType.FILTER,
       Requires: [{ Name: entityAlias, AliasType: aliasType }],
@@ -78,7 +78,7 @@ export function generatePlayFilterChunks(
     chunks.push({
       English: `[${prop.key}]`,
       Cypher: "",
-      EnglishTemplate: `with {condition} {value} {property}`,
+      EnglishTemplate: `{property} {condition} {value} `,
       CypherTemplate: `play.{property} {condition} {value}`,
       QueryType: QueryType.FILTER,
       Requires: [{ Name: "play", AliasType: AliasType.Play }],

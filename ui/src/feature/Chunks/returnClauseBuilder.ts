@@ -6,6 +6,7 @@ import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
 import { PASSING_STATS } from "./Views/PassingStats";
 import { FLEX_STATS, RECEIVING_STATS, RUSHING_STATS } from "./Views/FlexStats";
 import { FANTASY_STATS } from "./Views/FantasyStats";
+import { PLAY_STATS } from "./Views/PlayStats";
 
 // For RESULTS building...
 // Helper function to get properties for a given label
@@ -33,24 +34,7 @@ const getPropertiesByAliasType = (
       ];
 
     case AliasType.Play:
-      return [
-        "posteam",
-        "defteam",
-        "down",
-        "ydstogo",
-        "yrdln",
-        "yards_gained",
-        "qtr",
-        "time",
-        "desc",
-        "formation",
-        "wp",
-        "td_prob",
-        "defense_man_zone_type",
-        "defenders_in_box",
-        // "defense_players",
-        // "offense_players",
-      ]; // possession team as sticky column
+      return [...PLAY_STATS.map((x) => x.key)]; // possession team as sticky column
 
     case AliasType.Game:
       return ["game_id", "week", "season", "home_team", "away_team"];
