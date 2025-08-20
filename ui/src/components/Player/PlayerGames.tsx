@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { usePlayerDetailContext } from "../../contexts/PlayerDetailContext";
+import { analytics } from "../../firebase/config";
 import { usePositionToStatColumnsMapper } from "../../hooks/usePositionToColumnMapper";
+import { analyticsService } from "../../utils/analytics";
 import { DynamicTable } from "../DynamicTable";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const PlayerGames: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
