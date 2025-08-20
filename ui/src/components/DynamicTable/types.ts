@@ -40,3 +40,21 @@ export interface ProcessedDataItem {
   flattened: Record<string, any>;
   arrays: Record<string, any[]>;
 }
+
+/**
+ * Column visibility configuration
+ */
+export interface ColumnVisibilityState {
+  visibleColumns: Set<string>;
+  hiddenColumns: Set<string>;
+}
+
+/**
+ * Column group for organizing columns in visibility dropdown
+ */
+export interface ColumnGroup {
+  name: string;
+  label: string;
+  columns: string[];
+  priority: number;
+}

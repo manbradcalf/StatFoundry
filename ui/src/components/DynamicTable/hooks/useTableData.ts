@@ -5,18 +5,21 @@ interface UseTableDataProps {
   data: any[];
   columns?: string[];
   excludeColumns: string[];
+  visibleColumns?: string[];
 }
 
 interface UseTableDataReturn {
   processedData: ProcessedDataItem[];
   arrayKeys: string[];
   finalKeys: string[];
+  availableColumns: string[];
 }
 
 export const useTableData = ({
   data,
   columns,
   excludeColumns,
+  visibleColumns,
 }: UseTableDataProps): UseTableDataReturn => {
   // Flatten nested objects and separate array data
   const flattenedData = useMemo(() => {
@@ -68,8 +71,8 @@ export const useTableData = ({
     );
   }, [flattenedData]);
 
-  // Determine final columns to display
-  const finalKeys = useMemo(() => {
+  // Determine available columns (all columns that could be shown)
+  const availableColumns = useMemo(() => {
     if (columns) {
       // Use explicit columns if provided, filter out excluded ones
       return columns.filter((key) => !excludeColumns.includes(key));
@@ -81,7 +84,7 @@ export const useTableData = ({
     );
     
     // Filter out excluded columns and completely empty columns
-    const availableKeys = allFlatKeys.filter((key) => !excludeColumns.includes(key));
+    const filteredKeys = allFlatKeys.filter((key) => !excludeColumns.includes(key));
     
     const hasNonEmptyValues = (key: string): boolean => {
       return flattenedData.some((item) => {
@@ -90,12 +93,23 @@ export const useTableData = ({
       });
     };
 
-    return availableKeys.filter(hasNonEmptyValues);
+    return filteredKeys.filter(hasNonEmptyValues);
   }, [columns, excludeColumns, flattenedData]);
+
+  // Determine final columns to display (filtered by visibility)
+  const finalKeys = useMemo(() => {
+    // If visibleColumns is provided, filter to only show visible columns
+    if (visibleColumns) {
+      return availableColumns.filter((key) => visibleColumns.includes(key));
+    }
+
+    return availableColumns;
+  }, [availableColumns, visibleColumns]);
 
   return {
     processedData: flattenedData,
     arrayKeys,
     finalKeys,
+    availableColumns,
   };
 };

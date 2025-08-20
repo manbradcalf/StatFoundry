@@ -4,10 +4,12 @@ import { defaultExcludeColumns } from "./config";
 import { useTableData } from "./hooks/useTableData";
 import { useTableSorting } from "./hooks/useTableSorting";
 import { useTablePagination } from "./hooks/useTablePagination";
+import { useColumnVisibility } from "./hooks/useColumnVisibility";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { PaginationControls } from "./components/PaginationControls";
 import { ExportButton } from "./components/ExportButton";
+import { ColumnVisibilityDropdown } from "./components/ColumnVisibilityDropdown";
 import { commonStyles } from "../../utils/commonStyles";
 
 export const DynamicTable: React.FC<DynamicTableProps> = ({
@@ -21,17 +23,31 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   exportFilename,
   onExport,
 }) => {
-  // Data processing hook
-  const { processedData, arrayKeys, finalKeys } = useTableData({
+  // Data processing hook - first get available columns
+  const { availableColumns } = useTableData({
     data,
     columns,
     excludeColumns,
   });
 
+  // Column visibility hook
+  const columnVisibility = useColumnVisibility({
+    availableColumns,
+    storageKey: `dynamicTable-columnVisibility-${exportFilename || 'default'}`,
+  });
+
+  // Data processing with visibility filtering
+  const { processedData: visibleProcessedData, arrayKeys: visibleArrayKeys, finalKeys: visibleFinalKeys } = useTableData({
+    data,
+    columns,
+    excludeColumns,
+    visibleColumns: columnVisibility.visibleColumns,
+  });
+
   // Sorting hook
   const { sortConfig, sortedData, handleSort, getSortIndicator } =
     useTableSorting({
-      processedData,
+      processedData: visibleProcessedData,
       onSortChange: () => {
         // This will be handled by the pagination hook's auto-reset
       },
@@ -52,7 +68,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   });
 
   // Early return if no data
-  if (processedData.length === 0) {
+  if (visibleProcessedData.length === 0) {
     return <div style={commonStyles.emptyState}>No results</div>;
   }
 
@@ -63,36 +79,43 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
         Scroll horizontally to see more columns
       </div>
 
-      {/* Conditionally render export button */}
-      {enableExport && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginBottom: "12px",
-          }}
-        >
-          <ExportButton
-            data={sortedData}
-            columns={finalKeys}
-            filename={exportFilename}
-            onExport={onExport}
+      {/* Controls row with column visibility and export */}
+      {(enableExport || availableColumns.length > 0) && (
+        <div className="dynamic-table-controls">
+          <ColumnVisibilityDropdown
+            availableColumns={availableColumns}
+            visibleColumns={columnVisibility.visibleColumns}
+            isColumnVisible={columnVisibility.isColumnVisible}
+            toggleColumn={columnVisibility.toggleColumn}
+            toggleGroup={columnVisibility.toggleGroup}
+            showAllColumns={columnVisibility.showAllColumns}
+            hideAllNonEssential={columnVisibility.hideAllNonEssential}
+            resetToDefaults={columnVisibility.resetToDefaults}
+            canHideColumn={columnVisibility.canHideColumn}
           />
+          {enableExport && (
+            <ExportButton
+              data={sortedData}
+              columns={visibleFinalKeys}
+              filename={exportFilename}
+              onExport={onExport}
+            />
+          )}
         </div>
       )}
 
       <div className="table-scroll-wrapper" style={{ maxHeight: maxHeight }}>
         <table className="dynamic-table">
           <TableHeader
-            finalKeys={finalKeys}
+            finalKeys={visibleFinalKeys}
             sortConfig={sortConfig}
             onSort={handleSort}
             getSortIndicator={getSortIndicator}
           />
           <TableBody
             paginatedData={paginatedData}
-            arrayKeys={arrayKeys}
-            finalKeys={finalKeys}
+            arrayKeys={visibleArrayKeys}
+            finalKeys={visibleFinalKeys}
             startIndex={startIndex}
             excludeColumns={excludeColumns}
           />
