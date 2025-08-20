@@ -9,8 +9,7 @@ export const PLAYER_SEASON_CONSTRAINTS: ConstraintDefinition[] = [
   {
     english: "for [team]",
     englishTemplate: "who played for {team} in those seasons",
-    cypherTemplate:
-      "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE {team} IN ps.teams",
+    cypherTemplate: "{team} IN ps.teams",
     queryType: QueryType.FILTER,
     slots: [
       { name: "team", defaultValue: "MIN", slotType: SlotType.FilterValue },
@@ -83,7 +82,7 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
     englishTemplate: "during the {season} season",
     cypherTemplate:
       "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season = {season}",
-    queryType: QueryType.FILTER,
+    queryType: QueryType.JUNCTION,
     slots: [
       { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue },
     ],

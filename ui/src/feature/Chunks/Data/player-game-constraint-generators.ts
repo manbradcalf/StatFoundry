@@ -148,15 +148,4 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
     ],
     keywords: ["seasons", "season", "between"],
   },
-  {
-    english: "during the [2024] season",
-    englishTemplate: "during the {season} season",
-    cypherTemplate:
-      "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season = {season}",
-    queryType: QueryType.FILTER,
-    slots: [
-      { name: "season", defaultValue: 2024, slotType: SlotType.FilterValue },
-    ],
-    keywords: ["seasons", "season", "during"],
-  },
 ];

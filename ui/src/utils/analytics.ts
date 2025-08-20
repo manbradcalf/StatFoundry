@@ -34,7 +34,7 @@ export interface NavigationEventParams {
 export interface TableSortEventParams {
   table_type: string;
   column_name: string;
-  sort_direction: 'asc' | 'desc' | null;
+  sort_direction: "asc" | "desc" | null;
   data_count: number;
 }
 
@@ -51,6 +51,11 @@ export interface PerformanceEventParams {
   page_url?: string;
 }
 
+export interface ExportToCSVEventParams {
+  cypher_query: string;
+  english: string;
+}
+
 // Analytics utility class
 class AnalyticsService {
   private isDevelopment = config.isDevelopment();
@@ -58,7 +63,9 @@ class AnalyticsService {
   // Initialize analytics for the session
   initializeAnalytics(userId?: string) {
     if (this.isDevelopment) {
-      console.log('[Analytics] Development mode - events will be logged to console');
+      console.log(
+        "[Analytics] Development mode - events will be logged to console",
+      );
     }
 
     if (userId) {
@@ -75,7 +82,7 @@ class AnalyticsService {
   // Set user ID for tracking
   setUserId(userId: string) {
     if (this.isDevelopment) {
-      console.log('[Analytics] Setting user ID:', userId);
+      console.log("[Analytics] Setting user ID:", userId);
       return;
     }
     setUserId(analytics, userId);
@@ -84,7 +91,7 @@ class AnalyticsService {
   // Set user properties
   setUserProperties(properties: { [key: string]: string }) {
     if (this.isDevelopment) {
-      console.log('[Analytics] Setting user properties:', properties);
+      console.log("[Analytics] Setting user properties:", properties);
       return;
     }
     setUserProperties(analytics, properties);
@@ -92,7 +99,7 @@ class AnalyticsService {
 
   // Track search events
   trackSearch(params: SearchEventParams) {
-    this.logEvent('search', {
+    this.logEvent("search", {
       search_term: params.search_term,
       chain_length: params.chain_length,
       cypher_query: params.cypher_query.substring(0, 500), // Limit length
@@ -103,7 +110,7 @@ class AnalyticsService {
 
   // Track suggestion selections
   trackSuggestionSelect(params: SuggestionEventParams) {
-    this.logEvent('select_suggestion', {
+    this.logEvent("select_suggestion", {
       suggestion_text: params.suggestion_text,
       suggestion_index: params.suggestion_index,
       chain_state: params.chain_state.substring(0, 1000), // Limit length
@@ -111,9 +118,17 @@ class AnalyticsService {
     });
   }
 
+  // Track Export to CSV
+  trackExportToCSV(params: ExportToCSVEventParams) {
+    this.logEvent("export_to_csv", {
+      cypher: params.cypher_query,
+      english: params.english,
+    });
+  }
+
   // Track player detail views
   trackPlayerView(params: PlayerViewEventParams) {
-    this.logEvent('view_player_detail', {
+    this.logEvent("view_player_detail", {
       player_gsis_id: params.player_gsis_id,
       player_name: params.player_name,
       player_position: params.player_position,
@@ -123,8 +138,8 @@ class AnalyticsService {
 
   // Track navigation clicks
   trackNavigation(params: NavigationEventParams) {
-    this.logEvent('select_content', {
-      content_type: 'navigation_link',
+    this.logEvent("select_content", {
+      content_type: "navigation_link",
       item_id: params.destination,
       link_text: params.link_text,
       source_component: params.source_component,
@@ -133,17 +148,17 @@ class AnalyticsService {
 
   // Track table sorting
   trackTableSort(params: TableSortEventParams) {
-    this.logEvent('sort_table', {
+    this.logEvent("sort_table", {
       table_type: params.table_type,
       column_name: params.column_name,
-      sort_direction: params.sort_direction || 'none',
+      sort_direction: params.sort_direction || "none",
       data_count: params.data_count,
     });
   }
 
   // Track errors and crashes
   trackError(params: ErrorEventParams) {
-    this.logEvent('exception', {
+    this.logEvent("exception", {
       description: params.error_message.substring(0, 150), // Limit length
       fatal: false,
       component_name: params.component_name,
@@ -153,7 +168,7 @@ class AnalyticsService {
 
   // Track performance metrics
   trackPerformance(params: PerformanceEventParams) {
-    this.logEvent('timing_complete', {
+    this.logEvent("timing_complete", {
       name: params.metric_name,
       value: params.metric_value,
       page_url: params.page_url,
@@ -161,23 +176,23 @@ class AnalyticsService {
   }
 
   // Track authentication events
-  trackAuth(action: 'login' | 'logout' | 'signup', method?: string) {
-    if (action === 'login') {
-      this.logEvent('login', {
-        method: method || 'unknown',
+  trackAuth(action: "login" | "logout" | "signup", method?: string) {
+    if (action === "login") {
+      this.logEvent("login", {
+        method: method || "unknown",
       });
-    } else if (action === 'logout') {
-      this.logEvent('logout', {});
-    } else if (action === 'signup') {
-      this.logEvent('sign_up', {
-        method: method || 'unknown',
+    } else if (action === "logout") {
+      this.logEvent("logout", {});
+    } else if (action === "signup") {
+      this.logEvent("sign_up", {
+        method: method || "unknown",
       });
     }
   }
 
   // Track page views
   trackPageView(pagePath: string, pageTitle?: string) {
-    this.logEvent('page_view', {
+    this.logEvent("page_view", {
       page_path: pagePath,
       page_title: pageTitle || document.title,
     });
@@ -198,7 +213,7 @@ class AnalyticsService {
     try {
       logEvent(analytics, eventName, parameters);
     } catch (error) {
-      console.error('Analytics error:', error);
+      console.error("Analytics error:", error);
     }
   }
 }
@@ -210,7 +225,7 @@ export const analyticsService = new AnalyticsService();
 export const trackSearchTiming = (startTime: number) => {
   const duration = Date.now() - startTime;
   analyticsService.trackPerformance({
-    metric_name: 'search_duration',
+    metric_name: "search_duration",
     metric_value: duration,
   });
 };
@@ -218,8 +233,9 @@ export const trackSearchTiming = (startTime: number) => {
 export const trackPageLoad = (startTime: number, pagePath: string) => {
   const loadTime = Date.now() - startTime;
   analyticsService.trackPerformance({
-    metric_name: 'page_load_time',
+    metric_name: "page_load_time",
     metric_value: loadTime,
     page_url: pagePath,
   });
 };
+
