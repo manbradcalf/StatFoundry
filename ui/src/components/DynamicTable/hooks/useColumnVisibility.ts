@@ -1,5 +1,6 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { alwaysVisibleColumns } from "../config";
+import { useSearchAPIContext } from "../../../contexts/SearchAPIContext";
 
 interface UseColumnVisibilityProps {
   availableColumns: string[];
@@ -26,6 +27,8 @@ export const useColumnVisibility = ({
   availableColumns,
   storageKey = "dynamicTable-columnVisibility",
 }: UseColumnVisibilityProps): UseColumnVisibilityReturn => {
+  const { isSearching } = useSearchAPIContext();
+  const prevIsSearchingRef = useRef(isSearching);
   // Initialize with all columns visible by default
   const [visibleColumnSet, setVisibleColumnSet] = useState<Set<string>>(() => {
     // Try to load from localStorage first
@@ -88,6 +91,15 @@ export const useColumnVisibility = ({
       return newVisible;
     });
   }, [availableColumns]);
+
+  // Reset to show all columns when search completes
+  useEffect(() => {
+    // Check if search just completed (was searching, now not searching)
+    if (prevIsSearchingRef.current && !isSearching) {
+      setVisibleColumnSet(new Set(availableColumns));
+    }
+    prevIsSearchingRef.current = isSearching;
+  }, [isSearching, availableColumns]);
 
   // Convert to array for easier consumption
   const visibleColumns = useMemo(() => {

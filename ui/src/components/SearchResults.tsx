@@ -40,6 +40,7 @@ export const SearchResults: React.FC = () => {
             data={searchResults}
             enableExport={true}
             exportFilename="search-results"
+            requireAuthForExport={true}
           />
           {searchResults.length > 0 && (
             <div style={commonStyles.infoText}>

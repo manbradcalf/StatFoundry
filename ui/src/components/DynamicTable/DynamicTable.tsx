@@ -22,6 +22,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   enableExport = false,
   exportFilename,
   onExport,
+  // Access control options
+  requireAuthForExport = false,
 }) => {
   // Data processing hook - first get available columns
   const { availableColumns } = useTableData({
@@ -99,6 +101,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
               columns={visibleFinalKeys}
               filename={exportFilename}
               onExport={onExport}
+              requireAuth={requireAuthForExport}
             />
           )}
         </div>

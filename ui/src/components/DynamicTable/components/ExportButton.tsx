@@ -1,20 +1,33 @@
 import React from 'react';
 import { convertToCSV, downloadCSV, generateCsvFilename } from '../../../utils/csvExport';
+import { useAuth } from '../../../contexts/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 interface ExportButtonProps {
   data: any[];
   columns: string[];
   filename?: string;
   onExport?: () => void;
+  requireAuth?: boolean;
 }
 
 export const ExportButton: React.FC<ExportButtonProps> = ({
   data,
   columns,
   filename,
-  onExport
+  onExport,
+  requireAuth = false,
 }) => {
+  const { user } = useAuth();
+  const isDisabled = requireAuth && !user;
+
   const handleExport = () => {
+    // If access is denied, do nothing (button should be disabled)
+    if (isDisabled) {
+      return;
+    }
+
     // Call optional callback (for analytics, paywall checks, etc.)
     onExport?.();
     
@@ -26,25 +39,21 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   return (
     <button
       onClick={handleExport}
+      className="secondary-button"
+      title={isDisabled ? 'Sign in to export data' : 'Export table data to CSV'}
+      data-tooltip={isDisabled ? 'Please sign in to access this feature' : undefined}
+      disabled={isDisabled}
       style={{
-        padding: '8px 16px',
-        backgroundColor: '#007bff',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontSize: '14px',
-        fontWeight: '500'
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        position: 'relative'
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#0056b3';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = '#007bff';
-      }}
-      title='Export table data to CSV'
     >
-      Export CSV
+      {isDisabled && (
+        <FontAwesomeIcon icon={faLock} size="sm" />
+      )}
+      <span>Export CSV</span>
     </button>
   );
 }; 

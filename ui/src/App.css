@@ -1756,6 +1756,38 @@ input[type="number"] {
   }
 }
 
+/* Simple Disabled Button Styling with Tooltips */
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6 !important;
+  color: #6c757d !important;
+}
+
+.secondary-button:disabled:hover {
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6 !important;
+  color: #6c757d !important;
+}
+
+/* Simple hover tooltip for disabled buttons */
+.secondary-button[data-tooltip]:disabled:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  background-color: #1f2937;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
 /* Mobile-only text */
 .mobile-only-text {
   display: none;

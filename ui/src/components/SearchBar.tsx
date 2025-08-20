@@ -13,6 +13,8 @@ import { Suggestion } from "../contexts/Suggestion";
 import { useSavedSearches } from "../hooks/useSavedSearches";
 import { useAuth } from "../contexts/AuthContext";
 import { analyticsService } from "../utils/analytics";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 interface SearchBarInnerProps {
   onSaveSearch: () => void;
@@ -162,10 +164,21 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
             <button
               className="secondary-button"
               title={!user ? "Sign in to save searches" : "Save this search"}
+              data-tooltip={!user ? "Please sign in to save searches" : undefined}
               onClick={onSaveSearch}
               disabled={!user}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                justifyContent: 'center',
+                position: 'relative'
+              }}
             >
-              Save
+              {!user && (
+                <FontAwesomeIcon icon={faLock} size="sm" />
+              )}
+              <span>Save</span>
             </button>
           </div>
         </div>
