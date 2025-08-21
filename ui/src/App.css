@@ -1493,7 +1493,7 @@ input[type="number"] {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden; /* Prevent container from expanding beyond parent */
+  overflow: visible; /* Allow dropdowns to expand beyond container */
 }
 
 /* Table Controls Row */
@@ -1569,7 +1569,7 @@ input[type="number"] {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: 9999;
   min-width: 280px;
   max-width: 400px;
   background: white;
@@ -1754,6 +1754,38 @@ input[type="number"] {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* Simple Disabled Button Styling with Tooltips */
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6 !important;
+  color: #6c757d !important;
+}
+
+.secondary-button:disabled:hover {
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6 !important;
+  color: #6c757d !important;
+}
+
+/* Simple hover tooltip for disabled buttons */
+.secondary-button[data-tooltip]:disabled:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  background-color: #1f2937;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
 }
 
 /* Mobile-only text */

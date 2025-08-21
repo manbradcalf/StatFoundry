@@ -52,6 +52,7 @@ export const PlayerGames: React.FC = () => {
             enableExport={true}
             exportFilename="player-games"
             onExport={handleExport}
+            requireAuthForExport={true}
           />
         </div>
       )}

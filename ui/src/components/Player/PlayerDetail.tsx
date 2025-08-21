@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { usePlayerDetailContext } from "../../contexts/PlayerDetailContext";
 import { Helmet } from "react-helmet-async";
 import { GoogleAd } from "../GoogleAd";
+import { generatePersonJsonLd, generateBreadcrumbJsonLd, injectJsonLd } from "../../utils/jsonLd";
 
 export const PlayerDetail: React.FC = () => {
   const { gsisId, slug } = useParams();
@@ -58,6 +59,22 @@ export const PlayerDetail: React.FC = () => {
     ? "NFL Player Stats | StatFoundry"
     : `${playerName} NFL Stats | StatFoundry`;
 
+  // Generate JSON-LD structured data
+  const jsonLdData = [];
+  
+  if (playerInfo) {
+    // Add Person JSON-LD
+    jsonLdData.push(generatePersonJsonLd(playerInfo));
+    
+    // Add Breadcrumb JSON-LD
+    const breadcrumbs = [
+      { name: 'StatFoundry', url: 'https://www.statfoundry.com' },
+      { name: 'Players', url: 'https://www.statfoundry.com' },
+      { name: playerName, url: canonicalUrl }
+    ];
+    jsonLdData.push(generateBreadcrumbJsonLd(breadcrumbs));
+  }
+
   return (
     <div className="player-detail">
       <Helmet>
@@ -89,6 +106,13 @@ export const PlayerDetail: React.FC = () => {
             />
             <meta property="profile:last_name" content={playerInfo.last_name} />
           </>
+        )}
+        
+        {/* JSON-LD Structured Data */}
+        {jsonLdData.length > 0 && (
+          <script type="application/ld+json">
+            {injectJsonLd(jsonLdData)}
+          </script>
         )}
       </Helmet>
       <div className="player-detail-header">

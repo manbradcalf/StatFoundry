@@ -20,6 +20,10 @@ export interface DynamicTableProps {
   enableExport?: boolean;
   exportFilename?: string;
   onExport?: () => void;
+  // Access control options
+  requireAuthForExport?: boolean;
+  // Column grouping options
+  columnGroups?: ColumnGroup[];
 }
 
 /**

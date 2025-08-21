@@ -280,4 +280,3 @@ export type PlayProperties = {
   posteam_timeouts_remaining?: number;
   defteam_timeouts_remaining?: number;
 };
-

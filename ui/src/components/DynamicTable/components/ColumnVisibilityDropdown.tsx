@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { formatColumnHeader } from "../../../utils/tableUtils";
 import { groupColumns, getGroupToggleState } from "../utils/columnGrouping";
 import { alwaysVisibleColumns } from "../config";
+import { ColumnGroup } from "../types";
 
 interface ColumnVisibilityDropdownProps {
   availableColumns: string[];
@@ -13,6 +14,7 @@ interface ColumnVisibilityDropdownProps {
   hideAllNonEssential: () => void;
   resetToDefaults: () => void;
   canHideColumn: (column: string) => boolean;
+  columnGroups?: ColumnGroup[];
 }
 
 export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> = ({
@@ -25,6 +27,7 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
   hideAllNonEssential,
   resetToDefaults,
   canHideColumn,
+  columnGroups,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -64,7 +67,7 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
     }
   }, [isOpen]);
 
-  const columnGroups = groupColumns(availableColumns);
+  const groups = groupColumns(availableColumns, columnGroups);
   const visibleCount = visibleColumns.length;
   const totalCount = availableColumns.length;
 
@@ -134,7 +137,7 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
 
           {/* Column groups */}
           <div className="column-visibility-groups">
-            {columnGroups.map(group => {
+            {groups.map(group => {
               const groupState = getGroupToggleState(group.columns, new Set(visibleColumns));
               const availableGroupColumns = group.columns.filter(col => availableColumns.includes(col));
               
