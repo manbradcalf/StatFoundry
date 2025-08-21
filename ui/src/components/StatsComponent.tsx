@@ -27,7 +27,8 @@ export const StatsPage: React.FC = () => {
         <div className="faqpage-answer">
           <p>
             StatFoundry currently supports the following NFL player statistics,
-            available for both individual games and full seasons:
+            available for both individual games and full seasons, back to the
+            year 2000:
           </p>
         </div>
       </div>
@@ -83,4 +84,3 @@ export const StatsPage: React.FC = () => {
     </div>
   );
 };
-
