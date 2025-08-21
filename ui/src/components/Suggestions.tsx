@@ -2,7 +2,6 @@ import React, { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFilter,
-  faCodeBranch,
   faPlay,
   faArrowLeft,
   faCircleNodes,
