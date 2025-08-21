@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { usePlayerDetailContext } from "../../contexts/PlayerDetailContext";
 import { Helmet } from "react-helmet-async";
 import { GoogleAd } from "../GoogleAd";
-import { generatePersonJsonLd, generateBreadcrumbJsonLd, injectJsonLd } from "../../utils/jsonLd";
+import { generatePlayerPersonJsonLd, generateBreadcrumbJsonLd, injectJsonLd } from "../../utils/jsonLd";
 
 export const PlayerDetail: React.FC = () => {
   const { gsisId, slug } = useParams();
@@ -64,7 +64,7 @@ export const PlayerDetail: React.FC = () => {
   
   if (playerInfo) {
     // Add Person JSON-LD
-    jsonLdData.push(generatePersonJsonLd(playerInfo));
+    jsonLdData.push(generatePlayerPersonJsonLd(playerInfo));
     
     // Add Breadcrumb JSON-LD
     const breadcrumbs = [
