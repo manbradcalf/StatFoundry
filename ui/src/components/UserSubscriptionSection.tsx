@@ -1,20 +1,33 @@
-import { useFeatureAccess } from "../hooks/useSubscriptions";
+import { useEffect, useState } from "react";
+import { useSubscriptions } from "../hooks/useSubscriptions";
+import { Subscription } from "../types/Subscription";
 
 export const UserSubscriptionSection: React.FC = () => {
-  const { hasAccess, disabledReason, restrictionType } = useFeatureAccess({ 
-    requireAuth: true, 
-    requirePro: true 
-  });
+  const { getUserSubscriptions } = useSubscriptions();
+  const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
 
+  useEffect(() => {
+    const fetchSubscriptions = async () => {
+      let subs = await getUserSubscriptions();
+      setSubscriptions(subs);
+    };
+    fetchSubscriptions();
+  }, [getUserSubscriptions]);
   return (
-    <div>
-      <h1>Pro Access?</h1>
-      <br />
+    <div className="user-info-section">
+      <h2>Subscriptions</h2>
       <div>
-        <p><strong>Has Access:</strong> {hasAccess ? 'Yes' : 'No'}</p>
-        <p><strong>Restriction Type:</strong> {restrictionType}</p>
-        {disabledReason && (
-          <p><strong>Disabled Reason:</strong> {disabledReason}</p>
+        {subscriptions.length === 0 ? (
+          <div>No Subscriptions :(</div>
+        ) : (
+          subscriptions.map((x: Subscription) => (
+            <div key={x.id}>
+              <div>{x.createdAt}</div>
+              <p>
+                <b>Pro Account:</b> {x.isPro ? "✅" : "🚫"}
+              </p>
+            </div>
+          ))
         )}
       </div>
     </div>
