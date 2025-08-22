@@ -1,12 +1,12 @@
-import { useState, useCallback, useMemo } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { subscriptionService } from '../services/subscriptionService';
-import { Subscription, CreateSubscriptionData } from '../types/Subscription';
+import { useState, useCallback, useMemo } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { subscriptionService } from "../services/subscriptionService";
+import { Subscription, CreateSubscriptionData } from "../types/Subscription";
 
 export interface FeatureAccessResult {
   hasAccess: boolean;
   disabledReason: string | null;
-  restrictionType: 'none' | 'auth' | 'pro' | 'loading';
+  restrictionType: "none" | "auth" | "pro" | "loading";
 }
 
 export interface FeatureAccessOptions {
@@ -21,7 +21,9 @@ export const useSubscriptions = () => {
   const [error, setError] = useState<string | null>(null);
 
   const createSubscription = useCallback(
-    async (subscriptionData: CreateSubscriptionData): Promise<string | null> => {
+    async (
+      subscriptionData: CreateSubscriptionData,
+    ): Promise<string | null> => {
       if (!user) {
         setError("User must be logged in to create subscription");
         return null;
@@ -31,15 +33,13 @@ export const useSubscriptions = () => {
       setError(null);
 
       try {
-        console.log("Creating subscription:", subscriptionData);
-        
-        const subscriptionId = await subscriptionService.createSubscription(subscriptionData);
-        
-        console.log("Subscription created successfully with ID:", subscriptionId);
+        const subscriptionId =
+          await subscriptionService.createSubscription(subscriptionData);
+
         return subscriptionId;
       } catch (err) {
-        console.error("Create subscription failed:", err);
-        const errorMessage = err instanceof Error ? err.message : "Failed to create subscription";
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to create subscription";
         setError(errorMessage);
         return null;
       } finally {
@@ -49,7 +49,9 @@ export const useSubscriptions = () => {
     [user],
   );
 
-  const getUserSubscriptions = useCallback(async (): Promise<Subscription[]> => {
+  const getUserSubscriptions = useCallback(async (): Promise<
+    Subscription[]
+  > => {
     if (!user) {
       setError("User must be logged in");
       return [];
@@ -61,7 +63,9 @@ export const useSubscriptions = () => {
     try {
       return await subscriptionService.getUserSubscriptions(user.uid);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load subscriptions");
+      setError(
+        err instanceof Error ? err.message : "Failed to load subscriptions",
+      );
       return [];
     } finally {
       setLoading(false);
@@ -79,7 +83,9 @@ export const useSubscriptions = () => {
     try {
       return await subscriptionService.isUserPro(user.uid);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to check Pro status");
+      setError(
+        err instanceof Error ? err.message : "Failed to check Pro status",
+      );
       return false;
     } finally {
       setLoading(false);
@@ -96,12 +102,13 @@ export const useSubscriptions = () => {
     setError(null);
 
     try {
-      const subscriptionId = await subscriptionService.upgradeUserToPro(user.uid);
-      console.log("User upgraded to Pro, subscription ID:", subscriptionId);
+      const subscriptionId = await subscriptionService.upgradeUserToPro(
+        user.uid,
+      );
       return subscriptionId;
     } catch (err) {
-      console.error("Upgrade to Pro failed:", err);
-      const errorMessage = err instanceof Error ? err.message : "Failed to upgrade to Pro";
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to upgrade to Pro";
       setError(errorMessage);
       return null;
     } finally {
@@ -120,11 +127,10 @@ export const useSubscriptions = () => {
 
     try {
       await subscriptionService.downgradeUserFromPro(user.uid);
-      console.log("User downgraded from Pro");
       return true;
     } catch (err) {
-      console.error("Downgrade from Pro failed:", err);
-      const errorMessage = err instanceof Error ? err.message : "Failed to downgrade from Pro";
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to downgrade from Pro";
       setError(errorMessage);
       return false;
     } finally {
@@ -135,7 +141,7 @@ export const useSubscriptions = () => {
   const updateSubscription = useCallback(
     async (
       subscriptionId: string,
-      updates: Partial<CreateSubscriptionData>
+      updates: Partial<CreateSubscriptionData>,
     ): Promise<boolean> => {
       setLoading(true);
       setError(null);
@@ -192,11 +198,13 @@ export const useSubscriptions = () => {
 /**
  * Hook for checking feature access based on auth state, paywall, and custom conditions
  * Provides consistent access control logic across the application
- * 
+ *
  * @param options Configuration for what access is required
  * @returns Object with access status, disabled reason, and restriction type
  */
-export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAccessResult => {
+export const useFeatureAccess = (
+  options: FeatureAccessOptions = {},
+): FeatureAccessResult => {
   const { user, loading: authLoading } = useAuth();
   const [proStatus, setProStatus] = useState<boolean | null>(null);
   const [proLoading, setProLoading] = useState(false);
@@ -223,8 +231,8 @@ export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAcc
     if (authLoading || (requirePro && user && proLoading)) {
       return {
         hasAccess: false,
-        disabledReason: 'Loading...',
-        restrictionType: 'loading' as const,
+        disabledReason: "Loading...",
+        restrictionType: "loading" as const,
       };
     }
 
@@ -234,8 +242,8 @@ export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAcc
       if (!customResult.hasAccess) {
         return {
           hasAccess: false,
-          disabledReason: customResult.reason || 'Access denied',
-          restrictionType: 'none' as const,
+          disabledReason: customResult.reason || "Access denied",
+          restrictionType: "none" as const,
         };
       }
     }
@@ -244,8 +252,8 @@ export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAcc
     if (requireAuth && !user) {
       return {
         hasAccess: false,
-        disabledReason: 'Please sign in to access this feature',
-        restrictionType: 'auth' as const,
+        disabledReason: "Please sign in to access this feature",
+        restrictionType: "auth" as const,
       };
     }
 
@@ -255,8 +263,8 @@ export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAcc
       if (!user) {
         return {
           hasAccess: false,
-          disabledReason: 'Please sign in to access Pro features',
-          restrictionType: 'auth' as const,
+          disabledReason: "Please sign in to access Pro features",
+          restrictionType: "auth" as const,
         };
       }
 
@@ -264,8 +272,8 @@ export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAcc
       if (proStatus === false) {
         return {
           hasAccess: false,
-          disabledReason: 'Upgrade to Pro to access this feature',
-          restrictionType: 'pro' as const,
+          disabledReason: "Upgrade to Pro to access this feature",
+          restrictionType: "pro" as const,
         };
       }
     }
@@ -274,9 +282,17 @@ export const useFeatureAccess = (options: FeatureAccessOptions = {}): FeatureAcc
     return {
       hasAccess: true,
       disabledReason: null,
-      restrictionType: 'none' as const,
+      restrictionType: "none" as const,
     };
-  }, [user, authLoading, requireAuth, requirePro, customCheck, proStatus, proLoading]);
+  }, [
+    user,
+    authLoading,
+    requireAuth,
+    requirePro,
+    customCheck,
+    proStatus,
+    proLoading,
+  ]);
 };
 
 /**
@@ -294,9 +310,11 @@ export const useProFeature = () => {
 /**
  * Helper function to get CSS classes for restricted features
  */
-export const getRestrictedFeatureClasses = (accessResult: FeatureAccessResult): string => {
-  const baseClass = 'restricted-feature';
-  
+export const getRestrictedFeatureClasses = (
+  accessResult: FeatureAccessResult,
+): string => {
+  const baseClass = "restricted-feature";
+
   if (accessResult.hasAccess) {
     return baseClass;
   }
@@ -310,3 +328,4 @@ export const getRestrictedFeatureClasses = (accessResult: FeatureAccessResult): 
 
   return `${baseClass} ${modifierClasses[accessResult.restrictionType]}`;
 };
+
