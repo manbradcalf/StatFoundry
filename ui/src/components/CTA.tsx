@@ -1,39 +1,40 @@
-
-export function CTA() {
+export function Footer() {
   return (
     <div className="cta-section">
       <div className="cta-content">
         <h3>Help Improve StatFoundry</h3>
         <div className="cta-actions">
           <div className="feedback-section">
-            <p>Share your feedback to help us build better NFL analytics tools.</p>
-            <a 
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdJG9CUdSBF4ELM1MnGYZeldDxcQu0_OFAnjgx7AkTl9Jclkw/viewform?usp=header" 
+            <p>
+              Share your feedback to help us build better NFL analytics tools.
+            </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdJG9CUdSBF4ELM1MnGYZeldDxcQu0_OFAnjgx7AkTl9Jclkw/viewform?usp=header"
               className="feedback-link"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
             >
               Share Feedback
             </a>
           </div>
-          
+
           <div className="cta-divider"></div>
-          
+
           <div className="donation-section">
             <p>Support StatFoundry</p>
             <div className="donate-buttons">
-              <a 
-                href="https://venmo.com/u/Ben-Medcalf" 
+              <a
+                href="https://venmo.com/u/Ben-Medcalf"
                 className="donate-button venmo"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 Venmo
               </a>
-              <a 
-                href="https://paypal.me/benmedcalf" 
+              <a
+                href="https://paypal.me/benmedcalf"
                 className="donate-button paypal"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 PayPal
@@ -42,6 +43,38 @@ export function CTA() {
           </div>
         </div>
       </div>
+      <div className="stats-sourced-from">
+        <p>
+          stats sourced from{" "}
+          <a
+            href="https://github.com/nflverse"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NFLVerse
+          </a>{" "}
+          licensed under CC BY 4.0
+        </p>
+        <p>PlayerStats from 2000 to 2024</p>
+        <p>
+          developed by{" "}
+          <a
+            href="https://www.benmedcalf.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ben Medcalf
+          </a>{" "}
+          at{" "}
+          <a
+            href="https://www.medcalfsoftwaresolutions.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Medcalf Software Solutions
+          </a>
+        </p>
+      </div>
     </div>
-  )
+  );
 }

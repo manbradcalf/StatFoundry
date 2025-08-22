@@ -6,7 +6,7 @@ import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
 import { LoginButton } from "./components/LoginButton";
-import { CTA } from "./components/CTA";
+import { Footer } from "./components/CTA";
 import { SearchContent } from "./components/SearchContent";
 import { PlayerDetail } from "./components/Player/PlayerDetail";
 import { AccountDetail } from "./components/AccountDetail";
@@ -16,7 +16,11 @@ import { VideoTutorials } from "./components/VideoTutorials";
 import { StatsPage } from "./components/StatsComponent";
 import { AboutPage } from "./components/AboutPage";
 import { VerticalAd } from "./components/VerticalAd";
-import { generateWebsiteJsonLd, generateOrganizationJsonLd, injectJsonLd } from "./utils/jsonLd";
+import {
+  generateWebsiteJsonLd,
+  generateOrganizationJsonLd,
+  injectJsonLd,
+} from "./utils/jsonLd";
 
 function App() {
   useEffect(() => {
@@ -25,10 +29,7 @@ function App() {
   }, []);
 
   // Generate JSON-LD for homepage
-  const jsonLdData = [
-    generateWebsiteJsonLd(),
-    generateOrganizationJsonLd()
-  ];
+  const jsonLdData = [generateWebsiteJsonLd(), generateOrganizationJsonLd()];
 
   return (
     <HelmetProvider>
@@ -70,7 +71,7 @@ function App() {
                   name="twitter:description"
                   content="Search NFL stats quickly. Analyze players, games, and seasons with ease."
                 />
-                
+
                 {/* JSON-LD Structured Data */}
                 <script type="application/ld+json">
                   {injectJsonLd(jsonLdData)}
@@ -108,39 +109,7 @@ function App() {
                   <VerticalAd />
                 </div>
               </div>
-              <CTA />
-              <div className="stats-sourced-from">
-                <p>
-                  stats sourced from{" "}
-                  <a
-                    href="https://github.com/nflverse"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    NFLVerse
-                  </a>{" "}
-                  licensed under CC BY 4.0
-                </p>
-                <p>PlayerStats from 2000 to 2024</p>
-                <p>
-                  developed by{" "}
-                  <a
-                    href="https://www.benmedcalf.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Ben Medcalf
-                  </a>{" "}
-                  at{" "}
-                  <a
-                    href="https://www.medcalfsoftwaresolutions.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Medcalf Software Solutions
-                  </a>
-                </p>
-              </div>
+              <Footer />
             </div>
           </AppContextProvider>
         </AuthProvider>

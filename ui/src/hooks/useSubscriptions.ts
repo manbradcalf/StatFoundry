@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { subscriptionService } from "../services/subscriptionService";
 import { Subscription, CreateSubscriptionData } from "../types/Subscription";
@@ -212,19 +212,23 @@ export const useFeatureAccess = (
   const { requireAuth = false, requirePro = false, customCheck } = options;
 
   // Check pro status when needed
-  useCallback(async () => {
-    if (requirePro && user && proStatus === null && !proLoading) {
-      setProLoading(true);
-      try {
-        const isPro = await isUserPro();
-        setProStatus(isPro);
-      } catch (err) {
-        setProStatus(false);
-      } finally {
-        setProLoading(false);
+  React.useEffect(() => {
+    const checkProStatus = async () => {
+      if (requirePro && user && proStatus === null && !proLoading) {
+        setProLoading(true);
+        try {
+          const isPro = await isUserPro();
+          setProStatus(isPro);
+        } catch (err) {
+          setProStatus(false);
+        } finally {
+          setProLoading(false);
+        }
       }
-    }
-  }, [requirePro, user, proStatus, proLoading, isUserPro])();
+    };
+
+    checkProStatus();
+  }, [requirePro, user, proStatus, proLoading, isUserPro]);
 
   return useMemo(() => {
     // Show loading state during auth initialization or pro check
@@ -328,4 +332,3 @@ export const getRestrictedFeatureClasses = (
 
   return `${baseClass} ${modifierClasses[accessResult.restrictionType]}`;
 };
-

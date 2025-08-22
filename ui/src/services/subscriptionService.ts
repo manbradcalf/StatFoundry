@@ -8,7 +8,6 @@ import {
   getDoc,
   query,
   where,
-  orderBy,
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
@@ -23,15 +22,12 @@ export const subscriptionService = {
   async createSubscription(
     subscriptionData: CreateSubscriptionData,
   ): Promise<string> {
-    console.log("Creating subscription with data:", subscriptionData);
-
     const docRef = await addDoc(collection(db, COLLECTION_NAME), {
       ...subscriptionData,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
 
-    console.log("Subscription created successfully with ID:", docRef.id);
     return docRef.id;
   },
 
@@ -39,13 +35,9 @@ export const subscriptionService = {
    * Get all subscriptions for a specific user
    */
   async getUserSubscriptions(userId: string): Promise<Subscription[]> {
-    const q = query(
-      collection(db, COLLECTION_NAME),
-      where("userId", "==", userId),
-      orderBy("updatedAt", "desc"),
+    const querySnapshot = await getDocs(
+      query(collection(db, COLLECTION_NAME), where("userId", "==", userId)),
     );
-
-    const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -55,7 +47,9 @@ export const subscriptionService = {
   /**
    * Get a specific subscription by ID
    */
-  async getSubscriptionById(subscriptionId: string): Promise<Subscription | null> {
+  async getSubscriptionById(
+    subscriptionId: string,
+  ): Promise<Subscription | null> {
     const docRef = doc(db, COLLECTION_NAME, subscriptionId);
     const docSnap = await getDoc(docRef);
 
@@ -96,7 +90,7 @@ export const subscriptionService = {
   async isUserPro(userId: string): Promise<boolean> {
     const subscriptions = await this.getUserSubscriptions(userId);
     // Check if any subscription has isPro: true
-    return subscriptions.some(subscription => subscription.isPro);
+    return subscriptions.some((subscription) => subscription.isPro);
   },
 
   /**
@@ -105,7 +99,7 @@ export const subscriptionService = {
   async upgradeUserToPro(userId: string): Promise<string> {
     const subscriptions = await this.getUserSubscriptions(userId);
     const existingSubscription = subscriptions[0]; // Most recent
-    
+
     if (existingSubscription) {
       // Update existing subscription
       await this.updateSubscription(existingSubscription.id, { isPro: true });
@@ -122,7 +116,7 @@ export const subscriptionService = {
   async downgradeUserFromPro(userId: string): Promise<void> {
     const subscriptions = await this.getUserSubscriptions(userId);
     const existingSubscription = subscriptions[0]; // Most recent
-    
+
     if (existingSubscription) {
       await this.updateSubscription(existingSubscription.id, { isPro: false });
     }

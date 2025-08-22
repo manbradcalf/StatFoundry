@@ -29,7 +29,6 @@ export const useSavedSearches = () => {
       setError(null);
 
       try {
-        console.log("Starting save process for:", { name, description });
         
         const savedSearchData = savedSearchService.chainToSaveData(
           chain,
@@ -37,19 +36,15 @@ export const useSavedSearches = () => {
           description,
         );
         
-        console.log("About to save to Firebase with data:", savedSearchData);
         
         const savedSearchId = await savedSearchService.saveSavedSearch(
           user.uid,
           savedSearchData,
         );
         
-        console.log("Save completed successfully with ID:", savedSearchId);
         return savedSearchId;
       } catch (err) {
-        console.error("Save failed with error:", err);
         const errorMessage = err instanceof Error ? err.message : "Failed to save search";
-        console.error("Setting error message:", errorMessage);
         setError(errorMessage);
         return null;
       } finally {
