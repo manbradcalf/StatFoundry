@@ -4,6 +4,8 @@ import { SavedSearch } from "../types/SavedSearch";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useChainContext } from "../contexts/ChainContext";
+import { savedSearchService } from "../services/savedSearchService";
 
 export const AccountDetail: React.FC = () => {
   return (
@@ -93,6 +95,7 @@ export const SavedSearchesComponent: React.FC = () => {
   const [savedSearches, setSavedSearches] = useState<SavedSearch[] | null>([]);
   const { getUserSavedSearches, deleteSavedSearch } = useSavedSearches();
   const { executeSearch } = useSearchAPIContext();
+  const { loadChain } = useChainContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -107,8 +110,15 @@ export const SavedSearchesComponent: React.FC = () => {
   }, [getUserSavedSearches, setSavedSearches]);
 
   const handleSearchFromSavedSearch = (savedSearch: SavedSearch) => {
-    executeSearch(savedSearch.cypher, savedSearch.aliases, "");
-    navigate("/", { state: { message: "hello" } });
+    // 1. Restore the chain/breadcrumbs from saved chunks
+    const restoredChain = savedSearchService.mapSaveDataToChain(savedSearch);
+    loadChain(restoredChain);
+    
+    // 2. Execute the search
+    executeSearch(savedSearch.cypher, savedSearch.aliases, savedSearch.english);
+    
+    // 3. Navigate to results
+    navigate("/");
   };
 
   const handleDeleteSavedSearch = async (searchId: string) => {

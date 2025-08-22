@@ -16,6 +16,7 @@ interface UseChainStateReturn {
   // State setters
   setQuery: (query: string) => void;
   clearAll: () => void;
+  loadChain: (chain: ChunkChain) => void;
 
   // Focus management
   focusSearchBar: () => void;
@@ -50,6 +51,13 @@ export const useChainState = ({
   // Clear all state
   const clearAll = useCallback(() => {
     setChain(new ChunkChain());
+    setQuery("");
+    setShouldFocusSearchBar(false);
+  }, []);
+
+  // Load a complete chain (for saved searches)
+  const loadChain = useCallback((newChain: ChunkChain) => {
+    setChain(newChain);
     setQuery("");
     setShouldFocusSearchBar(false);
   }, []);
@@ -105,7 +113,6 @@ export const useChainState = ({
     [onInsertMode, focusSearchBar],
   );
 
-  // Remove a chunk from the chain at the specified index
   const removeChunk = useCallback(
     (index: number) => {
       const chainArray = chain.toArray();
@@ -123,7 +130,6 @@ export const useChainState = ({
     [chain, updateChain],
   );
 
-  // Append a chunk to the end of the chain
   const appendChunk = useCallback(
     (chunk: Chunk) => {
       updateChain((newChain) => {
@@ -137,7 +143,6 @@ export const useChainState = ({
     [chain, updateChain],
   );
 
-  // Insert a chunk at a specific index
   const insertChunk = useCallback(
     (index: number, chunk: Chunk) => {
       updateChain((newChain) => {
@@ -150,7 +155,6 @@ export const useChainState = ({
     [chain, updateChain],
   );
 
-  // Update an existing chunk at a specific index
   const updateChunkAtIndex = useCallback(
     (index: number, chunk: Chunk) => {
       updateChain((newChain) => {
@@ -172,6 +176,7 @@ export const useChainState = ({
     // State setters
     setQuery,
     clearAll,
+    loadChain,
 
     // Focus management
     focusSearchBar,

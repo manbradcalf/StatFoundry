@@ -13,6 +13,7 @@ interface ChainContextType {
   updateChunkAtIndex: (index: number, chunk: Chunk) => void;
   removeChunk: (index: number) => void;
   clearChain: () => void;
+  loadChain: (chain: ReturnType<typeof useChainState>['chain']) => void;
 
   // Focus management
   focusSearchBar: () => void;
@@ -51,6 +52,7 @@ export const ChainProvider: React.FC<ChainProviderProps> = ({ children }) => {
     updateChunkAtIndex: chainState.updateChunkAtIndex,
     removeChunk: chainState.removeChunk,
     clearChain: chainState.clearAll,
+    loadChain: chainState.loadChain,
 
     // Focus management
     focusSearchBar: chainState.focusSearchBar,

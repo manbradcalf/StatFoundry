@@ -13,8 +13,8 @@ import { Suggestion } from "../contexts/Suggestion";
 import { useSavedSearches } from "../hooks/useSavedSearches";
 import { useAuth } from "../contexts/AuthContext";
 import { analyticsService } from "../utils/analytics";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 interface SearchBarInnerProps {
   onSaveSearch: () => void;
@@ -28,7 +28,6 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
 
-  // Rotating placeholder examples using supported chunks
   const placeholderExamples = [
     "Try: 'RB Games with > 100 rushing yards'",
     "Try: 'QB Games during the 2024 season'",
@@ -61,16 +60,13 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
     selectSuggestion: handleSuggestionSelect,
   } = useSearchInputContext();
 
-  // Execute search
   const handleSearch = useCallback(() => {
-    // Track search analytics
     analyticsService.trackSearch({
       search_term: query,
       chain_length: chainContext.chain.toArray().length,
       cypher_query: chainContext.chain.Cypher,
     });
 
-    // Execute the search
     apiContext.executeSearch(
       chainContext.chain.Cypher,
       chainContext.chain.Aliases,
@@ -130,7 +126,9 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
 
   return (
     <div className="search-container">
-      <div className={`search-input-row ${showSuggestions && suggestions.length > 0 ? 'suggestions-active' : ''}`}>
+      <div
+        className={`search-input-row ${showSuggestions && suggestions.length > 0 ? "suggestions-active" : ""}`}
+      >
         <div className="search-box">
           <input
             ref={inputRef}
@@ -164,20 +162,20 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
             <button
               className="secondary-button"
               title={!user ? "Sign in to save searches" : "Save this search"}
-              data-tooltip={!user ? "Please sign in to save searches" : undefined}
+              data-tooltip={
+                !user ? "Please sign in to save searches" : undefined
+              }
               onClick={onSaveSearch}
               disabled={!user}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                justifyContent: 'center',
-                position: 'relative'
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                justifyContent: "center",
+                position: "relative",
               }}
             >
-              {!user && (
-                <FontAwesomeIcon icon={faLock} size="sm" />
-              )}
+              {!user && <FontAwesomeIcon icon={faLock} size="sm" />}
               <span>Save</span>
             </button>
           </div>
@@ -207,7 +205,6 @@ export const SearchBar: React.FC = () => {
   // Create the real suggestion selection function
   const handleSuggestionSelection = useCallback(
     (suggestion: Suggestion, suggestionIndex?: number) => {
-      // Track suggestion selection analytics
       analyticsService.trackSuggestionSelect({
         suggestion_text: suggestion.chunk.English,
         suggestion_index: suggestionIndex || -1,
@@ -220,7 +217,6 @@ export const SearchBar: React.FC = () => {
         Slots: suggestion.chunk.Slots.map((s) => ({ ...s })),
       };
 
-      // If chunk has slots, open modal
       if (chunkCopy.Slots && chunkCopy.Slots.length > 0) {
         modalContext.openSlotModal(
           chunkCopy,
@@ -229,7 +225,6 @@ export const SearchBar: React.FC = () => {
           modalContext.insertingAtIndex ?? undefined,
         );
       } else {
-        // No slots - handle insertion or append directly
         if (modalContext.insertingAtIndex !== null) {
           chainContext.insertChunk(modalContext.insertingAtIndex, chunkCopy);
           modalContext.setInsertingAtIndex(null);

@@ -86,7 +86,14 @@ export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
               className={`suggestion-item suggestion-item--${chunkTypeInfo.modifier} ${
                 index === selectedIndex ? "selected" : ""
               }`}
-              onClick={() => onSelect(suggestion, index)}
+              onMouseDown={(e) => {
+                console.log('Suggestion mousedown:', { suggestion: suggestion.chunk.English, index });
+                if (e.button === 0) { // Left click only
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onSelect(suggestion, index);
+                }
+              }}
               onMouseEnter={() => {
                 // Visual feedback when hovering - could add hover state management here
               }}
