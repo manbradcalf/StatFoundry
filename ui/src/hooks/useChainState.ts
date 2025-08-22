@@ -16,6 +16,7 @@ interface UseChainStateReturn {
   // State setters
   setQuery: (query: string) => void;
   clearAll: () => void;
+  loadChain: (chain: ChunkChain) => void;
 
   // Focus management
   focusSearchBar: () => void;
@@ -50,6 +51,13 @@ export const useChainState = ({
   // Clear all state
   const clearAll = useCallback(() => {
     setChain(new ChunkChain());
+    setQuery("");
+    setShouldFocusSearchBar(false);
+  }, []);
+
+  // Load a complete chain (for saved searches)
+  const loadChain = useCallback((newChain: ChunkChain) => {
+    setChain(newChain);
     setQuery("");
     setShouldFocusSearchBar(false);
   }, []);
@@ -172,6 +180,7 @@ export const useChainState = ({
     // State setters
     setQuery,
     clearAll,
+    loadChain,
 
     // Focus management
     focusSearchBar,
