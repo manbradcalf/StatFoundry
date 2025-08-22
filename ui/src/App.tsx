@@ -16,6 +16,8 @@ import { VideoTutorials } from "./components/VideoTutorials";
 import { StatsPage } from "./components/StatsComponent";
 import { AboutPage } from "./components/AboutPage";
 import { VerticalAd } from "./components/VerticalAd";
+import { PaymentSuccess } from "./components/PaymentSuccess";
+import { PaymentCancel } from "./components/PaymentCancel";
 import {
   generateWebsiteJsonLd,
   generateOrganizationJsonLd,
@@ -102,6 +104,8 @@ function App() {
                       path="/players/:slug/:gsisId"
                       element={<PlayerDetail />}
                     />
+                    <Route path="/payment/success" element={<PaymentSuccess />} />
+                    <Route path="/payment/cancel" element={<PaymentCancel />} />
                     <Route path="*" element={<div>Page Not Found</div>} />
                   </Routes>
                 </div>

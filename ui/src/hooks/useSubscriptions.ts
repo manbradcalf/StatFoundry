@@ -2,6 +2,8 @@ import React, { useState, useCallback, useMemo } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { subscriptionService } from "../services/subscriptionService";
 import { Subscription, CreateSubscriptionData } from "../types/Subscription";
+import { getStripeUrls } from "../config/stripe";
+import { config } from "../config";
 
 export interface FeatureAccessResult {
   hasAccess: boolean;
@@ -181,6 +183,114 @@ export const useSubscriptions = () => {
     [],
   );
 
+  const createStripeCheckoutSession = useCallback(
+    async (customSuccessUrl?: string, customCancelUrl?: string): Promise<string | null> => {
+      if (!user || !user.email) {
+        setError("User must be logged in with an email to create checkout session");
+        return null;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const urls = getStripeUrls();
+        const response = await fetch(`${config.serviceUrl}/api/stripe/create-checkout-session`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_email: user.email,
+            user_id: user.uid,
+            success_url: customSuccessUrl || urls.success,
+            cancel_url: customCancelUrl || urls.cancel,
+          }),
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.detail || 'Failed to create checkout session');
+        }
+
+        const { checkout_url } = await response.json();
+        return checkout_url;
+
+      } catch (err) {
+        const errorMessage = 
+          err instanceof Error ? err.message : "Failed to create checkout session";
+        setError(errorMessage);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [user],
+  );
+
+  const createStripePortalSession = useCallback(
+    async (customerId: string, customReturnUrl?: string): Promise<string | null> => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const urls = getStripeUrls();
+        const response = await fetch(`${config.serviceUrl}/api/stripe/create-portal-session`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            customer_id: customerId,
+            return_url: customReturnUrl || urls.customerPortal,
+          }),
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.detail || 'Failed to create portal session');
+        }
+
+        const { portal_url } = await response.json();
+        return portal_url;
+
+      } catch (err) {
+        const errorMessage = 
+          err instanceof Error ? err.message : "Failed to create portal session";
+        setError(errorMessage);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [],
+  );
+
+  const upgradeToProWithStripe = useCallback(
+    async (): Promise<boolean> => {
+      if (!user) {
+        setError("User must be logged in to upgrade");
+        return false;
+      }
+
+      try {
+        const checkoutUrl = await createStripeCheckoutSession();
+        if (checkoutUrl) {
+          // Redirect to Stripe Checkout
+          window.location.href = checkoutUrl;
+          return true;
+        }
+        return false;
+      } catch (err) {
+        const errorMessage = 
+          err instanceof Error ? err.message : "Failed to start upgrade process";
+        setError(errorMessage);
+        return false;
+      }
+    },
+    [user, createStripeCheckoutSession],
+  );
+
   return {
     createSubscription,
     getUserSubscriptions,
@@ -189,6 +299,9 @@ export const useSubscriptions = () => {
     downgradeUserFromPro,
     updateSubscription,
     deleteSubscription,
+    createStripeCheckoutSession,
+    createStripePortalSession,
+    upgradeToProWithStripe,
     loading,
     error,
     clearError: () => setError(null),
