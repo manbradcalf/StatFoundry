@@ -1,4 +1,3 @@
-// TODO: we should have a firebaseDatabaseService, not specifically savedSearchService
 import {
   collection,
   doc,
@@ -27,14 +26,14 @@ export const savedSearchService = {
     savedSearchData: CreateSavedSearchData,
   ): Promise<string> {
     console.log("Saving search with data:", savedSearchData);
-    
+
     const docRef = await addDoc(collection(db, COLLECTION_NAME), {
       ...savedSearchData,
       userId,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
-    
+
     console.log("Search saved successfully with ID:", docRef.id);
     return docRef.id;
   },
@@ -103,8 +102,12 @@ export const savedSearchService = {
     description?: string,
   ): CreateSavedSearchData {
     const compiledChain = chain.compile();
-    console.log("Converting chain to save data:", { name, description, hasChunks: chain.toArray().length > 0 });
-    
+    console.log("Converting chain to save data:", {
+      name,
+      description,
+      hasChunks: chain.toArray().length > 0,
+    });
+
     const saveData: CreateSavedSearchData = {
       name,
       chunks: chain.toArray(),
@@ -112,12 +115,12 @@ export const savedSearchService = {
       english: compiledChain.English,
       aliases: compiledChain.Aliases,
     };
-    
+
     // Only add description if it's provided and not empty
     if (description && description.trim()) {
       saveData.description = description.trim();
     }
-    
+
     console.log("Generated save data:", saveData);
     return saveData;
   },
