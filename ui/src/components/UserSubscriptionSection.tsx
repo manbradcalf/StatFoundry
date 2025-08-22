@@ -15,7 +15,9 @@ export const UserSubscriptionSection: React.FC = () => {
   }, [getUserSubscriptions]);
   return (
     <div className="user-info-section">
-      <h2>Subscriptions</h2>
+      <div className="section-header">
+        <h2>Subscriptions</h2>
+      </div>
       <div>
         {subscriptions.length === 0 ? (
           <div>No Subscriptions :(</div>
