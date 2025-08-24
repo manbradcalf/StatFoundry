@@ -21,6 +21,9 @@ class StripeService:
         Create a Stripe checkout session for Pro subscription
         """
         try:
+            # Add session_id parameter to success URL for verification
+            success_url_with_session = f"{success_url}?session_id={{CHECKOUT_SESSION_ID}}"
+            
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=[
@@ -30,7 +33,7 @@ class StripeService:
                     }
                 ],
                 mode="subscription",
-                success_url=success_url,
+                success_url=success_url_with_session,
                 cancel_url=cancel_url,
                 customer_email=customer_email,
                 metadata={"user_id": user_id, "product_type": "pro_subscription"},
@@ -97,14 +100,17 @@ class StripeService:
             # Get the subscription if it exists
             subscription_data = None
             if session.subscription:
-                subscription = stripe.Subscription.retrieve(session.subscription)
-                subscription_data = {
-                    "id": subscription.id,
-                    "status": subscription.status,
-                    "current_period_end": subscription.current_period_end,
-                    "customer_id": subscription.customer,
-                    "price_id": subscription["items"]["data"][0]["price"]["id"],
-                }
+                try:
+                    subscription = stripe.Subscription.retrieve(session.subscription)
+                    subscription_data = {
+                        "id": subscription.id,
+                        "status": subscription.status,
+                        "current_period_end": subscription.current_period_end,
+                        "customer_id": subscription.customer,
+                        "price_id": subscription.items.data[0].price.id,
+                    }
+                except Exception as sub_error:
+                    raise Exception(f"Failed to retrieve subscription: {str(sub_error)}")
             
             # Extract Firebase user ID from metadata
             firebase_user_id = session.metadata.get("user_id")

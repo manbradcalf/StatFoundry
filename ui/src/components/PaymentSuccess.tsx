@@ -8,6 +8,7 @@ export const PaymentSuccess: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [subscriptionVerified, setSubscriptionVerified] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState('Verifying your payment...');
   const { verifyStripeSession, getUserSubscriptions } = useSubscriptions();
   
   // Get session_id from URL parameters
@@ -21,22 +22,57 @@ export const PaymentSuccess: React.FC = () => {
         return;
       }
 
-      try {
-        // Verify the Stripe session and update Firestore
-        const isProVerified = await verifyStripeSession(sessionId);
-        
-        if (isProVerified) {
-          setSubscriptionVerified(true);
-          // Refresh subscription data to ensure UI is up to date
-          await getUserSubscriptions();
-        } else {
-          setError('Payment verification failed - subscription may not be active');
+      // Polling configuration
+      const maxAttempts = 10;
+      const pollIntervalMs = 2000; // 2 seconds
+      
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          // Update progress message
+          if (attempt === 1) {
+            setVerificationMessage('Verifying your payment...');
+          } else if (attempt <= 3) {
+            setVerificationMessage('Still processing... (this may take a moment)');
+          } else if (attempt <= 6) {
+            setVerificationMessage(`Almost there... confirming subscription (${attempt}/${maxAttempts})`);
+          } else {
+            setVerificationMessage(`Final verification steps... (${attempt}/${maxAttempts})`);
+          }
+          
+          // Try to verify the Stripe session
+          const isProVerified = await verifyStripeSession(sessionId);
+          
+          if (isProVerified) {
+            setVerificationMessage('Payment verified successfully!');
+            setSubscriptionVerified(true);
+            // Refresh subscription data to ensure UI is up to date
+            await getUserSubscriptions();
+            setLoading(false);
+            return; // Success - exit polling
+          }
+          
+          // If verification returned false and this is the last attempt
+          if (attempt === maxAttempts) {
+            setError(`Unable to verify payment after ${maxAttempts} attempts. Your payment was processed successfully, but we're having trouble confirming your subscription. Please check your account or contact support.`);
+            setLoading(false);
+            return;
+          }
+          
+        } catch (err: any) {
+          console.log(`Verification attempt ${attempt} failed:`, err.message);
+          
+          // If it's the last attempt, show error
+          if (attempt === maxAttempts) {
+            setError(`Unable to verify payment after ${maxAttempts} attempts. Your payment was processed successfully, but we're having trouble confirming your subscription. Please check your account or contact support.`);
+            setLoading(false);
+            return;
+          }
         }
         
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to verify payment status');
-        setLoading(false);
+        // Wait before next attempt (except on last iteration)
+        if (attempt < maxAttempts) {
+          await new Promise(resolve => setTimeout(resolve, pollIntervalMs));
+        }
       }
     };
 
@@ -49,7 +85,8 @@ export const PaymentSuccess: React.FC = () => {
         <div className="payment-status-content">
           <div className="loading-spinner"></div>
           <h2>Processing your payment...</h2>
-          <p>Please wait while we confirm your Pro subscription.</p>
+          <p>{verificationMessage}</p>
+          <p className="verification-note">Please wait while we confirm your Pro subscription.</p>
         </div>
       </div>
     );
