@@ -83,6 +83,47 @@ class StripeService:
             return None
 
     @staticmethod
+    def verify_checkout_session(session_id: str) -> Dict[str, Any]:
+        """
+        Verify checkout session and return subscription data for Firestore sync
+        """
+        try:
+            # Retrieve the checkout session
+            session = stripe.checkout.Session.retrieve(session_id)
+            
+            if session.payment_status != "paid":
+                raise Exception(f"Payment not completed. Status: {session.payment_status}")
+            
+            # Get the subscription if it exists
+            subscription_data = None
+            if session.subscription:
+                subscription = stripe.Subscription.retrieve(session.subscription)
+                subscription_data = {
+                    "id": subscription.id,
+                    "status": subscription.status,
+                    "current_period_end": subscription.current_period_end,
+                    "customer_id": subscription.customer,
+                    "price_id": subscription["items"]["data"][0]["price"]["id"],
+                }
+            
+            # Extract Firebase user ID from metadata
+            firebase_user_id = session.metadata.get("user_id")
+            if not firebase_user_id:
+                raise Exception("No user_id found in session metadata")
+            
+            return {
+                "session_id": session.id,
+                "payment_status": session.payment_status,
+                "firebase_user_id": firebase_user_id,
+                "customer_id": session.customer,
+                "subscription": subscription_data,
+                "is_pro": subscription_data["status"] in ["active", "trialing"] if subscription_data else False
+            }
+            
+        except stripe.error.StripeError as e:
+            raise Exception(f"Stripe error: {str(e)}")
+
+    @staticmethod
     def construct_webhook_event(payload: bytes, sig_header: str):
         """
         Construct and verify Stripe webhook event

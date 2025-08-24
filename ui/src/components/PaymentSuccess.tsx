@@ -7,19 +7,31 @@ export const PaymentSuccess: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { getUserSubscriptions } = useSubscriptions();
+  const [subscriptionVerified, setSubscriptionVerified] = useState(false);
+  const { verifyStripeSession, getUserSubscriptions } = useSubscriptions();
   
   // Get session_id from URL parameters
   const sessionId = searchParams.get('session_id');
 
   useEffect(() => {
     const verifyPayment = async () => {
+      if (!sessionId) {
+        setError('No session ID found in URL');
+        setLoading(false);
+        return;
+      }
+
       try {
-        // Give Stripe webhooks time to process
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Verify the Stripe session and update Firestore
+        const isProVerified = await verifyStripeSession(sessionId);
         
-        // Refresh subscription data
-        await getUserSubscriptions();
+        if (isProVerified) {
+          setSubscriptionVerified(true);
+          // Refresh subscription data to ensure UI is up to date
+          await getUserSubscriptions();
+        } else {
+          setError('Payment verification failed - subscription may not be active');
+        }
         
         setLoading(false);
       } catch (err) {
@@ -28,13 +40,8 @@ export const PaymentSuccess: React.FC = () => {
       }
     };
 
-    if (sessionId) {
-      verifyPayment();
-    } else {
-      setError('No session ID found');
-      setLoading(false);
-    }
-  }, [sessionId, getUserSubscriptions]);
+    verifyPayment();
+  }, [sessionId, verifyStripeSession, getUserSubscriptions]);
 
   if (loading) {
     return (
@@ -71,7 +78,11 @@ export const PaymentSuccess: React.FC = () => {
     <div className="payment-status-container">
       <div className="payment-status-content success">
         <h2>🎉 Payment Successful!</h2>
-        <p>Welcome to StatFoundry Pro! Your subscription is now active.</p>
+        {subscriptionVerified ? (
+          <p>Welcome to StatFoundry Pro! Your subscription has been verified and is now active.</p>
+        ) : (
+          <p>Your payment was processed successfully. Your Pro subscription should be active shortly.</p>
+        )}
         
         <div className="pro-benefits">
           <h3>Your Pro benefits include:</h3>
@@ -96,6 +107,7 @@ export const PaymentSuccess: React.FC = () => {
         {sessionId && (
           <p className="payment-details">
             Payment Reference: <code>{sessionId}</code>
+            {subscriptionVerified && <span className="verification-badge">✅ Verified</span>}
           </p>
         )}
       </div>

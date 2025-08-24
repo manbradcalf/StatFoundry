@@ -146,6 +146,20 @@ ngrok http 8000
 6. ✅ Error handling and loading states
 7. ✅ Responsive UI components
 
+## Architecture Decision: Frontend-Based Subscription Sync
+
+**Current Implementation**: The subscription sync between Stripe and Firestore is handled on the frontend after payment success. The PaymentSuccess component verifies the Stripe session via the backend API and then updates Firestore using the existing subscriptionService.
+
+**Alternative Considered**: Adding Firebase Admin SDK to the backend service to handle Firestore updates directly from webhook events. This would provide immediate synchronization without requiring the user to visit the success page.
+
+**Decision Rationale**: We chose the frontend approach to maintain architectural consistency with the existing subscription system, which is entirely frontend-based. This avoids adding Firebase dependencies to the backend service.
+
+**Future Enhancement**: If immediate sync becomes critical, we could add the Firebase Admin SDK to the backend service and handle Firestore updates directly in the webhook handler. This would require:
+- Adding Firebase Admin SDK to backend dependencies
+- Setting up Firebase service account credentials
+- Updating webhook handler to write to Firestore
+- Maintaining backward compatibility with existing frontend subscription logic
+
 ## Next Steps for Production
 
 1. **Switch to Live Mode**:

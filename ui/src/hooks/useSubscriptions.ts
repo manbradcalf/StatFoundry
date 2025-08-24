@@ -266,6 +266,52 @@ export const useSubscriptions = () => {
     [],
   );
 
+  const verifyStripeSession = useCallback(
+    async (sessionId: string): Promise<boolean> => {
+      if (!user) {
+        setError("User must be logged in to verify payment");
+        return false;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        // Call backend to verify Stripe session
+        const response = await fetch(`${config.serviceUrl}/api/stripe/verify-session/${sessionId}`);
+        
+        if (!response.ok) {
+          throw new Error(`Verification failed: ${response.statusText}`);
+        }
+        
+        const sessionData = await response.json();
+        
+        // Ensure the session belongs to the current user
+        if (sessionData.firebase_user_id !== user.uid) {
+          throw new Error("Session does not belong to current user");
+        }
+        
+        // Update Firestore with subscription data
+        if (sessionData.is_pro && sessionData.subscription) {
+          await subscriptionService.createSubscription({
+            userId: user.uid,
+            isPro: true
+          });
+        }
+        
+        return sessionData.is_pro;
+        
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : "Failed to verify payment";
+        setError(errorMessage);
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [user],
+  );
+
   const upgradeToProWithStripe = useCallback(
     async (): Promise<boolean> => {
       if (!user) {
@@ -301,6 +347,7 @@ export const useSubscriptions = () => {
     deleteSubscription,
     createStripeCheckoutSession,
     createStripePortalSession,
+    verifyStripeSession,
     upgradeToProWithStripe,
     loading,
     error,

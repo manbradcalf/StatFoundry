@@ -127,6 +127,23 @@ async def create_portal_session(request: CreatePortalSessionRequest):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+@app.get("/api/stripe/verify-session/{session_id}")
+async def verify_stripe_session(session_id: str):
+    """
+    Verify Stripe checkout session and return subscription data for frontend sync
+    """
+    if not STRIPE_SECRET_KEY:
+        raise HTTPException(status_code=500, detail="Stripe not configured")
+    
+    try:
+        # Retrieve session from Stripe
+        session_data = StripeService.verify_checkout_session(session_id)
+        return session_data
+        
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
 @app.post("/api/stripe/webhook")
 async def stripe_webhook(request: Request, stripe_signature: str = Header(None, alias="stripe-signature")):
     """
