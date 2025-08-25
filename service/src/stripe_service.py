@@ -97,20 +97,32 @@ class StripeService:
             if session.payment_status != "paid":
                 raise Exception(f"Payment not completed. Status: {session.payment_status}")
             
-            # Get the subscription if it exists
+            # Get the subscription if it exists  
             subscription_data = None
             if session.subscription:
+                subscription = stripe.Subscription.retrieve(session.subscription)
+                subscription_data = {
+                    "id": subscription.id,
+                    "status": subscription.status,
+                    "customer_id": subscription.customer,
+                }
+                
+                # Add current_period_end if it exists
+                if hasattr(subscription, 'current_period_end'):
+                    subscription_data["current_period_end"] = subscription.current_period_end
+                
+                # Add price_id if items exist
                 try:
-                    subscription = stripe.Subscription.retrieve(session.subscription)
-                    subscription_data = {
-                        "id": subscription.id,
-                        "status": subscription.status,
-                        "current_period_end": subscription.current_period_end,
-                        "customer_id": subscription.customer,
-                        "price_id": subscription.items.data[0].price.id,
-                    }
-                except Exception as sub_error:
-                    raise Exception(f"Failed to retrieve subscription: {str(sub_error)}")
+                    if hasattr(subscription, 'items'):
+                        items = subscription.items
+                        if hasattr(items, 'data') and len(items.data) > 0:
+                            subscription_data["price_id"] = items.data[0].price.id
+                        elif hasattr(items, 'list'):
+                            items_list = items.list()
+                            if len(items_list.data) > 0:
+                                subscription_data["price_id"] = items_list.data[0].price.id
+                except Exception:
+                    pass  # Skip price_id if we can't access it
             
             # Extract Firebase user ID from metadata
             firebase_user_id = session.metadata.get("user_id")
