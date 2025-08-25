@@ -94,29 +94,6 @@ export const useSubscriptions = () => {
     }
   }, [user]);
 
-  const upgradeUserToPro = useCallback(async (): Promise<string | null> => {
-    if (!user) {
-      setError("User must be logged in to upgrade");
-      return null;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const subscriptionId = await subscriptionService.upgradeUserToPro(
-        user.uid,
-      );
-      return subscriptionId;
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to upgrade to Pro";
-      setError(errorMessage);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, [user]);
 
   const downgradeUserFromPro = useCallback(async (): Promise<boolean> => {
     if (!user) {
@@ -295,7 +272,15 @@ export const useSubscriptions = () => {
         if (sessionData.is_pro && sessionData.subscription) {
           await subscriptionService.createSubscription({
             userId: user.uid,
-            isPro: true
+            userEmail: user.email!,
+            isPro: true,
+            stripeCustomerId: sessionData.customer_id,
+            stripeSubscriptionId: sessionData.subscription.id,
+            stripeStatus: sessionData.subscription.status,
+            stripePriceId: sessionData.subscription.price_id,
+            currentPeriodEnd: sessionData.subscription.current_period_end 
+              ? new Date(sessionData.subscription.current_period_end * 1000) 
+              : undefined
           });
         }
         
@@ -341,7 +326,6 @@ export const useSubscriptions = () => {
     createSubscription,
     getUserSubscriptions,
     isUserPro,
-    upgradeUserToPro,
     downgradeUserFromPro,
     updateSubscription,
     deleteSubscription,

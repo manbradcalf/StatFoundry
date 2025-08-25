@@ -93,22 +93,6 @@ export const subscriptionService = {
     return subscriptions.some((subscription) => subscription.isPro);
   },
 
-  /**
-   * Upgrade user to Pro
-   */
-  async upgradeUserToPro(userId: string): Promise<string> {
-    const subscriptions = await this.getUserSubscriptions(userId);
-    const existingSubscription = subscriptions[0]; // Most recent
-
-    if (existingSubscription) {
-      // Update existing subscription
-      await this.updateSubscription(existingSubscription.id, { isPro: true });
-      return existingSubscription.id;
-    } else {
-      // Create new subscription
-      return await this.createSubscription({ userId, isPro: true });
-    }
-  },
 
   /**
    * Downgrade user from Pro
