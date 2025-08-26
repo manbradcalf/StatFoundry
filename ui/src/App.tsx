@@ -1,22 +1,29 @@
-import { useEffect } from "react";
-import Modal from "react-modal";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import "./App.css";
-import { AppContextProvider } from "./contexts/AppContextProvider";
-import { AuthProvider } from "./contexts/AuthContext";
-import { LoginButton } from "./components/LoginButton";
-import { CTA } from "./components/CTA";
-import { SearchContent } from "./components/SearchContent";
-import { PlayerDetail } from "./components/Player/PlayerDetail";
-import { AccountDetail } from "./components/AccountDetail";
-import { FAQPage } from "./components/FAQPage";
-import { HelpBar } from "./components/HelpBar";
-import { VideoTutorials } from "./components/VideoTutorials";
-import { StatsPage } from "./components/StatsComponent";
-import { AboutPage } from "./components/AboutPage";
-import { VerticalAd } from "./components/VerticalAd";
-import { generateWebsiteJsonLd, generateOrganizationJsonLd, injectJsonLd } from "./utils/jsonLd";
+import React from 'react';
+import './App.css';
+import { SearchProvider } from './contexts/SearchContext';
+import { SearchBar, ChainDisplay } from './components';
+import { SearchResults } from './components/SearchResults';
+import { DynamicChunkExample } from './examples/DynamicChunkExample';
+
+function AppContent() {
+  return (
+    <div className="App">
+      {/* Login button positioned in top right corner */}
+      <button className="login-button" title="Sign in (coming soon)" onClick={() => alert("Login functionality coming soon!")}>
+        Login
+      </button>
+
+      <header className="App-header">
+        <h1>StatFoundry</h1>
+        <i>Finally, a better way to find stats</i>
+        <DynamicChunkExample />
+        <SearchBar />
+        <SearchResults searchResults={[]} searchError={null} />
+        <ChainDisplay />
+      </header>
+    </div>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -149,4 +156,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
