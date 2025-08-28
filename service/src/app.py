@@ -31,7 +31,7 @@ async def query(request: QueryAuraDBRequest):
         result = execute_query(driver, request.cypher_query)
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
 @app.get("/api/player/{gsis_id}")
@@ -43,7 +43,7 @@ async def get_player(gsis_id: str):
             raise HTTPException(status_code=404, detail="Player not found")
         return result if result else None
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
 @app.get("/api/player/{gsis_id}/games")
@@ -57,7 +57,7 @@ async def get_playergames(gsis_id: str):
             raise HTTPException(status_code=404, detail="Player Games not found")
         return result if result else None
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
 @app.get("/api/player/{gsis_id}/seasons")
@@ -69,7 +69,7 @@ async def get_playerseasons(gsis_id: str):
             raise HTTPException(status_code=404, detail="Player Seasons not found")
         return result if result else None
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
 @app.get("/api/healthcheck")
@@ -101,7 +101,7 @@ async def create_checkout_session(request: CreateCheckoutSessionRequest):
         return result
         
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Request processing failed")
 
 
 @app.post("/api/stripe/create-portal-session")
@@ -123,7 +123,7 @@ async def create_portal_session(request: CreatePortalSessionRequest):
         return result
         
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Request processing failed")
 
 
 @app.get("/api/stripe/subscription-status/{firebase_uid}")
@@ -139,7 +139,7 @@ async def get_subscription_status(firebase_uid: str):
         return subscription_data
         
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Request processing failed")
 
 
 @app.get("/api/stripe/verify-session/{session_id}")
@@ -156,7 +156,7 @@ async def verify_stripe_session(session_id: str):
         return session_data
         
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Request processing failed")
 
 
 @app.post("/api/stripe/webhook")
@@ -190,8 +190,7 @@ async def stripe_webhook(request: Request, stripe_signature: str = Header(None, 
                 subscription_data
             )
             
-            # TODO: Update Firebase Firestore with the subscription status
-            # This would integrate with your existing subscriptionService
+            # Subscription data is now stored with Stripe using firebase_uid metadata
             print(f"Webhook processed: {event['type']} for user {firebase_update['user_id']}")
             print(f"Firebase update data: {firebase_update}")
             
@@ -203,4 +202,4 @@ async def stripe_webhook(request: Request, stripe_signature: str = Header(None, 
             
     except Exception as e:
         print(f"Webhook error: {str(e)}")
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Webhook processing failed")

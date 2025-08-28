@@ -101,7 +101,7 @@ class StripeService:
     @staticmethod
     def verify_checkout_session(session_id: str) -> Dict[str, Any]:
         """
-        Verify checkout session and return subscription data for Firestore sync
+        Verify checkout session and return subscription data
         """
         try:
             # Retrieve the checkout session
