@@ -6,7 +6,6 @@ import StripeCheckoutButton from "./StripeCheckoutButton";
 export const UserSubscriptionSection: React.FC = () => {
   const {
     getUserSubscriptions,
-    upgradeToProWithStripe,
     createStripePortalSession,
     loading,
     error,

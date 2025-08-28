@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Subscription, CreateSubscriptionData } from "../types/Subscription";
+import { Subscription } from "../types/Subscription";
 import { getStripeUrls } from "../config/stripe";
 import { config } from "../config";
 import { subscriptionCache } from "../utils/subscriptionCache";
