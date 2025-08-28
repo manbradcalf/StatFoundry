@@ -1,6 +1,5 @@
 import { Chunk } from '../Types/Chunk';
 import { QueryType } from '../Enums/QueryType';
-import { Label } from '../Enums/Label';
 import { Alias } from '../Types/Alias';
 import { SlotType } from '../Enums/SlotType';
 import { Schema, SchemaNode, SchemaPattern } from '../Types/Schema';
@@ -84,9 +83,9 @@ export class DynamicChunkGenerator {
     return this.schema.nodes.map(node => ({
       English: `${this.pluralizeLabel(node.label)}`,
       Cypher: `MATCH (${this.getVariableName(node.label)}:${node.label})`,
-      QueryType: QueryType.MATCH,
-      Inputs: [] as Alias[],
-      Outputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
+      QueryType: QueryType.MATCH_START,
+      Requires: [] as Alias[],
+      Provides: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
       Slots: []
     }));
   }
@@ -113,8 +112,8 @@ export class DynamicChunkGenerator {
             EnglishTemplate: `with ${readableProp} ${operatorWord} {value}`,
             CypherTemplate: `WHERE ${this.getVariableName(node.label)}.${prop} ${operator} {value}`,
             QueryType: QueryType.FILTER,
-            Inputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
-            Outputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
+            Requires: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
+            Provides: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
             Slots: [{
               Name: 'value',
               Value: defaultValue,
@@ -133,8 +132,8 @@ export class DynamicChunkGenerator {
           EnglishTemplate: `with ${readableProp} equal to "{value}"`,
           CypherTemplate: `WHERE ${this.getVariableName(node.label)}.${prop} = "{value}"`,
           QueryType: QueryType.FILTER,
-          Inputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
-          Outputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
+          Requires: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
+          Provides: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
           Slots: [{
             Name: 'value',
             Value: 'example',
@@ -157,11 +156,11 @@ export class DynamicChunkGenerator {
       return {
         English: `${this.getRelationshipDescription(pattern)}`,
         Cypher: `MATCH (${fromVar}:${pattern.fromLabel})-[:${pattern.relType}]->(${toVar}:${pattern.toLabel})`,
-        QueryType: QueryType.MATCH_PATH,
-        Inputs: [{ Name: fromVar, Label: pattern.fromLabel as Label }],
-        Outputs: [
-          { Name: fromVar, Label: pattern.fromLabel as Label },
-          { Name: toVar, Label: pattern.toLabel as Label }
+        QueryType: QueryType.JUNCTION,
+        Requires: [{ Name: fromVar, AliasType: pattern.fromLabel as any }],
+        Provides: [
+          { Name: fromVar, AliasType: pattern.fromLabel as any },
+          { Name: toVar, AliasType: pattern.toLabel as any }
         ],
         Slots: []
       };
@@ -179,8 +178,8 @@ export class DynamicChunkGenerator {
         English: `return ${node.label.toLowerCase()} information`,
         Cypher: `RETURN ${this.getVariableName(node.label)}`,
         QueryType: QueryType.RETURN,
-        Inputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
-        Outputs: [],
+        Requires: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
+        Provides: [],
         Slots: []
       });
 
@@ -190,8 +189,8 @@ export class DynamicChunkGenerator {
           English: `return ${prop}`,
           Cypher: `RETURN ${this.getVariableName(node.label)}.${prop}`,
           QueryType: QueryType.RETURN,
-          Inputs: [{ Name: this.getVariableName(node.label), Label: node.label as Label }],
-          Outputs: [],
+          Requires: [{ Name: this.getVariableName(node.label), AliasType: node.label as any }],
+          Provides: [],
           Slots: []
         });
       });

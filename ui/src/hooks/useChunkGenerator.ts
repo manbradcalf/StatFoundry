@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Chunk } from '../feature/Chunks/Types/Chunk';
 import { DynamicChunkGenerator } from '../feature/Chunks/Services/DynamicChunkGenerator';
-import { getAvailableChunks } from '../feature/Chunks/Data/chunks-data';
+import { getAllChunks } from '../feature/Chunks/Data/chunks-data';
 
 export interface UseChunkGeneratorResult {
   staticChunks: Chunk[];
@@ -18,7 +18,7 @@ export function useChunkGenerator(): UseChunkGeneratorResult {
   const [error, setError] = useState<string | null>(null);
   const [generator] = useState(() => new DynamicChunkGenerator());
 
-  const staticChunks = useMemo(() => getAvailableChunks(), []);
+  const staticChunks = useMemo(() => getAllChunks(), []);
 
   const loadDynamicChunks = useCallback(async () => {
     setIsLoading(true);
