@@ -23,13 +23,16 @@ export const UserSubscriptionSection: React.FC = () => {
     fetchSubscriptions();
   }, [getUserSubscriptions]);
   const handleManageSubscription = async () => {
-    // For demonstration, we'll use a placeholder customer ID
-    // In a real implementation, you'd store the Stripe customer ID in your subscription data
-    const customerId = "cus_placeholder"; // This should come from your subscription data
+    // Get the Stripe customer ID from the active subscription
+    const activeSubscription = subscriptions.find(sub => sub.isPro && sub.stripeCustomerId);
+    if (!activeSubscription || !activeSubscription.stripeCustomerId) {
+      console.error("No active subscription with customer ID found");
+      return;
+    }
 
     setActionLoading(true);
     try {
-      const portalUrl = await createStripePortalSession(customerId);
+      const portalUrl = await createStripePortalSession(activeSubscription.stripeCustomerId);
       if (portalUrl) {
         window.location.href = portalUrl;
       }
