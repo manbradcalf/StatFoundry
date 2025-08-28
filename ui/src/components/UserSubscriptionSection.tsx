@@ -96,10 +96,9 @@ export const UserSubscriptionSection: React.FC = () => {
                   <div className="pro-features">
                     <h4>Pro Features Included:</h4>
                     <ul>
-                      <li>✅ Unlimited query complexity</li>
-                      <li>✅ Advanced analytics</li>
-                      <li>✅ Priority support</li>
                       <li>✅ Export capabilities</li>
+                      <li>✅ Save Searches</li>
+                      <li>✅ Access to Discord Server</li>
                     </ul>
                   </div>
                 )}
