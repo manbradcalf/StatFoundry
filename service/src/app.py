@@ -1,5 +1,6 @@
-from fastapi import FastAPI, HTTPException, Request, Header
+from fastapi import FastAPI, HTTPException, Request, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from src.neo4j_client import driver, execute_query, fetch_schema
 from src.requests import QueryAuraDBRequest
 from src.models import CreateCheckoutSessionRequest, CreatePortalSessionRequest
@@ -7,6 +8,7 @@ from src.stripe_service import StripeService
 from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
 
 app = FastAPI()
+security = HTTPBearer()
 
 # Configure CORS only for local development
 if ENVIRONMENT.lower() in ["development", "local"]:
@@ -17,7 +19,6 @@ if ENVIRONMENT.lower() in ["development", "local"]:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-
 
 @app.get("/api/schema")
 async def get_schema():
@@ -71,11 +72,21 @@ async def get_playerseasons(gsis_id: str):
     except ValueError as e:
         raise HTTPException(status_code=400, detail="Invalid request parameters")
 
+def require_scope(required_scope: str):
+    """Decorator to require specific scope"""
+    def scope_checker(user_info: dict = Depends(validate_api_key)):
+        if required_scope not in user_info["scopes"]:
+            raise HTTPException(
+                status_code=403,
+                detail=f"Insufficient permissions. Required scope: {required_scope}"
+            )
+        return user_info
+    return scope_checker
 
+# Public endpoints (no auth required)
 @app.get("/api/healthcheck")
 async def healthcheck():
     return {"status": "ok"}
-
 
 # Stripe API Endpoints
 @app.post("/api/stripe/create-checkout-session")
