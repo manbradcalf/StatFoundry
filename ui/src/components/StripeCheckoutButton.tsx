@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { stripePromise, getStripeUrls } from '../config/stripe';
+import { getStripeUrls } from '../config/stripe';
 import { useAuth } from '../contexts/AuthContext';
 import { config } from '../config';
 
@@ -27,10 +27,6 @@ export const StripeCheckoutButton: React.FC<StripeCheckoutButtonProps> = ({
       return;
     }
 
-    if (!stripePromise) {
-      onError?.('Stripe is not configured');
-      return;
-    }
 
     setLoading(true);
 
