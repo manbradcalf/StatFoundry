@@ -14,10 +14,6 @@ export const groupColumns = (
   availableColumns: string[],
   columnGroups: ColumnGroup[] = [],
 ): ColumnGroup[] => {
-  // Debug logging
-  console.log("=== Column Grouping Debug ===");
-  console.log("Available columns:", availableColumns);
-  console.log("Column groups:", columnGroups);
 
   // Create a map of stripped names to original names for matching
   const strippedToOriginal = new Map<string, string>();
@@ -34,8 +30,6 @@ export const groupColumns = (
         .map((groupCol) => strippedToOriginal.get(groupCol))
         .filter((col): col is string => col !== undefined);
 
-      console.log(`Group "${group.label}" expected:`, group.columns);
-      console.log(`Group "${group.label}" matched:`, matchedColumns);
 
       return {
         ...group,
@@ -54,8 +48,6 @@ export const groupColumns = (
     (col) => !groupedColumns.has(col),
   );
 
-  console.log('Ungrouped columns (going to "Other"):', ungroupedColumns);
-  console.log("=== End Column Grouping Debug ===");
 
   // Add ungrouped columns to a separate "Other" group if any exist
   if (ungroupedColumns.length > 0) {

@@ -30,7 +30,6 @@ export const PlayerGames: React.FC = () => {
 
   const handleExport = () => {
     // This is where you'd handle paywall logic, analytics, etc.
-    console.log("CSV export triggered for player games");
   };
 
   return (

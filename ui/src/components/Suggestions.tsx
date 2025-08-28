@@ -87,8 +87,8 @@ export const Suggestions = forwardRef<HTMLDivElement, SuggestionsProps>(
                 index === selectedIndex ? "selected" : ""
               }`}
               onMouseDown={(e) => {
-                console.log('Suggestion mousedown:', { suggestion: suggestion.chunk.English, index });
-                if (e.button === 0) { // Left click only
+                if (e.button === 0) {
+                  // Left click only
                   e.preventDefault();
                   e.stopPropagation();
                   onSelect(suggestion, index);

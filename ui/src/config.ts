@@ -2,7 +2,7 @@
 export const config = {
   environment: process.env.REACT_APP_ENVIRONMENT || "development",
   serviceUrl: process.env.REACT_APP_SERVICE_URL || "http://localhost:8000",
-  
+
   // Ad configuration - set to false until Google AdSense approval
   showAds: process.env.REACT_APP_SHOW_ADS === "true" || false,
 
@@ -16,5 +16,5 @@ export const config = {
   isProduction: () => {
     const env = process.env.REACT_APP_ENVIRONMENT || "development";
     return env.toLowerCase() === "production";
-  }
+  },
 };

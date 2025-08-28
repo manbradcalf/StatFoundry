@@ -1,29 +1,28 @@
-import React from 'react';
-import './App.css';
-import { SearchProvider } from './contexts/SearchContext';
-import { SearchBar, ChainDisplay } from './components';
-import { SearchResults } from './components/SearchResults';
-import { DynamicChunkExample } from './examples/DynamicChunkExample';
-
-function AppContent() {
-  return (
-    <div className="App">
-      {/* Login button positioned in top right corner */}
-      <button className="login-button" title="Sign in (coming soon)" onClick={() => alert("Login functionality coming soon!")}>
-        Login
-      </button>
-
-      <header className="App-header">
-        <h1>StatFoundry</h1>
-        <i>Finally, a better way to find stats</i>
-        <DynamicChunkExample />
-        <SearchBar />
-        <SearchResults searchResults={[]} searchError={null} />
-        <ChainDisplay />
-      </header>
-    </div>
-  );
-}
+import { useEffect } from "react";
+import Modal from "react-modal";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import "./App.css";
+import { AppContextProvider } from "./contexts/AppContextProvider";
+import { AuthProvider } from "./contexts/AuthContext";
+import { LoginButton } from "./components/LoginButton";
+import { Footer } from "./components/CTA";
+import { SearchContent } from "./components/SearchContent";
+import { PlayerDetail } from "./components/Player/PlayerDetail";
+import { AccountDetail } from "./components/AccountDetail";
+import { FAQPage } from "./components/FAQPage";
+import { HelpBar } from "./components/HelpBar";
+import { VideoTutorials } from "./components/VideoTutorials";
+import { StatsPage } from "./components/StatsComponent";
+import { AboutPage } from "./components/AboutPage";
+import { VerticalAd } from "./components/VerticalAd";
+import { PaymentSuccess } from "./components/PaymentSuccess";
+import { PaymentCancel } from "./components/PaymentCancel";
+import {
+  generateWebsiteJsonLd,
+  generateOrganizationJsonLd,
+  injectJsonLd,
+} from "./utils/jsonLd";
 
 function App() {
   useEffect(() => {
@@ -32,10 +31,7 @@ function App() {
   }, []);
 
   // Generate JSON-LD for homepage
-  const jsonLdData = [
-    generateWebsiteJsonLd(),
-    generateOrganizationJsonLd()
-  ];
+  const jsonLdData = [generateWebsiteJsonLd(), generateOrganizationJsonLd()];
 
   return (
     <HelmetProvider>
@@ -77,7 +73,7 @@ function App() {
                   name="twitter:description"
                   content="Search NFL stats quickly. Analyze players, games, and seasons with ease."
                 />
-                
+
                 {/* JSON-LD Structured Data */}
                 <script type="application/ld+json">
                   {injectJsonLd(jsonLdData)}
@@ -108,6 +104,8 @@ function App() {
                       path="/players/:slug/:gsisId"
                       element={<PlayerDetail />}
                     />
+                    <Route path="/payment/success" element={<PaymentSuccess />} />
+                    <Route path="/payment/cancel" element={<PaymentCancel />} />
                     <Route path="*" element={<div>Page Not Found</div>} />
                   </Routes>
                 </div>
@@ -115,39 +113,7 @@ function App() {
                   <VerticalAd />
                 </div>
               </div>
-              <CTA />
-              <div className="stats-sourced-from">
-                <p>
-                  stats sourced from{" "}
-                  <a
-                    href="https://github.com/nflverse"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    NFLVerse
-                  </a>{" "}
-                  licensed under CC BY 4.0
-                </p>
-                <p>PlayerStats from 2000 to 2024</p>
-                <p>
-                  developed by{" "}
-                  <a
-                    href="https://www.benmedcalf.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Ben Medcalf
-                  </a>{" "}
-                  at{" "}
-                  <a
-                    href="https://www.medcalfsoftwaresolutions.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Medcalf Software Solutions
-                  </a>
-                </p>
-              </div>
+              <Footer />
             </div>
           </AppContextProvider>
         </AuthProvider>

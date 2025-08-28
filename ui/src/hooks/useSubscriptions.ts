@@ -1,7 +1,9 @@
-import { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { subscriptionService } from "../services/subscriptionService";
-import { Subscription, CreateSubscriptionData } from "../types/Subscription";
+import { Subscription } from "../types/Subscription";
+import { getStripeUrls } from "../config/stripe";
+import { config } from "../config";
+import { subscriptionCache } from "../utils/subscriptionCache";
 
 export interface FeatureAccessResult {
   hasAccess: boolean;
@@ -20,35 +22,6 @@ export const useSubscriptions = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const createSubscription = useCallback(
-    async (
-      subscriptionData: CreateSubscriptionData,
-    ): Promise<string | null> => {
-      if (!user) {
-        setError("User must be logged in to create subscription");
-        return null;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      try {
-        const subscriptionId =
-          await subscriptionService.createSubscription(subscriptionData);
-
-        return subscriptionId;
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Failed to create subscription";
-        setError(errorMessage);
-        return null;
-      } finally {
-        setLoading(false);
-      }
-    },
-    [user],
-  );
-
   const getUserSubscriptions = useCallback(async (): Promise<
     Subscription[]
   > => {
@@ -57,11 +30,76 @@ export const useSubscriptions = () => {
       return [];
     }
 
+    const cacheKey = `subscription-status-${user.uid}`;
+
+    // Check cache first
+    const cachedData = subscriptionCache.get(cacheKey);
+    if (cachedData !== null) {
+      // Convert cached Stripe data to our Subscription format for compatibility
+      if (cachedData.is_pro && cachedData.subscription) {
+        return [
+          {
+            id: cachedData.subscription.id,
+            userId: user.uid,
+            userEmail: user.email || "",
+            isPro: cachedData.is_pro,
+            stripeCustomerId: cachedData.customer_id,
+            stripeSubscriptionId: cachedData.subscription.id,
+            stripeStatus: cachedData.subscription.status,
+            stripePriceId: cachedData.subscription.price_id,
+            currentPeriodEnd: cachedData.subscription.current_period_end
+              ? new Date(cachedData.subscription.current_period_end * 1000)
+              : undefined,
+            createdAt: null, // Not available from Stripe
+            updatedAt: null, // Not available from Stripe
+          },
+        ];
+      }
+      return []; // No active subscriptions
+    }
+
     setLoading(true);
     setError(null);
 
     try {
-      return await subscriptionService.getUserSubscriptions(user.uid);
+      // Get subscription data directly from Stripe
+      const response = await fetch(
+        `${config.serviceUrl}/api/stripe/subscription-status/${user.uid}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Failed to load subscription data: ${response.statusText}`,
+        );
+      }
+
+      const data = await response.json();
+
+      // Cache the result
+      subscriptionCache.set(cacheKey, data);
+
+      // Convert Stripe data to our Subscription format for compatibility
+      if (data.is_pro && data.subscription) {
+        return [
+          {
+            id: data.subscription.id,
+            userId: user.uid,
+            userEmail: user.email || "",
+            isPro: data.is_pro,
+            stripeCustomerId: data.customer_id,
+            stripeSubscriptionId: data.subscription.id,
+            stripeStatus: data.subscription.status,
+            stripePriceId: data.subscription.price_id,
+            currentPeriodEnd: data.subscription.current_period_end
+              ? new Date(data.subscription.current_period_end * 1000)
+              : undefined,
+            createdAt: null, // Not available from Stripe
+            updatedAt: null, // Not available from Stripe
+          },
+        ];
+      }
+
+      return []; // No active subscriptions
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to load subscriptions",
@@ -77,11 +115,35 @@ export const useSubscriptions = () => {
       return false;
     }
 
+    const cacheKey = `subscription-status-${user.uid}`;
+
+    // Check cache first
+    const cachedData = subscriptionCache.get(cacheKey);
+    if (cachedData !== null) {
+      return cachedData.is_pro;
+    }
+
     setLoading(true);
     setError(null);
 
     try {
-      return await subscriptionService.isUserPro(user.uid);
+      // Query Stripe directly for subscription status
+      const response = await fetch(
+        `${config.serviceUrl}/api/stripe/subscription-status/${user.uid}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Failed to check subscription status: ${response.statusText}`,
+        );
+      }
+
+      const data = await response.json();
+
+      // Cache the result
+      subscriptionCache.set(cacheKey, data);
+
+      return data.is_pro;
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to check Pro status",
@@ -92,103 +154,184 @@ export const useSubscriptions = () => {
     }
   }, [user]);
 
-  const upgradeUserToPro = useCallback(async (): Promise<string | null> => {
+  const createStripeCheckoutSession = useCallback(
+    async (
+      customSuccessUrl?: string,
+      customCancelUrl?: string,
+    ): Promise<string | null> => {
+      if (!user || !user.email) {
+        setError(
+          "User must be logged in with an email to create checkout session",
+        );
+        return null;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const urls = getStripeUrls();
+        const response = await fetch(
+          `${config.serviceUrl}/api/stripe/create-checkout-session`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              user_email: user.email,
+              user_id: user.uid,
+              success_url: customSuccessUrl || urls.success,
+              cancel_url: customCancelUrl || urls.cancel,
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.detail || "Failed to create checkout session");
+        }
+
+        const { checkout_url } = await response.json();
+        return checkout_url;
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error
+            ? err.message
+            : "Failed to create checkout session";
+        setError(errorMessage);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [user],
+  );
+
+  const createStripePortalSession = useCallback(
+    async (
+      customerId: string,
+      customReturnUrl?: string,
+    ): Promise<string | null> => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const urls = getStripeUrls();
+        const response = await fetch(
+          `${config.serviceUrl}/api/stripe/create-portal-session`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              customer_id: customerId,
+              return_url: customReturnUrl || urls.customerPortal,
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.detail || "Failed to create portal session");
+        }
+
+        const { portal_url } = await response.json();
+        return portal_url;
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error
+            ? err.message
+            : "Failed to create portal session";
+        setError(errorMessage);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [],
+  );
+
+  const verifyStripeSession = useCallback(
+    async (sessionId: string): Promise<boolean> => {
+      if (!user) {
+        setError("User must be logged in to verify payment");
+        return false;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        // Call backend to verify Stripe session
+        const response = await fetch(
+          `${config.serviceUrl}/api/stripe/verify-session/${sessionId}`,
+        );
+
+        if (!response.ok) {
+          console.log("bad resposne", response);
+          throw new Error(`Verification failed: ${response.statusText}`);
+        }
+
+        const sessionData = await response.json();
+
+        // Ensure the session belongs to the current user
+        if (sessionData.firebase_user_id !== user.uid) {
+          throw new Error("Session does not belong to current user");
+        }
+
+        return sessionData.is_pro;
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to verify payment";
+        setError(errorMessage);
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [user],
+  );
+
+  const upgradeToProWithStripe = useCallback(async (): Promise<boolean> => {
     if (!user) {
       setError("User must be logged in to upgrade");
-      return null;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const subscriptionId = await subscriptionService.upgradeUserToPro(
-        user.uid,
-      );
-      return subscriptionId;
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to upgrade to Pro";
-      setError(errorMessage);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, [user]);
-
-  const downgradeUserFromPro = useCallback(async (): Promise<boolean> => {
-    if (!user) {
-      setError("User must be logged in");
       return false;
     }
 
-    setLoading(true);
-    setError(null);
-
     try {
-      await subscriptionService.downgradeUserFromPro(user.uid);
-      return true;
+      const checkoutUrl = await createStripeCheckoutSession();
+      if (checkoutUrl) {
+        // Redirect to Stripe Checkout
+        window.location.href = checkoutUrl;
+        return true;
+      }
+      return false;
     } catch (err) {
       const errorMessage =
-        err instanceof Error ? err.message : "Failed to downgrade from Pro";
+        err instanceof Error ? err.message : "Failed to start upgrade process";
       setError(errorMessage);
       return false;
-    } finally {
-      setLoading(false);
+    }
+  }, [user, createStripeCheckoutSession]);
+
+  // Cache invalidation helper
+  const clearSubscriptionCache = useCallback(() => {
+    if (user) {
+      const cacheKey = `subscription-status-${user.uid}`;
+      subscriptionCache.delete(cacheKey);
     }
   }, [user]);
-
-  const updateSubscription = useCallback(
-    async (
-      subscriptionId: string,
-      updates: Partial<CreateSubscriptionData>,
-    ): Promise<boolean> => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        await subscriptionService.updateSubscription(subscriptionId, updates);
-        return true;
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Failed to update subscription",
-        );
-        return false;
-      } finally {
-        setLoading(false);
-      }
-    },
-    [],
-  );
-
-  const deleteSubscription = useCallback(
-    async (subscriptionId: string): Promise<boolean> => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        await subscriptionService.deleteSubscription(subscriptionId);
-        return true;
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Failed to delete subscription",
-        );
-        return false;
-      } finally {
-        setLoading(false);
-      }
-    },
-    [],
-  );
 
   return {
-    createSubscription,
     getUserSubscriptions,
     isUserPro,
-    upgradeUserToPro,
-    downgradeUserFromPro,
-    updateSubscription,
-    deleteSubscription,
+    createStripeCheckoutSession,
+    createStripePortalSession,
+    verifyStripeSession,
+    upgradeToProWithStripe,
+    clearSubscriptionCache,
     loading,
     error,
     clearError: () => setError(null),
@@ -212,19 +355,23 @@ export const useFeatureAccess = (
   const { requireAuth = false, requirePro = false, customCheck } = options;
 
   // Check pro status when needed
-  useCallback(async () => {
-    if (requirePro && user && proStatus === null && !proLoading) {
-      setProLoading(true);
-      try {
-        const isPro = await isUserPro();
-        setProStatus(isPro);
-      } catch (err) {
-        setProStatus(false);
-      } finally {
-        setProLoading(false);
+  React.useEffect(() => {
+    const checkProStatus = async () => {
+      if (requirePro && user && proStatus === null && !proLoading) {
+        setProLoading(true);
+        try {
+          const isPro = await isUserPro();
+          setProStatus(isPro);
+        } catch (err) {
+          setProStatus(false);
+        } finally {
+          setProLoading(false);
+        }
       }
-    }
-  }, [requirePro, user, proStatus, proLoading, isUserPro])();
+    };
+
+    checkProStatus();
+  }, [requirePro, user, proStatus, proLoading, isUserPro]);
 
   return useMemo(() => {
     // Show loading state during auth initialization or pro check
@@ -328,4 +475,3 @@ export const getRestrictedFeatureClasses = (
 
   return `${baseClass} ${modifierClasses[accessResult.restrictionType]}`;
 };
-
