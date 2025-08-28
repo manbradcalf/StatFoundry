@@ -3,7 +3,7 @@
  */
 
 interface CacheEntry {
-  data: any;
+  data: any; // TODO: Replace with proper TypeScript interface for subscription data
   timestamp: number;
   expiresAt: number;
 }
