@@ -207,6 +207,55 @@
   transform: translateY(-1px);
 }
 
+/* Verification status styling */
+.verification-status {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.verification-message.pending {
+  color: #f59e0b;
+  animation: pulse 2s infinite;
+}
+
+.verification-message.verified {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.verification-message.failed {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.verification-badge {
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Payment reference styling */
+.payment-details p {
+  word-break: break-all;
+  font-size: 0.875rem;
+  font-family: monospace;
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
 .btn-primary:disabled, .btn-secondary:disabled {
   background: #9ca3af;
   cursor: not-allowed;

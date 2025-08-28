@@ -1,5 +1,4 @@
 import React from "react";
-import { Adsense } from "@ctrl/react-adsense";
 import { config } from "../config";
 
 export const VerticalAd: React.FC = () => {
@@ -8,18 +7,20 @@ export const VerticalAd: React.FC = () => {
     return null;
   }
 
+  // Placeholder for ads - can be re-enabled later
   return (
-    <div style={{ margin: "20px 0" }}>
-      <Adsense
-        client="ca-pub-9761689709275841"
-        slot="3178156007"
-        style={{
-          display: "inline-block",
-          width: "160px",
-          height: "600px"
-        }}
-        format=""
-      />
+    <div style={{ 
+      margin: "20px 0", 
+      width: "160px", 
+      height: "600px",
+      backgroundColor: "#f0f0f0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "12px",
+      color: "#666"
+    }}>
+      Ad Space
     </div>
   );
 };

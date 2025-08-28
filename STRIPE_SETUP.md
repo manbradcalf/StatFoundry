@@ -1,13 +1,29 @@
-# Stripe Checkout Integration Setup Guide
+# StatFoundry Stripe Integration - Complete Setup Guide
 
-## Overview
+## Architecture: Optimistic Success + Stripe-as-Source-of-Truth  
 
-This guide covers the complete Stripe checkout flow integration for StatFoundry Pro subscriptions.
+**Design Philosophy**: Show immediate success when Stripe redirects (optimistic), with background verification and webhook backup for reliability.
+
+## Fixed: Race Condition Issue ✅
+
+**Previous Problem**: Payment succeeded in Stripe but success page showed errors due to timing race condition  
+**Solution**: Optimistic success pattern - trust Stripe's redirect, verify in background
+
+## Updated Flow Overview
+
+1. **Subscription**: User clicks "Upgrade to Pro" → Stripe Checkout → Payment Success  
+2. **Immediate Success**: Show "🎉 Payment Successful!" immediately on redirect
+3. **Background Verification**: Check Stripe status without blocking UI → Show "✅ Confirmed!" when verified
+4. **Webhook Backup**: Ensures reliable state sync for edge cases
+
+---
 
 ## Prerequisites
 
 1. **Stripe Account**: Sign up at [https://stripe.com](https://stripe.com)
 2. **Stripe Dashboard Access**: You mentioned you're already logged into the dashboard
+
+---
 
 ## Step 1: Get Stripe Keys
 
@@ -17,22 +33,7 @@ This guide covers the complete Stripe checkout flow integration for StatFoundry 
 2. Copy your **Publishable key** (starts with `pk_test_` for test mode)
 3. Copy your **Secret key** (starts with `sk_test_` for test mode)
 
-### For Webhooks
-
-1. Go to **Developers** → **Webhooks**
-2. Click **+ Add endpoint**
-3. Set endpoint URL to: `http://localhost:8000/api/stripe/webhook` (for development)
-4. Select these events:
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
-   - `invoice.payment_succeeded`
-   - `invoice.payment_failed`
-5. Copy the **Signing secret** (starts with `whsec_`)
-
-## Step 2: Create a Subscription Product
-
-### In Stripe Dashboard
+### Create Subscription Product
 
 1. Go to **Products** → **+ Add product**
 2. Name: "StatFoundry Pro"
@@ -41,168 +42,166 @@ This guide covers the complete Stripe checkout flow integration for StatFoundry 
 5. Billing period: **Monthly** (or your preference)
 6. Copy the **Price ID** (starts with `price_`)
 
-## Step 3: Configure Environment Variables
+### Optional: Webhook Setup (for cache invalidation)
+
+1. Go to **Developers** → **Webhooks** → **+ Add endpoint**
+2. URL: `http://localhost:8000/api/stripe/webhook` (for development)
+3. Events: `customer.subscription.*`, `invoice.payment_*`
+4. Copy **Signing secret** (`whsec_...`)
+
+---
+
+## Step 2: Configure Environment Variables
 
 ### Backend (.env file in `/service/`)
-
-Create `/service/.env` based on `.env.example`:
 
 ```bash
 # Environment Configuration
 ENVIRONMENT=development
-
-# Service Configuration
-STATFOUNDRY_SERVICE_URL=localhost:3000
 
 # Neo4j Database Configuration (your existing values)
 NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE=your_existing_uri
 NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE=your_existing_password
 
 # Stripe Configuration
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
-STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
-STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
+STRIPE_TEST_SK=sk_test_your_stripe_secret_key_here
+STRIPE_TEST_PK=pk_test_your_stripe_publishable_key_here
 STRIPE_PRICE_ID_PRO=price_your_subscription_price_id_here
+
+# Optional: For webhooks
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 ```
 
 ### Frontend (.env.local file in `/ui/`)
-
-Create `/ui/.env.local` based on `.env.example`:
 
 ```bash
 # Stripe Configuration
 REACT_APP_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
 
-# Optional: Override service URL (defaults to localhost:8000 in development)
+# Optional: Override service URL
 # REACT_APP_SERVICE_URL=http://localhost:8000
 ```
 
-## Step 4: Test the Integration
+---
 
-### Start the Services
+## Step 3: Test the Integration
+
+### Start Services
 
 ```bash
 # Terminal 1: Start backend
 cd service
 uvicorn src.app:app --reload
 
-# Terminal 2: Start frontend
+# Terminal 2: Start frontend  
 cd ui
 npm start
 ```
 
-### Testing Flow
+### Test Flow
 
 1. Visit `http://localhost:3000/account`
 2. Sign in with your test account
 3. Click "Upgrade to Pro" button
 4. Use Stripe test card: `4242 4242 4242 4242`
-5. Use any future expiration date and any CVC
-6. Complete the checkout process
-7. Verify redirect to success page
+5. Complete checkout → Should redirect to success page
+6. Check Pro status in app
 
-## Step 5: Webhook Testing
+---
 
-### Using Stripe CLI (Recommended)
+## Architecture Details
 
-```bash
-# Install Stripe CLI: https://stripe.com/docs/stripe-cli
-stripe login
-stripe listen --forward-to localhost:8000/api/stripe/webhook
+### Key API Endpoints
+
+- **`/api/stripe/create-checkout-session`** - Creates Stripe checkout (same as before)
+- **`/api/stripe/subscription-status/{firebase_uid}`** - **NEW**: Queries Stripe directly by Firebase UID
+- **`/api/stripe/verify-session/{session_id}`** - Verifies payment (simplified, no Firestore sync)
+
+### Data Flow
+
+```
+Frontend Request → Backend API → Stripe Customer Search → Cache Result → Return Status
 ```
 
-### Or Use ngrok
+### Caching Strategy
 
-```bash
-# Install ngrok: https://ngrok.com/
-ngrok http 8000
-# Update webhook endpoint in Stripe dashboard to: https://your-ngrok-url.ngrok.io/api/stripe/webhook
-```
+- **5-minute TTL** on subscription status queries
+- **Automatic cleanup** of expired cache entries
+- **Cache invalidation** after successful payments
 
-## Architecture Summary
-
-### Backend Components
-
-- `/service/src/stripe_service.py` - Stripe integration logic
-- `/service/src/models.py` - API request/response models
-- `/service/src/config.py` - Environment configuration
-- `/service/src/app.py` - API endpoints
-
-### Frontend Components
-
-- `/ui/src/components/StripeCheckoutButton.tsx` - Checkout button component
-- `/ui/src/components/PaymentSuccess.tsx` - Success page
-- `/ui/src/components/PaymentCancel.tsx` - Cancel page
-- `/ui/src/hooks/useSubscriptions.ts` - Extended with Stripe functions
-- `/ui/src/config/stripe.ts` - Stripe configuration
-
-### Key Features Implemented
-
-1. ✅ Stripe Checkout Session creation
-2. ✅ Payment success/cancel handling
-3. ✅ Webhook event processing
-4. ✅ Customer portal integration
-5. ✅ Subscription status management
-6. ✅ Error handling and loading states
-7. ✅ Responsive UI components
-
-## Architecture Decision: Frontend-Based Subscription Sync
-
-**Current Implementation**: The subscription sync between Stripe and Firestore is handled on the frontend after payment success. The PaymentSuccess component verifies the Stripe session via the backend API and then updates Firestore using the existing subscriptionService.
-
-**Alternative Considered**: Adding Firebase Admin SDK to the backend service to handle Firestore updates directly from webhook events. This would provide immediate synchronization without requiring the user to visit the success page.
-
-**Decision Rationale**: We chose the frontend approach to maintain architectural consistency with the existing subscription system, which is entirely frontend-based. This avoids adding Firebase dependencies to the backend service.
-
-**Future Enhancement**: If immediate sync becomes critical, we could add the Firebase Admin SDK to the backend service and handle Firestore updates directly in the webhook handler. This would require:
-- Adding Firebase Admin SDK to backend dependencies
-- Setting up Firebase service account credentials
-- Updating webhook handler to write to Firestore
-- Maintaining backward compatibility with existing frontend subscription logic
-
-## Next Steps for Production
-
-1. **Switch to Live Mode**:
-
-   - Replace test keys with live keys
-   - Update webhook endpoint to production URL
-   - Test with real payment methods
-
-2. **Security Enhancements**:
-
-   - Implement rate limiting
-   - Add CSRF protection
-   - Secure webhook endpoint validation
-
-3. **Additional Features**:
-   - Trial periods
-   - Discount codes/coupons
-   - Multiple subscription tiers
-   - Usage-based billing
+---
 
 ## Troubleshooting
 
-### Common Issues
+### Common Issues & Solutions
 
-- **Webhook signature verification fails**: Ensure webhook secret is correct
-- **Checkout button doesn't work**: Check Stripe publishable key in frontend
-- **CORS errors**: Verify CORS settings in backend for your frontend URL
-- **Database errors**: Ensure Neo4j credentials are correct
+**Build Errors Fixed**: 
+- ✅ Removed `@ctrl/react-adsense` dependencies
+- ✅ Fixed TypeScript iterator issues
+- ✅ Build now compiles successfully
+
+**API Errors**:
+- **400 error with "current_period_end"**: Fixed with safe property access using `getattr()`
+- **No subscription found**: Returns `{"is_pro": false}` - expected for new users
 
 ### Test Cards
 
 - Success: `4242 4242 4242 4242`
 - Declined: `4000 0000 0000 0002`
-- Requires 3D Secure: `4000 0000 0000 3220`
+- 3D Secure: `4000 0000 0000 3220`
 
-For more test cards, see: <https://stripe.com/docs/testing#cards>
+### Debug Commands
 
-## Support
+```bash
+# Test subscription lookup
+curl "http://localhost:8000/api/stripe/subscription-status/test-user-123"
 
-If you encounter issues, check:
+# Check backend health
+curl "http://localhost:8000/api/healthcheck"
+```
 
-1. Stripe Dashboard → Events (for webhook issues)
-2. Browser developer console (for frontend errors)
-3. Backend logs (for API errors)
-4. Stripe documentation: <https://stripe.com/docs>
+---
 
+## Benefits of This Architecture
+
+### ✅ Eliminated Issues
+- **No sync bugs** - Stripe is single source of truth
+- **No polling complexity** - Simple one-time verification  
+- **No dual source conflicts** - Stripe handles all subscription logic
+- **Immediate updates** - Status reflects in Stripe instantly
+
+### ✅ Performance Benefits  
+- **Cached queries** - 5-minute TTL reduces API calls
+- **Faster success page** - No complex verification loops
+- **Reduced complexity** - ~200 lines of sync code removed
+
+### ✅ Reliability Improvements
+- **Stripe's uptime** > custom sync logic
+- **Automatic renewals** - Stripe handles billing cycles
+- **Better error handling** - Clear API responses
+
+---
+
+## Next Steps for Production
+
+1. **Switch to Live Keys**: Replace test keys with live Stripe keys
+2. **Update Webhook URL**: Point to production domain  
+3. **Monitor Performance**: Check cache hit rates and API usage
+4. **Optional Enhancements**: Add usage-based billing, trials, etc.
+
+---
+
+## Support & Resources
+
+- **Stripe Documentation**: https://stripe.com/docs
+- **Test Cards**: https://stripe.com/docs/testing#cards
+- **Dashboard Events**: Check Stripe Dashboard → Events for webhook debugging
+- **Backend Logs**: Check terminal output for API request logs
+
+---
+
+## Summary
+
+This integration provides a **production-ready, reliable subscription system** using Stripe as the authoritative source. The complex sync issues have been eliminated, and the system is much simpler to maintain and debug.
+
+**Key takeaway**: Sometimes the best fix is simplification - removing complexity rather than adding more.

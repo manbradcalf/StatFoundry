@@ -1,97 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSubscriptions } from '../hooks/useSubscriptions';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSubscriptions } from "../hooks/useSubscriptions";
 
 export const PaymentSuccess: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [subscriptionVerified, setSubscriptionVerified] = useState(false);
-  const [verificationMessage, setVerificationMessage] = useState('Verifying your payment...');
-  const { verifyStripeSession, getUserSubscriptions } = useSubscriptions();
-  
+  const [verificationStatus, setVerificationStatus] = useState<
+    "pending" | "verified" | "failed"
+  >("pending");
+  const [verificationMessage, setVerificationMessage] = useState(
+    "Confirming your Pro subscription...",
+  );
+  const { verifyStripeSession, clearSubscriptionCache } = useSubscriptions();
+
   // Get session_id from URL parameters
-  const sessionId = searchParams.get('session_id');
+  const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
-    const verifyPayment = async () => {
+    const backgroundVerification = async () => {
       if (!sessionId) {
-        setError('No session ID found in URL');
-        setLoading(false);
         return;
       }
 
-      // Polling configuration
-      const maxAttempts = 10;
-      const pollIntervalMs = 2000; // 2 seconds
-      
-      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-        // Update progress message
-        if (attempt === 1) {
-          setVerificationMessage('Verifying your payment...');
-        } else if (attempt <= 3) {
-          setVerificationMessage('Still processing... (this may take a moment)');
-        } else if (attempt <= 6) {
-          setVerificationMessage(`Almost there... confirming subscription (${attempt}/${maxAttempts})`);
-        } else {
-          setVerificationMessage(`Final verification steps... (${attempt}/${maxAttempts})`);
-        }
-        
-        let isProVerified = false;
-        try {
-          isProVerified = await verifyStripeSession(sessionId);
-        } catch (err: any) {
-          console.log(`Verification attempt ${attempt} failed:`, err.message);
-        }
-        
+      try {
+        // Verify in background without blocking success UI
+        const isProVerified = await verifyStripeSession(sessionId);
+
         if (isProVerified) {
-          setVerificationMessage('Payment verified successfully!');
-          setSubscriptionVerified(true);
-          await getUserSubscriptions();
-          setLoading(false);
-          return; // Success - exit polling
+          setVerificationMessage("✅ Pro subscription confirmed!");
+          setVerificationStatus("verified");
+          // Clear cache so fresh subscription data is fetched
+          clearSubscriptionCache();
+        } else {
+          setVerificationMessage("⏳ Pro subscription activating...");
+          setVerificationStatus("pending");
         }
-        
-        // If this was the last attempt, show error
-        if (attempt === maxAttempts) {
-          setError(`Unable to verify payment after ${maxAttempts} attempts. Your payment was processed successfully, but we're having trouble confirming your subscription. Please check your account or contact support.`);
-          setLoading(false);
-          return;
-        }
-        
-        // Wait before next attempt
-        await new Promise(resolve => setTimeout(resolve, pollIntervalMs));
+      } catch (err: any) {
+        console.error("Background verification failed:", err.message);
+        setVerificationMessage("⚠️ Unable to confirm Pro status right now");
+        setVerificationStatus("failed");
       }
     };
 
-    verifyPayment();
-  }, [sessionId, verifyStripeSession, getUserSubscriptions]);
+    // Start background verification after a short delay to let UI render
+    const timer = setTimeout(backgroundVerification, 500);
+    return () => clearTimeout(timer);
+  }, [sessionId, verifyStripeSession, clearSubscriptionCache]);
 
-  if (loading) {
-    return (
-      <div className="payment-status-container">
-        <div className="payment-status-content">
-          <div className="loading-spinner"></div>
-          <h2>Processing your payment...</h2>
-          <p>{verificationMessage}</p>
-          <p className="verification-note">Please wait while we confirm your Pro subscription.</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
+  // Show error only if no session ID (shouldn't happen with proper Stripe redirect)
+  if (!sessionId) {
     return (
       <div className="payment-status-container">
         <div className="payment-status-content error">
-          <h2>⚠️ Payment Verification Error</h2>
-          <p>{error}</p>
+          <h2>⚠️ Payment Session Not Found</h2>
+          <p>
+            We couldn't find your payment session. If you just completed a
+            payment, please check your account or contact support.
+          </p>
           <div className="payment-actions">
-            <button onClick={() => navigate('/account')} className="btn-primary">
-              Go to Account
+            <button
+              onClick={() => navigate("/account")}
+              className="btn-primary"
+            >
+              Check Account
             </button>
-            <button onClick={() => navigate('/')} className="btn-secondary">
+            <button onClick={() => navigate("/")} className="btn-secondary">
               Back to Home
             </button>
           </div>
@@ -100,45 +73,55 @@ export const PaymentSuccess: React.FC = () => {
     );
   }
 
+  // Show optimistic success - if Stripe redirected here, payment succeeded
   return (
     <div className="payment-status-container">
       <div className="payment-status-content success">
         <h2>🎉 Payment Successful!</h2>
-        {subscriptionVerified ? (
-          <p>Welcome to StatFoundry Pro! Your subscription has been verified and is now active.</p>
-        ) : (
-          <p>Your payment was processed successfully. Your Pro subscription should be active shortly.</p>
-        )}
-        
+        <p>
+          Welcome to StatFoundry Pro! Your payment has been processed
+          successfully.
+        </p>
+
+        {/* Background verification status */}
+        <div className="verification-status">
+          <p className={`verification-message ${verificationStatus}`}>
+            {verificationMessage}
+          </p>
+        </div>
+
         <div className="pro-benefits">
           <h3>Your Pro benefits include:</h3>
           <ul>
-            <li>✅ Unlimited query complexity</li>
-            <li>✅ Advanced analytics features</li>
-            <li>✅ Priority support</li>
             <li>✅ Export capabilities</li>
-            <li>✅ Early access to new features</li>
+            <li>✅ Save Searches</li>
+            <li>✅ Access to Discord Server</li>
           </ul>
         </div>
 
         <div className="payment-actions">
-          <button onClick={() => navigate('/')} className="btn-primary">
-            Start Exploring
+          <button onClick={() => navigate("/")} className="btn-primary">
+            Start Exploring Pro Features
           </button>
-          <button onClick={() => navigate('/account')} className="btn-secondary">
+          <button
+            onClick={() => navigate("/account")}
+            className="btn-secondary"
+          >
             Manage Subscription
           </button>
         </div>
 
-        {sessionId && (
-          <p className="payment-details">
-            Payment Reference: <code>{sessionId}</code>
-            {subscriptionVerified && <span className="verification-badge">✅ Verified</span>}
-          </p>
-        )}
+        <p className="payment-details">
+          Payment Reference: <br />
+          <p>{sessionId}</p>
+          {verificationStatus === "verified" && (
+            <span className="verification-badge">Confirmed</span>
+          )}
+        </p>
       </div>
     </div>
   );
 };
 
 export default PaymentSuccess;
+

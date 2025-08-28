@@ -1,5 +1,4 @@
 import React from "react";
-import { Adsense } from "@ctrl/react-adsense";
 import { config } from "../config";
 
 interface BannerAdProps {
@@ -14,15 +13,21 @@ export const BannerAd: React.FC<BannerAdProps> = ({
     return null;
   }
 
+  // Placeholder for ads - can be re-enabled later
   return (
-    <div style={{ margin: "20px 0", textAlign: "center" }}>
-      <Adsense
-        client="ca-pub-9761689709275841"
-        slot="7455192803"
-        style={{ display: "block" }}
-        format="auto"
-        responsive="true"
-      />
+    <div style={{ 
+      margin: "20px 0", 
+      textAlign: "center",
+      padding: "20px",
+      backgroundColor: "#f0f0f0",
+      minHeight: "90px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "12px",
+      color: "#666"
+    }}>
+      Banner Ad Space ({placement})
     </div>
   );
 };

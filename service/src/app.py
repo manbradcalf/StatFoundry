@@ -5,7 +5,6 @@ from src.requests import QueryAuraDBRequest
 from src.models import CreateCheckoutSessionRequest, CreatePortalSessionRequest
 from src.stripe_service import StripeService
 from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
-import json
 
 app = FastAPI()
 
@@ -122,6 +121,22 @@ async def create_portal_session(request: CreatePortalSessionRequest):
         )
         
         return result
+        
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/api/stripe/subscription-status/{firebase_uid}")
+async def get_subscription_status(firebase_uid: str):
+    """
+    Get subscription status by Firebase UID - queries Stripe directly
+    """
+    if not STRIPE_SECRET_KEY:
+        raise HTTPException(status_code=500, detail="Stripe not configured")
+    
+    try:
+        subscription_data = StripeService.get_subscription_status_by_firebase_uid(firebase_uid)
+        return subscription_data
         
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
