@@ -526,8 +526,8 @@
   {
     "English": "with [position] equal to \"example\"",
     "Cypher": " p.position = \"example\"",
-    "EnglishTemplate": "with position equal to \"{value}\"",
-    "CypherTemplate": " p.position = \"{value}\"",
+    "EnglishTemplate": "with position equal to {value}",
+    "CypherTemplate": " p.position = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -554,8 +554,8 @@
   {
     "English": "with [position group] equal to \"example\"",
     "Cypher": " p.position_group = \"example\"",
-    "EnglishTemplate": "with position group equal to \"{value}\"",
-    "CypherTemplate": " p.position_group = \"{value}\"",
+    "EnglishTemplate": "with position group equal to {value}",
+    "CypherTemplate": " p.position_group = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -582,8 +582,8 @@
   {
     "English": "with [display name] equal to \"example\"",
     "Cypher": " p.display_name = \"example\"",
-    "EnglishTemplate": "with display name equal to \"{value}\"",
-    "CypherTemplate": " p.display_name = \"{value}\"",
+    "EnglishTemplate": "with display name equal to {value}",
+    "CypherTemplate": " p.display_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -610,8 +610,8 @@
   {
     "English": "with [last name] equal to \"example\"",
     "Cypher": " p.last_name = \"example\"",
-    "EnglishTemplate": "with last name equal to \"{value}\"",
-    "CypherTemplate": " p.last_name = \"{value}\"",
+    "EnglishTemplate": "with last name equal to {value}",
+    "CypherTemplate": " p.last_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -638,8 +638,8 @@
   {
     "English": "with [football name] equal to \"example\"",
     "Cypher": " p.football_name = \"example\"",
-    "EnglishTemplate": "with football name equal to \"{value}\"",
-    "CypherTemplate": " p.football_name = \"{value}\"",
+    "EnglishTemplate": "with football name equal to {value}",
+    "CypherTemplate": " p.football_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -666,8 +666,8 @@
   {
     "English": "with [short name] equal to \"example\"",
     "Cypher": " p.short_name = \"example\"",
-    "EnglishTemplate": "with short name equal to \"{value}\"",
-    "CypherTemplate": " p.short_name = \"{value}\"",
+    "EnglishTemplate": "with short name equal to {value}",
+    "CypherTemplate": " p.short_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -694,8 +694,8 @@
   {
     "English": "with [team abbr] equal to \"example\"",
     "Cypher": " p.team_abbr = \"example\"",
-    "EnglishTemplate": "with team abbr equal to \"{value}\"",
-    "CypherTemplate": " p.team_abbr = \"{value}\"",
+    "EnglishTemplate": "with team abbr equal to {value}",
+    "CypherTemplate": " p.team_abbr = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -722,8 +722,8 @@
   {
     "English": "with [college name] equal to \"example\"",
     "Cypher": " p.college_name = \"example\"",
-    "EnglishTemplate": "with college name equal to \"{value}\"",
-    "CypherTemplate": " p.college_name = \"{value}\"",
+    "EnglishTemplate": "with college name equal to {value}",
+    "CypherTemplate": " p.college_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -750,8 +750,8 @@
   {
     "English": "with [first name] equal to \"example\"",
     "Cypher": " p.first_name = \"example\"",
-    "EnglishTemplate": "with first name equal to \"{value}\"",
-    "CypherTemplate": " p.first_name = \"{value}\"",
+    "EnglishTemplate": "with first name equal to {value}",
+    "CypherTemplate": " p.first_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -5398,8 +5398,8 @@
   {
     "English": "with [position] equal to \"example\"",
     "Cypher": " ps.position = \"example\"",
-    "EnglishTemplate": "with position equal to \"{value}\"",
-    "CypherTemplate": " ps.position = \"{value}\"",
+    "EnglishTemplate": "with position equal to {value}",
+    "CypherTemplate": " ps.position = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -5426,8 +5426,8 @@
   {
     "English": "with [player name] equal to \"example\"",
     "Cypher": " ps.player_name = \"example\"",
-    "EnglishTemplate": "with player name equal to \"{value}\"",
-    "CypherTemplate": " ps.player_name = \"{value}\"",
+    "EnglishTemplate": "with player name equal to {value}",
+    "CypherTemplate": " ps.player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -5454,8 +5454,8 @@
   {
     "English": "with [teams] equal to \"example\"",
     "Cypher": " ps.teams = \"example\"",
-    "EnglishTemplate": "with teams equal to \"{value}\"",
-    "CypherTemplate": " ps.teams = \"{value}\"",
+    "EnglishTemplate": "with teams equal to {value}",
+    "CypherTemplate": " ps.teams = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -5482,8 +5482,8 @@
   {
     "English": "with [special teams tds] equal to \"example\"",
     "Cypher": " ps.special_teams_tds = \"example\"",
-    "EnglishTemplate": "with special teams tds equal to \"{value}\"",
-    "CypherTemplate": " ps.special_teams_tds = \"{value}\"",
+    "EnglishTemplate": "with special teams tds equal to {value}",
+    "CypherTemplate": " ps.special_teams_tds = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6210,8 +6210,8 @@
   {
     "English": "with [away qb name] equal to \"example\"",
     "Cypher": " g.away_qb_name = \"example\"",
-    "EnglishTemplate": "with away qb name equal to \"{value}\"",
-    "CypherTemplate": " g.away_qb_name = \"{value}\"",
+    "EnglishTemplate": "with away qb name equal to {value}",
+    "CypherTemplate": " g.away_qb_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6238,8 +6238,8 @@
   {
     "English": "with [location] equal to \"example\"",
     "Cypher": " g.location = \"example\"",
-    "EnglishTemplate": "with location equal to \"{value}\"",
-    "CypherTemplate": " g.location = \"{value}\"",
+    "EnglishTemplate": "with location equal to {value}",
+    "CypherTemplate": " g.location = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6266,8 +6266,8 @@
   {
     "English": "with [home qb name] equal to \"example\"",
     "Cypher": " g.home_qb_name = \"example\"",
-    "EnglishTemplate": "with home qb name equal to \"{value}\"",
-    "CypherTemplate": " g.home_qb_name = \"{value}\"",
+    "EnglishTemplate": "with home qb name equal to {value}",
+    "CypherTemplate": " g.home_qb_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6294,8 +6294,8 @@
   {
     "English": "with [surface] equal to \"example\"",
     "Cypher": " g.surface = \"example\"",
-    "EnglishTemplate": "with surface equal to \"{value}\"",
-    "CypherTemplate": " g.surface = \"{value}\"",
+    "EnglishTemplate": "with surface equal to {value}",
+    "CypherTemplate": " g.surface = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6322,8 +6322,8 @@
   {
     "English": "with [away team] equal to \"example\"",
     "Cypher": " g.away_team = \"example\"",
-    "EnglishTemplate": "with away team equal to \"{value}\"",
-    "CypherTemplate": " g.away_team = \"{value}\"",
+    "EnglishTemplate": "with away team equal to {value}",
+    "CypherTemplate": " g.away_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6350,8 +6350,8 @@
   {
     "English": "with [roof] equal to \"example\"",
     "Cypher": " g.roof = \"example\"",
-    "EnglishTemplate": "with roof equal to \"{value}\"",
-    "CypherTemplate": " g.roof = \"{value}\"",
+    "EnglishTemplate": "with roof equal to {value}",
+    "CypherTemplate": " g.roof = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6378,8 +6378,8 @@
   {
     "English": "with [home team] equal to \"example\"",
     "Cypher": " g.home_team = \"example\"",
-    "EnglishTemplate": "with home team equal to \"{value}\"",
-    "CypherTemplate": " g.home_team = \"{value}\"",
+    "EnglishTemplate": "with home team equal to {value}",
+    "CypherTemplate": " g.home_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6406,8 +6406,8 @@
   {
     "English": "with [div game] equal to \"example\"",
     "Cypher": " g.div_game = \"example\"",
-    "EnglishTemplate": "with div game equal to \"{value}\"",
-    "CypherTemplate": " g.div_game = \"{value}\"",
+    "EnglishTemplate": "with div game equal to {value}",
+    "CypherTemplate": " g.div_game = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6434,8 +6434,8 @@
   {
     "English": "with [result] equal to \"example\"",
     "Cypher": " g.result = \"example\"",
-    "EnglishTemplate": "with result equal to \"{value}\"",
-    "CypherTemplate": " g.result = \"{value}\"",
+    "EnglishTemplate": "with result equal to {value}",
+    "CypherTemplate": " g.result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14722,8 +14722,8 @@
   {
     "English": "with [assist tackle 1 player name] equal to \"example\"",
     "Cypher": " p.assist_tackle_1_player_name = \"example\"",
-    "EnglishTemplate": "with assist tackle 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 1 player name equal to {value}",
+    "CypherTemplate": " p.assist_tackle_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14750,8 +14750,8 @@
   {
     "English": "with [assist tackle 3 player name] equal to \"example\"",
     "Cypher": " p.assist_tackle_3_player_name = \"example\"",
-    "EnglishTemplate": "with assist tackle 3 player name equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_3_player_name = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 3 player name equal to {value}",
+    "CypherTemplate": " p.assist_tackle_3_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14778,8 +14778,8 @@
   {
     "English": "with [two point conv result] equal to \"example\"",
     "Cypher": " p.two_point_conv_result = \"example\"",
-    "EnglishTemplate": "with two point conv result equal to \"{value}\"",
-    "CypherTemplate": " p.two_point_conv_result = \"{value}\"",
+    "EnglishTemplate": "with two point conv result equal to {value}",
+    "CypherTemplate": " p.two_point_conv_result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14806,8 +14806,8 @@
   {
     "English": "with [solo tackle 2 player name] equal to \"example\"",
     "Cypher": " p.solo_tackle_2_player_name = \"example\"",
-    "EnglishTemplate": "with solo tackle 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.solo_tackle_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with solo tackle 2 player name equal to {value}",
+    "CypherTemplate": " p.solo_tackle_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14834,8 +14834,8 @@
   {
     "English": "with [assist tackle 4 team] equal to \"example\"",
     "Cypher": " p.assist_tackle_4_team = \"example\"",
-    "EnglishTemplate": "with assist tackle 4 team equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_4_team = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 4 team equal to {value}",
+    "CypherTemplate": " p.assist_tackle_4_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14862,8 +14862,8 @@
   {
     "English": "with [half sack 2 player name] equal to \"example\"",
     "Cypher": " p.half_sack_2_player_name = \"example\"",
-    "EnglishTemplate": "with half sack 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.half_sack_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with half sack 2 player name equal to {value}",
+    "CypherTemplate": " p.half_sack_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14890,8 +14890,8 @@
   {
     "English": "with [solo tackle 1 team] equal to \"example\"",
     "Cypher": " p.solo_tackle_1_team = \"example\"",
-    "EnglishTemplate": "with solo tackle 1 team equal to \"{value}\"",
-    "CypherTemplate": " p.solo_tackle_1_team = \"{value}\"",
+    "EnglishTemplate": "with solo tackle 1 team equal to {value}",
+    "CypherTemplate": " p.solo_tackle_1_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14918,8 +14918,8 @@
   {
     "English": "with [punter player name] equal to \"example\"",
     "Cypher": " p.punter_player_name = \"example\"",
-    "EnglishTemplate": "with punter player name equal to \"{value}\"",
-    "CypherTemplate": " p.punter_player_name = \"{value}\"",
+    "EnglishTemplate": "with punter player name equal to {value}",
+    "CypherTemplate": " p.punter_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14946,8 +14946,8 @@
   {
     "English": "with [tackle for loss 1 player name] equal to \"example\"",
     "Cypher": " p.tackle_for_loss_1_player_name = \"example\"",
-    "EnglishTemplate": "with tackle for loss 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.tackle_for_loss_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with tackle for loss 1 player name equal to {value}",
+    "CypherTemplate": " p.tackle_for_loss_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -14974,8 +14974,8 @@
   {
     "English": "with [fumble recovery 2 player name] equal to \"example\"",
     "Cypher": " p.fumble_recovery_2_player_name = \"example\"",
-    "EnglishTemplate": "with fumble recovery 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.fumble_recovery_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with fumble recovery 2 player name equal to {value}",
+    "CypherTemplate": " p.fumble_recovery_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15002,8 +15002,8 @@
   {
     "English": "with [assist tackle 1 team] equal to \"example\"",
     "Cypher": " p.assist_tackle_1_team = \"example\"",
-    "EnglishTemplate": "with assist tackle 1 team equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_1_team = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 1 team equal to {value}",
+    "CypherTemplate": " p.assist_tackle_1_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15030,8 +15030,8 @@
   {
     "English": "with [penalty player name] equal to \"example\"",
     "Cypher": " p.penalty_player_name = \"example\"",
-    "EnglishTemplate": "with penalty player name equal to \"{value}\"",
-    "CypherTemplate": " p.penalty_player_name = \"{value}\"",
+    "EnglishTemplate": "with penalty player name equal to {value}",
+    "CypherTemplate": " p.penalty_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15058,8 +15058,8 @@
   {
     "English": "with [fumbled 1 team] equal to \"example\"",
     "Cypher": " p.fumbled_1_team = \"example\"",
-    "EnglishTemplate": "with fumbled 1 team equal to \"{value}\"",
-    "CypherTemplate": " p.fumbled_1_team = \"{value}\"",
+    "EnglishTemplate": "with fumbled 1 team equal to {value}",
+    "CypherTemplate": " p.fumbled_1_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15086,8 +15086,8 @@
   {
     "English": "with [roof] equal to \"example\"",
     "Cypher": " p.roof = \"example\"",
-    "EnglishTemplate": "with roof equal to \"{value}\"",
-    "CypherTemplate": " p.roof = \"{value}\"",
+    "EnglishTemplate": "with roof equal to {value}",
+    "CypherTemplate": " p.roof = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15114,8 +15114,8 @@
   {
     "English": "with [kicker player name] equal to \"example\"",
     "Cypher": " p.kicker_player_name = \"example\"",
-    "EnglishTemplate": "with kicker player name equal to \"{value}\"",
-    "CypherTemplate": " p.kicker_player_name = \"{value}\"",
+    "EnglishTemplate": "with kicker player name equal to {value}",
+    "CypherTemplate": " p.kicker_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15142,8 +15142,8 @@
   {
     "English": "with [home team] equal to \"example\"",
     "Cypher": " p.home_team = \"example\"",
-    "EnglishTemplate": "with home team equal to \"{value}\"",
-    "CypherTemplate": " p.home_team = \"{value}\"",
+    "EnglishTemplate": "with home team equal to {value}",
+    "CypherTemplate": " p.home_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15170,8 +15170,8 @@
   {
     "English": "with [solo tackle 1 player name] equal to \"example\"",
     "Cypher": " p.solo_tackle_1_player_name = \"example\"",
-    "EnglishTemplate": "with solo tackle 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.solo_tackle_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with solo tackle 1 player name equal to {value}",
+    "CypherTemplate": " p.solo_tackle_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15198,8 +15198,8 @@
   {
     "English": "with [replay or challenge result] equal to \"example\"",
     "Cypher": " p.replay_or_challenge_result = \"example\"",
-    "EnglishTemplate": "with replay or challenge result equal to \"{value}\"",
-    "CypherTemplate": " p.replay_or_challenge_result = \"{value}\"",
+    "EnglishTemplate": "with replay or challenge result equal to {value}",
+    "CypherTemplate": " p.replay_or_challenge_result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15226,8 +15226,8 @@
   {
     "English": "with [name] equal to \"example\"",
     "Cypher": " p.name = \"example\"",
-    "EnglishTemplate": "with name equal to \"{value}\"",
-    "CypherTemplate": " p.name = \"{value}\"",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " p.name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15254,8 +15254,8 @@
   {
     "English": "with [fumble recovery 2 team] equal to \"example\"",
     "Cypher": " p.fumble_recovery_2_team = \"example\"",
-    "EnglishTemplate": "with fumble recovery 2 team equal to \"{value}\"",
-    "CypherTemplate": " p.fumble_recovery_2_team = \"{value}\"",
+    "EnglishTemplate": "with fumble recovery 2 team equal to {value}",
+    "CypherTemplate": " p.fumble_recovery_2_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15282,8 +15282,8 @@
   {
     "English": "with [forced fumble player 1 team] equal to \"example\"",
     "Cypher": " p.forced_fumble_player_1_team = \"example\"",
-    "EnglishTemplate": "with forced fumble player 1 team equal to \"{value}\"",
-    "CypherTemplate": " p.forced_fumble_player_1_team = \"{value}\"",
+    "EnglishTemplate": "with forced fumble player 1 team equal to {value}",
+    "CypherTemplate": " p.forced_fumble_player_1_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15310,8 +15310,8 @@
   {
     "English": "with [posteam timeouts remaining] equal to \"example\"",
     "Cypher": " p.posteam_timeouts_remaining = \"example\"",
-    "EnglishTemplate": "with posteam timeouts remaining equal to \"{value}\"",
-    "CypherTemplate": " p.posteam_timeouts_remaining = \"{value}\"",
+    "EnglishTemplate": "with posteam timeouts remaining equal to {value}",
+    "CypherTemplate": " p.posteam_timeouts_remaining = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15338,8 +15338,8 @@
   {
     "English": "with [run location] equal to \"example\"",
     "Cypher": " p.run_location = \"example\"",
-    "EnglishTemplate": "with run location equal to \"{value}\"",
-    "CypherTemplate": " p.run_location = \"{value}\"",
+    "EnglishTemplate": "with run location equal to {value}",
+    "CypherTemplate": " p.run_location = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15366,8 +15366,8 @@
   {
     "English": "with [lateral receiver player name] equal to \"example\"",
     "Cypher": " p.lateral_receiver_player_name = \"example\"",
-    "EnglishTemplate": "with lateral receiver player name equal to \"{value}\"",
-    "CypherTemplate": " p.lateral_receiver_player_name = \"{value}\"",
+    "EnglishTemplate": "with lateral receiver player name equal to {value}",
+    "CypherTemplate": " p.lateral_receiver_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15394,8 +15394,8 @@
   {
     "English": "with [own kickoff recovery player name] equal to \"example\"",
     "Cypher": " p.own_kickoff_recovery_player_name = \"example\"",
-    "EnglishTemplate": "with own kickoff recovery player name equal to \"{value}\"",
-    "CypherTemplate": " p.own_kickoff_recovery_player_name = \"{value}\"",
+    "EnglishTemplate": "with own kickoff recovery player name equal to {value}",
+    "CypherTemplate": " p.own_kickoff_recovery_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15422,8 +15422,8 @@
   {
     "English": "with [possession team] equal to \"example\"",
     "Cypher": " p.possession_team = \"example\"",
-    "EnglishTemplate": "with possession team equal to \"{value}\"",
-    "CypherTemplate": " p.possession_team = \"{value}\"",
+    "EnglishTemplate": "with possession team equal to {value}",
+    "CypherTemplate": " p.possession_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15450,8 +15450,8 @@
   {
     "English": "with [rusher player name] equal to \"example\"",
     "Cypher": " p.rusher_player_name = \"example\"",
-    "EnglishTemplate": "with rusher player name equal to \"{value}\"",
-    "CypherTemplate": " p.rusher_player_name = \"{value}\"",
+    "EnglishTemplate": "with rusher player name equal to {value}",
+    "CypherTemplate": " p.rusher_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15478,8 +15478,8 @@
   {
     "English": "with [posteam] equal to \"example\"",
     "Cypher": " p.posteam = \"example\"",
-    "EnglishTemplate": "with posteam equal to \"{value}\"",
-    "CypherTemplate": " p.posteam = \"{value}\"",
+    "EnglishTemplate": "with posteam equal to {value}",
+    "CypherTemplate": " p.posteam = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15506,8 +15506,8 @@
   {
     "English": "with [lateral rusher player name] equal to \"example\"",
     "Cypher": " p.lateral_rusher_player_name = \"example\"",
-    "EnglishTemplate": "with lateral rusher player name equal to \"{value}\"",
-    "CypherTemplate": " p.lateral_rusher_player_name = \"{value}\"",
+    "EnglishTemplate": "with lateral rusher player name equal to {value}",
+    "CypherTemplate": " p.lateral_rusher_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15534,8 +15534,8 @@
   {
     "English": "with [result] equal to \"example\"",
     "Cypher": " p.result = \"example\"",
-    "EnglishTemplate": "with result equal to \"{value}\"",
-    "CypherTemplate": " p.result = \"{value}\"",
+    "EnglishTemplate": "with result equal to {value}",
+    "CypherTemplate": " p.result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15562,8 +15562,8 @@
   {
     "English": "with [location] equal to \"example\"",
     "Cypher": " p.location = \"example\"",
-    "EnglishTemplate": "with location equal to \"{value}\"",
-    "CypherTemplate": " p.location = \"{value}\"",
+    "EnglishTemplate": "with location equal to {value}",
+    "CypherTemplate": " p.location = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15590,8 +15590,8 @@
   {
     "English": "with [td player name] equal to \"example\"",
     "Cypher": " p.td_player_name = \"example\"",
-    "EnglishTemplate": "with td player name equal to \"{value}\"",
-    "CypherTemplate": " p.td_player_name = \"{value}\"",
+    "EnglishTemplate": "with td player name equal to {value}",
+    "CypherTemplate": " p.td_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15618,8 +15618,8 @@
   {
     "English": "with [fumbled 2 team] equal to \"example\"",
     "Cypher": " p.fumbled_2_team = \"example\"",
-    "EnglishTemplate": "with fumbled 2 team equal to \"{value}\"",
-    "CypherTemplate": " p.fumbled_2_team = \"{value}\"",
+    "EnglishTemplate": "with fumbled 2 team equal to {value}",
+    "CypherTemplate": " p.fumbled_2_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15646,8 +15646,8 @@
   {
     "English": "with [qb hit 1 player name] equal to \"example\"",
     "Cypher": " p.qb_hit_1_player_name = \"example\"",
-    "EnglishTemplate": "with qb hit 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.qb_hit_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with qb hit 1 player name equal to {value}",
+    "CypherTemplate": " p.qb_hit_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15674,8 +15674,8 @@
   {
     "English": "with [surface] equal to \"example\"",
     "Cypher": " p.surface = \"example\"",
-    "EnglishTemplate": "with surface equal to \"{value}\"",
-    "CypherTemplate": " p.surface = \"{value}\"",
+    "EnglishTemplate": "with surface equal to {value}",
+    "CypherTemplate": " p.surface = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15702,8 +15702,8 @@
   {
     "English": "with [tackle with assist 1 team] equal to \"example\"",
     "Cypher": " p.tackle_with_assist_1_team = \"example\"",
-    "EnglishTemplate": "with tackle with assist 1 team equal to \"{value}\"",
-    "CypherTemplate": " p.tackle_with_assist_1_team = \"{value}\"",
+    "EnglishTemplate": "with tackle with assist 1 team equal to {value}",
+    "CypherTemplate": " p.tackle_with_assist_1_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15730,8 +15730,8 @@
   {
     "English": "with [defteam timeouts remaining] equal to \"example\"",
     "Cypher": " p.defteam_timeouts_remaining = \"example\"",
-    "EnglishTemplate": "with defteam timeouts remaining equal to \"{value}\"",
-    "CypherTemplate": " p.defteam_timeouts_remaining = \"{value}\"",
+    "EnglishTemplate": "with defteam timeouts remaining equal to {value}",
+    "CypherTemplate": " p.defteam_timeouts_remaining = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15758,8 +15758,8 @@
   {
     "English": "with [field goal result] equal to \"example\"",
     "Cypher": " p.field_goal_result = \"example\"",
-    "EnglishTemplate": "with field goal result equal to \"{value}\"",
-    "CypherTemplate": " p.field_goal_result = \"{value}\"",
+    "EnglishTemplate": "with field goal result equal to {value}",
+    "CypherTemplate": " p.field_goal_result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15786,8 +15786,8 @@
   {
     "English": "with [assist tackle 3 team] equal to \"example\"",
     "Cypher": " p.assist_tackle_3_team = \"example\"",
-    "EnglishTemplate": "with assist tackle 3 team equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_3_team = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 3 team equal to {value}",
+    "CypherTemplate": " p.assist_tackle_3_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15814,8 +15814,8 @@
   {
     "English": "with [special teams play] equal to \"example\"",
     "Cypher": " p.special_teams_play = \"example\"",
-    "EnglishTemplate": "with special teams play equal to \"{value}\"",
-    "CypherTemplate": " p.special_teams_play = \"{value}\"",
+    "EnglishTemplate": "with special teams play equal to {value}",
+    "CypherTemplate": " p.special_teams_play = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15842,8 +15842,8 @@
   {
     "English": "with [passer player name] equal to \"example\"",
     "Cypher": " p.passer_player_name = \"example\"",
-    "EnglishTemplate": "with passer player name equal to \"{value}\"",
-    "CypherTemplate": " p.passer_player_name = \"{value}\"",
+    "EnglishTemplate": "with passer player name equal to {value}",
+    "CypherTemplate": " p.passer_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15870,8 +15870,8 @@
   {
     "English": "with [pass defense 1 player name] equal to \"example\"",
     "Cypher": " p.pass_defense_1_player_name = \"example\"",
-    "EnglishTemplate": "with pass defense 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.pass_defense_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with pass defense 1 player name equal to {value}",
+    "CypherTemplate": " p.pass_defense_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15898,8 +15898,8 @@
   {
     "English": "with [blocked player name] equal to \"example\"",
     "Cypher": " p.blocked_player_name = \"example\"",
-    "EnglishTemplate": "with blocked player name equal to \"{value}\"",
-    "CypherTemplate": " p.blocked_player_name = \"{value}\"",
+    "EnglishTemplate": "with blocked player name equal to {value}",
+    "CypherTemplate": " p.blocked_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15926,8 +15926,8 @@
   {
     "English": "with [half sack 1 player name] equal to \"example\"",
     "Cypher": " p.half_sack_1_player_name = \"example\"",
-    "EnglishTemplate": "with half sack 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.half_sack_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with half sack 1 player name equal to {value}",
+    "CypherTemplate": " p.half_sack_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15954,8 +15954,8 @@
   {
     "English": "with [lateral kickoff returner player name] equal to \"example\"",
     "Cypher": " p.lateral_kickoff_returner_player_name = \"example\"",
-    "EnglishTemplate": "with lateral kickoff returner player name equal to \"{value}\"",
-    "CypherTemplate": " p.lateral_kickoff_returner_player_name = \"{value}\"",
+    "EnglishTemplate": "with lateral kickoff returner player name equal to {value}",
+    "CypherTemplate": " p.lateral_kickoff_returner_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -15982,8 +15982,8 @@
   {
     "English": "with [interception player name] equal to \"example\"",
     "Cypher": " p.interception_player_name = \"example\"",
-    "EnglishTemplate": "with interception player name equal to \"{value}\"",
-    "CypherTemplate": " p.interception_player_name = \"{value}\"",
+    "EnglishTemplate": "with interception player name equal to {value}",
+    "CypherTemplate": " p.interception_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16010,8 +16010,8 @@
   {
     "English": "with [assist tackle 2 team] equal to \"example\"",
     "Cypher": " p.assist_tackle_2_team = \"example\"",
-    "EnglishTemplate": "with assist tackle 2 team equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_2_team = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 2 team equal to {value}",
+    "CypherTemplate": " p.assist_tackle_2_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16038,8 +16038,8 @@
   {
     "English": "with [fumble recovery 1 team] equal to \"example\"",
     "Cypher": " p.fumble_recovery_1_team = \"example\"",
-    "EnglishTemplate": "with fumble recovery 1 team equal to \"{value}\"",
-    "CypherTemplate": " p.fumble_recovery_1_team = \"{value}\"",
+    "EnglishTemplate": "with fumble recovery 1 team equal to {value}",
+    "CypherTemplate": " p.fumble_recovery_1_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16066,8 +16066,8 @@
   {
     "English": "with [defteam score post] equal to \"example\"",
     "Cypher": " p.defteam_score_post = \"example\"",
-    "EnglishTemplate": "with defteam score post equal to \"{value}\"",
-    "CypherTemplate": " p.defteam_score_post = \"{value}\"",
+    "EnglishTemplate": "with defteam score post equal to {value}",
+    "CypherTemplate": " p.defteam_score_post = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16094,8 +16094,8 @@
   {
     "English": "with [fumble recovery 1 player name] equal to \"example\"",
     "Cypher": " p.fumble_recovery_1_player_name = \"example\"",
-    "EnglishTemplate": "with fumble recovery 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.fumble_recovery_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with fumble recovery 1 player name equal to {value}",
+    "CypherTemplate": " p.fumble_recovery_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16122,8 +16122,8 @@
   {
     "English": "with [posteam score] equal to \"example\"",
     "Cypher": " p.posteam_score = \"example\"",
-    "EnglishTemplate": "with posteam score equal to \"{value}\"",
-    "CypherTemplate": " p.posteam_score = \"{value}\"",
+    "EnglishTemplate": "with posteam score equal to {value}",
+    "CypherTemplate": " p.posteam_score = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16150,8 +16150,8 @@
   {
     "English": "with [assist tackle 4 player name] equal to \"example\"",
     "Cypher": " p.assist_tackle_4_player_name = \"example\"",
-    "EnglishTemplate": "with assist tackle 4 player name equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_4_player_name = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 4 player name equal to {value}",
+    "CypherTemplate": " p.assist_tackle_4_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16178,8 +16178,8 @@
   {
     "English": "with [extra point result] equal to \"example\"",
     "Cypher": " p.extra_point_result = \"example\"",
-    "EnglishTemplate": "with extra point result equal to \"{value}\"",
-    "CypherTemplate": " p.extra_point_result = \"{value}\"",
+    "EnglishTemplate": "with extra point result equal to {value}",
+    "CypherTemplate": " p.extra_point_result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16206,8 +16206,8 @@
   {
     "English": "with [tackle with assist 1 player name] equal to \"example\"",
     "Cypher": " p.tackle_with_assist_1_player_name = \"example\"",
-    "EnglishTemplate": "with tackle with assist 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.tackle_with_assist_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with tackle with assist 1 player name equal to {value}",
+    "CypherTemplate": " p.tackle_with_assist_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16234,8 +16234,8 @@
   {
     "English": "with [td team] equal to \"example\"",
     "Cypher": " p.td_team = \"example\"",
-    "EnglishTemplate": "with td team equal to \"{value}\"",
-    "CypherTemplate": " p.td_team = \"{value}\"",
+    "EnglishTemplate": "with td team equal to {value}",
+    "CypherTemplate": " p.td_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16262,8 +16262,8 @@
   {
     "English": "with [forced fumble player 1 player name] equal to \"example\"",
     "Cypher": " p.forced_fumble_player_1_player_name = \"example\"",
-    "EnglishTemplate": "with forced fumble player 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.forced_fumble_player_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with forced fumble player 1 player name equal to {value}",
+    "CypherTemplate": " p.forced_fumble_player_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16290,8 +16290,8 @@
   {
     "English": "with [away team] equal to \"example\"",
     "Cypher": " p.away_team = \"example\"",
-    "EnglishTemplate": "with away team equal to \"{value}\"",
-    "CypherTemplate": " p.away_team = \"{value}\"",
+    "EnglishTemplate": "with away team equal to {value}",
+    "CypherTemplate": " p.away_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16318,8 +16318,8 @@
   {
     "English": "with [sack player name] equal to \"example\"",
     "Cypher": " p.sack_player_name = \"example\"",
-    "EnglishTemplate": "with sack player name equal to \"{value}\"",
-    "CypherTemplate": " p.sack_player_name = \"{value}\"",
+    "EnglishTemplate": "with sack player name equal to {value}",
+    "CypherTemplate": " p.sack_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16346,8 +16346,8 @@
   {
     "English": "with [posteam score post] equal to \"example\"",
     "Cypher": " p.posteam_score_post = \"example\"",
-    "EnglishTemplate": "with posteam score post equal to \"{value}\"",
-    "CypherTemplate": " p.posteam_score_post = \"{value}\"",
+    "EnglishTemplate": "with posteam score post equal to {value}",
+    "CypherTemplate": " p.posteam_score_post = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16374,8 +16374,8 @@
   {
     "English": "with [safety player name] equal to \"example\"",
     "Cypher": " p.safety_player_name = \"example\"",
-    "EnglishTemplate": "with safety player name equal to \"{value}\"",
-    "CypherTemplate": " p.safety_player_name = \"{value}\"",
+    "EnglishTemplate": "with safety player name equal to {value}",
+    "CypherTemplate": " p.safety_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16402,8 +16402,8 @@
   {
     "English": "with [lateral interception player name] equal to \"example\"",
     "Cypher": " p.lateral_interception_player_name = \"example\"",
-    "EnglishTemplate": "with lateral interception player name equal to \"{value}\"",
-    "CypherTemplate": " p.lateral_interception_player_name = \"{value}\"",
+    "EnglishTemplate": "with lateral interception player name equal to {value}",
+    "CypherTemplate": " p.lateral_interception_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16430,8 +16430,8 @@
   {
     "English": "with [assist tackle 2 player name] equal to \"example\"",
     "Cypher": " p.assist_tackle_2_player_name = \"example\"",
-    "EnglishTemplate": "with assist tackle 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.assist_tackle_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with assist tackle 2 player name equal to {value}",
+    "CypherTemplate": " p.assist_tackle_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16458,8 +16458,8 @@
   {
     "English": "with [pass defense 2 player name] equal to \"example\"",
     "Cypher": " p.pass_defense_2_player_name = \"example\"",
-    "EnglishTemplate": "with pass defense 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.pass_defense_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with pass defense 2 player name equal to {value}",
+    "CypherTemplate": " p.pass_defense_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16486,8 +16486,8 @@
   {
     "English": "with [qb hit 2 player name] equal to \"example\"",
     "Cypher": " p.qb_hit_2_player_name = \"example\"",
-    "EnglishTemplate": "with qb hit 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.qb_hit_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with qb hit 2 player name equal to {value}",
+    "CypherTemplate": " p.qb_hit_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16514,8 +16514,8 @@
   {
     "English": "with [punt returner player name] equal to \"example\"",
     "Cypher": " p.punt_returner_player_name = \"example\"",
-    "EnglishTemplate": "with punt returner player name equal to \"{value}\"",
-    "CypherTemplate": " p.punt_returner_player_name = \"{value}\"",
+    "EnglishTemplate": "with punt returner player name equal to {value}",
+    "CypherTemplate": " p.punt_returner_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16542,8 +16542,8 @@
   {
     "English": "with [kickoff returner player name] equal to \"example\"",
     "Cypher": " p.kickoff_returner_player_name = \"example\"",
-    "EnglishTemplate": "with kickoff returner player name equal to \"{value}\"",
-    "CypherTemplate": " p.kickoff_returner_player_name = \"{value}\"",
+    "EnglishTemplate": "with kickoff returner player name equal to {value}",
+    "CypherTemplate": " p.kickoff_returner_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16570,8 +16570,8 @@
   {
     "English": "with [series result] equal to \"example\"",
     "Cypher": " p.series_result = \"example\"",
-    "EnglishTemplate": "with series result equal to \"{value}\"",
-    "CypherTemplate": " p.series_result = \"{value}\"",
+    "EnglishTemplate": "with series result equal to {value}",
+    "CypherTemplate": " p.series_result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16598,8 +16598,8 @@
   {
     "English": "with [solo tackle 2 team] equal to \"example\"",
     "Cypher": " p.solo_tackle_2_team = \"example\"",
-    "EnglishTemplate": "with solo tackle 2 team equal to \"{value}\"",
-    "CypherTemplate": " p.solo_tackle_2_team = \"{value}\"",
+    "EnglishTemplate": "with solo tackle 2 team equal to {value}",
+    "CypherTemplate": " p.solo_tackle_2_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16626,8 +16626,8 @@
   {
     "English": "with [return team] equal to \"example\"",
     "Cypher": " p.return_team = \"example\"",
-    "EnglishTemplate": "with return team equal to \"{value}\"",
-    "CypherTemplate": " p.return_team = \"{value}\"",
+    "EnglishTemplate": "with return team equal to {value}",
+    "CypherTemplate": " p.return_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16654,8 +16654,8 @@
   {
     "English": "with [penalty team] equal to \"example\"",
     "Cypher": " p.penalty_team = \"example\"",
-    "EnglishTemplate": "with penalty team equal to \"{value}\"",
-    "CypherTemplate": " p.penalty_team = \"{value}\"",
+    "EnglishTemplate": "with penalty team equal to {value}",
+    "CypherTemplate": " p.penalty_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16682,8 +16682,8 @@
   {
     "English": "with [fantasy player name] equal to \"example\"",
     "Cypher": " p.fantasy_player_name = \"example\"",
-    "EnglishTemplate": "with fantasy player name equal to \"{value}\"",
-    "CypherTemplate": " p.fantasy_player_name = \"{value}\"",
+    "EnglishTemplate": "with fantasy player name equal to {value}",
+    "CypherTemplate": " p.fantasy_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16710,8 +16710,8 @@
   {
     "English": "with [timeout team] equal to \"example\"",
     "Cypher": " p.timeout_team = \"example\"",
-    "EnglishTemplate": "with timeout team equal to \"{value}\"",
-    "CypherTemplate": " p.timeout_team = \"{value}\"",
+    "EnglishTemplate": "with timeout team equal to {value}",
+    "CypherTemplate": " p.timeout_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16738,8 +16738,8 @@
   {
     "English": "with [defteam] equal to \"example\"",
     "Cypher": " p.defteam = \"example\"",
-    "EnglishTemplate": "with defteam equal to \"{value}\"",
-    "CypherTemplate": " p.defteam = \"{value}\"",
+    "EnglishTemplate": "with defteam equal to {value}",
+    "CypherTemplate": " p.defteam = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16766,8 +16766,8 @@
   {
     "English": "with [defteam score] equal to \"example\"",
     "Cypher": " p.defteam_score = \"example\"",
-    "EnglishTemplate": "with defteam score equal to \"{value}\"",
-    "CypherTemplate": " p.defteam_score = \"{value}\"",
+    "EnglishTemplate": "with defteam score equal to {value}",
+    "CypherTemplate": " p.defteam_score = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16794,8 +16794,8 @@
   {
     "English": "with [receiver player name] equal to \"example\"",
     "Cypher": " p.receiver_player_name = \"example\"",
-    "EnglishTemplate": "with receiver player name equal to \"{value}\"",
-    "CypherTemplate": " p.receiver_player_name = \"{value}\"",
+    "EnglishTemplate": "with receiver player name equal to {value}",
+    "CypherTemplate": " p.receiver_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16822,8 +16822,8 @@
   {
     "English": "with [fumbled 2 player name] equal to \"example\"",
     "Cypher": " p.fumbled_2_player_name = \"example\"",
-    "EnglishTemplate": "with fumbled 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.fumbled_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with fumbled 2 player name equal to {value}",
+    "CypherTemplate": " p.fumbled_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16850,8 +16850,8 @@
   {
     "English": "with [fixed drive result] equal to \"example\"",
     "Cypher": " p.fixed_drive_result = \"example\"",
-    "EnglishTemplate": "with fixed drive result equal to \"{value}\"",
-    "CypherTemplate": " p.fixed_drive_result = \"{value}\"",
+    "EnglishTemplate": "with fixed drive result equal to {value}",
+    "CypherTemplate": " p.fixed_drive_result = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16878,8 +16878,8 @@
   {
     "English": "with [fumbled 1 player name] equal to \"example\"",
     "Cypher": " p.fumbled_1_player_name = \"example\"",
-    "EnglishTemplate": "with fumbled 1 player name equal to \"{value}\"",
-    "CypherTemplate": " p.fumbled_1_player_name = \"{value}\"",
+    "EnglishTemplate": "with fumbled 1 player name equal to {value}",
+    "CypherTemplate": " p.fumbled_1_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16906,8 +16906,8 @@
   {
     "English": "with [forced fumble player 2 team] equal to \"example\"",
     "Cypher": " p.forced_fumble_player_2_team = \"example\"",
-    "EnglishTemplate": "with forced fumble player 2 team equal to \"{value}\"",
-    "CypherTemplate": " p.forced_fumble_player_2_team = \"{value}\"",
+    "EnglishTemplate": "with forced fumble player 2 team equal to {value}",
+    "CypherTemplate": " p.forced_fumble_player_2_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16934,8 +16934,8 @@
   {
     "English": "with [div game] equal to \"example\"",
     "Cypher": " p.div_game = \"example\"",
-    "EnglishTemplate": "with div game equal to \"{value}\"",
-    "CypherTemplate": " p.div_game = \"{value}\"",
+    "EnglishTemplate": "with div game equal to {value}",
+    "CypherTemplate": " p.div_game = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16962,8 +16962,8 @@
   {
     "English": "with [forced fumble player 2 player name] equal to \"example\"",
     "Cypher": " p.forced_fumble_player_2_player_name = \"example\"",
-    "EnglishTemplate": "with forced fumble player 2 player name equal to \"{value}\"",
-    "CypherTemplate": " p.forced_fumble_player_2_player_name = \"{value}\"",
+    "EnglishTemplate": "with forced fumble player 2 player name equal to {value}",
+    "CypherTemplate": " p.forced_fumble_player_2_player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -16990,8 +16990,8 @@
   {
     "English": "with [posteam type] equal to \"example\"",
     "Cypher": " p.posteam_type = \"example\"",
-    "EnglishTemplate": "with posteam type equal to \"{value}\"",
-    "CypherTemplate": " p.posteam_type = \"{value}\"",
+    "EnglishTemplate": "with posteam type equal to {value}",
+    "CypherTemplate": " p.posteam_type = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -17018,8 +17018,8 @@
   {
     "English": "with [pass location] equal to \"example\"",
     "Cypher": " p.pass_location = \"example\"",
-    "EnglishTemplate": "with pass location equal to \"{value}\"",
-    "CypherTemplate": " p.pass_location = \"{value}\"",
+    "EnglishTemplate": "with pass location equal to {value}",
+    "CypherTemplate": " p.pass_location = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -17046,8 +17046,8 @@
   {
     "English": "with [team abbr] equal to \"example\"",
     "Cypher": " t.team_abbr = \"example\"",
-    "EnglishTemplate": "with team abbr equal to \"{value}\"",
-    "CypherTemplate": " t.team_abbr = \"{value}\"",
+    "EnglishTemplate": "with team abbr equal to {value}",
+    "CypherTemplate": " t.team_abbr = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -17074,8 +17074,8 @@
   {
     "English": "with [name] equal to \"example\"",
     "Cypher": " d.name = \"example\"",
-    "EnglishTemplate": "with name equal to \"{value}\"",
-    "CypherTemplate": " d.name = \"{value}\"",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " d.name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -21862,8 +21862,8 @@
   {
     "English": "with [player display name] equal to \"example\"",
     "Cypher": " pg.player_display_name = \"example\"",
-    "EnglishTemplate": "with player display name equal to \"{value}\"",
-    "CypherTemplate": " pg.player_display_name = \"{value}\"",
+    "EnglishTemplate": "with player display name equal to {value}",
+    "CypherTemplate": " pg.player_display_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -21890,8 +21890,8 @@
   {
     "English": "with [position] equal to \"example\"",
     "Cypher": " pg.position = \"example\"",
-    "EnglishTemplate": "with position equal to \"{value}\"",
-    "CypherTemplate": " pg.position = \"{value}\"",
+    "EnglishTemplate": "with position equal to {value}",
+    "CypherTemplate": " pg.position = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -21918,8 +21918,8 @@
   {
     "English": "with [position group] equal to \"example\"",
     "Cypher": " pg.position_group = \"example\"",
-    "EnglishTemplate": "with position group equal to \"{value}\"",
-    "CypherTemplate": " pg.position_group = \"{value}\"",
+    "EnglishTemplate": "with position group equal to {value}",
+    "CypherTemplate": " pg.position_group = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -21946,8 +21946,8 @@
   {
     "English": "with [recent team] equal to \"example\"",
     "Cypher": " pg.recent_team = \"example\"",
-    "EnglishTemplate": "with recent team equal to \"{value}\"",
-    "CypherTemplate": " pg.recent_team = \"{value}\"",
+    "EnglishTemplate": "with recent team equal to {value}",
+    "CypherTemplate": " pg.recent_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -21974,8 +21974,8 @@
   {
     "English": "with [opponent team] equal to \"example\"",
     "Cypher": " pg.opponent_team = \"example\"",
-    "EnglishTemplate": "with opponent team equal to \"{value}\"",
-    "CypherTemplate": " pg.opponent_team = \"{value}\"",
+    "EnglishTemplate": "with opponent team equal to {value}",
+    "CypherTemplate": " pg.opponent_team = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -22002,8 +22002,8 @@
   {
     "English": "with [player name] equal to \"example\"",
     "Cypher": " pg.player_name = \"example\"",
-    "EnglishTemplate": "with player name equal to \"{value}\"",
-    "CypherTemplate": " pg.player_name = \"{value}\"",
+    "EnglishTemplate": "with player name equal to {value}",
+    "CypherTemplate": " pg.player_name = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -22030,8 +22030,8 @@
   {
     "English": "with [special teams tds] equal to \"example\"",
     "Cypher": " pg.special_teams_tds = \"example\"",
-    "EnglishTemplate": "with special teams tds equal to \"{value}\"",
-    "CypherTemplate": " pg.special_teams_tds = \"{value}\"",
+    "EnglishTemplate": "with special teams tds equal to {value}",
+    "CypherTemplate": " pg.special_teams_tds = {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
