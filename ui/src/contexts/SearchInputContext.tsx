@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
 import { Suggestion } from "./Suggestion";
-import { useEnhancedSuggestions } from "../hooks/useEnhancedSuggestions";
+import useSuggestionsTwo from "../hooks/useSuggestionsTwo";
+import { useChunkGenerator } from "../hooks/useChunkGenerator";
 import { useKeyboardNavigation } from "../hooks/useKeyboardNavigation";
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
 
@@ -56,10 +57,13 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  // Generate suggestions based on current state
-  const { suggestions: rawSuggestions } = useEnhancedSuggestions(query);
+  // Get all chunks (static + dynamic)
+  const { allChunks } = useChunkGenerator();
   
-  // Transform enhanced suggestions to match expected Suggestion interface
+  // Generate suggestions using two-step filtering
+  const rawSuggestions = useSuggestionsTwo(query, allChunks, chain);
+  
+  // Transform suggestions to match expected Suggestion interface
   const enhancedSuggestions = rawSuggestions.map(suggestion => ({
     chunk: suggestion.chunk,
     displayText: suggestion.chunk.English
