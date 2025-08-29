@@ -80,12 +80,12 @@ export const UserSubscriptionSection: React.FC = () => {
             {subscriptions.map((subscription: Subscription) => (
               <div key={subscription.id} className="subscription-item">
                 <div className="subscription-details">
-                  <p className="subscription-date">
-                    Created:{" "}
-                    {new Date(
-                      subscription.createdAt?.seconds * 1000,
-                    ).toLocaleDateString()}
-                  </p>
+                  {subscription.currentPeriodEnd && (
+                    <p className="subscription-date">
+                      Current Period Ends:{" "}
+                      {subscription.currentPeriodEnd.toLocaleDateString()}
+                    </p>
+                  )}
                   <p className="subscription-status">
                     <b>Status:</b> {subscription.isPro ? "✅ Pro" : "🚫 Free"}
                   </p>

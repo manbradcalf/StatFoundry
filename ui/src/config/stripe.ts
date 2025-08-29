@@ -1,20 +1,5 @@
-import { loadStripe } from '@stripe/stripe-js';
-
-// Get Stripe publishable key from environment variables
-const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
-
-if (!stripePublishableKey) {
-  console.warn('Stripe publishable key not found. Set REACT_APP_STRIPE_PUBLISHABLE_KEY in your environment.');
-}
-
-// Initialize Stripe
-export const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;
-
-// Stripe configuration
-export const stripeConfig = {
-  publicKey: stripePublishableKey,
-  isConfigured: !!stripePublishableKey,
-};
+// Stripe configuration for Checkout flow
+// Note: Using Stripe Checkout (server-side), not Stripe Elements (client-side)
 
 // Helper function to get base URL for success/cancel redirects
 export const getBaseUrl = (): string => {
