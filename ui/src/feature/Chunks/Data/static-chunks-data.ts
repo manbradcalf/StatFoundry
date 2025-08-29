@@ -3,7 +3,7 @@ import {
   generateFilterChunks,
   generatePlayFilterChunks,
   FilterableProperty,
-} from "./stat-chunk-generator";
+} from "./static-chunk-generator";
 import {
   generatePositionChunks,
   generateEntityRelationshipChunks,
