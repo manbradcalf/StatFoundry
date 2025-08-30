@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  ReactNode,
+} from "react";
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { SlotModal } from "../components/SlotModal";
@@ -14,7 +20,12 @@ interface ModalContextType {
   insertingAtIndex: number | null;
 
   // Actions
-  openSlotModal: (chunk: Chunk, slots: Slot[], editingIndex?: number, insertAtIndex?: number) => void;
+  openSlotModal: (
+    chunk: Chunk,
+    slots: Slot[],
+    editingIndex?: number,
+    insertAtIndex?: number,
+  ) => void;
   closeSlotModal: () => void;
   handleSlotModalSave: (updatedSlots: Slot[]) => void;
   handleSlotModalCancel: () => void;
@@ -40,21 +51,26 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
-  const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(null);
+  const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(
+    null,
+  );
   const [insertingAtIndex, setInsertingAtIndex] = useState<number | null>(null);
 
-  const openSlotModal = useCallback((
-    chunk: Chunk, 
-    slots: Slot[], 
-    editingIndex?: number,
-    insertAtIndex?: number
-  ) => {
-    setPendingChunk(chunk);
-    setPendingSlots(slots);
-    setEditingChunkIndex(editingIndex ?? null);
-    setInsertingAtIndex(insertAtIndex ?? null);
-    setIsSlotModalOpen(true);
-  }, []);
+  const openSlotModal = useCallback(
+    (
+      chunk: Chunk,
+      slots: Slot[],
+      editingIndex?: number,
+      insertAtIndex?: number,
+    ) => {
+      setPendingChunk(chunk);
+      setPendingSlots(slots);
+      setEditingChunkIndex(editingIndex ?? null);
+      setInsertingAtIndex(insertAtIndex ?? null);
+      setIsSlotModalOpen(true);
+    },
+    [],
+  );
 
   const closeSlotModal = useCallback(() => {
     setIsSlotModalOpen(false);
@@ -64,31 +80,40 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     setInsertingAtIndex(null);
   }, []);
 
-  const handleSlotModalSave = useCallback((updatedSlots: Slot[]) => {
-    if (!pendingChunk) {
+  const handleSlotModalSave = useCallback(
+    (updatedSlots: Slot[]) => {
+      if (!pendingChunk) {
+        closeSlotModal();
+        return;
+      }
+
+      // Build the chunk with filled slots
+      const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
+      const filled = buildFilledChunk(chunkWithSlots);
+
+      // Directly handle the three cases using chainContext
+      if (editingChunkIndex !== null) {
+        // Editing existing chunk
+        chainContext.updateChunkAtIndex(editingChunkIndex, filled);
+      } else if (insertingAtIndex !== null) {
+        // Inserting at specific index
+        chainContext.insertChunk(insertingAtIndex, filled);
+        setInsertingAtIndex(null);
+      } else {
+        // Adding new chunk
+        chainContext.appendChunk(filled);
+      }
+
       closeSlotModal();
-      return;
-    }
-
-    // Build the chunk with filled slots
-    const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
-    const filled = buildFilledChunk(chunkWithSlots);
-
-    // Directly handle the three cases using chainContext
-    if (editingChunkIndex !== null) {
-      // Editing existing chunk
-      chainContext.updateChunkAtIndex(editingChunkIndex, filled);
-    } else if (insertingAtIndex !== null) {
-      // Inserting at specific index
-      chainContext.insertChunk(insertingAtIndex, filled);
-      setInsertingAtIndex(null);
-    } else {
-      // Adding new chunk
-      chainContext.appendChunk(filled);
-    }
-
-    closeSlotModal();
-  }, [pendingChunk, editingChunkIndex, insertingAtIndex, chainContext, closeSlotModal]);
+    },
+    [
+      pendingChunk,
+      editingChunkIndex,
+      insertingAtIndex,
+      chainContext,
+      closeSlotModal,
+    ],
+  );
 
   const handleSlotModalCancel = useCallback(() => {
     closeSlotModal();
@@ -118,8 +143,13 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
         slots={pendingSlots}
         onSave={handleSlotModalSave}
         onCancel={handleSlotModalCancel}
-        title={editingChunkIndex !== null ? "Edit chunk" : "Fill in values"}
+        title={
+          value.pendingChunk !== null
+            ? `Edit ${value.pendingChunk?.English}`
+            : "Fill in values"
+        }
       />
     </ModalContext.Provider>
   );
 };
+

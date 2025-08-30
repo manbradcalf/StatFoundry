@@ -1,6 +1,14 @@
-import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  ReactNode,
+} from "react";
 import { Suggestion } from "./Suggestion";
-import { useEnhancedSuggestions } from "../hooks/useEnhancedSuggestions";
+import useSuggestionsTwo from "../hooks/useSuggestionsTwo";
+import { useChunkGenerator } from "../hooks/useChunkGenerator";
 import { useKeyboardNavigation } from "../hooks/useKeyboardNavigation";
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
 
@@ -16,24 +24,28 @@ interface SearchInputContextType {
   setQuery: (query: string) => void;
   selectSuggestion: (suggestion: Suggestion, index?: number) => void;
   clearQuery: () => void;
-  
+
   // Input focus handling
   handleInputFocus: () => void;
   handleInputBlur: () => void;
-  
+
   // Keyboard navigation
   handleKeyDown: (e: React.KeyboardEvent) => void;
-  
+
   // Suggestions visibility
   toggleSuggestions: () => void;
 }
 
-const SearchInputContext = createContext<SearchInputContextType | undefined>(undefined);
+const SearchInputContext = createContext<SearchInputContextType | undefined>(
+  undefined,
+);
 
 export const useSearchInputContext = () => {
   const context = useContext(SearchInputContext);
   if (!context) {
-    throw new Error("useSearchInputContext must be used within a SearchInputProvider");
+    throw new Error(
+      "useSearchInputContext must be used within a SearchInputProvider",
+    );
   }
   return context;
 };
@@ -46,8 +58,8 @@ interface SearchInputProviderProps {
   onExecuteSearch?: () => void;
 }
 
-export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({ 
-  children, 
+export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
+  children,
   chain,
   insertingAtIndex,
   onSuggestionSelect,
@@ -56,13 +68,16 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  // Generate suggestions based on current state
-  const { suggestions: rawSuggestions } = useEnhancedSuggestions(query);
-  
-  // Transform enhanced suggestions to match expected Suggestion interface
-  const enhancedSuggestions = rawSuggestions.map(suggestion => ({
+  // Get all chunks (static + dynamic)
+  const { dynamicChunks } = useChunkGenerator();
+
+  // Generate suggestions using two-step filtering
+  const rawSuggestions = useSuggestionsTwo(query, dynamicChunks, chain);
+
+  // Transform suggestions to match expected Suggestion interface
+  const enhancedSuggestions = rawSuggestions.map((suggestion) => ({
     chunk: suggestion.chunk,
-    displayText: suggestion.chunk.English
+    displayText: suggestion.chunk.English,
   }));
 
   // Control suggestion visibility based on input state
@@ -94,7 +109,7 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
 
   // Toggle enhancedSuggestions visibility
   const toggleSuggestions = useCallback(() => {
-    setShowSuggestions(prev => !prev);
+    setShowSuggestions((prev) => !prev);
   }, []);
 
   // Handle suggestion selection
@@ -104,7 +119,7 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
       setQuery(""); // Clear the search input
       onSuggestionSelect(suggestion, index);
     },
-    [onSuggestionSelect]
+    [onSuggestionSelect],
   );
 
   // Use keyboard navigation hook
@@ -122,11 +137,18 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   // Watch for keyboard selection events
   useEffect(() => {
     if (selectedSuggestion) {
-      const suggestionIndex = enhancedSuggestions.findIndex(s => s === selectedSuggestion);
+      const suggestionIndex = enhancedSuggestions.findIndex(
+        (s) => s === selectedSuggestion,
+      );
       handleSuggestionClick(selectedSuggestion, suggestionIndex);
       clearSelection();
     }
-  }, [selectedSuggestion, handleSuggestionClick, clearSelection, enhancedSuggestions]);
+  }, [
+    selectedSuggestion,
+    handleSuggestionClick,
+    clearSelection,
+    enhancedSuggestions,
+  ]);
 
   // Auto-enable keyboard navigation when enhancedSuggestions become available
   useEffect(() => {
@@ -156,14 +178,14 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
     setQuery,
     selectSuggestion: handleSuggestionClick,
     clearQuery,
-    
+
     // Input focus handling
     handleInputFocus,
     handleInputBlur,
-    
+
     // Keyboard navigation
     handleKeyDown,
-    
+
     // Suggestions visibility
     toggleSuggestions,
   };
@@ -174,3 +196,4 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
     </SearchInputContext.Provider>
   );
 };
+

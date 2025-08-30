@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Chunk } from '../feature/Chunks/Types/Chunk';
-import { DynamicChunkGenerator } from '../feature/Chunks/Services/DynamicChunkGenerator';
-import { getAllChunks } from '../feature/Chunks/Data/chunks-data';
+import { useMemo } from "react";
+import { Chunk } from "../feature/Chunks/Types/Chunk";
+import { getAllChunks } from "../feature/Chunks/Data/chunks-data";
+import generatedChunksData from "../feature/Chunks/Data/generated-chunks.json";
 
 export interface UseChunkGeneratorResult {
   staticChunks: Chunk[];
@@ -13,57 +13,28 @@ export interface UseChunkGeneratorResult {
 }
 
 export function useChunkGenerator(): UseChunkGeneratorResult {
-  const [dynamicChunks, setDynamicChunks] = useState<Chunk[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [generator] = useState(() => new DynamicChunkGenerator());
-
+  // Get chunks from static imports - no async operations needed!
   const staticChunks = useMemo(() => getAllChunks(), []);
+  const dynamicChunks = useMemo(() => generatedChunksData as Chunk[], []);
+  const allChunks = useMemo(
+    () => [...staticChunks, ...dynamicChunks],
+    [staticChunks, dynamicChunks],
+  );
 
-  const loadDynamicChunks = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const chunks = await generator.generateChunks();
-      setDynamicChunks(chunks);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to generate dynamic chunks';
-      setError(errorMessage);
-      console.error('Error generating dynamic chunks:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [generator]);
-
-  const refreshDynamicChunks = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const chunks = await generator.refreshChunks();
-      setDynamicChunks(chunks);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to refresh dynamic chunks';
-      setError(errorMessage);
-      console.error('Error refreshing dynamic chunks:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [generator]);
-
-  useEffect(() => {
-    loadDynamicChunks();
-  }, [loadDynamicChunks]);
-
-  const allChunks = useMemo(() => [...staticChunks, ...dynamicChunks], [staticChunks, dynamicChunks]);
+  // No-op refresh function for backward compatibility
+  const refreshDynamicChunks = async () => {
+    console.log(
+      'Dynamic chunks are now build-time generated. Run "npm run generate-chunks" to update.',
+    );
+  };
 
   return {
     staticChunks,
     dynamicChunks,
     allChunks,
-    isLoading,
-    error,
-    refreshDynamicChunks
+    isLoading: false, // Never loading since everything is static
+    error: null, // No runtime errors since no async operations
+    refreshDynamicChunks,
   };
 }
+
