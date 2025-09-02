@@ -14,9 +14,9 @@ _fetch_relationships_schema = """
 
 _fetch_nodes_schema = """
     CALL db.schema.nodeTypeProperties()
-    YIELD nodeType, propertyName
-    WITH nodeType, collect(propertyName) AS properties
-    RETURN collect({label: nodeType, properties: properties}) AS node_schema 
+    YIELD nodeType, propertyName, propertyTypes
+    WITH nodeType, collect({name: propertyName, type: propertyTypes[0]}) AS properties
+    RETURN collect({label: nodeType, properties: properties}) AS node_schema
 """
 
 _fetch_rel_patterns = """
@@ -25,6 +25,7 @@ _fetch_rel_patterns = """
     RETURN from_label, rel_type, to_label
     ORDER BY rel_type
 """
+
 
 def create_driver(uri, auth):
     return GraphDatabase.driver(
