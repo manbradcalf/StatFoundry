@@ -7,8 +7,8 @@ from src.config import AUTH, URI
 # Private query constants (denoted by underscore prefix)
 _fetch_relationships_schema = """
     CALL db.schema.relTypeProperties()
-    YIELD relType, propertyName
-    WITH relType, collect(propertyName) AS properties
+    YIELD relType, propertyName, propertyTypes
+    WITH relType, collect({name:propertyName, type:propertyTypes[0]}) AS properties
     RETURN collect({relationship: relType, properties: properties}) AS rel_schema
 """
 
