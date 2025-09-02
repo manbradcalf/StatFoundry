@@ -1,4 +1,5 @@
 const http = require("http");
+const https = require("https");
 const fs = require("fs");
 const path = require("path");
 
@@ -266,19 +267,32 @@ class SimpleChunkGenerator {
 
 async function generateChunks() {
   try {
+    // github sets CI=true during actions automatically
+    const isCI = process.env.CI === true;
     console.log("🔄 Fetching schema from API...");
+    console.log("🤖 isCI:", isCI);
+
+    // Determine API endpoint based on environment
+    const baseUrl = isCI
+      ? "https://statfoundry-service-a7crg2fjazb4c8c5.scm.eastus-01.azurewebsites.net/"
+      : "http://localhost:8000";
+
+    console.log(`🌐 Environment: ${isCI ? "Production" : "Development"}`);
+    console.log(`🔗 API URL: ${baseUrl}`);
 
     // Fetch schema from API
     const response = await new Promise((resolve, reject) => {
+      const url = new URL("/api/schema", baseUrl);
       const options = {
-        hostname: "localhost",
-        port: 8000,
-        path: "/api/schema",
+        hostname: url.hostname,
+        port: url.port || (url.protocol === "https:" ? 443 : 80),
+        path: url.pathname,
         method: "GET",
         headers: { Authorization: "Bearer admin-dev-key-123" },
       };
 
-      const req = http.request(options, (res) => {
+      const requestModule = url.protocol === "https:" ? https : http;
+      const req = requestModule.request(options, (res) => {
         let data = "";
         res.on("data", (chunk) => {
           data += chunk;
