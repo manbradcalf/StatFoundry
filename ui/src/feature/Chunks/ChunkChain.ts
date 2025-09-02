@@ -113,25 +113,26 @@ export class ChunkChain {
     let aliases: Alias[] = [];
 
     let node = this.Head;
-    let firstFilterAfterMatch = true;
+    let filterShouldStartWithWhere = true;
 
     while (node) {
       const { chunk } = node;
       // Use CypherTemplate if Cypher is empty, then trim
       let cypherPart = (chunk.Cypher || chunk.CypherTemplate || "").trim();
-      
+
       // Handle automatic WHERE vs AND for FILTER chunks
       if (chunk.QueryType === QueryType.FILTER && cypherPart) {
         // Determine if this is the first filter after MATCH_START or JUNCTION
         const prevNode = node.prev;
-        const isFirstFilter = !prevNode || 
+        const isFirstFilter =
+          !prevNode ||
           prevNode.chunk.QueryType === QueryType.MATCH_START ||
           prevNode.chunk.QueryType === QueryType.JUNCTION;
 
-        if (isFirstFilter && firstFilterAfterMatch) {
+        if (isFirstFilter && filterShouldStartWithWhere) {
           // First filter: ensure it starts with WHERE
           cypherPart = `WHERE ${cypherPart}`;
-          firstFilterAfterMatch = false;
+          filterShouldStartWithWhere = false;
         } else {
           // Subsequent filters: ensure they start with AND
           cypherPart = `AND ${cypherPart}`;
@@ -159,6 +160,7 @@ export class ChunkChain {
         this.Cypher += ` ${cypherPart} `;
       } else {
         this.Cypher += ` WITH * ${cypherPart}`;
+        filterShouldStartWithWhere = true;
       }
     });
     return this;
