@@ -275,7 +275,7 @@ async function generateChunks() {
 
     // Determine API endpoint based on environment
     const baseUrl = isCI
-      ? "https://statfoundry-service-a7crg2fjazb4c8c5.scm.eastus-01.azurewebsites.net/"
+      ? process.env.REACT_APP_SERVICE_URL
       : "http://localhost:8000";
 
     console.log(`🌐 Environment: ${isCI ? "Production" : "Development"}`);
