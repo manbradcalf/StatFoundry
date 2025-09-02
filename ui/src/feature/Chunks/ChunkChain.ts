@@ -122,19 +122,12 @@ export class ChunkChain {
 
       // Handle automatic WHERE vs AND for FILTER chunks
       if (chunk.QueryType === QueryType.FILTER && cypherPart) {
-        // Determine if this is the first filter after MATCH_START or JUNCTION
-        const prevNode = node.prev;
-        const isFirstFilter =
-          !prevNode ||
-          prevNode.chunk.QueryType === QueryType.MATCH_START ||
-          prevNode.chunk.QueryType === QueryType.JUNCTION;
-
-        if (isFirstFilter && filterShouldStartWithWhere) {
-          // First filter: ensure it starts with WHERE
+        if (filterShouldStartWithWhere) {
+          // First filter in new query context: use WHERE
           cypherPart = `WHERE ${cypherPart}`;
           filterShouldStartWithWhere = false;
         } else {
-          // Subsequent filters: ensure they start with AND
+          // Subsequent filters: use AND
           cypherPart = `AND ${cypherPart}`;
         }
       }
@@ -226,21 +219,6 @@ function isValidNextChunk(
     return false;
   }
 
-  // After JUNCTION, only allow FILTER
-  if (
-    tail?.QueryType === QueryType.JUNCTION &&
-    chunk.QueryType !== QueryType.FILTER
-  ) {
-    return false;
-  }
-
-  // After FILTER, only allow more FILTERs
-  if (
-    tail?.QueryType === QueryType.FILTER &&
-    chunk.QueryType !== QueryType.FILTER
-  ) {
-    return false;
-  }
 
   // Count how many of each entity type we need vs have
   const needed = chunk.Requires.reduce(
