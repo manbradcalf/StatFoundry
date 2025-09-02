@@ -269,7 +269,7 @@ async function generateChunks() {
   try {
     // github sets CI=true during actions automatically
     console.log(process.env);
-    const isCI = process.env.CI === true;
+    const isCI = process.env.CI === "true";
     console.log("🔄 Fetching schema from API...");
     console.log("🤖 isCI:", isCI);
 
