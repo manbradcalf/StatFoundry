@@ -24077,7 +24077,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return position",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24090,7 +24090,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return position_group",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24103,7 +24103,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return display_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24116,7 +24116,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return gsis_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24129,7 +24129,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return status_description_abbr",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24142,7 +24142,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return suffix",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24155,7 +24155,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return headshot",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24168,7 +24168,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return status_short_description",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24181,7 +24181,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return last_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24194,7 +24194,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return football_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24207,7 +24207,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return draft_club",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24220,7 +24220,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return short_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24233,7 +24233,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rookie_year",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24246,7 +24246,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return college_conference",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24259,7 +24259,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return status",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24272,7 +24272,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return team_abbr",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24285,7 +24285,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return college_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24298,7 +24298,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return esb_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24311,7 +24311,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return uniform_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24324,7 +24324,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return current_team_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24337,7 +24337,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return first_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24350,7 +24350,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return smart_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24363,7 +24363,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return entry_year",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24376,7 +24376,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return jersey_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24389,7 +24389,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return team_seq",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24402,7 +24402,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return years_of_experience",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24415,7 +24415,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return birth_date",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24428,7 +24428,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return draftround",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24441,7 +24441,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return height",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24454,7 +24454,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return weight",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24467,7 +24467,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return draft_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24480,7 +24480,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return gsis_it_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24506,7 +24506,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_id",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24519,7 +24519,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return position",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24532,7 +24532,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24545,7 +24545,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season_type",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24558,7 +24558,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return completions",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24571,7 +24571,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return attempts",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24584,7 +24584,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_yards",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24597,7 +24597,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_tds",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24610,7 +24610,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return interceptions",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24623,7 +24623,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sacks",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24636,7 +24636,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_yards",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24649,7 +24649,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_fumbles",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24662,7 +24662,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_fumbles_lost",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24675,7 +24675,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_air_yards",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24688,7 +24688,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_yards_after_catch",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24701,7 +24701,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_first_downs",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24714,7 +24714,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_2pt_conversions",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24727,7 +24727,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return carries",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24740,7 +24740,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_yards",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24753,7 +24753,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_tds",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24766,7 +24766,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_fumbles",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24779,7 +24779,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_fumbles_lost",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24792,7 +24792,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_first_downs",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24805,7 +24805,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_epa",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24818,7 +24818,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_2pt_conversions",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24831,7 +24831,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receptions",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24844,7 +24844,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_fumbles",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24857,7 +24857,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_points_ppr",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24870,7 +24870,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_fumbles_lost",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24883,7 +24883,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_name",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24896,7 +24896,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ay_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24909,7 +24909,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return target_share",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24922,7 +24922,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wopr_y",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24935,7 +24935,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_yards",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24948,7 +24948,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_tds",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24961,7 +24961,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_season_id",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24974,7 +24974,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return teams",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -24987,7 +24987,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_2pt_conversions",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25000,7 +25000,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yards_per_carry",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25013,7 +25013,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return dom",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25026,7 +25026,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_first_downs",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25039,7 +25039,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return dakota",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25052,7 +25052,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ppr_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25065,7 +25065,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rtd_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25078,7 +25078,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_air_yards",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25091,7 +25091,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return air_yards_share",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25104,7 +25104,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wopr_x",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25117,7 +25117,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yac_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25130,7 +25130,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return games",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25143,7 +25143,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return racr",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25156,7 +25156,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return w8dom",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25169,7 +25169,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_epa",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25182,7 +25182,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tgt_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25195,7 +25195,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ry_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25208,7 +25208,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rfd_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25221,7 +25221,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return special_teams_tds",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25234,7 +25234,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rtdfd_sh",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25247,7 +25247,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return targets",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25260,7 +25260,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pacr",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25273,7 +25273,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_yards_after_catch",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25286,7 +25286,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_epa",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25299,7 +25299,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yptmpa",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25312,7 +25312,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_points",
     "Cypher": "RETURN ps.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25338,7 +25338,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25351,7 +25351,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return week",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25364,7 +25364,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_qb_id",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25377,7 +25377,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_qb_name",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25390,7 +25390,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return location",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25403,7 +25403,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pff",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25416,7 +25416,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return overtime",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25429,7 +25429,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return referee",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25442,7 +25442,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_rest",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25455,7 +25455,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_moneyline",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25468,7 +25468,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_qb_name",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25481,7 +25481,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_score",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25494,7 +25494,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return under_odds",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25507,7 +25507,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_line",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25520,7 +25520,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_moneyline",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25533,7 +25533,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return surface",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25546,7 +25546,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wind",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25559,7 +25559,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_type",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25572,7 +25572,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_team",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25585,7 +25585,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return temp",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25598,7 +25598,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return spread_line",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25611,7 +25611,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_rest",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25624,7 +25624,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return gsis",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25637,7 +25637,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_qb_id",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25650,7 +25650,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_coach",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25663,7 +25663,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ftn",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25676,7 +25676,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return roof",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25689,7 +25689,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_team",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25702,7 +25702,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return div_game",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25715,7 +25715,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25728,7 +25728,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return gametime",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25741,7 +25741,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_score",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25754,7 +25754,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return gameday",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25767,7 +25767,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return stadium_id",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25780,7 +25780,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return over_odds",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25793,7 +25793,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return weekday",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25806,7 +25806,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_spread_odds",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25819,7 +25819,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return espn",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25832,7 +25832,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_coach",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25845,7 +25845,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_spread_odds",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25858,7 +25858,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pfr",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25871,7 +25871,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return result",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25884,7 +25884,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_id",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25897,7 +25897,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return stadium",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25910,7 +25910,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return old_game_id",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25923,7 +25923,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return nfl_detail_id",
     "Cypher": "RETURN g.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25949,7 +25949,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season",
     "Cypher": "RETURN s.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25975,7 +25975,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -25988,7 +25988,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return week",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26001,7 +26001,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season_type",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26014,7 +26014,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26027,7 +26027,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26040,7 +26040,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return vegas_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26053,7 +26053,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return time",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26066,7 +26066,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return comp_air_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26079,7 +26079,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackle_with_assist",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26092,7 +26092,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return offense_players",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26105,7 +26105,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26118,7 +26118,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_not_forced",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26131,7 +26131,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return old_game_id_x",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26144,7 +26144,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_half",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26157,7 +26157,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26170,7 +26170,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_raw_yac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26183,7 +26183,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackle_for_loss_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26196,7 +26196,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_hit",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26209,7 +26209,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26222,7 +26222,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_3_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26235,7 +26235,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_2_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26248,7 +26248,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return two_point_conv_result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26261,7 +26261,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_rush_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26274,7 +26274,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiver_jersey_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26287,7 +26287,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defensive_extra_point_conv",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26300,7 +26300,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return touchdown",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26313,7 +26313,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26326,7 +26326,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_coach",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26339,7 +26339,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_pass_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26352,7 +26352,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_raw_air_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26365,7 +26365,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26378,7 +26378,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_yards_penalized",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26391,7 +26391,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_fair_catch",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26404,7 +26404,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return play_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26417,7 +26417,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rusher_jersey_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26430,7 +26430,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return opp_fg_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26443,7 +26443,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return half_sack_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26456,7 +26456,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return time_to_throw",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26469,7 +26469,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_4_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26482,7 +26482,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackled_for_loss",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26495,7 +26495,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_pass_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26508,7 +26508,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_quarter_start",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26521,7 +26521,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_quarter_end",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26534,7 +26534,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26547,7 +26547,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_downed",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26560,7 +26560,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return players_on_play",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26573,7 +26573,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return down",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26586,7 +26586,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26599,7 +26599,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiver_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26612,7 +26612,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_raw_yac_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26625,7 +26625,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return half_sack_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26638,7 +26638,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_inside_twenty",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26651,7 +26651,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return play_type_nfl",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26664,7 +26664,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return timeout",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26677,7 +26677,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26690,7 +26690,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_comp_air_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26703,7 +26703,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26716,7 +26716,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_oe",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26729,7 +26729,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rusher",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26742,7 +26742,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return return_touchdown",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26755,7 +26755,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return series",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26768,7 +26768,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_play_count",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26781,7 +26781,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle_1_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26794,7 +26794,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punter_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26807,7 +26807,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return air_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26820,7 +26820,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_dropback",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26833,7 +26833,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fixed_drive",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26846,7 +26846,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ngs_air_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26859,7 +26859,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_recovery",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26872,7 +26872,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return no_huddle",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26885,7 +26885,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackle_for_loss_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26898,7 +26898,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26911,7 +26911,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26924,7 +26924,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_1_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26937,7 +26937,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return penalty_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26950,7 +26950,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumbled_1_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26963,7 +26963,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return blocked_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26976,7 +26976,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return roof",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -26989,7 +26989,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yac_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27002,7 +27002,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kicker_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27015,7 +27015,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27028,7 +27028,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27041,7 +27041,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27054,7 +27054,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return offense_personnel",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27067,7 +27067,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_3_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27080,7 +27080,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27093,7 +27093,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return xyac_fd",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27106,7 +27106,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return half_seconds_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27119,7 +27119,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kick_distance",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27132,7 +27132,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_defense_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27145,7 +27145,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_out_of_bounds",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27158,7 +27158,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_forced",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27171,7 +27171,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defensive_two_point_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27184,7 +27184,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27197,7 +27197,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return penalty",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27210,7 +27210,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return old_game_id_y",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27223,7 +27223,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return replay_or_challenge_result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27236,7 +27236,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rusher_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27249,7 +27249,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yards_gained",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27262,7 +27262,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27275,7 +27275,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_comp_yac_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27288,7 +27288,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_comp_air_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27301,7 +27301,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return comp_yac_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27314,7 +27314,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27327,7 +27327,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return forced_fumble_player_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27340,7 +27340,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_blocked",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27353,7 +27353,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return xyac_median_yardage",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27366,7 +27366,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return run_gap",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27379,7 +27379,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return extra_point_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27392,7 +27392,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_2_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27405,7 +27405,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27418,7 +27418,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_downed",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27431,7 +27431,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return forced_fumble_player_1_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27444,7 +27444,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_line",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27457,7 +27457,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_returner_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27470,7 +27470,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return posteam_timeouts_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27483,7 +27483,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kicker_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27496,7 +27496,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passer_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27509,7 +27509,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return safety_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27522,7 +27522,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return run_location",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27535,7 +27535,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_receiver_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27548,7 +27548,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return first_down_penalty",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27561,7 +27561,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27574,7 +27574,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return own_kickoff_recovery_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27587,7 +27587,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return half_sack_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27600,7 +27600,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return first_down",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27613,7 +27613,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punter_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27626,7 +27626,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return possession_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27639,7 +27639,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return penalty_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27652,7 +27652,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rusher_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27665,7 +27665,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27678,7 +27678,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27691,7 +27691,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumbled_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27704,7 +27704,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27717,7 +27717,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return own_kickoff_recovery",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27730,7 +27730,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return posteam",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27743,7 +27743,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return quarter_end",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27756,7 +27756,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27769,7 +27769,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_coach",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27782,7 +27782,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27795,7 +27795,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return air_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27808,7 +27808,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return end_clock_time",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27821,7 +27821,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_rusher_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27834,7 +27834,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27847,7 +27847,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return penalty_type",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27860,7 +27860,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passer_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27873,7 +27873,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return third_down_failed",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27886,7 +27886,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_hit_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27899,7 +27899,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27912,7 +27912,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return location",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27925,7 +27925,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return td_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27938,7 +27938,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return success",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27951,7 +27951,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27964,7 +27964,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_seconds_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27977,7 +27977,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return series_success",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -27990,7 +27990,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return nflverse_game_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28003,7 +28003,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_raw_air_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28016,7 +28016,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return safety_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28029,7 +28029,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28042,7 +28042,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return return_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28055,7 +28055,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return opp_td_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28068,7 +28068,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumbled_2_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28081,7 +28081,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_hit_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28094,7 +28094,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return surface",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28107,7 +28107,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28120,7 +28120,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackle_with_assist_1_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28133,7 +28133,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defteam_timeouts_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28146,7 +28146,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_return",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28159,7 +28159,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return route",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28172,7 +28172,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return play_deleted",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28185,7 +28185,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yardline_100",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28198,7 +28198,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return vegas_wp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28211,7 +28211,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return xpass",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28224,7 +28224,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return field_goal_result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28237,7 +28237,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28250,7 +28250,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_comp_air_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28263,7 +28263,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return first_down_pass",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28276,7 +28276,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return own_kickoff_recovery_td",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28289,7 +28289,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28302,7 +28302,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defenders_in_box",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28315,7 +28315,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_3_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28328,7 +28328,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return special",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28341,7 +28341,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_inside_twenty",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28354,7 +28354,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumbled_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28367,7 +28367,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defense_personnel",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28380,7 +28380,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return special_teams_play",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28393,7 +28393,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defense_coverage_type",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28406,7 +28406,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return stadium",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28419,7 +28419,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_rusher_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28432,7 +28432,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_4_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28445,7 +28445,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passer_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28458,7 +28458,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_real_start_time",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28471,7 +28471,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_defense_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28484,7 +28484,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return time_of_day",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28497,7 +28497,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yrdln",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28510,7 +28510,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return blocked_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28523,7 +28523,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_start_transition",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28536,7 +28536,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return n_offense",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28549,7 +28549,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_end_yard_line",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28562,7 +28562,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return half_sack_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28575,7 +28575,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_kickoff_returner_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28588,7 +28588,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return weather",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28601,7 +28601,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return interception_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28614,7 +28614,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_2_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28627,7 +28627,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28640,7 +28640,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yards_after_catch",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28653,7 +28653,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28666,7 +28666,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return side_of_field",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28679,7 +28679,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passer",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28692,7 +28692,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_rush",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28705,7 +28705,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return spread_line",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28718,7 +28718,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_1_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28731,7 +28731,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_fair_catch",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28744,7 +28744,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28757,7 +28757,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_length",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28770,7 +28770,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return xyac_mean_yardage",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28783,7 +28783,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defteam_score_post",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28796,7 +28796,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return start_time",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28809,7 +28809,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_defense_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28822,7 +28822,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return play",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28835,7 +28835,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28848,7 +28848,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rush_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28861,7 +28861,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return posteam_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28874,7 +28874,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return extra_point_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28887,7 +28887,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return was_pressure",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28900,7 +28900,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_4_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28913,7 +28913,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fourth_down_failed",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28926,7 +28926,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return air_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28939,7 +28939,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return opp_safety_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28952,7 +28952,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return order_sequence",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28965,7 +28965,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_first_downs",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28978,7 +28978,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return extra_point_result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -28991,7 +28991,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return goal_to_go",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29004,7 +29004,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackle_with_assist_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29017,7 +29017,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return comp_air_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29030,7 +29030,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defensive_two_point_conv",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29043,7 +29043,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return interception",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29056,7 +29056,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_kickoff_returner_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29069,7 +29069,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return two_point_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29082,7 +29082,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return desc",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29095,7 +29095,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_hit_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29108,7 +29108,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_timeouts_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29121,7 +29121,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_wp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29134,7 +29134,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return tackle_with_assist_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29147,7 +29147,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_opening_kickoff",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29160,7 +29160,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return td_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29173,7 +29173,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return play_type",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29186,7 +29186,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return vegas_home_wp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29199,7 +29199,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_game_clock_start",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29212,7 +29212,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fourth_down_converted",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29225,7 +29225,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return two_point_conversion_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29238,7 +29238,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return quarter_seconds_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29251,7 +29251,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return def_wp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29264,7 +29264,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_rush_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29277,7 +29277,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return interception_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29290,7 +29290,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return forced_fumble_player_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29303,7 +29303,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return own_kickoff_recovery_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29316,7 +29316,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_comp_yac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29329,7 +29329,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_comp_yac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29342,7 +29342,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wind",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29355,7 +29355,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29368,7 +29368,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return temp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29381,7 +29381,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29394,7 +29394,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return posteam_score_post",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29407,7 +29407,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_raw_yac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29420,7 +29420,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return safety_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29433,7 +29433,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_interception_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29446,7 +29446,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return score_differential",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29459,7 +29459,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_ended_with_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29472,7 +29472,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29485,7 +29485,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_receiver_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29498,7 +29498,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_scramble",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29511,7 +29511,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_in_endzone",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29524,7 +29524,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_defense_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29537,7 +29537,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_game_clock_end",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29550,7 +29550,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return vegas_home_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29563,7 +29563,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ydstogo",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29576,7 +29576,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return n_defense",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29589,7 +29589,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_date",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29602,7 +29602,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_hit_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29615,7 +29615,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29628,7 +29628,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_returner_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29641,7 +29641,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_returner_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29654,7 +29654,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ydsnet",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29667,7 +29667,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return series_result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29680,7 +29680,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return no_score_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29693,7 +29693,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_timeouts_remaining",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29706,7 +29706,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_wp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29719,7 +29719,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_raw_yac_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29732,7 +29732,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiver_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29745,7 +29745,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return safety",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29758,7 +29758,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29771,7 +29771,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return shotgun",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29784,7 +29784,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return first_down_rush",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29797,7 +29797,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return nfl_api_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29810,7 +29810,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_end_transition",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29823,7 +29823,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passer_jersey_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29836,7 +29836,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return forced_fumble_player_1_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29849,7 +29849,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defense_players",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29862,7 +29862,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return ep",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29875,7 +29875,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return field_goal_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29888,7 +29888,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return solo_tackle_2_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29901,7 +29901,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_start_yard_line",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29914,7 +29914,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return return_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29927,7 +29927,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return away_wp_post",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29940,7 +29940,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return penalty_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29953,7 +29953,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return jersey_number",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29966,7 +29966,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29979,7 +29979,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return offense_formation",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -29992,7 +29992,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_raw_air_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30005,7 +30005,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rush_touchdown",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30018,7 +30018,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return number_of_pass_rushers",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30031,7 +30031,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return timeout_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30044,7 +30044,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return score_differential_post",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30057,7 +30057,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return incomplete_pass",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30070,7 +30070,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_touchdown",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30083,7 +30083,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_pass_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30096,7 +30096,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return td_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30109,7 +30109,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rusher_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30122,7 +30122,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30135,7 +30135,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_stadium",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30148,7 +30148,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return td_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30161,7 +30161,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return replay_or_challenge",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30174,7 +30174,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return cpoe",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30187,7 +30187,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rush",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30200,7 +30200,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return aborted_play",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30213,7 +30213,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return play_clock",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30226,7 +30226,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defteam",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30239,7 +30239,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defteam_score",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30252,7 +30252,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defensive_extra_point_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30265,7 +30265,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_inside20",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30278,7 +30278,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return cp",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30291,7 +30291,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_comp_air_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30304,7 +30304,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30317,7 +30317,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_in_endzone",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30330,7 +30330,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_kneel",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30343,7 +30343,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return assist_tackle_2_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30356,7 +30356,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_rush_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30369,7 +30369,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_play_id_started",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30382,7 +30382,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiver",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30395,7 +30395,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_rushing_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30408,7 +30408,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiver_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30421,7 +30421,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumbled_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30434,7 +30434,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return comp_yac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30447,7 +30447,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fixed_drive_result",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30460,7 +30460,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_recovery_1_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30473,7 +30473,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return home_wp_post",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30486,7 +30486,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_play_id_ended",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30499,7 +30499,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return out_of_bounds",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30512,7 +30512,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumbled_1_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30525,7 +30525,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_returner_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30538,7 +30538,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_comp_yac_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30551,7 +30551,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_receiving_yards",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30564,7 +30564,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_pass_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30577,7 +30577,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_lost",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30590,7 +30590,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return forced_fumble_player_2_team",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30603,7 +30603,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qb_spike",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30616,7 +30616,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return qtr",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30629,7 +30629,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return kickoff_out_of_bounds",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30642,7 +30642,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return drive_time_of_possession",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30655,7 +30655,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fg_prob",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30668,7 +30668,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return xyac_success",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30681,7 +30681,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return touchback",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30694,7 +30694,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return penalty_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30707,7 +30707,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fumble_out_of_bounds",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30720,7 +30720,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return complete_pass",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30733,7 +30733,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return div_game",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30746,7 +30746,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_home_raw_air_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30759,7 +30759,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_interception_player_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30772,7 +30772,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30785,7 +30785,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return forced_fumble_player_2_player_name",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30798,7 +30798,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return third_down_converted",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30811,7 +30811,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return posteam_type",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30824,7 +30824,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return defense_man_zone_type",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30837,7 +30837,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return total_away_rush_wpa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30850,7 +30850,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return stadium_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30863,7 +30863,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return xyac_epa",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30876,7 +30876,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return punt_attempt",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30889,7 +30889,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return old_game_id",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30902,7 +30902,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return lateral_reception",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30915,7 +30915,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pass_location",
     "Cypher": "RETURN p.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30941,7 +30941,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return team_abbr",
     "Cypher": "RETURN t.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30967,7 +30967,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return name",
     "Cypher": "RETURN d.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -30993,7 +30993,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_game_id",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31006,7 +31006,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_id",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31019,7 +31019,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_display_name",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31032,7 +31032,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return position",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31045,7 +31045,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return position_group",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31058,7 +31058,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return recent_team",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31071,7 +31071,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31084,7 +31084,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return week",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31097,7 +31097,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return season_type",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31110,7 +31110,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return opponent_team",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31123,7 +31123,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return completions",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31136,7 +31136,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return attempts",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31149,7 +31149,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_yards",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31162,7 +31162,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_tds",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31175,7 +31175,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return interceptions",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31188,7 +31188,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sacks",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31201,7 +31201,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_yards",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31214,7 +31214,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_fumbles",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31227,7 +31227,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return sack_fumbles_lost",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31240,7 +31240,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_air_yards",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31253,7 +31253,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_yards_after_catch",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31266,7 +31266,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_first_downs",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31279,7 +31279,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_2pt_conversions",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31292,7 +31292,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return carries",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31305,7 +31305,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_yards",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31318,7 +31318,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_tds",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31331,7 +31331,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_fumbles",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31344,7 +31344,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_fumbles_lost",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31357,7 +31357,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_first_downs",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31370,7 +31370,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_epa",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31383,7 +31383,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return rushing_2pt_conversions",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31396,7 +31396,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receptions",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31409,7 +31409,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_fumbles",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31422,7 +31422,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_points_ppr",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31435,7 +31435,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_fumbles_lost",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31448,7 +31448,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return player_name",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31461,7 +31461,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return racr",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31474,7 +31474,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return passing_epa",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31487,7 +31487,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return target_share",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31500,7 +31500,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_yards",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31513,7 +31513,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_tds",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31526,7 +31526,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return yards_per_carry",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31539,7 +31539,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_2pt_conversions",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31552,7 +31552,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return special_teams_tds",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31565,7 +31565,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return wopr",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31578,7 +31578,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return targets",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31591,7 +31591,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return pacr",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31604,7 +31604,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_first_downs",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31617,7 +31617,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return dakota",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31630,7 +31630,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return headshot_url",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31643,7 +31643,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return game_id",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31656,7 +31656,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_yards_after_catch",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31669,7 +31669,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_epa",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31682,7 +31682,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return won",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31695,7 +31695,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return receiving_air_yards",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31708,7 +31708,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return air_yards_share",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [
@@ -31721,7 +31721,7 @@
     "Slots": []
   },
   {
-    "English": "return [object Object]",
+    "English": "return fantasy_points",
     "Cypher": "RETURN pg.[object Object]",
     "QueryType": "RETURN",
     "Requires": [

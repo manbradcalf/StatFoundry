@@ -1,4 +1,3 @@
-const https = require("https");
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -185,7 +184,7 @@ class SimpleChunkGenerator {
       // Generate return specific property chunks
       node.properties.forEach((prop) => {
         chunks.push({
-          English: `return ${prop}`,
+          English: `return ${prop.name}`,
           Cypher: `RETURN ${this.getVariableName(node.label)}.${prop}`,
           QueryType: "RETURN",
           Requires: [

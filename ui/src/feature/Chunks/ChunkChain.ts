@@ -113,23 +113,17 @@ export class ChunkChain {
     let aliases: Alias[] = [];
 
     let node = this.Head;
-    let filterShouldStartWithWhere = true;
 
     while (node) {
       const { chunk } = node;
       // Use CypherTemplate if Cypher is empty, then trim
       let cypherPart = (chunk.Cypher || chunk.CypherTemplate || "").trim();
 
-      // Handle automatic WHERE vs AND for FILTER chunks
+      // All FILTER starts with WHERE
       if (chunk.QueryType === QueryType.FILTER && cypherPart) {
-        if (filterShouldStartWithWhere) {
-          // First filter in new query context: use WHERE
-          cypherPart = `WHERE ${cypherPart}`;
-          filterShouldStartWithWhere = false;
-        } else {
-          // Subsequent filters: use AND
-          cypherPart = `AND ${cypherPart}`;
-        }
+        // TODO: this could probably be more efficient with subqueries
+        // First filter: ensure it starts with WHERE and end with WITH *
+        cypherPart = `WHERE ${cypherPart} WITH *`;
       }
 
       // add the chunk's english and cypher to the parts
@@ -143,19 +137,7 @@ export class ChunkChain {
     }
 
     this.English = englishParts.join(" ");
-    cypherParts.forEach((cypherPart, index) => {
-      if (
-        index === 0 ||
-        cypherPart.startsWith("WHERE") ||
-        cypherPart.startsWith("AND")
-      ) {
-        // do not append WITH * if we're in a WHERE or AND clause
-        this.Cypher += ` ${cypherPart} `;
-      } else {
-        this.Cypher += ` WITH * ${cypherPart}`;
-        filterShouldStartWithWhere = true;
-      }
-    });
+    this.Cypher += cypherParts.join(" ");
     return this;
   }
 
@@ -180,10 +162,9 @@ export class ChunkChain {
   getNextValidChunksFromChunks(chunksToCheck: Chunk[]): Chunk[] {
     const nextValidChunks: Chunk[] = [];
     const currentAliases = this.Aliases;
-    const tail = this.Tail?.chunk;
 
     for (const chunk of chunksToCheck) {
-      if (isValidNextChunk(chunk, currentAliases, tail)) {
+      if (isValidNextChunk(chunk, currentAliases)) {
         nextValidChunks.push(chunk);
       }
     }
@@ -192,11 +173,7 @@ export class ChunkChain {
   }
 }
 
-function isValidNextChunk(
-  chunk: Chunk,
-  currentAliases: Alias[],
-  tail?: Chunk,
-): boolean {
+function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
   // can't start if we've already started
   if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
     return false;
@@ -209,16 +186,6 @@ function isValidNextChunk(
   ) {
     return false;
   }
-
-  // After MATCH_START, allow JUNCTION or direct FILTER (for simple entities like Plays)
-  if (
-    tail?.QueryType === QueryType.MATCH_START &&
-    chunk.QueryType !== QueryType.JUNCTION &&
-    chunk.QueryType !== QueryType.FILTER
-  ) {
-    return false;
-  }
-
 
   // Count how many of each entity type we need vs have
   const needed = chunk.Requires.reduce(
