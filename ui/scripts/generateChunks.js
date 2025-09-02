@@ -1,4 +1,3 @@
-const https = require("https");
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -37,46 +36,19 @@ class SimpleChunkGenerator {
     const chunks = [];
     this.schema.nodes.forEach((node) => {
       const numericProperties = this.getNumericProperties(node);
+      console.log(`numbers for ${node.label}`, numericProperties);
       const stringProperties = this.getStringProperties(node);
+      console.log(`strings for ${node.label}`, stringProperties);
+      const stringArrayProperties = this.getStringArrayProperties(node);
+      console.log(`string arrays for ${node.label}`, stringArrayProperties);
 
       // Generate numeric comparison chunks
       numericProperties.forEach((prop) => {
-        const readableProp = this.makePropertyReadable(prop);
-        const defaultValue = this.getDefaultValue(prop);
-
-        [">", "<", ">=", "<=", "="].forEach((operator) => {
-          const operatorWord = this.getOperatorWord(operator);
-          chunks.push({
-            English: `with [${readableProp}] ${operatorWord} ${defaultValue}`,
-            Cypher: ` ${this.getVariableName(node.label)}.${prop} ${operator} ${defaultValue}`,
-            EnglishTemplate: `with ${readableProp} ${operatorWord} {value}`,
-            CypherTemplate: ` ${this.getVariableName(node.label)}.${prop} ${operator} {value}`,
-            QueryType: "FILTER",
-            Requires: [
-              { Name: this.getVariableName(node.label), AliasType: node.label },
-            ],
-            Provides: [
-              { Name: this.getVariableName(node.label), AliasType: node.label },
-            ],
-            Slots: [
-              {
-                Name: "value",
-                Value: defaultValue,
-                SlotValueTypes: ["FilterValue"],
-              },
-            ],
-          });
-        });
-      });
-
-      // Generate string equality chunks
-      stringProperties.forEach((prop) => {
-        const readableProp = this.makePropertyReadable(prop);
         chunks.push({
-          English: `with [${readableProp}] equal to "example"`,
-          Cypher: ` ${this.getVariableName(node.label)}.${prop} = "example"`,
-          EnglishTemplate: `with ${readableProp} equal to {value}`,
-          CypherTemplate: ` ${this.getVariableName(node.label)}.${prop} = {value}`,
+          English: `[${prop.name}] (${node.label})`,
+          Cypher: ` ${this.getVariableName(node.label)}.${prop.name} `,
+          EnglishTemplate: `${prop.name} {condition} {value}`,
+          CypherTemplate: `${this.getVariableName(node.label)}.${prop.name} {condition} {value}`,
           QueryType: "FILTER",
           Requires: [
             { Name: this.getVariableName(node.label), AliasType: node.label },
@@ -86,11 +58,90 @@ class SimpleChunkGenerator {
           ],
           Slots: [
             {
+              Name: "stat",
+              Value: prop.name,
+              SlotValueTypes: ["MultiStatFilter"],
+            },
+            {
+              Name: "condition",
+              Value: ">",
+              SlotValueTypes: ["FilterCondition"],
+            },
+            {
               Name: "value",
-              Value: "example",
+              Value: 100,
               SlotValueTypes: ["FilterValue"],
             },
           ],
+        });
+      });
+
+      // Generate string equality chunks
+      stringProperties.forEach((prop) => {
+        const readableProp = prop.name;
+        chunks.push({
+          English: `[${prop.name}] (${node.label})`,
+          Cypher: ` ${this.getVariableName(node.label)}.${prop.name} {condition} {value}`,
+          EnglishTemplate: `with ${readableProp} equal to {value}`,
+          CypherTemplate: ` ${this.getVariableName(node.label)}.${prop.name} = {value}`,
+          QueryType: "FILTER",
+          Requires: [
+            { Name: this.getVariableName(node.label), AliasType: node.label },
+          ],
+          Provides: [
+            { Name: this.getVariableName(node.label), AliasType: node.label },
+          ],
+          Slots: [
+            {
+              Name: "stat",
+              Value: prop.name,
+              SlotValueTypes: ["MultiStatFilter"],
+            },
+            {
+              Name: "condition",
+              Value: "=",
+              SlotValueTypes: ["FilterCondition"],
+            },
+            {
+              Name: "value",
+              Value: "something",
+              SlotValueTypes: ["FilterValue"],
+            },
+          ],
+        });
+
+        // Generate string array contains chunks
+        stringArrayProperties.forEach((prop) => {
+          const readableProp = prop.name;
+          chunks.push({
+            English: `for [${prop.name}] (${node.label})`,
+            EnglishTemplate: `with ${readableProp} equal to {value}`,
+            CypherTemplate: `{value} IN ${this.getVariableName(node.label)}.${prop.name}`,
+            QueryType: "FILTER",
+            Requires: [
+              { Name: this.getVariableName(node.label), AliasType: node.label },
+            ],
+            Provides: [
+              { Name: this.getVariableName(node.label), AliasType: node.label },
+            ],
+            Slots: [
+              {
+                Name: "stat",
+                Value: prop.name,
+                SlotValueTypes: ["MultiStatFilter"],
+              },
+              {
+                Name: "condition",
+                Value: "=",
+                SlotValueTypes: ["FilterCondition"],
+              },
+              {
+                Name: "value",
+                Value: "something",
+                SlotValueTypes: ["FilterValue"],
+              },
+            ],
+          });
         });
       });
     });
@@ -133,7 +184,7 @@ class SimpleChunkGenerator {
       // Generate return specific property chunks
       node.properties.forEach((prop) => {
         chunks.push({
-          English: `return ${prop}`,
+          English: `return ${prop.name}`,
           Cypher: `RETURN ${this.getVariableName(node.label)}.${prop}`,
           QueryType: "RETURN",
           Requires: [
@@ -177,96 +228,18 @@ class SimpleChunkGenerator {
   }
 
   getNumericProperties(node) {
-    const skipProperties = [
-      "player_id",
-      "player_season_id",
-      "gsis_id",
-      "esb_id",
-      "smart_id",
-      "game_id",
-      "nfl_detail_id",
-      "old_game_id",
-      "current_team_id",
-      "player_game_id",
-      "gsis_it_id",
-      "stadium_id",
-      "team_seq",
-    ];
-    const numericKeywords = [
-      "yards",
-      "tds",
-      "attempts",
-      "completions",
-      "interceptions",
-      "rating",
-      "epa",
-      "cpoe",
-      "carries",
-      "targets",
-      "receptions",
-      "fumbles",
-      "points",
-      "score",
-      "week",
-      "season",
-      "weight",
-      "height",
-      "jersey_number",
-      "age",
-    ];
-
     return node.properties.filter(
-      (prop) =>
-        !skipProperties.includes(prop) &&
-        numericKeywords.some((keyword) => prop.toLowerCase().includes(keyword)),
+      (p) => p.type === "Double" || p.type === "Long",
     );
   }
 
   getStringProperties(node) {
-    const skipProperties = [
-      "player_id",
-      "player_season_id",
-      "gsis_id",
-      "esb_id",
-      "smart_id",
-      "game_id",
-      "nfl_detail_id",
-      "old_game_id",
-      "current_team_id",
-      "player_game_id",
-      "gsis_it_id",
-      "stadium_id",
-      "team_seq",
-    ];
-    const stringKeywords = [
-      "name",
-      "position",
-      "team",
-      "opponent",
-      "home_team",
-      "away_team",
-      "result",
-      "location",
-      "surface",
-      "roof",
-      "div_game",
-      "playoff",
-    ];
-
-    return node.properties.filter(
-      (prop) =>
-        !skipProperties.includes(prop) &&
-        stringKeywords.some((keyword) => prop.toLowerCase().includes(keyword)),
-    );
+    return node.properties.filter((p) => p.type === "String");
   }
 
-  makePropertyReadable(property) {
-    const essentialMappings = {
-      passing_tds: "passing touchdowns",
-      rushing_tds: "rushing touchdowns",
-      receiving_tds: "receiving touchdowns",
-    };
-    return essentialMappings[property] || property.replace(/_/g, " ");
+  // e.g. PlayerSeason teams = ["LAR","MIN"] for a player traded mid season
+  getStringArrayProperties(node) {
+    return node.properties.filter((p) => p.type === "StringArray");
   }
 
   getDefaultValue(property) {
@@ -274,17 +247,6 @@ class SimpleChunkGenerator {
     if (property.includes("tds")) return 2;
     if (property.includes("season")) return 2023;
     return 10;
-  }
-
-  getOperatorWord(operator) {
-    const mapping = {
-      ">": "greater than",
-      "<": "less than",
-      ">=": "greater than or equal to",
-      "<=": "less than or equal to",
-      "=": "equal to",
-    };
-    return mapping[operator] || operator;
   }
 
   getRelationshipDescription(pattern) {
@@ -298,7 +260,7 @@ class SimpleChunkGenerator {
     const relDescription =
       descriptions[pattern.relType] ||
       pattern.relType.toLowerCase().replace("_", " ");
-    return `who ${relDescription} ${pattern.toLabel.toLowerCase()}`;
+    return `${pattern.fromLabel} ${relDescription} ${pattern.toLabel}`;
   }
 }
 

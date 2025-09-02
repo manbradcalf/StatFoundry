@@ -7,16 +7,16 @@ from src.config import AUTH, URI
 # Private query constants (denoted by underscore prefix)
 _fetch_relationships_schema = """
     CALL db.schema.relTypeProperties()
-    YIELD relType, propertyName
-    WITH relType, collect(propertyName) AS properties
+    YIELD relType, propertyName, propertyTypes
+    WITH relType, collect({name:propertyName, type:propertyTypes[0]}) AS properties
     RETURN collect({relationship: relType, properties: properties}) AS rel_schema
 """
 
 _fetch_nodes_schema = """
     CALL db.schema.nodeTypeProperties()
-    YIELD nodeType, propertyName
-    WITH nodeType, collect(propertyName) AS properties
-    RETURN collect({label: nodeType, properties: properties}) AS node_schema 
+    YIELD nodeType, propertyName, propertyTypes
+    WITH nodeType, collect({name: propertyName, type: propertyTypes[0]}) AS properties
+    RETURN collect({label: nodeType, properties: properties}) AS node_schema
 """
 
 _fetch_rel_patterns = """
@@ -25,6 +25,7 @@ _fetch_rel_patterns = """
     RETURN from_label, rel_type, to_label
     ORDER BY rel_type
 """
+
 
 def create_driver(uri, auth):
     return GraphDatabase.driver(
