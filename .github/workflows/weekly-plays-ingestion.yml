@@ -15,6 +15,7 @@ env:
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    environment: Ingest
 
     steps:
       - uses: actions/checkout@v4
@@ -31,4 +32,3 @@ jobs:
       - name: Run weekly plays ingestion
         run: python -m scripts.etl.ingestions.ingest_weekly_plays
         working-directory: service
-
