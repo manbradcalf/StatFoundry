@@ -10,7 +10,6 @@ on:
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    environment: Ingest
 
     steps:
       - uses: actions/checkout@v4
