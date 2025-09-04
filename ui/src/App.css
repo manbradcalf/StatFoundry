@@ -90,7 +90,9 @@
   color: #374151;
 }
 
-.pro-benefits, .cancel-info, .pro-reminder {
+.pro-benefits,
+.cancel-info,
+.pro-reminder {
   margin: 2rem 0;
   padding: 1.5rem;
   background: #f8fafc;
@@ -98,18 +100,21 @@
   text-align: left;
 }
 
-.pro-benefits ul, .pro-reminder ul {
+.pro-benefits ul,
+.pro-reminder ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.pro-benefits li, .pro-reminder li {
+.pro-benefits li,
+.pro-reminder li {
   padding: 0.5rem 0;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.pro-benefits li:last-child, .pro-reminder li:last-child {
+.pro-benefits li:last-child,
+.pro-reminder li:last-child {
   border-bottom: none;
 }
 
@@ -134,7 +139,7 @@
   background: #e5e7eb;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
 }
 
 .stripe-checkout-button {
@@ -241,8 +246,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* Payment reference styling */
@@ -256,7 +266,8 @@
   margin: 0.5rem 0;
 }
 
-.btn-primary:disabled, .btn-secondary:disabled {
+.btn-primary:disabled,
+.btn-secondary:disabled {
   background: #9ca3af;
   cursor: not-allowed;
   transform: none;
@@ -371,8 +382,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .support-info {
@@ -742,7 +757,7 @@ h1 {
 }
 
 .suggestion-item--junction {
-  border-left-color: #f97316; /* Orange for junctions */
+  border-left-color: #ffffff; /* Orange for junctions */
 }
 
 .suggestion-item--junction .suggestion-icon {
@@ -1988,7 +2003,9 @@ input[type="number"] {
   background: white;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   padding: 8px 0;
   margin-top: 4px;
 }
@@ -2134,12 +2151,16 @@ input[type="number"] {
   background: white;
 }
 
-.column-visibility-column input[type="checkbox"]:checked + .column-visibility-column-checkbox {
+.column-visibility-column
+  input[type="checkbox"]:checked
+  + .column-visibility-column-checkbox {
   background: #3b82f6;
   border-color: #3b82f6;
 }
 
-.column-visibility-column input[type="checkbox"]:disabled + .column-visibility-column-checkbox {
+.column-visibility-column
+  input[type="checkbox"]:disabled
+  + .column-visibility-column-checkbox {
   background: #e5e7eb;
   border-color: #d1d5db;
   color: #9ca3af;
@@ -2161,7 +2182,7 @@ input[type="number"] {
     max-width: 90vw;
     max-height: 80vh;
   }
-  
+
   .column-visibility-button {
     min-width: auto;
     width: 100%;
@@ -3132,7 +3153,7 @@ input[type="number"] {
   .account-page {
     padding: 16px;
   }
-  
+
   .account-container {
     gap: 24px;
   }
@@ -3269,7 +3290,7 @@ input[type="number"] {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Google Sans', Roboto, arial, sans-serif;
+  font-family: "Google Sans", Roboto, arial, sans-serif;
   cursor: pointer;
   transition: all 0.2s;
   margin-bottom: 20px;
@@ -3277,13 +3298,17 @@ input[type="number"] {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.30), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  box-shadow:
+    0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .auth-google-button:hover {
   background: #f8f9fa;
   border-color: #dadce0;
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.30), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+  box-shadow:
+    0 1px 3px 0 rgba(60, 64, 67, 0.3),
+    0 4px 8px 3px rgba(60, 64, 67, 0.15);
 }
 
 .auth-google-button:disabled {
@@ -3306,7 +3331,7 @@ input[type="number"] {
 }
 
 .auth-divider::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
