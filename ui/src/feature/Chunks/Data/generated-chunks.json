@@ -24120,7 +24120,7 @@
   },
   {
     "English": "[Player] - r[ATTENDED] -> [College]",
-    "EnglishTemplate": "Player - ATTENDED -> College",
+    "EnglishTemplate": "Players - ATTENDED -> Colleges",
     "Cypher": "MATCH (p:Player)-[:ATTENDED]->(c:College)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24143,7 +24143,7 @@
   },
   {
     "English": "[Player] - r[HAD] -> [PlayerGame]",
-    "EnglishTemplate": "Player - HAD -> PlayerGame",
+    "EnglishTemplate": "Players - HAD -> PlayerGames",
     "Cypher": "MATCH (p:Player)-[:HAD]->(pg:PlayerGame)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24166,7 +24166,7 @@
   },
   {
     "English": "[Player] - r[HAD] -> [PlayerSeason]",
-    "EnglishTemplate": "Player - HAD -> PlayerSeason",
+    "EnglishTemplate": "Players - HAD -> PlayerSeasons",
     "Cypher": "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24189,7 +24189,7 @@
   },
   {
     "English": "[PlayerGame] - r[OF] -> [Game]",
-    "EnglishTemplate": "PlayerGame - OF -> Game",
+    "EnglishTemplate": "PlayerGames - OF -> Games",
     "Cypher": "MATCH (pg:PlayerGame)-[:OF]->(g:Game)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24212,7 +24212,7 @@
   },
   {
     "English": "[PlayerSeason] - r[OF] -> [Season]",
-    "EnglishTemplate": "PlayerSeason - OF -> Season",
+    "EnglishTemplate": "PlayerSeasons - OF -> Seasons",
     "Cypher": "MATCH (ps:PlayerSeason)-[:OF]->(s:Season)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24235,7 +24235,7 @@
   },
   {
     "English": "[Game] - r[OF] -> [Season]",
-    "EnglishTemplate": "Game - OF -> Season",
+    "EnglishTemplate": "Games - OF -> Seasons",
     "Cypher": "MATCH (g:Game)-[:OF]->(s:Season)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24258,7 +24258,7 @@
   },
   {
     "English": "[Player] - r[PLAYED_IN_COLLEGE_CONFERENCE] -> [CollegeConference]",
-    "EnglishTemplate": "Player - PLAYED_IN_COLLEGE_CONFERENCE -> CollegeConference",
+    "EnglishTemplate": "Players - PLAYED_IN_COLLEGE_CONFERENCE -> CollegeConferences",
     "Cypher": "MATCH (p:Player)-[:PLAYED_IN_COLLEGE_CONFERENCE]->(c:CollegeConference)",
     "QueryType": "JUNCTION",
     "Requires": [

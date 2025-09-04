@@ -4,7 +4,7 @@ import {
   faFilter,
   faPlay,
   faArrowLeft,
-  faCircleNodes,
+  faShareNodes,
   faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Suggestion } from "../contexts/Suggestion";
@@ -40,7 +40,7 @@ const getChunkTypeInfo = (queryType: QueryType) => {
       };
     case QueryType.JUNCTION:
       return {
-        icon: faCircleNodes,
+        icon: faShareNodes,
         modifier: "junction",
         title: "Junction - Connects to related entities",
       };

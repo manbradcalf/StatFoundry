@@ -155,7 +155,7 @@ class SimpleChunkGenerator {
       const toVar = this.getVariableName(pattern.toLabel);
       return {
         English: `${this.getRelationshipSuggestionText(pattern)}`,
-        EnglishTemplate: `${pattern.fromLabel} - ${pattern.relType} -> ${pattern.toLabel}`,
+        EnglishTemplate: `${pattern.fromLabel}s - ${pattern.relType} -> ${pattern.toLabel}s`,
         Cypher: `MATCH (${fromVar}:${pattern.fromLabel})-[:${pattern.relType}]->(${toVar}:${pattern.toLabel})`,
         QueryType: "JUNCTION",
         Requires: [{ Name: fromVar, AliasType: pattern.fromLabel }],
