@@ -18,22 +18,29 @@ STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 STRIPE_PRICE_ID_PRO = os.getenv("STRIPE_PRICE_ID_PRO")
 
 # Database credentials
-URI = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE")
+URI = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI_STAGING")
+PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_STAGING")
+USER = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_USER_STAGING")
+
 print(URI)
-PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE")
-USER = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_USER_CLONE")
 
 # Validate required environment variables
 if not URI:
-    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_URI environment variable is not set")
+    print(
+        "ERROR: NEO4J_STATFOUNDRY_NFL_AURA_URI_STAGING environment variable is not set"
+    )
     sys.exit(1)
 
 if not PASSWORD:
-    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD environment variable is not set")
+    print(
+        "ERROR: NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_STAGING environment variable is not set"
+    )
     sys.exit(1)
 
 if not USER:
-    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_USER environment variable is not set")
+    print(
+        "ERROR: NEO4J_STATFOUNDRY_NFL_AURA_USER_STAGING environment variable is not set"
+    )
     sys.exit(1)
 
 AUTH = (USER, PASSWORD)
