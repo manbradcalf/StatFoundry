@@ -7,6 +7,11 @@ on:
   push:
     branches: [ingestion-workflows] # Test on push to your branch
 
+env:
+  NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE }}
+  NEO4J_STATFOUNDRY_NFL_AURA_USERNAME: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_USERNAME }}
+  NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE }}
+
 jobs:
   ingest:
     runs-on: ubuntu-latest
@@ -26,7 +31,7 @@ jobs:
       - name: Run weekly plays ingestion
         run: python -m scripts.etl.ingestions.ingest_weekly_plays
         working-directory: service
-        env:
-          NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE }}
-          NEO4J_STATFOUNDRY_NFL_AURA_USERNAME: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_USERNAME }}
-          NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE }}
+
+      - name: Run weekly player stats ingestion
+        run: python -m scripts.etl.ingestions.ingest_weekly_playergame
+        working-directory: service
