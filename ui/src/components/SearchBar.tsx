@@ -29,12 +29,13 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
   const apiContext = useSearchAPIContext();
 
   const placeholderExamples = [
-    "Try: 'RB Games with > 100 rushing yards'",
-    "Try: 'QB Games during the 2024 season'",
-    "Try: 'WR Games with > 5 receptions'",
-    "Try: 'QB Games with > 20 completions'",
-    "Try: 'RB Seasons with > 1000 rushing yards'",
-    "Try: 'WR Seasons with > 80 receptions'",
+    "Build your search query by linking and filtering Entities",
+    "Entities: Player, PlayerGame, PlayerSeason, Game, College, etc",
+    "Expand your Search by chaining other Entities with Relationships",
+    "Relationships: Player HAD PlayerGame, Player ATTENDED College",
+    "Filter your search by adding filters to your Entities",
+    "Filters: rushing_yards (PlayerGame), jersey_number (Player)",
+    "Try Players HAD PlayerGame with rushing_yards > 100, season = 2024",
   ];
 
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -43,7 +44,7 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
   useEffect(() => {
     const interval = setInterval(() => {
       setPlaceholderIndex((prev) => (prev + 1) % placeholderExamples.length);
-    }, 6000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [placeholderExamples.length]);
 

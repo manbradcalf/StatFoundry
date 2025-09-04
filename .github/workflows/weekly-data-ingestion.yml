@@ -1,0 +1,37 @@
+name: Weekly Data Ingestion
+
+on:
+  schedule:
+    - cron: "0 4 * * 1-5" # 4 AM UTC, Monday through Friday
+  workflow_dispatch: # Allows manual trigger
+  push:
+    branches: [ingestion-workflows] # Test on push to your branch
+
+env:
+  NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE }}
+  NEO4J_STATFOUNDRY_NFL_AURA_USERNAME: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_USERNAME }}
+  NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE }}
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: service
+
+      - name: Run weekly plays ingestion
+        run: python -m scripts.etl.ingestions.ingest_weekly_plays
+        working-directory: service
+
+      - name: Run weekly player stats ingestion
+        run: python -m scripts.etl.ingestions.ingest_weekly_playergame
+        working-directory: service

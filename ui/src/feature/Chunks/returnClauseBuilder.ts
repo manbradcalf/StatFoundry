@@ -42,6 +42,12 @@ const getPropertiesByAliasType = (
     case AliasType.Season:
       return ["season"];
 
+    case AliasType.College:
+      return ["name"];
+
+    case AliasType.CollegeConference:
+      return ["name"];
+
     default:
       return ["*"]; // Fallback for unknown labels
   }

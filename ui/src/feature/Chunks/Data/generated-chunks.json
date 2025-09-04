@@ -91,6 +91,45 @@
     "Slots": []
   },
   {
+    "English": "CollegeConferences",
+    "Cypher": "MATCH (c:CollegeConference)",
+    "QueryType": "MATCH_START",
+    "Requires": [],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "CollegeConference"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "Colleges",
+    "Cypher": "MATCH (c:College)",
+    "QueryType": "MATCH_START",
+    "Requires": [],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "TestNodes",
+    "Cypher": "MATCH (t:TestNode)",
+    "QueryType": "MATCH_START",
+    "Requires": [],
+    "Provides": [
+      {
+        "Name": "t",
+        "AliasType": "TestNode"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "Player Games",
     "Cypher": "MATCH (pg:PlayerGame)",
     "QueryType": "MATCH_START",
@@ -21812,6 +21851,132 @@
     ]
   },
   {
+    "English": "[name] (CollegeConference)",
+    "Cypher": " c.name {condition} {value}",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " c.name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "CollegeConference"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "CollegeConference"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[name] (College)",
+    "Cypher": " c.name {condition} {value}",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " c.name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[name] (TestNode)",
+    "Cypher": " t.name {condition} {value}",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " t.name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "t",
+        "AliasType": "TestNode"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "t",
+        "AliasType": "TestNode"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[season] (PlayerGame)",
     "Cypher": " pg.season ",
     "EnglishTemplate": "season {condition} {value}",
@@ -23954,7 +24119,31 @@
     ]
   },
   {
-    "English": "Player had PlayerGame",
+    "English": "[Player] - r[ATTENDED] -> [College]",
+    "EnglishTemplate": "Player - ATTENDED -> College",
+    "Cypher": "MATCH (p:Player)-[:ATTENDED]->(c:College)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      },
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Player] - r[HAD] -> [PlayerGame]",
+    "EnglishTemplate": "Player - HAD -> PlayerGame",
     "Cypher": "MATCH (p:Player)-[:HAD]->(pg:PlayerGame)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -23976,7 +24165,8 @@
     "Slots": []
   },
   {
-    "English": "Player had PlayerSeason",
+    "English": "[Player] - r[HAD] -> [PlayerSeason]",
+    "EnglishTemplate": "Player - HAD -> PlayerSeason",
     "Cypher": "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -23998,7 +24188,8 @@
     "Slots": []
   },
   {
-    "English": "PlayerGame of Game",
+    "English": "[PlayerGame] - r[OF] -> [Game]",
+    "EnglishTemplate": "PlayerGame - OF -> Game",
     "Cypher": "MATCH (pg:PlayerGame)-[:OF]->(g:Game)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24020,7 +24211,8 @@
     "Slots": []
   },
   {
-    "English": "PlayerSeason of Season",
+    "English": "[PlayerSeason] - r[OF] -> [Season]",
+    "EnglishTemplate": "PlayerSeason - OF -> Season",
     "Cypher": "MATCH (ps:PlayerSeason)-[:OF]->(s:Season)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24042,7 +24234,8 @@
     "Slots": []
   },
   {
-    "English": "Game of Season",
+    "English": "[Game] - r[OF] -> [Season]",
+    "EnglishTemplate": "Game - OF -> Season",
     "Cypher": "MATCH (g:Game)-[:OF]->(s:Season)",
     "QueryType": "JUNCTION",
     "Requires": [
@@ -24059,6 +24252,29 @@
       {
         "Name": "s",
         "AliasType": "Season"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Player] - r[PLAYED_IN_COLLEGE_CONFERENCE] -> [CollegeConference]",
+    "EnglishTemplate": "Player - PLAYED_IN_COLLEGE_CONFERENCE -> CollegeConference",
+    "Cypher": "MATCH (p:Player)-[:PLAYED_IN_COLLEGE_CONFERENCE]->(c:CollegeConference)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      },
+      {
+        "Name": "c",
+        "AliasType": "CollegeConference"
       }
     ],
     "Slots": []
@@ -30974,6 +31190,84 @@
       {
         "Name": "d",
         "AliasType": "Division"
+      }
+    ],
+    "Provides": [],
+    "Slots": []
+  },
+  {
+    "English": "return collegeconference information",
+    "Cypher": "RETURN c",
+    "QueryType": "RETURN",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "CollegeConference"
+      }
+    ],
+    "Provides": [],
+    "Slots": []
+  },
+  {
+    "English": "return name",
+    "Cypher": "RETURN c.[object Object]",
+    "QueryType": "RETURN",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "CollegeConference"
+      }
+    ],
+    "Provides": [],
+    "Slots": []
+  },
+  {
+    "English": "return college information",
+    "Cypher": "RETURN c",
+    "QueryType": "RETURN",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Provides": [],
+    "Slots": []
+  },
+  {
+    "English": "return name",
+    "Cypher": "RETURN c.[object Object]",
+    "QueryType": "RETURN",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Provides": [],
+    "Slots": []
+  },
+  {
+    "English": "return testnode information",
+    "Cypher": "RETURN t",
+    "QueryType": "RETURN",
+    "Requires": [
+      {
+        "Name": "t",
+        "AliasType": "TestNode"
+      }
+    ],
+    "Provides": [],
+    "Slots": []
+  },
+  {
+    "English": "return name",
+    "Cypher": "RETURN t.[object Object]",
+    "QueryType": "RETURN",
+    "Requires": [
+      {
+        "Name": "t",
+        "AliasType": "TestNode"
       }
     ],
     "Provides": [],

@@ -23,11 +23,13 @@ PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE")
 
 # Validate required environment variables
 if not URI:
-    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_URI environment variable is not set")
+    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE environment variable is not set")
     sys.exit(1)
 
 if not PASSWORD:
-    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD environment variable is not set")
+    print(
+        "ERROR: NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE environment variable is not set"
+    )
     sys.exit(1)
 
 AUTH = ("neo4j", PASSWORD)
