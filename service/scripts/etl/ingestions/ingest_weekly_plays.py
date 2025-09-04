@@ -12,7 +12,7 @@ print("Running Cypher ingestion script")
 
 
 query = """
-    MATCH (n) RETURN (n) RETURN n LIMIT 1
+    MATCH (n) RETURN n LIMIT 1
     """
 
 driver.execute_query(query)

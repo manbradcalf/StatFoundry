@@ -11,7 +11,7 @@ print("Transforming CSV Data for Cypher script (ints to bools, etc)")
 print("Running Cypher ingestion script")
 
 query = """
-    MATCH (n) RETURN (n) LIMIT 1"
+    MATCH (n) RETURN n LIMIT 1
     """
 
 driver.execute_query(query)
