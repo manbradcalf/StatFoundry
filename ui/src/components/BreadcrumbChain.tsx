@@ -9,8 +9,6 @@ import {
   faFilter,
   faArrowLeft,
   faPlay,
-  faArrowRight,
-  faLongArrowAltRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useModalContext } from "../contexts/ModalContext";
 import { QueryType } from "../feature/Chunks/Enums/QueryType";
