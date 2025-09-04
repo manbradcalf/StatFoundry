@@ -1,4 +1,4 @@
-name: Weekly Plays Ingestion
+name: Weekly Data Ingestion
 
 on:
   schedule:
