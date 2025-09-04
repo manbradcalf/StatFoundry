@@ -20,19 +20,22 @@ STRIPE_PRICE_ID_PRO = os.getenv("STRIPE_PRICE_ID_PRO")
 # Database credentials
 URI = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI_STAGING")
 PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_STAGING")
+USER = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_USER_STAGING")
 
 # Validate required environment variables
 if not URI:
-    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE environment variable is not set")
+    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_URI environment variable is not set")
     sys.exit(1)
 
 if not PASSWORD:
-    print(
-        "ERROR: NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE environment variable is not set"
-    )
+    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD environment variable is not set")
     sys.exit(1)
 
-AUTH = ("neo4j", PASSWORD)
+if not USER:
+    print("ERROR: NEO4J_STATFOUNDRY_NFL_AURA_USER environment variable is not set")
+    sys.exit(1)
+
+AUTH = (USER, PASSWORD)
 
 # Debug logging for Stripe configuration
 print("=== STRIPE CONFIGURATION DEBUG ===")
@@ -41,4 +44,3 @@ print(f"STRIPE_PUBLISHABLE_KEY: {'SET' if STRIPE_PUBLISHABLE_KEY else 'NOT SET'}
 print(f"STRIPE_WEBHOOK_SECRET: {'SET' if STRIPE_WEBHOOK_SECRET else 'NOT SET'}")
 print(f"STRIPE_PRICE_ID_PRO: {'SET' if STRIPE_PRICE_ID_PRO else 'NOT SET'}")
 print("=== END STRIPE DEBUG ===")
-print()
