@@ -3,6 +3,7 @@ name: Weekly Plays Ingestion
 on:
   schedule:
     - cron: '0 4 * * 1-5'  # 4 AM UTC, Monday through Friday
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   ingest:
