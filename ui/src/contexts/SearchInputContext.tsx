@@ -7,7 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 import { Suggestion } from "./Suggestion";
-import useSuggestionsTwo from "../hooks/useSuggestionsTwo";
+import useSuggestions from "../hooks/useSuggestions";
 import { useChunkGenerator } from "../hooks/useChunkGenerator";
 import { useKeyboardNavigation } from "../hooks/useKeyboardNavigation";
 import { ChunkChain } from "../feature/Chunks/ChunkChain";
@@ -72,7 +72,7 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   const { dynamicChunks } = useChunkGenerator();
 
   // Generate suggestions using two-step filtering
-  const rawSuggestions = useSuggestionsTwo(query, dynamicChunks, chain);
+  const rawSuggestions = useSuggestions(query, dynamicChunks, chain);
 
   // Transform suggestions to match expected Suggestion interface
   const enhancedSuggestions = rawSuggestions.map((suggestion) => ({
@@ -196,4 +196,3 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
     </SearchInputContext.Provider>
   );
 };
-

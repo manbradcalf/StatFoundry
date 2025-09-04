@@ -6,7 +6,7 @@ import { ConstraintDefinition } from "./constraints/constraint";
 
 export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
   {
-    english: "for [team]",
+    english: "for f[team]",
     englishTemplate: "for {team}",
     cypherTemplate: "toLower(pg.recent_team) = toLower({team})",
     queryType: QueryType.FILTER,
@@ -16,7 +16,7 @@ export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
     keywords: ["for", "team"],
   },
   {
-    english: "against [team]",
+    english: "against f[team]",
     englishTemplate: "against {team}",
     cypherTemplate: "toLower(pg.opponent_team) = toLower({team})",
     queryType: QueryType.FILTER,
@@ -26,7 +26,7 @@ export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
     keywords: ["against", "versus", "vs"],
   },
   {
-    english: "in [2024]",
+    english: "in f[2024]",
     englishTemplate: "in {season}",
     cypherTemplate: "pg.season = {season}",
     queryType: QueryType.FILTER,
@@ -36,7 +36,7 @@ export const PLAYER_GAME_CONSTRAINTS: ConstraintDefinition[] = [
     keywords: ["season", "year", "in"],
   },
   {
-    english: "between [2020] and [2024]",
+    english: "between f[2020] and f[2024]",
     englishTemplate: "between {seasonStart} and {seasonEnd}",
     cypherTemplate: "pg.season >= {seasonStart} AND pg.season <= {seasonEnd}",
     queryType: QueryType.FILTER,

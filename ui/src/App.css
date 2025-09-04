@@ -1200,7 +1200,54 @@ h1 {
   padding: 1px 2px;
 }
 
-/* Highlight editable slot values in suggestions */
+/* Semantic highlighting for different content types */
+
+/* Entity highlighting - green to match match-start */
+.suggestion-entity-value {
+  background: #dcfce7;
+  color: #10b981;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #bbf7d0;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-entity-value:hover {
+  background: #bbf7d0;
+}
+
+/* Relationship highlighting - orange to match junction */
+.suggestion-relationship-value {
+  background: #fed7aa;
+  color: #f97316;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #fdba74;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-relationship-value:hover {
+  background: #fdba74;
+}
+
+/* Filter highlighting - blue to match filter */
+.suggestion-filter-value {
+  background: #eff6ff;
+  color: #3b82f6;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #dbeafe;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-filter-value:hover {
+  background: #dbeafe;
+}
+
+/* Legacy class - can be removed after migration */
 .suggestion-slot-value {
   background: #eff6ff;
   color: #3b82f6;
@@ -1615,9 +1662,8 @@ input[type="number"] {
 }
 
 .breadcrumb-chain {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 12px 16px;
   background: #ffffff;
@@ -1639,6 +1685,16 @@ input[type="number"] {
   color: #64748b;
   font-style: italic;
   font-size: 14px;
+}
+
+.breadcrumb-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.breadcrumb-row:last-child {
+  margin-bottom: 0;
 }
 
 .breadcrumb-items {
@@ -1665,6 +1721,20 @@ input[type="number"] {
 .breadcrumb-item:hover {
   background: #e2e8f0;
   border-color: #cbd5e1;
+}
+
+.breadcrumb-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0; /* Allow shrinking */
+}
+
+.breadcrumb-icon {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
 }
 
 .breadcrumb-text {

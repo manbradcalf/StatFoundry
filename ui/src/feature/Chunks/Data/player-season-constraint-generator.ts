@@ -7,7 +7,7 @@ import { ConstraintDefinition } from "./constraints/constraint";
 // Player season constraint definitions
 export const PLAYER_SEASON_CONSTRAINTS: ConstraintDefinition[] = [
   {
-    english: "for [team]",
+    english: "for f[team]",
     englishTemplate: "who played for {team} in those seasons",
     cypherTemplate: "{team} IN ps.teams",
     queryType: QueryType.FILTER,
@@ -52,7 +52,7 @@ export function generatePlayerSeasonConstraintChunks(): Chunk[] {
 
 export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
   {
-    english: "for [team]",
+    english: "for f[team]",
     englishTemplate: "who played for {team} in those seasons",
     cypherTemplate: "{team} IN ps.teams",
     queryType: QueryType.FILTER,
@@ -62,7 +62,7 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
     keywords: ["seasons", "season"],
   },
   {
-    english: "between the [2020] and [2024] seasons",
+    english: "between the f[2020] and f[2024] seasons",
     englishTemplate: "between the {seasonStart} and {seasonEnd} seasons",
     cypherTemplate:
       "AND ps.season >= {seasonStart} AND ps.season <= {seasonEnd}",
@@ -78,7 +78,7 @@ export const PLAYER_SEASON_CONSTRAINT_EXTENSIONS: ConstraintDefinition[] = [
     keywords: ["seasons", "season", "between"],
   },
   {
-    english: "during the [2024] season",
+    english: "during the f[2024] season",
     englishTemplate: "during the {season} season",
     cypherTemplate:
       "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason) WHERE ps.season = {season}",

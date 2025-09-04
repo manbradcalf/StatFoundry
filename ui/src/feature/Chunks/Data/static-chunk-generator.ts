@@ -26,7 +26,7 @@ export function generateFilterChunks(
   for (const stat of stats) {
     // Single filter chunk for each stat
     chunks.push({
-      English: `[${stat.key}]`,
+      English: `e[${stat.key}]`,
       Cypher: "",
       EnglishTemplate: `{stat} {condition} {value}`,
       CypherTemplate: `${entityAlias}.{stat} {condition} {value}`,

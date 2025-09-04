@@ -24,4 +24,6 @@ export enum AliasType {
   AggregatedWRSeason = "AggregatedWRSeason",
   AggregatedTESeason = "AggregatedTESeason",
   AggregatedPassingSeason = "AggregatedPassingSeason",
+  College = "College",
+  CollegeConference = "CollegeConference",
 }

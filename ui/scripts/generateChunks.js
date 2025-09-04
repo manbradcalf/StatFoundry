@@ -154,7 +154,8 @@ class SimpleChunkGenerator {
       const fromVar = this.getVariableName(pattern.fromLabel);
       const toVar = this.getVariableName(pattern.toLabel);
       return {
-        English: `${this.getRelationshipDescription(pattern)}`,
+        English: `${this.getRelationshipSuggestionText(pattern)}`,
+        EnglishTemplate: `${pattern.fromLabel} - ${pattern.relType} -> ${pattern.toLabel}`,
         Cypher: `MATCH (${fromVar}:${pattern.fromLabel})-[:${pattern.relType}]->(${toVar}:${pattern.toLabel})`,
         QueryType: "JUNCTION",
         Requires: [{ Name: fromVar, AliasType: pattern.fromLabel }],
@@ -250,18 +251,8 @@ class SimpleChunkGenerator {
     return 10;
   }
 
-  getRelationshipDescription(pattern) {
-    const descriptions = {
-      HAD: "had",
-      PLAYED_FOR: "played for",
-      PLAYED_AGAINST: "played against",
-      COACHED: "coached",
-      ATTENDED: "attended",
-    };
-    const relDescription =
-      descriptions[pattern.relType] ||
-      pattern.relType.toLowerCase().replace("_", " ");
-    return `${pattern.fromLabel} ${relDescription} ${pattern.toLabel}`;
+  getRelationshipSuggestionText(pattern) {
+    return `[${pattern.fromLabel}] - r[${pattern.relType}] -> [${pattern.toLabel}]`;
   }
 }
 
