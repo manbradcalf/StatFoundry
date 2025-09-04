@@ -28,6 +28,6 @@ jobs:
         run: python -m scripts.etl.ingestions.ingest_weekly_plays
         working-directory: service
         env:
-          NEO4J_STATFOUNDRY_NFL_AURA_URI: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI }}
+          NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE }}
           NEO4J_STATFOUNDRY_NFL_AURA_USERNAME: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_USERNAME }}
-          NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD }}
+          NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE }}
