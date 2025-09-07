@@ -4,3 +4,4 @@ neo4j
 fastapi>=0.68.0
 uvicorn>=0.15.0
 stripe>=5.0.0
+git+https://github.com/manbradcalf/nfelodcm.git@main#egg=nfelodcm
