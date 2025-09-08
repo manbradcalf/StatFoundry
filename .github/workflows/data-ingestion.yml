@@ -29,9 +29,11 @@ jobs:
         working-directory: service
 
       - name: Run weekly plays ingestion
+        id: load_games
         run: python -m scripts.etl.cypher.load_games
         working-directory: service
 
       - name: Run weekly player stats ingestion
+        if: steps.load_games.outcome == 'success'
         run: python -m scripts.etl.cypher.load_playergames
         working-directory: service

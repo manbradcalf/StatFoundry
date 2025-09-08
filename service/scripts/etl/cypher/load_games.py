@@ -1,3 +1,4 @@
+import sys
 from src.neo4j_client import driver
 
 load_2025_games = """
@@ -74,5 +75,10 @@ SET g += cleaned
 RETURN g
     """
 
-result = driver.execute_query(load_2025_games)
-print(result)
+try:
+    result = driver.execute_query(load_2025_games)
+    print(f"Successfully loaded games: {len(result.records)} records processed")
+    print(result)
+except Exception as e:
+    print(f"ERROR: Failed to load games: {e}")
+    sys.exit(1)

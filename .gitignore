@@ -60,3 +60,4 @@ build/
 *.cypher
 Neo4j-*.txt
 claude_outputs/
+service/StatFoundry Service

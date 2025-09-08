@@ -1,3 +1,4 @@
+import sys
 from src.neo4j_client import driver
 
 load_2025_playergames = """
@@ -139,5 +140,10 @@ RETURN pg
 LIMIT 5;
 """
 
-result = driver.execute_query(load_2025_playergames)
-print(result)
+try:
+    result = driver.execute_query(load_2025_playergames)
+    print(f"Successfully loaded playergames: {len(result.records)} records processed")
+    print(result)
+except Exception as e:
+    print(f"ERROR: Failed to load playergames: {e}")
+    sys.exit(1)
