@@ -1,38 +1,44 @@
-import nfl_data_py as nfl
-import os
-from nfelodcm import load
 import pandas as pd
-import glob
 
-def map_stats_player_week(week:int,season:int):
+
+def map_stats_player_week(week: int, season: int):
     """
     loads games and stats_player_week from nfelodcm, which loads from nflverse
     then creates playergame_id and adds it to stats_player_week
     """
-    df = load(['games','stats_player_week']) # loads Dict of DataFrames by name
-    gs = df['games']
-    spw = df['stats_player_week']
-    filtered_gs = gs[(gs['week'] == week) & (gs['season'] == season)]
-    spw = spw[(spw['week'] == week) & (spw['season'] == season)]
-    spw = spw.dropna(subset=["player_id"])
 
-    game_lookup = {}
-    for _, game in filtered_gs.iterrows():
-        game_lookup[game['home_team']] = game['game_id']
-        game_lookup[game['away_team']] = game['game_id']
-
-    # Use lookup instead of filtering each time
-    spw['game_id'] = spw['team'].map(game_lookup)
-    spw = spw.dropna(subset=["game_id"])
-
-    # now that we have the game id, we can create and append the playergame_id
-    spw["player_game_id"] = (
-        spw["player_id"].astype(str)
-        + "_"
-        + spw["game_id"].astype(str)
+    # read the csvs for games (alltime) and player stats (weekly)
+    csvfile = f"stats_player/stats_player_week_{season}.csv"
+    pgs = pd.read_csv(
+        f"https://github.com/nflverse/nflverse-data/releases/download/{csvfile}"
+    )
+    gs = pd.read_csv(
+        "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv"
     )
 
-    return spw
+    # filter the csvs down to the week
+    pgs = pgs[pgs["week"] == week]
+    gs = gs[(gs["week"] == week) & (gs["season"] == season)]
+
+    print(pgs)
+    # create a map so we can create p;
+    game_lookup = {}
+    for _, game in gs.iterrows():
+        game_lookup[game["home_team"]] = game["game_id"]
+        game_lookup[game["away_team"]] = game["game_id"]
+
+    print(game_lookup)
+
+    # Use lookup instead of filtering each time
+    pgs["game_id"] = pgs["team"].map(game_lookup)
+
+    # now that we have the game id, we can create and append the playergame_id
+    pgs["player_game_id"] = (
+        pgs["player_id"].astype(str) + "_" + pgs["game_id"].astype(str)
+    )
+    print(pgs)
+    return pgs
+
 
 def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
     """
@@ -47,8 +53,8 @@ def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
     queries = []
 
     # Get unique season and week
-    season = df['season'].iloc[0]
-    week = df['week'].iloc[0]
+    season = df["season"].iloc[0]
+    week = df["week"].iloc[0]
 
     # Create Season and Week
     season_week_query = """
@@ -56,10 +62,10 @@ def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
     MERGE (w:NFLWeek {week: $week})
     MERGE (w)-[:OF]->(s)
     """
-    queries.append((season_week_query, {'season': season, 'week': week}))
+    queries.append((season_week_query, {"season": season, "week": week}))
 
     # Create all unique games at once
-    unique_games = df[['game_id']].drop_duplicates()
+    unique_games = df[["game_id"]].drop_duplicates()
     games_query = """
     UNWIND $games as game
     MERGE (g:NFLGame {game_id: game})
@@ -67,13 +73,12 @@ def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
     MATCH (w:NFLWeek {week: $week})
     MERGE (g)-[:OF]->(w)
     """
-    queries.append((games_query, {
-        'games': unique_games['game_id'].tolist(),
-        'week': week
-    }))
+    queries.append(
+        (games_query, {"games": unique_games["game_id"].tolist(), "week": week})
+    )
 
     # Then process each player-game
-    df_cols = [col for col in df.columns if not col in ['season', 'week']]
+    df_cols = [col for col in df.columns if col not in ["season", "week"]]
     for _, row in df.iterrows():
         # Create/merge Player nodes
         player_query = """
@@ -95,18 +100,26 @@ def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
         """
 
         # Add queries with their parameters
-        queries.extend([
-            (player_query, {
-                'player_id': row['player_id'],
-                'position': row['position'],
-                'player_name': row['player_name']
-            }),
-            (player_game_query, {
-                'player_id': row['player_id'],
-                'game_id': row['game_id'],
-                'playergame_id': row['player_game_id'],
-                'properties': properties
-            })
-        ])
-    
+        queries.extend(
+            [
+                (
+                    player_query,
+                    {
+                        "player_id": row["player_id"],
+                        "position": row["position"],
+                        "player_name": row["player_name"],
+                    },
+                ),
+                (
+                    player_game_query,
+                    {
+                        "player_id": row["player_id"],
+                        "game_id": row["game_id"],
+                        "playergame_id": row["player_game_id"],
+                        "properties": properties,
+                    },
+                ),
+            ]
+        )
+
     return queries
