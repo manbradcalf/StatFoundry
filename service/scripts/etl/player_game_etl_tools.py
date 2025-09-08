@@ -37,7 +37,10 @@ def map_stats_player_week(week: int, season: int):
         pgs["player_id"].astype(str) + "_" + pgs["game_id"].astype(str)
     )
     print(pgs)
-    return pgs
+    pgscsv = pgs.to_csv()
+    print(pgscsv)
+    # TODO: just to the cypher here
+    return pgscsv
 
 
 def dataframe_to_cypher_queries(df: pd.DataFrame) -> list[str]:
