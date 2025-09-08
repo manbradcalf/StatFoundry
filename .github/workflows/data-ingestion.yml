@@ -38,7 +38,7 @@ jobs:
         run: pip install -r requirements.txt
         working-directory: service
 
-      - name: Run weekly plays ingestion
+      - name: Run weekly games ingestion
         id: load_games
         run: python -m scripts.etl.cypher.load_games
         working-directory: service
