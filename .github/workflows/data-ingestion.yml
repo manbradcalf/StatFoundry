@@ -1,4 +1,4 @@
-name: Weekly Data Ingestion
+name: Data Ingestion
 
 on:
   schedule:
