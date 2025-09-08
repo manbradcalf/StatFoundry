@@ -1,13 +1,12 @@
 import sys
 from src.neo4j_client import driver
 
-load_2025_playergames = """
-    // Ensure 2025 Game nodes exist first (as discussed earlier)
-
-// Unique key for PlayerGame
+create_constraint = """
 CREATE CONSTRAINT playergame_unique IF NOT EXISTS
-FOR (pg:PlayerGame) REQUIRE (pg.player_id, pg.game_id) IS UNIQUE;
+FOR (pg:PlayerGame) REQUIRE (pg.player_id, pg.game_id) IS UNIQUE
+"""
 
+load_2025_playergames = """
 // Read weekly player stats (calculate_stats output)
 LOAD CSV WITH HEADERS FROM
   'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv'
@@ -141,6 +140,11 @@ LIMIT 5;
 """
 
 try:
+    # First, create the constraint
+    constraint_result = driver.execute_query(create_constraint)
+    print("Constraint creation completed")
+    
+    # Then, load the playergames data
     result = driver.execute_query(load_2025_playergames)
     print(f"Successfully loaded playergames: {len(result.records)} records processed")
     print(result)
