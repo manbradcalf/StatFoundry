@@ -74,6 +74,5 @@ SET g += cleaned
 RETURN g
     """
 
-try:
-    result = driver.execute_query(load_2025_games)
-    catch:
+result = driver.execute_query(load_2025_games)
+print(result)
