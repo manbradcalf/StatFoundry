@@ -2,10 +2,8 @@ name: Weekly Data Ingestion
 
 on:
   schedule:
-    - cron: "0 4 * * 1-5" # 4 AM UTC, Monday through Friday
+    - cron: "0 4 * * 1-7" # 4 AM UTC, Monday through Sunday
   workflow_dispatch: # Allows manual trigger
-  push:
-    branches: [ingestion-workflows] # Test on push to your branch
 
 env:
   NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE }}
