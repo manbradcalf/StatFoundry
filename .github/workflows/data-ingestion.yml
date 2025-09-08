@@ -1,9 +1,21 @@
 name: Data Ingestion
 
 on:
-  schedule:
-    - cron: "0 4 * * 1-7" # 4 AM UTC, Monday through Sunday
   workflow_dispatch: # Allows manual trigger
+  # Each trigger is 30 minutes after each NFLVerse pbp trigger
+  # See: https://github.com/nflverse/nflverse-pbp/blob/866020fdf54bee79ea11b6cf69168d438dd26dea/.github/workflows/update_data.yaml#L3-L13
+  schedule:
+    # Every day at 9:30 UTC/5:00 ET
+    - cron: "30 9 * 1,2,9-12 *"
+    # TNF 5:30 AM UTC / 12:30 AM ET
+    - cron: "00 6 * 1,2,9-12 5"
+    # Early window: 10:30 PM UTC / 5:00 PM ET
+    - cron: "30 22 * 1,2,9-12 0"
+    # Late window: 0:35 UTC / 8:00 ET
+    - cron: "35 0 * 1,2,9-12 1"
+    # SNF/MNF: 5:30 UTC / 12:30 ET
+    - cron: "00 6 * 1,2,9-12 1"
+    - cron: "00 6 * 1,2,9-12 2"
 
 env:
   NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE: ${{ secrets.NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE }}
