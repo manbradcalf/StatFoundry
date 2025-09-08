@@ -31,7 +31,7 @@ jobs:
       - name: Run weekly plays ingestion
         run: python -m scripts.etl.cypher.load_games
         working-directory: service
-      #
-      # - name: Run weekly player stats ingestion
-      #   run: python -m scripts.etl.ingestions.ingest_weekly_playergame
-      #   working-directory: service
+
+      - name: Run weekly player stats ingestion
+        run: python -m scripts.etl.cypher.load_playergames
+        working-directory: service
