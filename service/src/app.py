@@ -6,6 +6,7 @@ from src.requests import QueryAuraDBRequest
 from src.models import CreateCheckoutSessionRequest, CreatePortalSessionRequest
 from src.stripe_service import StripeService
 from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
+from src.telemetry import add_cypher_telemetry, add_query_result
 
 app = FastAPI()
 security = HTTPBearer()
@@ -28,10 +29,14 @@ async def get_schema():
 
 @app.post("/api/query")
 async def query(request: QueryAuraDBRequest):
+    add_cypher_telemetry(request.cypher_query, "custom")
+    
     try:
         result = execute_query(driver, request.cypher_query)
+        add_query_result(len(result) if result else 0)
         return result
     except ValueError as e:
+        add_query_result(0, success=False, error=str(e))
         raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
@@ -39,11 +44,16 @@ async def query(request: QueryAuraDBRequest):
 async def get_player(gsis_id: str):
     try:
         cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}}) RETURN p'
+        add_cypher_telemetry(cypher_query, "player_lookup", gsis_id=gsis_id)
+        
         result = execute_query(driver, cypher_query)
+        add_query_result(len(result) if result else 0)
+        
         if not result:
             raise HTTPException(status_code=404, detail="Player not found")
         return result if result else None
     except ValueError as e:
+        add_query_result(0, success=False, error=str(e))
         raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
@@ -51,13 +61,18 @@ async def get_player(gsis_id: str):
 async def get_playergames(gsis_id: str):
     try:
         cypher_query = f'MATCH (p:Player) WHERE p.gsis_id="{gsis_id}" WITH p MATCH (p)-[:HAD]-(pg:PlayerGame) RETURN pg'
+        add_cypher_telemetry(cypher_query, "player_games", gsis_id=gsis_id)
+        
         result = execute_query(driver, cypher_query)
+        add_query_result(len(result) if result else 0)
+        
         if not result:
             print(cypher_query)
             print(result)
             raise HTTPException(status_code=404, detail="Player Games not found")
         return result if result else None
     except ValueError as e:
+        add_query_result(0, success=False, error=str(e))
         raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 
@@ -65,11 +80,16 @@ async def get_playergames(gsis_id: str):
 async def get_playerseasons(gsis_id: str):
     try:
         cypher_query = f'MATCH (p:Player {{gsis_id: "{gsis_id}"}})-[:HAD]-(ps:PlayerSeason) RETURN ps'
+        add_cypher_telemetry(cypher_query, "player_seasons", gsis_id=gsis_id)
+        
         result = execute_query(driver, cypher_query)
+        add_query_result(len(result) if result else 0)
+        
         if not result:
             raise HTTPException(status_code=404, detail="Player Seasons not found")
         return result if result else None
     except ValueError as e:
+        add_query_result(0, success=False, error=str(e))
         raise HTTPException(status_code=400, detail="Invalid request parameters")
 
 def require_scope(required_scope: str):
