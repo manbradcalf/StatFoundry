@@ -45,7 +45,7 @@ MERGE (pg)-[:OF]->(g)
 SET pg += {
   // identity & context
   player_name:         line.player_name,
-  player_display_name: line.player_display_name,
+  display_name: line.player_display_name,
   position:            line.position,
   position_group:      line.position_group,
   headshot_url:        line.headshot_url,
@@ -143,7 +143,7 @@ try:
     # First, create the constraint
     constraint_result = driver.execute_query(create_constraint)
     print("Constraint creation completed")
-    
+
     # Then, load the playergames data
     result = driver.execute_query(load_2025_playergames)
     print(f"Successfully loaded playergames: {len(result.records)} records processed")

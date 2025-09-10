@@ -58,7 +58,6 @@ export const defaultExcludeColumns = [
   "headshot_url",
   "gsis_id",
   "p.gsis_id",
-  "pg.player_display_name",
   "ps.player_display_name",
 ];
 
