@@ -114,7 +114,7 @@ def is_read_only_query(query):
     return True
 
 
-def execute_query(driver, query):
+def execute_readonly_query(driver, query):
     """
     Executes a Cypher query after validating it's read-only.
 
