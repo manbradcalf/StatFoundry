@@ -26,7 +26,6 @@ export const useTableData = ({
       return [];
     }
 
-    console.log("mapping data", data);
     return data.map((item) => {
       const flattened: any = {};
 

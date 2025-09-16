@@ -44,8 +44,6 @@ export const generatePlayerUrl = (
     playerData["ps.player_name"] ||
     playerData["player.display_name"];
 
-  console.log("displayName", displayName);
-  console.log("gsisid", gsisId);
   if (!gsisId || !displayName) {
     return null;
   }

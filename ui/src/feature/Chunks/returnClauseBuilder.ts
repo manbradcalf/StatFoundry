@@ -113,6 +113,5 @@ export const buildSmartReturnClause = (
   if (aliases.length === 1) {
     return `RETURN DISTINCT ${returnParts.join(", ")}`;
   }
-  console.log(returnParts);
   return `RETURN ${returnParts.join(", ")}`;
 };
