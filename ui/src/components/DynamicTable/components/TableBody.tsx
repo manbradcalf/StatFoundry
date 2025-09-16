@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 interface TableBodyProps {
   paginatedData: ProcessedDataItem[];
-  arrayKeys: string[];
   finalKeys: string[];
   startIndex: number;
   excludeColumns: string[];

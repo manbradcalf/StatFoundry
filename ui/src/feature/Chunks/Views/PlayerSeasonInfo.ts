@@ -4,5 +4,5 @@ export const PLAYER_SEASON_INFO_PROPERTIES = [
   "season_type",
   "games",
   "season",
-  // "teams"
+  "teams",
 ];

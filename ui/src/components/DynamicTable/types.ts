@@ -42,7 +42,6 @@ export interface SortConfig {
  */
 export interface ProcessedDataItem {
   flattened: Record<string, any>;
-  arrays: Record<string, any[]>;
 }
 
 /**
