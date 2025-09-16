@@ -117,19 +117,6 @@
     "Slots": []
   },
   {
-    "English": "TestNodes",
-    "Cypher": "MATCH (t:TestNode)",
-    "QueryType": "MATCH_START",
-    "Requires": [],
-    "Provides": [
-      {
-        "Name": "t",
-        "AliasType": "TestNode"
-      }
-    ],
-    "Slots": []
-  },
-  {
     "English": "Player Games",
     "Cypher": "MATCH (pg:PlayerGame)",
     "QueryType": "MATCH_START",
@@ -3671,6 +3658,48 @@
     ]
   },
   {
+    "English": "[scrimmage_yards] (PlayerSeason)",
+    "Cypher": " ps.scrimmage_yards ",
+    "EnglishTemplate": "scrimmage_yards {condition} {value}",
+    "CypherTemplate": "ps.scrimmage_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "scrimmage_yards",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[yptmpa] (PlayerSeason)",
     "Cypher": " ps.yptmpa ",
     "EnglishTemplate": "yptmpa {condition} {value}",
@@ -3797,47 +3826,6 @@
     ]
   },
   {
-    "English": "for [teams] (PlayerSeason)",
-    "EnglishTemplate": "with teams equal to {value}",
-    "CypherTemplate": "{value} IN ps.teams",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "teams",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[position] (PlayerSeason)",
     "Cypher": " ps.position {condition} {value}",
     "EnglishTemplate": "with position equal to {value}",
@@ -3859,47 +3847,6 @@
       {
         "Name": "stat",
         "Value": "position",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "for [teams] (PlayerSeason)",
-    "EnglishTemplate": "with teams equal to {value}",
-    "CypherTemplate": "{value} IN ps.teams",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "teams",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -3963,47 +3910,6 @@
     ]
   },
   {
-    "English": "for [teams] (PlayerSeason)",
-    "EnglishTemplate": "with teams equal to {value}",
-    "CypherTemplate": "{value} IN ps.teams",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "teams",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[player_name] (PlayerSeason)",
     "Cypher": " ps.player_name {condition} {value}",
     "EnglishTemplate": "with player_name equal to {value}",
@@ -4025,47 +3931,6 @@
       {
         "Name": "stat",
         "Value": "player_name",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "for [teams] (PlayerSeason)",
-    "EnglishTemplate": "with teams equal to {value}",
-    "CypherTemplate": "{value} IN ps.teams",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "teams",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -4129,47 +3994,6 @@
     ]
   },
   {
-    "English": "for [teams] (PlayerSeason)",
-    "EnglishTemplate": "with teams equal to {value}",
-    "CypherTemplate": "{value} IN ps.teams",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "teams",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[yac_sh] (PlayerSeason)",
     "Cypher": " ps.yac_sh {condition} {value}",
     "EnglishTemplate": "with yac_sh equal to {value}",
@@ -4212,8 +4036,8 @@
     ]
   },
   {
-    "English": "for [teams] (PlayerSeason)",
-    "EnglishTemplate": "with teams equal to {value}",
+    "English": "with [team] in [teams] (PlayerSeason)",
+    "EnglishTemplate": "with {value} in teams",
     "CypherTemplate": "{value} IN ps.teams",
     "QueryType": "FILTER",
     "Requires": [
@@ -4230,24 +4054,24 @@
     ],
     "Slots": [
       {
-        "Name": "stat",
-        "Value": "teams",
+        "Name": "value",
+        "Value": "BAL",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "FilterValue"
         ]
       },
       {
         "Name": "condition",
-        "Value": "=",
+        "Value": "in",
         "SlotValueTypes": [
           "FilterCondition"
         ]
       },
       {
-        "Name": "value",
-        "Value": "something",
+        "Name": "stat",
+        "Value": "teams",
         "SlotValueTypes": [
-          "FilterValue"
+          "MultiStatFilter"
         ]
       }
     ]
@@ -4442,6 +4266,48 @@
       {
         "Name": "stat",
         "Value": "away_score",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[under_odds] (Game)",
+    "Cypher": " g.under_odds ",
+    "EnglishTemplate": "under_odds {condition} {value}",
+    "CypherTemplate": "g.under_odds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "under_odds",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -4778,6 +4644,132 @@
       {
         "Name": "stat",
         "Value": "home_score",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[over_odds] (Game)",
+    "Cypher": " g.over_odds ",
+    "EnglishTemplate": "over_odds {condition} {value}",
+    "CypherTemplate": "g.over_odds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "over_odds",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[home_spread_odds] (Game)",
+    "Cypher": " g.home_spread_odds ",
+    "EnglishTemplate": "home_spread_odds {condition} {value}",
+    "CypherTemplate": "g.home_spread_odds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "home_spread_odds",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[away_spread_odds] (Game)",
+    "Cypher": " g.away_spread_odds ",
+    "EnglishTemplate": "away_spread_odds {condition} {value}",
+    "CypherTemplate": "g.away_spread_odds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "away_spread_odds",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -5198,48 +5190,6 @@
       {
         "Name": "stat",
         "Value": "home_qb_name",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[under_odds] (Game)",
-    "Cypher": " g.under_odds {condition} {value}",
-    "EnglishTemplate": "with under_odds equal to {value}",
-    "CypherTemplate": " g.under_odds = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "under_odds",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -5723,48 +5673,6 @@
     ]
   },
   {
-    "English": "[over_odds] (Game)",
-    "Cypher": " g.over_odds {condition} {value}",
-    "EnglishTemplate": "with over_odds equal to {value}",
-    "CypherTemplate": " g.over_odds = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "over_odds",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[weekday] (Game)",
     "Cypher": " g.weekday {condition} {value}",
     "EnglishTemplate": "with weekday equal to {value}",
@@ -5807,48 +5715,6 @@
     ]
   },
   {
-    "English": "[away_spread_odds] (Game)",
-    "Cypher": " g.away_spread_odds {condition} {value}",
-    "EnglishTemplate": "with away_spread_odds equal to {value}",
-    "CypherTemplate": " g.away_spread_odds = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "away_spread_odds",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[away_coach] (Game)",
     "Cypher": " g.away_coach {condition} {value}",
     "EnglishTemplate": "with away_coach equal to {value}",
@@ -5870,48 +5736,6 @@
       {
         "Name": "stat",
         "Value": "away_coach",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[home_spread_odds] (Game)",
-    "Cypher": " g.home_spread_odds {condition} {value}",
-    "EnglishTemplate": "with home_spread_odds equal to {value}",
-    "CypherTemplate": " g.home_spread_odds = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "home_spread_odds",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -21935,48 +21759,6 @@
     ]
   },
   {
-    "English": "[name] (TestNode)",
-    "Cypher": " t.name {condition} {value}",
-    "EnglishTemplate": "with name equal to {value}",
-    "CypherTemplate": " t.name = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "t",
-        "AliasType": "TestNode"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "t",
-        "AliasType": "TestNode"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "name",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[season] (PlayerGame)",
     "Cypher": " pg.season ",
     "EnglishTemplate": "season {condition} {value}",
@@ -22943,10 +22725,10 @@
     ]
   },
   {
-    "English": "[racr] (PlayerGame)",
-    "Cypher": " pg.racr ",
-    "EnglishTemplate": "racr {condition} {value}",
-    "CypherTemplate": "pg.racr {condition} {value}",
+    "English": "[passing_interceptions] (PlayerGame)",
+    "Cypher": " pg.passing_interceptions ",
+    "EnglishTemplate": "passing_interceptions {condition} {value}",
+    "CypherTemplate": "pg.passing_interceptions {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -22963,49 +22745,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "racr",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[passing_epa] (PlayerGame)",
-    "Cypher": " pg.passing_epa ",
-    "EnglishTemplate": "passing_epa {condition} {value}",
-    "CypherTemplate": "pg.passing_epa {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "passing_epa",
+        "Value": "passing_interceptions",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -23195,48 +22935,6 @@
     ]
   },
   {
-    "English": "[special_teams_tds] (PlayerGame)",
-    "Cypher": " pg.special_teams_tds ",
-    "EnglishTemplate": "special_teams_tds {condition} {value}",
-    "CypherTemplate": "pg.special_teams_tds {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "special_teams_tds",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[wopr] (PlayerGame)",
     "Cypher": " pg.wopr ",
     "EnglishTemplate": "wopr {condition} {value}",
@@ -23258,90 +22956,6 @@
       {
         "Name": "stat",
         "Value": "wopr",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[targets] (PlayerGame)",
-    "Cypher": " pg.targets ",
-    "EnglishTemplate": "targets {condition} {value}",
-    "CypherTemplate": "pg.targets {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "targets",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[pacr] (PlayerGame)",
-    "Cypher": " pg.pacr ",
-    "EnglishTemplate": "pacr {condition} {value}",
-    "CypherTemplate": "pg.pacr {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "pacr",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -23447,6 +23061,468 @@
     ]
   },
   {
+    "English": "[receiving_air_yards] (PlayerGame)",
+    "Cypher": " pg.receiving_air_yards ",
+    "EnglishTemplate": "receiving_air_yards {condition} {value}",
+    "CypherTemplate": "pg.receiving_air_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_air_yards",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[air_yards_share] (PlayerGame)",
+    "Cypher": " pg.air_yards_share ",
+    "EnglishTemplate": "air_yards_share {condition} {value}",
+    "CypherTemplate": "pg.air_yards_share {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "air_yards_share",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_interceptions] (PlayerGame)",
+    "Cypher": " pg.def_interceptions ",
+    "EnglishTemplate": "def_interceptions {condition} {value}",
+    "CypherTemplate": "pg.def_interceptions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_interceptions",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[racr] (PlayerGame)",
+    "Cypher": " pg.racr ",
+    "EnglishTemplate": "racr {condition} {value}",
+    "CypherTemplate": "pg.racr {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "racr",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_interception_yards] (PlayerGame)",
+    "Cypher": " pg.def_interception_yards ",
+    "EnglishTemplate": "def_interception_yards {condition} {value}",
+    "CypherTemplate": "pg.def_interception_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_interception_yards",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_epa] (PlayerGame)",
+    "Cypher": " pg.passing_epa ",
+    "EnglishTemplate": "passing_epa {condition} {value}",
+    "CypherTemplate": "pg.passing_epa {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_epa",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_sacks] (PlayerGame)",
+    "Cypher": " pg.def_sacks ",
+    "EnglishTemplate": "def_sacks {condition} {value}",
+    "CypherTemplate": "pg.def_sacks {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_sacks",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_sack_yards] (PlayerGame)",
+    "Cypher": " pg.def_sack_yards ",
+    "EnglishTemplate": "def_sack_yards {condition} {value}",
+    "CypherTemplate": "pg.def_sack_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_sack_yards",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[special_teams_tds] (PlayerGame)",
+    "Cypher": " pg.special_teams_tds ",
+    "EnglishTemplate": "special_teams_tds {condition} {value}",
+    "CypherTemplate": "pg.special_teams_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "special_teams_tds",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[targets] (PlayerGame)",
+    "Cypher": " pg.targets ",
+    "EnglishTemplate": "targets {condition} {value}",
+    "CypherTemplate": "pg.targets {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "targets",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pacr] (PlayerGame)",
+    "Cypher": " pg.pacr ",
+    "EnglishTemplate": "pacr {condition} {value}",
+    "CypherTemplate": "pg.pacr {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pacr",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[receiving_yards_after_catch] (PlayerGame)",
     "Cypher": " pg.receiving_yards_after_catch ",
     "EnglishTemplate": "receiving_yards_after_catch {condition} {value}",
@@ -23531,10 +23607,10 @@
     ]
   },
   {
-    "English": "[receiving_air_yards] (PlayerGame)",
-    "Cypher": " pg.receiving_air_yards ",
-    "EnglishTemplate": "receiving_air_yards {condition} {value}",
-    "CypherTemplate": "pg.receiving_air_yards {condition} {value}",
+    "English": "[scrimmage_yards] (PlayerGame)",
+    "Cypher": " pg.scrimmage_yards ",
+    "EnglishTemplate": "scrimmage_yards {condition} {value}",
+    "CypherTemplate": "pg.scrimmage_yards {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -23551,49 +23627,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "receiving_air_yards",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[air_yards_share] (PlayerGame)",
-    "Cypher": " pg.air_yards_share ",
-    "EnglishTemplate": "air_yards_share {condition} {value}",
-    "CypherTemplate": "pg.air_yards_share {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "air_yards_share",
+        "Value": "scrimmage_yards",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -23993,6 +24027,48 @@
     ]
   },
   {
+    "English": "[display_name] (PlayerGame)",
+    "Cypher": " pg.display_name {condition} {value}",
+    "EnglishTemplate": "with display_name equal to {value}",
+    "CypherTemplate": " pg.display_name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "display_name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[player_name] (PlayerGame)",
     "Cypher": " pg.player_name {condition} {value}",
     "EnglishTemplate": "with player_name equal to {value}",
@@ -24119,6 +24195,48 @@
     ]
   },
   {
+    "English": "[team] (PlayerGame)",
+    "Cypher": " pg.team {condition} {value}",
+    "EnglishTemplate": "with team equal to {value}",
+    "CypherTemplate": " pg.team = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "team",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[Player] - r[ATTENDED] -> [College]",
     "EnglishTemplate": "Players - ATTENDED -> Colleges",
     "Cypher": "MATCH (p:Player)-[:ATTENDED]->(c:College)",
@@ -24137,6 +24255,29 @@
       {
         "Name": "c",
         "AliasType": "College"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[College] - r[ATTENDED] -> [Player]",
+    "EnglishTemplate": "Colleges - ATTENDED -> Players",
+    "Cypher": "MATCH (c:College)-[:ATTENDED]->(p:Player)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "College"
+      },
+      {
+        "Name": "p",
+        "AliasType": "Player"
       }
     ],
     "Slots": []
@@ -24165,6 +24306,29 @@
     "Slots": []
   },
   {
+    "English": "[PlayerGame] - r[HAD] -> [Player]",
+    "EnglishTemplate": "PlayerGames - HAD -> Players",
+    "Cypher": "MATCH (pg:PlayerGame)-[:HAD]->(p:Player)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      },
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "[Player] - r[HAD] -> [PlayerSeason]",
     "EnglishTemplate": "Players - HAD -> PlayerSeasons",
     "Cypher": "MATCH (p:Player)-[:HAD]->(ps:PlayerSeason)",
@@ -24183,6 +24347,29 @@
       {
         "Name": "ps",
         "AliasType": "PlayerSeason"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[PlayerSeason] - r[HAD] -> [Player]",
+    "EnglishTemplate": "PlayerSeasons - HAD -> Players",
+    "Cypher": "MATCH (ps:PlayerSeason)-[:HAD]->(p:Player)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      },
+      {
+        "Name": "p",
+        "AliasType": "Player"
       }
     ],
     "Slots": []
@@ -24211,6 +24398,29 @@
     "Slots": []
   },
   {
+    "English": "[Game] - r[OF] -> [PlayerGame]",
+    "EnglishTemplate": "Games - OF -> PlayerGames",
+    "Cypher": "MATCH (g:Game)-[:OF]->(pg:PlayerGame)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      },
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "[PlayerSeason] - r[OF] -> [Season]",
     "EnglishTemplate": "PlayerSeasons - OF -> Seasons",
     "Cypher": "MATCH (ps:PlayerSeason)-[:OF]->(s:Season)",
@@ -24229,6 +24439,29 @@
       {
         "Name": "s",
         "AliasType": "Season"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Season] - r[OF] -> [PlayerSeason]",
+    "EnglishTemplate": "Seasons - OF -> PlayerSeasons",
+    "Cypher": "MATCH (s:Season)-[:OF]->(ps:PlayerSeason)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "s",
+        "AliasType": "Season"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "s",
+        "AliasType": "Season"
+      },
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
       }
     ],
     "Slots": []
@@ -24257,6 +24490,75 @@
     "Slots": []
   },
   {
+    "English": "[Season] - r[OF] -> [Game]",
+    "EnglishTemplate": "Seasons - OF -> Games",
+    "Cypher": "MATCH (s:Season)-[:OF]->(g:Game)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "s",
+        "AliasType": "Season"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "s",
+        "AliasType": "Season"
+      },
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Play] - r[OF] -> [Game]",
+    "EnglishTemplate": "Plays - OF -> Games",
+    "Cypher": "MATCH (p:Play)-[:OF]->(g:Game)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      },
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Game] - r[OF] -> [Play]",
+    "EnglishTemplate": "Games - OF -> Plays",
+    "Cypher": "MATCH (g:Game)-[:OF]->(p:Play)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      },
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "[Player] - r[PLAYED_IN_COLLEGE_CONFERENCE] -> [CollegeConference]",
     "EnglishTemplate": "Players - PLAYED_IN_COLLEGE_CONFERENCE -> CollegeConferences",
     "Cypher": "MATCH (p:Player)-[:PLAYED_IN_COLLEGE_CONFERENCE]->(c:CollegeConference)",
@@ -24280,7751 +24582,26 @@
     "Slots": []
   },
   {
-    "English": "return player information",
-    "Cypher": "RETURN p",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return position",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return position_group",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return display_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return gsis_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return status_description_abbr",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return suffix",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return headshot",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return status_short_description",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return last_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return football_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return draft_club",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return short_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rookie_year",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return college_conference",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return status",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return team_abbr",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return college_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return esb_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return uniform_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return current_team_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return first_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return smart_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return entry_year",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return jersey_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return team_seq",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return years_of_experience",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return birth_date",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return draftround",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return height",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return weight",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return draft_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return gsis_it_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return playerseason information",
-    "Cypher": "RETURN ps",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_id",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return position",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season_type",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return completions",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return attempts",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_yards",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_tds",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return interceptions",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sacks",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_yards",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_fumbles",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_fumbles_lost",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_air_yards",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_yards_after_catch",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_first_downs",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_2pt_conversions",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return carries",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_yards",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_tds",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_fumbles",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_fumbles_lost",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_first_downs",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_epa",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_2pt_conversions",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receptions",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_fumbles",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_points_ppr",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_fumbles_lost",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_name",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ay_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return target_share",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wopr_y",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_yards",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_tds",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_season_id",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return teams",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_2pt_conversions",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yards_per_carry",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return dom",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_first_downs",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return dakota",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ppr_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rtd_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_air_yards",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return air_yards_share",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wopr_x",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yac_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return games",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return racr",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return w8dom",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_epa",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tgt_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ry_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rfd_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return special_teams_tds",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rtdfd_sh",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return targets",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pacr",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_yards_after_catch",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_epa",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yptmpa",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_points",
-    "Cypher": "RETURN ps.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "ps",
-        "AliasType": "PlayerSeason"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game information",
-    "Cypher": "RETURN g",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return week",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_qb_id",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_qb_name",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return location",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pff",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return overtime",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return referee",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_rest",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_moneyline",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_qb_name",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_score",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return under_odds",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_line",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_moneyline",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return surface",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wind",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_type",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_team",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return temp",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return spread_line",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_rest",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return gsis",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_qb_id",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_coach",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ftn",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return roof",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_team",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return div_game",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return gametime",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_score",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return gameday",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return stadium_id",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return over_odds",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return weekday",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_spread_odds",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return espn",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_coach",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_spread_odds",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pfr",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return result",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_id",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return stadium",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return old_game_id",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return nfl_detail_id",
-    "Cypher": "RETURN g.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season information",
-    "Cypher": "RETURN s",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "s",
-        "AliasType": "Season"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season",
-    "Cypher": "RETURN s.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "s",
-        "AliasType": "Season"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play information",
-    "Cypher": "RETURN p",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return week",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season_type",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return vegas_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return time",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return comp_air_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackle_with_assist",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return offense_players",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_not_forced",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return old_game_id_x",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_half",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_raw_yac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackle_for_loss_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_hit",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_3_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_2_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return two_point_conv_result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_rush_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiver_jersey_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defensive_extra_point_conv",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return touchdown",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_coach",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_pass_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_raw_air_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_yards_penalized",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_fair_catch",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rusher_jersey_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return opp_fg_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return half_sack_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return time_to_throw",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_4_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackled_for_loss",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_pass_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_quarter_start",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_quarter_end",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_downed",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return players_on_play",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return down",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiver_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_raw_yac_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return half_sack_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_inside_twenty",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play_type_nfl",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return timeout",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_comp_air_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_oe",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rusher",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return return_touchdown",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return series",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_play_count",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle_1_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punter_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return air_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_dropback",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fixed_drive",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ngs_air_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_recovery",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return no_huddle",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackle_for_loss_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_1_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return penalty_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumbled_1_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return blocked_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return roof",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yac_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kicker_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return offense_personnel",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_3_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return xyac_fd",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return half_seconds_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kick_distance",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_defense_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_out_of_bounds",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_forced",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defensive_two_point_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return penalty",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return old_game_id_y",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return replay_or_challenge_result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rusher_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yards_gained",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_comp_yac_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_comp_air_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return comp_yac_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return forced_fumble_player_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_blocked",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return xyac_median_yardage",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return run_gap",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return extra_point_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_2_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_downed",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return forced_fumble_player_1_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_line",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_returner_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return posteam_timeouts_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kicker_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passer_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return safety_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return run_location",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_receiver_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return first_down_penalty",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return own_kickoff_recovery_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return half_sack_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return first_down",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punter_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return possession_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return penalty_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rusher_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumbled_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return own_kickoff_recovery",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return posteam",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return quarter_end",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_coach",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return air_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return end_clock_time",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_rusher_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return penalty_type",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passer_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return third_down_failed",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_hit_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return location",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return td_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return success",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_seconds_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return series_success",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return nflverse_game_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_raw_air_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return safety_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return return_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return opp_td_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumbled_2_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_hit_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return surface",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackle_with_assist_1_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defteam_timeouts_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_return",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return route",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play_deleted",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yardline_100",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return vegas_wp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return xpass",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return field_goal_result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_comp_air_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return first_down_pass",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return own_kickoff_recovery_td",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defenders_in_box",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_3_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return special",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_inside_twenty",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumbled_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defense_personnel",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return special_teams_play",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defense_coverage_type",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return stadium",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_rusher_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_4_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passer_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_real_start_time",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_defense_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return time_of_day",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yrdln",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return blocked_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_start_transition",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return n_offense",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_end_yard_line",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return half_sack_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_kickoff_returner_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return weather",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return interception_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_2_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yards_after_catch",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return side_of_field",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passer",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_rush",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return spread_line",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_1_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_fair_catch",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_length",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return xyac_mean_yardage",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defteam_score_post",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return start_time",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_defense_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rush_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return posteam_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return extra_point_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return was_pressure",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_4_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fourth_down_failed",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return air_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return opp_safety_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return order_sequence",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_first_downs",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return extra_point_result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return goal_to_go",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackle_with_assist_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return comp_air_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defensive_two_point_conv",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return interception",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_kickoff_returner_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return two_point_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return desc",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_hit_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_timeouts_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_wp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return tackle_with_assist_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_opening_kickoff",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return td_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play_type",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return vegas_home_wp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_game_clock_start",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fourth_down_converted",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return two_point_conversion_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return quarter_seconds_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return def_wp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_rush_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return interception_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return forced_fumble_player_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return own_kickoff_recovery_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_comp_yac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_comp_yac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wind",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return temp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return posteam_score_post",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_raw_yac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return safety_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_interception_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return score_differential",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_ended_with_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_receiver_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_scramble",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_in_endzone",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_defense_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_game_clock_end",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return vegas_home_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ydstogo",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return n_defense",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_date",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_hit_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_returner_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_returner_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ydsnet",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return series_result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return no_score_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_timeouts_remaining",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_wp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_raw_yac_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiver_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return safety",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return shotgun",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return first_down_rush",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return nfl_api_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_end_transition",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passer_jersey_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return forced_fumble_player_1_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defense_players",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return ep",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return field_goal_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return solo_tackle_2_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_start_yard_line",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return return_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return away_wp_post",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return penalty_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return jersey_number",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return offense_formation",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_raw_air_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rush_touchdown",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return number_of_pass_rushers",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return timeout_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return score_differential_post",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return incomplete_pass",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_touchdown",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_pass_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return td_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rusher_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_stadium",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return td_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return replay_or_challenge",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return cpoe",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rush",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return aborted_play",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return play_clock",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defteam",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defteam_score",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defensive_extra_point_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_inside20",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return cp",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_comp_air_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_in_endzone",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_kneel",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return assist_tackle_2_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_rush_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_play_id_started",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiver",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_rushing_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiver_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumbled_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return comp_yac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fixed_drive_result",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_recovery_1_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return home_wp_post",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_play_id_ended",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return out_of_bounds",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumbled_1_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_returner_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_comp_yac_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_receiving_yards",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_pass_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_lost",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return forced_fumble_player_2_team",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qb_spike",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return qtr",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return kickoff_out_of_bounds",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return drive_time_of_possession",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fg_prob",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return xyac_success",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return touchback",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return penalty_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fumble_out_of_bounds",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return complete_pass",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return div_game",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_home_raw_air_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_interception_player_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return forced_fumble_player_2_player_name",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return third_down_converted",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return posteam_type",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return defense_man_zone_type",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return total_away_rush_wpa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return stadium_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return xyac_epa",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return punt_attempt",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return old_game_id",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return lateral_reception",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pass_location",
-    "Cypher": "RETURN p.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return team information",
-    "Cypher": "RETURN t",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "t",
-        "AliasType": "Team"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return team_abbr",
-    "Cypher": "RETURN t.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "t",
-        "AliasType": "Team"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return division information",
-    "Cypher": "RETURN d",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "d",
-        "AliasType": "Division"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return name",
-    "Cypher": "RETURN d.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "d",
-        "AliasType": "Division"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return collegeconference information",
-    "Cypher": "RETURN c",
-    "QueryType": "RETURN",
+    "English": "[CollegeConference] - r[PLAYED_IN_COLLEGE_CONFERENCE] -> [Player]",
+    "EnglishTemplate": "CollegeConferences - PLAYED_IN_COLLEGE_CONFERENCE -> Players",
+    "Cypher": "MATCH (c:CollegeConference)-[:PLAYED_IN_COLLEGE_CONFERENCE]->(p:Player)",
+    "QueryType": "JUNCTION",
     "Requires": [
       {
         "Name": "c",
         "AliasType": "CollegeConference"
       }
     ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return name",
-    "Cypher": "RETURN c.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
+    "Provides": [
       {
         "Name": "c",
         "AliasType": "CollegeConference"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return college information",
-    "Cypher": "RETURN c",
-    "QueryType": "RETURN",
-    "Requires": [
+      },
       {
-        "Name": "c",
-        "AliasType": "College"
+        "Name": "p",
+        "AliasType": "Player"
       }
     ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return name",
-    "Cypher": "RETURN c.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "c",
-        "AliasType": "College"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return testnode information",
-    "Cypher": "RETURN t",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "t",
-        "AliasType": "TestNode"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return name",
-    "Cypher": "RETURN t.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "t",
-        "AliasType": "TestNode"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return playergame information",
-    "Cypher": "RETURN pg",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_game_id",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_id",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_display_name",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return position",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return position_group",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return recent_team",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return week",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return season_type",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return opponent_team",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return completions",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return attempts",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_yards",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_tds",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return interceptions",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sacks",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_yards",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_fumbles",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return sack_fumbles_lost",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_air_yards",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_yards_after_catch",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_first_downs",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_2pt_conversions",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return carries",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_yards",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_tds",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_fumbles",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_fumbles_lost",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_first_downs",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_epa",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return rushing_2pt_conversions",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receptions",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_fumbles",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_points_ppr",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_fumbles_lost",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return player_name",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return racr",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return passing_epa",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return target_share",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_yards",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_tds",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return yards_per_carry",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_2pt_conversions",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return special_teams_tds",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return wopr",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return targets",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return pacr",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_first_downs",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return dakota",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return headshot_url",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return game_id",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_yards_after_catch",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_epa",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return won",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return receiving_air_yards",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return air_yards_share",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
-    "Slots": []
-  },
-  {
-    "English": "return fantasy_points",
-    "Cypher": "RETURN pg.[object Object]",
-    "QueryType": "RETURN",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [],
     "Slots": []
   }
 ]

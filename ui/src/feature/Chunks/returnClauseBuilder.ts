@@ -37,7 +37,17 @@ const getPropertiesByAliasType = (
       return [...PLAY_STATS.map((x) => x.key)]; // possession team as sticky column
 
     case AliasType.Game:
-      return ["game_id", "week", "season", "home_team", "away_team"];
+      return [
+        "game_id",
+        "week",
+        "season",
+        "home_team",
+        "away_team",
+        "over_odds",
+        "under_odds",
+        "home_coach",
+        "away_coach",
+      ];
 
     case AliasType.Season:
       return ["season"];
@@ -103,5 +113,6 @@ export const buildSmartReturnClause = (
   if (aliases.length === 1) {
     return `RETURN DISTINCT ${returnParts.join(", ")}`;
   }
+  console.log(returnParts);
   return `RETURN ${returnParts.join(", ")}`;
 };

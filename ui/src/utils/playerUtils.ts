@@ -25,18 +25,27 @@ export const playerToSlug = (player: Player): string => {
 export const generatePlayerUrl = (
   playerData: Record<string, any>,
 ): string | null => {
+  // TODO: This sucks. Hardcoded checks aren't gonna work with dynamic schema
   // Look for gsis_id with common prefixes
   const gsisId =
     playerData["p.gsis_id"] ||
     playerData["gsis_id"] ||
+    playerData["pg.player_id"] ||
+    playerData["ps.player_id"] ||
     playerData["player.gsis_id"];
 
   // Look for display_name with common prefixes
   const displayName =
     playerData["p.display_name"] ||
     playerData["display_name"] ||
+    playerData["player_display_name"] ||
+    playerData["pg.player_display_name"] ||
+    playerData["ps.player_display_name"] ||
+    playerData["ps.player_name"] ||
     playerData["player.display_name"];
 
+  console.log("displayName", displayName);
+  console.log("gsisid", gsisId);
   if (!gsisId || !displayName) {
     return null;
   }
