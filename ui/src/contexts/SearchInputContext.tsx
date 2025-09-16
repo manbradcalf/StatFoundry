@@ -69,10 +69,10 @@ export const SearchInputProvider: React.FC<SearchInputProviderProps> = ({
   const [isInputFocused, setIsInputFocused] = useState(false);
 
   // Get all chunks (static + dynamic)
-  const { dynamicChunks } = useChunkGenerator();
+  const { generatedChunks } = useChunkGenerator();
 
   // Generate suggestions using two-step filtering
-  const rawSuggestions = useSuggestions(query, dynamicChunks, chain);
+  const rawSuggestions = useSuggestions(query, generatedChunks, chain);
 
   // Transform suggestions to match expected Suggestion interface
   const enhancedSuggestions = rawSuggestions.map((suggestion) => ({
