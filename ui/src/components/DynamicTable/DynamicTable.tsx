@@ -40,12 +40,13 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   });
 
   // Data processing with visibility filtering
-  const { processedData: visibleProcessedData, arrayKeys: visibleArrayKeys, finalKeys: visibleFinalKeys } = useTableData({
-    data,
-    columns,
-    excludeColumns,
-    visibleColumns: columnVisibility.visibleColumns,
-  });
+  const { processedData: visibleProcessedData, finalKeys: visibleFinalKeys } =
+    useTableData({
+      data,
+      columns,
+      excludeColumns,
+      visibleColumns: columnVisibility.visibleColumns,
+    });
 
   // Sorting hook
   const { sortConfig, sortedData, handleSort, getSortIndicator } =
@@ -119,7 +120,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
           />
           <TableBody
             paginatedData={paginatedData}
-            arrayKeys={visibleArrayKeys}
             finalKeys={visibleFinalKeys}
             startIndex={startIndex}
             excludeColumns={excludeColumns}

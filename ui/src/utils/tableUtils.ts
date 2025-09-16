@@ -19,7 +19,7 @@ export const isNumeric = (value: any): boolean => {
 export const compareValues = (
   a: any,
   b: any,
-  direction: "asc" | "desc"
+  direction: "asc" | "desc",
 ): number => {
   // Handle null/undefined values - always put them at the end
   if (a == null && b == null) return 0;
@@ -63,17 +63,18 @@ export const formatColumnHeader = (key: string): string => {
 export const isClickable = (key: string): boolean => {
   // Normalize the key by removing prefixes and converting to lowercase
   const normalizedKey = key.replace(/^[a-z]+\./, "").toLowerCase();
-  
+
   // Clickable column patterns
   const clickablePatterns = [
     // Player patterns
-    'display_name',
-    'player_name', 
-    'name',
+    "display_name",
+    "player_name",
+    "player_display_name",
+    "name",
     // Game patterns
-    'game_id'
+    "game_id",
   ];
-  
+
   // Check if this column matches any clickable patterns
   return clickablePatterns.includes(normalizedKey);
 };

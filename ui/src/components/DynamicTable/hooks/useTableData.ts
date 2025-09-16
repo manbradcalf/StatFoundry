@@ -10,7 +10,6 @@ interface UseTableDataProps {
 
 interface UseTableDataReturn {
   processedData: ProcessedDataItem[];
-  arrayKeys: string[];
   finalKeys: string[];
   availableColumns: string[];
 }
@@ -27,49 +26,22 @@ export const useTableData = ({
       return [];
     }
 
-
     return data.map((item) => {
       const flattened: any = {};
-      const arrays: any = {};
 
       const flattenObject = (obj: any, prefix = "") => {
         Object.keys(obj).forEach((key) => {
-          const value = obj[key];
+          const value = Array.isArray(obj[key]) ? obj[key].join() : obj[key];
           const newKey = prefix ? `${prefix}.${key}` : key;
 
-          if (Array.isArray(value)) {
-            // Convert arrays of primitives to objects with meaningful keys
-            const processedArray = value.map((item, index) => {
-              if (
-                typeof item === "string" ||
-                typeof item === "number" ||
-                typeof item === "boolean" ||
-                item === null
-              ) {
-                return { value: item, index: index };
-              }
-              return item;
-            });
-            arrays[newKey] = processedArray;
-          } else if (value && typeof value === "object") {
-            flattenObject(value, newKey);
-          } else {
-            flattened[newKey] = value;
-          }
+          flattened[newKey] = value;
         });
       };
 
       flattenObject(item);
-      return { flattened, arrays };
+      return { flattened };
     });
   }, [data]);
-
-  // Get array keys
-  const arrayKeys = useMemo(() => {
-    return Array.from(
-      new Set(flattenedData.flatMap((item) => Object.keys(item.arrays)))
-    );
-  }, [flattenedData]);
 
   // Determine available columns (all columns that could be shown)
   const availableColumns = useMemo(() => {
@@ -80,12 +52,14 @@ export const useTableData = ({
 
     // Otherwise, auto-detect all available columns
     const allFlatKeys = Array.from(
-      new Set(flattenedData.flatMap((item) => Object.keys(item.flattened)))
+      new Set(flattenedData.flatMap((item) => Object.keys(item.flattened))),
     );
-    
+
     // Filter out excluded columns and completely empty columns
-    const filteredKeys = allFlatKeys.filter((key) => !excludeColumns.includes(key));
-    
+    const filteredKeys = allFlatKeys.filter(
+      (key) => !excludeColumns.includes(key),
+    );
+
     const hasNonEmptyValues = (key: string): boolean => {
       return flattenedData.some((item) => {
         const value = item.flattened[key];
@@ -108,7 +82,6 @@ export const useTableData = ({
 
   return {
     processedData: flattenedData,
-    arrayKeys,
     finalKeys,
     availableColumns,
   };

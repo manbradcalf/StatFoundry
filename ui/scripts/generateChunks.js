@@ -37,9 +37,8 @@ class SimpleChunkGenerator {
     const chunks = [];
     this.schema.nodes.forEach((node) => {
       const numericProperties = this.getNumericProperties(node);
-      console.log(`numbers for ${node.label}`, numericProperties);
+      const arrayProperties = this.getStringArrayProperties(node);
       const stringProperties = this.getStringProperties(node);
-      console.log(`strings for ${node.label}`, stringProperties);
       const stringArrayProperties = this.getStringArrayProperties(node);
       console.log(`string arrays for ${node.label}`, stringArrayProperties);
 
@@ -110,39 +109,38 @@ class SimpleChunkGenerator {
             },
           ],
         });
-
+      });
+      stringArrayProperties.forEach((prop) => {
         // Generate string array contains chunks
-        stringArrayProperties.forEach((prop) => {
-          const readableProp = prop.name;
-          chunks.push({
-            English: `for [${prop.name}] (${node.label})`,
-            EnglishTemplate: `with ${readableProp} equal to {value}`,
-            CypherTemplate: `{value} IN ${this.getVariableName(node.label)}.${prop.name}`,
-            QueryType: "FILTER",
-            Requires: [
-              { Name: this.getVariableName(node.label), AliasType: node.label },
-            ],
-            Provides: [
-              { Name: this.getVariableName(node.label), AliasType: node.label },
-            ],
-            Slots: [
-              {
-                Name: "stat",
-                Value: prop.name,
-                SlotValueTypes: ["MultiStatFilter"],
-              },
-              {
-                Name: "condition",
-                Value: "=",
-                SlotValueTypes: ["FilterCondition"],
-              },
-              {
-                Name: "value",
-                Value: "something",
-                SlotValueTypes: ["FilterValue"],
-              },
-            ],
-          });
+        chunks.push({
+          // if property name is pluralized return singular
+          English: `with [${prop.name.slice(-1) === "s" ? prop.name.slice(0, prop.name.length - 1) : prop.name}] in [${prop.name}] (${node.label})`,
+          EnglishTemplate: `with {value} in ${prop.name}`,
+          CypherTemplate: `{value} IN ${this.getVariableName(node.label)}.${prop.name}`,
+          QueryType: "FILTER",
+          Requires: [
+            { Name: this.getVariableName(node.label), AliasType: node.label },
+          ],
+          Provides: [
+            { Name: this.getVariableName(node.label), AliasType: node.label },
+          ],
+          Slots: [
+            {
+              Name: "value",
+              Value: "BAL",
+              SlotValueTypes: ["FilterValue"],
+            },
+            {
+              Name: "condition",
+              Value: "in",
+              SlotValueTypes: ["FilterCondition"],
+            },
+            {
+              Name: "stat",
+              Value: prop.name,
+              SlotValueTypes: ["MultiStatFilter"],
+            },
+          ],
         });
       });
     });

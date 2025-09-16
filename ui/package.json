@@ -28,7 +28,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run generate-chunks && react-scripts build",
+    "build": "npm run generate-types && npm run generate-chunks && react-scripts build",
+    "generate-types": "node scripts/generateReturnTypes.js",
     "generate-chunks": "node scripts/generateChunks.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

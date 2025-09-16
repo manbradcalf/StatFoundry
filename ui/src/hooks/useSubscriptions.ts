@@ -270,7 +270,6 @@ export const useSubscriptions = () => {
         );
 
         if (!response.ok) {
-          console.log("bad resposne", response);
           throw new Error(`Verification failed: ${response.statusText}`);
         }
 
