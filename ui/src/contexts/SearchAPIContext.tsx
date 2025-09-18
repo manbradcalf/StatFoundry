@@ -43,17 +43,9 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({
     searchResults,
     isSearching,
     searchError,
-    executeSearch: executeSearchAPI,
+    executeSearch,
     clearSearch,
   } = useSearchAPIEnhanced();
-
-  // Execute search with active alias filtering
-  const executeSearch = useCallback(
-    (cypher: string, aliases: Alias[], position: string) => {
-      executeSearchAPI(cypher, aliases, position);
-    },
-    [executeSearchAPI],
-  );
 
   const value: SearchAPIContextType = {
     // State
