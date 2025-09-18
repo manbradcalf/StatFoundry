@@ -13,7 +13,7 @@ understand that ben, the person talking to you, likes things to be explainable
 
 The information below should help you with this repo. this repo is statfoundry.
 
-# StatFoundry Query Builder - Design Philosophy & Implementation Rules
+<!-- # StatFoundry Query Builder - Design Philosophy & Implementation Rules
 
 ## The Real Vision (Why This Matters)
 
@@ -325,6 +325,6 @@ useEffect(() => {
 
 This ESPN-style pattern provides SEO-friendly URLs while maintaining unique identification, ready to scale to other NFL entities.
 
----
-
-_Remember: We're building a relationship traversal language for sports data discovery, not just a stats tool that happens to use a graph database._
+--- -->
+<!-- 
+_Remember: We're building a relationship traversal language for sports data discovery, not just a stats tool that happens to use a graph database._ -->
