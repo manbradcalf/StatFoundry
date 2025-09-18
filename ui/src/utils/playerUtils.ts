@@ -1,4 +1,4 @@
-import { Player } from "../feature/Chunks/Entities/Player";
+import { PlayerProperties } from "../feature/Chunks/Views/PlayerLabelView";
 
 /**
  * Converts a player display name to a URL-friendly slug
@@ -13,8 +13,8 @@ export const displayNameToSlug = (displayName: string): string => {
 /**
  * Converts a player object to a URL-friendly slug
  */
-export const playerToSlug = (player: Player): string => {
-  return displayNameToSlug(player.properties.display_name);
+export const playerToSlug = (player: PlayerProperties): string => {
+  return displayNameToSlug(player.display_name);
 };
 
 /**

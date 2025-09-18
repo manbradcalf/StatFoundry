@@ -1,74 +1,51 @@
 import { Alias } from "./Types/Alias";
 import { AliasType } from "./Enums/AliasType";
-import { PLAYER_INFO_PROPERTIES } from "./Views/PlayerInfo";
-import { PLAYER_GAME_INFO_PROPERTIES } from "./Views/PlayerGameInfo";
-import { PLAYER_SEASON_INFO_PROPERTIES } from "./Views/PlayerSeasonInfo";
-import { PASSING_STATS } from "./Views/PassingStats";
-import { FLEX_STATS, RECEIVING_STATS, RUSHING_STATS } from "./Views/FlexStats";
-import { FANTASY_STATS } from "./Views/FantasyStats";
-import { PLAY_STATS } from "./Views/PlayStats";
-import { GAME_STATS } from "./Views/GameStats";
+import { PLAYER_LABEL_PROPERTIES } from "./Views/PlayerLabelView";
+import { PLAYERGAME_LABEL_PROPERTIES } from "./Views/PlayerGameLabelView";
+import { PLAYERSEASON_LABEL_PROPERTIES } from "./Views/PlayerSeasonLabelView";
+import { PLAY_LABEL_PROPERTIES } from "./Views/PlayLabelView";
+import { GAME_LABEL_PROPERTIES } from "./Views/GameLabelView";
+import { SEASON_LABEL_PROPERTIES } from "./Views/SeasonLabelView";
+import { COLLEGE_LABEL_PROPERTIES } from "./Views/CollegeLabelView";
+import { COLLEGECONFERENCE_LABEL_PROPERTIES } from "./Views/CollegeConferenceLabelView";
 
-// For RESULTS building...
-// Helper function to get properties for a given label
-const getPropertiesByAliasType = (
-  aliasType: AliasType,
-  position: string,
-): string[] => {
-  const stats = getStatsByPosition(position);
+const getPropertiesByType = (aliasType: AliasType,position: string): string[] => {
   switch (aliasType) {
     case AliasType.Player:
-      return PLAYER_INFO_PROPERTIES;
-
+      return PLAYER_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.PlayerGame:
-      return [
-        ...PLAYER_GAME_INFO_PROPERTIES,
-        ...stats,
-        ...FANTASY_STATS.map((x) => x.key),
-      ];
-
+      return PLAYERGAME_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.PlayerSeason:
-      return [
-        ...PLAYER_SEASON_INFO_PROPERTIES,
-        ...stats,
-        ...FANTASY_STATS.map((x) => x.key),
-      ];
-
+      return PLAYERSEASON_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.Play:
-      return [...PLAY_STATS.map((x) => x.key)];
-
+      return PLAY_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.Game:
-      return [...GAME_STATS].map((x) => x.key);
-
+      return GAME_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.Season:
-      return ["season"];
-
+      return SEASON_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.College:
-      return ["name"];
-
+      return COLLEGE_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.CollegeConference:
-      return ["name"];
-
-    case AliasType.Coach:
-      return ["name"];
-
+      return COLLEGECONFERENCE_LABEL_PROPERTIES.map((x) => x.key);
     default:
-      return [`*`]; // Fallback for unknown labels
+      return ["*"]; // Fallback for unknown labels
   }
 };
 
-const getStatsByPosition = (position: string): string[] => {
+const getPlayerGameStatsByPosition = (position: string): string[] => {
   switch (position) {
     case "RB":
-      return [...RUSHING_STATS, ...RECEIVING_STATS].map((x) => x.key);
     case "WR":
-      return [...RECEIVING_STATS, ...RUSHING_STATS].map((x) => x.key);
     case "TE":
-      return [...RECEIVING_STATS, ...RUSHING_STATS].map((x) => x.key);
+      return [...PLAYERGAME_LABEL_PROPERTIES]
+        .map((x) => x.key)
+        .filter((x) => x.includes("rush") || x.includes("rece"));
     case "QB":
-      return [...PASSING_STATS, ...RUSHING_STATS].map((x) => x.key);
+      return [...PLAYERGAME_LABEL_PROPERTIES]
+        .map((x) => x.key)
+        .filter((x) => x.includes("pass"));
     default:
-      return [...FLEX_STATS, ...PASSING_STATS].map((x) => x.key);
+      return [...PLAYERGAME_LABEL_PROPERTIES].map((x) => x.key);
   }
 };
 
@@ -87,9 +64,8 @@ export const buildSmartReturnClause = (
   const returnParts: string[] = [];
 
   // Process each alias individually to support multiples of same type
-  // TODO: revisit
   aliases.forEach((alias) => {
-    const properties = getPropertiesByAliasType(alias.AliasType, position);
+    const properties = getPropertiesByType(alias.AliasType, position);
 
     if (
       properties.length === 0 &&

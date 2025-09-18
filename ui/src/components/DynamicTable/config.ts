@@ -1,63 +1,7 @@
-import { PASSING_STATS } from "../../feature/Chunks/Views/PassingStats";
-import {
-  RECEIVING_STATS,
-  RUSHING_STATS,
-} from "../../feature/Chunks/Views/FlexStats";
 import { TableGroup, ColumnGroup } from "./types";
-import {
-  GAME_STATS,
-  GAME_STATS_GAME,
-  GAME_STATS_SEASON,
-} from "../../feature/Chunks/Views/GameStats";
 
 // Default NFL stats grouping
-export const defaultNFLGroups: TableGroup[] = [
-  {
-    name: "player",
-    keys: [
-      "player_display_name",
-      "display_name",
-      "position",
-      "position_group",
-      "recent_team",
-    ],
-    priority: 1,
-  },
-  {
-    name: "rushing",
-    keys: [...RUSHING_STATS.map((x) => x.key)],
-    priority: 2,
-  },
-  {
-    name: "receiving",
-    keys: [...RECEIVING_STATS.map((x) => x.key)],
-    priority: 3,
-  },
-  {
-    name: "passing",
-    keys: [...PASSING_STATS.map((x) => x.key)],
-    priority: 4,
-  },
-  {
-    name: "fantasy",
-    keys: ["fantasy_points", "fantasy_points_ppr"],
-    priority: 5,
-  },
-  {
-    name: "game",
-    keys: [
-      "opponent_team",
-      "won",
-      "season",
-      "week",
-      "season_type",
-      "game_id",
-      "player_game_id",
-      "player_id",
-    ],
-    priority: 6,
-  },
-];
+export const defaultNFLGroups: TableGroup[] = [];
 
 export const defaultExcludeColumns = [
   "headshot_url",
@@ -85,47 +29,4 @@ export const alwaysVisibleColumns = [
 ];
 
 // Column groups for organizing the visibility dropdown
-export const columnGroups: ColumnGroup[] = [
-  {
-    name: "player",
-    label: "Player Info",
-    columns: [
-      "player_display_name",
-      "display_name",
-      "position",
-      "position_group",
-      "recent_team",
-    ],
-    priority: 1,
-  },
-  {
-    name: "rushing",
-    label: "Rushing Stats",
-    columns: RUSHING_STATS.map((stat) => stat.key),
-    priority: 2,
-  },
-  {
-    name: "receiving",
-    label: "Receiving Stats",
-    columns: RECEIVING_STATS.map((stat) => stat.key),
-    priority: 3,
-  },
-  {
-    name: "passing",
-    label: "Passing Stats",
-    columns: PASSING_STATS.map((stat) => stat.key),
-    priority: 4,
-  },
-  {
-    name: "fantasy",
-    label: "Fantasy",
-    columns: ["fantasy_points", "fantasy_points_ppr"],
-    priority: 5,
-  },
-  {
-    name: "gameProperties",
-    label: "Game Info",
-    columns: [...GAME_STATS.map((x) => x.key)],
-    priority: 6,
-  },
-];
+export const columnGroups: ColumnGroup[] = [];

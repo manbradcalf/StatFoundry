@@ -1,5 +1,4 @@
-import { PlayerProperties } from "../feature/Chunks/Entities/Player";
-
+import { PlayerProperties } from "../feature/Chunks/Views/PlayerLabelView";
 interface JsonLdData {
   "@context": string;
   "@type": string;

@@ -10,128 +10,32 @@ class TypeScriptViewGenerator {
 
   generateAllViews() {
     this.schema.nodes.forEach((node) => {
+      console.log("generating views for node");
+      console.log(node);
       this.generateViewForNode(node);
     });
-
-    // Generate combined views
-    this.generateCombinedViews();
   }
 
   generateViewForNode(node) {
-    const viewName = this.getViewName(node.label);
-    const properties = this.categorizeProperties(node.properties);
-
     // Generate base info properties (non-statistical)
-    if (properties.info.length > 0) {
-      this.generateInfoView(node.label, properties.info);
-    }
-
-    // Generate stat properties if they exist
-    if (properties.stats.length > 0) {
-      this.generateStatsView(node.label, properties.stats);
+    if (node.properties.length > 0) {
+      this.generateView(node.label, node.properties);
     }
   }
 
-  generateInfoView(label, infoProperties) {
-    const fileName = this.getInfoFileName(label);
-    const constantName = this.getInfoConstantName(label);
-
-    const content = `export const ${constantName} = [
-${infoProperties.map((prop) => `  "${prop.name}",`).join("\n")}
-];
-`;
-
-    this.writeViewFile(fileName, content);
-  }
-
-  generateStatsView(label, statProperties) {
-    const fileName = this.getStatsFileName(label);
-    const constantName = this.getStatsConstantName(label);
+  generateView(label, properties) {
+    const fileName = this.getFileName(label);
+    const constantName = this.getConstantName(label);
 
     // Generate base stats array
-    const content = `export const ${constantName} = [
-${statProperties.map((prop) => `  { key: "${prop.name}", type: "${prop.type}" },`).join("\n")}
-];
+    const content = `export const ${constantName} = [${properties.map((prop) => `  { key: "${prop.name}", type: "${prop.type}" },`).join("\n")}];`;
 
-export const ${constantName}_SEASON = [
-  ...${constantName},
-  { key: "teams", type: "string" }, // many teams per player per season
-];
+    // Generate a valid TypeScript interface as a string template
+    const labelInterface = `export interface ${label}Properties {
+${properties.map((prop) => `  ${prop.name}: ${this.mapSchemaTypeToTS(prop.type)};`).join("\n")}
+}`;
 
-export const ${constantName}_GAME = [
-  ...${constantName},
-  { key: "recent_team", type: "string" }, // one team per player per game
-];
-`;
-
-    this.writeViewFile(fileName, content);
-  }
-
-  generateCombinedViews() {
-    // Generate FlexStats (combination of rushing and receiving)
-    const flexContent = `export const RUSHING_STATS = [
-  { key: "carries", type: "number" },
-  { key: "yards_per_carry", type: "number" },
-  { key: "rushing_yards", type: "number" },
-  { key: "rushing_tds", type: "number" },
-  { key: "rushing_first_downs", type: "number" },
-  { key: "rushing_epa", type: "number" },
-  { key: "rushing_fumbles", type: "number" },
-  { key: "rushing_fumbles_lost", type: "number" },
-];
-
-export const RECEIVING_STATS = [
-  { key: "receptions", type: "number" },
-  { key: "receiving_yards", type: "number" },
-  { key: "receiving_tds", type: "number" },
-  { key: "receiving_air_yards", type: "number" },
-  { key: "receiving_first_downs", type: "number" },
-  { key: "receiving_epa", type: "number" },
-  { key: "air_yards_share", type: "number" },
-  { key: "targets", type: "number" },
-  { key: "target_share", type: "number" },
-];
-export const FLEX_STATS = [...RUSHING_STATS, ...RECEIVING_STATS];
-
-export const FLEX_STATS_SEASON = [
-  ...FLEX_STATS,
-  { key: "teams", type: "string" }, // many teams per player per season
-];
-
-export const FLEX_STATS_GAME = [
-  ...FLEX_STATS,
-  { key: "recent_team", type: "string" }, // one team per player per game
-];
-`;
-
-    this.writeViewFile("FlexStats.ts", flexContent);
-
-    // Generate FantasyStats
-    const fantasyContent = `export const FANTASY_STATS = [
-  { key: "fantasy_points", type: "number" },
-  { key: "fantasy_points_ppr", type: "number" },
-];
-`;
-
-    this.writeViewFile("FantasyStats.ts", fantasyContent);
-  }
-
-  categorizeProperties(properties) {
-    const info = [];
-    const stats = [];
-
-    properties.forEach((prop) => {
-      const propData = this.parseProperty(prop);
-
-      // Categorize as info if it's basic identification/metadata
-      if (this.isInfoProperty(propData.name)) {
-        info.push(propData);
-      } else {
-        stats.push(propData);
-      }
-    });
-
-    return { info, stats };
+    this.writeViewFile(fileName, content + labelInterface);
   }
 
   parseProperty(prop) {
@@ -164,55 +68,18 @@ export const FLEX_STATS_GAME = [
     return typeMapping[schemaType] || "string";
   }
 
-  isInfoProperty(propName) {
-    const infoPatterns = [
-      /^.*_id$/,
-      /^.*_name$/,
-      /^display_name$/,
-      /^position$/,
-      /^team/,
-      /^season$/,
-      /^week$/,
-      /^game_id$/,
-      /^opponent/,
-      /^recent_team$/,
-      /^won$/,
-      /^coach/,
-      /^odds$/,
-    ];
-
-    return infoPatterns.some((pattern) => pattern.test(propName));
-  }
-
   getViewName(label) {
     return label.replace(/[:`]/g, "");
   }
 
-  getInfoFileName(label) {
+  getFileName(label) {
     const cleanLabel = this.getViewName(label);
-    return `${cleanLabel}Info.ts`;
+    return `${cleanLabel}LabelView.ts`;
   }
 
-  getStatsFileName(label) {
+  getConstantName(label) {
     const cleanLabel = this.getViewName(label);
-    return `${cleanLabel}Stats.ts`;
-  }
-
-  getInfoConstantName(label) {
-    const cleanLabel = this.getViewName(label);
-    // Handle special cases for backward compatibility
-    if (cleanLabel === "PlayerGame") {
-      return "PLAYER_GAME_INFO_PROPERTIES";
-    }
-    if (cleanLabel === "PlayerSeason") {
-      return "PLAYER_SEASON_INFO_PROPERTIES";
-    }
-    return `${cleanLabel.toUpperCase()}_INFO_PROPERTIES`;
-  }
-
-  getStatsConstantName(label) {
-    const cleanLabel = this.getViewName(label);
-    return `${cleanLabel.toUpperCase()}_STATS`;
+    return `${cleanLabel.toUpperCase()}_LABEL_PROPERTIES`;
   }
 
   writeViewFile(fileName, content) {
@@ -233,8 +100,8 @@ async function generateTypes() {
   try {
     // github sets CI=true during actions automatically
     const isCI = process.env.CI === "true";
-    console.log("= Fetching schema from API for type generation...");
-    console.log("> isCI:", isCI);
+    console.log("= Fetching schema from API for type generation...");
+    console.log("> isCI:", isCI);
 
     // Determine API endpoint based on environment
     const baseUrl = isCI
@@ -252,7 +119,6 @@ async function generateTypes() {
         port: url.port || (url.protocol === "https:" ? 443 : 80),
         path: url.pathname,
         method: "GET",
-        headers: { Authorization: "Bearer admin-dev-key-123" },
       };
 
       const requestModule = url.protocol === "https:" ? https : http;
@@ -309,4 +175,3 @@ if (require.main === module) {
 }
 
 module.exports = { generateTypes };
-
