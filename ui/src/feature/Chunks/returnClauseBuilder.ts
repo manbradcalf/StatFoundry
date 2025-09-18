@@ -7,6 +7,13 @@ import { PASSING_STATS } from "./Views/PassingStats";
 import { FLEX_STATS, RECEIVING_STATS, RUSHING_STATS } from "./Views/FlexStats";
 import { FANTASY_STATS } from "./Views/FantasyStats";
 import { PLAY_STATS } from "./Views/PlayStats";
+import {
+  GAME_PROPERTIES,
+  GAME_PROPERTIES_BETTING,
+  GAME_PROPERTIES_IDS,
+  GAME_PROPERTIES_PEOPLE,
+  GAME_PROPERTIES_PLACE,
+} from "./Views/GameStats";
 
 // For RESULTS building...
 // Helper function to get properties for a given label
@@ -38,16 +45,12 @@ const getPropertiesByAliasType = (
 
     case AliasType.Game:
       return [
-        "game_id",
-        "week",
-        "season",
-        "home_team",
-        "away_team",
-        "over_odds",
-        "under_odds",
-        "home_coach",
-        "away_coach",
-      ];
+        ...GAME_PROPERTIES,
+        ...GAME_PROPERTIES_BETTING,
+        ...GAME_PROPERTIES_PEOPLE,
+        ...GAME_PROPERTIES_PLACE,
+        ...GAME_PROPERTIES_IDS,
+      ].map((x) => x.key);
 
     case AliasType.Season:
       return ["season"];
