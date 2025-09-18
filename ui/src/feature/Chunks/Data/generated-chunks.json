@@ -117,6 +117,19 @@
     "Slots": []
   },
   {
+    "English": "Coachs",
+    "Cypher": "MATCH (c:Coach)",
+    "QueryType": "MATCH_START",
+    "Requires": [],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "Coach"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "Player Games",
     "Cypher": "MATCH (pg:PlayerGame)",
     "QueryType": "MATCH_START",
@@ -5211,6 +5224,48 @@
     ]
   },
   {
+    "English": "[display_score] (Game)",
+    "Cypher": " g.display_score {condition} {value}",
+    "EnglishTemplate": "with display_score equal to {value}",
+    "CypherTemplate": " g.display_score = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "display_score",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[home_moneyline] (Game)",
     "Cypher": " g.home_moneyline {condition} {value}",
     "EnglishTemplate": "with home_moneyline equal to {value}",
@@ -5610,6 +5665,48 @@
       {
         "Name": "stat",
         "Value": "gametime",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[winner] (Game)",
+    "Cypher": " g.winner {condition} {value}",
+    "EnglishTemplate": "with winner equal to {value}",
+    "CypherTemplate": " g.winner = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "winner",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -21759,6 +21856,48 @@
     ]
   },
   {
+    "English": "[name] (Coach)",
+    "Cypher": " c.name {condition} {value}",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " c.name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "Coach"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "Coach"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[season] (PlayerGame)",
     "Cypher": " pg.season ",
     "EnglishTemplate": "season {condition} {value}",
@@ -24278,6 +24417,52 @@
       {
         "Name": "p",
         "AliasType": "Player"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Coach] - r[COACHED] -> [Game]",
+    "EnglishTemplate": "Coachs - COACHED -> Games",
+    "Cypher": "MATCH (c:Coach)-[:COACHED]->(g:Game)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "c",
+        "AliasType": "Coach"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "c",
+        "AliasType": "Coach"
+      },
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Game] - r[COACHED] -> [Coach]",
+    "EnglishTemplate": "Games - COACHED -> Coachs",
+    "Cypher": "MATCH (g:Game)-[:COACHED]->(c:Coach)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      },
+      {
+        "Name": "c",
+        "AliasType": "Coach"
       }
     ],
     "Slots": []

@@ -7,13 +7,7 @@ import { PASSING_STATS } from "./Views/PassingStats";
 import { FLEX_STATS, RECEIVING_STATS, RUSHING_STATS } from "./Views/FlexStats";
 import { FANTASY_STATS } from "./Views/FantasyStats";
 import { PLAY_STATS } from "./Views/PlayStats";
-import {
-  GAME_PROPERTIES,
-  GAME_PROPERTIES_BETTING,
-  GAME_PROPERTIES_IDS,
-  GAME_PROPERTIES_PEOPLE,
-  GAME_PROPERTIES_PLACE,
-} from "./Views/GameStats";
+import { GAME_STATS } from "./Views/GameStats";
 
 // For RESULTS building...
 // Helper function to get properties for a given label
@@ -41,16 +35,10 @@ const getPropertiesByAliasType = (
       ];
 
     case AliasType.Play:
-      return [...PLAY_STATS.map((x) => x.key)]; // possession team as sticky column
+      return [...PLAY_STATS.map((x) => x.key)];
 
     case AliasType.Game:
-      return [
-        ...GAME_PROPERTIES,
-        ...GAME_PROPERTIES_BETTING,
-        ...GAME_PROPERTIES_PEOPLE,
-        ...GAME_PROPERTIES_PLACE,
-        ...GAME_PROPERTIES_IDS,
-      ].map((x) => x.key);
+      return [...GAME_STATS].map((x) => x.key);
 
     case AliasType.Season:
       return ["season"];
@@ -61,8 +49,11 @@ const getPropertiesByAliasType = (
     case AliasType.CollegeConference:
       return ["name"];
 
+    case AliasType.Coach:
+      return ["name"];
+
     default:
-      return ["*"]; // Fallback for unknown labels
+      return [`*`]; // Fallback for unknown labels
   }
 };
 
@@ -96,6 +87,7 @@ export const buildSmartReturnClause = (
   const returnParts: string[] = [];
 
   // Process each alias individually to support multiples of same type
+  // TODO: revisit
   aliases.forEach((alias) => {
     const properties = getPropertiesByAliasType(alias.AliasType, position);
 

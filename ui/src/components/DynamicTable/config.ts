@@ -5,10 +5,9 @@ import {
 } from "../../feature/Chunks/Views/FlexStats";
 import { TableGroup, ColumnGroup } from "./types";
 import {
-  GAME_PROPERTIES,
-  GAME_PROPERTIES_BETTING,
-  GAME_PROPERTIES_PEOPLE,
-  GAME_PROPERTIES_PLACE,
+  GAME_STATS,
+  GAME_STATS_GAME,
+  GAME_STATS_SEASON,
 } from "../../feature/Chunks/Views/GameStats";
 
 // Default NFL stats grouping
@@ -126,25 +125,7 @@ export const columnGroups: ColumnGroup[] = [
   {
     name: "gameProperties",
     label: "Game Info",
-    columns: [...GAME_PROPERTIES.map((x) => x.key)],
-    priority: 6,
-  },
-  {
-    name: "gameBetting",
-    label: "Odds & Lines",
-    columns: [...GAME_PROPERTIES_BETTING.map((x) => x.key)],
-    priority: 6,
-  },
-  {
-    name: "gamePeople",
-    label: "Coaches & Refs",
-    columns: [...GAME_PROPERTIES_PEOPLE.map((x) => x.key)],
-    priority: 6,
-  },
-  {
-    name: "gameWeather",
-    label: "Weather & Place",
-    columns: [...GAME_PROPERTIES_PLACE.map((x) => x.key)],
+    columns: [...GAME_STATS.map((x) => x.key)],
     priority: 6,
   },
 ];

@@ -1,3 +1,4 @@
+// TODO: Write labels to this during generation
 export enum AliasType {
   Player = "Player",
   Team = "Team",
@@ -6,6 +7,7 @@ export enum AliasType {
   PlayerGame = "PlayerGame",
   PlayerSeason = "PlayerSeason",
   Play = "Play",
+  Coach = "Coach",
   // Sub-types (not real labels in graphs. Used for return clause building)
   PassingGame = "PassingGame",
   FlexGame = "FlexGame",

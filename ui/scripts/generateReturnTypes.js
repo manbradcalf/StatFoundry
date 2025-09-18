@@ -37,7 +37,7 @@ class TypeScriptViewGenerator {
     const constantName = this.getInfoConstantName(label);
 
     const content = `export const ${constantName} = [
-${infoProperties.map(prop => `  "${prop.name}",`).join('\n')}
+${infoProperties.map((prop) => `  "${prop.name}",`).join("\n")}
 ];
 `;
 
@@ -50,7 +50,7 @@ ${infoProperties.map(prop => `  "${prop.name}",`).join('\n')}
 
     // Generate base stats array
     const content = `export const ${constantName} = [
-${statProperties.map(prop => `  { key: "${prop.name}", type: "${prop.type}" },`).join('\n')}
+${statProperties.map((prop) => `  { key: "${prop.name}", type: "${prop.type}" },`).join("\n")}
 ];
 
 export const ${constantName}_SEASON = [
@@ -120,7 +120,7 @@ export const FLEX_STATS_GAME = [
     const info = [];
     const stats = [];
 
-    properties.forEach(prop => {
+    properties.forEach((prop) => {
       const propData = this.parseProperty(prop);
 
       // Categorize as info if it's basic identification/metadata
@@ -139,12 +139,12 @@ export const FLEX_STATS_GAME = [
     if (typeof prop === "string") {
       return {
         name: prop,
-        type: "string" // default type
+        type: "string", // default type
       };
     } else if (prop.name && prop.type) {
       return {
         name: prop.name,
-        type: this.mapSchemaTypeToTS(prop.type)
+        type: this.mapSchemaTypeToTS(prop.type),
       };
     }
 
@@ -153,12 +153,12 @@ export const FLEX_STATS_GAME = [
 
   mapSchemaTypeToTS(schemaType) {
     const typeMapping = {
-      "Double": "number",
-      "Long": "number",
-      "Integer": "number",
-      "String": "string",
-      "StringArray": "string",
-      "Boolean": "boolean"
+      Double: "number",
+      Long: "number",
+      Integer: "number",
+      String: "string",
+      StringArray: "string",
+      Boolean: "boolean",
     };
 
     return typeMapping[schemaType] || "string";
@@ -178,10 +178,10 @@ export const FLEX_STATS_GAME = [
       /^recent_team$/,
       /^won$/,
       /^coach/,
-      /^odds$/
+      /^odds$/,
     ];
 
-    return infoPatterns.some(pattern => pattern.test(propName));
+    return infoPatterns.some((pattern) => pattern.test(propName));
   }
 
   getViewName(label) {
@@ -309,3 +309,4 @@ if (require.main === module) {
 }
 
 module.exports = { generateTypes };
+
