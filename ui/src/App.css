@@ -2019,7 +2019,7 @@ input[type="number"] {
 }
 
 .column-visibility-action-button {
-  width: 100%;
+  flex: 1;
   padding: 8px 12px;
   background: #f3f4f6;
   border: none;
@@ -2350,6 +2350,33 @@ input[type="number"] {
 
 .sortable-header.sorted:hover {
   background-color: #0056b3;
+}
+
+/* Drag and drop styles for column reordering */
+.sortable-header.draggable {
+  cursor: move;
+}
+
+.sortable-header.dragging {
+  opacity: 0.5;
+  background-color: #f8f9fa;
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+.sortable-header.drag-over {
+  border-left: 3px solid #007bff;
+  background-color: #e7f3ff;
+}
+
+.sortable-header.draggable:hover {
+  background-color: #f8f9fa;
+  border: 1px dashed #007bff;
+}
+
+.sortable-header.sorted.draggable:hover {
+  background-color: #0056b3;
+  border: 1px dashed #ffffff;
 }
 
 .expand-column {
