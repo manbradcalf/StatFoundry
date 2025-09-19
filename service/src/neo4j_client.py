@@ -85,6 +85,8 @@ def execute_readonly_query(driver, query):
     """
     with driver.session(default_access_mode=READ_ACCESS) as session:  # noqa: F821
         result = session.run(query)
+
+        # TODO: what to do with datetime objects here? flatten? return only unix timestamp?
         return [record.data() for record in result]
 
 
