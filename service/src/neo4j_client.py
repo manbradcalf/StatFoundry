@@ -38,7 +38,7 @@ def fetch_schema(driver):
     """
 
     _fetch_rel_patterns = """
-    MATCH (n)-[r]-(m)
+    MATCH (n)-[r]->(m)
     WITH DISTINCT labels(n)[0] AS from_label, type(r) AS rel_type, labels(m)[0] AS to_label
     RETURN from_label, rel_type, to_label
     ORDER BY rel_type
