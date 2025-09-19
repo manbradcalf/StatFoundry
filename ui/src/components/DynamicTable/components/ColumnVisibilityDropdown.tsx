@@ -15,6 +15,8 @@ interface ColumnVisibilityDropdownProps {
   resetToDefaults: () => void;
   canHideColumn: (column: string) => boolean;
   columnGroups?: ColumnGroup[];
+  hasCustomOrder?: boolean;
+  resetColumnOrder?: () => void;
 }
 
 export const ColumnVisibilityDropdown: React.FC<
@@ -27,7 +29,11 @@ export const ColumnVisibilityDropdown: React.FC<
   toggleGroup,
   showAllColumns,
   hideAllNonEssential,
+  resetToDefaults,
+  canHideColumn,
   columnGroups,
+  hasCustomOrder,
+  resetColumnOrder,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -145,6 +151,17 @@ export const ColumnVisibilityDropdown: React.FC<
             >
               Toggle All
             </button>
+            {hasCustomOrder && resetColumnOrder && (
+              <button
+                type="button"
+                className="column-visibility-action-button"
+                onClick={(e) => handleQuickAction(resetColumnOrder, e)}
+                role="menuitem"
+                title="Reset column order to default"
+              >
+                Reset Order
+              </button>
+            )}
           </div>
 
           <div className="column-visibility-divider"></div>

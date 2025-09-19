@@ -6,6 +6,7 @@ interface UseTableDataProps {
   columns?: string[];
   excludeColumns: string[];
   visibleColumns?: string[];
+  columnOrder?: string[];
 }
 
 interface UseTableDataReturn {
@@ -19,6 +20,7 @@ export const useTableData = ({
   columns,
   excludeColumns,
   visibleColumns,
+  columnOrder,
 }: UseTableDataProps): UseTableDataReturn => {
   // Map objects and separate array data
   const processData = useMemo(() => {
@@ -93,15 +95,26 @@ export const useTableData = ({
     return filteredKeys.filter(hasNonEmptyValues);
   }, [columns, excludeColumns, processData]);
 
-  // Determine final columns to display (filtered by visibility)
+  // Determine final columns to display (filtered by visibility and ordered)
   const finalKeys = useMemo(() => {
+    let columnsToShow = availableColumns;
+
     // If visibleColumns is provided, filter to only show visible columns
     if (visibleColumns) {
-      return availableColumns.filter((key) => visibleColumns.includes(key));
+      columnsToShow = availableColumns.filter((key) => visibleColumns.includes(key));
     }
 
-    return availableColumns;
-  }, [availableColumns, visibleColumns]);
+    // If columnOrder is provided, apply custom ordering
+    if (columnOrder) {
+      // Start with ordered columns that are in our columnsToShow
+      const orderedVisible = columnOrder.filter((key) => columnsToShow.includes(key));
+      // Add any remaining columns that aren't in the custom order
+      const remainingColumns = columnsToShow.filter((key) => !columnOrder.includes(key));
+      return [...orderedVisible, ...remainingColumns];
+    }
+
+    return columnsToShow;
+  }, [availableColumns, visibleColumns, columnOrder]);
 
   return {
     processedData: processData,

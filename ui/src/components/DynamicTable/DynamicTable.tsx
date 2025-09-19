@@ -5,6 +5,7 @@ import { useTableData } from "./hooks/useTableData";
 import { useTableSorting } from "./hooks/useTableSorting";
 import { useTablePagination } from "./hooks/useTablePagination";
 import { useColumnVisibility } from "./hooks/useColumnVisibility";
+import { useColumnOrdering } from "./hooks/useColumnOrdering";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { PaginationControls } from "./components/PaginationControls";
@@ -39,13 +40,19 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     availableColumns,
   });
 
-  // Data processing with visibility filtering
+  // Column ordering hook
+  const columnOrdering = useColumnOrdering({
+    availableColumns,
+  });
+
+  // Data processing with visibility filtering and column ordering
   const { processedData: visibleProcessedData, finalKeys: visibleFinalKeys } =
     useTableData({
       data,
       columns,
       excludeColumns,
       visibleColumns: columnVisibility.visibleColumns,
+      columnOrder: columnOrdering.orderedColumns,
     });
 
   // Sorting hook
@@ -97,6 +104,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             resetToDefaults={columnVisibility.resetToDefaults}
             canHideColumn={columnVisibility.canHideColumn}
             columnGroups={columnGroups}
+            hasCustomOrder={columnOrdering.hasCustomOrder}
+            resetColumnOrder={columnOrdering.resetColumnOrder}
           />
           {enableExport && (
             <ExportButton
@@ -117,6 +126,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             sortConfig={sortConfig}
             onSort={handleSort}
             getSortIndicator={getSortIndicator}
+            onReorderColumns={columnOrdering.reorderColumns}
           />
           <TableBody
             paginatedData={paginatedData}
