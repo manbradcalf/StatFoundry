@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useCallback,
-  ReactNode,
-} from "react";
+import React, { createContext, useContext, ReactNode } from "react";
 import { useSearchAPIEnhanced } from "../hooks/useSearchAPIEnhanced";
 import { Alias } from "../feature/Chunks/Types/Alias";
 

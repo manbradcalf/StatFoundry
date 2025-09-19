@@ -9,7 +9,7 @@ import { SEASON_LABEL_PROPERTIES } from "./Views/SeasonLabelView";
 import { COLLEGE_LABEL_PROPERTIES } from "./Views/CollegeLabelView";
 import { COLLEGECONFERENCE_LABEL_PROPERTIES } from "./Views/CollegeConferenceLabelView";
 
-const getPropertiesByType = (aliasType: AliasType,position: string): string[] => {
+const getPropertiesByType = (aliasType: AliasType): string[] => {
   switch (aliasType) {
     case AliasType.Player:
       return PLAYER_LABEL_PROPERTIES.map((x) => x.key);
@@ -32,23 +32,6 @@ const getPropertiesByType = (aliasType: AliasType,position: string): string[] =>
   }
 };
 
-const getPlayerGameStatsByPosition = (position: string): string[] => {
-  switch (position) {
-    case "RB":
-    case "WR":
-    case "TE":
-      return [...PLAYERGAME_LABEL_PROPERTIES]
-        .map((x) => x.key)
-        .filter((x) => x.includes("rush") || x.includes("rece"));
-    case "QB":
-      return [...PLAYERGAME_LABEL_PROPERTIES]
-        .map((x) => x.key)
-        .filter((x) => x.includes("pass"));
-    default:
-      return [...PLAYERGAME_LABEL_PROPERTIES].map((x) => x.key);
-  }
-};
-
 // TODO: When multiple aliases of same type exist (e.g., p1, p2 for player comparisons),
 // column headers will show duplicate names like "Display Name", "Position" because
 // formatColumnHeader() strips the alias prefix. Need to enhance header logic to
@@ -65,7 +48,7 @@ export const buildSmartReturnClause = (
 
   // Process each alias individually to support multiples of same type
   aliases.forEach((alias) => {
-    const properties = getPropertiesByType(alias.AliasType, position);
+    const properties = getPropertiesByType(alias.AliasType);
 
     if (
       properties.length === 0 &&
