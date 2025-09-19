@@ -7,7 +7,7 @@ interface TableHeaderProps {
   sortConfig: SortConfig;
   onSort: (key: string) => void;
   getSortIndicator: (key: string) => string;
-  onReorderColumns?: (fromIndex: number, toIndex: number) => void;
+  onReorderColumns?: (fromColumn: string, toColumn: string) => void;
 }
 
 export const TableHeader: React.FC<TableHeaderProps> = ({
@@ -40,7 +40,9 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
     e.preventDefault();
 
     if (draggedIndex !== null && draggedIndex !== dropIndex && onReorderColumns) {
-      onReorderColumns(draggedIndex, dropIndex);
+      const fromColumn = finalKeys[draggedIndex];
+      const toColumn = finalKeys[dropIndex];
+      onReorderColumns(fromColumn, toColumn);
     }
 
     setDraggedIndex(null);

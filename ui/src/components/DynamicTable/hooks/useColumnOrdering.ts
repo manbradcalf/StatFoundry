@@ -7,6 +7,7 @@ interface UseColumnOrderingProps {
 interface UseColumnOrderingReturn {
   orderedColumns: string[];
   reorderColumns: (fromIndex: number, toIndex: number) => void;
+  reorderColumnsByName: (fromColumn: string, toColumn: string) => void;
   resetColumnOrder: () => void;
   hasCustomOrder: boolean;
 }
@@ -49,6 +50,23 @@ export const useColumnOrdering = ({
     setCustomOrder(newOrder);
   }, [customOrder, availableColumns]);
 
+  // Reorder columns by column names (works with filtered visible columns)
+  const reorderColumnsByName = useCallback((fromColumn: string, toColumn: string) => {
+    const currentOrder = customOrder || [...availableColumns];
+
+    const fromIndex = currentOrder.indexOf(fromColumn);
+    const toIndex = currentOrder.indexOf(toColumn);
+
+    if (fromIndex === -1 || toIndex === -1) return;
+    if (fromIndex === toIndex) return;
+
+    const newOrder = [...currentOrder];
+    const [movedColumn] = newOrder.splice(fromIndex, 1);
+    newOrder.splice(toIndex, 0, movedColumn);
+
+    setCustomOrder(newOrder);
+  }, [customOrder, availableColumns]);
+
   // Reset to default column order
   const resetColumnOrder = useCallback(() => {
     setCustomOrder(null);
@@ -57,6 +75,7 @@ export const useColumnOrdering = ({
   return {
     orderedColumns,
     reorderColumns,
+    reorderColumnsByName,
     resetColumnOrder,
     hasCustomOrder,
   };
