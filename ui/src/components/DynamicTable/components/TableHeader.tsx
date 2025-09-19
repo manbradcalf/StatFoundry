@@ -7,7 +7,8 @@ interface TableHeaderProps {
   sortConfig: SortConfig;
   onSort: (key: string) => void;
   getSortIndicator: (key: string) => string;
-  onReorderColumns?: (fromColumn: string, toColumn: string) => void;
+  onReorderColumns?: (fromIndex: number, toIndex: number) => void;
+  orderedColumns?: string[];
 }
 
 export const TableHeader: React.FC<TableHeaderProps> = ({
@@ -16,6 +17,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   onSort,
   getSortIndicator,
   onReorderColumns,
+  orderedColumns,
 }) => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
@@ -39,10 +41,16 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   const handleDrop = (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
 
-    if (draggedIndex !== null && draggedIndex !== dropIndex && onReorderColumns) {
+    if (draggedIndex !== null && draggedIndex !== dropIndex && onReorderColumns && orderedColumns) {
+      // Map visible column indices to their actual positions in orderedColumns
       const fromColumn = finalKeys[draggedIndex];
       const toColumn = finalKeys[dropIndex];
-      onReorderColumns(fromColumn, toColumn);
+      const actualFromIndex = orderedColumns.indexOf(fromColumn);
+      const actualToIndex = orderedColumns.indexOf(toColumn);
+
+      if (actualFromIndex !== -1 && actualToIndex !== -1) {
+        onReorderColumns(actualFromIndex, actualToIndex);
+      }
     }
 
     setDraggedIndex(null);

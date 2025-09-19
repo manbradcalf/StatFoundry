@@ -126,7 +126,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             sortConfig={sortConfig}
             onSort={handleSort}
             getSortIndicator={getSortIndicator}
-            onReorderColumns={columnOrdering.reorderColumnsByName}
+            onReorderColumns={columnOrdering.reorderColumns}
+            orderedColumns={columnOrdering.orderedColumns}
           />
           <TableBody
             paginatedData={paginatedData}
