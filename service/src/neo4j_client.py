@@ -38,7 +38,7 @@ def fetch_schema(driver):
     """
 
     _fetch_rel_patterns = """
-    MATCH (n)-[r]-(m)
+    MATCH (n)-[r]->(m)
     WITH DISTINCT labels(n)[0] AS from_label, type(r) AS rel_type, labels(m)[0] AS to_label
     RETURN from_label, rel_type, to_label
     ORDER BY rel_type
@@ -85,6 +85,8 @@ def execute_readonly_query(driver, query):
     """
     with driver.session(default_access_mode=READ_ACCESS) as session:  # noqa: F821
         result = session.run(query)
+
+        # TODO: what to do with datetime objects here? flatten? return only unix timestamp?
         return [record.data() for record in result]
 
 

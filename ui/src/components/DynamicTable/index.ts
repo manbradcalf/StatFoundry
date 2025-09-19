@@ -3,7 +3,12 @@ export { DynamicTable } from "./DynamicTable";
 export { ExportButton } from "./components/ExportButton";
 
 // Types
-export type { DynamicTableProps, TableGroup, ProcessedDataItem, SortConfig } from "./types";
+export type {
+  DynamicTableProps,
+  TableGroup,
+  ProcessedDataItem,
+  SortConfig,
+} from "./types";
 
 // Configuration
 export { defaultNFLGroups } from "./config";

@@ -35,8 +35,8 @@ export const useTableSorting = ({
     return [...processedData].sort((a, b) => {
       let aValue, bValue;
 
-      aValue = a.flattened[sortConfig.key!];
-      bValue = b.flattened[sortConfig.key!];
+      aValue = a.processed[sortConfig.key!];
+      bValue = b.processed[sortConfig.key!];
 
       return compareValues(aValue, bValue, sortConfig.direction!);
     });

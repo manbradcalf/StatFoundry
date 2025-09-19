@@ -114,7 +114,7 @@ class SimpleChunkGenerator {
         // Generate string array contains chunks
         chunks.push({
           // if property name is pluralized return singular
-          English: `with [${prop.name.slice(-1) === "s" ? prop.name.slice(0, prop.name.length - 1) : prop.name}] in [${prop.name}] (${node.label})`,
+          English: `with [${prop.name}] in [${prop.name}] (${node.label})`,
           EnglishTemplate: `with {value} in ${prop.name}`,
           CypherTemplate: `{value} IN ${this.getVariableName(node.label)}.${prop.name}`,
           QueryType: "FILTER",
@@ -148,12 +148,16 @@ class SimpleChunkGenerator {
   }
 
   generateRelationshipTraversalChunks() {
+    console.log("creating relationship chunks:");
     return this.schema.patterns.map((pattern) => {
       const fromVar = this.getVariableName(pattern.fromLabel);
       const toVar = this.getVariableName(pattern.toLabel);
+      console.log(
+        `${pattern.fromLabel} - ${pattern.relType} -> ${pattern.toLabel}`,
+      );
       return {
         English: `${this.getRelationshipSuggestionText(pattern)}`,
-        EnglishTemplate: `${pattern.fromLabel}s - ${pattern.relType} -> ${pattern.toLabel}s`,
+        EnglishTemplate: `${pattern.fromLabel} - ${pattern.relType} -> ${pattern.toLabel}`,
         Cypher: `MATCH (${fromVar}:${pattern.fromLabel})-[:${pattern.relType}]->(${toVar}:${pattern.toLabel})`,
         QueryType: "JUNCTION",
         Requires: [{ Name: fromVar, AliasType: pattern.fromLabel }],
@@ -208,6 +212,10 @@ class SimpleChunkGenerator {
       PlayerSeason: "ps",
       TeamGame: "tg",
       TeamSeason: "ts",
+      College: "col",
+      CollegeConference: "cc",
+      Coach: "coa",
+      Official: "o",
     };
     return mapping[label] || label.toLowerCase().charAt(0);
   }
@@ -276,7 +284,6 @@ async function generateChunks() {
         port: url.port || (url.protocol === "https:" ? 443 : 80),
         path: url.pathname,
         method: "GET",
-        headers: { Authorization: "Bearer admin-dev-key-123" },
       };
 
       const requestModule = url.protocol === "https:" ? https : http;

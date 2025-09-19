@@ -17,7 +17,9 @@ interface ColumnVisibilityDropdownProps {
   columnGroups?: ColumnGroup[];
 }
 
-export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> = ({
+export const ColumnVisibilityDropdown: React.FC<
+  ColumnVisibilityDropdownProps
+> = ({
   availableColumns,
   visibleColumns,
   isColumnVisible,
@@ -26,7 +28,6 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
   showAllColumns,
   hideAllNonEssential,
   resetToDefaults,
-  canHideColumn,
   columnGroups,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,8 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isOpen]);
 
@@ -76,7 +78,10 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
     toggleColumn(column);
   };
 
-  const handleToggleGroup = (groupColumns: string[], event: React.MouseEvent) => {
+  const handleToggleGroup = (
+    groupColumns: string[],
+    event: React.MouseEvent,
+  ) => {
     event.stopPropagation();
     toggleGroup(groupColumns);
   };
@@ -99,8 +104,12 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
       >
         <span className="column-visibility-icon">⚏</span>
         <span>Columns</span>
-        <span className="column-visibility-count">({visibleCount}/{totalCount})</span>
-        <span className={`column-visibility-chevron ${isOpen ? 'open' : ''}`}>▼</span>
+        <span className="column-visibility-count">
+          ({visibleCount}/{totalCount})
+        </span>
+        <span className={`column-visibility-chevron ${isOpen ? "open" : ""}`}>
+          ▼
+        </span>
       </button>
 
       {isOpen && (
@@ -137,47 +146,65 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
 
           {/* Column groups */}
           <div className="column-visibility-groups">
-            {groups.map(group => {
-              const groupState = getGroupToggleState(group.columns, new Set(visibleColumns));
-              const availableGroupColumns = group.columns.filter(col => availableColumns.includes(col));
-              
+            {groups.map((group) => {
+              const groupState = getGroupToggleState(
+                group.columns,
+                new Set(visibleColumns),
+              );
+              const availableGroupColumns = group.columns.filter((col) =>
+                availableColumns.includes(col),
+              );
+
               return (
                 <div key={group.name} className="column-visibility-group">
                   <div className="column-visibility-group-header">
                     <button
                       type="button"
                       className="column-visibility-group-toggle"
-                      onClick={(e) => handleToggleGroup(availableGroupColumns, e)}
+                      onClick={(e) =>
+                        handleToggleGroup(availableGroupColumns, e)
+                      }
                       role="menuitem"
                       aria-label={`Toggle all ${group.label} columns`}
                     >
-                      <span className={`column-visibility-group-checkbox ${groupState}`}>
+                      <span
+                        className={`column-visibility-group-checkbox ${groupState}`}
+                      >
                         {groupState === "all" && "✓"}
                         {groupState === "partial" && "−"}
                       </span>
-                      <span className="column-visibility-group-label">{group.label}</span>
+                      <span className="column-visibility-group-label">
+                        {group.label}
+                      </span>
                     </button>
                   </div>
-                  
+
                   <div className="column-visibility-group-columns">
-                    {availableGroupColumns.map(column => {
+                    {availableGroupColumns.map((column) => {
                       const isVisible = isColumnVisible(column);
-                      const isAlwaysVisible = alwaysVisibleColumns.includes(column);
-                      
+                      const isAlwaysVisible =
+                        alwaysVisibleColumns.includes(column);
+
                       return (
                         <label
                           key={column}
-                          className={`column-visibility-column ${isAlwaysVisible ? 'always-visible' : ''}`}
+                          className={`column-visibility-column ${isAlwaysVisible ? "always-visible" : ""}`}
                           role="menuitemcheckbox"
                           aria-checked={isVisible}
-                          title={isAlwaysVisible ? "This column cannot be hidden" : `Toggle ${formatColumnHeader(column)}`}
+                          title={
+                            isAlwaysVisible
+                              ? "This column cannot be hidden"
+                              : `Toggle ${formatColumnHeader(column)}`
+                          }
                         >
                           <input
                             type="checkbox"
                             checked={isVisible}
                             disabled={isAlwaysVisible}
-                            onChange={(e) => handleToggleColumn(column, e as any)}
-                            aria-label={`${isVisible ? 'Hide' : 'Show'} ${formatColumnHeader(column)} column`}
+                            onChange={(e) =>
+                              handleToggleColumn(column, e as any)
+                            }
+                            aria-label={`${isVisible ? "Hide" : "Show"} ${formatColumnHeader(column)} column`}
                           />
                           <span className="column-visibility-column-checkbox">
                             {isVisible && "✓"}
@@ -198,3 +225,4 @@ export const ColumnVisibilityDropdown: React.FC<ColumnVisibilityDropdownProps> =
     </div>
   );
 };
+

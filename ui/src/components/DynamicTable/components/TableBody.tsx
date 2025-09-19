@@ -21,14 +21,14 @@ export const TableBody: React.FC<TableBodyProps> = ({
       {paginatedData.map((item, index) => (
         <tr key={startIndex + index}>
           {finalKeys.map((key, colIndex) => {
-            const value = item.flattened[key];
+            const value = item.processed[key];
             let displayValue;
             if (Array.isArray(value)) {
               displayValue = JSON.stringify(value);
             } else {
               displayValue = isClickable(key)
                 ? (() => {
-                    const linkUrl = generateClickableUrl(key, item.flattened);
+                    const linkUrl = generateClickableUrl(key, item.processed);
                     return linkUrl ? (
                       linkUrl.startsWith("http") ? (
                         <a

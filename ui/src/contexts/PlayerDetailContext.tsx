@@ -6,9 +6,9 @@ import React, {
   ReactNode,
 } from "react";
 import { config } from "../config";
-import { PlayerProperties } from "../feature/Chunks/Entities/Player";
-import { PlayerGameProperties } from "../feature/Chunks/Entities/PlayerGame";
-import { PlayerSeasonProperties } from "../feature/Chunks/Entities/PlayerSeason";
+import { PlayerProperties } from "../feature/Chunks/Views/PlayerLabelView";
+import { PlayerGameProperties } from "../feature/Chunks/Views/PlayerGameLabelView";
+import { PlayerSeasonProperties } from "../feature/Chunks/Views/PlayerSeasonLabelView";
 
 interface PlayerDetailContextType {
   // state

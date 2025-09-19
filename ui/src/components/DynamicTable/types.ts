@@ -41,7 +41,7 @@ export interface SortConfig {
  * Represents the structure after flattening nested objects and separating arrays
  */
 export interface ProcessedDataItem {
-  flattened: Record<string, any>;
+  processed: Record<string, any>;
 }
 
 /**
