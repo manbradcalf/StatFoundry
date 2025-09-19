@@ -29,9 +29,7 @@ export const PLAYER_LABEL_PROPERTIES = [  { key: "position", type: "String" },
   { key: "height", type: "Double" },
   { key: "weight", type: "Double" },
   { key: "draft_number", type: "Double" },
-  { key: "gsis_it_id", type: "Double" },];
-
-  export interface PlayerProperties {
+  { key: "gsis_it_id", type: "Double" },];export interface PlayerProperties {
   position: string;
   position_group: string;
   display_name: string;
