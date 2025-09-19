@@ -27,10 +27,10 @@ export const ColumnVisibilityDropdown: React.FC<
   toggleGroup,
   showAllColumns,
   hideAllNonEssential,
-  resetToDefaults,
   columnGroups,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -72,6 +72,20 @@ export const ColumnVisibilityDropdown: React.FC<
   const groups = groupColumns(availableColumns, columnGroups);
   const visibleCount = visibleColumns.length;
   const totalCount = availableColumns.length;
+
+  // Filter groups and columns based on search term
+  const filteredGroups = groups
+    .map((group) => {
+      const filteredColumns = group.columns.filter(
+        (column) =>
+          availableColumns.includes(column) &&
+          formatColumnHeader(column)
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()),
+      );
+      return { ...group, columns: filteredColumns };
+    })
+    .filter((group) => group.columns.length > 0);
 
   const handleToggleColumn = (column: string, event: React.MouseEvent) => {
     event.stopPropagation();
@@ -119,34 +133,43 @@ export const ColumnVisibilityDropdown: React.FC<
             <button
               type="button"
               className="column-visibility-action-button"
-              onClick={(e) => handleQuickAction(showAllColumns, e)}
+              onClick={(e) =>
+                handleQuickAction(
+                  visibleCount === totalCount
+                    ? hideAllNonEssential
+                    : showAllColumns,
+                  e,
+                )
+              }
               role="menuitem"
             >
-              Show All
+              Toggle All
             </button>
-            <button
-              type="button"
-              className="column-visibility-action-button"
-              onClick={(e) => handleQuickAction(hideAllNonEssential, e)}
-              role="menuitem"
-            >
-              Show Essential
-            </button>
-            <button
-              type="button"
-              className="column-visibility-action-button"
-              onClick={(e) => handleQuickAction(resetToDefaults, e)}
-              role="menuitem"
-            >
-              Reset
-            </button>
+          </div>
+
+          <div className="column-visibility-divider"></div>
+
+          {/* Search input */}
+          <div className="column-visibility-search">
+            <input
+              type="text"
+              placeholder="Search columns..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  setSearchTerm("");
+                }
+              }}
+              className="column-visibility-search-input"
+            />
           </div>
 
           <div className="column-visibility-divider"></div>
 
           {/* Column groups */}
           <div className="column-visibility-groups">
-            {groups.map((group) => {
+            {filteredGroups.map((group) => {
               const groupState = getGroupToggleState(
                 group.columns,
                 new Set(visibleColumns),
@@ -225,4 +248,3 @@ export const ColumnVisibilityDropdown: React.FC<
     </div>
   );
 };
-

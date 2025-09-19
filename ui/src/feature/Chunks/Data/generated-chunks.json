@@ -24491,6 +24491,29 @@
     "Slots": []
   },
   {
+    "English": "[Game] - r[HAD] -> [PlayerGame]",
+    "EnglishTemplate": "Game - HAD -> PlayerGame",
+    "Cypher": "MATCH (g:Game)-[:HAD]->(pg:PlayerGame)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      },
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "[CollegeConference] - r[HAD_PLAYER] -> [Player]",
     "EnglishTemplate": "CollegeConference - HAD_PLAYER -> Player",
     "Cypher": "MATCH (cc:CollegeConference)-[:HAD_PLAYER]->(p:Player)",

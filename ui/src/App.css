@@ -2019,12 +2019,13 @@ input[type="number"] {
 }
 
 .column-visibility-action-button {
-  flex: 1;
-  padding: 6px 8px;
+  width: 100%;
+  padding: 8px 12px;
   background: #f3f4f6;
   border: none;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
   color: #374151;
   cursor: pointer;
   transition: all 0.2s;
@@ -2038,6 +2039,31 @@ input[type="number"] {
   height: 1px;
   background: #e5e7eb;
   margin: 8px 12px;
+}
+
+.column-visibility-search {
+  padding: 8px 12px;
+}
+
+.column-visibility-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 13px;
+  color: #374151;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.column-visibility-search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.column-visibility-search-input::placeholder {
+  color: #9ca3af;
 }
 
 .column-visibility-groups {
