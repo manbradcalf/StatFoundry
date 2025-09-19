@@ -46,13 +46,13 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   });
 
   // Data processing with visibility filtering and column ordering
-  const { processedData: visibleProcessedData, finalKeys: visibleFinalKeys } =
+  const { processedData: visibleProcessedData, displayedColumns } =
     useTableData({
       data,
       columns,
       excludeColumns,
       visibleColumns: columnVisibility.visibleColumns,
-      columnOrder: columnOrdering.orderedColumns,
+      columnOrder: columnOrdering.allColumns,
     });
 
   // Sorting hook
@@ -110,7 +110,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
           {enableExport && (
             <ExportButton
               data={sortedData}
-              columns={visibleFinalKeys}
+              columns={displayedColumns}
               filename={exportFilename}
               onExport={onExport}
               requireAuth={requireAuthForExport}
@@ -122,16 +122,16 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
       <div className="table-scroll-wrapper" style={{ maxHeight: maxHeight }}>
         <table className="dynamic-table">
           <TableHeader
-            finalKeys={visibleFinalKeys}
+            displayedColumns={displayedColumns}
             sortConfig={sortConfig}
             onSort={handleSort}
             getSortIndicator={getSortIndicator}
             onReorderColumns={columnOrdering.reorderColumns}
-            orderedColumns={columnOrdering.orderedColumns}
+            allColumns={columnOrdering.allColumns}
           />
           <TableBody
             paginatedData={paginatedData}
-            finalKeys={visibleFinalKeys}
+            finalKeys={displayedColumns}
             startIndex={startIndex}
             excludeColumns={excludeColumns}
           />

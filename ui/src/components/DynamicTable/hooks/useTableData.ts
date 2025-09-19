@@ -11,7 +11,7 @@ interface UseTableDataProps {
 
 interface UseTableDataReturn {
   processedData: ProcessedDataItem[];
-  finalKeys: string[];
+  displayedColumns: string[];
   availableColumns: string[];
 }
 
@@ -96,7 +96,7 @@ export const useTableData = ({
   }, [columns, excludeColumns, processData]);
 
   // Determine final columns to display (filtered by visibility and ordered)
-  const finalKeys = useMemo(() => {
+  const displayedColumns = useMemo(() => {
     let columnsToShow = availableColumns;
 
     // If visibleColumns is provided, filter to only show visible columns
@@ -118,7 +118,7 @@ export const useTableData = ({
 
   return {
     processedData: processData,
-    finalKeys,
+    displayedColumns,
     availableColumns,
   };
 };

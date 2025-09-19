@@ -5,7 +5,7 @@ interface UseColumnOrderingProps {
 }
 
 interface UseColumnOrderingReturn {
-  orderedColumns: string[];
+  allColumns: string[];
   reorderColumns: (fromIndex: number, toIndex: number) => void;
   resetColumnOrder: () => void;
   hasCustomOrder: boolean;
@@ -21,7 +21,7 @@ export const useColumnOrdering = ({
   const [customOrder, setCustomOrder] = useState<string[] | null>(null);
 
   // Determine the current ordered columns
-  const orderedColumns = useMemo(() => {
+  const allColumns = useMemo(() => {
     if (customOrder) {
       // Filter out any columns that are no longer available and add any new ones
       const filteredCustomOrder = customOrder.filter(col => availableColumns.includes(col));
@@ -55,7 +55,7 @@ export const useColumnOrdering = ({
   }, []);
 
   return {
-    orderedColumns,
+    allColumns,
     reorderColumns,
     resetColumnOrder,
     hasCustomOrder,

@@ -3,21 +3,21 @@ import {SortConfig } from "../types";
 import { formatColumnHeader } from "../../../utils/tableUtils";
 
 interface TableHeaderProps {
-  finalKeys: string[];
+  displayedColumns: string[];
   sortConfig: SortConfig;
   onSort: (key: string) => void;
   getSortIndicator: (key: string) => string;
   onReorderColumns?: (fromIndex: number, toIndex: number) => void;
-  orderedColumns?: string[];
+  allColumns?: string[];
 }
 
 export const TableHeader: React.FC<TableHeaderProps> = ({
-  finalKeys,
+  displayedColumns,
   sortConfig,
   onSort,
   getSortIndicator,
   onReorderColumns,
-  orderedColumns,
+  allColumns,
 }) => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
@@ -41,12 +41,12 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   const handleDrop = (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
 
-    if (draggedIndex !== null && draggedIndex !== dropIndex && onReorderColumns && orderedColumns) {
-      // Map visible column indices to their actual positions in orderedColumns
-      const fromColumn = finalKeys[draggedIndex];
-      const toColumn = finalKeys[dropIndex];
-      const actualFromIndex = orderedColumns.indexOf(fromColumn);
-      const actualToIndex = orderedColumns.indexOf(toColumn);
+    if (draggedIndex !== null && draggedIndex !== dropIndex && onReorderColumns && allColumns) {
+      // Map visible column indices to their actual positions in allColumns
+      const fromColumn = displayedColumns[draggedIndex];
+      const toColumn = displayedColumns[dropIndex];
+      const actualFromIndex = allColumns.indexOf(fromColumn);
+      const actualToIndex = allColumns.indexOf(toColumn);
 
       if (actualFromIndex !== -1 && actualToIndex !== -1) {
         onReorderColumns(actualFromIndex, actualToIndex);
@@ -64,7 +64,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   return (
     <thead>
       <tr>
-        {finalKeys.map((key, index) => (
+        {displayedColumns.map((key, index) => (
           <th
             key={key}
             draggable={!!onReorderColumns}
