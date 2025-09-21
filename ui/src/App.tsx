@@ -6,7 +6,7 @@ import "./App.css";
 import { AppContextProvider } from "./contexts/AppContextProvider";
 import { AuthProvider } from "./contexts/AuthContext";
 import { LoginButton } from "./components/LoginButton";
-import { Footer } from "./components/CTA";
+import { Footer } from "./components/Footer";
 import { SearchContent } from "./components/SearchContent";
 import { PlayerDetail } from "./components/Player/PlayerDetail";
 import { AccountDetail } from "./components/AccountDetail";
@@ -104,7 +104,10 @@ function App() {
                       path="/players/:slug/:gsisId"
                       element={<PlayerDetail />}
                     />
-                    <Route path="/payment/success" element={<PaymentSuccess />} />
+                    <Route
+                      path="/payment/success"
+                      element={<PaymentSuccess />}
+                    />
                     <Route path="/payment/cancel" element={<PaymentCancel />} />
                     <Route path="*" element={<div>Page Not Found</div>} />
                   </Routes>
@@ -122,4 +125,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
