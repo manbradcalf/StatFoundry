@@ -1,8 +1,8 @@
 export const PLAYER_LABEL_PROPERTIES = [  { key: "position", type: "String" },
   { key: "position_group", type: "String" },
-  { key: "display_name", type: "String" },
   { key: "gsis_id", type: "String" },
   { key: "status_description_abbr", type: "String" },
+  { key: "name", type: "String" },
   { key: "suffix", type: "String" },
   { key: "headshot", type: "String" },
   { key: "status_short_description", type: "String" },
@@ -32,9 +32,9 @@ export const PLAYER_LABEL_PROPERTIES = [  { key: "position", type: "String" },
   { key: "gsis_it_id", type: "Double" },];export interface PlayerProperties {
   position: string;
   position_group: string;
-  display_name: string;
   gsis_id: string;
   status_description_abbr: string;
+  name: string;
   suffix: string;
   headshot: string;
   status_short_description: string;

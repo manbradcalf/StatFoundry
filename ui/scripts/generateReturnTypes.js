@@ -31,7 +31,7 @@ class TypeScriptViewGenerator {
     const content = `export const ${constantName} = [${properties.map((prop) => `  { key: "${prop.name}", type: "${prop.type}" },`).join("\n")}];`;
 
     // Generate a valid TypeScript interface as a string template
-    const labelInterface = `export interface ${label}Properties {
+    const labelInterface = `\nexport interface ${label}Properties {
 ${properties.map((prop) => `  ${prop.name}: ${this.mapSchemaTypeToTS(prop.type)};`).join("\n")}
 }`;
 

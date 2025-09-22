@@ -5,8 +5,11 @@ import { PlayerSeasons } from "./PlayerSeasons";
 import { useParams, useNavigate } from "react-router-dom";
 import { usePlayerDetailContext } from "../../contexts/PlayerDetailContext";
 import { Helmet } from "react-helmet-async";
-import { GoogleAd } from "../GoogleAd";
-import { generatePlayerPersonJsonLd, generateBreadcrumbJsonLd, injectJsonLd } from "../../utils/jsonLd";
+import {
+  generatePlayerPersonJsonLd,
+  generateBreadcrumbJsonLd,
+  injectJsonLd,
+} from "../../utils/jsonLd";
 
 export const PlayerDetail: React.FC = () => {
   const { gsisId, slug } = useParams();
@@ -32,14 +35,20 @@ export const PlayerDetail: React.FC = () => {
     return () => {
       clearPlayerData();
     };
-  }, [gsisId, fetchPlayerInfo, fetchPlayerGames, fetchPlayerSeasons, clearPlayerData]);
+  }, [
+    gsisId,
+    fetchPlayerInfo,
+    fetchPlayerGames,
+    fetchPlayerSeasons,
+    clearPlayerData,
+  ]);
 
   if (!gsisId) {
     return <div>No player ID provided</div>;
   }
 
   // Generate dynamic meta content
-  const playerName = playerInfo?.display_name || "Player";
+  const playerName = playerInfo?.name || (playerInfo ? `${playerInfo.first_name || ''} ${playerInfo.last_name || ''}`.trim() : '') || "Player";
   const position = playerInfo?.position || "";
   const team = playerInfo?.team_abbr || "";
   const college = playerInfo?.college_name || "";
@@ -61,16 +70,16 @@ export const PlayerDetail: React.FC = () => {
 
   // Generate JSON-LD structured data
   const jsonLdData = [];
-  
+
   if (playerInfo) {
     // Add Person JSON-LD
     jsonLdData.push(generatePlayerPersonJsonLd(playerInfo));
-    
+
     // Add Breadcrumb JSON-LD
     const breadcrumbs = [
-      { name: 'StatFoundry', url: 'https://www.statfoundry.com' },
-      { name: 'Players', url: 'https://www.statfoundry.com' },
-      { name: playerName, url: canonicalUrl }
+      { name: "StatFoundry", url: "https://www.statfoundry.com" },
+      { name: "Players", url: "https://www.statfoundry.com" },
+      { name: playerName, url: canonicalUrl },
     ];
     jsonLdData.push(generateBreadcrumbJsonLd(breadcrumbs));
   }
@@ -107,12 +116,10 @@ export const PlayerDetail: React.FC = () => {
             <meta property="profile:last_name" content={playerInfo.last_name} />
           </>
         )}
-        
+
         {/* JSON-LD Structured Data */}
         {jsonLdData.length > 0 && (
-          <script type="application/ld+json">
-            {injectJsonLd(jsonLdData)}
-          </script>
+          <script type="application/ld+json">{injectJsonLd(jsonLdData)}</script>
         )}
       </Helmet>
       <div className="player-detail-header">
@@ -121,7 +128,6 @@ export const PlayerDetail: React.FC = () => {
         </button>
       </div>
       <PlayerInfo />
-      <GoogleAd />
       {showSeason2000Warning && (
         <h4>
           <span style={{ color: "red" }}>Note:</span> Our data only goes back to

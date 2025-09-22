@@ -14,7 +14,8 @@ export const displayNameToSlug = (displayName: string): string => {
  * Converts a player object to a URL-friendly slug
  */
 export const playerToSlug = (player: PlayerProperties): string => {
-  return displayNameToSlug(player.display_name);
+  const displayName = player.name || `${player.first_name || ''} ${player.last_name || ''}`.trim();
+  return displayNameToSlug(displayName);
 };
 
 /**

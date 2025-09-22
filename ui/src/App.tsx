@@ -15,7 +15,6 @@ import { HelpBar } from "./components/HelpBar";
 import { VideoTutorials } from "./components/VideoTutorials";
 import { StatsPage } from "./components/StatsComponent";
 import { AboutPage } from "./components/AboutPage";
-import { VerticalAd } from "./components/VerticalAd";
 import { PaymentSuccess } from "./components/PaymentSuccess";
 import { PaymentCancel } from "./components/PaymentCancel";
 import {
@@ -86,9 +85,6 @@ function App() {
                 <HelpBar />
               </header>
               <div className="App-layout">
-                <div className="App-sidebar-left">
-                  <VerticalAd />
-                </div>
                 <div className="App-body">
                   <Routes>
                     <Route path="/" element={<SearchContent />} />
@@ -111,9 +107,6 @@ function App() {
                     <Route path="/payment/cancel" element={<PaymentCancel />} />
                     <Route path="*" element={<div>Page Not Found</div>} />
                   </Routes>
-                </div>
-                <div className="App-sidebar-right">
-                  <VerticalAd />
                 </div>
               </div>
               <Footer />

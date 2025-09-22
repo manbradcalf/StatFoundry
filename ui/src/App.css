@@ -31,21 +31,13 @@
 .App-layout {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 12px;
 }
 
-.App-sidebar-left,
-.App-sidebar-right {
-  width: 200px;
-  flex-shrink: 0;
-}
-
 .App-body {
   flex: 1;
-  max-width: 1200px;
   min-width: 0;
 }
 
@@ -1005,10 +997,6 @@ h1 {
     overflow-x: hidden;
   }
 
-  .App-sidebar-left,
-  .App-sidebar-right {
-    display: none;
-  }
 
   .App-body {
     max-width: 100%;

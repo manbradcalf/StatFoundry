@@ -689,48 +689,6 @@
     ]
   },
   {
-    "English": "[display_name] (Player)",
-    "Cypher": " p.display_name {condition} {value}",
-    "EnglishTemplate": "with display_name equal to {value}",
-    "CypherTemplate": " p.display_name = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Player"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "display_name",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[gsis_id] (Player)",
     "Cypher": " p.gsis_id {condition} {value}",
     "EnglishTemplate": "with gsis_id equal to {value}",
@@ -794,6 +752,48 @@
       {
         "Name": "stat",
         "Value": "status_description_abbr",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[name] (Player)",
+    "Cypher": " p.name {condition} {value}",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " p.name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Player"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -22780,6 +22780,174 @@
     ]
   },
   {
+    "English": "[fantasy_points_ppr] (PlayerGame)",
+    "Cypher": " pg.fantasy_points_ppr ",
+    "EnglishTemplate": "fantasy_points_ppr {condition} {value}",
+    "CypherTemplate": "pg.fantasy_points_ppr {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fantasy_points_ppr",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_fumbles_lost] (PlayerGame)",
+    "Cypher": " pg.receiving_fumbles_lost ",
+    "EnglishTemplate": "receiving_fumbles_lost {condition} {value}",
+    "CypherTemplate": "pg.receiving_fumbles_lost {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_fumbles_lost",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_interceptions] (PlayerGame)",
+    "Cypher": " pg.passing_interceptions ",
+    "EnglishTemplate": "passing_interceptions {condition} {value}",
+    "CypherTemplate": "pg.passing_interceptions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_interceptions",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[target_share] (PlayerGame)",
+    "Cypher": " pg.target_share ",
+    "EnglishTemplate": "target_share {condition} {value}",
+    "CypherTemplate": "pg.target_share {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "target_share",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[receiving_yards] (PlayerGame)",
     "Cypher": " pg.receiving_yards ",
     "EnglishTemplate": "receiving_yards {condition} {value}",
@@ -22864,6 +23032,48 @@
     ]
   },
   {
+    "English": "[yards_per_carry] (PlayerGame)",
+    "Cypher": " pg.yards_per_carry ",
+    "EnglishTemplate": "yards_per_carry {condition} {value}",
+    "CypherTemplate": "pg.yards_per_carry {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "yards_per_carry",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[wopr] (PlayerGame)",
     "Cypher": " pg.wopr ",
     "EnglishTemplate": "wopr {condition} {value}",
@@ -22927,6 +23137,48 @@
       {
         "Name": "stat",
         "Value": "receiving_first_downs",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[dakota] (PlayerGame)",
+    "Cypher": " pg.dakota ",
+    "EnglishTemplate": "dakota {condition} {value}",
+    "CypherTemplate": "pg.dakota {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "dakota",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -23158,6 +23410,48 @@
     ]
   },
   {
+    "English": "[passing_epa] (PlayerGame)",
+    "Cypher": " pg.passing_epa ",
+    "EnglishTemplate": "passing_epa {condition} {value}",
+    "CypherTemplate": "pg.passing_epa {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_epa",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[def_sacks] (PlayerGame)",
     "Cypher": " pg.def_sacks ",
     "EnglishTemplate": "def_sacks {condition} {value}",
@@ -23221,6 +23515,90 @@
       {
         "Name": "stat",
         "Value": "def_sack_yards",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[special_teams_tds] (PlayerGame)",
+    "Cypher": " pg.special_teams_tds ",
+    "EnglishTemplate": "special_teams_tds {condition} {value}",
+    "CypherTemplate": "pg.special_teams_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "special_teams_tds",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[targets] (PlayerGame)",
+    "Cypher": " pg.targets ",
+    "EnglishTemplate": "targets {condition} {value}",
+    "CypherTemplate": "pg.targets {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "targets",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -23431,384 +23809,6 @@
       {
         "Name": "stat",
         "Value": "fantasy_points",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[fantasy_points_ppr] (PlayerGame)",
-    "Cypher": " pg.fantasy_points_ppr ",
-    "EnglishTemplate": "fantasy_points_ppr {condition} {value}",
-    "CypherTemplate": "pg.fantasy_points_ppr {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "fantasy_points_ppr",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[receiving_fumbles_lost] (PlayerGame)",
-    "Cypher": " pg.receiving_fumbles_lost ",
-    "EnglishTemplate": "receiving_fumbles_lost {condition} {value}",
-    "CypherTemplate": "pg.receiving_fumbles_lost {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "receiving_fumbles_lost",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[passing_interceptions] (PlayerGame)",
-    "Cypher": " pg.passing_interceptions ",
-    "EnglishTemplate": "passing_interceptions {condition} {value}",
-    "CypherTemplate": "pg.passing_interceptions {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "passing_interceptions",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[target_share] (PlayerGame)",
-    "Cypher": " pg.target_share ",
-    "EnglishTemplate": "target_share {condition} {value}",
-    "CypherTemplate": "pg.target_share {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "target_share",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[yards_per_carry] (PlayerGame)",
-    "Cypher": " pg.yards_per_carry ",
-    "EnglishTemplate": "yards_per_carry {condition} {value}",
-    "CypherTemplate": "pg.yards_per_carry {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "yards_per_carry",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[dakota] (PlayerGame)",
-    "Cypher": " pg.dakota ",
-    "EnglishTemplate": "dakota {condition} {value}",
-    "CypherTemplate": "pg.dakota {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "dakota",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[passing_epa] (PlayerGame)",
-    "Cypher": " pg.passing_epa ",
-    "EnglishTemplate": "passing_epa {condition} {value}",
-    "CypherTemplate": "pg.passing_epa {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "passing_epa",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[special_teams_tds] (PlayerGame)",
-    "Cypher": " pg.special_teams_tds ",
-    "EnglishTemplate": "special_teams_tds {condition} {value}",
-    "CypherTemplate": "pg.special_teams_tds {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "special_teams_tds",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[targets] (PlayerGame)",
-    "Cypher": " pg.targets ",
-    "EnglishTemplate": "targets {condition} {value}",
-    "CypherTemplate": "pg.targets {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "targets",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -24166,6 +24166,90 @@
     ]
   },
   {
+    "English": "[display_name] (PlayerGame)",
+    "Cypher": " pg.display_name {condition} {value}",
+    "EnglishTemplate": "with display_name equal to {value}",
+    "CypherTemplate": " pg.display_name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "display_name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[name] (PlayerGame)",
+    "Cypher": " pg.name {condition} {value}",
+    "EnglishTemplate": "with name equal to {value}",
+    "CypherTemplate": " pg.name = {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name",
+        "SlotValueTypes": [
+          "MultiStatFilter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[player_name] (PlayerGame)",
     "Cypher": " pg.player_name {condition} {value}",
     "EnglishTemplate": "with player_name equal to {value}",
@@ -24271,48 +24355,6 @@
       {
         "Name": "stat",
         "Value": "game_id",
-        "SlotValueTypes": [
-          "MultiStatFilter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[display_name] (PlayerGame)",
-    "Cypher": " pg.display_name {condition} {value}",
-    "EnglishTemplate": "with display_name equal to {value}",
-    "CypherTemplate": " pg.display_name = {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "display_name",
         "SlotValueTypes": [
           "MultiStatFilter"
         ]
@@ -24509,6 +24551,29 @@
       {
         "Name": "pg",
         "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Game] - r[HAD] -> [Play]",
+    "EnglishTemplate": "Game - HAD -> Play",
+    "Cypher": "MATCH (g:Game)-[:HAD]->(p:Play)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      },
+      {
+        "Name": "p",
+        "AliasType": "Play"
       }
     ],
     "Slots": []
