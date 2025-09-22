@@ -36,7 +36,7 @@ export const generatePlayerUrl = (
 
   // Look for display_name with common prefixes
   const displayName =
-    playerData["p.display_name"] ||
+    playerData["p.name"] ||
     playerData["display_name"] ||
     playerData["player_display_name"] ||
     playerData["pg.player_display_name"] ||

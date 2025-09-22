@@ -45,7 +45,7 @@ MERGE (pg)-[:OF]->(g)
 SET pg += {
   // identity & context
   player_name:         line.player_name,
-  display_name: line.player_display_name,
+  name: line.player_display_name,
   position:            line.position,
   position_group:      line.position_group,
   headshot_url:        line.headshot_url,
@@ -54,7 +54,7 @@ SET pg += {
   week:                week,
 
   // teams & ids
-  recent_team:         line.team,             // your prior schema used `recent_team`
+  team:         line.team,
   opponent_team:       line.opponent_team,
   game_id:             game_id,               // built from matched Game
   player_game_id:      line.player_id + '_' + game_id,
