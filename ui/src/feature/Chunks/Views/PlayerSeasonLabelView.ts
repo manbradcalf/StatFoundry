@@ -61,7 +61,8 @@ export const PLAYERSEASON_LABEL_PROPERTIES = [  { key: "player_id", type: "Strin
   { key: "receiving_epa", type: "Double" },
   { key: "scrimmage_yards", type: "Double" },
   { key: "yptmpa", type: "Double" },
-  { key: "fantasy_points", type: "Double" },];export interface PlayerSeasonProperties {
+  { key: "fantasy_points", type: "Double" },];
+export interface PlayerSeasonProperties {
   player_id: string;
   position: string;
   season: number;

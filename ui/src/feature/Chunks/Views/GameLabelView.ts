@@ -45,7 +45,8 @@ export const GAME_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "game_id", type: "String" },
   { key: "stadium", type: "String" },
   { key: "old_game_id", type: "Long" },
-  { key: "nfl_detail_id", type: "String" },];export interface GameProperties {
+  { key: "nfl_detail_id", type: "String" },];
+export interface GameProperties {
   season: number;
   week: number;
   away_qb_id: string;

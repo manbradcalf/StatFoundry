@@ -378,7 +378,8 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "punt_attempt", type: "Double" },
   { key: "old_game_id", type: "Long" },
   { key: "lateral_reception", type: "Double" },
-  { key: "pass_location", type: "String" },];export interface PlayProperties {
+  { key: "pass_location", type: "String" },];
+export interface PlayProperties {
   season: number;
   week: boolean;
   season_type: string;

@@ -63,7 +63,8 @@ export const PLAYERGAME_LABEL_PROPERTIES = [  { key: "player_game_id", type: "St
   { key: "won", type: "Boolean" },
   { key: "scrimmage_yards", type: "Double" },
   { key: "fantasy_points", type: "Double" },
-  { key: "team", type: "String" },];export interface PlayerGameProperties {
+  { key: "team", type: "String" },];
+export interface PlayerGameProperties {
   player_game_id: string;
   player_id: string;
   player_display_name: string;
