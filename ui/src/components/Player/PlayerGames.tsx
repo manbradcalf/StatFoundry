@@ -17,7 +17,7 @@ export const PlayerGames: React.FC = () => {
   const playerGameColumns = [
     "season",
     "week",
-    "recent_team",
+    "team",
     "opponent_team",
     "game_id",
   ];

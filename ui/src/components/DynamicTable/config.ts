@@ -15,7 +15,7 @@ export const identifyingFields = [
   "player_display_name",
   "display_name",
   "position",
-  "recent_team",
+  "team",
   "season",
   "week",
 ];
