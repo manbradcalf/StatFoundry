@@ -2,8 +2,11 @@ from fastapi import FastAPI, HTTPException, Request, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from src.neo4j_client import driver, execute_readonly_query, fetch_schema
-from src.requests import QueryAuraDBRequest
-from src.models import CreateCheckoutSessionRequest, CreatePortalSessionRequest
+from src.requests import (
+    QueryAuraDBRequest,
+    CreateCheckoutSessionRequest,
+    CreatePortalSessionRequest,
+)
 from src.stripe_service import StripeService
 from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
 from src.telemetry import add_cypher_telemetry, add_query_result
@@ -244,4 +247,3 @@ async def stripe_webhook(
     except Exception as e:
         print(f"Webhook error: {str(e)}")
         raise HTTPException(status_code=400, detail="Webhook processing failed")
-
