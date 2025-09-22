@@ -1234,7 +1234,7 @@ h1 {
 
 /* Relationship highlighting - orange to match junction */
 .suggestion-relationship-value {
-  background: #fed7aa;
+  background: #fff5ee;
   color: #f97316;
   font-weight: 600;
   padding: 2px 6px;
@@ -2054,7 +2054,9 @@ input[type="number"] {
   font-size: 13px;
   color: #374151;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .column-visibility-search-input:focus {
