@@ -1,8 +1,9 @@
 import sys
 from src.neo4j_client import driver
 
+## TODO:find a way to keep previous seasons in sync with the changes we make here
 load_2025_games = """
-    // LOAD and Merge Games from NFLVerse CSV
+// LOAD and Merge Games from NFLVerse CSV
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv' AS line
 WITH line
 WHERE
@@ -18,6 +19,7 @@ WITH
   g,
   line,
   {
+    // Some of these, like total, should probably be Ints, not Floats, but I'll let the UI make that determination
     total: toFloatOrNull(line.total),
     result: toFloatOrNull(line.result),
     espn: toIntegerOrNull(line.espn),
@@ -25,7 +27,7 @@ WITH
     surface: line.surface,
     gsis: toIntegerOrNull(line.gsis),
     location: line.location,
-    home_moneyline: line.home_moneyline,
+    home_moneyline: toFloatOrNull(line.home_moneyline),
     old_game_id: toIntegerOrNull(line.old_game_id),
     div_game: toBooleanOrNull(line.div_game),
     stadium_id: line.stadium_id,
@@ -34,7 +36,7 @@ WITH
     weekday: line.weekday,
     over_odds: line.over_odds,
     home_qb_id: line.home_qb_id,
-    away_moneyline: line.away_moneyline,
+    away_moneyline: toFloatOrNull(line.away_moneyline),
     away_team: line.away_team,
     pfr: line.pfr,
     away_qb_id: line.away_qb_id,
@@ -60,6 +62,10 @@ WITH
     home_rest: toIntegerOrNull(line.home_rest),
     overtime: toFloatOrNull(line.overtime),
     week: toIntegerOrNull(line.week),
+
+    // build display_score from team and score props
+    display_score = line.away_team + " " + toInteger(line.away_score) + " @ " + line.home_team + " " + toInteger(line.home_score),
+
     // CSV is ISO like 2024-09-05T00:00:00Z; guard blanks:
     gameday:
       CASE
@@ -72,6 +78,7 @@ WITH
 // 3) (Optional) drop null/empty-string props (requires APOC)
 WITH g, apoc.map.clean(raw, [null, ''], [true]) AS cleaned
 SET g += cleaned
+
 RETURN g
     """
 
