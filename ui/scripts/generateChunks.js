@@ -82,8 +82,8 @@ class SimpleChunkGenerator {
         chunks.push({
           English: `[${prop.name}] (${node.label})`,
           Cypher: ` ${this.getVariableName(node.label)}.${prop.name} {condition} {value}`,
-          EnglishTemplate: `with ${readableProp} equal to {value}`,
-          CypherTemplate: ` ${this.getVariableName(node.label)}.${prop.name} = {value}`,
+          EnglishTemplate: `with ${readableProp} {condition} {value}`,
+          CypherTemplate: ` ${this.getVariableName(node.label)}.${prop.name} {condition} {value}`,
           QueryType: "FILTER",
           Requires: [
             { Name: this.getVariableName(node.label), AliasType: node.label },
