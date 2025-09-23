@@ -60,7 +60,7 @@ class SimpleChunkGenerator {
             {
               Name: "stat",
               Value: prop.name,
-              SlotValueTypes: ["MultiStatFilter"],
+              SlotValueTypes: ["Filter"],
             },
             {
               Name: "condition",
@@ -95,7 +95,7 @@ class SimpleChunkGenerator {
             {
               Name: "stat",
               Value: prop.name,
-              SlotValueTypes: ["MultiStatFilter"],
+              SlotValueTypes: ["Filter"],
             },
             {
               Name: "condition",
@@ -138,7 +138,7 @@ class SimpleChunkGenerator {
             {
               Name: "stat",
               Value: prop.name,
-              SlotValueTypes: ["MultiStatFilter"],
+              SlotValueTypes: ["Filter"],
             },
           ],
         });

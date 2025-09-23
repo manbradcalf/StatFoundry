@@ -1,5 +1,4 @@
 export enum SlotType {
-  MultiStatFilter = "MultiStatFilter",
   // entity properties
   SelectPlayerProperty = "SelectPlayerProperty",
   SelectPlayerPosition = "SelectPlayerPosition",

@@ -45,6 +45,5 @@ export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.Filter]: [],
   [SlotType.FilterCondition]: [">", "=>", "=", "<", "<=", "<>", "in"],
   [SlotType.FilterValue]: [],
-  [SlotType.MultiStatFilter]: [],
   [SlotType.SelectPlayStats]: [...PLAY_LABEL_PROPERTIES.map((x) => x.key)],
 };

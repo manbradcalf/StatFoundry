@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
+import { SlotType } from "../feature/Chunks/Enums/SlotType";
 
 interface SlotModalProps {
   isOpen: boolean;
@@ -10,7 +11,6 @@ interface SlotModalProps {
   onCancel: () => void;
   title?: string;
 }
-
 
 /**
  * Renders a simple full-screen overlay modal that allows the user to edit
@@ -26,7 +26,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
 }) => {
   // we keep local copy so that edits don't mutate the parent state until save
   const [localSlots, setLocalSlots] = useState<Slot[]>([]);
-  
+
   const firstInputRef = useRef<HTMLInputElement>(null);
   const firstSelectRef = useRef<HTMLSelectElement>(null);
 
@@ -51,15 +51,21 @@ export const SlotModal: React.FC<SlotModalProps> = ({
 
   const renderSlotInput = (slot: Slot, idx: number) => {
     const isFirstInput = idx === 0;
-    
+
     // Check if this slot type has property options available
-    const properties = slot.SlotValueTypes.flatMap(type => ENTITY_PROPERTIES[type]);
+    const properties = slot.SlotValueTypes.flatMap(
+      (type) => ENTITY_PROPERTIES[type],
+    );
+
+    // Special handling for Filter slots - they should be read-only when pre-filled
+    const isFilterSlot = slot.SlotValueTypes.includes(SlotType.Filter);
+    const isPreFilled = slot.Value && slot.Value !== "";
 
     if (properties && properties.length > 0) {
       return (
         <select
           ref={isFirstInput ? firstSelectRef : undefined}
-          value={slot.Value || ''}
+          value={slot.Value || ""}
           onChange={(e) => handleChange(idx, e.target.value)}
           style={{ width: "100%", padding: "0.5rem" }}
         >
@@ -70,6 +76,23 @@ export const SlotModal: React.FC<SlotModalProps> = ({
             </option>
           ))}
         </select>
+      );
+    }
+
+    // Make Filter slots read-only when they have pre-filled values
+    if (isFilterSlot && isPreFilled) {
+      return (
+        <input
+          type="text"
+          value={slot.Value}
+          readOnly
+          style={{
+            width: "100%",
+            padding: "0.5rem",
+            backgroundColor: "#f5f5f5",
+            color: "#666",
+          }}
+        />
       );
     }
 
@@ -105,17 +128,39 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     >
       <h3 style={{ marginTop: 0 }}>{title}</h3>
       <form onSubmit={handleSubmit}>
-        {localSlots.map((slot, idx) => (
-          <div key={slot.Name} style={{ marginBottom: "1rem" }}>
-            <label style={{ display: "block", marginBottom: 4 }}>
-              {slot.SlotValueTypes}
-            </label>
-            {renderSlotInput(slot, idx)}
-          </div>
-        ))}
+        {localSlots.map((slot, idx) => {
+          // Create more user-friendly labels
+          const getSlotLabel = (slot: Slot) => {
+            if (slot.SlotValueTypes.includes(SlotType.Filter)) {
+              return "Property";
+            }
+            if (slot.SlotValueTypes.includes(SlotType.FilterCondition)) {
+              return "Condition";
+            }
+            if (slot.SlotValueTypes.includes(SlotType.FilterValue)) {
+              return "Value";
+            }
+            return slot.Name;
+          };
 
-        <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.5rem" }}>
-          <button type="button" onClick={onCancel} style={{ padding: "0.5rem 1rem" }}>
+          return (
+            <div key={slot.Name} style={{ marginBottom: "1rem" }}>
+              <label style={{ display: "block", marginBottom: 4 }}>
+                {getSlotLabel(slot)}
+              </label>
+              {renderSlotInput(slot, idx)}
+            </div>
+          );
+        })}
+
+        <div
+          style={{ display: "flex", justifyContent: "flex-end", gap: "0.5rem" }}
+        >
+          <button
+            type="button"
+            onClick={onCancel}
+            style={{ padding: "0.5rem 1rem" }}
+          >
             Cancel
           </button>
           <button

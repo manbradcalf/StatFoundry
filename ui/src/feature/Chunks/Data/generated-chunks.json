@@ -165,7 +165,7 @@
         "Name": "stat",
         "Value": "rookie_year",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -207,7 +207,7 @@
         "Name": "stat",
         "Value": "current_team_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -249,7 +249,7 @@
         "Name": "stat",
         "Value": "entry_year",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -291,7 +291,7 @@
         "Name": "stat",
         "Value": "jersey_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -333,7 +333,7 @@
         "Name": "stat",
         "Value": "team_seq",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -375,7 +375,7 @@
         "Name": "stat",
         "Value": "years_of_experience",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -417,7 +417,7 @@
         "Name": "stat",
         "Value": "draftround",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -459,7 +459,7 @@
         "Name": "stat",
         "Value": "height",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -501,7 +501,7 @@
         "Name": "stat",
         "Value": "weight",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -543,7 +543,7 @@
         "Name": "stat",
         "Value": "draft_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -585,7 +585,7 @@
         "Name": "stat",
         "Value": "gsis_it_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -627,7 +627,7 @@
         "Name": "stat",
         "Value": "position",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -669,7 +669,7 @@
         "Name": "stat",
         "Value": "position_group",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -711,7 +711,7 @@
         "Name": "stat",
         "Value": "gsis_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -753,7 +753,7 @@
         "Name": "stat",
         "Value": "status_description_abbr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -795,7 +795,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -837,7 +837,7 @@
         "Name": "stat",
         "Value": "suffix",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -879,7 +879,7 @@
         "Name": "stat",
         "Value": "headshot",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -921,7 +921,7 @@
         "Name": "stat",
         "Value": "status_short_description",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -963,7 +963,7 @@
         "Name": "stat",
         "Value": "last_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1005,7 +1005,7 @@
         "Name": "stat",
         "Value": "football_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1047,7 +1047,7 @@
         "Name": "stat",
         "Value": "draft_club",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1089,7 +1089,7 @@
         "Name": "stat",
         "Value": "short_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1131,7 +1131,7 @@
         "Name": "stat",
         "Value": "college_conference",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1173,7 +1173,7 @@
         "Name": "stat",
         "Value": "status",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1215,7 +1215,7 @@
         "Name": "stat",
         "Value": "team_abbr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1257,7 +1257,7 @@
         "Name": "stat",
         "Value": "college_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1299,7 +1299,7 @@
         "Name": "stat",
         "Value": "esb_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1341,7 +1341,7 @@
         "Name": "stat",
         "Value": "uniform_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1383,7 +1383,7 @@
         "Name": "stat",
         "Value": "first_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1425,7 +1425,7 @@
         "Name": "stat",
         "Value": "smart_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1467,7 +1467,7 @@
         "Name": "stat",
         "Value": "season",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1509,7 +1509,7 @@
         "Name": "stat",
         "Value": "completions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1551,7 +1551,7 @@
         "Name": "stat",
         "Value": "attempts",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1593,7 +1593,7 @@
         "Name": "stat",
         "Value": "passing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1635,7 +1635,7 @@
         "Name": "stat",
         "Value": "passing_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1677,7 +1677,7 @@
         "Name": "stat",
         "Value": "interceptions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1719,7 +1719,7 @@
         "Name": "stat",
         "Value": "sacks",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1761,7 +1761,7 @@
         "Name": "stat",
         "Value": "sack_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1803,7 +1803,7 @@
         "Name": "stat",
         "Value": "sack_fumbles",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1845,7 +1845,7 @@
         "Name": "stat",
         "Value": "sack_fumbles_lost",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1887,7 +1887,7 @@
         "Name": "stat",
         "Value": "passing_air_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1929,7 +1929,7 @@
         "Name": "stat",
         "Value": "passing_yards_after_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -1971,7 +1971,7 @@
         "Name": "stat",
         "Value": "passing_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2013,7 +2013,7 @@
         "Name": "stat",
         "Value": "carries",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2055,7 +2055,7 @@
         "Name": "stat",
         "Value": "rushing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2097,7 +2097,7 @@
         "Name": "stat",
         "Value": "rushing_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2139,7 +2139,7 @@
         "Name": "stat",
         "Value": "rushing_fumbles",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2181,7 +2181,7 @@
         "Name": "stat",
         "Value": "rushing_fumbles_lost",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2223,7 +2223,7 @@
         "Name": "stat",
         "Value": "rushing_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2265,7 +2265,7 @@
         "Name": "stat",
         "Value": "rushing_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2307,7 +2307,7 @@
         "Name": "stat",
         "Value": "rushing_2pt_conversions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2349,7 +2349,7 @@
         "Name": "stat",
         "Value": "receptions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2391,7 +2391,7 @@
         "Name": "stat",
         "Value": "receiving_fumbles",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2433,7 +2433,7 @@
         "Name": "stat",
         "Value": "fantasy_points_ppr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2475,7 +2475,7 @@
         "Name": "stat",
         "Value": "receiving_fumbles_lost",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2517,7 +2517,7 @@
         "Name": "stat",
         "Value": "ay_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2559,7 +2559,7 @@
         "Name": "stat",
         "Value": "target_share",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2601,7 +2601,7 @@
         "Name": "stat",
         "Value": "wopr_y",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2643,7 +2643,7 @@
         "Name": "stat",
         "Value": "receiving_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2685,7 +2685,7 @@
         "Name": "stat",
         "Value": "receiving_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2727,7 +2727,7 @@
         "Name": "stat",
         "Value": "receiving_2pt_conversions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2769,7 +2769,7 @@
         "Name": "stat",
         "Value": "yards_per_carry",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2811,7 +2811,7 @@
         "Name": "stat",
         "Value": "dom",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2853,7 +2853,7 @@
         "Name": "stat",
         "Value": "receiving_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2895,7 +2895,7 @@
         "Name": "stat",
         "Value": "dakota",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2937,7 +2937,7 @@
         "Name": "stat",
         "Value": "ppr_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -2979,7 +2979,7 @@
         "Name": "stat",
         "Value": "rtd_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3021,7 +3021,7 @@
         "Name": "stat",
         "Value": "receiving_air_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3063,7 +3063,7 @@
         "Name": "stat",
         "Value": "air_yards_share",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3105,7 +3105,7 @@
         "Name": "stat",
         "Value": "wopr_x",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3147,7 +3147,7 @@
         "Name": "stat",
         "Value": "games",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3189,7 +3189,7 @@
         "Name": "stat",
         "Value": "racr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3231,7 +3231,7 @@
         "Name": "stat",
         "Value": "w8dom",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3273,7 +3273,7 @@
         "Name": "stat",
         "Value": "passing_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3315,7 +3315,7 @@
         "Name": "stat",
         "Value": "tgt_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3357,7 +3357,7 @@
         "Name": "stat",
         "Value": "ry_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3399,7 +3399,7 @@
         "Name": "stat",
         "Value": "rfd_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3441,7 +3441,7 @@
         "Name": "stat",
         "Value": "special_teams_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3483,7 +3483,7 @@
         "Name": "stat",
         "Value": "rtdfd_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3525,7 +3525,7 @@
         "Name": "stat",
         "Value": "targets",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3567,7 +3567,7 @@
         "Name": "stat",
         "Value": "pacr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3609,7 +3609,7 @@
         "Name": "stat",
         "Value": "receiving_yards_after_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3651,7 +3651,7 @@
         "Name": "stat",
         "Value": "receiving_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3693,7 +3693,7 @@
         "Name": "stat",
         "Value": "scrimmage_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3735,7 +3735,7 @@
         "Name": "stat",
         "Value": "yptmpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3777,7 +3777,7 @@
         "Name": "stat",
         "Value": "fantasy_points",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3819,7 +3819,7 @@
         "Name": "stat",
         "Value": "player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3861,7 +3861,7 @@
         "Name": "stat",
         "Value": "position",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3903,7 +3903,7 @@
         "Name": "stat",
         "Value": "season_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3945,7 +3945,7 @@
         "Name": "stat",
         "Value": "player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -3987,7 +3987,7 @@
         "Name": "stat",
         "Value": "player_season_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4029,7 +4029,7 @@
         "Name": "stat",
         "Value": "yac_sh",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4084,7 +4084,7 @@
         "Name": "stat",
         "Value": "teams",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       }
     ]
@@ -4112,7 +4112,7 @@
         "Name": "stat",
         "Value": "season",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4154,7 +4154,7 @@
         "Name": "stat",
         "Value": "week",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4196,7 +4196,7 @@
         "Name": "stat",
         "Value": "overtime",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4238,7 +4238,7 @@
         "Name": "stat",
         "Value": "home_rest",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4280,7 +4280,7 @@
         "Name": "stat",
         "Value": "away_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4322,7 +4322,7 @@
         "Name": "stat",
         "Value": "under_odds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4364,7 +4364,7 @@
         "Name": "stat",
         "Value": "total_line",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4406,7 +4406,7 @@
         "Name": "stat",
         "Value": "wind",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4448,7 +4448,7 @@
         "Name": "stat",
         "Value": "temp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4490,7 +4490,7 @@
         "Name": "stat",
         "Value": "spread_line",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4532,7 +4532,7 @@
         "Name": "stat",
         "Value": "away_rest",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4574,7 +4574,7 @@
         "Name": "stat",
         "Value": "gsis",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4616,7 +4616,7 @@
         "Name": "stat",
         "Value": "total",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4658,7 +4658,7 @@
         "Name": "stat",
         "Value": "home_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4700,7 +4700,7 @@
         "Name": "stat",
         "Value": "over_odds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4742,7 +4742,7 @@
         "Name": "stat",
         "Value": "home_spread_odds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4784,7 +4784,7 @@
         "Name": "stat",
         "Value": "away_spread_odds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4826,7 +4826,7 @@
         "Name": "stat",
         "Value": "espn",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4868,7 +4868,7 @@
         "Name": "stat",
         "Value": "result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4910,7 +4910,7 @@
         "Name": "stat",
         "Value": "old_game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4952,7 +4952,7 @@
         "Name": "stat",
         "Value": "away_qb_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -4994,7 +4994,7 @@
         "Name": "stat",
         "Value": "away_qb_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5036,7 +5036,7 @@
         "Name": "stat",
         "Value": "location",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5078,7 +5078,7 @@
         "Name": "stat",
         "Value": "pff",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5120,7 +5120,7 @@
         "Name": "stat",
         "Value": "referee",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5162,7 +5162,7 @@
         "Name": "stat",
         "Value": "away_moneyline",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5204,7 +5204,7 @@
         "Name": "stat",
         "Value": "home_qb_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5246,7 +5246,7 @@
         "Name": "stat",
         "Value": "display_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5288,7 +5288,7 @@
         "Name": "stat",
         "Value": "home_moneyline",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5330,7 +5330,7 @@
         "Name": "stat",
         "Value": "surface",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5372,7 +5372,7 @@
         "Name": "stat",
         "Value": "game_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5414,7 +5414,7 @@
         "Name": "stat",
         "Value": "away_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5456,7 +5456,7 @@
         "Name": "stat",
         "Value": "home_qb_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5498,7 +5498,7 @@
         "Name": "stat",
         "Value": "home_coach",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5540,7 +5540,7 @@
         "Name": "stat",
         "Value": "ftn",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5582,7 +5582,7 @@
         "Name": "stat",
         "Value": "roof",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5624,7 +5624,7 @@
         "Name": "stat",
         "Value": "home_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5666,7 +5666,7 @@
         "Name": "stat",
         "Value": "gametime",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5708,7 +5708,7 @@
         "Name": "stat",
         "Value": "winner",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5750,7 +5750,7 @@
         "Name": "stat",
         "Value": "stadium_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5792,7 +5792,7 @@
         "Name": "stat",
         "Value": "weekday",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5834,7 +5834,7 @@
         "Name": "stat",
         "Value": "away_coach",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5876,7 +5876,7 @@
         "Name": "stat",
         "Value": "pfr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5918,7 +5918,7 @@
         "Name": "stat",
         "Value": "game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -5960,7 +5960,7 @@
         "Name": "stat",
         "Value": "stadium",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6002,7 +6002,7 @@
         "Name": "stat",
         "Value": "nfl_detail_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6044,7 +6044,7 @@
         "Name": "stat",
         "Value": "season",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6086,7 +6086,7 @@
         "Name": "stat",
         "Value": "season",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6128,7 +6128,7 @@
         "Name": "stat",
         "Value": "passing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6170,7 +6170,7 @@
         "Name": "stat",
         "Value": "rushing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6212,7 +6212,7 @@
         "Name": "stat",
         "Value": "vegas_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6254,7 +6254,7 @@
         "Name": "stat",
         "Value": "comp_air_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6296,7 +6296,7 @@
         "Name": "stat",
         "Value": "tackle_with_assist",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6338,7 +6338,7 @@
         "Name": "stat",
         "Value": "away_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6380,7 +6380,7 @@
         "Name": "stat",
         "Value": "fumble_not_forced",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6422,7 +6422,7 @@
         "Name": "stat",
         "Value": "old_game_id_x",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6464,7 +6464,7 @@
         "Name": "stat",
         "Value": "assist_tackle",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6506,7 +6506,7 @@
         "Name": "stat",
         "Value": "total_away_raw_yac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6548,7 +6548,7 @@
         "Name": "stat",
         "Value": "qb_hit",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6590,7 +6590,7 @@
         "Name": "stat",
         "Value": "total_home_rush_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6632,7 +6632,7 @@
         "Name": "stat",
         "Value": "receiver_jersey_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6674,7 +6674,7 @@
         "Name": "stat",
         "Value": "defensive_extra_point_conv",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6716,7 +6716,7 @@
         "Name": "stat",
         "Value": "touchdown",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6758,7 +6758,7 @@
         "Name": "stat",
         "Value": "sp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6800,7 +6800,7 @@
         "Name": "stat",
         "Value": "total_away_raw_air_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6842,7 +6842,7 @@
         "Name": "stat",
         "Value": "drive_yards_penalized",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6884,7 +6884,7 @@
         "Name": "stat",
         "Value": "punt_fair_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6926,7 +6926,7 @@
         "Name": "stat",
         "Value": "play_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -6968,7 +6968,7 @@
         "Name": "stat",
         "Value": "rusher_jersey_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7010,7 +7010,7 @@
         "Name": "stat",
         "Value": "opp_fg_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7052,7 +7052,7 @@
         "Name": "stat",
         "Value": "time_to_throw",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7094,7 +7094,7 @@
         "Name": "stat",
         "Value": "tackled_for_loss",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7136,7 +7136,7 @@
         "Name": "stat",
         "Value": "total_home_pass_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7178,7 +7178,7 @@
         "Name": "stat",
         "Value": "drive_quarter_start",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7220,7 +7220,7 @@
         "Name": "stat",
         "Value": "drive_quarter_end",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7262,7 +7262,7 @@
         "Name": "stat",
         "Value": "kickoff_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7304,7 +7304,7 @@
         "Name": "stat",
         "Value": "punt_downed",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7346,7 +7346,7 @@
         "Name": "stat",
         "Value": "down",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7388,7 +7388,7 @@
         "Name": "stat",
         "Value": "total_home_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7430,7 +7430,7 @@
         "Name": "stat",
         "Value": "total_away_raw_yac_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7472,7 +7472,7 @@
         "Name": "stat",
         "Value": "punt_inside_twenty",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7514,7 +7514,7 @@
         "Name": "stat",
         "Value": "timeout",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7556,7 +7556,7 @@
         "Name": "stat",
         "Value": "total_away_comp_air_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7598,7 +7598,7 @@
         "Name": "stat",
         "Value": "total_away_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7640,7 +7640,7 @@
         "Name": "stat",
         "Value": "pass_oe",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7682,7 +7682,7 @@
         "Name": "stat",
         "Value": "return_touchdown",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7724,7 +7724,7 @@
         "Name": "stat",
         "Value": "series",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7766,7 +7766,7 @@
         "Name": "stat",
         "Value": "drive_play_count",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7808,7 +7808,7 @@
         "Name": "stat",
         "Value": "air_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7850,7 +7850,7 @@
         "Name": "stat",
         "Value": "qb_dropback",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7892,7 +7892,7 @@
         "Name": "stat",
         "Value": "fixed_drive",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7934,7 +7934,7 @@
         "Name": "stat",
         "Value": "ngs_air_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -7976,7 +7976,7 @@
         "Name": "stat",
         "Value": "lateral_recovery",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8018,7 +8018,7 @@
         "Name": "stat",
         "Value": "no_huddle",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8060,7 +8060,7 @@
         "Name": "stat",
         "Value": "yac_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8102,7 +8102,7 @@
         "Name": "stat",
         "Value": "fumble",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8144,7 +8144,7 @@
         "Name": "stat",
         "Value": "solo_tackle",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8186,7 +8186,7 @@
         "Name": "stat",
         "Value": "total",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8228,7 +8228,7 @@
         "Name": "stat",
         "Value": "xyac_fd",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8270,7 +8270,7 @@
         "Name": "stat",
         "Value": "half_seconds_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8312,7 +8312,7 @@
         "Name": "stat",
         "Value": "kick_distance",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8354,7 +8354,7 @@
         "Name": "stat",
         "Value": "punt_out_of_bounds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8396,7 +8396,7 @@
         "Name": "stat",
         "Value": "fumble_forced",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8438,7 +8438,7 @@
         "Name": "stat",
         "Value": "defensive_two_point_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8480,7 +8480,7 @@
         "Name": "stat",
         "Value": "penalty",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8522,7 +8522,7 @@
         "Name": "stat",
         "Value": "old_game_id_y",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8564,7 +8564,7 @@
         "Name": "stat",
         "Value": "yards_gained",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8606,7 +8606,7 @@
         "Name": "stat",
         "Value": "total_home_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8648,7 +8648,7 @@
         "Name": "stat",
         "Value": "total_home_comp_yac_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8690,7 +8690,7 @@
         "Name": "stat",
         "Value": "total_home_comp_air_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8732,7 +8732,7 @@
         "Name": "stat",
         "Value": "comp_yac_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8774,7 +8774,7 @@
         "Name": "stat",
         "Value": "punt_blocked",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8816,7 +8816,7 @@
         "Name": "stat",
         "Value": "xyac_median_yardage",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8858,7 +8858,7 @@
         "Name": "stat",
         "Value": "extra_point_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8900,7 +8900,7 @@
         "Name": "stat",
         "Value": "receiving_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8942,7 +8942,7 @@
         "Name": "stat",
         "Value": "kickoff_downed",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -8984,7 +8984,7 @@
         "Name": "stat",
         "Value": "total_line",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9026,7 +9026,7 @@
         "Name": "stat",
         "Value": "posteam_timeouts_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9068,7 +9068,7 @@
         "Name": "stat",
         "Value": "first_down_penalty",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9110,7 +9110,7 @@
         "Name": "stat",
         "Value": "first_down",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9152,7 +9152,7 @@
         "Name": "stat",
         "Value": "penalty_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9194,7 +9194,7 @@
         "Name": "stat",
         "Value": "yac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9236,7 +9236,7 @@
         "Name": "stat",
         "Value": "home_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9278,7 +9278,7 @@
         "Name": "stat",
         "Value": "own_kickoff_recovery",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9320,7 +9320,7 @@
         "Name": "stat",
         "Value": "quarter_end",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9362,7 +9362,7 @@
         "Name": "stat",
         "Value": "total_away_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9404,7 +9404,7 @@
         "Name": "stat",
         "Value": "pass",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9446,7 +9446,7 @@
         "Name": "stat",
         "Value": "air_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9488,7 +9488,7 @@
         "Name": "stat",
         "Value": "result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9530,7 +9530,7 @@
         "Name": "stat",
         "Value": "third_down_failed",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9572,7 +9572,7 @@
         "Name": "stat",
         "Value": "wp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9614,7 +9614,7 @@
         "Name": "stat",
         "Value": "success",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9656,7 +9656,7 @@
         "Name": "stat",
         "Value": "game_seconds_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9698,7 +9698,7 @@
         "Name": "stat",
         "Value": "series_success",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9740,7 +9740,7 @@
         "Name": "stat",
         "Value": "total_away_raw_air_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9782,7 +9782,7 @@
         "Name": "stat",
         "Value": "pass_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9824,7 +9824,7 @@
         "Name": "stat",
         "Value": "return_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9866,7 +9866,7 @@
         "Name": "stat",
         "Value": "opp_td_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9908,7 +9908,7 @@
         "Name": "stat",
         "Value": "wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9950,7 +9950,7 @@
         "Name": "stat",
         "Value": "defteam_timeouts_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -9992,7 +9992,7 @@
         "Name": "stat",
         "Value": "lateral_return",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10034,7 +10034,7 @@
         "Name": "stat",
         "Value": "play_deleted",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10076,7 +10076,7 @@
         "Name": "stat",
         "Value": "yardline_100",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10118,7 +10118,7 @@
         "Name": "stat",
         "Value": "vegas_wp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10160,7 +10160,7 @@
         "Name": "stat",
         "Value": "xpass",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10202,7 +10202,7 @@
         "Name": "stat",
         "Value": "total_away_comp_air_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10244,7 +10244,7 @@
         "Name": "stat",
         "Value": "first_down_pass",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10286,7 +10286,7 @@
         "Name": "stat",
         "Value": "own_kickoff_recovery_td",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10328,7 +10328,7 @@
         "Name": "stat",
         "Value": "drive",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10370,7 +10370,7 @@
         "Name": "stat",
         "Value": "defenders_in_box",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10412,7 +10412,7 @@
         "Name": "stat",
         "Value": "special",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10454,7 +10454,7 @@
         "Name": "stat",
         "Value": "kickoff_inside_twenty",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10496,7 +10496,7 @@
         "Name": "stat",
         "Value": "special_teams_play",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10538,7 +10538,7 @@
         "Name": "stat",
         "Value": "n_offense",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10580,7 +10580,7 @@
         "Name": "stat",
         "Value": "yards_after_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10622,7 +10622,7 @@
         "Name": "stat",
         "Value": "lateral_rush",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10664,7 +10664,7 @@
         "Name": "stat",
         "Value": "spread_line",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10706,7 +10706,7 @@
         "Name": "stat",
         "Value": "kickoff_fair_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10748,7 +10748,7 @@
         "Name": "stat",
         "Value": "epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10790,7 +10790,7 @@
         "Name": "stat",
         "Value": "xyac_mean_yardage",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10832,7 +10832,7 @@
         "Name": "stat",
         "Value": "defteam_score_post",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10874,7 +10874,7 @@
         "Name": "stat",
         "Value": "play",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10916,7 +10916,7 @@
         "Name": "stat",
         "Value": "rush_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -10958,7 +10958,7 @@
         "Name": "stat",
         "Value": "posteam_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11000,7 +11000,7 @@
         "Name": "stat",
         "Value": "extra_point_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11042,7 +11042,7 @@
         "Name": "stat",
         "Value": "fourth_down_failed",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11084,7 +11084,7 @@
         "Name": "stat",
         "Value": "air_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11126,7 +11126,7 @@
         "Name": "stat",
         "Value": "opp_safety_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11168,7 +11168,7 @@
         "Name": "stat",
         "Value": "order_sequence",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11210,7 +11210,7 @@
         "Name": "stat",
         "Value": "drive_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11252,7 +11252,7 @@
         "Name": "stat",
         "Value": "comp_air_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11294,7 +11294,7 @@
         "Name": "stat",
         "Value": "defensive_two_point_conv",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11336,7 +11336,7 @@
         "Name": "stat",
         "Value": "interception",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11378,7 +11378,7 @@
         "Name": "stat",
         "Value": "two_point_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11420,7 +11420,7 @@
         "Name": "stat",
         "Value": "away_timeouts_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11462,7 +11462,7 @@
         "Name": "stat",
         "Value": "home_wp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11504,7 +11504,7 @@
         "Name": "stat",
         "Value": "home_opening_kickoff",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11546,7 +11546,7 @@
         "Name": "stat",
         "Value": "vegas_home_wp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11588,7 +11588,7 @@
         "Name": "stat",
         "Value": "fourth_down_converted",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11630,7 +11630,7 @@
         "Name": "stat",
         "Value": "two_point_conversion_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11672,7 +11672,7 @@
         "Name": "stat",
         "Value": "quarter_seconds_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11714,7 +11714,7 @@
         "Name": "stat",
         "Value": "def_wp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11756,7 +11756,7 @@
         "Name": "stat",
         "Value": "total_home_rush_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11798,7 +11798,7 @@
         "Name": "stat",
         "Value": "total_home_comp_yac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11840,7 +11840,7 @@
         "Name": "stat",
         "Value": "total_away_comp_yac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11882,7 +11882,7 @@
         "Name": "stat",
         "Value": "posteam_score_post",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11924,7 +11924,7 @@
         "Name": "stat",
         "Value": "total_home_raw_yac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -11966,7 +11966,7 @@
         "Name": "stat",
         "Value": "score_differential",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12008,7 +12008,7 @@
         "Name": "stat",
         "Value": "drive_ended_with_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12050,7 +12050,7 @@
         "Name": "stat",
         "Value": "qb_scramble",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12092,7 +12092,7 @@
         "Name": "stat",
         "Value": "kickoff_in_endzone",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12134,7 +12134,7 @@
         "Name": "stat",
         "Value": "vegas_home_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12176,7 +12176,7 @@
         "Name": "stat",
         "Value": "ydstogo",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12218,7 +12218,7 @@
         "Name": "stat",
         "Value": "n_defense",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12260,7 +12260,7 @@
         "Name": "stat",
         "Value": "ydsnet",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12302,7 +12302,7 @@
         "Name": "stat",
         "Value": "no_score_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12344,7 +12344,7 @@
         "Name": "stat",
         "Value": "home_timeouts_remaining",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12386,7 +12386,7 @@
         "Name": "stat",
         "Value": "away_wp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12428,7 +12428,7 @@
         "Name": "stat",
         "Value": "total_home_raw_yac_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12470,7 +12470,7 @@
         "Name": "stat",
         "Value": "safety",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12512,7 +12512,7 @@
         "Name": "stat",
         "Value": "qb_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12554,7 +12554,7 @@
         "Name": "stat",
         "Value": "shotgun",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12596,7 +12596,7 @@
         "Name": "stat",
         "Value": "first_down_rush",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12638,7 +12638,7 @@
         "Name": "stat",
         "Value": "passer_jersey_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12680,7 +12680,7 @@
         "Name": "stat",
         "Value": "ep",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12722,7 +12722,7 @@
         "Name": "stat",
         "Value": "field_goal_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12764,7 +12764,7 @@
         "Name": "stat",
         "Value": "away_wp_post",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12806,7 +12806,7 @@
         "Name": "stat",
         "Value": "jersey_number",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12848,7 +12848,7 @@
         "Name": "stat",
         "Value": "total_home_raw_air_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12890,7 +12890,7 @@
         "Name": "stat",
         "Value": "rush_touchdown",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12932,7 +12932,7 @@
         "Name": "stat",
         "Value": "number_of_pass_rushers",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -12974,7 +12974,7 @@
         "Name": "stat",
         "Value": "score_differential_post",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13016,7 +13016,7 @@
         "Name": "stat",
         "Value": "incomplete_pass",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13058,7 +13058,7 @@
         "Name": "stat",
         "Value": "pass_touchdown",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13100,7 +13100,7 @@
         "Name": "stat",
         "Value": "td_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13142,7 +13142,7 @@
         "Name": "stat",
         "Value": "replay_or_challenge",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13184,7 +13184,7 @@
         "Name": "stat",
         "Value": "cpoe",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13226,7 +13226,7 @@
         "Name": "stat",
         "Value": "rush",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13268,7 +13268,7 @@
         "Name": "stat",
         "Value": "aborted_play",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13310,7 +13310,7 @@
         "Name": "stat",
         "Value": "defteam_score",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13352,7 +13352,7 @@
         "Name": "stat",
         "Value": "defensive_extra_point_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13394,7 +13394,7 @@
         "Name": "stat",
         "Value": "drive_inside20",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13436,7 +13436,7 @@
         "Name": "stat",
         "Value": "cp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13478,7 +13478,7 @@
         "Name": "stat",
         "Value": "total_home_comp_air_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13520,7 +13520,7 @@
         "Name": "stat",
         "Value": "punt_in_endzone",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13562,7 +13562,7 @@
         "Name": "stat",
         "Value": "qb_kneel",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13604,7 +13604,7 @@
         "Name": "stat",
         "Value": "total_away_rush_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13646,7 +13646,7 @@
         "Name": "stat",
         "Value": "drive_play_id_started",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13688,7 +13688,7 @@
         "Name": "stat",
         "Value": "comp_yac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13730,7 +13730,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_1_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13772,7 +13772,7 @@
         "Name": "stat",
         "Value": "home_wp_post",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13814,7 +13814,7 @@
         "Name": "stat",
         "Value": "drive_play_id_ended",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13856,7 +13856,7 @@
         "Name": "stat",
         "Value": "out_of_bounds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13898,7 +13898,7 @@
         "Name": "stat",
         "Value": "total_away_comp_yac_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13940,7 +13940,7 @@
         "Name": "stat",
         "Value": "total_away_pass_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -13982,7 +13982,7 @@
         "Name": "stat",
         "Value": "fumble_lost",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14024,7 +14024,7 @@
         "Name": "stat",
         "Value": "qb_spike",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14066,7 +14066,7 @@
         "Name": "stat",
         "Value": "qtr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14108,7 +14108,7 @@
         "Name": "stat",
         "Value": "kickoff_out_of_bounds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14150,7 +14150,7 @@
         "Name": "stat",
         "Value": "fg_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14192,7 +14192,7 @@
         "Name": "stat",
         "Value": "xyac_success",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14234,7 +14234,7 @@
         "Name": "stat",
         "Value": "touchback",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14276,7 +14276,7 @@
         "Name": "stat",
         "Value": "fumble_out_of_bounds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14318,7 +14318,7 @@
         "Name": "stat",
         "Value": "complete_pass",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14360,7 +14360,7 @@
         "Name": "stat",
         "Value": "total_home_raw_air_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14402,7 +14402,7 @@
         "Name": "stat",
         "Value": "sack",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14444,7 +14444,7 @@
         "Name": "stat",
         "Value": "third_down_converted",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14486,7 +14486,7 @@
         "Name": "stat",
         "Value": "total_away_rush_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14528,7 +14528,7 @@
         "Name": "stat",
         "Value": "xyac_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14570,7 +14570,7 @@
         "Name": "stat",
         "Value": "punt_attempt",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14612,7 +14612,7 @@
         "Name": "stat",
         "Value": "old_game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14654,7 +14654,7 @@
         "Name": "stat",
         "Value": "lateral_reception",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14696,7 +14696,7 @@
         "Name": "stat",
         "Value": "season_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14738,7 +14738,7 @@
         "Name": "stat",
         "Value": "time",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14780,7 +14780,7 @@
         "Name": "stat",
         "Value": "offense_players",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14822,7 +14822,7 @@
         "Name": "stat",
         "Value": "game_half",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14864,7 +14864,7 @@
         "Name": "stat",
         "Value": "tackle_for_loss_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14906,7 +14906,7 @@
         "Name": "stat",
         "Value": "assist_tackle_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14948,7 +14948,7 @@
         "Name": "stat",
         "Value": "assist_tackle_3_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -14990,7 +14990,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_2_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15032,7 +15032,7 @@
         "Name": "stat",
         "Value": "two_point_conv_result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15074,7 +15074,7 @@
         "Name": "stat",
         "Value": "home_coach",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15116,7 +15116,7 @@
         "Name": "stat",
         "Value": "total_away_pass_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15158,7 +15158,7 @@
         "Name": "stat",
         "Value": "solo_tackle_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15200,7 +15200,7 @@
         "Name": "stat",
         "Value": "half_sack_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15242,7 +15242,7 @@
         "Name": "stat",
         "Value": "assist_tackle_4_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15284,7 +15284,7 @@
         "Name": "stat",
         "Value": "players_on_play",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15326,7 +15326,7 @@
         "Name": "stat",
         "Value": "receiver_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15368,7 +15368,7 @@
         "Name": "stat",
         "Value": "half_sack_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15410,7 +15410,7 @@
         "Name": "stat",
         "Value": "play_type_nfl",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15452,7 +15452,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15494,7 +15494,7 @@
         "Name": "stat",
         "Value": "rusher",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15536,7 +15536,7 @@
         "Name": "stat",
         "Value": "solo_tackle_1_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15578,7 +15578,7 @@
         "Name": "stat",
         "Value": "punter_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15620,7 +15620,7 @@
         "Name": "stat",
         "Value": "tackle_for_loss_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15662,7 +15662,7 @@
         "Name": "stat",
         "Value": "fantasy_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15704,7 +15704,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15746,7 +15746,7 @@
         "Name": "stat",
         "Value": "assist_tackle_1_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15788,7 +15788,7 @@
         "Name": "stat",
         "Value": "penalty_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15830,7 +15830,7 @@
         "Name": "stat",
         "Value": "fumbled_1_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15872,7 +15872,7 @@
         "Name": "stat",
         "Value": "blocked_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15914,7 +15914,7 @@
         "Name": "stat",
         "Value": "roof",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15956,7 +15956,7 @@
         "Name": "stat",
         "Value": "kicker_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -15998,7 +15998,7 @@
         "Name": "stat",
         "Value": "home_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16040,7 +16040,7 @@
         "Name": "stat",
         "Value": "offense_personnel",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16082,7 +16082,7 @@
         "Name": "stat",
         "Value": "assist_tackle_3_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16124,7 +16124,7 @@
         "Name": "stat",
         "Value": "pass_defense_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16166,7 +16166,7 @@
         "Name": "stat",
         "Value": "solo_tackle_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16208,7 +16208,7 @@
         "Name": "stat",
         "Value": "replay_or_challenge_result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16250,7 +16250,7 @@
         "Name": "stat",
         "Value": "rusher_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16292,7 +16292,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16334,7 +16334,7 @@
         "Name": "stat",
         "Value": "forced_fumble_player_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16376,7 +16376,7 @@
         "Name": "stat",
         "Value": "run_gap",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16418,7 +16418,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_2_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16460,7 +16460,7 @@
         "Name": "stat",
         "Value": "forced_fumble_player_1_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16502,7 +16502,7 @@
         "Name": "stat",
         "Value": "kickoff_returner_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16544,7 +16544,7 @@
         "Name": "stat",
         "Value": "kicker_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16586,7 +16586,7 @@
         "Name": "stat",
         "Value": "passer_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16628,7 +16628,7 @@
         "Name": "stat",
         "Value": "safety_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16670,7 +16670,7 @@
         "Name": "stat",
         "Value": "run_location",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16712,7 +16712,7 @@
         "Name": "stat",
         "Value": "lateral_receiver_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16754,7 +16754,7 @@
         "Name": "stat",
         "Value": "id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16796,7 +16796,7 @@
         "Name": "stat",
         "Value": "own_kickoff_recovery_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16838,7 +16838,7 @@
         "Name": "stat",
         "Value": "half_sack_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16880,7 +16880,7 @@
         "Name": "stat",
         "Value": "punter_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16922,7 +16922,7 @@
         "Name": "stat",
         "Value": "possession_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -16964,7 +16964,7 @@
         "Name": "stat",
         "Value": "rusher_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17006,7 +17006,7 @@
         "Name": "stat",
         "Value": "fantasy_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17048,7 +17048,7 @@
         "Name": "stat",
         "Value": "fumbled_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17090,7 +17090,7 @@
         "Name": "stat",
         "Value": "posteam",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17132,7 +17132,7 @@
         "Name": "stat",
         "Value": "away_coach",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17174,7 +17174,7 @@
         "Name": "stat",
         "Value": "lateral_rusher_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17216,7 +17216,7 @@
         "Name": "stat",
         "Value": "penalty_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17258,7 +17258,7 @@
         "Name": "stat",
         "Value": "passer_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17300,7 +17300,7 @@
         "Name": "stat",
         "Value": "qb_hit_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17342,7 +17342,7 @@
         "Name": "stat",
         "Value": "location",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17384,7 +17384,7 @@
         "Name": "stat",
         "Value": "td_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17426,7 +17426,7 @@
         "Name": "stat",
         "Value": "sack_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17468,7 +17468,7 @@
         "Name": "stat",
         "Value": "nflverse_game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17510,7 +17510,7 @@
         "Name": "stat",
         "Value": "safety_prob",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17552,7 +17552,7 @@
         "Name": "stat",
         "Value": "fumbled_2_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17594,7 +17594,7 @@
         "Name": "stat",
         "Value": "qb_hit_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17636,7 +17636,7 @@
         "Name": "stat",
         "Value": "surface",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17678,7 +17678,7 @@
         "Name": "stat",
         "Value": "tackle_with_assist_1_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17720,7 +17720,7 @@
         "Name": "stat",
         "Value": "route",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17762,7 +17762,7 @@
         "Name": "stat",
         "Value": "field_goal_result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17804,7 +17804,7 @@
         "Name": "stat",
         "Value": "solo_tackle_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17846,7 +17846,7 @@
         "Name": "stat",
         "Value": "assist_tackle_3_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17888,7 +17888,7 @@
         "Name": "stat",
         "Value": "fumbled_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17930,7 +17930,7 @@
         "Name": "stat",
         "Value": "defense_personnel",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -17972,7 +17972,7 @@
         "Name": "stat",
         "Value": "defense_coverage_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18014,7 +18014,7 @@
         "Name": "stat",
         "Value": "stadium",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18056,7 +18056,7 @@
         "Name": "stat",
         "Value": "lateral_rusher_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18098,7 +18098,7 @@
         "Name": "stat",
         "Value": "assist_tackle_4_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18140,7 +18140,7 @@
         "Name": "stat",
         "Value": "passer_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18182,7 +18182,7 @@
         "Name": "stat",
         "Value": "pass_defense_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18224,7 +18224,7 @@
         "Name": "stat",
         "Value": "yrdln",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18266,7 +18266,7 @@
         "Name": "stat",
         "Value": "blocked_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18308,7 +18308,7 @@
         "Name": "stat",
         "Value": "drive_start_transition",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18350,7 +18350,7 @@
         "Name": "stat",
         "Value": "drive_end_yard_line",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18392,7 +18392,7 @@
         "Name": "stat",
         "Value": "half_sack_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18434,7 +18434,7 @@
         "Name": "stat",
         "Value": "lateral_kickoff_returner_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18476,7 +18476,7 @@
         "Name": "stat",
         "Value": "weather",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18518,7 +18518,7 @@
         "Name": "stat",
         "Value": "interception_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18560,7 +18560,7 @@
         "Name": "stat",
         "Value": "assist_tackle_2_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18602,7 +18602,7 @@
         "Name": "stat",
         "Value": "assist_tackle_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18644,7 +18644,7 @@
         "Name": "stat",
         "Value": "fantasy",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18686,7 +18686,7 @@
         "Name": "stat",
         "Value": "side_of_field",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18728,7 +18728,7 @@
         "Name": "stat",
         "Value": "passer",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18770,7 +18770,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_1_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18812,7 +18812,7 @@
         "Name": "stat",
         "Value": "pass_length",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18854,7 +18854,7 @@
         "Name": "stat",
         "Value": "start_time",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18896,7 +18896,7 @@
         "Name": "stat",
         "Value": "pass_defense_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18938,7 +18938,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -18980,7 +18980,7 @@
         "Name": "stat",
         "Value": "assist_tackle_4_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19022,7 +19022,7 @@
         "Name": "stat",
         "Value": "extra_point_result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19064,7 +19064,7 @@
         "Name": "stat",
         "Value": "tackle_with_assist_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19106,7 +19106,7 @@
         "Name": "stat",
         "Value": "lateral_kickoff_returner_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19148,7 +19148,7 @@
         "Name": "stat",
         "Value": "desc",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19190,7 +19190,7 @@
         "Name": "stat",
         "Value": "qb_hit_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19232,7 +19232,7 @@
         "Name": "stat",
         "Value": "tackle_with_assist_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19274,7 +19274,7 @@
         "Name": "stat",
         "Value": "td_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19316,7 +19316,7 @@
         "Name": "stat",
         "Value": "play_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19358,7 +19358,7 @@
         "Name": "stat",
         "Value": "drive_game_clock_start",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19400,7 +19400,7 @@
         "Name": "stat",
         "Value": "interception_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19442,7 +19442,7 @@
         "Name": "stat",
         "Value": "forced_fumble_player_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19484,7 +19484,7 @@
         "Name": "stat",
         "Value": "own_kickoff_recovery_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19526,7 +19526,7 @@
         "Name": "stat",
         "Value": "wind",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19568,7 +19568,7 @@
         "Name": "stat",
         "Value": "away_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19610,7 +19610,7 @@
         "Name": "stat",
         "Value": "temp",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19652,7 +19652,7 @@
         "Name": "stat",
         "Value": "sack_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19694,7 +19694,7 @@
         "Name": "stat",
         "Value": "safety_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19736,7 +19736,7 @@
         "Name": "stat",
         "Value": "lateral_interception_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19778,7 +19778,7 @@
         "Name": "stat",
         "Value": "assist_tackle_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19820,7 +19820,7 @@
         "Name": "stat",
         "Value": "lateral_receiver_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19862,7 +19862,7 @@
         "Name": "stat",
         "Value": "pass_defense_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19904,7 +19904,7 @@
         "Name": "stat",
         "Value": "drive_game_clock_end",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19946,7 +19946,7 @@
         "Name": "stat",
         "Value": "qb_hit_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -19988,7 +19988,7 @@
         "Name": "stat",
         "Value": "solo_tackle_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20030,7 +20030,7 @@
         "Name": "stat",
         "Value": "punt_returner_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20072,7 +20072,7 @@
         "Name": "stat",
         "Value": "kickoff_returner_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20114,7 +20114,7 @@
         "Name": "stat",
         "Value": "series_result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20156,7 +20156,7 @@
         "Name": "stat",
         "Value": "receiver_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20198,7 +20198,7 @@
         "Name": "stat",
         "Value": "nfl_api_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20240,7 +20240,7 @@
         "Name": "stat",
         "Value": "drive_end_transition",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20282,7 +20282,7 @@
         "Name": "stat",
         "Value": "forced_fumble_player_1_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20324,7 +20324,7 @@
         "Name": "stat",
         "Value": "defense_players",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20366,7 +20366,7 @@
         "Name": "stat",
         "Value": "solo_tackle_2_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20408,7 +20408,7 @@
         "Name": "stat",
         "Value": "drive_start_yard_line",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20450,7 +20450,7 @@
         "Name": "stat",
         "Value": "return_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20492,7 +20492,7 @@
         "Name": "stat",
         "Value": "penalty_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20534,7 +20534,7 @@
         "Name": "stat",
         "Value": "fantasy_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20576,7 +20576,7 @@
         "Name": "stat",
         "Value": "offense_formation",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20618,7 +20618,7 @@
         "Name": "stat",
         "Value": "timeout_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20660,7 +20660,7 @@
         "Name": "stat",
         "Value": "total_home_pass_wpa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20702,7 +20702,7 @@
         "Name": "stat",
         "Value": "rusher_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20744,7 +20744,7 @@
         "Name": "stat",
         "Value": "fumble_recovery_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20786,7 +20786,7 @@
         "Name": "stat",
         "Value": "game_stadium",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20828,7 +20828,7 @@
         "Name": "stat",
         "Value": "td_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20870,7 +20870,7 @@
         "Name": "stat",
         "Value": "defteam",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20912,7 +20912,7 @@
         "Name": "stat",
         "Value": "game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20954,7 +20954,7 @@
         "Name": "stat",
         "Value": "assist_tackle_2_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -20996,7 +20996,7 @@
         "Name": "stat",
         "Value": "receiver",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21038,7 +21038,7 @@
         "Name": "stat",
         "Value": "lateral_rushing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21080,7 +21080,7 @@
         "Name": "stat",
         "Value": "receiver_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21122,7 +21122,7 @@
         "Name": "stat",
         "Value": "fumbled_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21164,7 +21164,7 @@
         "Name": "stat",
         "Value": "fixed_drive_result",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21206,7 +21206,7 @@
         "Name": "stat",
         "Value": "fumbled_1_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21248,7 +21248,7 @@
         "Name": "stat",
         "Value": "punt_returner_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21290,7 +21290,7 @@
         "Name": "stat",
         "Value": "lateral_receiving_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21332,7 +21332,7 @@
         "Name": "stat",
         "Value": "forced_fumble_player_2_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21374,7 +21374,7 @@
         "Name": "stat",
         "Value": "drive_time_of_possession",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21416,7 +21416,7 @@
         "Name": "stat",
         "Value": "penalty_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21458,7 +21458,7 @@
         "Name": "stat",
         "Value": "lateral_interception_player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21500,7 +21500,7 @@
         "Name": "stat",
         "Value": "forced_fumble_player_2_player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21542,7 +21542,7 @@
         "Name": "stat",
         "Value": "posteam_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21584,7 +21584,7 @@
         "Name": "stat",
         "Value": "defense_man_zone_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21626,7 +21626,7 @@
         "Name": "stat",
         "Value": "stadium_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21668,7 +21668,7 @@
         "Name": "stat",
         "Value": "pass_location",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21710,7 +21710,7 @@
         "Name": "stat",
         "Value": "team_abbr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21752,7 +21752,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21794,7 +21794,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21836,7 +21836,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21878,7 +21878,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21920,7 +21920,7 @@
         "Name": "stat",
         "Value": "season",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -21962,7 +21962,7 @@
         "Name": "stat",
         "Value": "week",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22004,7 +22004,7 @@
         "Name": "stat",
         "Value": "completions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22046,7 +22046,7 @@
         "Name": "stat",
         "Value": "attempts",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22088,7 +22088,7 @@
         "Name": "stat",
         "Value": "passing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22130,7 +22130,7 @@
         "Name": "stat",
         "Value": "passing_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22172,7 +22172,7 @@
         "Name": "stat",
         "Value": "interceptions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22214,7 +22214,7 @@
         "Name": "stat",
         "Value": "sacks",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22256,7 +22256,7 @@
         "Name": "stat",
         "Value": "sack_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22298,7 +22298,7 @@
         "Name": "stat",
         "Value": "passing_air_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22340,7 +22340,7 @@
         "Name": "stat",
         "Value": "passing_yards_after_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22382,7 +22382,7 @@
         "Name": "stat",
         "Value": "passing_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22424,7 +22424,7 @@
         "Name": "stat",
         "Value": "carries",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22466,7 +22466,7 @@
         "Name": "stat",
         "Value": "rushing_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22508,7 +22508,7 @@
         "Name": "stat",
         "Value": "rushing_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22550,7 +22550,7 @@
         "Name": "stat",
         "Value": "rushing_fumbles",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22592,7 +22592,7 @@
         "Name": "stat",
         "Value": "rushing_fumbles_lost",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22634,7 +22634,7 @@
         "Name": "stat",
         "Value": "rushing_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22676,7 +22676,7 @@
         "Name": "stat",
         "Value": "rushing_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22718,7 +22718,7 @@
         "Name": "stat",
         "Value": "receptions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22760,7 +22760,7 @@
         "Name": "stat",
         "Value": "receiving_fumbles",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22802,7 +22802,7 @@
         "Name": "stat",
         "Value": "fantasy_points_ppr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22844,7 +22844,7 @@
         "Name": "stat",
         "Value": "receiving_fumbles_lost",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22886,7 +22886,7 @@
         "Name": "stat",
         "Value": "passing_interceptions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22928,7 +22928,7 @@
         "Name": "stat",
         "Value": "target_share",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -22970,7 +22970,7 @@
         "Name": "stat",
         "Value": "receiving_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23012,7 +23012,7 @@
         "Name": "stat",
         "Value": "receiving_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23054,7 +23054,7 @@
         "Name": "stat",
         "Value": "yards_per_carry",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23096,7 +23096,7 @@
         "Name": "stat",
         "Value": "wopr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23138,7 +23138,7 @@
         "Name": "stat",
         "Value": "receiving_first_downs",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23180,7 +23180,7 @@
         "Name": "stat",
         "Value": "dakota",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23222,7 +23222,7 @@
         "Name": "stat",
         "Value": "receiving_air_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23264,7 +23264,7 @@
         "Name": "stat",
         "Value": "air_yards_share",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23306,7 +23306,7 @@
         "Name": "stat",
         "Value": "def_interceptions",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23348,7 +23348,7 @@
         "Name": "stat",
         "Value": "racr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23390,7 +23390,7 @@
         "Name": "stat",
         "Value": "def_interception_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23432,7 +23432,7 @@
         "Name": "stat",
         "Value": "passing_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23474,7 +23474,7 @@
         "Name": "stat",
         "Value": "def_sacks",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23516,7 +23516,7 @@
         "Name": "stat",
         "Value": "def_sack_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23558,7 +23558,7 @@
         "Name": "stat",
         "Value": "special_teams_tds",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23600,7 +23600,7 @@
         "Name": "stat",
         "Value": "targets",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23642,7 +23642,7 @@
         "Name": "stat",
         "Value": "pacr",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23684,7 +23684,7 @@
         "Name": "stat",
         "Value": "receiving_yards_after_catch",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23726,7 +23726,7 @@
         "Name": "stat",
         "Value": "receiving_epa",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23768,7 +23768,7 @@
         "Name": "stat",
         "Value": "scrimmage_yards",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23810,7 +23810,7 @@
         "Name": "stat",
         "Value": "fantasy_points",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23852,7 +23852,7 @@
         "Name": "stat",
         "Value": "player_game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23894,7 +23894,7 @@
         "Name": "stat",
         "Value": "player_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23936,7 +23936,7 @@
         "Name": "stat",
         "Value": "player_display_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -23978,7 +23978,7 @@
         "Name": "stat",
         "Value": "position",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24020,7 +24020,7 @@
         "Name": "stat",
         "Value": "position_group",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24062,7 +24062,7 @@
         "Name": "stat",
         "Value": "recent_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24104,7 +24104,7 @@
         "Name": "stat",
         "Value": "season_type",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24146,7 +24146,7 @@
         "Name": "stat",
         "Value": "opponent_team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24188,7 +24188,7 @@
         "Name": "stat",
         "Value": "display_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24230,7 +24230,7 @@
         "Name": "stat",
         "Value": "name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24272,7 +24272,7 @@
         "Name": "stat",
         "Value": "player_name",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24314,7 +24314,7 @@
         "Name": "stat",
         "Value": "headshot_url",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24356,7 +24356,7 @@
         "Name": "stat",
         "Value": "game_id",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {
@@ -24398,7 +24398,7 @@
         "Name": "stat",
         "Value": "team",
         "SlotValueTypes": [
-          "MultiStatFilter"
+          "Filter"
         ]
       },
       {

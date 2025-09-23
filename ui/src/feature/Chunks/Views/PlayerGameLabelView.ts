@@ -32,8 +32,8 @@ export const PLAYERGAME_LABEL_PROPERTIES = [  { key: "player_game_id", type: "St
   { key: "receptions", type: "Long" },
   { key: "receiving_fumbles", type: "Double" },
   { key: "fantasy_points_ppr", type: "Double" },
-  { key: "receiving_fumbles_lost", type: "Double" },
   { key: "display_name", type: "String" },
+  { key: "receiving_fumbles_lost", type: "Double" },
   { key: "name", type: "String" },
   { key: "player_name", type: "String" },
   { key: "passing_interceptions", type: "Long" },
@@ -99,8 +99,8 @@ export interface PlayerGameProperties {
   receptions: number;
   receiving_fumbles: number;
   fantasy_points_ppr: number;
-  receiving_fumbles_lost: number;
   display_name: string;
+  receiving_fumbles_lost: number;
   name: string;
   player_name: string;
   passing_interceptions: number;
