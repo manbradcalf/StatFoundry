@@ -170,37 +170,6 @@ class SimpleChunkGenerator {
     });
   }
 
-  // generateReturnChunks() { const chunks = [];
-  //   this.schema.nodes.forEach((node) => {
-  //     // Generate return all properties chunk
-  //     chunks.push({
-  //       English: `return ${node.label.toLowerCase()} information`,
-  //       Cypher: `RETURN ${this.getVariableName(node.label)}`,
-  //       QueryType: "RETURN",
-  //       Requires: [
-  //         { Name: this.getVariableName(node.label), AliasType: node.label },
-  //       ],
-  //       Provides: [],
-  //       Slots: [],
-  //     });
-  //
-  //     // Generate return specific property chunks
-  //     node.properties.forEach((prop) => {
-  //       chunks.push({
-  //         English: `return ${prop.name}`,
-  //         Cypher: `RETURN ${this.getVariableName(node.label)}.${prop}`,
-  //         QueryType: "RETURN",
-  //         Requires: [
-  //           { Name: this.getVariableName(node.label), AliasType: node.label },
-  //         ],
-  //         Provides: [],
-  //         Slots: [],
-  //       });
-  //     });
-  //   });
-  //   return chunks;
-  // }
-
   // Helper methods (simplified versions)
   getVariableName(label) {
     const mapping = {
