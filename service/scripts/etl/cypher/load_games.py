@@ -64,7 +64,7 @@ WITH
     week: toIntegerOrNull(line.week),
 
     // build display_score from team and score props
-    display_score = line.away_team + " " + toInteger(line.away_score) + " @ " + line.home_team + " " + toInteger(line.home_score),
+    display_score: line.away_team + " " + toInteger(line.away_score) + " @ " + line.home_team + " " + toInteger(line.home_score),
 
     // CSV is ISO like 2024-09-05T00:00:00Z; guard blanks:
     gameday:
