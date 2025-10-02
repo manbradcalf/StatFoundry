@@ -43,6 +43,11 @@ jobs:
         run: python -m scripts.etl.cypher.load_games
         working-directory: service
 
+      - name: Run weekly team stats ingestion
+        if: steps.load_games.outcome == 'success'
+        run: python -m scripts.etl.cypher.load_teamgames
+        working-directory: service
+
       - name: Run weekly player stats ingestion
         if: steps.load_games.outcome == 'success'
         run: python -m scripts.etl.cypher.load_playergames
