@@ -24,6 +24,10 @@ export interface DynamicTableProps {
   requireAuthForExport?: boolean;
   // Column grouping options
   columnGroups?: ColumnGroup[];
+  // Aggregation options
+  enableAggregations?: boolean;
+  aggregationType?: "sum" | "avg" | "min" | "max" | "custom";
+  customAggregation?: (acc: number, val: number) => number;
 }
 
 /**
@@ -36,6 +40,7 @@ export interface SortConfig {
   direction: "asc" | "desc" | null;
 }
 
+// TODO: Is this still needed? we dont handle nested rows anymore
 /**
  * Processed data item interface
  * Represents the structure after flattening nested objects and separating arrays

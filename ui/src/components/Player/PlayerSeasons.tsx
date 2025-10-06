@@ -98,6 +98,7 @@ export const PlayerSeasons: React.FC = () => {
           exportFilename={`player-seasons-${playerType.toLowerCase()}`}
           onExport={handleExport}
           requireAuthForExport={true}
+          enableAggregations={true}
         />
       )}
     </div>

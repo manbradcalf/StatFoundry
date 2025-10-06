@@ -4,8 +4,8 @@ export const GAME_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "away_qb_name", type: "String" },
   { key: "location", type: "String" },
   { key: "pff", type: "String" },
-  { key: "referee", type: "String" },
   { key: "overtime", type: "Double" },
+  { key: "referee", type: "String" },
   { key: "away_moneyline", type: "String" },
   { key: "home_qb_name", type: "String" },
   { key: "home_rest", type: "Long" },
@@ -53,8 +53,8 @@ export interface GameProperties {
   away_qb_name: string;
   location: string;
   pff: string;
-  referee: string;
   overtime: number;
+  referee: string;
   away_moneyline: string;
   home_qb_name: string;
   home_rest: number;

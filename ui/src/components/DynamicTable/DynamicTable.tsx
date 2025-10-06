@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DynamicTableProps } from "./types";
 import { defaultExcludeColumns } from "./config";
 import { useTableData } from "./hooks/useTableData";
@@ -6,8 +6,10 @@ import { useTableSorting } from "./hooks/useTableSorting";
 import { useTablePagination } from "./hooks/useTablePagination";
 import { useColumnVisibility } from "./hooks/useColumnVisibility";
 import { useColumnOrdering } from "./hooks/useColumnOrdering";
+import { useColumnAggregation } from "./hooks/useColumnAggregation";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
+import { TableFooter } from "./components/TableFooter";
 import { PaginationControls } from "./components/PaginationControls";
 import { ExportButton } from "./components/ExportButton";
 import { ColumnVisibilityDropdown } from "./components/ColumnVisibilityDropdown";
@@ -27,7 +29,16 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   requireAuthForExport = false,
   // Column grouping options
   columnGroups,
+  // Aggregation options
+  enableAggregations = true,
+  aggregationType: initialAggregationType = "sum",
+  customAggregation,
 }) => {
+  // State for user-selected aggregation type
+  const [aggregationType, setAggregationType] = useState<
+    "sum" | "avg" | "min" | "max" | "custom"
+  >(initialAggregationType);
+
   // Data processing hook - first get available columns
   const { availableColumns } = useTableData({
     data,
@@ -77,6 +88,25 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     sortedData,
     pageSize,
   });
+
+  // Aggregation hook (uses all sorted data, not paginated)
+  const columnAggregations = useColumnAggregation(
+    sortedData,
+    displayedColumns,
+    aggregationType,
+    customAggregation,
+  );
+
+  // Debug aggregations
+  if (enableAggregations) {
+    console.log("Aggregations enabled:", {
+      enableAggregations,
+      aggregationType,
+      columnAggregations,
+      displayedColumns,
+      sortedDataLength: sortedData.length,
+    });
+  }
 
   // Early return if no data
   if (visibleProcessedData.length === 0) {
@@ -135,6 +165,14 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             startIndex={startIndex}
             excludeColumns={excludeColumns}
           />
+          {enableAggregations && (
+            <TableFooter
+              columns={displayedColumns}
+              aggregations={columnAggregations}
+              aggregationType={aggregationType}
+              onAggregationTypeChange={setAggregationType}
+            />
+          )}
         </table>
       </div>
 
