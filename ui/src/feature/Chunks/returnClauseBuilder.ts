@@ -8,6 +8,7 @@ import { GAME_LABEL_PROPERTIES } from "./Views/GameLabelView";
 import { SEASON_LABEL_PROPERTIES } from "./Views/SeasonLabelView";
 import { COLLEGE_LABEL_PROPERTIES } from "./Views/CollegeLabelView";
 import { COLLEGECONFERENCE_LABEL_PROPERTIES } from "./Views/CollegeConferenceLabelView";
+import { TEAMGAME_LABEL_PROPERTIES } from "./Views/TeamGameLabelView";
 
 const getPropertiesByType = (aliasType: AliasType): string[] => {
   switch (aliasType) {
@@ -27,6 +28,8 @@ const getPropertiesByType = (aliasType: AliasType): string[] => {
       return COLLEGE_LABEL_PROPERTIES.map((x) => x.key);
     case AliasType.CollegeConference:
       return COLLEGECONFERENCE_LABEL_PROPERTIES.map((x) => x.key);
+    case AliasType.TeamGame:
+      return TEAMGAME_LABEL_PROPERTIES.map((x) => x.key);
     default:
       return ["*"]; // Fallback for unknown labels
   }
