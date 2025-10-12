@@ -4,7 +4,9 @@ interface TableFooterProps {
   columns: string[];
   aggregations: Record<string, number | null>;
   aggregationType: "sum" | "avg" | "min" | "max" | "custom";
-  onAggregationTypeChange: (type: "sum" | "avg" | "min" | "max" | "custom") => void;
+  onAggregationTypeChange: (
+    type: "sum" | "avg" | "min" | "max" | "custom",
+  ) => void;
 }
 
 export const TableFooter: React.FC<TableFooterProps> = ({
@@ -20,10 +22,13 @@ export const TableFooter: React.FC<TableFooterProps> = ({
     { value: "max", label: "Maximum" },
   ] as const;
 
-  const getCurrentLabel = () => {
-    const option = aggregationOptions.find((opt) => opt.value === aggregationType);
-    return option?.label || "Total";
-  };
+  // TODO: Uncomment when ready for aggregation
+  // const getCurrentLabel = () => {
+  //   const option = aggregationOptions.find(
+  //     (opt) => opt.value === aggregationType,
+  //   );
+  //   return option?.label || "Total";
+  // };
 
   return (
     <tfoot>
@@ -35,7 +40,9 @@ export const TableFooter: React.FC<TableFooterProps> = ({
               {index === 0 && value === null ? (
                 <select
                   value={aggregationType}
-                  onChange={(e) => onAggregationTypeChange(e.target.value as any)}
+                  onChange={(e) =>
+                    onAggregationTypeChange(e.target.value as any)
+                  }
                   style={{
                     fontWeight: "bold",
                     border: "1px solid #ddd",
