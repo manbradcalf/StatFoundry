@@ -35,17 +35,17 @@ The core graph schema is visualized in [docs/assets/graph_schema.mmd](docs/asset
 
 In certain places, these axes converge, creating a compound node. These are essentially lenses to view events from different perspectives.
 
-`(Entity)-[:MADE]->(CompoundNode)-[:OF]->(TemporalNode)`
+`(Entity)-[:HAD]->(CompoundNode)-[:OF]->(TemporalNode)`
 
-`(Player)-[:MADE]->(PlayerGame)-[:OF]->(Game)`
+`(Player)-[:HAD]->(PlayerGame)-[:OF]->(Game)`
 
-`(Team)-[:MADE]->(TeamGame)-[:OF]->(Game)`
+`(Team)-[:HAD]->(TeamGame)-[:OF]->(Game)`
 
 etc...
 
 ### Relationships: There are 2 relationship types in this design
 
-`MADE` is used when a Node creates a CompoundNode
+`HAD` is used when an Entity has a CompoundNode (e.g., Player had a PlayerGame)
 
 `OF` represents a continuation along one of the defined axes. Essentiall aggregating up to the whole.
 
@@ -128,7 +128,7 @@ npm start
 
 #### Production
 - **Frontend**: Azure Static Web Apps
-- **Backend**: Azure App Service  
+- **Backend**: Azure App Service
 - **Database**: Neo4j AuraDB with production credentials
 - **Security**: CORS disabled, environment-based configuration
 
@@ -138,12 +138,12 @@ npm start
 - **Trigger**: Pushes to `main` branch with changes in `ui/` directory
 - **Process**: Build React app with production environment → Deploy to Azure Static Web Apps
 - **Configuration**: Uses `.env.production` for environment variables
-- **Requirements**: 
+- **Requirements**:
   - `AZURE_STATIC_WEB_APPS_API_TOKEN` repository secret
   - Environment variables set in workflow (production service URL)
 
 #### Backend (Azure App Service)
-- **Trigger**: Pushes to `main` branch with changes in `service/` directory  
+- **Trigger**: Pushes to `main` branch with changes in `service/` directory
 - **Process**: Build Python app → Deploy to Azure App Service
 - **Configuration**: Environment variables set in Azure App Service
 - **Requirements**:
@@ -274,143 +274,148 @@ graph TD
 
 MIT
 
-# StatFoundry Data Pipeline
+# Data Ingestion & ETL
 
 ## Overview
 
-StatFoundry processes NFL data through a hierarchical pipeline that maps player statistics from games down to individual plays. The pipeline follows this structure:
+StatFoundry ingests NFL data directly from [nflverse](https://github.com/nflverse/nflverse-data) CSV sources into Neo4j using Cypher `LOAD CSV` statements. The ETL process creates a graph structure that models the hierarchical relationships between players, teams, games, and statistics.
+
+## ETL Scripts
+
+All ETL scripts are located in `service/scripts/etl/cypher/` and are designed to be idempotent (safe to run multiple times).
+
+### 1. Load Players (`load_players.py`)
+
+**Purpose:** Creates Player nodes with biographical and career information
+
+**Data Source:** `https://github.com/nflverse/nflverse-data/releases/download/players/players.csv`
+
+**Key Features:**
+- Creates unique constraint on `gsis_id` (NFL's Global System ID)
+- Loads all players with `rookie_season = 2025`
+- Includes position, college, draft info, physical attributes
+- Sets properties: `name`, `position`, `college_name`, `rookie_year`, etc.
+
+**Node Created:** `Player {gsis_id: "00-0034857", name: "Josh Allen", ...}`
+
+### 2. Load Games (`load_games.py`)
+
+**Purpose:** Creates Game nodes for NFL games
+
+**Data Source:** `https://github.com/nflverse/nflverse-data/releases/download/schedules/schedules.csv`
+
+**Key Features:**
+- Creates unique constraint on `game_id` (format: `2025_01_ARI_BUF`)
+- Loads 2025 season games
+- Includes scores, location, weather, betting lines
+- Creates relationships: `(Game)-[:OF]->(Week)-[:OF]->(Season)`
+
+**Node Created:** `Game {game_id: "2025_01_ARI_BUF", home_team: "BUF", away_team: "ARI", ...}`
+
+### 3. Load PlayerGames (`load_playergames.py`)
+
+**Purpose:** Creates PlayerGame nodes linking players to their game statistics
+
+**Data Source:** `https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv`
+
+**Key Features:**
+- Creates unique constraint on `(player_id, game_id)` combination
+- Matches players using `gsis_id` (requires Players loaded first)
+- Matches games using season/week/teams (requires Games loaded first)
+- Includes passing, rushing, receiving, defensive stats
+- Creates relationships: `(Player)-[:HAD]->(PlayerGame)-[:OF]->(Game)`
+
+**Node Created:** `PlayerGame {player_game_id: "00-0034857_2025_01_ARI_BUF", passing_yards: 320.0, ...}`
+
+**Dependencies:** Must run **after** `load_players.py` and `load_games.py`
+
+### 4. Load TeamGames (`load_teamgames.py`)
+
+**Purpose:** Creates TeamGame nodes with team-level game statistics
+
+**Data Source:** `https://github.com/nflverse/nflverse-data/releases/download/team_stats/team_stats.csv`
+
+**Key Features:**
+- Creates unique constraint on `(team_abbr, game_id)` combination
+- Aggregated team statistics (total passing yards, rushing yards, etc.)
+- Creates relationships: `(Team)-[:HAD]->(TeamGame)-[:OF]->(Game)`
+
+**Node Created:** `TeamGame {team_game_id: "BUF_2025_01_ARI_BUF", total_passing_yards: 450, ...}`
+
+## Load Order & Dependencies
+
+**Critical:** Scripts must be run in this order due to relationship dependencies:
 
 ```
-PlayerGame -> PlayerDrive -> PlayerPlay
-     ↓           ↓            ↓
-   Game   ->   Drive   ->   Play
+1. load_players.py     (no dependencies)
+2. load_games.py       (no dependencies)
+3. load_playergames.py (requires Players + Games)
+4. load_teamgames.py   (requires Games)
 ```
 
-## Implementation Plan
+**Why order matters:**
+- `load_playergames.py` uses `MATCH (p:Player {gsis_id: ...})` to find existing players
+- If Players aren't loaded first, PlayerGame creation will fail
+- All game-related scripts need Game nodes to exist for `[:OF]` relationships
 
-### 1. Player-Game Mapping (✅ Completed)
+## Running ETL Scripts
 
-- File: `service/player_game_mapper.py`
-- Input: Raw NFL weekly data
-- Output: `data/player_game_data_{season}_{week}.parquet`
-- Key Features:
-  - Generates unique `player_game_id = player_id + game_id`
-  - Maps players to games they participated in
-  - Includes game-level statistics
+### Manual Execution
 
-### 2. Player-Drive Mapping (🚧 In Progress)
+```bash
+cd service
+source .venv/bin/activate
 
-- File: `service/player_drive_mapper.py`
-- Input:
-  - Player-game parquet files
-  - NFL play-by-play data (for drive information)
-- Output: `data/player_drive_data_{season}_{week}.parquet`
-- Implementation Tasks:
-  - [ ] Create unique `player_drive_id = player_id + game_id + drive_id`
-  - [ ] Map drive statistics to players
-  - [ ] Calculate drive-level aggregations
-  - [ ] Track offensive/defensive participation
+# Set environment variables
+export NEO4J_STATFOUNDRY_NFL_AURA_URI=your-neo4j-uri
+export NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD=your-password
 
-### 3. Player-Play Mapping (📋 Planned)
-
-- File: `service/player_play_mapper.py`
-- Input:
-  - Player-game parquet files
-  - NFL play-by-play data
-- Output: `data/player_play_data_{season}_{week}.parquet`
-- Implementation Tasks:
-  - [ ] Create unique `player_play_id = player_id + game_id + play_id`
-  - [ ] Map individual plays to players
-  - [ ] Track play participation and roles
-  - [ ] Calculate play-level statistics
-
-## Data Flow
-
-1. **Game Level**
-
-   ```python
-   player_game_id = f"{player_id}_{game_id}"
-   ```
-
-   - Basic player statistics
-   - Game context (home/away, opponent)
-   - Game-level aggregations
-
-2. **Drive Level**
-
-   ```python
-   player_drive_id = f"{player_id}_{game_id}_{drive_id}"
-   ```
-
-   - Drive participation
-   - Offensive/defensive roles
-   - Drive success metrics
-   - Drive-specific statistics
-
-3. **Play Level**
-   ```python
-   player_play_id = f"{player_id}_{game_id}_{play_id}"
-   ```
-   - Individual play participation
-   - Play-specific roles
-   - Detailed play statistics
-   - Play outcome impact
-
-## Graph Database Schema
-
-The processed data maps to our graph database with the following node types:
-
-```mermaid
-graph TD
-    subgraph "Player Path"
-        Player["Player"] -->|"MADE"| PlayerPlay["Player Play"]
-        Player -->|"MADE"| PlayerGame["Player Game"]
-        Player -->|"MADE"| PlayerDrive["Player Drive"]
-    end
-
-    subgraph "Core Timeline"
-        PlayerPlay -->|"OF"| NFLPlay["NFL Play"]
-        NFLPlay -->|"OF"| Drive["Drive"]
-        Drive -->|"OF"| NFLGame["NFL Game"]
-        NFLGame -->|"OF"| NFLWeek["NFL Week"]
-        NFLWeek -->|"OF"| Season["Season"]
-    end
+# Run in order
+python scripts/etl/cypher/load_players.py
+python scripts/etl/cypher/load_games.py
+python scripts/etl/cypher/load_playergames.py
+python scripts/etl/cypher/load_teamgames.py
 ```
 
-## Next Steps
+### Automated Ingestion
 
-1. **Player-Drive Mapper Implementation**
+ETL scripts run automatically via GitHub Actions workflow (`.github/workflows/data-ingestion.yml`):
 
-   - [ ] Set up basic drive mapping structure
-   - [ ] Implement drive statistics calculation
-   - [ ] Add offensive/defensive drive tracking
-   - [ ] Create tests for drive mapping
+**Trigger:** Scheduled to run weekly (or manual dispatch)
 
-2. **Player-Play Mapper Implementation**
+**Process:**
+1. Sets up Python environment
+2. Installs dependencies from `requirements.txt`
+3. Runs all four ETL scripts in correct order
+4. Reports success/failure status
 
-   - [ ] Design play mapping structure
-   - [ ] Implement play participation tracking
-   - [ ] Add play-specific statistics
-   - [ ] Create tests for play mapping
+**Environment Variables:** Neo4j credentials stored as GitHub secrets
 
-3. **Pipeline Integration**
-   - [ ] Create pipeline orchestration
-   - [ ] Add data validation steps
-   - [ ] Implement error handling
-   - [ ] Add logging and monitoring
+## Graph Schema Created
 
-## Usage
+The ETL process creates this graph structure:
 
-```python
-# Generate player-game data
-from service.player_game_mapper import generate_player_game_parquets
-df = generate_player_game_parquets(range(2023, 2024), range(1, 19))
-
-# Future: Generate player-drive data
-from service.player_drive_mapper import generate_player_drive_parquets
-drive_df = generate_player_drive_parquets(season=2023, week=1)
-
-# Future: Generate player-play data
-from service.player_play_mapper import generate_player_play_parquets
-play_df = generate_player_play_parquets(season=2023, week=1)
 ```
+(Player)-[:HAD]->(PlayerGame)-[:OF]->(Game)
+(Team)-[:HAD]->(TeamGame)-[:OF]->(Game)
+(Game)-[:OF]->(Week)-[:OF]->(Season)
+```
+
+See [docs/assets/graph_schema.mmd](docs/assets/graph_schema.mmd) for complete schema visualization.
+
+## Data Sources
+
+All data comes from [nflverse-data](https://github.com/nflverse/nflverse-data), a community-maintained repository of NFL data:
+
+- **Players:** Biographical info, draft data, positions
+- **Schedules:** Game information, scores, locations
+- **Player Stats:** Weekly statistics for all players
+- **Team Stats:** Aggregated team-level game statistics
+
+## Future Enhancements
+
+- [ ] Add PlayerDrive and Drive nodes for drive-level analysis
+- [ ] Add PlayerPlay and Play nodes for play-by-play analysis
+- [ ] Implement incremental updates (only load new weeks)
+- [ ] Add data validation and quality checks
+- [ ] Create summary/materialized views for common queries

@@ -8,7 +8,7 @@ graph TD
     %% Player Path on left
     subgraph "Player Path"
         Player["Player"] -->|"MADE"| PlayerPlay["Player Play"]
-        Player -->|"MADE"| PlayerGame["Player Game"]
+        Player -->|"HAD"| PlayerGame["Player Game"]
         Player -->|"MADE"| PlayerSeason["Player Season"]
         Player -->|"MADE"| PlayerDrive["Player Drive"]
     end
@@ -16,7 +16,7 @@ graph TD
     %% Team Path on right
     subgraph "Team Path"
         Team["Team"] -->|"MADE"| TeamPlay["Team Play"]
-        Team -->|"MADE"| TeamGame["Team Game"]
+        Team -->|"HAD"| TeamGame["Team Game"]
         Team -->|"MADE"| TeamSeason["Team Season"]
         Team -->|"MADE"| TeamDrive["Team Drive"]
     end
