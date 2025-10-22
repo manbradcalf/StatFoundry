@@ -41,6 +41,10 @@ WITH line, g, season, week, ww, away, home,
 MERGE (pg:PlayerGame {player_id: line.player_id, game_id: game_id})
 MERGE (pg)-[:OF]->(g)
 
+// Link to existing Player
+MATCH (p:Player {gsis_id: line.player_id})
+MERGE (p)-[:HAD]->(pg)
+
 // Minimal properties to verify; expand as needed
 SET pg += {
   // identity & context
