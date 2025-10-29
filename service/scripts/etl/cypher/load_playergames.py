@@ -41,6 +41,9 @@ WITH line, g, season, week, ww, away, home,
 MERGE (pg:PlayerGame {player_id: line.player_id, game_id: game_id})
 MERGE (pg)-[:OF]->(g)
 
+// Pass context forward to next clause
+WITH pg, line, g
+
 // Link to existing Player
 MATCH (p:Player {gsis_id: line.player_id})
 MERGE (p)-[:HAD]->(pg)
