@@ -34,6 +34,7 @@ WHERE g.season = season AND g.week = week
 WITH line, g, season, week,
      (CASE WHEN week < 10 THEN '0' + toString(week) ELSE toString(week) END) AS ww,
      g.away_team AS away, g.home_team AS home
+
 WITH line, g, season, week, ww, away, home,
      toString(season) + '_' + ww + '_' + away + '_' + home AS game_id
 
@@ -42,7 +43,7 @@ MERGE (pg:PlayerGame {player_id: line.player_id, game_id: game_id})
 MERGE (pg)-[:OF]->(g)
 
 // Pass context forward to next clause
-WITH line, g, season, week, pg 
+WITH line, g, season, week, pg, game_id
 
 // Link to existing Player
 MATCH (p:Player {gsis_id: line.player_id})
