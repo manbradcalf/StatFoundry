@@ -42,7 +42,7 @@ MERGE (pg:PlayerGame {player_id: line.player_id, game_id: game_id})
 MERGE (pg)-[:OF]->(g)
 
 // Pass context forward to next clause
-WITH pg, line, g
+WITH line, g, season, week, pg 
 
 // Link to existing Player
 MATCH (p:Player {gsis_id: line.player_id})
