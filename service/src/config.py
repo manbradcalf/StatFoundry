@@ -18,7 +18,7 @@ STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 STRIPE_PRICE_ID_PRO = os.getenv("STRIPE_PRICE_ID_PRO")
 
 # Database credentials
-URI = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE")
+URI = os.getenv("NEO4J_STATFOUNDRY_LOCAL_URI") if ENVIRONMENT == "local" else os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE")
 PASSWORD = os.getenv("NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE")
 
 # Validate required environment variables
@@ -34,11 +34,3 @@ if not PASSWORD:
 
 AUTH = ("neo4j", PASSWORD)
 
-# Debug logging for Stripe configuration
-print("=== STRIPE CONFIGURATION DEBUG ===")
-print(f"STRIPE_SECRET_KEY: {'SET' if STRIPE_SECRET_KEY else 'NOT SET'}")
-print(f"STRIPE_PUBLISHABLE_KEY: {'SET' if STRIPE_PUBLISHABLE_KEY else 'NOT SET'}")
-print(f"STRIPE_WEBHOOK_SECRET: {'SET' if STRIPE_WEBHOOK_SECRET else 'NOT SET'}")
-print(f"STRIPE_PRICE_ID_PRO: {'SET' if STRIPE_PRICE_ID_PRO else 'NOT SET'}")
-print("=== END STRIPE DEBUG ===")
-print()

@@ -137,7 +137,7 @@ export class ChunkChain {
     }
 
     this.English = englishParts.join(" ");
-    this.Cypher += cypherParts.join(" ");
+    this.Cypher = cypherParts.join(" ");
     return this;
   }
 
