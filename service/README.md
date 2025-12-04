@@ -19,9 +19,12 @@ FastAPI backend service for StatFoundry.
 
 3. Set up environment variables:
    ```bash
-   export NEO4J_FOOTBALLSTATS_URI="bolt://localhost:7687"
-   export NEO4J_FOOTBALLSTATS_USERNAME="neo4j"
-   export NEO4J_FOOTBALLSTATS_PASSWORD="your-password"
+   export ENVIRONMENT="development"
+   export NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE="neo4j+s://your-aura-instance"
+   export NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE="your-password"
+   # For local Neo4j:
+   # export ENVIRONMENT="local"
+   # export NEO4J_STATFOUNDRY_LOCAL_URI="bolt://localhost:7687"
    ```
 
 ## Development
@@ -29,14 +32,14 @@ FastAPI backend service for StatFoundry.
 Run the service in development mode:
 
 ```bash
-uvicorn src.service:app --reload
+uvicorn src.app:app --reload
 ```
 
-The API will be available at http://localhost:5001
+The API will be available at http://localhost:8000
 
 ## API Documentation
 
 Once the service is running, visit:
 
-- Swagger UI: http://localhost:5001/docs
-- ReDoc: http://localhost:5001/redoc
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc

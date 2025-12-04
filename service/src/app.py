@@ -1,6 +1,5 @@
-from fastapi import FastAPI, HTTPException, Request, Header, Depends
+from fastapi import FastAPI, HTTPException, Request, Header
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from src.neo4j_client import driver, execute_readonly_query, fetch_schema
 from src.requests import (
     QueryAuraDBRequest,
@@ -12,7 +11,6 @@ from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
 from src.telemetry import add_cypher_telemetry, add_query_result
 
 app = FastAPI()
-security = HTTPBearer()
 
 # Configure CORS only for local development
 if ENVIRONMENT.lower() in ["development", "local"]:
@@ -95,20 +93,6 @@ async def get_playerseasons(gsis_id: str):
     except ValueError as e:
         add_query_result(0, success=False, error=str(e))
         raise HTTPException(status_code=400, detail="Invalid request parameters")
-
-
-def require_scope(required_scope: str):
-    """Decorator to require specific scope"""
-
-    def scope_checker(user_info: dict = Depends(validate_api_key)):
-        if required_scope not in user_info["scopes"]:
-            raise HTTPException(
-                status_code=403,
-                detail=f"Insufficient permissions. Required scope: {required_scope}",
-            )
-        return user_info
-
-    return scope_checker
 
 
 # Public endpoints (no auth required)
