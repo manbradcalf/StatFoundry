@@ -42,8 +42,8 @@ def fetch_schema(driver):
     # This is where you write the db query to extract the edges, relationships, or vertexes of your schema
     _fetch_rel_patterns = """
     MATCH (n)-[r]->(m)
-    WITH DISTINCT labels(n)[0] AS from_label, type(r) AS rel_type, labels(m)[0] AS to_label
-    RETURN from_label, rel_type, to_label
+    WITH DISTINCT labels(n) AS from_labels, type(r) AS rel_type, labels(m) AS to_labels
+    RETURN from_labels, rel_type, to_labels
     ORDER BY rel_type
     """
 
@@ -63,9 +63,9 @@ def fetch_schema(driver):
         ],
         "patterns": [
             {
-                "fromLabel": rel["from_label"] if rel["from_label"] else "?",
+                "fromLabels": rel["from_labels"] if rel["from_labels"] else [],
                 "relType": rel["rel_type"] if rel["rel_type"] else "?",
-                "toLabel": rel["to_label"] if rel["to_label"] else "?",
+                "toLabels": rel["to_labels"] if rel["to_labels"] else [],
             }
             for rel in rel_patterns
         ],

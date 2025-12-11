@@ -28,14 +28,11 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
 
+  // TODO: populate these strings with actual entities and relationships
   const placeholderExamples = [
     "Build your search query by linking and filtering Entities",
-    "Entities: Player, PlayerGame, PlayerSeason, Game, College, etc",
     "Expand your Search by chaining other Entities with Relationships",
-    "Relationships: Player HAD PlayerGame, Player ATTENDED College",
     "Filter your search by adding filters to your Entities",
-    "Filters: rushing_yards (PlayerGame), jersey_number (Player)",
-    "Try Players HAD PlayerGame with rushing_yards > 100, season = 2024",
   ];
 
   const [placeholderIndex, setPlaceholderIndex] = useState(0);

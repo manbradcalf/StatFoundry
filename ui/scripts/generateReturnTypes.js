@@ -3,29 +3,60 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 
+// Parse Neo4j nodeType format :`Label1`:`Label2` into ["Label1", "Label2"]
+function parseNodeTypeLabels(nodeType) {
+  return nodeType
+    .split(":")
+    .map((l) => l.replace(/`/g, "").trim())
+    .filter(Boolean);
+}
+
 class TypeScriptViewGenerator {
   constructor(schema) {
     this.schema = schema;
   }
 
   generateAllViews() {
+    // Collect all distinct labels with their properties
+    const labelPropertiesMap = new Map();
+
     this.schema.nodes.forEach((node) => {
-      console.log("generating views for node");
-      console.log(node);
-      this.generateViewForNode(node);
+      console.log("processing node:", node.label);
+      // Each node now has a labels array
+      node.labels.forEach((label) => {
+        // Merge properties for this label (dedupe by adding to existing)
+        if (!labelPropertiesMap.has(label)) {
+          labelPropertiesMap.set(label, new Map());
+        }
+        const propsMap = labelPropertiesMap.get(label);
+        node.properties.forEach((prop) => {
+          // Use property name as key to dedupe
+          if (!propsMap.has(prop.name)) {
+            propsMap.set(prop.name, prop);
+          }
+        });
+      });
+    });
+
+    // Generate views for each distinct label
+    labelPropertiesMap.forEach((propsMap, label) => {
+      const properties = Array.from(propsMap.values());
+      if (properties.length > 0) {
+        console.log(`generating view for label: ${label}`);
+        this.generateView(label, properties);
+      }
     });
 
     // Generate the alias type to properties map
-    this.generateAliasTypeMap();
+    this.generateAliasTypeMapFromLabels(labelPropertiesMap);
   }
 
-  generateAliasTypeMap() {
+  generateAliasTypeMapFromLabels(labelPropertiesMap) {
     const imports = [];
     const mapEntries = [];
 
-    this.schema.nodes.forEach((node) => {
-      if (node.properties.length > 0) {
-        const label = node.label;
+    labelPropertiesMap.forEach((propsMap, label) => {
+      if (propsMap.size > 0) {
         const constantName = this.getConstantName(label);
         const fileName = this.getFileName(label).replace(".ts", "");
 
@@ -43,13 +74,6 @@ ${mapEntries.join("\n")}
 `;
 
     this.writeViewFile("AliasTypePropertiesMap.ts", content);
-  }
-
-  generateViewForNode(node) {
-    // Generate base info properties (non-statistical)
-    if (node.properties.length > 0) {
-      this.generateView(node.label, node.properties);
-    }
   }
 
   generateView(label, properties) {
@@ -169,17 +193,12 @@ async function generateTypes() {
       req.end();
     });
 
-    // Clean up schema (remove backticks and colons from labels)
+    // Parse labels into arrays
     const cleanedSchema = {
       ...response.data,
       nodes: response.data.nodes.map((node) => ({
         ...node,
-        label: node.label.replace(/[:`]/g, ""),
-      })),
-      patterns: response.data.patterns.map((pattern) => ({
-        ...pattern,
-        fromLabel: pattern.fromLabel.replace(/[:`]/g, ""),
-        toLabel: pattern.toLabel.replace(/[:`]/g, ""),
+        labels: parseNodeTypeLabels(node.label),
       })),
     };
 

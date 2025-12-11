@@ -40,7 +40,7 @@ function App() {
             <div className="App">
               {/* Login button positioned in top right corner */}
               <Helmet>
-                <title>Advanced NFL Player Stats Search | StatFoundry</title>
+                <title>Browse your Neo4J Graph in React</title>
                 <meta
                   name="description"
                   content="Search and analyze NFL player stats quickly with StatFoundry. Explore game, season, and career data with powerful tools designed for fantasy football fans."
@@ -79,9 +79,8 @@ function App() {
                 </script>
               </Helmet>
               <header className="App-header">
-                <h1>StatFoundry</h1>
-                <i>Do your own research. Be your own expert.</i>
-                <LoginButton />
+                <h1>BIGRFS Demo</h1>
+                <i>Plug and Play Neo4J data browser for React.</i>
                 <HelpBar />
               </header>
               <div className="App-layout">
@@ -95,16 +94,6 @@ function App() {
                       path="/video-tutorials"
                       element={<VideoTutorials />}
                     />
-                    <Route path="/stats" element={<StatsPage />} />
-                    <Route
-                      path="/players/:slug/:gsisId"
-                      element={<PlayerDetail />}
-                    />
-                    <Route
-                      path="/payment/success"
-                      element={<PaymentSuccess />}
-                    />
-                    <Route path="/payment/cancel" element={<PaymentCancel />} />
                     <Route path="*" element={<div>Page Not Found</div>} />
                   </Routes>
                 </div>

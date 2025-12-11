@@ -2,11 +2,11 @@ export function Footer() {
   return (
     <div className="cta-section">
       <div className="cta-content">
-        <h3>Help Improve StatFoundry</h3>
+        <h3>Help Improve BIGRFS</h3>
         <div className="cta-actions">
           <div className="feedback-section">
             <p>
-              Share your feedback to help us build better NFL analytics tools.
+              Share your feedback to help us build better tools.
             </p>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSdJG9CUdSBF4ELM1MnGYZeldDxcQu0_OFAnjgx7AkTl9Jclkw/viewform?usp=header"
@@ -21,7 +21,7 @@ export function Footer() {
           <div className="cta-divider"></div>
 
           <div className="donation-section">
-            <p>Support StatFoundry</p>
+            <p>Support BIGRFS</p>
             <div className="donate-buttons">
               <a
                 href="https://venmo.com/u/Ben-Medcalf"
@@ -44,18 +44,6 @@ export function Footer() {
         </div>
       </div>
       <div className="stats-sourced-from">
-        <p>
-          stats sourced from{" "}
-          <a
-            href="https://github.com/nflverse"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            NFLVerse
-          </a>{" "}
-          licensed under CC BY 4.0
-        </p>
-        <p>PlayerStats from 2000 to 2024</p>
         <p>
           developed by{" "}
           <a
