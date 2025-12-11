@@ -1,6 +1,6 @@
-# StatFoundry Service
+# BIGRFS Service
 
-FastAPI backend service for StatFoundry.
+Backend service for BIGRFS Architecture.
 
 ## Setup
 
@@ -20,11 +20,8 @@ FastAPI backend service for StatFoundry.
 3. Set up environment variables:
    ```bash
    export ENVIRONMENT="development"
-   export NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE="neo4j+s://your-aura-instance"
-   export NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE="your-password"
-   # For local Neo4j:
-   # export ENVIRONMENT="local"
-   # export NEO4J_STATFOUNDRY_LOCAL_URI="bolt://localhost:7687"
+   export NEO4J_BIGRFS_URI="neo4j+s://your-aura-instance"
+   export NEO4J_BIGRFS_PASSWORD="your-password"
    ```
 
 ## Development

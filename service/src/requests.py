@@ -17,15 +17,5 @@ class CreatePortalSessionRequest(BaseModel):
     customer_id: str
     return_url: Optional[str] = None
 
-
-class StripeWebhookPayload(BaseModel):
-    """Model for Stripe webhook payloads"""
-
-    type: str
-    data: Dict[str, Any]
-    id: str
-    created: int
-
-
 class QueryAuraDBRequest(BaseModel):
     cypher_query: str

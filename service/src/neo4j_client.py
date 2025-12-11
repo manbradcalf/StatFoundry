@@ -1,5 +1,5 @@
 from neo4j import GraphDatabase, READ_ACCESS
-from src.config import AUTH, URI
+from src.config import AUTH, URI 
 
 
 def create_driver(uri, auth):
@@ -23,6 +23,7 @@ driver = create_driver(URI, AUTH)
 
 def fetch_schema(driver):
     # Private query constants (denoted by underscore prefix)
+    # This is where you write the db query to extract your graph db schema
     _fetch_relationships_schema = """
     CALL db.schema.relTypeProperties()
     YIELD relType, propertyName, propertyTypes
@@ -30,6 +31,7 @@ def fetch_schema(driver):
     RETURN collect({relationship: relType, properties: properties}) AS rel_schema
     """
 
+    # This is where you write the db query to extract the nodes or vertices of your schema 
     _fetch_nodes_schema = """
     CALL db.schema.nodeTypeProperties()
     YIELD nodeType, propertyName, propertyTypes
@@ -37,6 +39,7 @@ def fetch_schema(driver):
     RETURN collect({label: nodeType, properties: properties}) AS node_schema
     """
 
+    # This is where you write the db query to extract the edges, relationships, or vertexes of your schema
     _fetch_rel_patterns = """
     MATCH (n)-[r]->(m)
     WITH DISTINCT labels(n)[0] AS from_label, type(r) AS rel_type, labels(m)[0] AS to_label
