@@ -27,7 +27,7 @@ class TypeScriptViewGenerator {
     const fileName = this.getFileName(label);
     const constantName = this.getConstantName(label);
 
-    // Generate base stats array
+    // Generate base properties array
     const content = `export const ${constantName} = [${properties.map((prop) => `  { key: "${prop.name}", type: "${prop.type}" },`).join("\n")}];`;
 
     // Generate a valid TypeScript interface as a string template
@@ -164,6 +164,7 @@ async function generateTypes() {
 
     console.log(` TypeScript view files generated successfully`);
   } catch (error) {
+    console.log(error)
     console.error("L Error generating types:", error.message);
     process.exit(1);
   }
