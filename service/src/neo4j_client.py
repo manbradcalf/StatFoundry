@@ -1,5 +1,47 @@
 from neo4j import GraphDatabase, READ_ACCESS
+from neo4j.time import DateTime, Date, Time, Duration
 from src.config import AUTH, URI
+
+
+def serialize_neo4j_value(value):
+    """
+    Recursively serializes Neo4j values, converting temporal types to
+    JSON-serializable format with both timestamp and display string.
+    """
+    if isinstance(value, DateTime):
+        # Convert to Python datetime, then to ISO string and timestamp
+        py_dt = value.to_native()
+        return {
+            "timestamp": int(py_dt.timestamp()),
+            "display": py_dt.strftime("%Y-%m-%d")
+        }
+    elif isinstance(value, Date):
+        py_date = value.to_native()
+        return {
+            "timestamp": int(py_date.toordinal()),
+            "display": py_date.strftime("%Y-%m-%d")
+        }
+    elif isinstance(value, Time):
+        py_time = value.to_native()
+        return {
+            "timestamp": (py_time.hour * 3600 + py_time.minute * 60 + py_time.second),
+            "display": py_time.strftime("%H:%M:%S")
+        }
+    elif isinstance(value, Duration):
+        # Duration doesn't have to_native(), handle manually
+        total_seconds = value.hours_minutes_seconds_nanoseconds[0] * 3600 + \
+                       value.hours_minutes_seconds_nanoseconds[1] * 60 + \
+                       value.hours_minutes_seconds_nanoseconds[2]
+        return {
+            "timestamp": total_seconds,
+            "display": f"{value.months}mo {value.days}d {total_seconds}s"
+        }
+    elif isinstance(value, dict):
+        return {k: serialize_neo4j_value(v) for k, v in value.items()}
+    elif isinstance(value, list):
+        return [serialize_neo4j_value(item) for item in value]
+    else:
+        return value
 
 
 def create_driver(uri, auth):
@@ -86,8 +128,8 @@ def execute_readonly_query(driver, query):
     with driver.session(default_access_mode=READ_ACCESS) as session:  # noqa: F821
         result = session.run(query)
 
-        # TODO: what to do with datetime objects here? flatten? return only unix timestamp?
-        return [record.data() for record in result]
+        # Serialize Neo4j temporal types (DateTime, Date, etc.) to JSON-friendly format
+        return [serialize_neo4j_value(record.data()) for record in result]
 
 
 # Export the driver and fetch_schema for use in other modules
