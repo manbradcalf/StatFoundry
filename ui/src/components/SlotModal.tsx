@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
 import { SlotType } from "../feature/Chunks/Enums/SlotType";
+import { isBooleanProperty } from "../feature/Chunks/PropertyTypeMap";
 
 interface SlotModalProps {
   isOpen: boolean;
@@ -35,13 +36,36 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     setLocalSlots(slots.map((s) => ({ ...s })));
   }, [slots]);
 
-  const handleChange = (index: number, newValue: string) => {
+  const handleChange = (
+    index: number,
+    newValue: string | boolean,
+    isBoolean: boolean = false,
+  ) => {
     setLocalSlots((prev) => {
       const updated = [...prev];
       const original = prev[index];
-      updated[index] = { ...original, Value: newValue };
+      // Convert string to boolean if this is a boolean property
+      let finalValue: string | boolean = newValue;
+      if (isBoolean && typeof newValue === "string") {
+        finalValue = newValue === "true";
+      }
+      updated[index] = { ...original, Value: finalValue };
       return updated;
     });
+  };
+
+  // Find the Filter slot's property name for a FilterValue slot
+  const getFilterPropertyName = (
+    currentSlots: Slot[],
+    currentIndex: number,
+  ): string | null => {
+    for (let i = 0; i < currentIndex; i++) {
+      const slot = currentSlots[i];
+      if (slot.SlotValueTypes.includes(SlotType.Filter)) {
+        return slot.Value as string;
+      }
+    }
+    return null;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -60,6 +84,27 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     // Special handling for Filter slots - they should be read-only when pre-filled
     const isFilterSlot = slot.SlotValueTypes.includes(SlotType.Filter);
     const isPreFilled = slot.Value && slot.Value !== "";
+
+    // Check if this is a FilterValue slot for a boolean property
+    const isFilterValueSlot = slot.SlotValueTypes.includes(SlotType.FilterValue);
+    if (isFilterValueSlot) {
+      const filterPropertyName = getFilterPropertyName(localSlots, idx);
+      if (filterPropertyName && isBooleanProperty(filterPropertyName)) {
+        const currentValue =
+          slot.Value === true || slot.Value === "true" ? "true" : "false";
+        return (
+          <select
+            ref={isFirstInput ? firstSelectRef : undefined}
+            value={currentValue}
+            onChange={(e) => handleChange(idx, e.target.value, true)}
+            style={{ width: "100%", padding: "0.5rem" }}
+          >
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+        );
+      }
+    }
 
     if (properties && properties.length > 0) {
       return (
