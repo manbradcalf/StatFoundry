@@ -2,6 +2,7 @@ import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Alias } from "../feature/Chunks/Types/Alias";
 import { QueryType } from "../feature/Chunks/Enums/QueryType";
 import { AliasType } from "../feature/Chunks/Enums/AliasType";
+import { SlotType } from "../feature/Chunks/Enums/SlotType";
 
 /**
  * Pre-built example searches for the Cool Searches Library
@@ -43,9 +44,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "rushing_yards", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 100, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "rushing_yards", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 100, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
       {
@@ -57,9 +58,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "season", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: "=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 2024, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "season", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: "=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
@@ -92,9 +93,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "passing_yards", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 300, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "passing_yards", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 300, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
       {
@@ -106,9 +107,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "season", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: "=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 2024, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "season", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: "=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
@@ -141,9 +142,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "receiving_yards", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 150, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "receiving_yards", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 150, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
       {
@@ -155,9 +156,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "season", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: "=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 2024, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "season", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: "=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
@@ -190,9 +191,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "targets", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 10, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "targets", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 10, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
       {
@@ -204,9 +205,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "season", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: "=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 2024, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "season", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: "=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
@@ -239,9 +240,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "rushing_tds", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 2, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "rushing_tds", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 2, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
       {
@@ -253,9 +254,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Provides: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
         Slots: [
-          { Name: "stat", Value: "season", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: "=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 2024, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "season", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: "=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
@@ -287,9 +288,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
         Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
         Slots: [
-          { Name: "stat", Value: "rushing_yards", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 1000, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "rushing_yards", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 1000, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
@@ -321,9 +322,9 @@ export const exampleSearches: ExampleSearch[] = [
         Requires: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
         Provides: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
         Slots: [
-          { Name: "stat", Value: "passing_yards", SlotValueTypes: ["Filter"] },
-          { Name: "condition", Value: ">=", SlotValueTypes: ["FilterCondition"] },
-          { Name: "value", Value: 4000, SlotValueTypes: ["FilterValue"] },
+          { Name: "stat", Value: "passing_yards", SlotValueTypes: [SlotType.Filter] },
+          { Name: "condition", Value: ">=", SlotValueTypes: [SlotType.FilterCondition] },
+          { Name: "value", Value: 4000, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
     ],
