@@ -33,8 +33,18 @@ export const useTableData = ({
 
       const mapObject = (obj: any, prefix = "") => {
         Object.keys(obj).forEach((key) => {
-          const value = Array.isArray(obj[key]) ? obj[key].join() : obj[key];
+          let value = Array.isArray(obj[key]) ? obj[key].join() : obj[key];
           const newKey = prefix ? `${prefix}.${key}` : key;
+
+          // TODO: This date formatting logic shouldn't live in the table hook.
+          // We should have a separate response formatting layer that handles
+          // data transformation before it reaches the UI components.
+          if (typeof value === 'string') {
+            const date = new Date(value);
+            if (!isNaN(date.getTime()) && value.includes('T')) {
+              value = date.toLocaleDateString();
+            }
+          }
 
           // TODO: parse things like python dates being returned as json
           /**
