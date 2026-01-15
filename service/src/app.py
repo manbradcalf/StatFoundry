@@ -1,13 +1,15 @@
-from fastapi import FastAPI, HTTPException, Request, Header
+from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from neo4j.time import DateTime
+
+from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
 from src.neo4j_client import driver, execute_readonly_query, fetch_schema
 from src.requests import (
-    QueryAuraDBRequest,
     CreateCheckoutSessionRequest,
     CreatePortalSessionRequest,
+    QueryAuraDBRequest,
 )
 from src.stripe_service import StripeService
-from src.config import ENVIRONMENT, STRIPE_SECRET_KEY
 from src.telemetry import add_cypher_telemetry, add_query_result
 
 app = FastAPI()
@@ -29,6 +31,15 @@ async def get_schema():
     return schema
 
 
+def format_result(neo4j_result):
+    for record in neo4j_result:
+        for key in record:
+            if isinstance(record[key], DateTime):
+                record[key] = record[key].iso_format()
+
+    return neo4j_result
+
+
 @app.post("/api/query")
 async def query(request: QueryAuraDBRequest):
     add_cypher_telemetry(request.cypher_query, "custom")
@@ -36,7 +47,8 @@ async def query(request: QueryAuraDBRequest):
     try:
         result = execute_readonly_query(driver, request.cypher_query)
         add_query_result(len(result) if result else 0)
-        return result
+        json = format_result(result)
+        return json
     except ValueError as e:
         add_query_result(0, success=False, error=str(e))
         raise HTTPException(status_code=400, detail="Invalid request parameters")
