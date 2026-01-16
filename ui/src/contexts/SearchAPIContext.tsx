@@ -9,7 +9,7 @@ interface SearchAPIContextType {
   searchError: string | null;
 
   // Actions
-  executeSearch: (cypher: string, aliases: Alias[], position: string) => void;
+  executeSearch: (cypher: string, aliases: Alias[], position: string, selectedProperties?: string[]) => void;
   clearSearch: () => void;
 }
 

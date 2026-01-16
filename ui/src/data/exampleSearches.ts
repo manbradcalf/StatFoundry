@@ -17,7 +17,90 @@ export interface ExampleSearch {
   cypher: string;
   english: string;
   aliases: Alias[];
+  selectedProperties?: string[];
 }
+
+// Helper to create a RETURN chunk
+const createReturnChunk = (selectedProperties: string[]): Chunk => ({
+  English: `Return ${selectedProperties.length} columns`,
+  EnglishTemplate: "Select columns to return",
+  Cypher: "",
+  CypherTemplate: "",
+  QueryType: QueryType.RETURN,
+  Requires: [],
+  Provides: [],
+  Slots: [
+    {
+      Name: "properties",
+      Value: selectedProperties.join(", "),
+      SlotValueTypes: [SlotType.SelectReturnProperties],
+    },
+  ],
+});
+
+// Default columns for PlayerGame searches
+const RUSHING_GAME_COLUMNS = [
+  "pg.player_display_name",
+  "pg.position",
+  "pg.recent_team",
+  "pg.season",
+  "pg.week",
+  "pg.carries",
+  "pg.rushing_yards",
+  "pg.rushing_tds",
+  "pg.yards_per_carry",
+];
+
+const PASSING_GAME_COLUMNS = [
+  "pg.player_display_name",
+  "pg.position",
+  "pg.recent_team",
+  "pg.season",
+  "pg.week",
+  "pg.completions",
+  "pg.attempts",
+  "pg.passing_yards",
+  "pg.passing_tds",
+  "pg.interceptions",
+];
+
+const RECEIVING_GAME_COLUMNS = [
+  "pg.player_display_name",
+  "pg.position",
+  "pg.recent_team",
+  "pg.season",
+  "pg.week",
+  "pg.targets",
+  "pg.receptions",
+  "pg.receiving_yards",
+  "pg.receiving_tds",
+];
+
+// Default columns for PlayerSeason searches
+const RUSHING_SEASON_COLUMNS = [
+  "ps.player_name",
+  "ps.position",
+  "ps.season",
+  "ps.teams",
+  "ps.games",
+  "ps.carries",
+  "ps.rushing_yards",
+  "ps.rushing_tds",
+  "ps.yards_per_carry",
+];
+
+const PASSING_SEASON_COLUMNS = [
+  "ps.player_name",
+  "ps.position",
+  "ps.season",
+  "ps.teams",
+  "ps.games",
+  "ps.completions",
+  "ps.attempts",
+  "ps.passing_yards",
+  "ps.passing_tds",
+  "ps.interceptions",
+];
 
 export const exampleSearches: ExampleSearch[] = [
   {
@@ -63,11 +146,13 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk(RUSHING_GAME_COLUMNS),
     ],
     cypher:
       "MATCH (pg:PlayerGame) WHERE pg.rushing_yards >= 100 WITH * WHERE pg.season = 2024 WITH *",
     english: "Player Games rushing_yards >= 100 season = 2024",
     aliases: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    selectedProperties: RUSHING_GAME_COLUMNS,
   },
   {
     id: "passing-yards-300-2024",
@@ -112,11 +197,13 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk(PASSING_GAME_COLUMNS),
     ],
     cypher:
       "MATCH (pg:PlayerGame) WHERE pg.passing_yards >= 300 WITH * WHERE pg.season = 2024 WITH *",
     english: "Player Games passing_yards >= 300 season = 2024",
     aliases: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    selectedProperties: PASSING_GAME_COLUMNS,
   },
   {
     id: "receiving-yards-150-2024",
@@ -161,11 +248,13 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk(RECEIVING_GAME_COLUMNS),
     ],
     cypher:
       "MATCH (pg:PlayerGame) WHERE pg.receiving_yards >= 150 WITH * WHERE pg.season = 2024 WITH *",
     english: "Player Games receiving_yards >= 150 season = 2024",
     aliases: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    selectedProperties: RECEIVING_GAME_COLUMNS,
   },
   {
     id: "target-share-monsters",
@@ -210,11 +299,13 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk([...RECEIVING_GAME_COLUMNS, "pg.target_share"]),
     ],
     cypher:
       "MATCH (pg:PlayerGame) WHERE pg.targets >= 10 WITH * WHERE pg.season = 2024 WITH *",
     english: "Player Games targets >= 10 season = 2024",
     aliases: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    selectedProperties: [...RECEIVING_GAME_COLUMNS, "pg.target_share"],
   },
   {
     id: "rushing-touchdowns-multi",
@@ -259,11 +350,13 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 2024, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk(RUSHING_GAME_COLUMNS),
     ],
     cypher:
       "MATCH (pg:PlayerGame) WHERE pg.rushing_tds >= 2 WITH * WHERE pg.season = 2024 WITH *",
     english: "Player Games rushing_tds >= 2 season = 2024",
     aliases: [{ Name: "pg", AliasType: AliasType.PlayerGame }],
+    selectedProperties: RUSHING_GAME_COLUMNS,
   },
   {
     id: "1000-yard-rushing-season",
@@ -293,10 +386,12 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 1000, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk(RUSHING_SEASON_COLUMNS),
     ],
     cypher: "MATCH (ps:PlayerSeason) WHERE ps.rushing_yards >= 1000 WITH *",
     english: "Player Seasons rushing_yards >= 1000",
     aliases: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
+    selectedProperties: RUSHING_SEASON_COLUMNS,
   },
   {
     id: "4000-yard-passing-season",
@@ -327,10 +422,12 @@ export const exampleSearches: ExampleSearch[] = [
           { Name: "value", Value: 4000, SlotValueTypes: [SlotType.FilterValue] },
         ],
       },
+      createReturnChunk(PASSING_SEASON_COLUMNS),
     ],
     cypher: "MATCH (ps:PlayerSeason) WHERE ps.passing_yards >= 4000 WITH *",
     english: "Player Seasons passing_yards >= 4000",
     aliases: [{ Name: "ps", AliasType: AliasType.PlayerSeason }],
+    selectedProperties: PASSING_SEASON_COLUMNS,
   },
 ];
 

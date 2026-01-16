@@ -11,6 +11,7 @@ interface UseSearchAPIReturn {
     cypherQuery: string,
     aliases?: Alias[],
     position?: string,
+    selectedProperties?: string[],
   ) => Promise<void>;
   clearSearch: () => void;
 }
@@ -25,10 +26,11 @@ export const useSearchAPIEnhanced = (): UseSearchAPIReturn => {
       cypherQuery: string,
       aliases: Alias[] = [],
       position: string = "",
+      selectedProperties?: string[],
     ) => {
       if (!cypherQuery.trim()) return;
 
-      const finalQuery = `${cypherQuery} ${buildSmartReturnClause(aliases, position)}`;
+      const finalQuery = `${cypherQuery} ${buildSmartReturnClause(aliases, position, selectedProperties)}`;
       setIsSearching(true);
       setSearchError(null);
 

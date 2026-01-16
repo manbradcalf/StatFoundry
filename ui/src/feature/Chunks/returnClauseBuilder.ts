@@ -42,7 +42,14 @@ const getPropertiesByType = (aliasType: AliasType): string[] => {
 export const buildSmartReturnClause = (
   aliases: Alias[],
   position: string,
+  selectedProperties?: string[],
 ): string => {
+  // If user explicitly selected properties via RETURN chunk, use those
+  if (selectedProperties && selectedProperties.length > 0) {
+    return `RETURN DISTINCT ${selectedProperties.join(", ")}`;
+  }
+
+  // Otherwise, fall back to automatic property selection
   if (aliases.length === 0) {
     return "RETURN *";
   }

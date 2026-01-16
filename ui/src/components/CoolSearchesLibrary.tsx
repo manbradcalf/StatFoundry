@@ -36,8 +36,8 @@ export const CoolSearchesLibrary: React.FC = () => {
       // Load the chain into the context (updates breadcrumbs)
       loadChain(chain);
 
-      // Execute the search
-      executeSearch(search.cypher, search.aliases, search.english);
+      // Execute the search with selected properties if defined
+      executeSearch(search.cypher, search.aliases, search.english, search.selectedProperties);
 
       // Navigate to home to show results
       navigate("/");

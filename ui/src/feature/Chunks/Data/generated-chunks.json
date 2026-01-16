@@ -29394,5 +29394,30 @@
       }
     ],
     "Slots": []
+  },
+  {
+    "English": "Select columns to return",
+    "EnglishTemplate": "Select columns to return",
+    "Cypher": "",
+    "CypherTemplate": "",
+    "QueryType": "RETURN",
+    "Requires": [],
+    "Provides": [],
+    "Slots": [
+      {
+        "Name": "properties",
+        "Value": "",
+        "SlotValueTypes": [
+          "SelectReturnProperties"
+        ]
+      }
+    ],
+    "SuggestionKeywords": [
+      "return",
+      "columns",
+      "select",
+      "properties",
+      "fields"
+    ]
   }
 ]

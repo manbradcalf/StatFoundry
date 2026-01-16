@@ -8,12 +8,15 @@ import React, {
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { SlotModal } from "../components/SlotModal";
+import { ReturnPropertySelector } from "../components/ReturnPropertySelector";
 import { buildFilledChunk } from "../utils/slotFiller";
 import { useChainContext } from "./ChainContext";
+import { QueryType } from "../feature/Chunks/Enums/QueryType";
 
 interface ModalContextType {
   // State
   isSlotModalOpen: boolean;
+  isReturnPropertySelectorOpen: boolean;
   pendingChunk: Chunk | null;
   pendingSlots: Slot[];
   editingChunkIndex: number | null;
@@ -49,6 +52,7 @@ interface ModalProviderProps {
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const chainContext = useChainContext();
   const [isSlotModalOpen, setIsSlotModalOpen] = useState(false);
+  const [isReturnPropertySelectorOpen, setIsReturnPropertySelectorOpen] = useState(false);
   const [pendingChunk, setPendingChunk] = useState<Chunk | null>(null);
   const [pendingSlots, setPendingSlots] = useState<Slot[]>([]);
   const [editingChunkIndex, setEditingChunkIndex] = useState<number | null>(
@@ -67,13 +71,20 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
       setPendingSlots(slots);
       setEditingChunkIndex(editingIndex ?? null);
       setInsertingAtIndex(insertAtIndex ?? null);
-      setIsSlotModalOpen(true);
+
+      // Open ReturnPropertySelector for RETURN chunks
+      if (chunk.QueryType === QueryType.RETURN) {
+        setIsReturnPropertySelectorOpen(true);
+      } else {
+        setIsSlotModalOpen(true);
+      }
     },
     [],
   );
 
   const closeSlotModal = useCallback(() => {
     setIsSlotModalOpen(false);
+    setIsReturnPropertySelectorOpen(false);
     setPendingChunk(null);
     setPendingSlots([]);
     setEditingChunkIndex(null);
@@ -119,9 +130,49 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     closeSlotModal();
   }, [closeSlotModal]);
 
+  // Handler for saving selected properties from ReturnPropertySelector
+  const handleReturnPropertiesSave = useCallback(
+    (selectedProperties: string[]) => {
+      if (!pendingChunk) {
+        closeSlotModal();
+        return;
+      }
+
+      // Build the chunk with selected properties stored in the slot value
+      const updatedSlots: Slot[] = [
+        {
+          Name: "properties",
+          Value: selectedProperties.join(", "),
+          SlotValueTypes: pendingChunk.Slots?.[0]?.SlotValueTypes || [],
+        },
+      ];
+      const chunkWithSlots = { ...pendingChunk, Slots: updatedSlots } as Chunk;
+
+      // Update the English to show selected count
+      const filledChunk: Chunk = {
+        ...chunkWithSlots,
+        English: `Return ${selectedProperties.length} columns`,
+      };
+
+      // Add the chunk to the chain
+      if (editingChunkIndex !== null) {
+        chainContext.updateChunkAtIndex(editingChunkIndex, filledChunk);
+      } else if (insertingAtIndex !== null) {
+        chainContext.insertChunk(insertingAtIndex, filledChunk);
+        setInsertingAtIndex(null);
+      } else {
+        chainContext.appendChunk(filledChunk);
+      }
+
+      closeSlotModal();
+    },
+    [pendingChunk, editingChunkIndex, insertingAtIndex, chainContext, closeSlotModal]
+  );
+
   const value: ModalContextType = {
     // State
     isSlotModalOpen,
+    isReturnPropertySelectorOpen,
     pendingChunk,
     pendingSlots,
     editingChunkIndex,
@@ -148,6 +199,12 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
             ? `Edit ${value.pendingChunk?.English}`
             : "Fill in values"
         }
+      />
+      <ReturnPropertySelector
+        isOpen={isReturnPropertySelectorOpen}
+        aliases={chainContext.chain.Aliases}
+        onSave={handleReturnPropertiesSave}
+        onCancel={handleSlotModalCancel}
       />
     </ModalContext.Provider>
   );

@@ -15,6 +15,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { analyticsService } from "../utils/analytics";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { QueryType } from "../feature/Chunks/Enums/QueryType";
 
 interface SearchBarInnerProps {
   onSaveSearch: () => void;
@@ -68,10 +69,18 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
       cypher_query: chainContext.chain.Cypher,
     });
 
+    // Extract selected properties from RETURN chunk if present
+    const chunks = chainContext.chain.toArray();
+    const returnChunk = chunks.find(c => c.QueryType === QueryType.RETURN);
+    const selectedProperties = returnChunk?.Slots?.[0]?.Value
+      ? (returnChunk.Slots[0].Value as string).split(',').map(s => s.trim()).filter(Boolean)
+      : undefined;
+
     apiContext.executeSearch(
       chainContext.chain.Cypher,
       chainContext.chain.Aliases,
       chainContext.chain.English,
+      selectedProperties,
     );
   }, [apiContext, chainContext, query]);
 
