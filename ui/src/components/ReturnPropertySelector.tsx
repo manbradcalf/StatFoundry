@@ -171,7 +171,6 @@ export const ReturnPropertySelector: React.FC<ReturnPropertySelectorProps> = ({
       }
     });
 
-    console.log(propertyGroups)
     return filtered;
   }, [propertyGroups, searchQuery]);
 
