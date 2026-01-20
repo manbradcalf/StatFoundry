@@ -34,7 +34,8 @@ export const CoolSearchesLibrary: React.FC = () => {
       search.chunks.forEach((chunk) => chain.append(chunk));
       chain.compile();
 
-      // Load the chain into the context (updates breadcrumbs)
+      // Compile chain and load it into the context (updates breadcrumbs)
+      chain.compile()
       loadChain(chain);
 
       // Execute the search with selected properties if defined
