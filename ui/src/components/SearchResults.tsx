@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useChainContext } from "../contexts/ChainContext";
 import { useSearchAPIContext } from "../contexts/SearchAPIContext";
 import { DynamicTable } from "./DynamicTable/";
@@ -9,7 +9,18 @@ import { columnGroups } from "./DynamicTable/config";
 
 export const SearchResults: React.FC = () => {
   const { chain } = useChainContext();
-  const { searchResults, searchError, isSearching } = useSearchAPIContext();
+  const { searchResults, searchError, isSearching, resultsCleared, clearSearch } = useSearchAPIContext();
+
+  // Track previous chain to detect changes
+  const prevChainRef = useRef(chain.Cypher);
+
+  // Clear results when chain changes (user modified their query)
+  useEffect(() => {
+    if (prevChainRef.current !== chain.Cypher && searchResults !== null) {
+      clearSearch();
+    }
+    prevChainRef.current = chain.Cypher;
+  }, [chain.Cypher, searchResults, clearSearch]);
   if (isSearching) {
     return (
       <div>
@@ -19,6 +30,15 @@ export const SearchResults: React.FC = () => {
   }
 
   if (!searchResults && !searchError) {
+    if (resultsCleared && chain.toArray().length > 0) {
+      return (
+        <div className="search-results-body">
+          <p className="aliases-label" style={{ color: '#666', fontStyle: 'italic' }}>
+            Your query has changed. Click Search to see updated results.
+          </p>
+        </div>
+      );
+    }
     return null;
   }
 

@@ -162,9 +162,10 @@ export class ChunkChain {
   getNextValidChunksFromChunks(chunksToCheck: Chunk[]): Chunk[] {
     const nextValidChunks: Chunk[] = [];
     const currentAliases = this.Aliases;
+    const existingChunks = this.toArray();
 
     for (const chunk of chunksToCheck) {
-      if (isValidNextChunk(chunk, currentAliases)) {
+      if (isValidNextChunk(chunk, currentAliases, existingChunks)) {
         nextValidChunks.push(chunk);
       }
     }
@@ -173,7 +174,7 @@ export class ChunkChain {
   }
 }
 
-function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
+function isValidNextChunk(chunk: Chunk, currentAliases: Alias[], existingChunks: Chunk[] = []): boolean {
   // can't start if we've already started
   if (currentAliases.length > 0 && chunk.QueryType === QueryType.MATCH_START) {
     return false;
@@ -185,6 +186,12 @@ function isValidNextChunk(chunk: Chunk, currentAliases: Alias[]): boolean {
     chunk.QueryType !== QueryType.MATCH_START
   ) {
     return false;
+  }
+
+  // RETURN chunks are valid when there are any aliases, but only one RETURN per query
+  if (chunk.QueryType === QueryType.RETURN) {
+    const hasReturnChunk = existingChunks.some(c => c.QueryType === QueryType.RETURN);
+    return currentAliases.length > 0 && !hasReturnChunk;
   }
 
   // Count how many of each entity type we need vs have

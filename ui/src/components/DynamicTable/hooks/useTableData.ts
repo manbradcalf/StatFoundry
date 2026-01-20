@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { ProcessedDataItem } from "../types";
+import { identifyingFields } from "../config";
 
 interface UseTableDataProps {
   data: any[];
@@ -120,10 +121,14 @@ export const useTableData = ({
       const orderedVisible = columnOrder.filter((key) => columnsToShow.includes(key));
       // Add any remaining columns that aren't in the custom order
       const remainingColumns = columnsToShow.filter((key) => !columnOrder.includes(key));
-      return [...orderedVisible, ...remainingColumns];
+      columnsToShow = [...orderedVisible, ...remainingColumns];
     }
 
-    return columnsToShow;
+    // Always put identifying fields first (left)
+    const identifyingFirst = identifyingFields.filter((key) => columnsToShow.includes(key));
+    const rest = columnsToShow.filter((key) => !identifyingFields.includes(key));
+
+    return [...identifyingFirst, ...rest];
   }, [availableColumns, visibleColumns, columnOrder]);
 
   return {

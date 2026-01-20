@@ -21,4 +21,6 @@ export enum SlotType {
   SelectFlexStatsGame = "SelectFlexStatsGame",
   SelectFlexStatsSeason = "SelectFlexStatsSeason",
   SelectPlayStats = "SelectPlayStats",
+  // return properties selection
+  SelectReturnProperties = "SelectReturnProperties",
 }

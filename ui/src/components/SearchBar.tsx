@@ -15,6 +15,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { analyticsService } from "../utils/analytics";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { QueryType } from "../feature/Chunks/Enums/QueryType";
 
 interface SearchBarInnerProps {
   onSaveSearch: () => void;
@@ -27,6 +28,12 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
 }) => {
   const chainContext = useChainContext();
   const apiContext = useSearchAPIContext();
+  const modalContext = useModalContext();
+
+  // Check if chain has a RETURN clause (required for search)
+  const hasReturnClause = chainContext.chain
+    .toArray()
+    .some((c) => c.QueryType === QueryType.RETURN);
 
   const placeholderExamples = [
     "Build your search query by linking and filtering Entities",
@@ -62,18 +69,32 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
   } = useSearchInputContext();
 
   const handleSearch = useCallback(() => {
+    if (!hasReturnClause) {
+      // Open modal for user to select return properties, then they'll click Search again
+      modalContext.openReturnSelectorForSearch();
+      return;
+    }
+
     analyticsService.trackSearch({
       search_term: query,
       chain_length: chainContext.chain.toArray().length,
       cypher_query: chainContext.chain.Cypher,
     });
 
+    // Extract selected properties from RETURN chunk
+    const chunks = chainContext.chain.toArray();
+    const returnChunk = chunks.find(c => c.QueryType === QueryType.RETURN);
+    const selectedProperties = returnChunk?.Slots?.[0]?.Value
+      ? (returnChunk.Slots[0].Value as string).split(',').map(s => s.trim()).filter(Boolean)
+      : undefined;
+
     apiContext.executeSearch(
       chainContext.chain.Cypher,
       chainContext.chain.Aliases,
       chainContext.chain.English,
+      selectedProperties,
     );
-  }, [apiContext, chainContext, query]);
+  }, [hasReturnClause, modalContext, chainContext, apiContext, query]);
 
   // Clear all state
   const handleClearAll = useCallback(() => {
@@ -155,7 +176,10 @@ const SearchBarInner: React.FC<SearchBarInnerProps> = ({
         </div>
         <div className="button-row">
           <div className="search-button">
-            <button onClick={handleSearch} className="primary-button">
+            <button
+              onClick={handleSearch}
+              className="primary-button"
+            >
               Search
             </button>
           </div>

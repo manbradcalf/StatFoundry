@@ -43,7 +43,9 @@ export const ENTITY_PROPERTIES: Record<SlotType, string[]> = {
   [SlotType.SelectTeamGameProperty]: [],
   [SlotType.SelectTeamSeasonProperty]: [],
   [SlotType.Filter]: [],
-  [SlotType.FilterCondition]: [">", "=>", "=", "<", "<=", "<>", "in"],
+  [SlotType.FilterCondition]: [">", ">=", "=", "<", "<=", "<>", "in"],
   [SlotType.FilterValue]: [],
   [SlotType.SelectPlayStats]: [...PLAY_LABEL_PROPERTIES.map((x) => x.key)],
+  // SelectReturnProperties is handled by ReturnPropertySelector component
+  [SlotType.SelectReturnProperties]: [],
 };
