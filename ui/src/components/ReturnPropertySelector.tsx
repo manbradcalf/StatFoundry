@@ -25,6 +25,7 @@ interface ReturnPropertySelectorProps {
 }
 
 // Get properties for an alias type
+//TODO: AliasType should be generated at buildtime but it is not
 const getPropertiesForAliasType = (aliasType: AliasType): PropertyInfo[] => {
   switch (aliasType) {
     case AliasType.Player:
@@ -54,6 +55,7 @@ const getPropertiesForAliasType = (aliasType: AliasType): PropertyInfo[] => {
   }
 };
 
+// TODO: We shouldn't hardcode this. We should store this data in the db and load at runtime
 // Property categories for quick selection
 const PROPERTY_CATEGORIES: Record<string, string[]> = {
   "Passing Stats": [
@@ -169,6 +171,7 @@ export const ReturnPropertySelector: React.FC<ReturnPropertySelectorProps> = ({
       }
     });
 
+    console.log(propertyGroups)
     return filtered;
   }, [propertyGroups, searchQuery]);
 
@@ -346,7 +349,7 @@ export const ReturnPropertySelector: React.FC<ReturnPropertySelectorProps> = ({
                 >
                   <span className="expand-icon">{isExpanded ? "▼" : "▶"}</span>
                   <span className="group-name">
-                    {aliasName} ({group.alias.AliasType})
+                    {group.alias.AliasType}
                   </span>
                   <span className="group-count">
                     {selectedCount}/{totalCount}

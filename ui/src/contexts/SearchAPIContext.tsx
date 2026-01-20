@@ -7,6 +7,7 @@ interface SearchAPIContextType {
   searchResults: any[] | null;
   isSearching: boolean;
   searchError: string | null;
+  resultsCleared: boolean;
 
   // Actions
   executeSearch: (cypher: string, aliases: Alias[], position: string, selectedProperties?: string[]) => void;
@@ -38,6 +39,7 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({
     searchResults,
     isSearching,
     searchError,
+    resultsCleared,
     executeSearch,
     clearSearch,
   } = useSearchAPIEnhanced();
@@ -47,6 +49,7 @@ export const SearchAPIProvider: React.FC<SearchAPIProviderProps> = ({
     searchResults,
     isSearching,
     searchError,
+    resultsCleared,
 
     // Actions
     executeSearch,

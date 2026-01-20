@@ -202,12 +202,16 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
 const groupChunksIntoRows = (chunks: Chunk[]): Chunk[][] => {
   if (chunks.length === 0) return [];
 
-  // First pass: create entity rows (non-filter chunks)
+  // Separate RETURN chunks - they always go at the bottom
+  const returnChunks = chunks.filter(c => c.QueryType === QueryType.RETURN);
+  const nonReturnChunks = chunks.filter(c => c.QueryType !== QueryType.RETURN);
+
+  // First pass: create entity rows (non-filter, non-return chunks)
   const entityRows: Chunk[][] = [];
   let currentRow: Chunk[] = [];
   let currentEntityAliases: Set<string> = new Set();
 
-  chunks.forEach((chunk) => {
+  nonReturnChunks.forEach((chunk) => {
     if (chunk.QueryType === QueryType.FILTER) {
       // Skip filters in first pass - we'll place them correctly in second pass
       return;
@@ -236,14 +240,6 @@ const groupChunksIntoRows = (chunks: Chunk[]): Chunk[][] => {
         // This junction doesn't introduce new entities - add to current row
         currentRow.push(chunk);
       }
-    } else if (chunk.QueryType === QueryType.RETURN) {
-      // Return statements get their own row
-      if (currentRow.length > 0) {
-        entityRows.push([...currentRow]);
-        currentRow = [chunk];
-      } else {
-        currentRow.push(chunk);
-      }
     } else {
       // Other chunk types go with current row
       currentRow.push(chunk);
@@ -256,7 +252,7 @@ const groupChunksIntoRows = (chunks: Chunk[]): Chunk[][] => {
   }
 
   // Second pass: place filters in the correct rows based on what they filter
-  const filterChunks = chunks.filter(
+  const filterChunks = nonReturnChunks.filter(
     (chunk) => chunk.QueryType === QueryType.FILTER,
   );
 
@@ -292,6 +288,11 @@ const groupChunksIntoRows = (chunks: Chunk[]): Chunk[][] => {
       entityRows[entityRows.length - 1].push(filterChunk);
     }
   });
+
+  // Always append RETURN chunks at the end as their own row
+  if (returnChunks.length > 0) {
+    entityRows.push(returnChunks);
+  }
 
   return entityRows;
 };

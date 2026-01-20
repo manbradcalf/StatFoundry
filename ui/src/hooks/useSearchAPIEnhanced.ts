@@ -7,6 +7,7 @@ interface UseSearchAPIReturn {
   searchResults: any[] | null;
   isSearching: boolean;
   searchError: string | null;
+  resultsCleared: boolean;
   executeSearch: (
     cypherQuery: string,
     aliases?: Alias[],
@@ -20,6 +21,7 @@ export const useSearchAPIEnhanced = (): UseSearchAPIReturn => {
   const [searchResults, setSearchResults] = useState<any[] | null>(null);
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [resultsCleared, setResultsCleared] = useState<boolean>(false);
 
   const executeSearch = useCallback(
     async (
@@ -33,6 +35,7 @@ export const useSearchAPIEnhanced = (): UseSearchAPIReturn => {
       const finalQuery = `${cypherQuery} ${buildSmartReturnClause(aliases, position, selectedProperties)}`;
       setIsSearching(true);
       setSearchError(null);
+      setResultsCleared(false);
 
       try {
         const response = await fetch(`${config.serviceUrl}/api/query`, {
@@ -71,14 +74,16 @@ export const useSearchAPIEnhanced = (): UseSearchAPIReturn => {
   );
 
   const clearSearch = useCallback(() => {
+    setResultsCleared(searchResults !== null);
     setSearchResults(null);
     setSearchError(null);
-  }, []);
+  }, [searchResults]);
 
   return {
     searchResults,
     isSearching,
     searchError,
+    resultsCleared,
     executeSearch,
     clearSearch,
   };

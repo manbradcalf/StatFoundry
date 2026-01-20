@@ -33,6 +33,7 @@ interface ModalContextType {
   handleSlotModalSave: (updatedSlots: Slot[]) => void;
   handleSlotModalCancel: () => void;
   setInsertingAtIndex: (index: number | null) => void;
+  openReturnSelectorForSearch: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -89,6 +90,21 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     setPendingSlots([]);
     setEditingChunkIndex(null);
     setInsertingAtIndex(null);
+  }, []);
+
+  const openReturnSelectorForSearch = useCallback(() => {
+    // Create a RETURN chunk to open the ReturnPropertySelector
+    const returnChunk: Chunk = {
+      QueryType: QueryType.RETURN,
+      English: "Return",
+      Cypher: "",
+      Slots: [{ Name: "properties", Value: "", SlotValueTypes: [] }],
+      Requires: [],
+      Provides: [],
+    };
+    setPendingChunk(returnChunk);
+    setPendingSlots(returnChunk.Slots);
+    setIsReturnPropertySelectorOpen(true);
   }, []);
 
   const handleSlotModalSave = useCallback(
@@ -184,6 +200,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     handleSlotModalSave,
     handleSlotModalCancel,
     setInsertingAtIndex,
+    openReturnSelectorForSearch,
   };
 
   return (
