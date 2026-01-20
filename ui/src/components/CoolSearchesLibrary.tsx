@@ -32,6 +32,7 @@ export const CoolSearchesLibrary: React.FC = () => {
       // Build a ChunkChain from the search's chunks
       const chain = new ChunkChain();
       search.chunks.forEach((chunk) => chain.append(chunk));
+      chain.compile();
 
       // Load the chain into the context (updates breadcrumbs)
       loadChain(chain);
