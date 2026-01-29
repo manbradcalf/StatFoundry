@@ -11,7 +11,7 @@ export function generatePlayerPersonJsonLd(
   const jsonLd: JsonLdData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: player.name || `${player.first_name || ''} ${player.last_name || ''}`.trim(),
+    name: player.display_name || `${player.first_name || ''} ${player.last_name || ''}`.trim(),
     givenName: player.first_name,
     familyName: player.last_name,
     athlete: true,

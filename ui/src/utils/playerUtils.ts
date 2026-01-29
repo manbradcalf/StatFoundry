@@ -14,7 +14,7 @@ export const displayNameToSlug = (displayName: string): string => {
  * Converts a player object to a URL-friendly slug
  */
 export const playerToSlug = (player: PlayerProperties): string => {
-  const displayName = player.name || `${player.first_name || ''} ${player.last_name || ''}`.trim();
+  const displayName = player.display_name || `${player.first_name || ''} ${player.last_name || ''}`.trim();
   return displayNameToSlug(displayName);
 };
 
@@ -37,11 +37,10 @@ export const generatePlayerUrl = (
 
   // Look for display_name with common prefixes
   const displayName =
-    playerData["p.name"] ||
+    playerData["p.display_name"] ||
     playerData["display_name"] ||
-    playerData["player_display_name"] ||
-    playerData["pg.player_display_name"] ||
-    playerData["ps.player_display_name"] ||
+    playerData["player_name"] ||
+    playerData["pg.player_name"] ||
     playerData["ps.player_name"] ||
     playerData["player.display_name"];
 

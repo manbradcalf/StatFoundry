@@ -1,6 +1,6 @@
 export const PLAYERGAME_LABEL_PROPERTIES = [  { key: "player_game_id", type: "String" },
   { key: "player_id", type: "String" },
-  { key: "player_display_name", type: "String" },
+  { key: "player_name", type: "String" },
   { key: "position", type: "String" },
   { key: "position_group", type: "String" },
   { key: "recent_team", type: "String" },
@@ -32,10 +32,7 @@ export const PLAYERGAME_LABEL_PROPERTIES = [  { key: "player_game_id", type: "St
   { key: "receptions", type: "Long" },
   { key: "receiving_fumbles", type: "Double" },
   { key: "fantasy_points_ppr", type: "Double" },
-  { key: "display_name", type: "String" },
   { key: "receiving_fumbles_lost", type: "Double" },
-  { key: "name", type: "String" },
-  { key: "player_name", type: "String" },
   { key: "passing_interceptions", type: "Long" },
   { key: "target_share", type: "Double" },
   { key: "receiving_yards", type: "Double" },
@@ -67,7 +64,7 @@ export const PLAYERGAME_LABEL_PROPERTIES = [  { key: "player_game_id", type: "St
 export interface PlayerGameProperties {
   player_game_id: string;
   player_id: string;
-  player_display_name: string;
+  player_name: string;
   position: string;
   position_group: string;
   recent_team: string;
@@ -99,10 +96,7 @@ export interface PlayerGameProperties {
   receptions: number;
   receiving_fumbles: number;
   fantasy_points_ppr: number;
-  display_name: string;
   receiving_fumbles_lost: number;
-  name: string;
-  player_name: string;
   passing_interceptions: number;
   target_share: number;
   receiving_yards: number;

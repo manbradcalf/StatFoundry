@@ -7,12 +7,11 @@ export const defaultExcludeColumns = [
   "headshot_url",
   "gsis_id",
   "p.gsis_id",
-  "ps.player_display_name",
 ];
 
 // Key identifying fields that should always be shown in master rows
 export const identifyingFields = [
-  "player_display_name",
+  "player_name",
   "display_name",
   "position",
   "team",
@@ -22,7 +21,7 @@ export const identifyingFields = [
 
 // Columns that should always remain visible (cannot be hidden)
 export const alwaysVisibleColumns = [
-  "player_display_name",
+  "player_name",
   "display_name",
   "position",
   "recent_team",

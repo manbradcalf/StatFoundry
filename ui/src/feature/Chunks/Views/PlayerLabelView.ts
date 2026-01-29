@@ -1,7 +1,7 @@
 export const PLAYER_LABEL_PROPERTIES = [  { key: "position", type: "String" },
   { key: "position_group", type: "String" },
   { key: "otc_id", type: "Long" },
-  { key: "name", type: "String" },
+  { key: "display_name", type: "String" },
   { key: "headshot", type: "String" },
   { key: "draft_club", type: "String" },
   { key: "short_name", type: "String" },
@@ -39,7 +39,7 @@ export interface PlayerProperties {
   position: string;
   position_group: string;
   otc_id: number;
-  name: string;
+  display_name: string;
   headshot: string;
   draft_club: string;
   short_name: string;
