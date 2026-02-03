@@ -17,7 +17,7 @@ export const PlayerInfo: React.FC = () => {
     return <div className="loading-state">No player information available</div>;
   }
 
-  const displayName = playerInfo.name || `${playerInfo.first_name || ''} ${playerInfo.last_name || ''}`.trim();
+  const displayName = playerInfo.display_name || `${playerInfo.first_name || ''} ${playerInfo.last_name || ''}`.trim();
   const position = playerInfo.position;
   const jerseyNumber = playerInfo.jersey_number;
   const teamAbbr = playerInfo.team_abbr;

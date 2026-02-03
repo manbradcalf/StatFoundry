@@ -26,7 +26,7 @@ WITH
   line,
   {
     // Core identity fields
-    name: line.display_name,
+    display_name: line.display_name,
     first_name: line.first_name,
     last_name: line.last_name,
     short_name: line.short_name,

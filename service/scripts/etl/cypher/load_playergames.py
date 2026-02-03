@@ -50,10 +50,10 @@ MATCH (p:Player {gsis_id: line.player_id})
 MERGE (p)-[:HAD]->(pg)
 
 // Minimal properties to verify; expand as needed
+// Source player_name from the matched Player node for consistency
 SET pg += {
   // identity & context
-  player_name:         line.player_name,
-  name: line.player_display_name,
+  player_name:         p.display_name,
   position:            line.position,
   position_group:      line.position_group,
   headshot_url:        line.headshot_url,
