@@ -52,3 +52,8 @@ jobs:
         if: steps.load_games.outcome == 'success'
         run: python -m scripts.etl.cypher.load_playergames
         working-directory: service
+
+      - name: Run weekly plays ingestion
+        if: steps.load_games.outcome == 'success'
+        run: python -m scripts.etl.cypher.load_plays
+        working-directory: service
