@@ -1,9 +1,6 @@
 import sys
+from scripts.etl.cypher.season_config import SEASONS
 from src.neo4j_client import driver
-
-# Seasons to load (nflverse has data back to 1999, but team stats format varies)
-# Using 2016+ for consistent data format
-SEASONS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
 # Constraint on composite key (team, season, season_type)
 create_constraint = """

@@ -1,4 +1,5 @@
 import sys
+from scripts.etl.cypher.season_config import SEASONS
 from src.neo4j_client import driver
 
 # Constraint on composite key (team, game_id) - not the derived team_game_id field
@@ -8,14 +9,16 @@ CREATE CONSTRAINT teamgame_unique IF NOT EXISTS
 FOR (tg:TeamGame) REQUIRE (tg.team, tg.game_id) IS UNIQUE
 """
 
-load_2025_teamgames = """
+def get_load_teamgames_query(season: int) -> str:
+    """Generate the LOAD CSV query for a specific season."""
+    return f"""
 // Read weekly team stats
 LOAD CSV WITH HEADERS FROM
-  'https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv'
+  'https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_{season}.csv'
   AS line
 
 WITH line
-WHERE toInteger(line.season) = 2025
+WHERE toInteger(line.season) = {season}
   AND line.team IS NOT NULL
   AND line.opponent_team IS NOT NULL
 
@@ -173,19 +176,25 @@ SET tg += {
   gwfg_distance:               toFloatOrNull(line.gwfg_distance)
 }
 
-RETURN tg
-LIMIT 5;
+RETURN count(tg) AS loaded;
 """
 
 try:
     # First, create the constraint
-    constraint_result = driver.execute_query(create_constraint)
+    driver.execute_query(create_constraint)
     print("Constraint creation completed")
 
     # Then, load the teamgames data
-    result = driver.execute_query(load_2025_teamgames)
-    print(f"Successfully loaded teamgames: {len(result.records)} records processed")
-    print(result)
+    total_loaded = 0
+    for season in SEASONS:
+        load_query = get_load_teamgames_query(season)
+        result = driver.execute_query(load_query)
+        record = result.records[0] if result.records else None
+        loaded = record["loaded"] if record else 0
+        total_loaded += loaded
+        print(f"Loaded TeamGame data for {season}: {loaded} records")
+
+    print(f"Total TeamGame records processed: {total_loaded}")
 except Exception as e:
     print(f"ERROR: Failed to load teamgames: {e}")
     sys.exit(1)
