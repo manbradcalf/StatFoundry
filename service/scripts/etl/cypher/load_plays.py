@@ -10,20 +10,25 @@ load_2025_plays = """
 // LOAD and Merge Plays from NFLVerse PBP CSV
 LOAD CSV WITH HEADERS FROM 'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv' AS line
 
+// IMPORTANT: Filter BEFORE the CALL block (WHERE not allowed inside importing WITH)
 WITH line
 WHERE toInteger(line.season) = 2025
   AND line.game_id IS NOT NULL AND line.game_id <> ''
   AND line.play_id IS NOT NULL AND line.play_id <> ''
 
-// Match parent Game node
-MATCH (g:Game {game_id: line.game_id})
+// Batch the writes in transactions of 500 rows
+CALL {
+  WITH line
 
-// MERGE on composite id (space separator matches existing Play nodes)
-MERGE (p:Play {id: line.game_id + ' ' + line.play_id})
-MERGE (p)-[:IN]->(g)
+  // Match parent Game node
+  MATCH (g:Game {game_id: line.game_id})
 
-// Build property map with safe type casting
-WITH p, line, g, {
+  // MERGE on composite id (space separator matches existing Play nodes)
+  MERGE (p:Play {id: line.game_id + ' ' + line.play_id})
+  MERGE (p)-[:IN]->(g)
+
+  // Build property map with safe type casting
+  WITH p, line, g, {
   // Identifiers
   game_id: line.game_id,
   play_id: toIntegerOrNull(line.play_id),
@@ -455,7 +460,7 @@ WITH p, line, g, {
   // Fantasy
   name: line.name,
   jersey_number: toIntegerOrNull(line.jersey_number),
-  id: line.id,
+  name_player_gsis_id: line.id,
   fantasy_player_name: line.fantasy_player_name,
   fantasy_player_id: line.fantasy_player_id,
   fantasy: line.fantasy,
@@ -473,12 +478,11 @@ WITH p, line, g, {
 
 } AS raw
 
-// Remove null/empty properties (requires APOC)
-WITH p, apoc.map.clean(raw, [null, ''], [true]) AS cleaned
-SET p += cleaned
+  // Remove null/empty properties (requires APOC)
+  WITH p, apoc.map.clean(raw, [null, ''], [true]) AS cleaned
+  SET p += cleaned
 
-RETURN p
-LIMIT 5;
+} IN TRANSACTIONS OF 500 ROWS
 """
 
 try:
@@ -486,10 +490,16 @@ try:
     constraint_result = driver.execute_query(create_constraint)
     print("Constraint creation completed")
 
-    # Then, load the plays data
-    result = driver.execute_query(load_2025_plays)
-    print(f"Successfully loaded plays: {len(result.records)} records processed")
-    print(result)
+    # Load plays using session.run() for implicit transaction
+    # CALL { } IN TRANSACTIONS requires auto-commit, not managed transactions
+    # See: https://neo4j.com/docs/python-manual/current/query-advanced/
+    with driver.session() as session:
+        result = session.run(load_2025_plays)
+        summary = result.consume()  # Must consume to commit
+        print("Successfully loaded plays")
+        print(f"Nodes created: {summary.counters.nodes_created}")
+        print(f"Relationships created: {summary.counters.relationships_created}")
+        print(f"Properties set: {summary.counters.properties_set}")
 except Exception as e:
     print(f"ERROR: Failed to load plays: {e}")
     sys.exit(1)
