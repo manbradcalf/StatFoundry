@@ -138,9 +138,9 @@ SET ts += {{
   fg_missed_40_49:             toIntegerOrNull(line.fg_missed_40_49),
   fg_missed_50_59:             toIntegerOrNull(line.fg_missed_50_59),
   fg_missed_60_:               toIntegerOrNull(line.fg_missed_60_),
-  fg_made_list:                line.fg_made_list,
-  fg_missed_list:              line.fg_missed_list,
-  fg_blocked_list:             line.fg_blocked_list,
+  fg_made_list:                CASE WHEN line.fg_made_list IS NOT NULL AND line.fg_made_list <> '' THEN split(line.fg_made_list, ';') ELSE [] END,
+  fg_missed_list:              CASE WHEN line.fg_missed_list IS NOT NULL AND line.fg_missed_list <> '' THEN split(line.fg_missed_list, ';') ELSE [] END,
+  fg_blocked_list:             CASE WHEN line.fg_blocked_list IS NOT NULL AND line.fg_blocked_list <> '' THEN split(line.fg_blocked_list, ';') ELSE [] END,
   fg_made_distance:            toFloatOrNull(line.fg_made_distance),
   fg_missed_distance:          toFloatOrNull(line.fg_missed_distance),
   fg_blocked_distance:         toFloatOrNull(line.fg_blocked_distance),
@@ -164,7 +164,13 @@ RETURN count(ts) AS loaded;
 
 
 def get_compute_defense_allowed_query(season: int) -> str:
-    """Compute defensive stats (yards allowed) from opponent TeamGame data for a season."""
+    """Compute defensive stats (yards allowed) from opponent TeamGame data for a season.
+
+    The nflverse CSV only provides defensive *production* stats (sacks, INTs, etc.),
+    not "yards allowed". To calculate yards allowed, we aggregate offensive stats
+    from TeamGame where the team was the opponent - i.e., sum up what opposing
+    offenses gained against each defense.
+    """
     return f"""
 // For each team, sum up what opponents threw/rushed against them
 MATCH (tg:TeamGame)-[:OF]->(g:Game)
@@ -181,31 +187,96 @@ WITH tg.opponent_team AS defense_team,
 // Update the TeamSeason node with allowed stats
 MATCH (ts:TeamSeason {{team: defense_team, season: {season}, season_type: 'REG'}})
 SET ts.pass_yards_allowed = pass_yards_allowed,
-    ts.pass_yards_allowed_per_game = pass_yards_allowed / games,
+    ts.pass_yards_allowed_per_game = CASE WHEN games > 0 THEN pass_yards_allowed / games ELSE null END,
     ts.rush_yards_allowed = rush_yards_allowed,
-    ts.rush_yards_allowed_per_game = rush_yards_allowed / games,
+    ts.rush_yards_allowed_per_game = CASE WHEN games > 0 THEN rush_yards_allowed / games ELSE null END,
     ts.total_yards_allowed = total_yards_allowed,
-    ts.total_yards_allowed_per_game = total_yards_allowed / games,
+    ts.total_yards_allowed_per_game = CASE WHEN games > 0 THEN total_yards_allowed / games ELSE null END,
     ts.offensive_epa_allowed = offensive_epa_allowed,
-    ts.offensive_epa_allowed_per_game = offensive_epa_allowed / games
+    ts.offensive_epa_allowed_per_game = CASE WHEN games > 0 THEN offensive_epa_allowed / games ELSE null END
 
 RETURN count(ts) AS updated;
 """
 
 
-def get_compute_rankings_query(season: int, stat: str, rank_field: str) -> str:
-    """Generate ranking query for a specific stat and season."""
+def get_compute_rankings_query(season: int, stat: str, rank_field: str, ascending: bool = True) -> str:
+    """Generate ranking query for a specific stat and season.
+
+    Args:
+        season: The season year
+        stat: The property to rank by
+        rank_field: The property name to store the rank
+        ascending: If True, lower values get rank 1 (good for defense/yards allowed).
+                   If False, higher values get rank 1 (good for offense/yards gained).
+    """
+    order = "ASC" if ascending else "DESC"
     return f"""
 // Compute {rank_field} for {season}
 MATCH (ts:TeamSeason)
 WHERE ts.season = {season} AND ts.season_type = 'REG'
-WITH ts ORDER BY ts.{stat} ASC
+WITH ts ORDER BY ts.{stat} {order}
 WITH collect(ts) AS teams
 UNWIND range(0, size(teams)-1) AS idx
 WITH teams[idx] AS ts, idx + 1 AS rank
 SET ts.{rank_field} = rank
 RETURN count(ts) AS ranked;
 """
+
+
+def _execute_season_load(tx, season: int) -> dict:
+    """Execute all season load operations within a transaction."""
+    results = {"loaded": 0, "updated": 0, "offense_ranked": False, "defense_ranked": False}
+
+    # Step 1: Load the teamseasons data from CSV
+    load_query = get_load_teamseasons_query(season)
+    result = tx.run(load_query)
+    record = result.single()
+    results["loaded"] = record["loaded"] if record else 0
+
+    if results["loaded"] == 0:
+        return results
+
+    # Step 2: Compute offensive rankings (from CSV data, no dependencies)
+    offense_rankings = [
+        ("passing_yards", "pass_offense_rank"),
+        ("rushing_yards", "rush_offense_rank"),
+        ("passing_epa", "pass_epa_offense_rank"),
+        ("rushing_epa", "rush_epa_offense_rank"),
+    ]
+
+    for stat, rank_field in offense_rankings:
+        rank_query = get_compute_rankings_query(season, stat, rank_field, ascending=False)
+        tx.run(rank_query)
+
+    results["offense_ranked"] = True
+
+    # Step 3: Compute defensive stats (yards allowed) from TeamGame data
+    # NOTE: The CSV only has defensive *production* stats (sacks, INTs, forced fumbles),
+    # not "yards allowed". To rank defenses by stinginess, we need to aggregate what
+    # opposing offenses gained *against* each team. This requires TeamGame data which
+    # has per-game offensive stats with opponent_team field.
+    defense_query = get_compute_defense_allowed_query(season)
+    defense_result = tx.run(defense_query)
+    defense_record = defense_result.single()
+    results["updated"] = defense_record["updated"] if defense_record else 0
+
+    if results["updated"] == 0:
+        return results
+
+    # Step 4: Compute defensive rankings (requires TeamGame data)
+    defense_rankings = [
+        ("pass_yards_allowed_per_game", "pass_defense_rank"),
+        ("rush_yards_allowed_per_game", "rush_defense_rank"),
+        ("total_yards_allowed_per_game", "total_defense_rank"),
+        ("offensive_epa_allowed_per_game", "epa_defense_rank"),
+    ]
+
+    for stat, rank_field in defense_rankings:
+        rank_query = get_compute_rankings_query(season, stat, rank_field, ascending=True)
+        tx.run(rank_query)
+
+    results["defense_ranked"] = True
+    return results
 
 
 def load_season(season: int) -> bool:
@@ -215,39 +286,28 @@ def load_season(season: int) -> bool:
     print(f"{'='*50}")
 
     try:
-        # Step 1: Load the teamseasons data from CSV
-        load_query = get_load_teamseasons_query(season)
-        result = driver.execute_query(load_query)
-        loaded = result.records[0]["loaded"] if result.records else 0
-        print(f"  Loaded {loaded} TeamSeason nodes")
+        # Execute all operations in a single transaction for atomicity
+        with driver.session() as session:
+            results = session.execute_write(_execute_season_load, season)
 
-        if loaded == 0:
-            print(f"  WARNING: No data loaded for {season}, skipping rankings")
+        print(f"  Loaded {results['loaded']} TeamSeason nodes")
+
+        if results["loaded"] == 0:
+            print(f"  WARNING: No data loaded for {season}")
             return False
 
-        # Step 2: Compute defensive stats (yards allowed) from TeamGame data
-        defense_query = get_compute_defense_allowed_query(season)
-        defense_result = driver.execute_query(defense_query)
-        updated = defense_result.records[0]["updated"] if defense_result.records else 0
-        print(f"  Computed defensive stats for {updated} teams")
+        if results["offense_ranked"]:
+            print(f"  Computed offensive rankings")
 
-        if updated == 0:
-            print(f"  WARNING: No TeamGame data for {season}, skipping rankings")
-            return True  # Still loaded TeamSeason, just no rankings
+        if results["updated"] == 0:
+            print(f"  WARNING: No TeamGame data for {season}, skipping defensive rankings")
+            return True  # Still loaded TeamSeason + offensive rankings
 
-        # Step 3: Compute and store rankings
-        rankings = [
-            ("pass_yards_allowed_per_game", "pass_defense_rank"),
-            ("rush_yards_allowed_per_game", "rush_defense_rank"),
-            ("total_yards_allowed_per_game", "total_defense_rank"),
-            ("offensive_epa_allowed_per_game", "epa_defense_rank"),
-        ]
+        print(f"  Computed defensive stats for {results['updated']} teams")
 
-        for stat, rank_field in rankings:
-            rank_query = get_compute_rankings_query(season, stat, rank_field)
-            driver.execute_query(rank_query)
+        if results["defense_ranked"]:
+            print(f"  Computed defensive rankings")
 
-        print(f"  Computed all defensive rankings")
         return True
 
     except Exception as e:
