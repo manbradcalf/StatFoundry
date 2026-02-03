@@ -35,26 +35,31 @@ REMOVE pg.name, pg.player_display_name, pg.display_name
 RETURN count(pg) as orphaned_playergames
 """
 
-try:
-    print("Starting player name migration...")
+def run_migration() -> None:
+    try:
+        print("Starting player name migration...")
 
-    # Step 1
-    result1 = driver.execute_query(migrate_player_name)
-    count1 = result1.records[0]["updated_players"] if result1.records else 0
-    print(f"Step 1: Migrated {count1} Player nodes (name → display_name)")
+        # Step 1
+        result1 = driver.execute_query(migrate_player_name)
+        count1 = result1.records[0]["updated_players"] if result1.records else 0
+        print(f"Step 1: Migrated {count1} Player nodes (name → display_name)")
 
-    # Step 2
-    result2 = driver.execute_query(migrate_playergame_names)
-    count2 = result2.records[0]["updated_playergames"] if result2.records else 0
-    print(f"Step 2: Consolidated names for {count2} PlayerGame nodes")
+        # Step 2
+        result2 = driver.execute_query(migrate_playergame_names)
+        count2 = result2.records[0]["updated_playergames"] if result2.records else 0
+        print(f"Step 2: Consolidated names for {count2} PlayerGame nodes")
 
-    # Step 3
-    result3 = driver.execute_query(migrate_orphaned_playergames)
-    count3 = result3.records[0]["orphaned_playergames"] if result3.records else 0
-    print(f"Step 3: Handled {count3} orphaned PlayerGame nodes")
+        # Step 3
+        result3 = driver.execute_query(migrate_orphaned_playergames)
+        count3 = result3.records[0]["orphaned_playergames"] if result3.records else 0
+        print(f"Step 3: Handled {count3} orphaned PlayerGame nodes")
 
-    print("Migration completed successfully!")
+        print("Migration completed successfully!")
 
-except Exception as e:
-    print(f"ERROR: Migration failed: {e}")
-    sys.exit(1)
+    except Exception as e:
+        print(f"ERROR: Migration failed: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    run_migration()
