@@ -8,6 +8,7 @@ This script:
 
 Run this migration ONCE on existing data before using the updated ETL scripts.
 """
+
 import sys
 from src.neo4j_client import driver
 
@@ -34,6 +35,7 @@ SET pg.player_name = coalesce(pg.player_name, pg.name, pg.player_display_name, p
 REMOVE pg.name, pg.player_display_name, pg.display_name
 RETURN count(pg) as orphaned_playergames
 """
+
 
 def run_migration() -> None:
     try:
