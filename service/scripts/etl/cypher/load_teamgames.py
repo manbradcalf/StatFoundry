@@ -9,6 +9,7 @@ CREATE CONSTRAINT teamgame_unique IF NOT EXISTS
 FOR (tg:TeamGame) REQUIRE (tg.team, tg.game_id) IS UNIQUE
 """
 
+
 def get_load_teamgames_query(season: int) -> str:
     """Generate the LOAD CSV query for a specific season."""
     return f"""
@@ -42,7 +43,7 @@ WITH line, g, season, week, ww, away, home,
      toString(season) + '_' + ww + '_' + away + '_' + home AS game_id
 
 // Create/link TeamGame
-MERGE (tg:TeamGame {team: line.team, game_id: game_id})
+MERGE (tg:TeamGame {{team: line.team, game_id: game_id}})
 MERGE (tg)-[:OF]->(g)
 
 // Set all team stats properties
@@ -178,6 +179,7 @@ SET tg += {{
 
 RETURN count(tg) AS loaded;
 """
+
 
 try:
     # First, create the constraint
