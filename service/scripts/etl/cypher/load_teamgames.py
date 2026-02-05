@@ -46,7 +46,7 @@ MERGE (tg:TeamGame {team: line.team, game_id: game_id})
 MERGE (tg)-[:OF]->(g)
 
 // Set all team stats properties
-SET tg += {
+SET tg += {{
   // identity & context
   season_type:         line.season_type,
   season:              season,
@@ -174,7 +174,7 @@ SET tg += {
   gwfg_missed:                 toIntegerOrNull(line.gwfg_missed),
   gwfg_blocked:                toIntegerOrNull(line.gwfg_blocked),
   gwfg_distance:               toFloatOrNull(line.gwfg_distance)
-}
+}}
 
 RETURN count(tg) AS loaded;
 """
