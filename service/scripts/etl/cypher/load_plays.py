@@ -479,7 +479,7 @@ CALL {
 } AS raw
 
   // Remove null/empty properties (requires APOC)
-  WITH p, apoc.map.clean(raw, [null, ''], [true]) AS cleaned
+  WITH p, apoc.map.clean(raw, [], [null, '']) AS cleaned
   SET p += cleaned
 
 } IN TRANSACTIONS OF 500 ROWS
