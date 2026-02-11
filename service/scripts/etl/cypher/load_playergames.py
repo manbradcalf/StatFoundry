@@ -22,21 +22,10 @@ WITH line,
      toInteger(line.season) AS season,
      toInteger(line.week)   AS week
 
-// Match the correct Game by season/week + (home,away) team pairing
-MATCH (g:Game)
-WHERE g.season = season AND g.week = week
-  AND (
-        (g.home_team = line.team AND g.away_team = line.opponent_team) OR
-        (g.home_team = line.opponent_team AND g.away_team = line.team)
-      )
+// Match the Game directly by game_id (indexed via constraint)
+MATCH (g:Game {game_id: line.game_id})
 
-// Build canonical game_id from the matched Game
-WITH line, g, season, week,
-     (CASE WHEN week < 10 THEN '0' + toString(week) ELSE toString(week) END) AS ww,
-     g.away_team AS away, g.home_team AS home
-
-WITH line, g, season, week, ww, away, home,
-     toString(season) + '_' + ww + '_' + away + '_' + home AS game_id
+WITH line, g, season, week, line.game_id AS game_id
 
 // Create/link PlayerGame
 MERGE (pg:PlayerGame {player_id: line.player_id, game_id: game_id})
