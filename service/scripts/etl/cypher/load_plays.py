@@ -6,13 +6,22 @@ CREATE CONSTRAINT play_unique IF NOT EXISTS
 FOR (p:Play) REQUIRE p.id IS UNIQUE
 """
 
-load_2025_plays = """
+get_max_week = """
+MATCH (p:Play) WHERE p.season = 2025
+RETURN max(p.week) AS max_week
+"""
+
+
+def get_load_plays_query(min_week: int) -> str:
+    """Generate the LOAD CSV query, filtering to only weeks >= min_week."""
+    return """
 // LOAD and Merge Plays from NFLVerse PBP CSV
 LOAD CSV WITH HEADERS FROM 'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv' AS line
 
 // IMPORTANT: Filter BEFORE the CALL block (WHERE not allowed inside importing WITH)
 WITH line
 WHERE toInteger(line.season) = 2025
+  AND toInteger(line.week) >= """ + str(min_week) + """
   AND line.game_id IS NOT NULL AND line.game_id <> ''
   AND line.play_id IS NOT NULL AND line.play_id <> ''
 
@@ -490,11 +499,19 @@ try:
     constraint_result = driver.execute_query(create_constraint)
     print("Constraint creation completed")
 
+    # Find the latest week already loaded so we only process new plays
+    result = driver.execute_query(get_max_week)
+    record = result.records[0] if result.records else None
+    max_week = record["max_week"] if record and record["max_week"] is not None else 0
+    min_week = max(1, max_week)
+    print(f"Latest week loaded: {max_week}, loading plays from week {min_week}+")
+
     # Load plays using session.run() for implicit transaction
     # CALL { } IN TRANSACTIONS requires auto-commit, not managed transactions
     # See: https://neo4j.com/docs/python-manual/current/query-advanced/
+    load_query = get_load_plays_query(min_week)
     with driver.session() as session:
-        result = session.run(load_2025_plays)
+        result = session.run(load_query)
         summary = result.consume()  # Must consume to commit
         print("Successfully loaded plays")
         print(f"Nodes created: {summary.counters.nodes_created}")
