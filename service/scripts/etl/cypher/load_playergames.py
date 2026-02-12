@@ -1,4 +1,9 @@
 import sys
+
+import polars as pl
+import nflreadpy as nfl
+
+from scripts.etl.cypher.season_config import SEASONS
 from src.neo4j_client import driver
 
 create_constraint = """
@@ -6,145 +11,185 @@ CREATE CONSTRAINT playergame_unique IF NOT EXISTS
 FOR (pg:PlayerGame) REQUIRE (pg.player_id, pg.game_id) IS UNIQUE
 """
 
-load_2025_playergames = """
-// Read weekly player stats (calculate_stats output)
-LOAD CSV WITH HEADERS FROM
-  'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv'
-  AS line
-
-WITH line
-WHERE toInteger(line.season) = 2025
-  AND line.player_id IS NOT NULL
-  AND line.team IS NOT NULL
-  AND line.opponent_team IS NOT NULL
-
-WITH line,
-     toInteger(line.season) AS season,
-     toInteger(line.week)   AS week
+load_playergames_query = """
+UNWIND $rows AS row
 
 // Match the Game directly by game_id (indexed via constraint)
-MATCH (g:Game {game_id: line.game_id})
-
-WITH line, g, season, week, line.game_id AS game_id
+MATCH (g:Game {game_id: row.game_id})
 
 // Create/link PlayerGame
-MERGE (pg:PlayerGame {player_id: line.player_id, game_id: game_id})
+MERGE (pg:PlayerGame {player_id: row.player_id, game_id: row.game_id})
 MERGE (pg)-[:OF]->(g)
 
-// Pass context forward to next clause
-WITH line, g, season, week, pg, game_id
-
 // Link to existing Player
-MATCH (p:Player {gsis_id: line.player_id})
+WITH row, g, pg
+MATCH (p:Player {gsis_id: row.player_id})
 MERGE (p)-[:HAD]->(pg)
 
-// Minimal properties to verify; expand as needed
 // Source player_name from the matched Player node for consistency
 SET pg += {
   // identity & context
   player_name:         p.display_name,
-  position:            line.position,
-  position_group:      line.position_group,
-  headshot_url:        line.headshot_url,
-  season_type:         line.season_type,
-  season:              season,
-  week:                week,
+  position:            row.position,
+  position_group:      row.position_group,
+  headshot_url:        row.headshot_url,
+  season_type:         row.season_type,
+  season:              row.season,
+  week:                row.week,
 
   // teams & ids
-  team:         line.team,
-  opponent_team:       line.opponent_team,
-  game_id:             game_id,               // built from matched Game
-  player_game_id:      line.player_id + '_' + game_id,
+  team:                row.team,
+  opponent_team:       row.opponent_team,
+  game_id:             row.game_id,
+  player_game_id:      row.player_game_id,
 
   // passing
-  completions:                 toIntegerOrNull(line.completions),
-  attempts:                    toIntegerOrNull(line.attempts),
-  passing_yards:               toFloatOrNull(line.passing_yards),
-  passing_tds:                 toIntegerOrNull(line.passing_tds),
-  passing_air_yards:           toFloatOrNull(line.passing_air_yards),
-  passing_yards_after_catch:   toFloatOrNull(line.passing_yards_after_catch),
-  passing_first_downs:         toFloatOrNull(line.passing_first_downs),
-  passing_2pt_conversions:     (line.passing_2pt_conversions IN ["1","true","TRUE","True"]),
-  passing_epa:                 toFloatOrNull(line.passing_epa),
+  completions:                 row.completions,
+  attempts:                    row.attempts,
+  passing_yards:               row.passing_yards,
+  passing_tds:                 row.passing_tds,
+  passing_air_yards:           row.passing_air_yards,
+  passing_yards_after_catch:   row.passing_yards_after_catch,
+  passing_first_downs:         row.passing_first_downs,
+  passing_2pt_conversions:     row.passing_2pt_conversions,
+  passing_epa:                 row.passing_epa,
 
-  // interceptions (prior schema used a single `interceptions` value)
-  passing_interceptions:       toIntegerOrNull(line.passing_interceptions),
-  def_interceptions:           toFloatOrNull(line.def_interceptions),
-  def_interception_yards:      toFloatOrNull(line.def_interception_yards),
-  interceptions:               coalesce(toFloatOrNull(line.passing_interceptions),
-                                        toFloatOrNull(line.def_interceptions)),
+  // interceptions
+  passing_interceptions:       row.passing_interceptions,
+  def_interceptions:           row.def_interceptions,
+  def_interception_yards:      row.def_interception_yards,
+  interceptions:               row.interceptions,
 
   // sacks taken (QB/ballcarrier) & fumbles
-  sacks:                       toFloatOrNull(line.sacks_suffered),   // <- name change
-  sack_yards:                  toFloatOrNull(line.sack_yards_lost),  // <- name change
-  sack_fumbles:                (line.sack_fumbles IN ["1","true","TRUE","True"]),
-  sack_fumbles_lost:           (line.sack_fumbles_lost IN ["1","true","TRUE","True"]),
+  sacks:                       row.sacks,
+  sack_yards:                  row.sack_yards,
+  sack_fumbles:                row.sack_fumbles,
+  sack_fumbles_lost:           row.sack_fumbles_lost,
 
   // rushing
-  carries:                     toIntegerOrNull(line.carries),
-  rushing_yards:               toFloatOrNull(line.rushing_yards),
-  rushing_tds:                 toIntegerOrNull(line.rushing_tds),
-  rushing_first_downs:         toFloatOrNull(line.rushing_first_downs),
-  rushing_fumbles:             toFloatOrNull(line.rushing_fumbles),
-  rushing_fumbles_lost:        toFloatOrNull(line.rushing_fumbles_lost),
-  rushing_epa:                 toFloatOrNull(line.rushing_epa),
-  rushing_2pt_conversions:     (line.rushing_2pt_conversions IN ["1","true","TRUE","True"]),
-  yards_per_carry:             CASE
-                                  WHEN toFloatOrNull(line.carries) IS NOT NULL AND toFloatOrNull(line.carries) <> 0
-                                  THEN toFloatOrNull(line.rushing_yards) / toFloatOrNull(line.carries)
-                                END,
+  carries:                     row.carries,
+  rushing_yards:               row.rushing_yards,
+  rushing_tds:                 row.rushing_tds,
+  rushing_first_downs:         row.rushing_first_downs,
+  rushing_fumbles:             row.rushing_fumbles,
+  rushing_fumbles_lost:        row.rushing_fumbles_lost,
+  rushing_epa:                 row.rushing_epa,
+  rushing_2pt_conversions:     row.rushing_2pt_conversions,
+  yards_per_carry:             row.yards_per_carry,
 
   // receiving
-  targets:                     toIntegerOrNull(line.targets),
-  receptions:                  toIntegerOrNull(line.receptions),
-  receiving_yards:             toFloatOrNull(line.receiving_yards),
-  receiving_tds:               toIntegerOrNull(line.receiving_tds),
-  receiving_first_downs:       toFloatOrNull(line.receiving_first_downs),
-  receiving_fumbles:           toFloatOrNull(line.receiving_fumbles),
-  receiving_fumbles_lost:      toFloatOrNull(line.receiving_fumbles_lost),
-  receiving_air_yards:         toFloatOrNull(line.receiving_air_yards),
-  receiving_yards_after_catch: toFloatOrNull(line.receiving_yards_after_catch),
-  receiving_epa:               toFloatOrNull(line.receiving_epa),
-  receiving_2pt_conversions:   (line.receiving_2pt_conversions IN ["1","true","TRUE","True"]),
+  targets:                     row.targets,
+  receptions:                  row.receptions,
+  receiving_yards:             row.receiving_yards,
+  receiving_tds:               row.receiving_tds,
+  receiving_first_downs:       row.receiving_first_downs,
+  receiving_fumbles:           row.receiving_fumbles,
+  receiving_fumbles_lost:      row.receiving_fumbles_lost,
+  receiving_air_yards:         row.receiving_air_yards,
+  receiving_yards_after_catch: row.receiving_yards_after_catch,
+  receiving_epa:               row.receiving_epa,
+  receiving_2pt_conversions:   row.receiving_2pt_conversions,
 
   // shares & advanced
-  target_share:                toFloatOrNull(line.target_share),
-  air_yards_share:             toFloatOrNull(line.air_yards_share),
-  racr:                        toFloatOrNull(line.racr),
-  wopr:                        toFloatOrNull(line.wopr),
-  pacr:                        toFloatOrNull(line.pacr),
+  target_share:                row.target_share,
+  air_yards_share:             row.air_yards_share,
+  racr:                        row.racr,
+  wopr:                        row.wopr,
+  pacr:                        row.pacr,
 
-  // defense totals (kept as separate fields too)
-  def_sacks:                   toFloatOrNull(line.def_sacks),
-  def_sack_yards:              toFloatOrNull(line.def_sack_yards),
+  // defense totals
+  def_sacks:                   row.def_sacks,
+  def_sack_yards:              row.def_sack_yards,
 
   // specials/fantasy
-  special_teams_tds:           toFloatOrNull(line.special_teams_tds),
-  fantasy_points:              toFloatOrNull(line.fantasy_points),
-  fantasy_points_ppr:          toFloatOrNull(line.fantasy_points_ppr),
+  special_teams_tds:           row.special_teams_tds,
+  fantasy_points:              row.fantasy_points,
+  fantasy_points_ppr:          row.fantasy_points_ppr,
 
-  // derived from matched Game scores (boolean like your prior schema)
+  // derived from matched Game scores
   won:                         CASE
-                                  WHEN line.team = g.home_team
-                                    THEN toFloatOrNull(g.home_score) > toFloatOrNull(g.away_score)
-                                  ELSE toFloatOrNull(g.away_score) > toFloatOrNull(g.home_score)
+                                  WHEN row.team = g.home_team
+                                    THEN g.home_score > g.away_score
+                                  ELSE g.away_score > g.home_score
                                 END
 }
 
-
-RETURN pg
-LIMIT 5;
+RETURN count(pg) AS loaded
 """
 
+
+def prepare_rows(df: pl.DataFrame) -> list[dict]:
+    """Transform nflreadpy DataFrame into Neo4j-ready row dicts."""
+    df = df.rename({
+        'sacks_suffered': 'sacks',
+        'sack_yards_lost': 'sack_yards',
+    })
+
+    df = df.with_columns(
+        # Derived fields
+        pl.when(pl.col('carries') > 0)
+          .then(pl.col('rushing_yards') / pl.col('carries'))
+          .otherwise(None)
+          .alias('yards_per_carry'),
+        pl.coalesce('passing_interceptions', 'def_interceptions')
+          .alias('interceptions'),
+        (pl.col('player_id') + '_' + pl.col('game_id'))
+          .alias('player_game_id'),
+        # Boolean conversions (original schema stored these as booleans)
+        (pl.col('passing_2pt_conversions').fill_null(0) > 0)
+          .alias('passing_2pt_conversions'),
+        (pl.col('rushing_2pt_conversions').fill_null(0) > 0)
+          .alias('rushing_2pt_conversions'),
+        (pl.col('receiving_2pt_conversions').fill_null(0) > 0)
+          .alias('receiving_2pt_conversions'),
+        (pl.col('sack_fumbles').fill_null(0) > 0)
+          .alias('sack_fumbles'),
+        (pl.col('sack_fumbles_lost').fill_null(0) > 0)
+          .alias('sack_fumbles_lost'),
+    )
+
+    rows = df.to_dicts()
+
+    # Replace NaN with None (Neo4j driver doesn't handle NaN)
+    for row in rows:
+        for key, value in row.items():
+            if isinstance(value, float) and value != value:
+                row[key] = None
+
+    return rows
+
+
+def load_season(season: int) -> int:
+    """Load player game stats for a single season using nflreadpy."""
+    df = nfl.load_player_stats(seasons=[season], summary_level='week')
+
+    df = df.filter(
+        (pl.col('season') == season)
+        & pl.col('player_id').is_not_null()
+        & pl.col('team').is_not_null()
+        & pl.col('opponent_team').is_not_null()
+    )
+
+    if df.is_empty():
+        return 0
+
+    rows = prepare_rows(df)
+    result = driver.execute_query(load_playergames_query, rows=rows)
+    record = result.records[0] if result.records else None
+    return record["loaded"] if record else 0
+
+
 try:
-    # First, create the constraint
-    constraint_result = driver.execute_query(create_constraint)
+    driver.execute_query(create_constraint)
     print("Constraint creation completed")
 
-    # Then, load the playergames data
-    result = driver.execute_query(load_2025_playergames)
-    print(f"Successfully loaded playergames: {len(result.records)} records processed")
-    print(result)
+    total_loaded = 0
+    for season in SEASONS:
+        loaded = load_season(season)
+        total_loaded += loaded
+        print(f"Loaded PlayerGame data for {season}: {loaded} records")
+
+    print(f"Total PlayerGame records processed: {total_loaded}")
 except Exception as e:
     print(f"ERROR: Failed to load playergames: {e}")
     sys.exit(1)
