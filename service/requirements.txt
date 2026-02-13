@@ -1,5 +1,6 @@
 neo4j-driver
 nfl_data_py>=0.3.3
+nflreadpy
 neo4j
 fastapi>=0.68.0
 uvicorn>=0.15.0
