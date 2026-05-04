@@ -65,8 +65,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     useState<boolean>(false);
   const [isPlayerSeasonsLoading, setIsPlayerSeasonsLoading] =
     useState<boolean>(false);
-  const [isPlayerInfoLoaded, setIsPlayerInfoLoaded] =
-    useState<boolean>(false);
+  const [isPlayerInfoLoaded, setIsPlayerInfoLoaded] = useState<boolean>(false);
   const [isPlayerGamesLoaded, setIsPlayerGamesLoaded] =
     useState<boolean>(false);
   const [isPlayerSeasonsLoaded, setIsPlayerSeasonsLoaded] =

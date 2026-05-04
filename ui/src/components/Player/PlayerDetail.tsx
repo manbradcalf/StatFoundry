@@ -48,12 +48,10 @@ export const PlayerDetail: React.FC = () => {
   }
 
   // Generate dynamic meta content
-  const playerName =
-    playerInfo?.name ||
-    (playerInfo
-      ? `${playerInfo.first_name || ""} ${playerInfo.last_name || ""}`.trim()
-      : "") ||
-    "Player";
+  const playerName = playerInfo
+    ? `${playerInfo.first_name || ""} ${playerInfo.last_name || ""}`.trim()
+    : "Player";
+
   const position = playerInfo?.position || "";
   const team = playerInfo?.team_abbr || "";
   const college = playerInfo?.college_name || "";
