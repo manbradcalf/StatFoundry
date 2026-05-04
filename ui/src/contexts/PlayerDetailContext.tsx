@@ -18,6 +18,9 @@ interface PlayerDetailContextType {
   isLoadingPlayerInfo: boolean;
   isLoadingPlayerGames: boolean;
   isLoadingPlayerSeasons: boolean;
+  isPlayerInfoLoaded: boolean;
+  isPlayerGamesLoaded: boolean;
+  isPlayerSeasonsLoaded: boolean;
   playerInfoError: string | null;
   playerGamesError: string | null;
   playerSeasonsError: string | null;
@@ -62,6 +65,12 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     useState<boolean>(false);
   const [isPlayerSeasonsLoading, setIsPlayerSeasonsLoading] =
     useState<boolean>(false);
+  const [isPlayerInfoLoaded, setIsPlayerInfoLoaded] =
+    useState<boolean>(false);
+  const [isPlayerGamesLoaded, setIsPlayerGamesLoaded] =
+    useState<boolean>(false);
+  const [isPlayerSeasonsLoaded, setIsPlayerSeasonsLoaded] =
+    useState<boolean>(false);
   const [playerInfoError, setPlayerInfoError] = useState<string | null>(null);
   const [playerGamesError, setPlayerGamesError] = useState<string | null>(null);
   const [playerSeasonsError, setPlayerSeasonsError] = useState<string | null>(
@@ -71,6 +80,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     useState<boolean>(false);
 
   const fetchPlayerInfoByGsisId = useCallback(async (gsisId: string) => {
+    console.log("fetchPlayerInfoByGsisId called with:", gsisId);
     setIsPlayerInfoLoading(true);
     setPlayerInfoError(null);
 
@@ -90,6 +100,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
       // so we should update the api to return a single player object
       // data returned as [{p: {display_name: "..." ,...},...}]
       setPlayerInfo(data[0].p);
+      setIsPlayerInfoLoaded(true);
     } catch (err: any) {
       const errorMessage =
         err instanceof Error ? err.message : "An unknown error occurred";
@@ -101,6 +112,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
   }, []);
 
   const fetchPlayerGamesByGsisId = useCallback(async (gsisId: string) => {
+    console.log("fetchPlayerGamesByGsisId called with:", gsisId);
     setIsPlayerGamesLoading(true);
     setPlayerGamesError(null);
 
@@ -118,17 +130,19 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
 
       const data = await response.json();
       setPlayerGames(data);
+      setIsPlayerGamesLoaded(true);
     } catch (err: any) {
       const errorMessage =
         err instanceof Error ? err.message : "An unknown error occurred";
       console.error("Failed to fetch playerGames:", err);
-      setPlayerInfoError(errorMessage);
+      setPlayerGamesError(errorMessage);
     } finally {
       setIsPlayerGamesLoading(false);
     }
   }, []);
 
   const fetchPlayerSeasonsByGsisId = useCallback(async (gsisId: string) => {
+    console.log("fetchPlayerSeasonsByGsisId called with:", gsisId);
     setIsPlayerSeasonsLoading(true);
     setPlayerSeasonsError(null);
 
@@ -153,6 +167,7 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
         setShowSeason2000Warning(true);
       }
       setPlayerSeasons(data);
+      setIsPlayerSeasonsLoaded(true);
     } catch (err: any) {
       const errorMessage =
         err instanceof Error ? err.message : "An unknown error occurred";
@@ -175,6 +190,9 @@ export const PlayerDetailProvider: React.FC<PlayerDetailProviderProps> = ({
     isLoadingPlayerInfo: isPlayerInfoLoading,
     isLoadingPlayerGames: isPlayerGamesLoading,
     isLoadingPlayerSeasons: isPlayerSeasonsLoading,
+    isPlayerInfoLoaded: isPlayerInfoLoaded,
+    isPlayerGamesLoaded: isPlayerGamesLoaded,
+    isPlayerSeasonsLoaded: isPlayerSeasonsLoaded,
     playerInfoError: playerInfoError,
     playerGamesError: playerGamesError,
     playerSeasonsError: playerSeasonsError,
