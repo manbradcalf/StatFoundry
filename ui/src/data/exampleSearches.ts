@@ -40,7 +40,7 @@ const createReturnChunk = (selectedProperties: string[]): Chunk => ({
 
 // Default columns for PlayerGame searches
 const RUSHING_GAME_COLUMNS = [
-  "pg.player_display_name",
+  "pg.player_name",
   "pg.position",
   "pg.recent_team",
   "pg.season",
@@ -52,7 +52,7 @@ const RUSHING_GAME_COLUMNS = [
 ];
 
 const PASSING_GAME_COLUMNS = [
-  "pg.player_display_name",
+  "pg.player_name",
   "pg.position",
   "pg.recent_team",
   "pg.season",
@@ -65,7 +65,7 @@ const PASSING_GAME_COLUMNS = [
 ];
 
 const RECEIVING_GAME_COLUMNS = [
-  "pg.player_display_name",
+  "pg.player_name",
   "pg.position",
   "pg.recent_team",
   "pg.season",
