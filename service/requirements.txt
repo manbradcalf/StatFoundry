@@ -1,6 +1,5 @@
-neo4j-driver
 nfl_data_py>=0.3.3
-neo4j
+neo4j==6.1.0
 fastapi>=0.68.0
 uvicorn>=0.15.0
 stripe>=5.0.0
