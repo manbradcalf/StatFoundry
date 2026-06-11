@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StatFoundry — Fresh Eyes Review · June 2026</title>
+<style>
+  :root {
+    --ink: #1a1d23;
+    --muted: #5b6472;
+    --faint: #8b93a1;
+    --paper: #faf9f7;
+    --card: #ffffff;
+    --line: #e6e3dd;
+    --ember: #d9531e;
+    --ember-soft: #fdf0e9;
+    --green: #1e7d4f;
+    --green-soft: #e9f5ee;
+    --amber: #b97a10;
+    --amber-soft: #fdf6e7;
+    --red: #b3261e;
+    --red-soft: #fcecea;
+    --blue: #2a5d9c;
+    --blue-soft: #ecf2f9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.55; font-size: 16px;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 48px 28px 80px; }
+  header { border-bottom: 3px solid var(--ink); padding-bottom: 24px; margin-bottom: 32px; }
+  .kicker { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ember); font-weight: 700; margin-bottom: 8px; }
+  h1 { font-size: 34px; line-height: 1.15; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin-top: 10px; font-size: 15px; }
+  h2 { font-size: 22px; margin: 44px 0 14px; letter-spacing: -0.01em; }
+  h3 { font-size: 16px; margin-bottom: 6px; }
+  p { margin-bottom: 12px; }
+  a { color: var(--blue); }
+
+  .verdict {
+    background: var(--ink); color: #f5f3ef; border-radius: 10px;
+    padding: 24px 26px; margin: 28px 0 8px;
+  }
+  .verdict .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #f0a37e; font-weight: 700; margin-bottom: 8px; }
+  .verdict p { font-size: 17px; line-height: 1.5; margin-bottom: 10px; }
+  .verdict p:last-child { margin-bottom: 0; }
+  .verdict strong { color: #ffd9c4; }
+
+  .qa { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+  @media (max-width: 720px) { .qa { grid-template-columns: 1fr; } }
+  .qa .card { border-left: 4px solid var(--green); }
+  .answer { font-weight: 700; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 6px; }
+  .answer.yes { color: var(--green); }
+  .answer.no { color: var(--red); }
+  .answer.mixed { color: var(--amber); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 20px 22px; margin-bottom: 16px;
+  }
+  .card h3 .tag { font-size: 11px; vertical-align: 2px; margin-left: 8px; }
+
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 700; border-radius: 99px;
+    padding: 2px 10px; letter-spacing: 0.03em;
+  }
+  .tag.red { background: var(--red-soft); color: var(--red); }
+  .tag.green { background: var(--green-soft); color: var(--green); }
+  .tag.amber { background: var(--amber-soft); color: var(--amber); }
+  .tag.blue { background: var(--blue-soft); color: var(--blue); }
+  .tag.ember { background: var(--ember-soft); color: var(--ember); }
+
+  ul { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0 8px; background: var(--card); border-radius: 8px; overflow: hidden; }
+  th { text-align: left; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); padding: 10px 12px; border-bottom: 2px solid var(--line); background: #f4f2ee; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  .approaches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 18px; }
+  @media (max-width: 860px) { .approaches { grid-template-columns: 1fr; } }
+  .approach { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; }
+  .approach.recommended { border: 2px solid var(--ember); box-shadow: 0 4px 18px rgba(217,83,30,0.10); }
+  .approach .head { margin-bottom: 10px; }
+  .approach h3 { font-size: 17px; }
+  .approach .meta { font-size: 13px; color: var(--muted); margin: 4px 0 10px; }
+  .approach ul { font-size: 14px; }
+  .approach .why { font-size: 14px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; margin-top: auto; }
+
+  .num { font-variant-numeric: tabular-nums; }
+  .footnote { font-size: 13px; color: var(--faint); margin-top: 6px; }
+  .appendix-list li { margin-bottom: 4px; }
+  code { background: #f0ede8; border-radius: 4px; padding: 1px 5px; font-size: 13.5px; }
+  .divider { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Medcalf Software Solutions · Internal Review</div>
+  <h1>StatFoundry: Fresh Eyes Review</h1>
+  <div class="sub">June 11, 2026 · Question: invest, or maintain as a portfolio piece? · Inputs: live UX session, full code audit, web legal/economic research, NLP architecture design — four independent subagents, synthesized.</div>
+</header>
+
+<div class="verdict">
+  <div class="label">The Verdict</div>
+  <p><strong>Your legal fear was unfounded, and your traction verdict was premature</strong> — because the product never actually delivered its core promise. The live UX session revealed that every result table shows <strong>anonymous rows</strong>: player names come back <em>null</em> for every query, including your own curated examples. Visitors got spreadsheets, not stats. "No traction" was never a fair market test.</p>
+  <p>Recommended path: <strong>Portfolio Flagship with a cheap market option</strong> (Approach 2 below). Spend the month making it secure, honest, and demo-worthy — then let the 2026 season opener in September be your real decision gate, with share links and named results finally in place.</p>
+</div>
+
+<h2>Your two questions, answered</h2>
+<div class="qa">
+  <div class="card" style="border-left-color: var(--red)">
+    <div class="answer no">No — the fear was misplaced</div>
+    <h3>"Am I right that I can't monetize this without legal retribution?"</h3>
+    <p>The $7,500/mo quote was for <strong>official real-time data feeds</strong> (Sportradar/Genius Sports — built for sportsbooks). Historical factual stats cost $0 and are constitutionally protected for commercial use: <em>Feist</em> (facts aren't copyrightable), <em>CBC v. MLBAM</em> 2007 (for-profit fantasy products on player names + stats are First Amendment protected, cert. denied), <em>Daniels v. FanDuel</em> 2018 (even paywalled). PFF, Sports Reference, PlayerProfiler, StatMuse, and the nflfastR co-author's own rbsdm.com all monetize without league licenses. <strong>Zero have been sued by the NFL over stats.</strong> Real enforcement targets logos, trademarks, and footage — keep those out and you're clear.</p>
+  </div>
+  <div class="card" style="border-left-color: var(--amber)">
+    <div class="answer mixed">Yes, but modestly — and the test was never run</div>
+    <h3>"Is this monetizable? Was I wrong to abandon it?"</h3>
+    <p>Legally green, commercially yellow. Realistic solo-dev ceiling: <span class="num">$0–500/mo</span> without an audience, <span class="num">$1–3k/mo</span> over 1–2 seasons <em>with</em> a distribution engine. The market tailwind is real (fantasy ≈ $42B, sports analytics ≈ 20% CAGR), but PFR/Stathead at $8/mo is brutal competition. The honest reframe: you weren't wrong to stop investing — you were wrong about <em>why</em>. The binding constraint is distribution, not lawyers, and your StatNug share-pages idea was always the distribution mechanism, not a side feature. It was never built (see below).</p>
+  </div>
+</div>
+
+<h2>What the four audits found</h2>
+
+<div class="card">
+  <h3>Live UX audit <span class="tag red">2 blockers</span> <span class="tag green">core mechanic works</span></h3>
+  <p>The chunk-pill visualization, example searches (first result in 2 clicks), mobile layout, and plumbing (zero console errors) are genuinely good. But the first-minute experience fails three ways:</p>
+  <ul>
+    <li><strong>P1 — Anonymous results.</strong> <code>player_display_name</code> and <code>recent_team</code> are null on every row; the only identity field that works is <code>player_name = "P.Mahomes"</code> — exact, abbreviated, unguessable. <em>Whose</em> 159-yard game? Unanswerable.</li>
+    <li><strong>P2 — Typing a player's name never works.</strong> "Derrick" suggests <em>CollegeConferences</em>. Getting one named stat took the auditor <strong>13 actions plus insider knowledge</strong>; the natural path dead-ends in 30 seconds, silently.</li>
+    <li><strong>P3 — The share loop is zero.</strong> URL never changes, no permalink, no copy/share button anywhere. The entire StatNug thesis is unimplemented.</li>
+  </ul>
+  <p class="footnote">Plus: Search secretly requires two clicks with a column-picker modal in between; raw schema leaks everywhere (<code>wopr</code>, <code>dakota</code>, default filter value literally "something"). Full ranked list + screenshots in the appendix.</p>
+</div>
+
+<div class="card">
+  <h3>Technical audit <span class="tag red">2 critical</span> <span class="tag blue">core is healthy</span></h3>
+  <ul>
+    <li><strong>Critical:</strong> <code>/api/query</code> is an <strong>unauthenticated open Cypher proxy</strong> to prod Aura — anyone with the URL can dump the DB or burn compute. The claimed read-only validation doesn't exist; only the driver's access mode protects you. (~20-line fix.)</li>
+    <li><strong>Critical:</strong> the Stripe pipeline <strong>never worked end-to-end</strong> — metadata set on the Checkout Session but read from the Subscription, so every webhook 400s and <code>is_pro</code> can never be true. And <code>isPro</code> gates nothing in the UI: the ~2,200-line monetization stack is broken <em>and</em> unused.</li>
+    <li><strong>High:</strong> ingestion hardcodes season 2025 in four scripts — in September 2026 the cron goes green while loading <strong>nothing</strong>. (<code>season_config.py</code> already exists; just unused.)</li>
+    <li><strong>High:</strong> UI tests can't run (stale mock of the gitignored generated-chunks file); service has zero tests.</li>
+    <li>Verdict: the product core (chunk chain → Cypher → results, ~250-line service) is compact and well-structured. The liabilities are the things bolted around it — and they're mostly <em>deletions</em>.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>NLP architecture (design doc) <span class="tag ember">weekend-shippable</span></h3>
+  <p>Recommendation: <strong>English → ChunkChain, never English → Cypher.</strong> Your Chunks system is already a closed, validated intermediate representation — the LLM emits only chunk IDs + slot fills from an enum'd catalog, so hallucinated schema becomes <em>unrepresentable</em>; your existing compiler emits the Cypher deterministically (1,167 stays 1,167); and the plain-English chain renders as an editable confirmation before anything runs — which is the structural fix for "meanest quarterback."</p>
+  <ul>
+    <li>Cost: ~<span class="num">$0.0025</span>/query (Haiku 4.5, cached) to <span class="num">$0.007</span> (Sonnet 4.6) — $2.50–7 per 1,000 queries. Latency 1–2.5s, one API call, no vector DB.</li>
+    <li>Phase 1 is a weekend because the validator, compiler, and chunk UI already exist. Out-of-scope questions get a structured <code>unanswerable</code>/<code>clarify</code> response — refusal is a first-class output, not a hope.</li>
+    <li>Honest ceiling: the chunk IR can't express aggregation or "top 5" yet — growing the IR (aggregate + order/limit chunks) is the real Phase 3 work, and it benefits manual users equally.</li>
+  </ul>
+  <p class="footnote">This also retroactively validates your Part 3 pivot: the deterministic IR you built to <em>replace</em> the LLM turns out to be exactly what makes an LLM trustworthy in 2026.</p>
+</div>
+
+<h2>Three ways to approach the next month</h2>
+<div class="approaches">
+
+  <div class="approach">
+    <div class="head">
+      <span class="tag blue">Approach 1</span>
+      <h3>Mothball, Properly</h3>
+      <div class="meta">~4–6 hours total · $0 ongoing risk</div>
+    </div>
+    <ul>
+      <li>Lock the API: static key + <code>LIMIT</code>/timeout cap on <code>/api/query</code> (~20 lines)</li>
+      <li>Parameterize the season via the existing <code>season_config.py</code> (prevents the silent Sept 2026 ingestion outage)</li>
+      <li>Fix the test mock, commit <code>generated-chunks.json</code></li>
+      <li>Delete dead ETL scripts + the broken Stripe stack</li>
+    </ul>
+    <div class="why"><strong>Choose if:</strong> the economics killed your interest. This removes everything that can break or be abused while you're not looking, for one Saturday. The repo stays honest and resurrectable.</div>
+  </div>
+
+  <div class="approach recommended">
+    <div class="head">
+      <span class="tag ember">Approach 2 · Recommended</span>
+      <h3>Portfolio Flagship</h3>
+      <div class="meta">~2–4 hrs/week · MSS lead-gen, option on revenue</div>
+    </div>
+    <ul>
+      <li><strong>Week 1:</strong> everything in Approach 1</li>
+      <li><strong>Week 2:</strong> fix the identity data (P1) — ingest display names + teams; pin name as first column. The single change that makes every demo land</li>
+      <li><strong>Week 3:</strong> build the NL→ChunkChain weekend MVP as a live demo</li>
+      <li><strong>Week 4:</strong> write blog Part 4: <em>"My deterministic query builder turned out to be the perfect LLM harness"</em> — genuinely differentiated 2026 consulting content (graph + LLM + structured output) that markets MSS</li>
+    </ul>
+    <div class="why"><strong>Choose because:</strong> the verified payoff (a working showcase of exactly the skills MSS sells) doesn't depend on the unverified one (NFL-fan traction). And it keeps Approach 3 one decision away.</div>
+  </div>
+
+  <div class="approach">
+    <div class="head">
+      <span class="tag green">Approach 3</span>
+      <h3>One Honest Season</h3>
+      <div class="meta">~5–10 hrs/week · the market test you never ran</div>
+    </div>
+    <ul>
+      <li>Everything in Approach 2, plus the UX top-3: player-name typeahead, default columns + one-click search, <strong>URL-serialized chains + share links</strong> (the StatNug loop, ~1 day)</li>
+      <li>NL Phases 2–3 (grounding, aggregates → "top 5" works)</li>
+      <li>Relaunch at the season opener (Sept) into r/fantasyfootball &amp; X; affiliate/seasonal-sub monetization, expectations $0–500/mo</li>
+      <li><strong>Decision gate:</strong> shared-link visits &amp; weekly returners by Thanksgiving — or archive with a clear conscience</li>
+    </ul>
+    <div class="why"><strong>Choose if:</strong> learning whether StatFoundry has a market is worth ~100 hours to you. The product that "failed" was anonymous, unsearchable, and unshareable — this is the first fair test.</div>
+  </div>
+</div>
+
+<h2>Why Approach 2 is the recommendation</h2>
+<p>Your time budget was contingent on the economics, and the economics say: <strong>no legal barrier, modest revenue ceiling, distribution is everything.</strong> That argues against betting 100 hours on revenue (Approach 3's payoff is uncertain) but equally against pure mothballing (Approach 1 wastes the discovery that the product never got a fair test, and wastes a strong consulting story sitting in your repo). Approach 2 captures the certain value — security, longevity, a demo-quality flagship, and a Part 4 blog post that writes itself — while keeping the September relaunch option open at one week's notice. If the NL demo and named results reignite your enthusiasm in week 3, escalate to Approach 3 with six weeks still to spare before the season.</p>
+
+<h2>If you do nothing else, do these this week</h2>
+<table>
+  <tr><th>Action</th><th>Why</th><th>Effort</th></tr>
+  <tr><td>API key + query cap on <code>/api/query</code></td><td>Open Cypher proxy to prod Aura, today, on the public internet</td><td>~20 lines</td></tr>
+  <tr><td>Use <code>season_config.py</code> in the four hardcoded loaders</td><td>Ingestion silently dies September 2026 otherwise</td><td>~1 hr</td></tr>
+  <tr><td>Delete the Stripe/Firebase subscription stack</td><td>Broken, unused, ~2,200 lines, worst API-drift surface (re-add clean later if Approach 3 happens)</td><td>~2 hrs</td></tr>
+  <tr><td>Legal hygiene check</td><td>No team logos, no "NFL" in branding, no footage, no player photos in marketing, "not affiliated" disclaimer — then monetization is open</td><td>~30 min</td></tr>
+</table>
+
+<hr class="divider">
+
+<h2>Appendices — full subagent reports</h2>
+<ul class="appendix-list">
+  <li><a href="economics-legal.md">Economics &amp; legal research</a> — case law, precedent table, risk matrix, revenue benchmarks (with sources)</li>
+  <li><a href="technical-audit.md">Technical audit</a> — 9 ranked bugs with file:line refs, top 5 simplifications, test status</li>
+  <li><a href="nlp-architecture.md">NLP architecture design doc</a> — 3 architectures compared, system design, phased plan, eval strategy</li>
+  <li><a href="ux-audit.md">UX audit</a> — 11 ranked findings with screenshot evidence, first-time-user journey (key shots in <a href="shots/">shots/</a>; full set in <code>.sf-ux-scratch/shots/</code>)</li>
+</ul>
+<p class="footnote">Generated by Claude (Fable 5) orchestrating four independent research subagents over the live app, the codebase, and the public web · Sources cited inline in appendices.</p>
+
+</div>
+</body>
+</html>
