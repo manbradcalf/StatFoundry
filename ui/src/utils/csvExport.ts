@@ -32,7 +32,7 @@ export const convertToCSV = (data: any[], columns: string[]): string => {
   // Add data rows
   data.forEach(item => {
     const row = columns.map(column => {
-      const value = item.flattened[column];
+      const value = item.processed[column];
       
       // Handle arrays by converting to JSON string
       if (Array.isArray(value)) {

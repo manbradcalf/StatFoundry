@@ -12,6 +12,7 @@ import { TableBody } from "./components/TableBody";
 import { TableFooter } from "./components/TableFooter";
 import { PaginationControls } from "./components/PaginationControls";
 import { ExportButton } from "./components/ExportButton";
+import { AggregationSelector } from "./components/AggregationSelector";
 import { ColumnVisibilityDropdown } from "./components/ColumnVisibilityDropdown";
 import { commonStyles } from "../../utils/commonStyles";
 
@@ -97,16 +98,11 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     customAggregation,
   );
 
-  // Debug aggregations
-  if (enableAggregations) {
-    console.log("Aggregations enabled:", {
-      enableAggregations,
-      aggregationType,
-      columnAggregations,
-      displayedColumns,
-      sortedDataLength: sortedData.length,
-    });
-  }
+  // Whether any displayed column has a numeric aggregate (controls whether the
+  // aggregation selector is meaningful to show)
+  const hasAggregatableColumn = Object.values(columnAggregations).some(
+    (value) => value !== null,
+  );
 
   // Early return if no data
   if (visibleProcessedData.length === 0) {
@@ -123,20 +119,30 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
       {/* Controls row with column visibility and export */}
       {(enableExport || availableColumns.length > 0) && (
         <div className="dynamic-table-controls">
-          <ColumnVisibilityDropdown
-            availableColumns={availableColumns}
-            visibleColumns={columnVisibility.visibleColumns}
-            isColumnVisible={columnVisibility.isColumnVisible}
-            toggleColumn={columnVisibility.toggleColumn}
-            toggleGroup={columnVisibility.toggleGroup}
-            showAllColumns={columnVisibility.showAllColumns}
-            hideAllNonEssential={columnVisibility.hideAllNonEssential}
-            resetToDefaults={columnVisibility.resetToDefaults}
-            canHideColumn={columnVisibility.canHideColumn}
-            columnGroups={columnGroups}
-            hasCustomOrder={columnOrdering.hasCustomOrder}
-            resetColumnOrder={columnOrdering.resetColumnOrder}
-          />
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "12px" }}
+          >
+            <ColumnVisibilityDropdown
+              availableColumns={availableColumns}
+              visibleColumns={columnVisibility.visibleColumns}
+              isColumnVisible={columnVisibility.isColumnVisible}
+              toggleColumn={columnVisibility.toggleColumn}
+              toggleGroup={columnVisibility.toggleGroup}
+              showAllColumns={columnVisibility.showAllColumns}
+              hideAllNonEssential={columnVisibility.hideAllNonEssential}
+              resetToDefaults={columnVisibility.resetToDefaults}
+              canHideColumn={columnVisibility.canHideColumn}
+              columnGroups={columnGroups}
+              hasCustomOrder={columnOrdering.hasCustomOrder}
+              resetColumnOrder={columnOrdering.resetColumnOrder}
+            />
+            {enableAggregations && hasAggregatableColumn && (
+              <AggregationSelector
+                aggregationType={aggregationType}
+                onAggregationTypeChange={setAggregationType}
+              />
+            )}
+          </div>
           {enableExport && (
             <ExportButton
               data={sortedData}
@@ -170,7 +176,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
               columns={displayedColumns}
               aggregations={columnAggregations}
               aggregationType={aggregationType}
-              onAggregationTypeChange={setAggregationType}
             />
           )}
         </table>
