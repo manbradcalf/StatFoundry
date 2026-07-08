@@ -4,6 +4,7 @@ import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPenToSquare,
+  faTrash,
   faCircle,
   faShareNodes,
   faFilter,
@@ -117,10 +118,15 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
   isLast,
 }) => {
   const modalContext = useModalContext();
+  const { removeChunk } = useChainContext();
   const chunkTypeInfo = getChunkTypeInfo(chunk.QueryType);
 
   const handleEdit = () => {
     modalContext.openSlotModal(chunk, chunk.Slots, index);
+  };
+
+  const handleDelete = () => {
+    removeChunk(index);
   };
 
   // Handle relationship chunks by breaking them into parts
@@ -142,7 +148,7 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
                 <span className="breadcrumb-text">{part.text}</span>
               </div>
               <div className="breadcrumb-actions">
-                {/* Only show edit button on the first part and if chunk has slots */}
+                {/* Only show actions on the first part to avoid duplicates */}
                 {partIndex === 0 && chunk.Slots.length > 0 && (
                   <button
                     className="breadcrumb-edit-button"
@@ -150,6 +156,15 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
                     title="Edit chunk"
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+                )}
+                {partIndex === 0 && (
+                  <button
+                    className="breadcrumb-remove-button"
+                    onClick={handleDelete}
+                    title="Delete chunk"
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 )}
               </div>
@@ -186,6 +201,13 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
         )}
+        <button
+          className="breadcrumb-remove-button"
+          onClick={handleDelete}
+          title="Delete chunk"
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
       </div>
       {!isLast && <span className="breadcrumb-separator">→</span>}
     </div>

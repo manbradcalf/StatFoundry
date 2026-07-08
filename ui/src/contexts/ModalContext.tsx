@@ -209,6 +209,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
       <SlotModal
         isOpen={isSlotModalOpen}
         slots={pendingSlots}
+        entityLabel={pendingChunk?.Requires?.[0]?.AliasType}
         onSave={handleSlotModalSave}
         onCancel={handleSlotModalCancel}
         title={
