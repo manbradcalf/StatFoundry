@@ -12,6 +12,23 @@ const MAX_ENUM_VALUES = 50;
 // are enumerable too (small fixed domains) and are opted in by name here.
 const NUMERIC_ENUM_ALLOWLIST = new Set(["season", "week"]);
 
+// Open-ended entity columns (players, coaches, venue ids) are NOT closed
+// categoricals: their true domain is unbounded, and their *observed* distinct
+// count only dips under MAX_ENUM_VALUES when few rows are loaded. Cardinality
+// alone would then wrongly promote them to dropdowns (a <select> of "whatever
+// happens to be loaded", unable to express any other value). Exclude them by
+// name regardless of type — these belong to a name->id autocomplete, not here.
+const ENUM_DENY_PATTERNS = [
+  /player_id$/,
+  /player_name$/,
+  /_id$/,
+  /coach$/,
+];
+
+function isDeniedProperty(name) {
+  return ENUM_DENY_PATTERNS.some((re) => re.test(name));
+}
+
 // How many DISTINCT queries to run against the backend at once.
 const CONCURRENCY = 6;
 
@@ -78,6 +95,7 @@ function postQuery(baseUrl, cypher) {
 }
 
 function isEnumCandidate(prop) {
+  if (isDeniedProperty(prop.name)) return false;
   if (prop.type === "String") return true;
   if (NUMERIC_ENUM_ALLOWLIST.has(prop.name)) return true;
   return false;
@@ -147,10 +165,19 @@ async function generateEnums() {
       // Over the cap => high-cardinality (names/ids) => not a dropdown.
       if (rows.length === 0 || rows.length > MAX_ENUM_VALUES) return;
 
-      const values = rows
-        .map((r) => r.v)
-        .filter((v) => v !== null && v !== undefined && String(v).trim() !== "")
-        .map((v) => String(v));
+      // DISTINCT dedupes on the DB's native types; different types that share a
+      // string form (e.g. integer 1 and string "1") survive as separate rows and
+      // must be re-deduped after String() to avoid duplicate <option>s.
+      const values = [
+        ...new Set(
+          rows
+            .map((r) => r.v)
+            .filter(
+              (v) => v !== null && v !== undefined && String(v).trim() !== "",
+            )
+            .map((v) => String(v)),
+        ),
+      ];
       if (values.length === 0) return;
 
       catalog[`${label}.${property}`] = values;
