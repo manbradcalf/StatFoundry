@@ -29,6 +29,21 @@ function isDeniedProperty(name) {
   return ENUM_DENY_PATTERNS.some((re) => re.test(name));
 }
 
+// Every team column shares ONE fixed domain. Hardcoded (not probed) because the
+// NFL adds a team roughly once a decade — cheaper to edit this list by hand than
+// to scan the DB on every build. Includes relocated franchises (OAK/SD/STL) so
+// historical rows are filterable; JAX only (JAC is an ETL dupe).
+const NFL_TEAMS = [
+  "ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN",
+  "DET", "GB", "HOU", "IND", "JAX", "KC", "LA", "LAC", "LV", "MIA",
+  "MIN", "NE", "NO", "NYG", "NYJ", "OAK", "PHI", "PIT", "SD", "SEA",
+  "SF", "STL", "TB", "TEN", "WAS",
+];
+
+function isTeamProperty(name) {
+  return /team$/.test(name) || name === "team_abbr";
+}
+
 // How many DISTINCT queries to run against the backend at once.
 const CONCURRENCY = 6;
 
@@ -186,6 +201,11 @@ async function generateEnums() {
     },
     CONCURRENCY,
   );
+
+  // Overwrite every team column with the fixed NFL_TEAMS list.
+  Object.keys(catalog).forEach((key) => {
+    if (isTeamProperty(key.split(".").pop())) catalog[key] = NFL_TEAMS;
+  });
 
   // Sort keys for stable, diff-friendly output.
   const sorted = {};

@@ -1,8 +1,8 @@
 export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
-  { key: "week", type: "Boolean" },
+  { key: "week", type: "Long" },
   { key: "season_type", type: "String" },
-  { key: "passing_yards", type: "Double" },
-  { key: "rushing_yards", type: "Double" },
+  { key: "passing_yards", type: "Long" },
+  { key: "rushing_yards", type: "Long" },
   { key: "vegas_wpa", type: "Double" },
   { key: "time", type: "String" },
   { key: "comp_air_epa", type: "Double" },
@@ -18,34 +18,34 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "qb_hit", type: "Double" },
   { key: "assist_tackle_1_player_name", type: "String" },
   { key: "assist_tackle_3_player_name", type: "String" },
-  { key: "fumble_recovery_2_yards", type: "String" },
+  { key: "fumble_recovery_2_yards", type: "Long" },
   { key: "two_point_conv_result", type: "String" },
-  { key: "total_home_rush_epa", type: "Double" },
-  { key: "receiver_jersey_number", type: "Double" },
-  { key: "defensive_extra_point_conv", type: "Double" },
-  { key: "touchdown", type: "Double" },
   { key: "sp", type: "Double" },
+  { key: "defensive_extra_point_conv", type: "Double" },
+  { key: "receiver_jersey_number", type: "Long" },
+  { key: "touchdown", type: "Double" },
+  { key: "total_home_rush_epa", type: "Double" },
   { key: "home_coach", type: "String" },
   { key: "total_away_pass_wpa", type: "String" },
   { key: "total_away_raw_air_wpa", type: "Double" },
   { key: "solo_tackle_2_player_name", type: "String" },
-  { key: "drive_yards_penalized", type: "Double" },
+  { key: "drive_yards_penalized", type: "Long" },
   { key: "punt_fair_catch", type: "Double" },
-  { key: "play_id", type: "Double" },
-  { key: "rusher_jersey_number", type: "Double" },
+  { key: "play_id", type: "Long" },
+  { key: "rusher_jersey_number", type: "Long" },
   { key: "opp_fg_prob", type: "Double" },
   { key: "half_sack_1_player_id", type: "String" },
   { key: "time_to_throw", type: "Double" },
   { key: "assist_tackle_4_team", type: "String" },
   { key: "tackled_for_loss", type: "Double" },
   { key: "total_home_pass_epa", type: "Double" },
-  { key: "drive_quarter_start", type: "Double" },
-  { key: "drive_quarter_end", type: "Double" },
+  { key: "drive_quarter_start", type: "Long" },
+  { key: "drive_quarter_end", type: "Long" },
   { key: "kickoff_attempt", type: "Double" },
   { key: "punt_downed", type: "Double" },
   { key: "players_on_play", type: "String" },
-  { key: "down", type: "Double" },
-  { key: "total_home_score", type: "Double" },
+  { key: "down", type: "Long" },
+  { key: "total_home_score", type: "Long" },
   { key: "receiver_player_id", type: "String" },
   { key: "total_away_raw_yac_wpa", type: "Double" },
   { key: "half_sack_2_player_name", type: "String" },
@@ -58,13 +58,13 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "pass_oe", type: "Double" },
   { key: "rusher", type: "String" },
   { key: "return_touchdown", type: "Double" },
-  { key: "series", type: "Double" },
-  { key: "drive_play_count", type: "Double" },
+  { key: "series", type: "Long" },
+  { key: "drive_play_count", type: "Long" },
   { key: "solo_tackle_1_team", type: "String" },
   { key: "punter_player_name", type: "String" },
   { key: "air_wpa", type: "Double" },
   { key: "qb_dropback", type: "Double" },
-  { key: "fixed_drive", type: "Double" },
+  { key: "fixed_drive", type: "Long" },
   { key: "ngs_air_yards", type: "Double" },
   { key: "lateral_recovery", type: "Double" },
   { key: "no_huddle", type: "Double" },
@@ -85,18 +85,19 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "assist_tackle_3_player_id", type: "String" },
   { key: "total", type: "Long" },
   { key: "xyac_fd", type: "Double" },
-  { key: "half_seconds_remaining", type: "Double" },
-  { key: "kick_distance", type: "Double" },
-  { key: "pass_defense_2_player_id", type: "String" },
+  { key: "half_seconds_remaining", type: "Long" },
+  { key: "kick_distance", type: "Long" },
   { key: "punt_out_of_bounds", type: "Double" },
   { key: "fumble_forced", type: "Double" },
   { key: "defensive_two_point_attempt", type: "Double" },
+  { key: "pass_defense_2_player_id", type: "String" },
   { key: "solo_tackle_1_player_name", type: "String" },
   { key: "penalty", type: "Double" },
+  { key: "name_player_gsis_id", type: "String" },
   { key: "old_game_id_y", type: "Long" },
   { key: "replay_or_challenge_result", type: "String" },
   { key: "rusher_player_id", type: "String" },
-  { key: "yards_gained", type: "Double" },
+  { key: "yards_gained", type: "Long" },
   { key: "total_home_epa", type: "Double" },
   { key: "total_home_comp_yac_wpa", type: "Double" },
   { key: "total_home_comp_air_wpa", type: "Double" },
@@ -108,12 +109,12 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "run_gap", type: "String" },
   { key: "extra_point_attempt", type: "Double" },
   { key: "fumble_recovery_2_team", type: "String" },
-  { key: "receiving_yards", type: "Double" },
+  { key: "receiving_yards", type: "Long" },
   { key: "kickoff_downed", type: "Double" },
   { key: "forced_fumble_player_1_team", type: "String" },
   { key: "total_line", type: "Double" },
   { key: "kickoff_returner_player_id", type: "String" },
-  { key: "posteam_timeouts_remaining", type: "Double" },
+  { key: "posteam_timeouts_remaining", type: "Long" },
   { key: "kicker_player_id", type: "String" },
   { key: "passer_player_id", type: "String" },
   { key: "safety_player_id", type: "String" },
@@ -122,12 +123,13 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "first_down_penalty", type: "Double" },
   { key: "id", type: "String" },
   { key: "own_kickoff_recovery_player_name", type: "String" },
-  { key: "half_sack_2_player_id", type: "String" },
+  { key: "series_success", type: "Double" },
   { key: "first_down", type: "Double" },
-  { key: "punter_player_id", type: "String" },
+  { key: "half_sack_2_player_id", type: "String" },
   { key: "possession_team", type: "String" },
-  { key: "penalty_yards", type: "Double" },
+  { key: "punter_player_id", type: "String" },
   { key: "rusher_player_name", type: "String" },
+  { key: "penalty_yards", type: "Long" },
   { key: "fantasy_id", type: "String" },
   { key: "yac_epa", type: "Double" },
   { key: "fumbled_1_player_id", type: "String" },
@@ -135,11 +137,11 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "own_kickoff_recovery", type: "Double" },
   { key: "posteam", type: "String" },
   { key: "quarter_end", type: "Double" },
-  { key: "total_away_score", type: "Double" },
+  { key: "total_away_score", type: "Long" },
   { key: "away_coach", type: "String" },
   { key: "pass", type: "Double" },
   { key: "air_epa", type: "Double" },
-  { key: "end_clock_time", type: "DateTime" },
+  { key: "end_clock_time", type: "String" },
   { key: "lateral_rusher_player_name", type: "String" },
   { key: "result", type: "Long" },
   { key: "penalty_type", type: "String" },
@@ -151,24 +153,23 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "td_player_name", type: "String" },
   { key: "success", type: "Double" },
   { key: "sack_player_id", type: "String" },
-  { key: "game_seconds_remaining", type: "Double" },
-  { key: "series_success", type: "Double" },
+  { key: "game_seconds_remaining", type: "Long" },
   { key: "nflverse_game_id", type: "String" },
   { key: "total_away_raw_air_epa", type: "Double" },
   { key: "safety_prob", type: "String" },
   { key: "pass_attempt", type: "Double" },
-  { key: "return_yards", type: "Double" },
+  { key: "return_yards", type: "Long" },
   { key: "opp_td_prob", type: "Double" },
   { key: "fumbled_2_team", type: "String" },
   { key: "qb_hit_1_player_name", type: "String" },
   { key: "surface", type: "String" },
   { key: "wpa", type: "Double" },
   { key: "tackle_with_assist_1_team", type: "String" },
-  { key: "defteam_timeouts_remaining", type: "Double" },
+  { key: "defteam_timeouts_remaining", type: "Long" },
   { key: "lateral_return", type: "Double" },
   { key: "route", type: "String" },
   { key: "play_deleted", type: "Double" },
-  { key: "yardline_100", type: "Double" },
+  { key: "yardline_100", type: "Long" },
   { key: "vegas_wp", type: "Double" },
   { key: "xpass", type: "Double" },
   { key: "field_goal_result", type: "String" },
@@ -176,7 +177,7 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "total_away_comp_air_wpa", type: "Double" },
   { key: "first_down_pass", type: "Double" },
   { key: "own_kickoff_recovery_td", type: "Double" },
-  { key: "drive", type: "Double" },
+  { key: "drive", type: "Long" },
   { key: "defenders_in_box", type: "Double" },
   { key: "assist_tackle_3_team", type: "String" },
   { key: "special", type: "Double" },
@@ -189,9 +190,9 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "lateral_rusher_player_id", type: "String" },
   { key: "assist_tackle_4_player_id", type: "String" },
   { key: "passer_player_name", type: "String" },
-  { key: "drive_real_start_time", type: "DateTime" },
+  { key: "drive_real_start_time", type: "String" },
   { key: "pass_defense_1_player_name", type: "String" },
-  { key: "time_of_day", type: "DateTime" },
+  { key: "time_of_day", type: "String" },
   { key: "yrdln", type: "String" },
   { key: "blocked_player_name", type: "String" },
   { key: "drive_start_transition", type: "String" },
@@ -199,36 +200,36 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "drive_end_yard_line", type: "String" },
   { key: "half_sack_1_player_name", type: "String" },
   { key: "lateral_kickoff_returner_player_name", type: "String" },
-  { key: "weather", type: "String" },
   { key: "interception_player_name", type: "String" },
-  { key: "assist_tackle_2_team", type: "String" },
   { key: "assist_tackle_1_player_id", type: "String" },
-  { key: "yards_after_catch", type: "Double" },
+  { key: "assist_tackle_2_team", type: "String" },
   { key: "fantasy", type: "String" },
+  { key: "yards_after_catch", type: "Long" },
+  { key: "weather", type: "String" },
   { key: "side_of_field", type: "String" },
-  { key: "passer", type: "String" },
   { key: "lateral_rush", type: "Double" },
+  { key: "passer", type: "String" },
   { key: "spread_line", type: "Double" },
-  { key: "fumble_recovery_1_team", type: "String" },
   { key: "kickoff_fair_catch", type: "Double" },
+  { key: "fumble_recovery_1_team", type: "String" },
   { key: "epa", type: "Double" },
   { key: "pass_length", type: "String" },
   { key: "xyac_mean_yardage", type: "Double" },
-  { key: "defteam_score_post", type: "Double" },
+  { key: "defteam_score_post", type: "Long" },
   { key: "start_time", type: "String" },
   { key: "pass_defense_1_player_id", type: "String" },
   { key: "play", type: "Double" },
   { key: "fumble_recovery_1_player_name", type: "String" },
   { key: "rush_attempt", type: "Double" },
-  { key: "posteam_score", type: "Double" },
+  { key: "posteam_score", type: "Long" },
   { key: "extra_point_prob", type: "Double" },
   { key: "was_pressure", type: "Boolean" },
   { key: "assist_tackle_4_player_name", type: "String" },
   { key: "fourth_down_failed", type: "Double" },
-  { key: "air_yards", type: "Double" },
+  { key: "air_yards", type: "Long" },
   { key: "opp_safety_prob", type: "Double" },
   { key: "order_sequence", type: "Double" },
-  { key: "drive_first_downs", type: "Double" },
+  { key: "drive_first_downs", type: "Long" },
   { key: "extra_point_result", type: "String" },
   { key: "goal_to_go", type: "Boolean" },
   { key: "tackle_with_assist_1_player_name", type: "String" },
@@ -239,17 +240,17 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "two_point_attempt", type: "Double" },
   { key: "desc", type: "String" },
   { key: "qb_hit_2_player_id", type: "String" },
-  { key: "away_timeouts_remaining", type: "Double" },
+  { key: "away_timeouts_remaining", type: "Long" },
   { key: "home_wp", type: "Double" },
-  { key: "tackle_with_assist_1_player_id", type: "String" },
   { key: "home_opening_kickoff", type: "Double" },
+  { key: "tackle_with_assist_1_player_id", type: "String" },
   { key: "td_team", type: "String" },
   { key: "play_type", type: "String" },
   { key: "vegas_home_wp", type: "Double" },
   { key: "drive_game_clock_start", type: "String" },
   { key: "fourth_down_converted", type: "Double" },
   { key: "two_point_conversion_prob", type: "Double" },
-  { key: "quarter_seconds_remaining", type: "Double" },
+  { key: "quarter_seconds_remaining", type: "Long" },
   { key: "def_wp", type: "Double" },
   { key: "total_home_rush_wpa", type: "Double" },
   { key: "interception_player_id", type: "String" },
@@ -261,11 +262,11 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "away_team", type: "String" },
   { key: "temp", type: "String" },
   { key: "sack_player_name", type: "String" },
-  { key: "posteam_score_post", type: "Double" },
+  { key: "posteam_score_post", type: "Long" },
   { key: "total_home_raw_yac_epa", type: "Double" },
   { key: "safety_player_name", type: "String" },
   { key: "lateral_interception_player_name", type: "String" },
-  { key: "score_differential", type: "Double" },
+  { key: "score_differential", type: "Long" },
   { key: "drive_ended_with_score", type: "Double" },
   { key: "assist_tackle_2_player_name", type: "String" },
   { key: "lateral_receiver_player_id", type: "String" },
@@ -274,17 +275,17 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "pass_defense_2_player_name", type: "String" },
   { key: "drive_game_clock_end", type: "String" },
   { key: "vegas_home_wpa", type: "Double" },
-  { key: "ydstogo", type: "Double" },
+  { key: "ydstogo", type: "Long" },
   { key: "n_defense", type: "Double" },
   { key: "game_date", type: "DateTime" },
   { key: "qb_hit_2_player_name", type: "String" },
   { key: "solo_tackle_1_player_id", type: "String" },
   { key: "punt_returner_player_name", type: "String" },
   { key: "kickoff_returner_player_name", type: "String" },
-  { key: "ydsnet", type: "Double" },
+  { key: "ydsnet", type: "Long" },
   { key: "series_result", type: "String" },
   { key: "no_score_prob", type: "Double" },
-  { key: "home_timeouts_remaining", type: "Double" },
+  { key: "home_timeouts_remaining", type: "Long" },
   { key: "away_wp", type: "Double" },
   { key: "total_home_raw_yac_wpa", type: "Double" },
   { key: "receiver_id", type: "String" },
@@ -294,24 +295,24 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "first_down_rush", type: "Double" },
   { key: "nfl_api_id", type: "String" },
   { key: "drive_end_transition", type: "String" },
-  { key: "passer_jersey_number", type: "Double" },
+  { key: "passer_jersey_number", type: "Long" },
   { key: "forced_fumble_player_1_player_id", type: "String" },
   { key: "defense_players", type: "String" },
-  { key: "ep", type: "Double" },
   { key: "field_goal_attempt", type: "Double" },
+  { key: "ep", type: "Double" },
   { key: "solo_tackle_2_team", type: "String" },
   { key: "drive_start_yard_line", type: "String" },
   { key: "return_team", type: "String" },
   { key: "away_wp_post", type: "Double" },
   { key: "penalty_team", type: "String" },
-  { key: "jersey_number", type: "Double" },
   { key: "fantasy_player_name", type: "String" },
+  { key: "jersey_number", type: "Long" },
   { key: "offense_formation", type: "String" },
   { key: "total_home_raw_air_wpa", type: "Double" },
   { key: "rush_touchdown", type: "Double" },
   { key: "number_of_pass_rushers", type: "Double" },
   { key: "timeout_team", type: "String" },
-  { key: "score_differential_post", type: "Double" },
+  { key: "score_differential_post", type: "Long" },
   { key: "incomplete_pass", type: "Double" },
   { key: "pass_touchdown", type: "Double" },
   { key: "total_home_pass_wpa", type: "String" },
@@ -320,13 +321,13 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "fumble_recovery_2_player_id", type: "String" },
   { key: "game_stadium", type: "String" },
   { key: "td_player_id", type: "String" },
-  { key: "replay_or_challenge", type: "Double" },
-  { key: "cpoe", type: "Double" },
   { key: "rush", type: "Double" },
+  { key: "cpoe", type: "Double" },
+  { key: "replay_or_challenge", type: "String" },
   { key: "aborted_play", type: "Double" },
-  { key: "play_clock", type: "Boolean" },
+  { key: "play_clock", type: "String" },
   { key: "defteam", type: "String" },
-  { key: "defteam_score", type: "Double" },
+  { key: "defteam_score", type: "Long" },
   { key: "defensive_extra_point_attempt", type: "Double" },
   { key: "drive_inside20", type: "Double" },
   { key: "cp", type: "Double" },
@@ -336,26 +337,26 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "qb_kneel", type: "Double" },
   { key: "assist_tackle_2_player_id", type: "String" },
   { key: "total_away_rush_epa", type: "Double" },
-  { key: "drive_play_id_started", type: "Double" },
+  { key: "drive_play_id_started", type: "Long" },
   { key: "receiver", type: "String" },
-  { key: "lateral_rushing_yards", type: "String" },
+  { key: "lateral_rushing_yards", type: "Long" },
   { key: "receiver_player_name", type: "String" },
   { key: "fumbled_2_player_name", type: "String" },
   { key: "comp_yac_epa", type: "Double" },
   { key: "fixed_drive_result", type: "String" },
-  { key: "fumble_recovery_1_yards", type: "Double" },
+  { key: "fumble_recovery_1_yards", type: "Long" },
   { key: "home_wp_post", type: "Double" },
-  { key: "drive_play_id_ended", type: "Double" },
   { key: "out_of_bounds", type: "Double" },
+  { key: "drive_play_id_ended", type: "Long" },
   { key: "fumbled_1_player_name", type: "String" },
   { key: "punt_returner_player_id", type: "String" },
   { key: "total_away_comp_yac_wpa", type: "Double" },
-  { key: "lateral_receiving_yards", type: "String" },
+  { key: "lateral_receiving_yards", type: "Long" },
   { key: "total_away_pass_epa", type: "Double" },
   { key: "fumble_lost", type: "Double" },
   { key: "forced_fumble_player_2_team", type: "String" },
   { key: "qb_spike", type: "Double" },
-  { key: "qtr", type: "Double" },
+  { key: "qtr", type: "Long" },
   { key: "kickoff_out_of_bounds", type: "Double" },
   { key: "drive_time_of_possession", type: "String" },
   { key: "fg_prob", type: "Double" },
@@ -368,8 +369,8 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "total_home_raw_air_epa", type: "Double" },
   { key: "lateral_interception_player_id", type: "String" },
   { key: "sack", type: "Double" },
-  { key: "forced_fumble_player_2_player_name", type: "String" },
   { key: "third_down_converted", type: "Double" },
+  { key: "forced_fumble_player_2_player_name", type: "String" },
   { key: "posteam_type", type: "String" },
   { key: "defense_man_zone_type", type: "String" },
   { key: "total_away_rush_wpa", type: "Double" },
@@ -381,7 +382,7 @@ export const PLAY_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "pass_location", type: "String" },];
 export interface PlayProperties {
   season: number;
-  week: boolean;
+  week: number;
   season_type: string;
   passing_yards: number;
   rushing_yards: number;
@@ -400,13 +401,13 @@ export interface PlayProperties {
   qb_hit: number;
   assist_tackle_1_player_name: string;
   assist_tackle_3_player_name: string;
-  fumble_recovery_2_yards: string;
+  fumble_recovery_2_yards: number;
   two_point_conv_result: string;
-  total_home_rush_epa: number;
-  receiver_jersey_number: number;
-  defensive_extra_point_conv: number;
-  touchdown: number;
   sp: number;
+  defensive_extra_point_conv: number;
+  receiver_jersey_number: number;
+  touchdown: number;
+  total_home_rush_epa: number;
   home_coach: string;
   total_away_pass_wpa: string;
   total_away_raw_air_wpa: number;
@@ -469,12 +470,13 @@ export interface PlayProperties {
   xyac_fd: number;
   half_seconds_remaining: number;
   kick_distance: number;
-  pass_defense_2_player_id: string;
   punt_out_of_bounds: number;
   fumble_forced: number;
   defensive_two_point_attempt: number;
+  pass_defense_2_player_id: string;
   solo_tackle_1_player_name: string;
   penalty: number;
+  name_player_gsis_id: string;
   old_game_id_y: number;
   replay_or_challenge_result: string;
   rusher_player_id: string;
@@ -504,12 +506,13 @@ export interface PlayProperties {
   first_down_penalty: number;
   id: string;
   own_kickoff_recovery_player_name: string;
-  half_sack_2_player_id: string;
+  series_success: number;
   first_down: number;
-  punter_player_id: string;
+  half_sack_2_player_id: string;
   possession_team: string;
-  penalty_yards: number;
+  punter_player_id: string;
   rusher_player_name: string;
+  penalty_yards: number;
   fantasy_id: string;
   yac_epa: number;
   fumbled_1_player_id: string;
@@ -534,7 +537,6 @@ export interface PlayProperties {
   success: number;
   sack_player_id: string;
   game_seconds_remaining: number;
-  series_success: number;
   nflverse_game_id: string;
   total_away_raw_air_epa: number;
   safety_prob: string;
@@ -581,18 +583,18 @@ export interface PlayProperties {
   drive_end_yard_line: string;
   half_sack_1_player_name: string;
   lateral_kickoff_returner_player_name: string;
-  weather: string;
   interception_player_name: string;
-  assist_tackle_2_team: string;
   assist_tackle_1_player_id: string;
-  yards_after_catch: number;
+  assist_tackle_2_team: string;
   fantasy: string;
+  yards_after_catch: number;
+  weather: string;
   side_of_field: string;
-  passer: string;
   lateral_rush: number;
+  passer: string;
   spread_line: number;
-  fumble_recovery_1_team: string;
   kickoff_fair_catch: number;
+  fumble_recovery_1_team: string;
   epa: number;
   pass_length: string;
   xyac_mean_yardage: number;
@@ -623,8 +625,8 @@ export interface PlayProperties {
   qb_hit_2_player_id: string;
   away_timeouts_remaining: number;
   home_wp: number;
-  tackle_with_assist_1_player_id: string;
   home_opening_kickoff: number;
+  tackle_with_assist_1_player_id: string;
   td_team: string;
   play_type: string;
   vegas_home_wp: number;
@@ -679,15 +681,15 @@ export interface PlayProperties {
   passer_jersey_number: number;
   forced_fumble_player_1_player_id: string;
   defense_players: string;
-  ep: number;
   field_goal_attempt: number;
+  ep: number;
   solo_tackle_2_team: string;
   drive_start_yard_line: string;
   return_team: string;
   away_wp_post: number;
   penalty_team: string;
-  jersey_number: number;
   fantasy_player_name: string;
+  jersey_number: number;
   offense_formation: string;
   total_home_raw_air_wpa: number;
   rush_touchdown: number;
@@ -702,11 +704,11 @@ export interface PlayProperties {
   fumble_recovery_2_player_id: string;
   game_stadium: string;
   td_player_id: string;
-  replay_or_challenge: number;
-  cpoe: number;
   rush: number;
+  cpoe: number;
+  replay_or_challenge: string;
   aborted_play: number;
-  play_clock: boolean;
+  play_clock: string;
   defteam: string;
   defteam_score: number;
   defensive_extra_point_attempt: number;
@@ -720,19 +722,19 @@ export interface PlayProperties {
   total_away_rush_epa: number;
   drive_play_id_started: number;
   receiver: string;
-  lateral_rushing_yards: string;
+  lateral_rushing_yards: number;
   receiver_player_name: string;
   fumbled_2_player_name: string;
   comp_yac_epa: number;
   fixed_drive_result: string;
   fumble_recovery_1_yards: number;
   home_wp_post: number;
-  drive_play_id_ended: number;
   out_of_bounds: number;
+  drive_play_id_ended: number;
   fumbled_1_player_name: string;
   punt_returner_player_id: string;
   total_away_comp_yac_wpa: number;
-  lateral_receiving_yards: string;
+  lateral_receiving_yards: number;
   total_away_pass_epa: number;
   fumble_lost: number;
   forced_fumble_player_2_team: string;
@@ -750,8 +752,8 @@ export interface PlayProperties {
   total_home_raw_air_epa: number;
   lateral_interception_player_id: string;
   sack: number;
-  forced_fumble_player_2_player_name: string;
   third_down_converted: number;
+  forced_fumble_player_2_player_name: string;
   posteam_type: string;
   defense_man_zone_type: string;
   total_away_rush_wpa: number;
