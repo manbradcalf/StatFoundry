@@ -104,7 +104,7 @@ class SimpleChunkGenerator {
             },
             {
               Name: "value",
-              Value: "something",
+              Value: "",
               SlotValueTypes: ["FilterValue"],
             },
           ],

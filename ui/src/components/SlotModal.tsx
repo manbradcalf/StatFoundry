@@ -65,7 +65,13 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     setLocalSlots(slots.map((s) => ({ ...s })));
   }, [slots]);
 
-  const handleChange = (index: number, newValue: string) => {
+  const conditionValue = String(
+    localSlots.find((s) => s.SlotValueTypes.includes(SlotType.FilterCondition))
+      ?.Value ?? "",
+  ).toLowerCase();
+  const isInCondition = conditionValue === "in";
+
+  const handleChange = (index: number, newValue: string | string[]) => {
     setLocalSlots((prev) => {
       const updated = [...prev];
       const original = prev[index];
@@ -76,7 +82,21 @@ export const SlotModal: React.FC<SlotModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(localSlots);
+    // Match each FilterValue's shape to its operator: `in` takes a list, every
+    // other operator a single value.
+    const normalized = localSlots.map((s) => {
+      if (!s.SlotValueTypes.includes(SlotType.FilterValue)) return s;
+      if (isInCondition) {
+        const arr = Array.isArray(s.Value)
+          ? s.Value
+          : s.Value
+            ? [String(s.Value)]
+            : [];
+        return { ...s, Value: arr };
+      }
+      return { ...s, Value: Array.isArray(s.Value) ? s.Value[0] ?? "" : s.Value };
+    });
+    onSave(normalized);
   };
 
   const renderSlotInput = (slot: Slot, idx: number) => {
@@ -95,10 +115,52 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     // dropdown of the valid stored values instead of a free-text box.
     const enumValues = getEnumValuesForSlot(slot, localSlots, entityLabel);
     if (enumValues && enumValues.length > 0) {
+      // For the `in` operator, allow selecting multiple values (stored as an
+      // array, compiled to a Cypher list literal).
+      if (isInCondition) {
+        const selected: string[] = Array.isArray(slot.Value)
+          ? slot.Value.map((v) => String(v))
+          : slot.Value
+            ? [String(slot.Value)]
+            : [];
+        const toggle = (v: string) =>
+          handleChange(
+            idx,
+            selected.includes(v)
+              ? selected.filter((x) => x !== v)
+              : [...selected, v],
+          );
+        return (
+          <div
+            style={{
+              maxHeight: "12rem",
+              overflowY: "auto",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              padding: "0.5rem",
+            }}
+          >
+            {enumValues.map((v) => (
+              <label
+                key={v}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.includes(v)}
+                  onChange={() => toggle(v)}
+                />
+                {v}
+              </label>
+            ))}
+          </div>
+        );
+      }
+
       return (
         <select
           ref={isFirstInput ? firstSelectRef : undefined}
-          value={slot.Value ?? ""}
+          value={Array.isArray(slot.Value) ? slot.Value[0] ?? "" : String(slot.Value ?? "")}
           onChange={(e) => handleChange(idx, e.target.value)}
           style={{ width: "100%", padding: "0.5rem" }}
         >

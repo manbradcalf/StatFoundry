@@ -18,6 +18,17 @@ export function fillTemplate(template: string, slots: Slot[]): string {
   slots.forEach(({ Name, Value }) => {
     const pattern = new RegExp(`\\{${Name}(?:\\.[a-zA-Z0-9_]+)?\\}`, "g");
 
+    // Array value (multi-select for an `in` filter) -> Cypher list literal,
+    // e.g. ["KC", "SF"]. Elements are quoted unless the slot is an identifier.
+    if (Array.isArray(Value)) {
+      const quoteEl = !nonLiteralNames.includes(Name);
+      const items = Value.map((v) =>
+        typeof v === "string" && quoteEl ? `"${v}"` : String(v),
+      );
+      output = output.replace(pattern, `[${items.join(", ")}]`);
+      return;
+    }
+
     // Convert string back to number for numeric filter values
     // "value" represents stat values (rushing yards, completions, etc.)
     // but we also need to handle other numeric slots like seasons that users type
