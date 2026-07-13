@@ -1,34 +1,21 @@
 import React from "react";
+import {
+  AggregationType,
+  getAggregationLabel,
+} from "./AggregationSelector";
 
 interface TableFooterProps {
   columns: string[];
   aggregations: Record<string, number | null>;
-  aggregationType: "sum" | "avg" | "min" | "max" | "custom";
-  onAggregationTypeChange: (
-    type: "sum" | "avg" | "min" | "max" | "custom",
-  ) => void;
+  aggregationType: AggregationType;
 }
 
 export const TableFooter: React.FC<TableFooterProps> = ({
   columns,
   aggregations,
   aggregationType,
-  onAggregationTypeChange,
 }) => {
-  const aggregationOptions = [
-    { value: "sum", label: "Total" },
-    { value: "avg", label: "Average" },
-    { value: "min", label: "Minimum" },
-    { value: "max", label: "Maximum" },
-  ] as const;
-
-  // TODO: Uncomment when ready for aggregation
-  // const getCurrentLabel = () => {
-  //   const option = aggregationOptions.find(
-  //     (opt) => opt.value === aggregationType,
-  //   );
-  //   return option?.label || "Total";
-  // };
+  const label = getAggregationLabel(aggregationType);
 
   return (
     <tfoot>
@@ -37,28 +24,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
           const value = aggregations[column];
           return (
             <td key={column} className={index === 0 ? "first-column" : ""}>
-              {index === 0 && value === null ? (
-                <select
-                  value={aggregationType}
-                  onChange={(e) =>
-                    onAggregationTypeChange(e.target.value as any)
-                  }
-                  style={{
-                    fontWeight: "bold",
-                    border: "1px solid #ddd",
-                    borderRadius: "4px",
-                    padding: "4px 8px",
-                    background: "white",
-                    cursor: "pointer",
-                  }}
-                >
-                  {aggregationOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              ) : value !== null ? (
+              {value !== null ? (
                 typeof value === "number" ? (
                   value.toLocaleString(undefined, {
                     minimumFractionDigits: 0,
@@ -67,6 +33,8 @@ export const TableFooter: React.FC<TableFooterProps> = ({
                 ) : (
                   value
                 )
+              ) : index === 0 ? (
+                label
               ) : (
                 ""
               )}

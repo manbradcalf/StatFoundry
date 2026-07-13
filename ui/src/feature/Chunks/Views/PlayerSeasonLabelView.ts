@@ -1,5 +1,6 @@
 export const PLAYERSEASON_LABEL_PROPERTIES = [  { key: "player_id", type: "String" },
   { key: "position", type: "String" },
+  { key: "position_group", type: "String" },
   { key: "season", type: "Long" },
   { key: "season_type", type: "String" },
   { key: "completions", type: "Long" },
@@ -37,6 +38,7 @@ export const PLAYERSEASON_LABEL_PROPERTIES = [  { key: "player_id", type: "Strin
   { key: "teams", type: "StringArray" },
   { key: "receiving_2pt_conversions", type: "Long" },
   { key: "yards_per_carry", type: "Double" },
+  { key: "wopr", type: "Double" },
   { key: "dom", type: "Double" },
   { key: "receiving_first_downs", type: "Double" },
   { key: "dakota", type: "Double" },
@@ -65,6 +67,7 @@ export const PLAYERSEASON_LABEL_PROPERTIES = [  { key: "player_id", type: "Strin
 export interface PlayerSeasonProperties {
   player_id: string;
   position: string;
+  position_group: string;
   season: number;
   season_type: string;
   completions: number;
@@ -102,6 +105,7 @@ export interface PlayerSeasonProperties {
   teams: string;
   receiving_2pt_conversions: number;
   yards_per_carry: number;
+  wopr: number;
   dom: number;
   receiving_first_downs: number;
   dakota: number;

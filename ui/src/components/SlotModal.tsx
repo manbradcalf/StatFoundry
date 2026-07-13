@@ -3,6 +3,12 @@ import Modal from "react-modal";
 import { Slot } from "../feature/Chunks/Types/Slot";
 import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
 import { SlotType } from "../feature/Chunks/Enums/SlotType";
+import generatedEnums from "../feature/Chunks/Data/generated-enums.json";
+
+// Build-time catalog of enumerable property values, keyed by `Label.property`
+// (see ui/scripts/generateEnums.js). Used to turn free-text filter values into
+// dropdowns for categorical properties (e.g. team abbreviations, positions).
+const ENUM_CATALOG = generatedEnums as Record<string, string[]>;
 
 interface SlotModalProps {
   isOpen: boolean;
@@ -10,7 +16,30 @@ interface SlotModalProps {
   onSave: (updatedSlots: Slot[]) => void;
   onCancel: () => void;
   title?: string;
+  /** Entity label of the pending chunk (e.g. "PlayerGame"), used to resolve
+   * enumerable value lists for FilterValue slots. */
+  entityLabel?: string;
 }
+
+/**
+ * For a FilterValue slot, returns the list of allowed values if the property it
+ * filters (the sibling `stat` slot's value) is a known categorical property for
+ * this entity. Returns undefined when the value should stay free-text.
+ */
+const getEnumValuesForSlot = (
+  slot: Slot,
+  allSlots: Slot[],
+  entityLabel?: string,
+): string[] | undefined => {
+  if (!entityLabel) return undefined;
+  if (!slot.SlotValueTypes.includes(SlotType.FilterValue)) return undefined;
+
+  const statSlot = allSlots.find((s) => s.Name === "stat");
+  const property = statSlot?.Value;
+  if (!property) return undefined;
+
+  return ENUM_CATALOG[`${entityLabel}.${property}`];
+};
 
 /**
  * Renders a simple full-screen overlay modal that allows the user to edit
@@ -23,6 +52,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
   onSave,
   onCancel,
   title = "Fill in values",
+  entityLabel,
 }) => {
   // we keep local copy so that edits don't mutate the parent state until save
   const [localSlots, setLocalSlots] = useState<Slot[]>([]);
@@ -60,6 +90,27 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     // Special handling for Filter slots - they should be read-only when pre-filled
     const isFilterSlot = slot.SlotValueTypes.includes(SlotType.Filter);
     const isPreFilled = slot.Value && slot.Value !== "";
+
+    // For a FilterValue slot whose filtered property is categorical, offer a
+    // dropdown of the valid stored values instead of a free-text box.
+    const enumValues = getEnumValuesForSlot(slot, localSlots, entityLabel);
+    if (enumValues && enumValues.length > 0) {
+      return (
+        <select
+          ref={isFirstInput ? firstSelectRef : undefined}
+          value={slot.Value ?? ""}
+          onChange={(e) => handleChange(idx, e.target.value)}
+          style={{ width: "100%", padding: "0.5rem" }}
+        >
+          <option value="">Select a value...</option>
+          {enumValues.map((v) => (
+            <option key={v} value={v}>
+              {v}
+            </option>
+          ))}
+        </select>
+      );
+    }
 
     if (properties && properties.length > 0) {
       return (

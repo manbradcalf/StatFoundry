@@ -13,6 +13,19 @@
     "Slots": []
   },
   {
+    "English": "s",
+    "Cypher": "MATCH (:)",
+    "QueryType": "MATCH_START",
+    "Requires": [],
+    "Provides": [
+      {
+        "Name": "",
+        "AliasType": ""
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "Player Seasons",
     "Cypher": "MATCH (ps:PlayerSeason)",
     "QueryType": "MATCH_START",
@@ -138,6 +151,19 @@
       {
         "Name": "tg",
         "AliasType": "TeamGame"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "Team Seasons",
+    "Cypher": "MATCH (ts:TeamSeason)",
+    "QueryType": "MATCH_START",
+    "Requires": [],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
       }
     ],
     "Slots": []
@@ -870,10 +896,10 @@
     ]
   },
   {
-    "English": "[name] (Player)",
-    "Cypher": " p.name {condition} {value}",
-    "EnglishTemplate": "with name {condition} {value}",
-    "CypherTemplate": " p.name {condition} {value}",
+    "English": "[display_name] (Player)",
+    "Cypher": " p.display_name {condition} {value}",
+    "EnglishTemplate": "with display_name {condition} {value}",
+    "CypherTemplate": " p.display_name {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -890,7 +916,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "name",
+        "Value": "display_name",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -3012,6 +3038,48 @@
     ]
   },
   {
+    "English": "[wopr] (PlayerSeason)",
+    "Cypher": " ps.wopr ",
+    "EnglishTemplate": "wopr {condition} {value}",
+    "CypherTemplate": "ps.wopr {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "wopr",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[dom] (PlayerSeason)",
     "Cypher": " ps.dom ",
     "EnglishTemplate": "dom {condition} {value}",
@@ -4104,6 +4172,48 @@
     ]
   },
   {
+    "English": "[position_group] (PlayerSeason)",
+    "Cypher": " ps.position_group {condition} {value}",
+    "EnglishTemplate": "with position_group {condition} {value}",
+    "CypherTemplate": " ps.position_group {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ps",
+        "AliasType": "PlayerSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "position_group",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[season_type] (PlayerSeason)",
     "Cypher": " ps.season_type {condition} {value}",
     "EnglishTemplate": "with season_type {condition} {value}",
@@ -4943,48 +5053,6 @@
     ]
   },
   {
-    "English": "[home_spread_odds] (Game)",
-    "Cypher": " g.home_spread_odds ",
-    "EnglishTemplate": "home_spread_odds {condition} {value}",
-    "CypherTemplate": "g.home_spread_odds {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "g",
-        "AliasType": "Game"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "home_spread_odds",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[away_spread_odds] (Game)",
     "Cypher": " g.away_spread_odds ",
     "EnglishTemplate": "away_spread_odds {condition} {value}",
@@ -5048,6 +5116,48 @@
       {
         "Name": "stat",
         "Value": "espn",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[home_spread_odds] (Game)",
+    "Cypher": " g.home_spread_odds ",
+    "EnglishTemplate": "home_spread_odds {condition} {value}",
+    "CypherTemplate": "g.home_spread_odds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "g",
+        "AliasType": "Game"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "home_spread_odds",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -6329,6 +6439,48 @@
     ]
   },
   {
+    "English": "[week] (Play)",
+    "Cypher": " p.week ",
+    "EnglishTemplate": "week {condition} {value}",
+    "CypherTemplate": "p.week {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "week",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[passing_yards] (Play)",
     "Cypher": " p.passing_yards ",
     "EnglishTemplate": "passing_yards {condition} {value}",
@@ -6791,10 +6943,10 @@
     ]
   },
   {
-    "English": "[total_home_rush_epa] (Play)",
-    "Cypher": " p.total_home_rush_epa ",
-    "EnglishTemplate": "total_home_rush_epa {condition} {value}",
-    "CypherTemplate": "p.total_home_rush_epa {condition} {value}",
+    "English": "[fumble_recovery_2_yards] (Play)",
+    "Cypher": " p.fumble_recovery_2_yards ",
+    "EnglishTemplate": "fumble_recovery_2_yards {condition} {value}",
+    "CypherTemplate": "p.fumble_recovery_2_yards {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6811,7 +6963,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "total_home_rush_epa",
+        "Value": "fumble_recovery_2_yards",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -6833,10 +6985,10 @@
     ]
   },
   {
-    "English": "[receiver_jersey_number] (Play)",
-    "Cypher": " p.receiver_jersey_number ",
-    "EnglishTemplate": "receiver_jersey_number {condition} {value}",
-    "CypherTemplate": "p.receiver_jersey_number {condition} {value}",
+    "English": "[sp] (Play)",
+    "Cypher": " p.sp ",
+    "EnglishTemplate": "sp {condition} {value}",
+    "CypherTemplate": "p.sp {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6853,7 +7005,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "receiver_jersey_number",
+        "Value": "sp",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -6917,6 +7069,48 @@
     ]
   },
   {
+    "English": "[receiver_jersey_number] (Play)",
+    "Cypher": " p.receiver_jersey_number ",
+    "EnglishTemplate": "receiver_jersey_number {condition} {value}",
+    "CypherTemplate": "p.receiver_jersey_number {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiver_jersey_number",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[touchdown] (Play)",
     "Cypher": " p.touchdown ",
     "EnglishTemplate": "touchdown {condition} {value}",
@@ -6959,10 +7153,10 @@
     ]
   },
   {
-    "English": "[sp] (Play)",
-    "Cypher": " p.sp ",
-    "EnglishTemplate": "sp {condition} {value}",
-    "CypherTemplate": "p.sp {condition} {value}",
+    "English": "[total_home_rush_epa] (Play)",
+    "Cypher": " p.total_home_rush_epa ",
+    "EnglishTemplate": "total_home_rush_epa {condition} {value}",
+    "CypherTemplate": "p.total_home_rush_epa {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -6979,7 +7173,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "sp",
+        "Value": "total_home_rush_epa",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -9311,6 +9505,48 @@
     ]
   },
   {
+    "English": "[series_success] (Play)",
+    "Cypher": " p.series_success ",
+    "EnglishTemplate": "series_success {condition} {value}",
+    "CypherTemplate": "p.series_success {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "series_success",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[first_down] (Play)",
     "Cypher": " p.first_down ",
     "EnglishTemplate": "first_down {condition} {value}",
@@ -9878,48 +10114,6 @@
       {
         "Name": "stat",
         "Value": "game_seconds_remaining",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[series_success] (Play)",
-    "Cypher": " p.series_success ",
-    "EnglishTemplate": "series_success {condition} {value}",
-    "CypherTemplate": "p.series_success {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "series_success",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -12881,48 +13075,6 @@
     ]
   },
   {
-    "English": "[ep] (Play)",
-    "Cypher": " p.ep ",
-    "EnglishTemplate": "ep {condition} {value}",
-    "CypherTemplate": "p.ep {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "ep",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[field_goal_attempt] (Play)",
     "Cypher": " p.field_goal_attempt ",
     "EnglishTemplate": "field_goal_attempt {condition} {value}",
@@ -12944,6 +13096,48 @@
       {
         "Name": "stat",
         "Value": "field_goal_attempt",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[ep] (Play)",
+    "Cypher": " p.ep ",
+    "EnglishTemplate": "ep {condition} {value}",
+    "CypherTemplate": "p.ep {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "ep",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -13343,10 +13537,10 @@
     ]
   },
   {
-    "English": "[replay_or_challenge] (Play)",
-    "Cypher": " p.replay_or_challenge ",
-    "EnglishTemplate": "replay_or_challenge {condition} {value}",
-    "CypherTemplate": "p.replay_or_challenge {condition} {value}",
+    "English": "[rush] (Play)",
+    "Cypher": " p.rush ",
+    "EnglishTemplate": "rush {condition} {value}",
+    "CypherTemplate": "p.rush {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -13363,7 +13557,7 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "replay_or_challenge",
+        "Value": "rush",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -13406,48 +13600,6 @@
       {
         "Name": "stat",
         "Value": "cpoe",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[rush] (Play)",
-    "Cypher": " p.rush ",
-    "EnglishTemplate": "rush {condition} {value}",
-    "CypherTemplate": "p.rush {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "rush",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -13889,6 +14041,48 @@
     ]
   },
   {
+    "English": "[lateral_rushing_yards] (Play)",
+    "Cypher": " p.lateral_rushing_yards ",
+    "EnglishTemplate": "lateral_rushing_yards {condition} {value}",
+    "CypherTemplate": "p.lateral_rushing_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "lateral_rushing_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[comp_yac_epa] (Play)",
     "Cypher": " p.comp_yac_epa ",
     "EnglishTemplate": "comp_yac_epa {condition} {value}",
@@ -14015,48 +14209,6 @@
     ]
   },
   {
-    "English": "[drive_play_id_ended] (Play)",
-    "Cypher": " p.drive_play_id_ended ",
-    "EnglishTemplate": "drive_play_id_ended {condition} {value}",
-    "CypherTemplate": "p.drive_play_id_ended {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "drive_play_id_ended",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[out_of_bounds] (Play)",
     "Cypher": " p.out_of_bounds ",
     "EnglishTemplate": "out_of_bounds {condition} {value}",
@@ -14099,6 +14251,48 @@
     ]
   },
   {
+    "English": "[drive_play_id_ended] (Play)",
+    "Cypher": " p.drive_play_id_ended ",
+    "EnglishTemplate": "drive_play_id_ended {condition} {value}",
+    "CypherTemplate": "p.drive_play_id_ended {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "drive_play_id_ended",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[total_away_comp_yac_wpa] (Play)",
     "Cypher": " p.total_away_comp_yac_wpa ",
     "EnglishTemplate": "total_away_comp_yac_wpa {condition} {value}",
@@ -14120,6 +14314,48 @@
       {
         "Name": "stat",
         "Value": "total_away_comp_yac_wpa",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[lateral_receiving_yards] (Play)",
+    "Cypher": " p.lateral_receiving_yards ",
+    "EnglishTemplate": "lateral_receiving_yards {condition} {value}",
+    "CypherTemplate": "p.lateral_receiving_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "lateral_receiving_yards",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -15170,48 +15406,6 @@
       {
         "Name": "stat",
         "Value": "assist_tackle_3_player_name",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[fumble_recovery_2_yards] (Play)",
-    "Cypher": " p.fumble_recovery_2_yards {condition} {value}",
-    "EnglishTemplate": "with fumble_recovery_2_yards {condition} {value}",
-    "CypherTemplate": " p.fumble_recovery_2_yards {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "fumble_recovery_2_yards",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -16409,6 +16603,48 @@
     ]
   },
   {
+    "English": "[name_player_gsis_id] (Play)",
+    "Cypher": " p.name_player_gsis_id {condition} {value}",
+    "EnglishTemplate": "with name_player_gsis_id {condition} {value}",
+    "CypherTemplate": " p.name_player_gsis_id {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "name_player_gsis_id",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[replay_or_challenge_result] (Play)",
     "Cypher": " p.replay_or_challenge_result {condition} {value}",
     "EnglishTemplate": "with replay_or_challenge_result {condition} {value}",
@@ -17081,48 +17317,6 @@
     ]
   },
   {
-    "English": "[punter_player_id] (Play)",
-    "Cypher": " p.punter_player_id {condition} {value}",
-    "EnglishTemplate": "with punter_player_id {condition} {value}",
-    "CypherTemplate": " p.punter_player_id {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "punter_player_id",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[possession_team] (Play)",
     "Cypher": " p.possession_team {condition} {value}",
     "EnglishTemplate": "with possession_team {condition} {value}",
@@ -17144,6 +17338,48 @@
       {
         "Name": "stat",
         "Value": "possession_team",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[punter_player_id] (Play)",
+    "Cypher": " p.punter_player_id {condition} {value}",
+    "EnglishTemplate": "with punter_player_id {condition} {value}",
+    "CypherTemplate": " p.punter_player_id {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "punter_player_id",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -17354,6 +17590,48 @@
       {
         "Name": "stat",
         "Value": "away_coach",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[end_clock_time] (Play)",
+    "Cypher": " p.end_clock_time {condition} {value}",
+    "EnglishTemplate": "with end_clock_time {condition} {value}",
+    "CypherTemplate": " p.end_clock_time {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "end_clock_time",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -18383,6 +18661,48 @@
     ]
   },
   {
+    "English": "[drive_real_start_time] (Play)",
+    "Cypher": " p.drive_real_start_time {condition} {value}",
+    "EnglishTemplate": "with drive_real_start_time {condition} {value}",
+    "CypherTemplate": " p.drive_real_start_time {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "drive_real_start_time",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[pass_defense_1_player_name] (Play)",
     "Cypher": " p.pass_defense_1_player_name {condition} {value}",
     "EnglishTemplate": "with pass_defense_1_player_name {condition} {value}",
@@ -18404,6 +18724,48 @@
       {
         "Name": "stat",
         "Value": "pass_defense_1_player_name",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[time_of_day] (Play)",
+    "Cypher": " p.time_of_day {condition} {value}",
+    "EnglishTemplate": "with time_of_day {condition} {value}",
+    "CypherTemplate": " p.time_of_day {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "time_of_day",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -18677,48 +19039,6 @@
     ]
   },
   {
-    "English": "[weather] (Play)",
-    "Cypher": " p.weather {condition} {value}",
-    "EnglishTemplate": "with weather {condition} {value}",
-    "CypherTemplate": " p.weather {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "weather",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[interception_player_name] (Play)",
     "Cypher": " p.interception_player_name {condition} {value}",
     "EnglishTemplate": "with interception_player_name {condition} {value}",
@@ -18740,48 +19060,6 @@
       {
         "Name": "stat",
         "Value": "interception_player_name",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[assist_tackle_2_team] (Play)",
-    "Cypher": " p.assist_tackle_2_team {condition} {value}",
-    "EnglishTemplate": "with assist_tackle_2_team {condition} {value}",
-    "CypherTemplate": " p.assist_tackle_2_team {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "assist_tackle_2_team",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -18845,6 +19123,48 @@
     ]
   },
   {
+    "English": "[assist_tackle_2_team] (Play)",
+    "Cypher": " p.assist_tackle_2_team {condition} {value}",
+    "EnglishTemplate": "with assist_tackle_2_team {condition} {value}",
+    "CypherTemplate": " p.assist_tackle_2_team {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "assist_tackle_2_team",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[fantasy] (Play)",
     "Cypher": " p.fantasy {condition} {value}",
     "EnglishTemplate": "with fantasy {condition} {value}",
@@ -18866,6 +19186,48 @@
       {
         "Name": "stat",
         "Value": "fantasy",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[weather] (Play)",
+    "Cypher": " p.weather {condition} {value}",
+    "EnglishTemplate": "with weather {condition} {value}",
+    "CypherTemplate": " p.weather {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "weather",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -21071,6 +21433,90 @@
     ]
   },
   {
+    "English": "[replay_or_challenge] (Play)",
+    "Cypher": " p.replay_or_challenge {condition} {value}",
+    "EnglishTemplate": "with replay_or_challenge {condition} {value}",
+    "CypherTemplate": " p.replay_or_challenge {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "replay_or_challenge",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[play_clock] (Play)",
+    "Cypher": " p.play_clock {condition} {value}",
+    "EnglishTemplate": "with play_clock {condition} {value}",
+    "CypherTemplate": " p.play_clock {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "play_clock",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[defteam] (Play)",
     "Cypher": " p.defteam {condition} {value}",
     "EnglishTemplate": "with defteam {condition} {value}",
@@ -21218,48 +21664,6 @@
       {
         "Name": "stat",
         "Value": "receiver",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[lateral_rushing_yards] (Play)",
-    "Cypher": " p.lateral_rushing_yards {condition} {value}",
-    "EnglishTemplate": "with lateral_rushing_yards {condition} {value}",
-    "CypherTemplate": " p.lateral_rushing_yards {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "lateral_rushing_yards",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -21470,48 +21874,6 @@
       {
         "Name": "stat",
         "Value": "punt_returner_player_id",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[lateral_receiving_yards] (Play)",
-    "Cypher": " p.lateral_receiving_yards {condition} {value}",
-    "EnglishTemplate": "with lateral_receiving_yards {condition} {value}",
-    "CypherTemplate": " p.lateral_receiving_yards {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "p",
-        "AliasType": "Play"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "lateral_receiving_yards",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -26531,6 +26893,4875 @@
     ]
   },
   {
+    "English": "[season] (TeamSeason)",
+    "Cypher": " ts.season ",
+    "EnglishTemplate": "season {condition} {value}",
+    "CypherTemplate": "ts.season {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "season",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[completions] (TeamSeason)",
+    "Cypher": " ts.completions ",
+    "EnglishTemplate": "completions {condition} {value}",
+    "CypherTemplate": "ts.completions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "completions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[attempts] (TeamSeason)",
+    "Cypher": " ts.attempts ",
+    "EnglishTemplate": "attempts {condition} {value}",
+    "CypherTemplate": "ts.attempts {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "attempts",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_yards] (TeamSeason)",
+    "Cypher": " ts.passing_yards ",
+    "EnglishTemplate": "passing_yards {condition} {value}",
+    "CypherTemplate": "ts.passing_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_tds] (TeamSeason)",
+    "Cypher": " ts.passing_tds ",
+    "EnglishTemplate": "passing_tds {condition} {value}",
+    "CypherTemplate": "ts.passing_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[sack_fumbles] (TeamSeason)",
+    "Cypher": " ts.sack_fumbles ",
+    "EnglishTemplate": "sack_fumbles {condition} {value}",
+    "CypherTemplate": "ts.sack_fumbles {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "sack_fumbles",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[sack_fumbles_lost] (TeamSeason)",
+    "Cypher": " ts.sack_fumbles_lost ",
+    "EnglishTemplate": "sack_fumbles_lost {condition} {value}",
+    "CypherTemplate": "ts.sack_fumbles_lost {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "sack_fumbles_lost",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_air_yards] (TeamSeason)",
+    "Cypher": " ts.passing_air_yards ",
+    "EnglishTemplate": "passing_air_yards {condition} {value}",
+    "CypherTemplate": "ts.passing_air_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_air_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_yards_after_catch] (TeamSeason)",
+    "Cypher": " ts.passing_yards_after_catch ",
+    "EnglishTemplate": "passing_yards_after_catch {condition} {value}",
+    "CypherTemplate": "ts.passing_yards_after_catch {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_yards_after_catch",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_first_downs] (TeamSeason)",
+    "Cypher": " ts.passing_first_downs ",
+    "EnglishTemplate": "passing_first_downs {condition} {value}",
+    "CypherTemplate": "ts.passing_first_downs {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_first_downs",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_2pt_conversions] (TeamSeason)",
+    "Cypher": " ts.passing_2pt_conversions ",
+    "EnglishTemplate": "passing_2pt_conversions {condition} {value}",
+    "CypherTemplate": "ts.passing_2pt_conversions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_2pt_conversions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[carries] (TeamSeason)",
+    "Cypher": " ts.carries ",
+    "EnglishTemplate": "carries {condition} {value}",
+    "CypherTemplate": "ts.carries {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "carries",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_yards] (TeamSeason)",
+    "Cypher": " ts.rushing_yards ",
+    "EnglishTemplate": "rushing_yards {condition} {value}",
+    "CypherTemplate": "ts.rushing_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_tds] (TeamSeason)",
+    "Cypher": " ts.rushing_tds ",
+    "EnglishTemplate": "rushing_tds {condition} {value}",
+    "CypherTemplate": "ts.rushing_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_fumbles] (TeamSeason)",
+    "Cypher": " ts.rushing_fumbles ",
+    "EnglishTemplate": "rushing_fumbles {condition} {value}",
+    "CypherTemplate": "ts.rushing_fumbles {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_fumbles",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_fumbles_lost] (TeamSeason)",
+    "Cypher": " ts.rushing_fumbles_lost ",
+    "EnglishTemplate": "rushing_fumbles_lost {condition} {value}",
+    "CypherTemplate": "ts.rushing_fumbles_lost {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_fumbles_lost",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_first_downs] (TeamSeason)",
+    "Cypher": " ts.rushing_first_downs ",
+    "EnglishTemplate": "rushing_first_downs {condition} {value}",
+    "CypherTemplate": "ts.rushing_first_downs {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_first_downs",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_epa] (TeamSeason)",
+    "Cypher": " ts.rushing_epa ",
+    "EnglishTemplate": "rushing_epa {condition} {value}",
+    "CypherTemplate": "ts.rushing_epa {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_epa",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rushing_2pt_conversions] (TeamSeason)",
+    "Cypher": " ts.rushing_2pt_conversions ",
+    "EnglishTemplate": "rushing_2pt_conversions {condition} {value}",
+    "CypherTemplate": "ts.rushing_2pt_conversions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rushing_2pt_conversions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receptions] (TeamSeason)",
+    "Cypher": " ts.receptions ",
+    "EnglishTemplate": "receptions {condition} {value}",
+    "CypherTemplate": "ts.receptions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receptions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_fumbles] (TeamSeason)",
+    "Cypher": " ts.receiving_fumbles ",
+    "EnglishTemplate": "receiving_fumbles {condition} {value}",
+    "CypherTemplate": "ts.receiving_fumbles {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_fumbles",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_tds] (TeamSeason)",
+    "Cypher": " ts.def_tds ",
+    "EnglishTemplate": "def_tds {condition} {value}",
+    "CypherTemplate": "ts.def_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[epa_defense_rank] (TeamSeason)",
+    "Cypher": " ts.epa_defense_rank ",
+    "EnglishTemplate": "epa_defense_rank {condition} {value}",
+    "CypherTemplate": "ts.epa_defense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "epa_defense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fumble_recovery_tds] (TeamSeason)",
+    "Cypher": " ts.fumble_recovery_tds ",
+    "EnglishTemplate": "fumble_recovery_tds {condition} {value}",
+    "CypherTemplate": "ts.fumble_recovery_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fumble_recovery_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_yards] (TeamSeason)",
+    "Cypher": " ts.receiving_yards ",
+    "EnglishTemplate": "receiving_yards {condition} {value}",
+    "CypherTemplate": "ts.receiving_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_tds] (TeamSeason)",
+    "Cypher": " ts.receiving_tds ",
+    "EnglishTemplate": "receiving_tds {condition} {value}",
+    "CypherTemplate": "ts.receiving_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_30_39] (TeamSeason)",
+    "Cypher": " ts.fg_made_30_39 ",
+    "EnglishTemplate": "fg_made_30_39 {condition} {value}",
+    "CypherTemplate": "ts.fg_made_30_39 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_30_39",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_50_59] (TeamSeason)",
+    "Cypher": " ts.fg_missed_50_59 ",
+    "EnglishTemplate": "fg_missed_50_59 {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_50_59 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_50_59",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_distance] (TeamSeason)",
+    "Cypher": " ts.fg_missed_distance ",
+    "EnglishTemplate": "fg_missed_distance {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_distance {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_distance",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_2pt_conversions] (TeamSeason)",
+    "Cypher": " ts.receiving_2pt_conversions ",
+    "EnglishTemplate": "receiving_2pt_conversions {condition} {value}",
+    "CypherTemplate": "ts.receiving_2pt_conversions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_2pt_conversions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_pass_defended] (TeamSeason)",
+    "Cypher": " ts.def_pass_defended ",
+    "EnglishTemplate": "def_pass_defended {condition} {value}",
+    "CypherTemplate": "ts.def_pass_defended {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_pass_defended",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_pct] (TeamSeason)",
+    "Cypher": " ts.fg_pct ",
+    "EnglishTemplate": "fg_pct {condition} {value}",
+    "CypherTemplate": "ts.fg_pct {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_pct",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed] (TeamSeason)",
+    "Cypher": " ts.fg_missed ",
+    "EnglishTemplate": "fg_missed {condition} {value}",
+    "CypherTemplate": "ts.fg_missed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[total_yards_allowed] (TeamSeason)",
+    "Cypher": " ts.total_yards_allowed ",
+    "EnglishTemplate": "total_yards_allowed {condition} {value}",
+    "CypherTemplate": "ts.total_yards_allowed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "total_yards_allowed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[timeouts] (TeamSeason)",
+    "Cypher": " ts.timeouts ",
+    "EnglishTemplate": "timeouts {condition} {value}",
+    "CypherTemplate": "ts.timeouts {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "timeouts",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_tackles_for_loss_yards] (TeamSeason)",
+    "Cypher": " ts.def_tackles_for_loss_yards ",
+    "EnglishTemplate": "def_tackles_for_loss_yards {condition} {value}",
+    "CypherTemplate": "ts.def_tackles_for_loss_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_tackles_for_loss_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[kickoff_returns] (TeamSeason)",
+    "Cypher": " ts.kickoff_returns ",
+    "EnglishTemplate": "kickoff_returns {condition} {value}",
+    "CypherTemplate": "ts.kickoff_returns {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "kickoff_returns",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_first_downs] (TeamSeason)",
+    "Cypher": " ts.receiving_first_downs ",
+    "EnglishTemplate": "receiving_first_downs {condition} {value}",
+    "CypherTemplate": "ts.receiving_first_downs {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_first_downs",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[kickoff_return_yards] (TeamSeason)",
+    "Cypher": " ts.kickoff_return_yards ",
+    "EnglishTemplate": "kickoff_return_yards {condition} {value}",
+    "CypherTemplate": "ts.kickoff_return_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "kickoff_return_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rush_defense_rank] (TeamSeason)",
+    "Cypher": " ts.rush_defense_rank ",
+    "EnglishTemplate": "rush_defense_rank {condition} {value}",
+    "CypherTemplate": "ts.rush_defense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rush_defense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_40_49] (TeamSeason)",
+    "Cypher": " ts.fg_missed_40_49 ",
+    "EnglishTemplate": "fg_missed_40_49 {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_40_49 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_40_49",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_air_yards] (TeamSeason)",
+    "Cypher": " ts.receiving_air_yards ",
+    "EnglishTemplate": "receiving_air_yards {condition} {value}",
+    "CypherTemplate": "ts.receiving_air_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_air_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_20_29] (TeamSeason)",
+    "Cypher": " ts.fg_made_20_29 ",
+    "EnglishTemplate": "fg_made_20_29 {condition} {value}",
+    "CypherTemplate": "ts.fg_made_20_29 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_20_29",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_0_19] (TeamSeason)",
+    "Cypher": " ts.fg_missed_0_19 ",
+    "EnglishTemplate": "fg_missed_0_19 {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_0_19 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_0_19",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pat_made] (TeamSeason)",
+    "Cypher": " ts.pat_made ",
+    "EnglishTemplate": "pat_made {condition} {value}",
+    "CypherTemplate": "ts.pat_made {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pat_made",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_tackles_solo] (TeamSeason)",
+    "Cypher": " ts.def_tackles_solo ",
+    "EnglishTemplate": "def_tackles_solo {condition} {value}",
+    "CypherTemplate": "ts.def_tackles_solo {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_tackles_solo",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_60_] (TeamSeason)",
+    "Cypher": " ts.fg_missed_60_ ",
+    "EnglishTemplate": "fg_missed_60_ {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_60_ {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_60_",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[games] (TeamSeason)",
+    "Cypher": " ts.games ",
+    "EnglishTemplate": "games {condition} {value}",
+    "CypherTemplate": "ts.games {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "games",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fumble_recovery_yards_opp] (TeamSeason)",
+    "Cypher": " ts.fumble_recovery_yards_opp ",
+    "EnglishTemplate": "fumble_recovery_yards_opp {condition} {value}",
+    "CypherTemplate": "ts.fumble_recovery_yards_opp {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fumble_recovery_yards_opp",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[penalty_yards] (TeamSeason)",
+    "Cypher": " ts.penalty_yards ",
+    "EnglishTemplate": "penalty_yards {condition} {value}",
+    "CypherTemplate": "ts.penalty_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "penalty_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_interceptions] (TeamSeason)",
+    "Cypher": " ts.def_interceptions ",
+    "EnglishTemplate": "def_interceptions {condition} {value}",
+    "CypherTemplate": "ts.def_interceptions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_interceptions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_interception_yards] (TeamSeason)",
+    "Cypher": " ts.def_interception_yards ",
+    "EnglishTemplate": "def_interception_yards {condition} {value}",
+    "CypherTemplate": "ts.def_interception_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_interception_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[offensive_epa_allowed_per_game] (TeamSeason)",
+    "Cypher": " ts.offensive_epa_allowed_per_game ",
+    "EnglishTemplate": "offensive_epa_allowed_per_game {condition} {value}",
+    "CypherTemplate": "ts.offensive_epa_allowed_per_game {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "offensive_epa_allowed_per_game",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pass_yards_allowed_per_game] (TeamSeason)",
+    "Cypher": " ts.pass_yards_allowed_per_game ",
+    "EnglishTemplate": "pass_yards_allowed_per_game {condition} {value}",
+    "CypherTemplate": "ts.pass_yards_allowed_per_game {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pass_yards_allowed_per_game",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_sacks] (TeamSeason)",
+    "Cypher": " ts.def_sacks ",
+    "EnglishTemplate": "def_sacks {condition} {value}",
+    "CypherTemplate": "ts.def_sacks {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_sacks",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fumble_recovery_own] (TeamSeason)",
+    "Cypher": " ts.fumble_recovery_own ",
+    "EnglishTemplate": "fumble_recovery_own {condition} {value}",
+    "CypherTemplate": "ts.fumble_recovery_own {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fumble_recovery_own",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pass_offense_rank] (TeamSeason)",
+    "Cypher": " ts.pass_offense_rank ",
+    "EnglishTemplate": "pass_offense_rank {condition} {value}",
+    "CypherTemplate": "ts.pass_offense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pass_offense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_sack_yards] (TeamSeason)",
+    "Cypher": " ts.def_sack_yards ",
+    "EnglishTemplate": "def_sack_yards {condition} {value}",
+    "CypherTemplate": "ts.def_sack_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_sack_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pass_epa_offense_rank] (TeamSeason)",
+    "Cypher": " ts.pass_epa_offense_rank ",
+    "EnglishTemplate": "pass_epa_offense_rank {condition} {value}",
+    "CypherTemplate": "ts.pass_epa_offense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pass_epa_offense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_30_39] (TeamSeason)",
+    "Cypher": " ts.fg_missed_30_39 ",
+    "EnglishTemplate": "fg_missed_30_39 {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_30_39 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_30_39",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pass_yards_allowed] (TeamSeason)",
+    "Cypher": " ts.pass_yards_allowed ",
+    "EnglishTemplate": "pass_yards_allowed {condition} {value}",
+    "CypherTemplate": "ts.pass_yards_allowed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pass_yards_allowed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_missed_20_29] (TeamSeason)",
+    "Cypher": " ts.fg_missed_20_29 ",
+    "EnglishTemplate": "fg_missed_20_29 {condition} {value}",
+    "CypherTemplate": "ts.fg_missed_20_29 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_missed_20_29",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[total_defense_rank] (TeamSeason)",
+    "Cypher": " ts.total_defense_rank ",
+    "EnglishTemplate": "total_defense_rank {condition} {value}",
+    "CypherTemplate": "ts.total_defense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "total_defense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rush_epa_offense_rank] (TeamSeason)",
+    "Cypher": " ts.rush_epa_offense_rank ",
+    "EnglishTemplate": "rush_epa_offense_rank {condition} {value}",
+    "CypherTemplate": "ts.rush_epa_offense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rush_epa_offense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fumble_recovery_yards_own] (TeamSeason)",
+    "Cypher": " ts.fumble_recovery_yards_own ",
+    "EnglishTemplate": "fumble_recovery_yards_own {condition} {value}",
+    "CypherTemplate": "ts.fumble_recovery_yards_own {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fumble_recovery_yards_own",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_yards_after_catch] (TeamSeason)",
+    "Cypher": " ts.receiving_yards_after_catch ",
+    "EnglishTemplate": "receiving_yards_after_catch {condition} {value}",
+    "CypherTemplate": "ts.receiving_yards_after_catch {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_yards_after_catch",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_epa] (TeamSeason)",
+    "Cypher": " ts.receiving_epa ",
+    "EnglishTemplate": "receiving_epa {condition} {value}",
+    "CypherTemplate": "ts.receiving_epa {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_epa",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_60_] (TeamSeason)",
+    "Cypher": " ts.fg_made_60_ ",
+    "EnglishTemplate": "fg_made_60_ {condition} {value}",
+    "CypherTemplate": "ts.fg_made_60_ {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_60_",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[penalties] (TeamSeason)",
+    "Cypher": " ts.penalties ",
+    "EnglishTemplate": "penalties {condition} {value}",
+    "CypherTemplate": "ts.penalties {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "penalties",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[punt_returns] (TeamSeason)",
+    "Cypher": " ts.punt_returns ",
+    "EnglishTemplate": "punt_returns {condition} {value}",
+    "CypherTemplate": "ts.punt_returns {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "punt_returns",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_safeties] (TeamSeason)",
+    "Cypher": " ts.def_safeties ",
+    "EnglishTemplate": "def_safeties {condition} {value}",
+    "CypherTemplate": "ts.def_safeties {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_safeties",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_fumbles_lost] (TeamSeason)",
+    "Cypher": " ts.receiving_fumbles_lost ",
+    "EnglishTemplate": "receiving_fumbles_lost {condition} {value}",
+    "CypherTemplate": "ts.receiving_fumbles_lost {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_fumbles_lost",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_interceptions] (TeamSeason)",
+    "Cypher": " ts.passing_interceptions ",
+    "EnglishTemplate": "passing_interceptions {condition} {value}",
+    "CypherTemplate": "ts.passing_interceptions {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_interceptions",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_qb_hits] (TeamSeason)",
+    "Cypher": " ts.def_qb_hits ",
+    "EnglishTemplate": "def_qb_hits {condition} {value}",
+    "CypherTemplate": "ts.def_qb_hits {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_qb_hits",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_40_49] (TeamSeason)",
+    "Cypher": " ts.fg_made_40_49 ",
+    "EnglishTemplate": "fg_made_40_49 {condition} {value}",
+    "CypherTemplate": "ts.fg_made_40_49 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_40_49",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made] (TeamSeason)",
+    "Cypher": " ts.fg_made ",
+    "EnglishTemplate": "fg_made {condition} {value}",
+    "CypherTemplate": "ts.fg_made {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[sack_yards_lost] (TeamSeason)",
+    "Cypher": " ts.sack_yards_lost ",
+    "EnglishTemplate": "sack_yards_lost {condition} {value}",
+    "CypherTemplate": "ts.sack_yards_lost {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "sack_yards_lost",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_tackles_with_assist] (TeamSeason)",
+    "Cypher": " ts.def_tackles_with_assist ",
+    "EnglishTemplate": "def_tackles_with_assist {condition} {value}",
+    "CypherTemplate": "ts.def_tackles_with_assist {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_tackles_with_assist",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_cpoe] (TeamSeason)",
+    "Cypher": " ts.passing_cpoe ",
+    "EnglishTemplate": "passing_cpoe {condition} {value}",
+    "CypherTemplate": "ts.passing_cpoe {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_cpoe",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_blocked_distance] (TeamSeason)",
+    "Cypher": " ts.fg_blocked_distance ",
+    "EnglishTemplate": "fg_blocked_distance {condition} {value}",
+    "CypherTemplate": "ts.fg_blocked_distance {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_blocked_distance",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rush_offense_rank] (TeamSeason)",
+    "Cypher": " ts.rush_offense_rank ",
+    "EnglishTemplate": "rush_offense_rank {condition} {value}",
+    "CypherTemplate": "ts.rush_offense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rush_offense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[punt_return_yards] (TeamSeason)",
+    "Cypher": " ts.punt_return_yards ",
+    "EnglishTemplate": "punt_return_yards {condition} {value}",
+    "CypherTemplate": "ts.punt_return_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "punt_return_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pat_att] (TeamSeason)",
+    "Cypher": " ts.pat_att ",
+    "EnglishTemplate": "pat_att {condition} {value}",
+    "CypherTemplate": "ts.pat_att {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pat_att",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_fumbles] (TeamSeason)",
+    "Cypher": " ts.def_fumbles ",
+    "EnglishTemplate": "def_fumbles {condition} {value}",
+    "CypherTemplate": "ts.def_fumbles {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_fumbles",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pass_defense_rank] (TeamSeason)",
+    "Cypher": " ts.pass_defense_rank ",
+    "EnglishTemplate": "pass_defense_rank {condition} {value}",
+    "CypherTemplate": "ts.pass_defense_rank {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pass_defense_rank",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[gwfg_made] (TeamSeason)",
+    "Cypher": " ts.gwfg_made ",
+    "EnglishTemplate": "gwfg_made {condition} {value}",
+    "CypherTemplate": "ts.gwfg_made {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "gwfg_made",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_tackle_assists] (TeamSeason)",
+    "Cypher": " ts.def_tackle_assists ",
+    "EnglishTemplate": "def_tackle_assists {condition} {value}",
+    "CypherTemplate": "ts.def_tackle_assists {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_tackle_assists",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pat_blocked] (TeamSeason)",
+    "Cypher": " ts.pat_blocked ",
+    "EnglishTemplate": "pat_blocked {condition} {value}",
+    "CypherTemplate": "ts.pat_blocked {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pat_blocked",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_fumbles_forced] (TeamSeason)",
+    "Cypher": " ts.def_fumbles_forced ",
+    "EnglishTemplate": "def_fumbles_forced {condition} {value}",
+    "CypherTemplate": "ts.def_fumbles_forced {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_fumbles_forced",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[offensive_epa_allowed] (TeamSeason)",
+    "Cypher": " ts.offensive_epa_allowed ",
+    "EnglishTemplate": "offensive_epa_allowed {condition} {value}",
+    "CypherTemplate": "ts.offensive_epa_allowed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "offensive_epa_allowed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_long] (TeamSeason)",
+    "Cypher": " ts.fg_long ",
+    "EnglishTemplate": "fg_long {condition} {value}",
+    "CypherTemplate": "ts.fg_long {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_long",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[gwfg_blocked] (TeamSeason)",
+    "Cypher": " ts.gwfg_blocked ",
+    "EnglishTemplate": "gwfg_blocked {condition} {value}",
+    "CypherTemplate": "ts.gwfg_blocked {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "gwfg_blocked",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[misc_yards] (TeamSeason)",
+    "Cypher": " ts.misc_yards ",
+    "EnglishTemplate": "misc_yards {condition} {value}",
+    "CypherTemplate": "ts.misc_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "misc_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_att] (TeamSeason)",
+    "Cypher": " ts.fg_att ",
+    "EnglishTemplate": "fg_att {condition} {value}",
+    "CypherTemplate": "ts.fg_att {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_att",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pat_pct] (TeamSeason)",
+    "Cypher": " ts.pat_pct ",
+    "EnglishTemplate": "pat_pct {condition} {value}",
+    "CypherTemplate": "ts.pat_pct {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pat_pct",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[gwfg_missed] (TeamSeason)",
+    "Cypher": " ts.gwfg_missed ",
+    "EnglishTemplate": "gwfg_missed {condition} {value}",
+    "CypherTemplate": "ts.gwfg_missed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "gwfg_missed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[passing_epa] (TeamSeason)",
+    "Cypher": " ts.passing_epa ",
+    "EnglishTemplate": "passing_epa {condition} {value}",
+    "CypherTemplate": "ts.passing_epa {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "passing_epa",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_50_59] (TeamSeason)",
+    "Cypher": " ts.fg_made_50_59 ",
+    "EnglishTemplate": "fg_made_50_59 {condition} {value}",
+    "CypherTemplate": "ts.fg_made_50_59 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_50_59",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rush_yards_allowed] (TeamSeason)",
+    "Cypher": " ts.rush_yards_allowed ",
+    "EnglishTemplate": "rush_yards_allowed {condition} {value}",
+    "CypherTemplate": "ts.rush_yards_allowed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rush_yards_allowed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[rush_yards_allowed_per_game] (TeamSeason)",
+    "Cypher": " ts.rush_yards_allowed_per_game ",
+    "EnglishTemplate": "rush_yards_allowed_per_game {condition} {value}",
+    "CypherTemplate": "ts.rush_yards_allowed_per_game {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "rush_yards_allowed_per_game",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[gwfg_att] (TeamSeason)",
+    "Cypher": " ts.gwfg_att ",
+    "EnglishTemplate": "gwfg_att {condition} {value}",
+    "CypherTemplate": "ts.gwfg_att {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "gwfg_att",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[def_tackles_for_loss] (TeamSeason)",
+    "Cypher": " ts.def_tackles_for_loss ",
+    "EnglishTemplate": "def_tackles_for_loss {condition} {value}",
+    "CypherTemplate": "ts.def_tackles_for_loss {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "def_tackles_for_loss",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[special_teams_tds] (TeamSeason)",
+    "Cypher": " ts.special_teams_tds ",
+    "EnglishTemplate": "special_teams_tds {condition} {value}",
+    "CypherTemplate": "ts.special_teams_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "special_teams_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[sacks_suffered] (TeamSeason)",
+    "Cypher": " ts.sacks_suffered ",
+    "EnglishTemplate": "sacks_suffered {condition} {value}",
+    "CypherTemplate": "ts.sacks_suffered {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "sacks_suffered",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fumble_recovery_opp] (TeamSeason)",
+    "Cypher": " ts.fumble_recovery_opp ",
+    "EnglishTemplate": "fumble_recovery_opp {condition} {value}",
+    "CypherTemplate": "ts.fumble_recovery_opp {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fumble_recovery_opp",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[total_yards_allowed_per_game] (TeamSeason)",
+    "Cypher": " ts.total_yards_allowed_per_game ",
+    "EnglishTemplate": "total_yards_allowed_per_game {condition} {value}",
+    "CypherTemplate": "ts.total_yards_allowed_per_game {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "total_yards_allowed_per_game",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[targets] (TeamSeason)",
+    "Cypher": " ts.targets ",
+    "EnglishTemplate": "targets {condition} {value}",
+    "CypherTemplate": "ts.targets {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "targets",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_blocked] (TeamSeason)",
+    "Cypher": " ts.fg_blocked ",
+    "EnglishTemplate": "fg_blocked {condition} {value}",
+    "CypherTemplate": "ts.fg_blocked {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_blocked",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_distance] (TeamSeason)",
+    "Cypher": " ts.fg_made_distance ",
+    "EnglishTemplate": "fg_made_distance {condition} {value}",
+    "CypherTemplate": "ts.fg_made_distance {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_distance",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[fg_made_0_19] (TeamSeason)",
+    "Cypher": " ts.fg_made_0_19 ",
+    "EnglishTemplate": "fg_made_0_19 {condition} {value}",
+    "CypherTemplate": "ts.fg_made_0_19 {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "fg_made_0_19",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[pat_missed] (TeamSeason)",
+    "Cypher": " ts.pat_missed ",
+    "EnglishTemplate": "pat_missed {condition} {value}",
+    "CypherTemplate": "ts.pat_missed {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "pat_missed",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[season_type] (TeamSeason)",
+    "Cypher": " ts.season_type {condition} {value}",
+    "EnglishTemplate": "with season_type {condition} {value}",
+    "CypherTemplate": " ts.season_type {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "season_type",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[team] (TeamSeason)",
+    "Cypher": " ts.team {condition} {value}",
+    "EnglishTemplate": "with team {condition} {value}",
+    "CypherTemplate": " ts.team {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "team",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "=",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": "something",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "with [fg_missed_list] in [fg_missed_list] (TeamSeason)",
+    "EnglishTemplate": "with {value} in fg_missed_list",
+    "CypherTemplate": "{value} IN ts.fg_missed_list",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "value",
+        "Value": "BAL",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "in",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "stat",
+        "Value": "fg_missed_list",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "with [fg_made_list] in [fg_made_list] (TeamSeason)",
+    "EnglishTemplate": "with {value} in fg_made_list",
+    "CypherTemplate": "{value} IN ts.fg_made_list",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "value",
+        "Value": "BAL",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "in",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "stat",
+        "Value": "fg_made_list",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "with [fg_blocked_list] in [fg_blocked_list] (TeamSeason)",
+    "EnglishTemplate": "with {value} in fg_blocked_list",
+    "CypherTemplate": "{value} IN ts.fg_blocked_list",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "ts",
+        "AliasType": "TeamSeason"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "value",
+        "Value": "BAL",
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": "in",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "stat",
+        "Value": "fg_blocked_list",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[season] (PlayerGame)",
     "Cypher": " pg.season ",
     "EnglishTemplate": "season {condition} {value}",
@@ -27539,384 +32770,6 @@
     ]
   },
   {
-    "English": "[target_share] (PlayerGame)",
-    "Cypher": " pg.target_share ",
-    "EnglishTemplate": "target_share {condition} {value}",
-    "CypherTemplate": "pg.target_share {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "target_share",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[receiving_yards] (PlayerGame)",
-    "Cypher": " pg.receiving_yards ",
-    "EnglishTemplate": "receiving_yards {condition} {value}",
-    "CypherTemplate": "pg.receiving_yards {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "receiving_yards",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[receiving_tds] (PlayerGame)",
-    "Cypher": " pg.receiving_tds ",
-    "EnglishTemplate": "receiving_tds {condition} {value}",
-    "CypherTemplate": "pg.receiving_tds {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "receiving_tds",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[yards_per_carry] (PlayerGame)",
-    "Cypher": " pg.yards_per_carry ",
-    "EnglishTemplate": "yards_per_carry {condition} {value}",
-    "CypherTemplate": "pg.yards_per_carry {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "yards_per_carry",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[wopr] (PlayerGame)",
-    "Cypher": " pg.wopr ",
-    "EnglishTemplate": "wopr {condition} {value}",
-    "CypherTemplate": "pg.wopr {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "wopr",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[receiving_first_downs] (PlayerGame)",
-    "Cypher": " pg.receiving_first_downs ",
-    "EnglishTemplate": "receiving_first_downs {condition} {value}",
-    "CypherTemplate": "pg.receiving_first_downs {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "receiving_first_downs",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[dakota] (PlayerGame)",
-    "Cypher": " pg.dakota ",
-    "EnglishTemplate": "dakota {condition} {value}",
-    "CypherTemplate": "pg.dakota {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "dakota",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[receiving_air_yards] (PlayerGame)",
-    "Cypher": " pg.receiving_air_yards ",
-    "EnglishTemplate": "receiving_air_yards {condition} {value}",
-    "CypherTemplate": "pg.receiving_air_yards {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "receiving_air_yards",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[air_yards_share] (PlayerGame)",
-    "Cypher": " pg.air_yards_share ",
-    "EnglishTemplate": "air_yards_share {condition} {value}",
-    "CypherTemplate": "pg.air_yards_share {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "air_yards_share",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": ">",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": 100,
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
     "English": "[def_interceptions] (PlayerGame)",
     "Cypher": " pg.def_interceptions ",
     "EnglishTemplate": "def_interceptions {condition} {value}",
@@ -28127,6 +32980,48 @@
     ]
   },
   {
+    "English": "[target_share] (PlayerGame)",
+    "Cypher": " pg.target_share ",
+    "EnglishTemplate": "target_share {condition} {value}",
+    "CypherTemplate": "pg.target_share {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "target_share",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[def_sack_yards] (PlayerGame)",
     "Cypher": " pg.def_sack_yards ",
     "EnglishTemplate": "def_sack_yards {condition} {value}",
@@ -28169,6 +33064,132 @@
     ]
   },
   {
+    "English": "[receiving_yards] (PlayerGame)",
+    "Cypher": " pg.receiving_yards ",
+    "EnglishTemplate": "receiving_yards {condition} {value}",
+    "CypherTemplate": "pg.receiving_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_tds] (PlayerGame)",
+    "Cypher": " pg.receiving_tds ",
+    "EnglishTemplate": "receiving_tds {condition} {value}",
+    "CypherTemplate": "pg.receiving_tds {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[yards_per_carry] (PlayerGame)",
+    "Cypher": " pg.yards_per_carry ",
+    "EnglishTemplate": "yards_per_carry {condition} {value}",
+    "CypherTemplate": "pg.yards_per_carry {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "yards_per_carry",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[special_teams_tds] (PlayerGame)",
     "Cypher": " pg.special_teams_tds ",
     "EnglishTemplate": "special_teams_tds {condition} {value}",
@@ -28190,6 +33211,48 @@
       {
         "Name": "stat",
         "Value": "special_teams_tds",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[wopr] (PlayerGame)",
+    "Cypher": " pg.wopr ",
+    "EnglishTemplate": "wopr {condition} {value}",
+    "CypherTemplate": "pg.wopr {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "wopr",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -28295,10 +33358,10 @@
     ]
   },
   {
-    "English": "[receiving_yards_after_catch] (PlayerGame)",
-    "Cypher": " pg.receiving_yards_after_catch ",
-    "EnglishTemplate": "receiving_yards_after_catch {condition} {value}",
-    "CypherTemplate": "pg.receiving_yards_after_catch {condition} {value}",
+    "English": "[receiving_first_downs] (PlayerGame)",
+    "Cypher": " pg.receiving_first_downs ",
+    "EnglishTemplate": "receiving_first_downs {condition} {value}",
+    "CypherTemplate": "pg.receiving_first_downs {condition} {value}",
     "QueryType": "FILTER",
     "Requires": [
       {
@@ -28315,7 +33378,49 @@
     "Slots": [
       {
         "Name": "stat",
-        "Value": "receiving_yards_after_catch",
+        "Value": "receiving_first_downs",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[dakota] (PlayerGame)",
+    "Cypher": " pg.dakota ",
+    "EnglishTemplate": "dakota {condition} {value}",
+    "CypherTemplate": "pg.dakota {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "dakota",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -28379,6 +33484,48 @@
     ]
   },
   {
+    "English": "[receiving_yards_after_catch] (PlayerGame)",
+    "Cypher": " pg.receiving_yards_after_catch ",
+    "EnglishTemplate": "receiving_yards_after_catch {condition} {value}",
+    "CypherTemplate": "pg.receiving_yards_after_catch {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_yards_after_catch",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
     "English": "[scrimmage_yards] (PlayerGame)",
     "Cypher": " pg.scrimmage_yards ",
     "EnglishTemplate": "scrimmage_yards {condition} {value}",
@@ -28400,6 +33547,90 @@
       {
         "Name": "stat",
         "Value": "scrimmage_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[receiving_air_yards] (PlayerGame)",
+    "Cypher": " pg.receiving_air_yards ",
+    "EnglishTemplate": "receiving_air_yards {condition} {value}",
+    "CypherTemplate": "pg.receiving_air_yards {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "receiving_air_yards",
+        "SlotValueTypes": [
+          "Filter"
+        ]
+      },
+      {
+        "Name": "condition",
+        "Value": ">",
+        "SlotValueTypes": [
+          "FilterCondition"
+        ]
+      },
+      {
+        "Name": "value",
+        "Value": 100,
+        "SlotValueTypes": [
+          "FilterValue"
+        ]
+      }
+    ]
+  },
+  {
+    "English": "[air_yards_share] (PlayerGame)",
+    "Cypher": " pg.air_yards_share ",
+    "EnglishTemplate": "air_yards_share {condition} {value}",
+    "CypherTemplate": "pg.air_yards_share {condition} {value}",
+    "QueryType": "FILTER",
+    "Requires": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "stat",
+        "Value": "air_yards_share",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -28526,48 +33757,6 @@
       {
         "Name": "stat",
         "Value": "player_id",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[player_display_name] (PlayerGame)",
-    "Cypher": " pg.player_display_name {condition} {value}",
-    "EnglishTemplate": "with player_display_name {condition} {value}",
-    "CypherTemplate": " pg.player_display_name {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "player_display_name",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -28778,90 +33967,6 @@
       {
         "Name": "stat",
         "Value": "opponent_team",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[display_name] (PlayerGame)",
-    "Cypher": " pg.display_name {condition} {value}",
-    "EnglishTemplate": "with display_name {condition} {value}",
-    "CypherTemplate": " pg.display_name {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "display_name",
-        "SlotValueTypes": [
-          "Filter"
-        ]
-      },
-      {
-        "Name": "condition",
-        "Value": "=",
-        "SlotValueTypes": [
-          "FilterCondition"
-        ]
-      },
-      {
-        "Name": "value",
-        "Value": "something",
-        "SlotValueTypes": [
-          "FilterValue"
-        ]
-      }
-    ]
-  },
-  {
-    "English": "[name] (PlayerGame)",
-    "Cypher": " pg.name {condition} {value}",
-    "EnglishTemplate": "with name {condition} {value}",
-    "CypherTemplate": " pg.name {condition} {value}",
-    "QueryType": "FILTER",
-    "Requires": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Provides": [
-      {
-        "Name": "pg",
-        "AliasType": "PlayerGame"
-      }
-    ],
-    "Slots": [
-      {
-        "Name": "stat",
-        "Value": "name",
         "SlotValueTypes": [
           "Filter"
         ]
@@ -29212,6 +34317,52 @@
     "Slots": []
   },
   {
+    "English": "[Team] - r[HAD] -> [TeamGame]",
+    "EnglishTemplate": "Team - HAD -> TeamGame",
+    "Cypher": "MATCH (t:Team)-[:HAD]->(tg:TeamGame)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "t",
+        "AliasType": "Team"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "t",
+        "AliasType": "Team"
+      },
+      {
+        "Name": "tg",
+        "AliasType": "TeamGame"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[?] - r[HAD] -> [PlayerGame]",
+    "EnglishTemplate": "? - HAD -> PlayerGame",
+    "Cypher": "MATCH (?:?)-[:HAD]->(pg:PlayerGame)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "?",
+        "AliasType": "?"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "?",
+        "AliasType": "?"
+      },
+      {
+        "Name": "pg",
+        "AliasType": "PlayerGame"
+      }
+    ],
+    "Slots": []
+  },
+  {
     "English": "[CollegeConference] - r[HAD_PLAYER] -> [Player]",
     "EnglishTemplate": "CollegeConference - HAD_PLAYER -> Player",
     "Cypher": "MATCH (cc:CollegeConference)-[:HAD_PLAYER]->(p:Player)",
@@ -29253,6 +34404,29 @@
       {
         "Name": "p",
         "AliasType": "Player"
+      }
+    ],
+    "Slots": []
+  },
+  {
+    "English": "[Play] - r[IN] -> [Game]",
+    "EnglishTemplate": "Play - IN -> Game",
+    "Cypher": "MATCH (p:Play)-[:IN]->(g:Game)",
+    "QueryType": "JUNCTION",
+    "Requires": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      }
+    ],
+    "Provides": [
+      {
+        "Name": "p",
+        "AliasType": "Play"
+      },
+      {
+        "Name": "g",
+        "AliasType": "Game"
       }
     ],
     "Slots": []
@@ -29394,30 +34568,5 @@
       }
     ],
     "Slots": []
-  },
-  {
-    "English": "Select columns to return",
-    "EnglishTemplate": "Select columns to return",
-    "Cypher": "",
-    "CypherTemplate": "",
-    "QueryType": "RETURN",
-    "Requires": [],
-    "Provides": [],
-    "Slots": [
-      {
-        "Name": "properties",
-        "Value": "",
-        "SlotValueTypes": [
-          "SelectReturnProperties"
-        ]
-      }
-    ],
-    "SuggestionKeywords": [
-      "return",
-      "columns",
-      "select",
-      "properties",
-      "fields"
-    ]
   }
 ]

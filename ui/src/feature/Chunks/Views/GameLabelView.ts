@@ -6,17 +6,17 @@ export const GAME_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "pff", type: "String" },
   { key: "overtime", type: "Double" },
   { key: "referee", type: "String" },
+  { key: "home_rest", type: "Long" },
   { key: "away_moneyline", type: "String" },
   { key: "home_qb_name", type: "String" },
-  { key: "home_rest", type: "Long" },
   { key: "away_score", type: "Double" },
   { key: "under_odds", type: "Long" },
   { key: "display_score", type: "String" },
   { key: "total_line", type: "Double" },
   { key: "home_moneyline", type: "String" },
   { key: "surface", type: "String" },
-  { key: "wind", type: "Double" },
   { key: "game_type", type: "String" },
+  { key: "wind", type: "Double" },
   { key: "away_team", type: "String" },
   { key: "temp", type: "Double" },
   { key: "spread_line", type: "Double" },
@@ -29,17 +29,17 @@ export const GAME_LABEL_PROPERTIES = [  { key: "season", type: "Long" },
   { key: "home_team", type: "String" },
   { key: "div_game", type: "Boolean" },
   { key: "total", type: "Double" },
-  { key: "home_score", type: "Double" },
   { key: "gametime", type: "String" },
+  { key: "home_score", type: "Double" },
   { key: "winner", type: "String" },
   { key: "gameday", type: "DateTime" },
-  { key: "over_odds", type: "Long" },
   { key: "stadium_id", type: "String" },
-  { key: "home_spread_odds", type: "Long" },
-  { key: "away_spread_odds", type: "Long" },
+  { key: "over_odds", type: "Long" },
   { key: "weekday", type: "String" },
+  { key: "away_spread_odds", type: "Long" },
   { key: "espn", type: "Long" },
   { key: "away_coach", type: "String" },
+  { key: "home_spread_odds", type: "Long" },
   { key: "pfr", type: "String" },
   { key: "result", type: "Double" },
   { key: "game_id", type: "String" },
@@ -55,17 +55,17 @@ export interface GameProperties {
   pff: string;
   overtime: number;
   referee: string;
+  home_rest: number;
   away_moneyline: string;
   home_qb_name: string;
-  home_rest: number;
   away_score: number;
   under_odds: number;
   display_score: string;
   total_line: number;
   home_moneyline: string;
   surface: string;
-  wind: number;
   game_type: string;
+  wind: number;
   away_team: string;
   temp: number;
   spread_line: number;
@@ -78,17 +78,17 @@ export interface GameProperties {
   home_team: string;
   div_game: boolean;
   total: number;
-  home_score: number;
   gametime: string;
+  home_score: number;
   winner: string;
   gameday: string;
-  over_odds: number;
   stadium_id: string;
-  home_spread_odds: number;
-  away_spread_odds: number;
+  over_odds: number;
   weekday: string;
+  away_spread_odds: number;
   espn: number;
   away_coach: string;
+  home_spread_odds: number;
   pfr: string;
   result: number;
   game_id: string;
