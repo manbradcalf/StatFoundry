@@ -40,8 +40,13 @@ const NFL_TEAMS = [
   "SF", "STL", "TB", "TEN", "WAS",
 ];
 
+// nflfastR glues "pos"/"def" onto "team" (posteam, defteam) with no underscore —
+// those must be listed explicitly. `/_team$/` alone would miss them and leave
+// their dropdowns on sparse DISTINCT probes.
+const TEAM_PROPERTY_EXACT = new Set(["team", "team_abbr", "posteam", "defteam"]);
+
 function isTeamProperty(name) {
-  return /team$/.test(name) || name === "team_abbr";
+  return TEAM_PROPERTY_EXACT.has(name) || /_team$/.test(name);
 }
 
 // How many DISTINCT queries to run against the backend at once.
@@ -145,23 +150,29 @@ async function generateEnums() {
 
   const schema = await fetchSchema(baseUrl);
 
-  // Build the flat list of (label, property) candidates to probe.
+  // Build the flat list of (label, property) candidates to probe. Team columns
+  // skip probing entirely — seed them with NFL_TEAMS so sparse graphs still
+  // expose the full abbreviation list (home_team, posteam, defteam, ...).
   const candidates = [];
+  const catalog = {};
+  let kept = 0;
   schema.nodes.forEach((node) => {
     const label = cleanLabel(node.label);
     (node.properties || []).forEach((prop) => {
-      if (prop && prop.name && isEnumCandidate(prop)) {
-        candidates.push({ label, property: prop.name });
+      if (!prop || !prop.name || !isEnumCandidate(prop)) return;
+      if (isTeamProperty(prop.name)) {
+        catalog[`${label}.${prop.name}`] = NFL_TEAMS;
+        kept++;
+        console.log(`  + ${label}.${prop.name} (${NFL_TEAMS.length}, fixed)`);
+        return;
       }
+      candidates.push({ label, property: prop.name });
     });
   });
 
   console.log(
     `Probing ${candidates.length} candidate properties (distinct-count <= ${MAX_ENUM_VALUES})...`,
   );
-
-  const catalog = {};
-  let kept = 0;
 
   await runPool(
     candidates,
@@ -202,11 +213,6 @@ async function generateEnums() {
     CONCURRENCY,
   );
 
-  // Overwrite every team column with the fixed NFL_TEAMS list.
-  Object.keys(catalog).forEach((key) => {
-    if (isTeamProperty(key.split(".").pop())) catalog[key] = NFL_TEAMS;
-  });
-
   // Sort keys for stable, diff-friendly output.
   const sorted = {};
   Object.keys(catalog)
@@ -230,4 +236,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { generateEnums };
+module.exports = { generateEnums, isTeamProperty, NFL_TEAMS };
