@@ -1,13 +1,14 @@
 import sys
 from src.neo4j_client import driver
+from scripts.etl.cypher.season_config import CURRENT_SEASON
 
 ## TODO:find a way to keep previous seasons in sync with the changes we make here
-load_2025_games = """
+load_games = """
 // LOAD and Merge Games from NFLVerse CSV
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv' AS line
 WITH line
 WHERE
-  toInteger(line.season) = 2025 AND
+  toInteger(line.season) = $season AND
   line.game_id IS NOT NULL AND
   line.game_id <> ''
 
@@ -83,8 +84,8 @@ RETURN g
     """
 
 try:
-    result = driver.execute_query(load_2025_games)
-    print(f"Successfully loaded games: {len(result.records)} records processed")
+    result = driver.execute_query(load_games, season=CURRENT_SEASON)
+    print(f"Successfully loaded {CURRENT_SEASON} games: {len(result.records)} records processed")
     print(result)
 except Exception as e:
     print(f"ERROR: Failed to load games: {e}")
