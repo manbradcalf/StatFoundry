@@ -1,19 +1,20 @@
 import sys
 from src.neo4j_client import driver
+from scripts.etl.cypher.season_config import CURRENT_SEASON
 
 create_constraint = """
 CREATE CONSTRAINT playergame_unique IF NOT EXISTS
 FOR (pg:PlayerGame) REQUIRE (pg.player_id, pg.game_id) IS UNIQUE
 """
 
-load_2025_playergames = """
+load_playergames = """
 // Read weekly player stats (calculate_stats output)
 LOAD CSV WITH HEADERS FROM
-  'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv'
+  $csv_url
   AS line
 
 WITH line
-WHERE toInteger(line.season) = 2025
+WHERE toInteger(line.season) = $season
   AND line.player_id IS NOT NULL
   AND line.team IS NOT NULL
   AND line.opponent_team IS NOT NULL
@@ -142,7 +143,11 @@ try:
     print("Constraint creation completed")
 
     # Then, load the playergames data
-    result = driver.execute_query(load_2025_playergames)
+    result = driver.execute_query(
+        load_playergames,
+        season=CURRENT_SEASON,
+        csv_url=f"https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{CURRENT_SEASON}.csv",
+    )
     print(f"Successfully loaded playergames: {len(result.records)} records processed")
     print(result)
 except Exception as e:
