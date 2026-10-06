@@ -126,7 +126,8 @@
     "2022",
     "2023",
     "2024",
-    "2025"
+    "2025",
+    "2026"
   ],
   "Game.surface": [
     "a_turf",
@@ -735,32 +736,41 @@
     "Allianz Arena",
     "Arena Corinthians",
     "Bank of America Stadium",
+    "Caesars Superdome",
     "Deutsche Bank Park",
     "Empower Field at Mile High",
+    "EverBank Stadium",
     "FedExField",
     "FirstEnergy Stadium",
     "Ford Field",
     "GEHA Field at Arrowhead Stadium",
     "Gillette Stadium",
     "Hard Rock Stadium",
+    "Highmark Stadium",
+    "Huntington Bank Field",
     "Lambeau Field",
     "Levi's Stadium",
     "Lincoln Financial Field",
     "Lucas Oil Stadium",
     "Lumen Field",
     "M&T Bank Stadium",
+    "Maracana Stadium",
+    "Melbourne Cricket Ground",
     "Mercedes-Benz Stadium",
     "Mercedes-Benz Superdome",
     "MetLife Stadium",
     "NRG Stadium",
     "New Era Field",
     "Nissan Stadium",
+    "Northwest Stadium",
     "Paycor Stadium",
     "Raymond James Stadium",
+    "Reliant Stadium",
     "SoFi Stadium",
     "Soldier Field",
     "State Farm Stadium",
     "TIAA Bank Stadium",
+    "Tottenham Hotspur Stadium",
     "Tottenham Stadium",
     "U.S. Bank Stadium",
     "Wembley Stadium"
@@ -1051,7 +1061,8 @@
   "Play.season": [
     "2023",
     "2024",
-    "2025"
+    "2025",
+    "2026"
   ],
   "Play.season_type": [
     "POST",
@@ -1185,6 +1196,7 @@
     "Allegiant Stadium",
     "Allianz Arena",
     "Arena Corinthians",
+    "Arrowhead Stadium",
     "Bank of America Stadium",
     "Caesars Superdome",
     "Cleveland Browns Stadium",
@@ -1205,6 +1217,8 @@
     "Lucas Oil Stadium",
     "Lumen Field",
     "M&T Bank Stadium",
+    "Maracana Stadium",
+    "Melbourne Cricket Ground",
     "Mercedes-Benz Stadium",
     "MetLife Stadium",
     "NRG Stadium",
@@ -1213,6 +1227,7 @@
     "Olympic Stadium",
     "Paycor Stadium",
     "Raymond James Stadium",
+    "Reliant Stadium",
     "Santiago Bernabeu Stadium",
     "SoFi Stadium",
     "Soldier Field",
@@ -1577,6 +1592,7 @@
     "Ex/Left Squad",
     "FA Susp-1 Yr",
     "Inactive",
+    "Inactive/3rd QB",
     "Int'l PSquad",
     "PS/Pro",
     "PS/Vet Pro",
@@ -1596,6 +1612,7 @@
     "R/Injured; DFR",
     "R/Left Squad",
     "R/NFIL",
+    "R/NFIL; DFR",
     "R/NFIL; Not 90",
     "R/NFIN",
     "R/NFIN; Not 90",
@@ -1803,7 +1820,8 @@
     "2022",
     "2023",
     "2024",
-    "2025"
+    "2025",
+    "2026"
   ],
   "PlayerGame.season_type": [
     "POST",
@@ -2108,7 +2126,8 @@
     "2022",
     "2023",
     "2024",
-    "2025"
+    "2025",
+    "2026"
   ],
   "TeamGame.season_type": [
     "POST",
@@ -2176,6 +2195,22 @@
     "22"
   ],
   "TeamSeason.season": [
+    "2000",
+    "2001",
+    "2002",
+    "2003",
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
     "2016",
     "2017",
     "2018",
@@ -2185,7 +2220,8 @@
     "2022",
     "2023",
     "2024",
-    "2025"
+    "2025",
+    "2026"
   ],
   "TeamSeason.season_type": [
     "REG"
