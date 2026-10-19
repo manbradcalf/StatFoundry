@@ -1,5 +1,9 @@
 # Neo4j Schema Updates
 
+> After running any of these, or any loader outside the Data Ingestion workflow
+> (e.g. `load_participation`), refresh the schema snapshot that `/api/schema` serves:
+> `python -m scripts.etl.cypher.refresh_schema` (from `service/`).
+
 ## Queries to Run in Production
 
 ### 1. TeamSeason → Season
