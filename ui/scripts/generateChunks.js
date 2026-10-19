@@ -141,7 +141,7 @@ class SimpleChunkGenerator {
               Name: "stat",
               Value: prop.name,
               SlotValueTypes: ["Filter"],
-              FieldKind: "string",
+              FieldKind: "string-array",
             },
           ],
         });

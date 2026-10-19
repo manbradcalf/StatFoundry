@@ -4519,7 +4519,7 @@
         "SlotValueTypes": [
           "Filter"
         ],
-        "FieldKind": "string"
+        "FieldKind": "string-array"
       }
     ]
   },
@@ -32425,7 +32425,7 @@
         "SlotValueTypes": [
           "Filter"
         ],
-        "FieldKind": "string"
+        "FieldKind": "string-array"
       }
     ]
   },
@@ -32467,7 +32467,7 @@
         "SlotValueTypes": [
           "Filter"
         ],
-        "FieldKind": "string"
+        "FieldKind": "string-array"
       }
     ]
   },
@@ -32509,7 +32509,7 @@
         "SlotValueTypes": [
           "Filter"
         ],
-        "FieldKind": "string"
+        "FieldKind": "string-array"
       }
     ]
   },
