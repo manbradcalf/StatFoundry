@@ -54,7 +54,8 @@ const getEnumValuesForSlot = (
 // Operators offered per field kind:
 // - categorical (enum) scalar fields support membership against a multi-value list
 // - free-text strings support equality and substring match
-// - numeric fields support comparisons
+// - numeric fields support comparisons, plus `in` when an enum list exists
+//   (e.g. season, week)
 // - string-array fields represent list properties, so `in` is a scalar membership
 //   check ({value} IN property) and must *not* wrap FilterValue as a list.
 const CATEGORICAL_OPERATORS = ["=", "<>", "in"];
@@ -69,8 +70,11 @@ const getOperatorsForFilter = (
   const statSlot = allSlots.find((s) =>
     s.SlotValueTypes.includes(SlotType.Filter),
   );
+  const hasEnum = Boolean(getFilterFieldEnum(allSlots, entityLabel));
   if (statSlot?.FieldKind === "string-array") return STRING_ARRAY_OPERATORS;
-  if (getFilterFieldEnum(allSlots, entityLabel)) return CATEGORICAL_OPERATORS;
+  if (statSlot?.FieldKind === "numeric")
+    return hasEnum ? [...SCALAR_OPERATORS, "in"] : SCALAR_OPERATORS;
+  if (hasEnum) return CATEGORICAL_OPERATORS;
   return statSlot?.FieldKind === "string" ? STRING_OPERATORS : SCALAR_OPERATORS;
 };
 
