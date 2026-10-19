@@ -1,31 +1,15 @@
+from datetime import date
+
+FIRST_SEASON = 2000
+
+
+def current_season(today: date | None = None) -> int:
+    """NFL season year. A new season starts in September, so Jan-Aug belong to the prior year."""
+    today = today or date.today()
+    return today.year if today.month >= 9 else today.year - 1
+
+
+CURRENT_SEASON = current_season()
+
 # Seasons to load (nflverse has data back to 1999, but team stats format varies)
-# Using 2016+ for consistent data format
-# this is so stupid
-SEASONS = [
-    2000,
-    2001,
-    2002,
-    2003,
-    2004,
-    2005,
-    2006,
-    2007,
-    2008,
-    2009,
-    2010,
-    2011,
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-]
+SEASONS = list(range(FIRST_SEASON, CURRENT_SEASON + 1))

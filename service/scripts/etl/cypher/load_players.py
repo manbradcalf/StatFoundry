@@ -1,19 +1,20 @@
 import sys
 from src.neo4j_client import driver
+from scripts.etl.cypher.season_config import CURRENT_SEASON
 
 create_constraint = """
 CREATE CONSTRAINT gsis_id_Player_uniq IF NOT EXISTS
 FOR (p:Player) REQUIRE (p.gsis_id) IS UNIQUE
 """
 
-load_2025_rookies = """
-// Load 2025 rookies from NFLVerse players CSV
+load_rookies = """
+// Load current-season rookies from NFLVerse players CSV
 LOAD CSV WITH HEADERS FROM
 'https://github.com/nflverse/nflverse-data/releases/download/players/players.csv'
 AS line
 
 WITH line
-WHERE toInteger(line.rookie_season) = 2025
+WHERE toInteger(line.rookie_season) = $season
   AND line.gsis_id IS NOT NULL
   AND line.gsis_id <> ''
 
@@ -100,9 +101,9 @@ try:
     constraint_result = driver.execute_query(create_constraint)
     print("Constraint creation completed")
 
-    # Then, load the 2025 rookies
-    result = driver.execute_query(load_2025_rookies)
-    print(f"Successfully loaded players: {len(result.records)} records processed")
+    # Then, load the current season's rookies
+    result = driver.execute_query(load_rookies, season=CURRENT_SEASON)
+    print(f"Successfully loaded {CURRENT_SEASON} rookies: {len(result.records)} records processed")
     print(result)
 except Exception as e:
     print(f"ERROR: Failed to load players: {e}")

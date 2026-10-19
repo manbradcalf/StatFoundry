@@ -1,5 +1,6 @@
 import sys
 from src.neo4j_client import driver
+from scripts.etl.cypher.season_config import CURRENT_SEASON
 
 # Constraint on player_season_id (already exists, but ensure it's created)
 create_constraint = """
@@ -158,8 +159,8 @@ try:
     driver.execute_query(create_constraint)
     print("Constraint verification completed")
 
-    # Load 2025 only (previous seasons already loaded)
-    season = 2025
+    # Load the current season only (previous seasons already loaded)
+    season = CURRENT_SEASON
     print(f"\nLoading PlayerSeason data for {season}...")
 
     # Step 1: Load the data
