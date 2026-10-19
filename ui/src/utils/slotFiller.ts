@@ -1,5 +1,6 @@
 import { Chunk } from "../feature/Chunks/Types/Chunk";
 import { Slot } from "../feature/Chunks/Types/Slot";
+import { SlotType } from "../feature/Chunks/Enums/SlotType";
 /**
  * Replace all slot placeholders in the template string with their corresponding values.
  * A placeholder is denoted with curly braces e.g. {property}.
@@ -15,15 +16,29 @@ export function fillTemplate(template: string, slots: Slot[]): string {
   // identifiers (like property names) or operators.
   const nonLiteralNames = ["property", "condition", "stat", "operator"];
 
+  // Enum values arrive as strings ("2025"); numeric fields must compile to
+  // numbers or they never match the integers stored in Neo4j.
+  const isNumericField = slots.some(
+    (s) =>
+      s.SlotValueTypes?.includes(SlotType.Filter) && s.FieldKind === "numeric",
+  );
+  const isNumericString = (v: unknown) =>
+    typeof v === "string" && v.trim() !== "" && !isNaN(Number(v));
+
   slots.forEach(({ Name, Value }) => {
     const pattern = new RegExp(`\\{${Name}(?:\\.[a-zA-Z0-9_]+)?\\}`, "g");
 
     // Array value (multi-select for an `in` filter) -> Cypher list literal,
-    // e.g. ["KC", "SF"]. Elements are quoted unless the slot is an identifier.
+    // e.g. ["KC", "SF"]. Elements are quoted unless the slot is an identifier
+    // or a number on a numeric field.
     if (Array.isArray(Value)) {
       const quoteEl = !nonLiteralNames.includes(Name);
       const items = Value.map((v) =>
-        typeof v === "string" && quoteEl ? `"${v}"` : String(v),
+        isNumericField && isNumericString(v)
+          ? String(Number(v))
+          : typeof v === "string" && quoteEl
+            ? `"${v}"`
+            : String(v),
       );
       output = output.replace(pattern, `[${items.join(", ")}]`);
       return;
