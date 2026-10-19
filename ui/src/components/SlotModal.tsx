@@ -4,6 +4,12 @@ import { Slot } from "../feature/Chunks/Types/Slot";
 import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
 import { SlotType } from "../feature/Chunks/Enums/SlotType";
 import generatedEnums from "../feature/Chunks/Data/generated-enums.json";
+import {
+  getFilterConditionValue,
+  getFilterStatFieldKind,
+  inConditionExpectsArray,
+  normalizeFilterValueSlotsForSave,
+} from "./slotModalFilterUtils";
 
 // Build-time catalog of enumerable property values, keyed by `Label.property`
 // (see ui/scripts/generateEnums.js). Used to turn free-text filter values into
@@ -26,19 +32,50 @@ interface SlotModalProps {
  * filters (the sibling `stat` slot's value) is a known categorical property for
  * this entity. Returns undefined when the value should stay free-text.
  */
+const getFilterFieldEnum = (
+  allSlots: Slot[],
+  entityLabel?: string,
+): string[] | undefined => {
+  if (!entityLabel) return undefined;
+  const property = allSlots.find((s) => s.Name === "stat")?.Value;
+  if (!property) return undefined;
+  return ENUM_CATALOG[`${entityLabel}.${property}`];
+};
+
 const getEnumValuesForSlot = (
   slot: Slot,
   allSlots: Slot[],
   entityLabel?: string,
 ): string[] | undefined => {
-  if (!entityLabel) return undefined;
   if (!slot.SlotValueTypes.includes(SlotType.FilterValue)) return undefined;
+  return getFilterFieldEnum(allSlots, entityLabel);
+};
 
-  const statSlot = allSlots.find((s) => s.Name === "stat");
-  const property = statSlot?.Value;
-  if (!property) return undefined;
+// Operators offered per field kind:
+// - categorical (enum) scalar fields support membership against a multi-value list
+// - free-text strings support equality and substring match
+// - numeric fields support comparisons, plus `in` when an enum list exists
+//   (e.g. season, week)
+// - string-array fields represent list properties, so `in` is a scalar membership
+//   check ({value} IN property) and must *not* wrap FilterValue as a list.
+const CATEGORICAL_OPERATORS = ["=", "<>", "in"];
+const STRING_OPERATORS = ["=", "<>", "contains"];
+const STRING_ARRAY_OPERATORS = ["in"];
+const SCALAR_OPERATORS = [">", ">=", "=", "<", "<=", "<>"];
 
-  return ENUM_CATALOG[`${entityLabel}.${property}`];
+const getOperatorsForFilter = (
+  allSlots: Slot[],
+  entityLabel?: string,
+): string[] => {
+  const statSlot = allSlots.find((s) =>
+    s.SlotValueTypes.includes(SlotType.Filter),
+  );
+  const hasEnum = Boolean(getFilterFieldEnum(allSlots, entityLabel));
+  if (statSlot?.FieldKind === "string-array") return STRING_ARRAY_OPERATORS;
+  if (statSlot?.FieldKind === "numeric")
+    return hasEnum ? [...SCALAR_OPERATORS, "in"] : SCALAR_OPERATORS;
+  if (hasEnum) return CATEGORICAL_OPERATORS;
+  return statSlot?.FieldKind === "string" ? STRING_OPERATORS : SCALAR_OPERATORS;
 };
 
 /**
@@ -65,7 +102,13 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     setLocalSlots(slots.map((s) => ({ ...s })));
   }, [slots]);
 
-  const handleChange = (index: number, newValue: string) => {
+  const conditionValue = getFilterConditionValue(localSlots);
+  const inExpectsArray = inConditionExpectsArray(
+    conditionValue,
+    getFilterStatFieldKind(localSlots),
+  );
+
+  const handleChange = (index: number, newValue: string | string[]) => {
     setLocalSlots((prev) => {
       const updated = [...prev];
       const original = prev[index];
@@ -76,7 +119,10 @@ export const SlotModal: React.FC<SlotModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(localSlots);
+    // Match each FilterValue's shape to its operator: list-valued `in` uses an
+    // array, scalar membership `in` (for string-array properties) uses a scalar.
+    const normalized = normalizeFilterValueSlotsForSave(localSlots, inExpectsArray);
+    onSave(normalized);
   };
 
   const renderSlotInput = (slot: Slot, idx: number) => {
@@ -91,14 +137,77 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     const isFilterSlot = slot.SlotValueTypes.includes(SlotType.Filter);
     const isPreFilled = slot.Value && slot.Value !== "";
 
+    // Condition operators depend on the filtered field's kind: categorical
+    // fields offer membership (incl. `in`), numeric/other fields offer
+    // comparisons (no `in`).
+    if (slot.SlotValueTypes.includes(SlotType.FilterCondition)) {
+      const operators = getOperatorsForFilter(localSlots, entityLabel);
+      return (
+        <select
+          ref={isFirstInput ? firstSelectRef : undefined}
+          value={String(slot.Value ?? "")}
+          onChange={(e) => handleChange(idx, e.target.value)}
+          style={{ width: "100%", padding: "0.5rem" }}
+        >
+          {operators.map((op) => (
+            <option key={op} value={op}>
+              {op}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
     // For a FilterValue slot whose filtered property is categorical, offer a
     // dropdown of the valid stored values instead of a free-text box.
     const enumValues = getEnumValuesForSlot(slot, localSlots, entityLabel);
     if (enumValues && enumValues.length > 0) {
+      // For the `in` operator, allow selecting multiple values (stored as an
+      // array, compiled to a Cypher list literal).
+      if (inExpectsArray) {
+        const selected: string[] = Array.isArray(slot.Value)
+          ? slot.Value.map((v) => String(v))
+          : slot.Value
+            ? [String(slot.Value)]
+            : [];
+        const toggle = (v: string) =>
+          handleChange(
+            idx,
+            selected.includes(v)
+              ? selected.filter((x) => x !== v)
+              : [...selected, v],
+          );
+        return (
+          <div
+            style={{
+              maxHeight: "12rem",
+              overflowY: "auto",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              padding: "0.5rem",
+            }}
+          >
+            {enumValues.map((v) => (
+              <label
+                key={v}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.includes(v)}
+                  onChange={() => toggle(v)}
+                />
+                {v}
+              </label>
+            ))}
+          </div>
+        );
+      }
+
       return (
         <select
           ref={isFirstInput ? firstSelectRef : undefined}
-          value={slot.Value ?? ""}
+          value={Array.isArray(slot.Value) ? slot.Value[0] ?? "" : String(slot.Value ?? "")}
           onChange={(e) => handleChange(idx, e.target.value)}
           style={{ width: "100%", padding: "0.5rem" }}
         >
