@@ -61,6 +61,7 @@ class SimpleChunkGenerator {
               Name: "stat",
               Value: prop.name,
               SlotValueTypes: ["Filter"],
+              FieldKind: "numeric",
             },
             {
               Name: "condition",
@@ -96,6 +97,7 @@ class SimpleChunkGenerator {
               Name: "stat",
               Value: prop.name,
               SlotValueTypes: ["Filter"],
+              FieldKind: "string",
             },
             {
               Name: "condition",
@@ -139,6 +141,7 @@ class SimpleChunkGenerator {
               Name: "stat",
               Value: prop.name,
               SlotValueTypes: ["Filter"],
+              FieldKind: "string",
             },
           ],
         });

@@ -205,7 +205,8 @@
         "Value": "otc_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -247,7 +248,8 @@
         "Value": "espn_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -289,7 +291,8 @@
         "Value": "entry_year",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -331,7 +334,8 @@
         "Value": "jersey_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -373,7 +377,8 @@
         "Value": "team_seq",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -415,7 +420,8 @@
         "Value": "height",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -457,7 +463,8 @@
         "Value": "draftround",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -499,7 +506,8 @@
         "Value": "draft_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -541,7 +549,8 @@
         "Value": "pff_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -583,7 +592,8 @@
         "Value": "rookie_year",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -625,7 +635,8 @@
         "Value": "current_team_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -667,7 +678,8 @@
         "Value": "weight",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -709,7 +721,8 @@
         "Value": "years_of_experience",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -751,7 +764,8 @@
         "Value": "nfl_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -793,7 +807,8 @@
         "Value": "gsis_it_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -835,7 +850,8 @@
         "Value": "position",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -877,7 +893,8 @@
         "Value": "position_group",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -919,7 +936,8 @@
         "Value": "display_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -961,7 +979,8 @@
         "Value": "headshot",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1003,7 +1022,8 @@
         "Value": "draft_club",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1045,7 +1065,8 @@
         "Value": "short_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1087,7 +1108,8 @@
         "Value": "team_abbr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1129,7 +1151,8 @@
         "Value": "college_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1171,7 +1194,8 @@
         "Value": "esb_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1213,7 +1237,8 @@
         "Value": "first_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1255,7 +1280,8 @@
         "Value": "smart_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1297,7 +1323,8 @@
         "Value": "gsis_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1339,7 +1366,8 @@
         "Value": "status_description_abbr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1381,7 +1409,8 @@
         "Value": "suffix",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1423,7 +1452,8 @@
         "Value": "status_short_description",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1465,7 +1495,8 @@
         "Value": "last_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1507,7 +1538,8 @@
         "Value": "football_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1549,7 +1581,8 @@
         "Value": "college_conference",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1591,7 +1624,8 @@
         "Value": "status",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1633,7 +1667,8 @@
         "Value": "uniform_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1675,7 +1710,8 @@
         "Value": "pfr_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -1717,7 +1753,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -1759,7 +1796,8 @@
         "Value": "completions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -1801,7 +1839,8 @@
         "Value": "attempts",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -1843,7 +1882,8 @@
         "Value": "passing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -1885,7 +1925,8 @@
         "Value": "passing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -1927,7 +1968,8 @@
         "Value": "interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -1969,7 +2011,8 @@
         "Value": "sacks",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2011,7 +2054,8 @@
         "Value": "sack_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2053,7 +2097,8 @@
         "Value": "sack_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2095,7 +2140,8 @@
         "Value": "sack_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2137,7 +2183,8 @@
         "Value": "passing_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2179,7 +2226,8 @@
         "Value": "passing_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2221,7 +2269,8 @@
         "Value": "passing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2263,7 +2312,8 @@
         "Value": "carries",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2305,7 +2355,8 @@
         "Value": "rushing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2347,7 +2398,8 @@
         "Value": "rushing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2389,7 +2441,8 @@
         "Value": "rushing_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2431,7 +2484,8 @@
         "Value": "rushing_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2473,7 +2527,8 @@
         "Value": "rushing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2515,7 +2570,8 @@
         "Value": "rushing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2557,7 +2613,8 @@
         "Value": "rushing_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2599,7 +2656,8 @@
         "Value": "receptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2641,7 +2699,8 @@
         "Value": "receiving_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2683,7 +2742,8 @@
         "Value": "fantasy_points_ppr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2725,7 +2785,8 @@
         "Value": "receiving_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2767,7 +2828,8 @@
         "Value": "ay_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2809,7 +2871,8 @@
         "Value": "target_share",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2851,7 +2914,8 @@
         "Value": "wopr_y",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2893,7 +2957,8 @@
         "Value": "receiving_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2935,7 +3000,8 @@
         "Value": "receiving_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -2977,7 +3043,8 @@
         "Value": "receiving_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3019,7 +3086,8 @@
         "Value": "yards_per_carry",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3061,7 +3129,8 @@
         "Value": "wopr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3103,7 +3172,8 @@
         "Value": "dom",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3145,7 +3215,8 @@
         "Value": "receiving_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3187,7 +3258,8 @@
         "Value": "dakota",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3229,7 +3301,8 @@
         "Value": "ppr_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3271,7 +3344,8 @@
         "Value": "rtd_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3313,7 +3387,8 @@
         "Value": "receiving_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3355,7 +3430,8 @@
         "Value": "air_yards_share",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3397,7 +3473,8 @@
         "Value": "wopr_x",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3439,7 +3516,8 @@
         "Value": "games",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3481,7 +3559,8 @@
         "Value": "racr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3523,7 +3602,8 @@
         "Value": "w8dom",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3565,7 +3645,8 @@
         "Value": "passing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3607,7 +3688,8 @@
         "Value": "tgt_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3649,7 +3731,8 @@
         "Value": "ry_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3691,7 +3774,8 @@
         "Value": "rfd_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3733,7 +3817,8 @@
         "Value": "special_teams_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3775,7 +3860,8 @@
         "Value": "rtdfd_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3817,7 +3903,8 @@
         "Value": "targets",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3859,7 +3946,8 @@
         "Value": "pacr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3901,7 +3989,8 @@
         "Value": "receiving_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3943,7 +4032,8 @@
         "Value": "receiving_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -3985,7 +4075,8 @@
         "Value": "scrimmage_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4027,7 +4118,8 @@
         "Value": "yptmpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4069,7 +4161,8 @@
         "Value": "fantasy_points",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4111,7 +4204,8 @@
         "Value": "player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4153,7 +4247,8 @@
         "Value": "position",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4195,7 +4290,8 @@
         "Value": "position_group",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4237,7 +4333,8 @@
         "Value": "season_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4279,7 +4376,8 @@
         "Value": "player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4321,7 +4419,8 @@
         "Value": "player_season_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4363,7 +4462,8 @@
         "Value": "yac_sh",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -4418,7 +4518,8 @@
         "Value": "teams",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       }
     ]
   },
@@ -4446,7 +4547,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4488,7 +4590,8 @@
         "Value": "week",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4530,7 +4633,8 @@
         "Value": "overtime",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4572,7 +4676,8 @@
         "Value": "home_rest",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4614,7 +4719,8 @@
         "Value": "away_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4656,7 +4762,8 @@
         "Value": "under_odds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4698,7 +4805,8 @@
         "Value": "total_line",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4740,7 +4848,8 @@
         "Value": "wind",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4782,7 +4891,8 @@
         "Value": "temp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4824,7 +4934,8 @@
         "Value": "spread_line",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4866,7 +4977,8 @@
         "Value": "away_rest",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4908,7 +5020,8 @@
         "Value": "gsis",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4950,7 +5063,8 @@
         "Value": "total",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -4992,7 +5106,8 @@
         "Value": "home_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5034,7 +5149,8 @@
         "Value": "over_odds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5076,7 +5192,8 @@
         "Value": "away_spread_odds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5118,7 +5235,8 @@
         "Value": "espn",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5160,7 +5278,8 @@
         "Value": "home_spread_odds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5202,7 +5321,8 @@
         "Value": "result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5244,7 +5364,8 @@
         "Value": "old_game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -5286,7 +5407,8 @@
         "Value": "away_qb_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5328,7 +5450,8 @@
         "Value": "away_qb_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5370,7 +5493,8 @@
         "Value": "location",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5412,7 +5536,8 @@
         "Value": "pff",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5454,7 +5579,8 @@
         "Value": "referee",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5496,7 +5622,8 @@
         "Value": "away_moneyline",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5538,7 +5665,8 @@
         "Value": "home_qb_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5580,7 +5708,8 @@
         "Value": "display_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5622,7 +5751,8 @@
         "Value": "home_moneyline",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5664,7 +5794,8 @@
         "Value": "surface",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5706,7 +5837,8 @@
         "Value": "game_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5748,7 +5880,8 @@
         "Value": "away_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5790,7 +5923,8 @@
         "Value": "home_qb_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5832,7 +5966,8 @@
         "Value": "home_coach",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5874,7 +6009,8 @@
         "Value": "ftn",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5916,7 +6052,8 @@
         "Value": "roof",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -5958,7 +6095,8 @@
         "Value": "home_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6000,7 +6138,8 @@
         "Value": "gametime",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6042,7 +6181,8 @@
         "Value": "winner",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6084,7 +6224,8 @@
         "Value": "stadium_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6126,7 +6267,8 @@
         "Value": "weekday",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6168,7 +6310,8 @@
         "Value": "away_coach",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6210,7 +6353,8 @@
         "Value": "pfr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6252,7 +6396,8 @@
         "Value": "game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6294,7 +6439,8 @@
         "Value": "stadium",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6336,7 +6482,8 @@
         "Value": "nfl_detail_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -6378,7 +6525,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6420,7 +6568,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6462,7 +6611,8 @@
         "Value": "week",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6504,7 +6654,8 @@
         "Value": "passing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6546,7 +6697,8 @@
         "Value": "rushing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6588,7 +6740,8 @@
         "Value": "vegas_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6630,7 +6783,8 @@
         "Value": "comp_air_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6672,7 +6826,8 @@
         "Value": "tackle_with_assist",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6714,7 +6869,8 @@
         "Value": "away_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6756,7 +6912,8 @@
         "Value": "fumble_not_forced",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6798,7 +6955,8 @@
         "Value": "old_game_id_x",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6840,7 +6998,8 @@
         "Value": "assist_tackle",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6882,7 +7041,8 @@
         "Value": "total_away_raw_yac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6924,7 +7084,8 @@
         "Value": "qb_hit",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -6966,7 +7127,8 @@
         "Value": "fumble_recovery_2_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7008,7 +7170,8 @@
         "Value": "sp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7050,7 +7213,8 @@
         "Value": "defensive_extra_point_conv",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7092,7 +7256,8 @@
         "Value": "receiver_jersey_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7134,7 +7299,8 @@
         "Value": "touchdown",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7176,7 +7342,8 @@
         "Value": "total_home_rush_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7218,7 +7385,8 @@
         "Value": "total_away_raw_air_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7260,7 +7428,8 @@
         "Value": "drive_yards_penalized",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7302,7 +7471,8 @@
         "Value": "punt_fair_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7344,7 +7514,8 @@
         "Value": "play_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7386,7 +7557,8 @@
         "Value": "rusher_jersey_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7428,7 +7600,8 @@
         "Value": "opp_fg_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7470,7 +7643,8 @@
         "Value": "time_to_throw",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7512,7 +7686,8 @@
         "Value": "tackled_for_loss",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7554,7 +7729,8 @@
         "Value": "total_home_pass_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7596,7 +7772,8 @@
         "Value": "drive_quarter_start",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7638,7 +7815,8 @@
         "Value": "drive_quarter_end",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7680,7 +7858,8 @@
         "Value": "kickoff_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7722,7 +7901,8 @@
         "Value": "punt_downed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7764,7 +7944,8 @@
         "Value": "down",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7806,7 +7987,8 @@
         "Value": "total_home_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7848,7 +8030,8 @@
         "Value": "total_away_raw_yac_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7890,7 +8073,8 @@
         "Value": "punt_inside_twenty",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7932,7 +8116,8 @@
         "Value": "timeout",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -7974,7 +8159,8 @@
         "Value": "total_away_comp_air_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8016,7 +8202,8 @@
         "Value": "total_away_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8058,7 +8245,8 @@
         "Value": "pass_oe",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8100,7 +8288,8 @@
         "Value": "return_touchdown",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8142,7 +8331,8 @@
         "Value": "series",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8184,7 +8374,8 @@
         "Value": "drive_play_count",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8226,7 +8417,8 @@
         "Value": "air_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8268,7 +8460,8 @@
         "Value": "qb_dropback",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8310,7 +8503,8 @@
         "Value": "fixed_drive",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8352,7 +8546,8 @@
         "Value": "ngs_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8394,7 +8589,8 @@
         "Value": "lateral_recovery",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8436,7 +8632,8 @@
         "Value": "no_huddle",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8478,7 +8675,8 @@
         "Value": "yac_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8520,7 +8718,8 @@
         "Value": "fumble",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8562,7 +8761,8 @@
         "Value": "solo_tackle",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8604,7 +8804,8 @@
         "Value": "total",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8646,7 +8847,8 @@
         "Value": "xyac_fd",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8688,7 +8890,8 @@
         "Value": "half_seconds_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8730,7 +8933,8 @@
         "Value": "kick_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8772,7 +8976,8 @@
         "Value": "punt_out_of_bounds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8814,7 +9019,8 @@
         "Value": "fumble_forced",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8856,7 +9062,8 @@
         "Value": "defensive_two_point_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8898,7 +9105,8 @@
         "Value": "penalty",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8940,7 +9148,8 @@
         "Value": "old_game_id_y",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -8982,7 +9191,8 @@
         "Value": "yards_gained",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9024,7 +9234,8 @@
         "Value": "total_home_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9066,7 +9277,8 @@
         "Value": "total_home_comp_yac_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9108,7 +9320,8 @@
         "Value": "total_home_comp_air_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9150,7 +9363,8 @@
         "Value": "comp_yac_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9192,7 +9406,8 @@
         "Value": "punt_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9234,7 +9449,8 @@
         "Value": "xyac_median_yardage",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9276,7 +9492,8 @@
         "Value": "extra_point_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9318,7 +9535,8 @@
         "Value": "receiving_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9360,7 +9578,8 @@
         "Value": "kickoff_downed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9402,7 +9621,8 @@
         "Value": "total_line",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9444,7 +9664,8 @@
         "Value": "posteam_timeouts_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9486,7 +9707,8 @@
         "Value": "first_down_penalty",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9528,7 +9750,8 @@
         "Value": "series_success",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9570,7 +9793,8 @@
         "Value": "first_down",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9612,7 +9836,8 @@
         "Value": "penalty_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9654,7 +9879,8 @@
         "Value": "yac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9696,7 +9922,8 @@
         "Value": "home_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9738,7 +9965,8 @@
         "Value": "own_kickoff_recovery",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9780,7 +10008,8 @@
         "Value": "quarter_end",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9822,7 +10051,8 @@
         "Value": "total_away_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9864,7 +10094,8 @@
         "Value": "pass",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9906,7 +10137,8 @@
         "Value": "air_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9948,7 +10180,8 @@
         "Value": "result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -9990,7 +10223,8 @@
         "Value": "third_down_failed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10032,7 +10266,8 @@
         "Value": "wp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10074,7 +10309,8 @@
         "Value": "success",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10116,7 +10352,8 @@
         "Value": "game_seconds_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10158,7 +10395,8 @@
         "Value": "total_away_raw_air_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10200,7 +10438,8 @@
         "Value": "pass_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10242,7 +10481,8 @@
         "Value": "return_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10284,7 +10524,8 @@
         "Value": "opp_td_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10326,7 +10567,8 @@
         "Value": "wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10368,7 +10610,8 @@
         "Value": "defteam_timeouts_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10410,7 +10653,8 @@
         "Value": "lateral_return",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10452,7 +10696,8 @@
         "Value": "play_deleted",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10494,7 +10739,8 @@
         "Value": "yardline_100",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10536,7 +10782,8 @@
         "Value": "vegas_wp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10578,7 +10825,8 @@
         "Value": "xpass",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10620,7 +10868,8 @@
         "Value": "total_away_comp_air_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10662,7 +10911,8 @@
         "Value": "first_down_pass",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10704,7 +10954,8 @@
         "Value": "own_kickoff_recovery_td",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10746,7 +10997,8 @@
         "Value": "drive",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10788,7 +11040,8 @@
         "Value": "defenders_in_box",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10830,7 +11083,8 @@
         "Value": "special",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10872,7 +11126,8 @@
         "Value": "kickoff_inside_twenty",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10914,7 +11169,8 @@
         "Value": "special_teams_play",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10956,7 +11212,8 @@
         "Value": "n_offense",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -10998,7 +11255,8 @@
         "Value": "yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11040,7 +11298,8 @@
         "Value": "lateral_rush",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11082,7 +11341,8 @@
         "Value": "spread_line",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11124,7 +11384,8 @@
         "Value": "kickoff_fair_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11166,7 +11427,8 @@
         "Value": "epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11208,7 +11470,8 @@
         "Value": "xyac_mean_yardage",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11250,7 +11513,8 @@
         "Value": "defteam_score_post",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11292,7 +11556,8 @@
         "Value": "play",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11334,7 +11599,8 @@
         "Value": "rush_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11376,7 +11642,8 @@
         "Value": "posteam_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11418,7 +11685,8 @@
         "Value": "extra_point_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11460,7 +11728,8 @@
         "Value": "fourth_down_failed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11502,7 +11771,8 @@
         "Value": "air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11544,7 +11814,8 @@
         "Value": "opp_safety_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11586,7 +11857,8 @@
         "Value": "order_sequence",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11628,7 +11900,8 @@
         "Value": "drive_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11670,7 +11943,8 @@
         "Value": "comp_air_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11712,7 +11986,8 @@
         "Value": "defensive_two_point_conv",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11754,7 +12029,8 @@
         "Value": "interception",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11796,7 +12072,8 @@
         "Value": "two_point_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11838,7 +12115,8 @@
         "Value": "away_timeouts_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11880,7 +12158,8 @@
         "Value": "home_wp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11922,7 +12201,8 @@
         "Value": "home_opening_kickoff",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -11964,7 +12244,8 @@
         "Value": "vegas_home_wp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12006,7 +12287,8 @@
         "Value": "fourth_down_converted",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12048,7 +12330,8 @@
         "Value": "two_point_conversion_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12090,7 +12373,8 @@
         "Value": "quarter_seconds_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12132,7 +12416,8 @@
         "Value": "def_wp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12174,7 +12459,8 @@
         "Value": "total_home_rush_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12216,7 +12502,8 @@
         "Value": "total_home_comp_yac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12258,7 +12545,8 @@
         "Value": "total_away_comp_yac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12300,7 +12588,8 @@
         "Value": "posteam_score_post",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12342,7 +12631,8 @@
         "Value": "total_home_raw_yac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12384,7 +12674,8 @@
         "Value": "score_differential",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12426,7 +12717,8 @@
         "Value": "drive_ended_with_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12468,7 +12760,8 @@
         "Value": "qb_scramble",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12510,7 +12803,8 @@
         "Value": "kickoff_in_endzone",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12552,7 +12846,8 @@
         "Value": "vegas_home_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12594,7 +12889,8 @@
         "Value": "ydstogo",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12636,7 +12932,8 @@
         "Value": "n_defense",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12678,7 +12975,8 @@
         "Value": "ydsnet",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12720,7 +13018,8 @@
         "Value": "no_score_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12762,7 +13061,8 @@
         "Value": "home_timeouts_remaining",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12804,7 +13104,8 @@
         "Value": "away_wp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12846,7 +13147,8 @@
         "Value": "total_home_raw_yac_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12888,7 +13190,8 @@
         "Value": "safety",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12930,7 +13233,8 @@
         "Value": "qb_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -12972,7 +13276,8 @@
         "Value": "shotgun",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13014,7 +13319,8 @@
         "Value": "first_down_rush",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13056,7 +13362,8 @@
         "Value": "passer_jersey_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13098,7 +13405,8 @@
         "Value": "field_goal_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13140,7 +13448,8 @@
         "Value": "ep",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13182,7 +13491,8 @@
         "Value": "away_wp_post",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13224,7 +13534,8 @@
         "Value": "jersey_number",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13266,7 +13577,8 @@
         "Value": "total_home_raw_air_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13308,7 +13620,8 @@
         "Value": "rush_touchdown",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13350,7 +13663,8 @@
         "Value": "number_of_pass_rushers",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13392,7 +13706,8 @@
         "Value": "score_differential_post",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13434,7 +13749,8 @@
         "Value": "incomplete_pass",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13476,7 +13792,8 @@
         "Value": "pass_touchdown",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13518,7 +13835,8 @@
         "Value": "td_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13560,7 +13878,8 @@
         "Value": "rush",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13602,7 +13921,8 @@
         "Value": "cpoe",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13644,7 +13964,8 @@
         "Value": "aborted_play",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13686,7 +14007,8 @@
         "Value": "defteam_score",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13728,7 +14050,8 @@
         "Value": "defensive_extra_point_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13770,7 +14093,8 @@
         "Value": "drive_inside20",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13812,7 +14136,8 @@
         "Value": "cp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13854,7 +14179,8 @@
         "Value": "total_home_comp_air_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13896,7 +14222,8 @@
         "Value": "punt_in_endzone",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13938,7 +14265,8 @@
         "Value": "qb_kneel",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -13980,7 +14308,8 @@
         "Value": "total_away_rush_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14022,7 +14351,8 @@
         "Value": "drive_play_id_started",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14064,7 +14394,8 @@
         "Value": "lateral_rushing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14106,7 +14437,8 @@
         "Value": "comp_yac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14148,7 +14480,8 @@
         "Value": "fumble_recovery_1_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14190,7 +14523,8 @@
         "Value": "home_wp_post",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14232,7 +14566,8 @@
         "Value": "out_of_bounds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14274,7 +14609,8 @@
         "Value": "drive_play_id_ended",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14316,7 +14652,8 @@
         "Value": "total_away_comp_yac_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14358,7 +14695,8 @@
         "Value": "lateral_receiving_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14400,7 +14738,8 @@
         "Value": "total_away_pass_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14442,7 +14781,8 @@
         "Value": "fumble_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14484,7 +14824,8 @@
         "Value": "qb_spike",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14526,7 +14867,8 @@
         "Value": "qtr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14568,7 +14910,8 @@
         "Value": "kickoff_out_of_bounds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14610,7 +14953,8 @@
         "Value": "fg_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14652,7 +14996,8 @@
         "Value": "xyac_success",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14694,7 +15039,8 @@
         "Value": "touchback",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14736,7 +15082,8 @@
         "Value": "fumble_out_of_bounds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14778,7 +15125,8 @@
         "Value": "complete_pass",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14820,7 +15168,8 @@
         "Value": "total_home_raw_air_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14862,7 +15211,8 @@
         "Value": "sack",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14904,7 +15254,8 @@
         "Value": "third_down_converted",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14946,7 +15297,8 @@
         "Value": "total_away_rush_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -14988,7 +15340,8 @@
         "Value": "xyac_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -15030,7 +15383,8 @@
         "Value": "punt_attempt",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -15072,7 +15426,8 @@
         "Value": "old_game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -15114,7 +15469,8 @@
         "Value": "lateral_reception",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -15156,7 +15512,8 @@
         "Value": "season_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15198,7 +15555,8 @@
         "Value": "time",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15240,7 +15598,8 @@
         "Value": "offense_players",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15282,7 +15641,8 @@
         "Value": "game_half",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15324,7 +15684,8 @@
         "Value": "tackle_for_loss_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15366,7 +15727,8 @@
         "Value": "assist_tackle_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15408,7 +15770,8 @@
         "Value": "assist_tackle_3_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15450,7 +15813,8 @@
         "Value": "two_point_conv_result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15492,7 +15856,8 @@
         "Value": "home_coach",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15534,7 +15899,8 @@
         "Value": "total_away_pass_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15576,7 +15942,8 @@
         "Value": "solo_tackle_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15618,7 +15985,8 @@
         "Value": "half_sack_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15660,7 +16028,8 @@
         "Value": "assist_tackle_4_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15702,7 +16071,8 @@
         "Value": "players_on_play",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15744,7 +16114,8 @@
         "Value": "receiver_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15786,7 +16157,8 @@
         "Value": "half_sack_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15828,7 +16200,8 @@
         "Value": "play_type_nfl",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15870,7 +16243,8 @@
         "Value": "fumble_recovery_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15912,7 +16286,8 @@
         "Value": "rusher",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15954,7 +16329,8 @@
         "Value": "solo_tackle_1_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -15996,7 +16372,8 @@
         "Value": "punter_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16038,7 +16415,8 @@
         "Value": "tackle_for_loss_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16080,7 +16458,8 @@
         "Value": "fantasy_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16122,7 +16501,8 @@
         "Value": "fumble_recovery_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16164,7 +16544,8 @@
         "Value": "assist_tackle_1_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16206,7 +16587,8 @@
         "Value": "penalty_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16248,7 +16630,8 @@
         "Value": "fumbled_1_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16290,7 +16673,8 @@
         "Value": "blocked_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16332,7 +16716,8 @@
         "Value": "roof",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16374,7 +16759,8 @@
         "Value": "kicker_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16416,7 +16802,8 @@
         "Value": "home_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16458,7 +16845,8 @@
         "Value": "offense_personnel",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16500,7 +16888,8 @@
         "Value": "assist_tackle_3_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16542,7 +16931,8 @@
         "Value": "pass_defense_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16584,7 +16974,8 @@
         "Value": "solo_tackle_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16626,7 +17017,8 @@
         "Value": "name_player_gsis_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16668,7 +17060,8 @@
         "Value": "replay_or_challenge_result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16710,7 +17103,8 @@
         "Value": "rusher_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16752,7 +17146,8 @@
         "Value": "name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16794,7 +17189,8 @@
         "Value": "forced_fumble_player_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16836,7 +17232,8 @@
         "Value": "run_gap",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16878,7 +17275,8 @@
         "Value": "fumble_recovery_2_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16920,7 +17318,8 @@
         "Value": "forced_fumble_player_1_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -16962,7 +17361,8 @@
         "Value": "kickoff_returner_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17004,7 +17404,8 @@
         "Value": "kicker_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17046,7 +17447,8 @@
         "Value": "passer_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17088,7 +17490,8 @@
         "Value": "safety_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17130,7 +17533,8 @@
         "Value": "run_location",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17172,7 +17576,8 @@
         "Value": "lateral_receiver_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17214,7 +17619,8 @@
         "Value": "id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17256,7 +17662,8 @@
         "Value": "own_kickoff_recovery_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17298,7 +17705,8 @@
         "Value": "half_sack_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17340,7 +17748,8 @@
         "Value": "possession_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17382,7 +17791,8 @@
         "Value": "punter_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17424,7 +17834,8 @@
         "Value": "rusher_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17466,7 +17877,8 @@
         "Value": "fantasy_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17508,7 +17920,8 @@
         "Value": "fumbled_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17550,7 +17963,8 @@
         "Value": "posteam",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17592,7 +18006,8 @@
         "Value": "away_coach",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17634,7 +18049,8 @@
         "Value": "end_clock_time",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17676,7 +18092,8 @@
         "Value": "lateral_rusher_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17718,7 +18135,8 @@
         "Value": "penalty_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17760,7 +18178,8 @@
         "Value": "passer_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17802,7 +18221,8 @@
         "Value": "qb_hit_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17844,7 +18264,8 @@
         "Value": "location",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17886,7 +18307,8 @@
         "Value": "td_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17928,7 +18350,8 @@
         "Value": "sack_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -17970,7 +18393,8 @@
         "Value": "nflverse_game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18012,7 +18436,8 @@
         "Value": "safety_prob",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18054,7 +18479,8 @@
         "Value": "fumbled_2_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18096,7 +18522,8 @@
         "Value": "qb_hit_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18138,7 +18565,8 @@
         "Value": "surface",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18180,7 +18608,8 @@
         "Value": "tackle_with_assist_1_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18222,7 +18651,8 @@
         "Value": "route",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18264,7 +18694,8 @@
         "Value": "field_goal_result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18306,7 +18737,8 @@
         "Value": "solo_tackle_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18348,7 +18780,8 @@
         "Value": "assist_tackle_3_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18390,7 +18823,8 @@
         "Value": "fumbled_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18432,7 +18866,8 @@
         "Value": "defense_personnel",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18474,7 +18909,8 @@
         "Value": "defense_coverage_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18516,7 +18952,8 @@
         "Value": "stadium",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18558,7 +18995,8 @@
         "Value": "lateral_rusher_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18600,7 +19038,8 @@
         "Value": "assist_tackle_4_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18642,7 +19081,8 @@
         "Value": "passer_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18684,7 +19124,8 @@
         "Value": "drive_real_start_time",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18726,7 +19167,8 @@
         "Value": "pass_defense_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18768,7 +19210,8 @@
         "Value": "time_of_day",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18810,7 +19253,8 @@
         "Value": "yrdln",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18852,7 +19296,8 @@
         "Value": "blocked_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18894,7 +19339,8 @@
         "Value": "drive_start_transition",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18936,7 +19382,8 @@
         "Value": "drive_end_yard_line",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -18978,7 +19425,8 @@
         "Value": "half_sack_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19020,7 +19468,8 @@
         "Value": "lateral_kickoff_returner_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19062,7 +19511,8 @@
         "Value": "interception_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19104,7 +19554,8 @@
         "Value": "assist_tackle_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19146,7 +19597,8 @@
         "Value": "assist_tackle_2_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19188,7 +19640,8 @@
         "Value": "fantasy",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19230,7 +19683,8 @@
         "Value": "weather",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19272,7 +19726,8 @@
         "Value": "side_of_field",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19314,7 +19769,8 @@
         "Value": "passer",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19356,7 +19812,8 @@
         "Value": "fumble_recovery_1_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19398,7 +19855,8 @@
         "Value": "pass_length",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19440,7 +19898,8 @@
         "Value": "start_time",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19482,7 +19941,8 @@
         "Value": "pass_defense_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19524,7 +19984,8 @@
         "Value": "fumble_recovery_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19566,7 +20027,8 @@
         "Value": "assist_tackle_4_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19608,7 +20070,8 @@
         "Value": "extra_point_result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19650,7 +20113,8 @@
         "Value": "tackle_with_assist_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19692,7 +20156,8 @@
         "Value": "lateral_kickoff_returner_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19734,7 +20199,8 @@
         "Value": "desc",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19776,7 +20242,8 @@
         "Value": "qb_hit_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19818,7 +20285,8 @@
         "Value": "tackle_with_assist_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19860,7 +20328,8 @@
         "Value": "td_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19902,7 +20371,8 @@
         "Value": "play_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19944,7 +20414,8 @@
         "Value": "drive_game_clock_start",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -19986,7 +20457,8 @@
         "Value": "interception_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20028,7 +20500,8 @@
         "Value": "forced_fumble_player_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20070,7 +20543,8 @@
         "Value": "own_kickoff_recovery_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20112,7 +20586,8 @@
         "Value": "wind",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20154,7 +20629,8 @@
         "Value": "away_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20196,7 +20672,8 @@
         "Value": "temp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20238,7 +20715,8 @@
         "Value": "sack_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20280,7 +20758,8 @@
         "Value": "safety_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20322,7 +20801,8 @@
         "Value": "lateral_interception_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20364,7 +20844,8 @@
         "Value": "assist_tackle_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20406,7 +20887,8 @@
         "Value": "lateral_receiver_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20448,7 +20930,8 @@
         "Value": "pass_defense_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20490,7 +20973,8 @@
         "Value": "drive_game_clock_end",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20532,7 +21016,8 @@
         "Value": "qb_hit_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20574,7 +21059,8 @@
         "Value": "solo_tackle_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20616,7 +21102,8 @@
         "Value": "punt_returner_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20658,7 +21145,8 @@
         "Value": "kickoff_returner_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20700,7 +21188,8 @@
         "Value": "series_result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20742,7 +21231,8 @@
         "Value": "receiver_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20784,7 +21274,8 @@
         "Value": "nfl_api_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20826,7 +21317,8 @@
         "Value": "drive_end_transition",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20868,7 +21360,8 @@
         "Value": "forced_fumble_player_1_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20910,7 +21403,8 @@
         "Value": "defense_players",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20952,7 +21446,8 @@
         "Value": "solo_tackle_2_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -20994,7 +21489,8 @@
         "Value": "drive_start_yard_line",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21036,7 +21532,8 @@
         "Value": "return_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21078,7 +21575,8 @@
         "Value": "penalty_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21120,7 +21618,8 @@
         "Value": "fantasy_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21162,7 +21661,8 @@
         "Value": "offense_formation",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21204,7 +21704,8 @@
         "Value": "timeout_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21246,7 +21747,8 @@
         "Value": "total_home_pass_wpa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21288,7 +21790,8 @@
         "Value": "rusher_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21330,7 +21833,8 @@
         "Value": "fumble_recovery_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21372,7 +21876,8 @@
         "Value": "game_stadium",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21414,7 +21919,8 @@
         "Value": "td_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21456,7 +21962,8 @@
         "Value": "replay_or_challenge",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21498,7 +22005,8 @@
         "Value": "play_clock",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21540,7 +22048,8 @@
         "Value": "defteam",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21582,7 +22091,8 @@
         "Value": "game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21624,7 +22134,8 @@
         "Value": "assist_tackle_2_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21666,7 +22177,8 @@
         "Value": "receiver",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21708,7 +22220,8 @@
         "Value": "receiver_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21750,7 +22263,8 @@
         "Value": "fumbled_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21792,7 +22306,8 @@
         "Value": "fixed_drive_result",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21834,7 +22349,8 @@
         "Value": "fumbled_1_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21876,7 +22392,8 @@
         "Value": "punt_returner_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21918,7 +22435,8 @@
         "Value": "forced_fumble_player_2_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -21960,7 +22478,8 @@
         "Value": "drive_time_of_possession",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22002,7 +22521,8 @@
         "Value": "penalty_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22044,7 +22564,8 @@
         "Value": "lateral_interception_player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22086,7 +22607,8 @@
         "Value": "forced_fumble_player_2_player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22128,7 +22650,8 @@
         "Value": "posteam_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22170,7 +22693,8 @@
         "Value": "defense_man_zone_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22212,7 +22736,8 @@
         "Value": "stadium_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22254,7 +22779,8 @@
         "Value": "pass_location",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22296,7 +22822,8 @@
         "Value": "name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22338,7 +22865,8 @@
         "Value": "team_abbr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22380,7 +22908,8 @@
         "Value": "name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22422,7 +22951,8 @@
         "Value": "name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22464,7 +22994,8 @@
         "Value": "name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22506,7 +23037,8 @@
         "Value": "name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -22548,7 +23080,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22590,7 +23123,8 @@
         "Value": "week",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22632,7 +23166,8 @@
         "Value": "completions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22674,7 +23209,8 @@
         "Value": "attempts",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22716,7 +23252,8 @@
         "Value": "passing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22758,7 +23295,8 @@
         "Value": "passing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22800,7 +23338,8 @@
         "Value": "sack_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22842,7 +23381,8 @@
         "Value": "sack_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22884,7 +23424,8 @@
         "Value": "passing_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22926,7 +23467,8 @@
         "Value": "passing_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -22968,7 +23510,8 @@
         "Value": "passing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23010,7 +23553,8 @@
         "Value": "passing_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23052,7 +23596,8 @@
         "Value": "carries",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23094,7 +23639,8 @@
         "Value": "rushing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23136,7 +23682,8 @@
         "Value": "rushing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23178,7 +23725,8 @@
         "Value": "rushing_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23220,7 +23768,8 @@
         "Value": "rushing_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23262,7 +23811,8 @@
         "Value": "rushing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23304,7 +23854,8 @@
         "Value": "rushing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23346,7 +23897,8 @@
         "Value": "rushing_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23388,7 +23940,8 @@
         "Value": "receptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23430,7 +23983,8 @@
         "Value": "receiving_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23472,7 +24026,8 @@
         "Value": "def_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23514,7 +24069,8 @@
         "Value": "fumble_recovery_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23556,7 +24112,8 @@
         "Value": "receiving_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23598,7 +24155,8 @@
         "Value": "receiving_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23640,7 +24198,8 @@
         "Value": "fg_made_30_39",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23682,7 +24241,8 @@
         "Value": "fg_missed_50_59",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23724,7 +24284,8 @@
         "Value": "fg_missed_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23766,7 +24327,8 @@
         "Value": "receiving_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23808,7 +24370,8 @@
         "Value": "def_pass_defended",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23850,7 +24413,8 @@
         "Value": "fg_pct",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23892,7 +24456,8 @@
         "Value": "misc_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23934,7 +24499,8 @@
         "Value": "fg_missed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -23976,7 +24542,8 @@
         "Value": "timeouts",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24018,7 +24585,8 @@
         "Value": "def_tackles_for_loss_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24060,7 +24628,8 @@
         "Value": "kickoff_returns",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24102,7 +24671,8 @@
         "Value": "receiving_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24144,7 +24714,8 @@
         "Value": "kickoff_return_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24186,7 +24757,8 @@
         "Value": "fg_missed_40_49",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24228,7 +24800,8 @@
         "Value": "receiving_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24270,7 +24843,8 @@
         "Value": "fg_made_20_29",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24312,7 +24886,8 @@
         "Value": "fg_missed_0_19",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24354,7 +24929,8 @@
         "Value": "pat_made",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24396,7 +24972,8 @@
         "Value": "def_tackles_solo",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24438,7 +25015,8 @@
         "Value": "fg_missed_60_",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24480,7 +25058,8 @@
         "Value": "fumble_recovery_yards_opp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24522,7 +25101,8 @@
         "Value": "penalty_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24564,7 +25144,8 @@
         "Value": "gwfg_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24606,7 +25187,8 @@
         "Value": "def_interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24648,7 +25230,8 @@
         "Value": "def_interception_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24690,7 +25273,8 @@
         "Value": "def_sacks",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24732,7 +25316,8 @@
         "Value": "fumble_recovery_own",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24774,7 +25359,8 @@
         "Value": "def_sack_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24816,7 +25402,8 @@
         "Value": "fg_missed_30_39",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24858,7 +25445,8 @@
         "Value": "fg_missed_20_29",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24900,7 +25488,8 @@
         "Value": "fumble_recovery_yards_own",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24942,7 +25531,8 @@
         "Value": "receiving_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -24984,7 +25574,8 @@
         "Value": "receiving_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25026,7 +25617,8 @@
         "Value": "fg_made_60_",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25068,7 +25660,8 @@
         "Value": "penalties",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25110,7 +25703,8 @@
         "Value": "punt_returns",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25152,7 +25746,8 @@
         "Value": "def_safeties",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25194,7 +25789,8 @@
         "Value": "receiving_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25236,7 +25832,8 @@
         "Value": "passing_interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25278,7 +25875,8 @@
         "Value": "def_qb_hits",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25320,7 +25918,8 @@
         "Value": "fg_made_40_49",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25362,7 +25961,8 @@
         "Value": "fg_made",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25404,7 +26004,8 @@
         "Value": "sack_yards_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25446,7 +26047,8 @@
         "Value": "def_tackles_with_assist",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25488,7 +26090,8 @@
         "Value": "passing_cpoe",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25530,7 +26133,8 @@
         "Value": "fg_blocked_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25572,7 +26176,8 @@
         "Value": "punt_return_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25614,7 +26219,8 @@
         "Value": "pat_att",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25656,7 +26262,8 @@
         "Value": "def_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25698,7 +26305,8 @@
         "Value": "gwfg_made",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25740,7 +26348,8 @@
         "Value": "def_tackle_assists",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25782,7 +26391,8 @@
         "Value": "pat_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25824,7 +26434,8 @@
         "Value": "def_fumbles_forced",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25866,7 +26477,8 @@
         "Value": "fg_long",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25908,7 +26520,8 @@
         "Value": "gwfg_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25950,7 +26563,8 @@
         "Value": "fg_att",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -25992,7 +26606,8 @@
         "Value": "pat_pct",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26034,7 +26649,8 @@
         "Value": "gwfg_missed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26076,7 +26692,8 @@
         "Value": "passing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26118,7 +26735,8 @@
         "Value": "fg_made_50_59",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26160,7 +26778,8 @@
         "Value": "gwfg_att",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26202,7 +26821,8 @@
         "Value": "def_tackles_for_loss",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26244,7 +26864,8 @@
         "Value": "special_teams_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26286,7 +26907,8 @@
         "Value": "sacks_suffered",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26328,7 +26950,8 @@
         "Value": "fumble_recovery_opp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26370,7 +26993,8 @@
         "Value": "targets",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26412,7 +27036,8 @@
         "Value": "fg_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26454,7 +27079,8 @@
         "Value": "fg_made_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26496,7 +27122,8 @@
         "Value": "fg_made_0_19",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26538,7 +27165,8 @@
         "Value": "pat_missed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26580,7 +27208,8 @@
         "Value": "season_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26622,7 +27251,8 @@
         "Value": "opponent_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26664,7 +27294,8 @@
         "Value": "fg_missed_list",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26706,7 +27337,8 @@
         "Value": "fg_made_list",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26748,7 +27380,8 @@
         "Value": "fg_blocked_list",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26790,7 +27423,8 @@
         "Value": "game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26832,7 +27466,8 @@
         "Value": "team_game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26874,7 +27509,8 @@
         "Value": "team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -26916,7 +27552,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -26958,7 +27595,8 @@
         "Value": "completions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27000,7 +27638,8 @@
         "Value": "attempts",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27042,7 +27681,8 @@
         "Value": "passing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27084,7 +27724,8 @@
         "Value": "passing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27126,7 +27767,8 @@
         "Value": "sack_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27168,7 +27810,8 @@
         "Value": "sack_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27210,7 +27853,8 @@
         "Value": "passing_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27252,7 +27896,8 @@
         "Value": "passing_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27294,7 +27939,8 @@
         "Value": "passing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27336,7 +27982,8 @@
         "Value": "passing_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27378,7 +28025,8 @@
         "Value": "carries",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27420,7 +28068,8 @@
         "Value": "rushing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27462,7 +28111,8 @@
         "Value": "rushing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27504,7 +28154,8 @@
         "Value": "rushing_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27546,7 +28197,8 @@
         "Value": "rushing_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27588,7 +28240,8 @@
         "Value": "rushing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27630,7 +28283,8 @@
         "Value": "rushing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27672,7 +28326,8 @@
         "Value": "rushing_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27714,7 +28369,8 @@
         "Value": "receptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27756,7 +28412,8 @@
         "Value": "receiving_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27798,7 +28455,8 @@
         "Value": "def_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27840,7 +28498,8 @@
         "Value": "epa_defense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27882,7 +28541,8 @@
         "Value": "fumble_recovery_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27924,7 +28584,8 @@
         "Value": "receiving_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -27966,7 +28627,8 @@
         "Value": "receiving_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28008,7 +28670,8 @@
         "Value": "fg_made_30_39",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28050,7 +28713,8 @@
         "Value": "fg_missed_50_59",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28092,7 +28756,8 @@
         "Value": "fg_missed_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28134,7 +28799,8 @@
         "Value": "receiving_2pt_conversions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28176,7 +28842,8 @@
         "Value": "def_pass_defended",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28218,7 +28885,8 @@
         "Value": "fg_pct",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28260,7 +28928,8 @@
         "Value": "fg_missed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28302,7 +28971,8 @@
         "Value": "total_yards_allowed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28344,7 +29014,8 @@
         "Value": "timeouts",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28386,7 +29057,8 @@
         "Value": "def_tackles_for_loss_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28428,7 +29100,8 @@
         "Value": "kickoff_returns",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28470,7 +29143,8 @@
         "Value": "receiving_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28512,7 +29186,8 @@
         "Value": "kickoff_return_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28554,7 +29229,8 @@
         "Value": "rush_defense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28596,7 +29272,8 @@
         "Value": "fg_missed_40_49",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28638,7 +29315,8 @@
         "Value": "receiving_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28680,7 +29358,8 @@
         "Value": "fg_made_20_29",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28722,7 +29401,8 @@
         "Value": "fg_missed_0_19",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28764,7 +29444,8 @@
         "Value": "pat_made",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28806,7 +29487,8 @@
         "Value": "def_tackles_solo",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28848,7 +29530,8 @@
         "Value": "fg_missed_60_",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28890,7 +29573,8 @@
         "Value": "games",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28932,7 +29616,8 @@
         "Value": "fumble_recovery_yards_opp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -28974,7 +29659,8 @@
         "Value": "penalty_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29016,7 +29702,8 @@
         "Value": "def_interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29058,7 +29745,8 @@
         "Value": "def_interception_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29100,7 +29788,8 @@
         "Value": "offensive_epa_allowed_per_game",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29142,7 +29831,8 @@
         "Value": "pass_yards_allowed_per_game",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29184,7 +29874,8 @@
         "Value": "def_sacks",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29226,7 +29917,8 @@
         "Value": "fumble_recovery_own",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29268,7 +29960,8 @@
         "Value": "pass_offense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29310,7 +30003,8 @@
         "Value": "def_sack_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29352,7 +30046,8 @@
         "Value": "pass_epa_offense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29394,7 +30089,8 @@
         "Value": "fg_missed_30_39",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29436,7 +30132,8 @@
         "Value": "pass_yards_allowed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29478,7 +30175,8 @@
         "Value": "fg_missed_20_29",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29520,7 +30218,8 @@
         "Value": "total_defense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29562,7 +30261,8 @@
         "Value": "rush_epa_offense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29604,7 +30304,8 @@
         "Value": "fumble_recovery_yards_own",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29646,7 +30347,8 @@
         "Value": "receiving_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29688,7 +30390,8 @@
         "Value": "receiving_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29730,7 +30433,8 @@
         "Value": "fg_made_60_",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29772,7 +30476,8 @@
         "Value": "penalties",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29814,7 +30519,8 @@
         "Value": "punt_returns",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29856,7 +30562,8 @@
         "Value": "def_safeties",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29898,7 +30605,8 @@
         "Value": "receiving_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29940,7 +30648,8 @@
         "Value": "passing_interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -29982,7 +30691,8 @@
         "Value": "def_qb_hits",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30024,7 +30734,8 @@
         "Value": "fg_made_40_49",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30066,7 +30777,8 @@
         "Value": "fg_made",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30108,7 +30820,8 @@
         "Value": "sack_yards_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30150,7 +30863,8 @@
         "Value": "def_tackles_with_assist",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30192,7 +30906,8 @@
         "Value": "passing_cpoe",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30234,7 +30949,8 @@
         "Value": "fg_blocked_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30276,7 +30992,8 @@
         "Value": "rush_offense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30318,7 +31035,8 @@
         "Value": "punt_return_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30360,7 +31078,8 @@
         "Value": "pat_att",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30402,7 +31121,8 @@
         "Value": "def_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30444,7 +31164,8 @@
         "Value": "pass_defense_rank",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30486,7 +31207,8 @@
         "Value": "gwfg_made",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30528,7 +31250,8 @@
         "Value": "def_tackle_assists",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30570,7 +31293,8 @@
         "Value": "pat_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30612,7 +31336,8 @@
         "Value": "def_fumbles_forced",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30654,7 +31379,8 @@
         "Value": "offensive_epa_allowed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30696,7 +31422,8 @@
         "Value": "fg_long",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30738,7 +31465,8 @@
         "Value": "gwfg_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30780,7 +31508,8 @@
         "Value": "misc_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30822,7 +31551,8 @@
         "Value": "fg_att",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30864,7 +31594,8 @@
         "Value": "pat_pct",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30906,7 +31637,8 @@
         "Value": "gwfg_missed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30948,7 +31680,8 @@
         "Value": "passing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -30990,7 +31723,8 @@
         "Value": "fg_made_50_59",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31032,7 +31766,8 @@
         "Value": "rush_yards_allowed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31074,7 +31809,8 @@
         "Value": "rush_yards_allowed_per_game",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31116,7 +31852,8 @@
         "Value": "gwfg_att",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31158,7 +31895,8 @@
         "Value": "def_tackles_for_loss",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31200,7 +31938,8 @@
         "Value": "special_teams_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31242,7 +31981,8 @@
         "Value": "sacks_suffered",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31284,7 +32024,8 @@
         "Value": "fumble_recovery_opp",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31326,7 +32067,8 @@
         "Value": "total_yards_allowed_per_game",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31368,7 +32110,8 @@
         "Value": "targets",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31410,7 +32153,8 @@
         "Value": "fg_blocked",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31452,7 +32196,8 @@
         "Value": "fg_made_distance",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31494,7 +32239,8 @@
         "Value": "fg_made_0_19",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31536,7 +32282,8 @@
         "Value": "pat_missed",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31578,7 +32325,8 @@
         "Value": "season_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -31620,7 +32368,8 @@
         "Value": "team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -31675,7 +32424,8 @@
         "Value": "fg_missed_list",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       }
     ]
   },
@@ -31716,7 +32466,8 @@
         "Value": "fg_made_list",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       }
     ]
   },
@@ -31757,7 +32508,8 @@
         "Value": "fg_blocked_list",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       }
     ]
   },
@@ -31785,7 +32537,8 @@
         "Value": "season",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31827,7 +32580,8 @@
         "Value": "week",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31869,7 +32623,8 @@
         "Value": "completions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31911,7 +32666,8 @@
         "Value": "attempts",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31953,7 +32709,8 @@
         "Value": "passing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -31995,7 +32752,8 @@
         "Value": "passing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32037,7 +32795,8 @@
         "Value": "interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32079,7 +32838,8 @@
         "Value": "sacks",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32121,7 +32881,8 @@
         "Value": "sack_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32163,7 +32924,8 @@
         "Value": "passing_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32205,7 +32967,8 @@
         "Value": "passing_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32247,7 +33010,8 @@
         "Value": "passing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32289,7 +33053,8 @@
         "Value": "carries",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32331,7 +33096,8 @@
         "Value": "rushing_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32373,7 +33139,8 @@
         "Value": "rushing_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32415,7 +33182,8 @@
         "Value": "rushing_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32457,7 +33225,8 @@
         "Value": "rushing_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32499,7 +33268,8 @@
         "Value": "rushing_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32541,7 +33311,8 @@
         "Value": "rushing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32583,7 +33354,8 @@
         "Value": "receptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32625,7 +33397,8 @@
         "Value": "receiving_fumbles",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32667,7 +33440,8 @@
         "Value": "fantasy_points_ppr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32709,7 +33483,8 @@
         "Value": "receiving_fumbles_lost",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32751,7 +33526,8 @@
         "Value": "passing_interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32793,7 +33569,8 @@
         "Value": "def_interceptions",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32835,7 +33612,8 @@
         "Value": "racr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32877,7 +33655,8 @@
         "Value": "def_interception_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32919,7 +33698,8 @@
         "Value": "passing_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -32961,7 +33741,8 @@
         "Value": "def_sacks",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33003,7 +33784,8 @@
         "Value": "target_share",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33045,7 +33827,8 @@
         "Value": "def_sack_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33087,7 +33870,8 @@
         "Value": "receiving_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33129,7 +33913,8 @@
         "Value": "receiving_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33171,7 +33956,8 @@
         "Value": "yards_per_carry",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33213,7 +33999,8 @@
         "Value": "special_teams_tds",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33255,7 +34042,8 @@
         "Value": "wopr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33297,7 +34085,8 @@
         "Value": "targets",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33339,7 +34128,8 @@
         "Value": "pacr",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33381,7 +34171,8 @@
         "Value": "receiving_first_downs",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33423,7 +34214,8 @@
         "Value": "dakota",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33465,7 +34257,8 @@
         "Value": "receiving_epa",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33507,7 +34300,8 @@
         "Value": "receiving_yards_after_catch",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33549,7 +34343,8 @@
         "Value": "scrimmage_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33591,7 +34386,8 @@
         "Value": "receiving_air_yards",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33633,7 +34429,8 @@
         "Value": "air_yards_share",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33675,7 +34472,8 @@
         "Value": "fantasy_points",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "numeric"
       },
       {
         "Name": "condition",
@@ -33717,7 +34515,8 @@
         "Value": "player_game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -33759,7 +34558,8 @@
         "Value": "player_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -33801,7 +34601,8 @@
         "Value": "position",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -33843,7 +34644,8 @@
         "Value": "position_group",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -33885,7 +34687,8 @@
         "Value": "recent_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -33927,7 +34730,8 @@
         "Value": "season_type",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -33969,7 +34773,8 @@
         "Value": "opponent_team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -34011,7 +34816,8 @@
         "Value": "player_name",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -34053,7 +34859,8 @@
         "Value": "headshot_url",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -34095,7 +34902,8 @@
         "Value": "game_id",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",
@@ -34137,7 +34945,8 @@
         "Value": "team",
         "SlotValueTypes": [
           "Filter"
-        ]
+        ],
+        "FieldKind": "string"
       },
       {
         "Name": "condition",

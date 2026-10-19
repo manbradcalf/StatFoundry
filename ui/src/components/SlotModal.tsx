@@ -26,19 +26,43 @@ interface SlotModalProps {
  * filters (the sibling `stat` slot's value) is a known categorical property for
  * this entity. Returns undefined when the value should stay free-text.
  */
+const getFilterFieldEnum = (
+  allSlots: Slot[],
+  entityLabel?: string,
+): string[] | undefined => {
+  if (!entityLabel) return undefined;
+  const property = allSlots.find((s) => s.Name === "stat")?.Value;
+  if (!property) return undefined;
+  return ENUM_CATALOG[`${entityLabel}.${property}`];
+};
+
 const getEnumValuesForSlot = (
   slot: Slot,
   allSlots: Slot[],
   entityLabel?: string,
 ): string[] | undefined => {
-  if (!entityLabel) return undefined;
   if (!slot.SlotValueTypes.includes(SlotType.FilterValue)) return undefined;
+  return getFilterFieldEnum(allSlots, entityLabel);
+};
 
-  const statSlot = allSlots.find((s) => s.Name === "stat");
-  const property = statSlot?.Value;
-  if (!property) return undefined;
+// Operators offered per field kind: categorical (enum) fields support
+// membership, free-text strings support equality and substring match, numeric
+// fields support comparisons. Ordering comparisons never appear on strings (no
+// last_name >), and `in` only where a closed value list exists to multi-select
+// from. `contains` compiles verbatim into the Cypher template (CONTAINS).
+const CATEGORICAL_OPERATORS = ["=", "<>", "in"];
+const STRING_OPERATORS = ["=", "<>", "contains"];
+const SCALAR_OPERATORS = [">", ">=", "=", "<", "<=", "<>"];
 
-  return ENUM_CATALOG[`${entityLabel}.${property}`];
+const getOperatorsForFilter = (
+  allSlots: Slot[],
+  entityLabel?: string,
+): string[] => {
+  if (getFilterFieldEnum(allSlots, entityLabel)) return CATEGORICAL_OPERATORS;
+  const statSlot = allSlots.find((s) =>
+    s.SlotValueTypes.includes(SlotType.Filter),
+  );
+  return statSlot?.FieldKind === "string" ? STRING_OPERATORS : SCALAR_OPERATORS;
 };
 
 /**
@@ -110,6 +134,27 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     // Special handling for Filter slots - they should be read-only when pre-filled
     const isFilterSlot = slot.SlotValueTypes.includes(SlotType.Filter);
     const isPreFilled = slot.Value && slot.Value !== "";
+
+    // Condition operators depend on the filtered field's kind: categorical
+    // fields offer membership (incl. `in`), numeric/other fields offer
+    // comparisons (no `in`).
+    if (slot.SlotValueTypes.includes(SlotType.FilterCondition)) {
+      const operators = getOperatorsForFilter(localSlots, entityLabel);
+      return (
+        <select
+          ref={isFirstInput ? firstSelectRef : undefined}
+          value={String(slot.Value ?? "")}
+          onChange={(e) => handleChange(idx, e.target.value)}
+          style={{ width: "100%", padding: "0.5rem" }}
+        >
+          {operators.map((op) => (
+            <option key={op} value={op}>
+              {op}
+            </option>
+          ))}
+        </select>
+      );
+    }
 
     // For a FilterValue slot whose filtered property is categorical, offer a
     // dropdown of the valid stored values instead of a free-text box.
