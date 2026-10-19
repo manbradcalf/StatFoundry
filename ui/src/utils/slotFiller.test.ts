@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { fillTemplate } from "./slotFiller";
 
 describe("fillTemplate", () => {
@@ -7,7 +5,7 @@ describe("fillTemplate", () => {
     const template = "Player position is {position}";
     const slots = [{ Name: "position", Value: "QB" }];
     const result = fillTemplate(template, slots);
-    expect(result).toBe("Player position is 'QB'");
+    expect(result).toBe('Player position is "QB"');
   });
 
   it("replaces multiple placeholders with provided values", () => {
@@ -28,5 +26,12 @@ describe("fillTemplate", () => {
     ];
     const result = fillTemplate(template, slots);
     expect(result).toBe("Between 1 and 10 and again 1");
+  });
+
+  it("renders array slot values as Cypher list literals", () => {
+    const template = "WHERE p.team IN {value}";
+    const slots = [{ Name: "value", Value: ["KC", "SF"] }];
+    const result = fillTemplate(template, slots);
+    expect(result).toBe('WHERE p.team IN ["KC", "SF"]');
   });
 });

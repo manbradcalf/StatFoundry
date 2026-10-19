@@ -4,6 +4,12 @@ import { Slot } from "../feature/Chunks/Types/Slot";
 import { ENTITY_PROPERTIES } from "../feature/Chunks/SlotsTypesToEntityPropsMap";
 import { SlotType } from "../feature/Chunks/Enums/SlotType";
 import generatedEnums from "../feature/Chunks/Data/generated-enums.json";
+import {
+  getFilterConditionValue,
+  getFilterStatFieldKind,
+  inConditionExpectsArray,
+  normalizeFilterValueSlotsForSave,
+} from "./slotModalFilterUtils";
 
 // Build-time catalog of enumerable property values, keyed by `Label.property`
 // (see ui/scripts/generateEnums.js). Used to turn free-text filter values into
@@ -45,23 +51,26 @@ const getEnumValuesForSlot = (
   return getFilterFieldEnum(allSlots, entityLabel);
 };
 
-// Operators offered per field kind: categorical (enum) fields support
-// membership, free-text strings support equality and substring match, numeric
-// fields support comparisons. Ordering comparisons never appear on strings (no
-// last_name >), and `in` only where a closed value list exists to multi-select
-// from. `contains` compiles verbatim into the Cypher template (CONTAINS).
+// Operators offered per field kind:
+// - categorical (enum) scalar fields support membership against a multi-value list
+// - free-text strings support equality and substring match
+// - numeric fields support comparisons
+// - string-array fields represent list properties, so `in` is a scalar membership
+//   check ({value} IN property) and must *not* wrap FilterValue as a list.
 const CATEGORICAL_OPERATORS = ["=", "<>", "in"];
 const STRING_OPERATORS = ["=", "<>", "contains"];
+const STRING_ARRAY_OPERATORS = ["in"];
 const SCALAR_OPERATORS = [">", ">=", "=", "<", "<=", "<>"];
 
 const getOperatorsForFilter = (
   allSlots: Slot[],
   entityLabel?: string,
 ): string[] => {
-  if (getFilterFieldEnum(allSlots, entityLabel)) return CATEGORICAL_OPERATORS;
   const statSlot = allSlots.find((s) =>
     s.SlotValueTypes.includes(SlotType.Filter),
   );
+  if (statSlot?.FieldKind === "string-array") return STRING_ARRAY_OPERATORS;
+  if (getFilterFieldEnum(allSlots, entityLabel)) return CATEGORICAL_OPERATORS;
   return statSlot?.FieldKind === "string" ? STRING_OPERATORS : SCALAR_OPERATORS;
 };
 
@@ -89,11 +98,11 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     setLocalSlots(slots.map((s) => ({ ...s })));
   }, [slots]);
 
-  const conditionValue = String(
-    localSlots.find((s) => s.SlotValueTypes.includes(SlotType.FilterCondition))
-      ?.Value ?? "",
-  ).toLowerCase();
-  const isInCondition = conditionValue === "in";
+  const conditionValue = getFilterConditionValue(localSlots);
+  const inExpectsArray = inConditionExpectsArray(
+    conditionValue,
+    getFilterStatFieldKind(localSlots),
+  );
 
   const handleChange = (index: number, newValue: string | string[]) => {
     setLocalSlots((prev) => {
@@ -106,20 +115,9 @@ export const SlotModal: React.FC<SlotModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Match each FilterValue's shape to its operator: `in` takes a list, every
-    // other operator a single value.
-    const normalized = localSlots.map((s) => {
-      if (!s.SlotValueTypes.includes(SlotType.FilterValue)) return s;
-      if (isInCondition) {
-        const arr = Array.isArray(s.Value)
-          ? s.Value
-          : s.Value
-            ? [String(s.Value)]
-            : [];
-        return { ...s, Value: arr };
-      }
-      return { ...s, Value: Array.isArray(s.Value) ? s.Value[0] ?? "" : s.Value };
-    });
+    // Match each FilterValue's shape to its operator: list-valued `in` uses an
+    // array, scalar membership `in` (for string-array properties) uses a scalar.
+    const normalized = normalizeFilterValueSlotsForSave(localSlots, inExpectsArray);
     onSave(normalized);
   };
 
@@ -162,7 +160,7 @@ export const SlotModal: React.FC<SlotModalProps> = ({
     if (enumValues && enumValues.length > 0) {
       // For the `in` operator, allow selecting multiple values (stored as an
       // array, compiled to a Cypher list literal).
-      if (isInCondition) {
+      if (inExpectsArray) {
         const selected: string[] = Array.isArray(slot.Value)
           ? slot.Value.map((v) => String(v))
           : slot.Value
