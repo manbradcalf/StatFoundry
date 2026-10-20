@@ -160,19 +160,30 @@ RETURN pg
 LIMIT 5;
 """
 
-try:
-    # First, create the constraint
-    constraint_result = driver.execute_query(create_constraint)
-    print("Constraint creation completed")
+CSV_URL_TEMPLATE = (
+    "https://github.com/nflverse/nflverse-data/releases/download/"
+    "stats_player/stats_player_week_{season}.csv"
+)
 
-    # Then, load the playergames data
-    result = driver.execute_query(
-        load_playergames,
-        season=CURRENT_SEASON,
-        csv_url=f"https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{CURRENT_SEASON}.csv",
-    )
-    print(f"Successfully loaded playergames: {len(result.records)} records processed")
-    print(result)
-except Exception as e:
-    print(f"ERROR: Failed to load playergames: {e}")
-    sys.exit(1)
+
+def run(season: int = CURRENT_SEASON) -> None:
+    """Load one season of PlayerGame nodes (MERGE + SET, safe to re-run)."""
+    try:
+        # First, create the constraint
+        driver.execute_query(create_constraint)
+        print("Constraint creation completed")
+
+        # Then, load the playergames data for the requested season
+        result = driver.execute_query(
+            load_playergames,
+            season=season,
+            csv_url=CSV_URL_TEMPLATE.format(season=season),
+        )
+        print(f"Successfully loaded playergames for {season}: {len(result.records)} records processed")
+    except Exception as e:
+        print(f"ERROR: Failed to load playergames for {season}: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    run()
