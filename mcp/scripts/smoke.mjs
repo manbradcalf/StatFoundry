@@ -83,7 +83,7 @@ if (card.json) {
   check(
     "card name is reverse-DNS namespace/id",
     typeof card.json.name === "string" &&
-      /^[a-z0-9.-]+\/[A-Za-z0-9._-]+$/.test(card.json.name),
+    /^[a-z0-9.-]+\/[A-Za-z0-9._-]+$/.test(card.json.name),
     `name: ${card.json.name}`,
   );
   check(
@@ -109,7 +109,7 @@ const alias = await get("/.well-known/mcp.json");
 check(
   "GET /.well-known/mcp.json is identical to the card",
   alias.res.status === 200 &&
-    JSON.stringify(alias.json) === JSON.stringify(card.json),
+  JSON.stringify(alias.json) === JSON.stringify(card.json),
   `status ${alias.res.status}`,
 );
 
@@ -118,9 +118,9 @@ const root = await get("/");
 check(
   "GET / returns 200 JSON with name, description, mcp.endpoint",
   root.res.status === 200 &&
-    Boolean(root.json?.name) &&
-    Boolean(root.json?.description) &&
-    Boolean(root.json?.mcp?.endpoint),
+  Boolean(root.json?.name) &&
+  Boolean(root.json?.description) &&
+  Boolean(root.json?.mcp?.endpoint),
   `status ${root.res.status}`,
 );
 
@@ -130,7 +130,7 @@ noteStatus(preflight.status);
 check(
   "OPTIONS /mcp returns 204 with wildcard CORS",
   preflight.status === 204 &&
-    preflight.headers.get("access-control-allow-origin") === "*",
+  preflight.headers.get("access-control-allow-origin") === "*",
   `status ${preflight.status}`,
 );
 
@@ -161,7 +161,7 @@ check(
 check(
   "initialize result has non-empty instructions",
   typeof init.message?.result?.instructions === "string" &&
-    init.message.result.instructions.length > 0,
+  init.message.result.instructions.length > 0,
 );
 const sessionId = init.res.headers.get("mcp-session-id");
 check(
@@ -187,10 +187,10 @@ if (sessionId) {
   );
   const names = (tools.message?.result?.tools ?? []).map((t) => t.name);
   check(
-    "tools/list works with no credentials and includes echo + ping",
+    "tools/list works with no credentials and includes getSchema + runQuery",
     tools.res.status === 200 &&
-      names.includes("echo") &&
-      names.includes("ping"),
+    names.includes("getSchema") &&
+    names.includes("runQuery"),
     `tools: ${names.join(", ") || "(none)"}`,
   );
 
@@ -220,6 +220,6 @@ for (const w of warnings) {
 const failed = results.filter((r) => !r.ok);
 console.log(
   `\n${results.length - failed.length}/${results.length} checks passed` +
-    (warnings.length ? `, ${warnings.length} warning(s)` : ""),
+  (warnings.length ? `, ${warnings.length} warning(s)` : ""),
 );
 process.exit(failed.length ? 1 : 0);
