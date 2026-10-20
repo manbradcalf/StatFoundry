@@ -4,6 +4,20 @@ import { config } from "./config.js";
 
 export function registerTools(server: McpServer): McpServer {
   server.registerTool(
+    "getSchema",
+    {
+      title: "getSchema",
+      description:
+        "Returns the StatFoundry NFL graph schema (Neo4j node labels, relationship types and their properties). " +
+        "Call this before writing a query for runQuery.",
+      inputSchema: {},
+    },
+    async () => ({
+      content: [{ type: "text", text: await callService("/api/schema") }],
+    }),
+  );
+
+  server.registerTool(
     "runQuery",
     {
       title: "runQuery",
