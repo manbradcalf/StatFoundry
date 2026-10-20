@@ -67,3 +67,9 @@ jobs:
         if: steps.load_games.outcome == 'success'
         run: python -m scripts.etl.cypher.load_plays
         working-directory: service
+
+      # Always runs: a failed step may still have written partial data
+      - name: Refresh schema snapshot
+        if: always()
+        run: python -m scripts.etl.cypher.refresh_schema
+        working-directory: service

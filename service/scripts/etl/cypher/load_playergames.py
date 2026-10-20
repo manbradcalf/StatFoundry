@@ -115,9 +115,32 @@ SET pg += {
   wopr:                        toFloatOrNull(line.wopr),
   pacr:                        toFloatOrNull(line.pacr),
 
-  // defense totals (kept as separate fields too)
+  // defense — tackles, pressure, coverage
+  def_tackles_solo:            toIntegerOrNull(line.def_tackles_solo),
+  def_tackles_with_assist:     toIntegerOrNull(line.def_tackles_with_assist),
+  def_tackle_assists:          toIntegerOrNull(line.def_tackle_assists),
+  def_tackles_for_loss:        toIntegerOrNull(line.def_tackles_for_loss),
+  def_tackles_for_loss_yards:  toFloatOrNull(line.def_tackles_for_loss_yards),
+  def_qb_hits:                 toIntegerOrNull(line.def_qb_hits),
+  def_pass_defended:           toIntegerOrNull(line.def_pass_defended),
+  def_fumbles_forced:          toIntegerOrNull(line.def_fumbles_forced),
+  def_fumbles:                 toIntegerOrNull(line.def_fumbles),
   def_sacks:                   toFloatOrNull(line.def_sacks),
   def_sack_yards:              toFloatOrNull(line.def_sack_yards),
+  def_tds:                     toIntegerOrNull(line.def_tds),
+  def_safeties:                toIntegerOrNull(line.def_safeties),
+  def_punt_blocks:             toIntegerOrNull(line.def_punt_blocks),
+  def_pat_blocks:              toIntegerOrNull(line.def_pat_blocks),
+  def_fg_blocks:               toIntegerOrNull(line.def_fg_blocks),
+  def_2pt_atts:                toIntegerOrNull(line.def_2pt_atts),
+  def_2pt_made:                toIntegerOrNull(line.def_2pt_made),
+
+  // fumble recoveries (defensive takeaways + offensive recoveries)
+  fumble_recovery_own:         toIntegerOrNull(line.fumble_recovery_own),
+  fumble_recovery_yards_own:   toFloatOrNull(line.fumble_recovery_yards_own),
+  fumble_recovery_opp:         toIntegerOrNull(line.fumble_recovery_opp),
+  fumble_recovery_yards_opp:   toFloatOrNull(line.fumble_recovery_yards_opp),
+  fumble_recovery_tds:         toIntegerOrNull(line.fumble_recovery_tds),
 
   // specials/fantasy
   special_teams_tds:           toFloatOrNull(line.special_teams_tds),
@@ -137,19 +160,30 @@ RETURN pg
 LIMIT 5;
 """
 
-try:
-    # First, create the constraint
-    constraint_result = driver.execute_query(create_constraint)
-    print("Constraint creation completed")
+CSV_URL_TEMPLATE = (
+    "https://github.com/nflverse/nflverse-data/releases/download/"
+    "stats_player/stats_player_week_{season}.csv"
+)
 
-    # Then, load the playergames data
-    result = driver.execute_query(
-        load_playergames,
-        season=CURRENT_SEASON,
-        csv_url=f"https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{CURRENT_SEASON}.csv",
-    )
-    print(f"Successfully loaded playergames: {len(result.records)} records processed")
-    print(result)
-except Exception as e:
-    print(f"ERROR: Failed to load playergames: {e}")
-    sys.exit(1)
+
+def run(season: int = CURRENT_SEASON) -> None:
+    """Load one season of PlayerGame nodes (MERGE + SET, safe to re-run)."""
+    try:
+        # First, create the constraint
+        driver.execute_query(create_constraint)
+        print("Constraint creation completed")
+
+        # Then, load the playergames data for the requested season
+        result = driver.execute_query(
+            load_playergames,
+            season=season,
+            csv_url=CSV_URL_TEMPLATE.format(season=season),
+        )
+        print(f"Successfully loaded playergames for {season}: {len(result.records)} records processed")
+    except Exception as e:
+        print(f"ERROR: Failed to load playergames for {season}: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    run()
