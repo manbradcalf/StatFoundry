@@ -32,6 +32,7 @@ MERGE (ts:TeamSeason {{team: line.team, season: season, season_type: line.season
 // Set all team season stats properties
 SET ts += {{
   // identity & context
+  id:                  line.team + "-" + line.season,
   team:                line.team,
   season:              season,
   season_type:         line.season_type,
@@ -196,7 +197,9 @@ RETURN count(ts) AS updated;
 """
 
 
-def get_compute_rankings_query(season: int, stat: str, rank_field: str, ascending: bool = True) -> str:
+def get_compute_rankings_query(
+    season: int, stat: str, rank_field: str, ascending: bool = True
+) -> str:
     """Generate ranking query for a specific stat and season.
 
     Args:
@@ -222,7 +225,12 @@ RETURN count(ts) AS ranked;
 
 def _execute_season_load(tx, season: int) -> dict:
     """Execute all season load operations within a transaction."""
-    results = {"loaded": 0, "updated": 0, "offense_ranked": False, "defense_ranked": False}
+    results = {
+        "loaded": 0,
+        "updated": 0,
+        "offense_ranked": False,
+        "defense_ranked": False,
+    }
 
     # Step 1: Load the teamseasons data from CSV
     load_query = get_load_teamseasons_query(season)
@@ -242,7 +250,9 @@ def _execute_season_load(tx, season: int) -> dict:
     ]
 
     for stat, rank_field in offense_rankings:
-        rank_query = get_compute_rankings_query(season, stat, rank_field, ascending=False)
+        rank_query = get_compute_rankings_query(
+            season, stat, rank_field, ascending=False
+        )
         tx.run(rank_query)
 
     results["offense_ranked"] = True
@@ -269,7 +279,9 @@ def _execute_season_load(tx, season: int) -> dict:
     ]
 
     for stat, rank_field in defense_rankings:
-        rank_query = get_compute_rankings_query(season, stat, rank_field, ascending=True)
+        rank_query = get_compute_rankings_query(
+            season, stat, rank_field, ascending=True
+        )
         tx.run(rank_query)
 
     results["defense_ranked"] = True
@@ -278,9 +290,9 @@ def _execute_season_load(tx, season: int) -> dict:
 
 def load_season(season: int) -> bool:
     """Load TeamSeason data and compute rankings for a single season."""
-    print(f"\n{'='*50}")
+    print(f"\n{'=' * 50}")
     print(f"Loading season {season}")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
 
     try:
         # Execute all operations in a single transaction for atomicity
@@ -297,7 +309,9 @@ def load_season(season: int) -> bool:
             print(f"  Computed offensive rankings")
 
         if results["updated"] == 0:
-            print(f"  WARNING: No TeamGame data for {season}, skipping defensive rankings")
+            print(
+                f"  WARNING: No TeamGame data for {season}, skipping defensive rankings"
+            )
             return True  # Still loaded TeamSeason + offensive rankings
 
         print(f"  Computed defensive stats for {results['updated']} teams")
@@ -323,9 +337,9 @@ try:
         if load_season(season):
             success_count += 1
 
-    print(f"\n{'='*50}")
+    print(f"\n{'=' * 50}")
     print(f"COMPLETE: Loaded {success_count}/{len(SEASONS)} seasons")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
 
     # Verify total count
     verify = driver.execute_query("""
