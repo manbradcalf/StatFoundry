@@ -362,31 +362,48 @@ All ETL scripts are located in `service/scripts/etl/cypher/` and are designed to
 
 ### Manual Execution
 
+Run scripts as modules from `service/` (they import `src.neo4j_client`):
+
 ```bash
 cd service
 source .venv/bin/activate
 
-# Set environment variables
-export NEO4J_STATFOUNDRY_NFL_AURA_URI=your-neo4j-uri
-export NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD=your-password
+# Pick a target database: local | qa | prod (defaults to prod)
+export NEO4J_ENV=local
+export NEO4J_STATFOUNDRY_NFL_LOCAL_URI=bolt://localhost:7687
+export NEO4J_STATFOUNDRY_NFL_LOCAL_PASSWORD=your-password
 
-# Run in order
-python scripts/etl/cypher/load_players.py
-python scripts/etl/cypher/load_games.py
-python scripts/etl/cypher/load_playergames.py
-python scripts/etl/cypher/load_teamgames.py
+# Run in order (same order as the GitHub workflow)
+python -m scripts.etl.cypher.load_games
+python -m scripts.etl.cypher.load_teamgames
+python -m scripts.etl.cypher.load_teamseasons
+python -m scripts.etl.cypher.load_players
+python -m scripts.etl.cypher.load_playergames
+python -m scripts.etl.cypher.load_plays
 ```
+
+Credential variables per `NEO4J_ENV` (see `service/src/config.py`):
+
+| `NEO4J_ENV` | URI variable | Password variable |
+|---|---|---|
+| `local` | `NEO4J_STATFOUNDRY_NFL_LOCAL_URI` | `NEO4J_STATFOUNDRY_NFL_LOCAL_PASSWORD` |
+| `qa` | `NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE_QA_URI` | `NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE_QA_PASSWORD` |
+| `prod` | `NEO4J_STATFOUNDRY_NFL_AURA_URI_CLONE` | `NEO4J_STATFOUNDRY_NFL_AURA_PASSWORD_CLONE` |
+
+The season is chosen automatically by `season_config.py` (January–August loads the previous season).
+
+`load_participation`, `load_playerseasons` and `migrate_player_names` are not part of the scheduled run; run them by hand when needed.
 
 ### Automated Ingestion
 
-ETL scripts run automatically via GitHub Actions workflow (`.github/workflows/data-ingestion.yml`):
+ETL scripts run automatically via GitHub Actions workflow (`.github/workflows/data-ingestion.yml`), against prod:
 
-**Trigger:** Scheduled to run weekly (or manual dispatch)
+**Trigger:** Several cron schedules during the season (daily plus after each game window), or manual dispatch (`gh workflow run data-ingestion.yml`)
 
 **Process:**
 1. Sets up Python environment
 2. Installs dependencies from `requirements.txt`
-3. Runs all four ETL scripts in correct order
+3. Runs `load_games`, then the remaining scripts only if it succeeded
 4. Reports success/failure status
 
 **Environment Variables:** Neo4j credentials stored as GitHub secrets
