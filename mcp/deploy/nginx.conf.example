@@ -1,0 +1,41 @@
+# /etc/nginx/sites-available/public-mcp-starter  (symlink into sites-enabled)
+#
+# The whole origin is proxied (location /) — NOT just /mcp — so the
+# discovery endpoints (/ and /.well-known/*) reach the app.
+
+# Anonymous public endpoint: rate-limit it. (limit_req_zone lives at http{}
+# context; files in sites-enabled are included there, so this placement works.)
+limit_req_zone $binary_remote_addr zone=mcp_public:10m rate=10r/s;
+
+server {
+    listen 443 ssl;
+    server_name mcp.yourdomain.com;
+
+    # ssl_certificate     /etc/letsencrypt/live/mcp.yourdomain.com/fullchain.pem;
+    # ssl_certificate_key /etc/letsencrypt/live/mcp.yourdomain.com/privkey.pem;
+
+    location / {
+        limit_req zone=mcp_public burst=20 nodelay;
+
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+
+        # Required for the server->client SSE stream — without this nginx
+        # buffers and the stream hangs.
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_set_header Connection '';
+        chunked_transfer_encoding off;
+
+        # Long-lived streams.
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+
+        # Session header + standard forwarding.
+        proxy_set_header Mcp-Session-Id $http_mcp_session_id;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

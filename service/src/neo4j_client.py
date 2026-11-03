@@ -1,4 +1,6 @@
-from neo4j import GraphDatabase, READ_ACCESS
+import json
+
+from neo4j import GraphDatabase, READ_ACCESS, RoutingControl
 from src.config import AUTH, URI
 
 
@@ -21,7 +23,12 @@ def close_driver(driver):
 driver = create_driver(URI, AUTH)
 
 
-def fetch_schema(driver):
+SCHEMA_SNAPSHOT_LABEL = "SchemaSnapshot"
+
+
+def compute_schema(driver):
+    """Introspect the live graph. Expensive (scans every relationship), so the
+    API serves the stored snapshot instead; see save_schema_snapshot."""
     # Private query constants (denoted by underscore prefix)
     _fetch_relationships_schema = """
     CALL db.schema.relTypeProperties()
@@ -32,7 +39,8 @@ def fetch_schema(driver):
 
     _fetch_nodes_schema = """
     CALL db.schema.nodeTypeProperties()
-    YIELD nodeType, propertyName, propertyTypes
+    YIELD nodeType, nodeLabels, propertyName, propertyTypes
+    WHERE NOT $snapshot_label IN nodeLabels
     WITH nodeType, collect({name: propertyName, type: propertyTypes[0]}) AS properties
     RETURN collect({label: nodeType, properties: properties}) AS node_schema
     """
@@ -45,7 +53,9 @@ def fetch_schema(driver):
     """
 
     with driver.session() as session:
-        node_properties = session.run(_fetch_nodes_schema).single()["node_schema"]
+        node_properties = session.run(
+            _fetch_nodes_schema, snapshot_label=SCHEMA_SNAPSHOT_LABEL
+        ).single()["node_schema"]
         rel_properties = session.run(_fetch_relationships_schema).single()["rel_schema"]
         rel_patterns = list(session.run(_fetch_rel_patterns))
 
@@ -67,6 +77,32 @@ def fetch_schema(driver):
             for rel in rel_patterns
         ],
     }
+
+
+def save_schema_snapshot(driver):
+    """Recompute the schema and store it in the graph. Run after every write
+    that can change the schema (ingestion, manual migrations)."""
+    schema = compute_schema(driver)
+    driver.execute_query(
+        f"""
+        MERGE (s:{SCHEMA_SNAPSHOT_LABEL} {{id: 'current'}})
+        SET s.json = $json, s.updated_at = datetime()
+        """,
+        json=json.dumps(schema),
+    )
+    return schema
+
+
+def fetch_schema(driver):
+    """Serve the stored snapshot. Falls back to live introspection (without
+    writing, so the API stays read-only) if no snapshot exists yet."""
+    records, _, _ = driver.execute_query(
+        f"MATCH (s:{SCHEMA_SNAPSHOT_LABEL} {{id: 'current'}}) RETURN s.json AS json",
+        routing_=RoutingControl.READ,
+    )
+    if records:
+        return json.loads(records[0]["json"])
+    return compute_schema(driver)
 
 
 def execute_readonly_query(driver, query):
@@ -91,4 +127,4 @@ def execute_readonly_query(driver, query):
 
 
 # Export the driver and fetch_schema for use in other modules
-__all__ = ["driver", "fetch_schema"]
+__all__ = ["driver", "fetch_schema", "save_schema_snapshot"]
